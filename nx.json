@@ -10,5 +10,16 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "feelback-web": {
+      "tags": []
+    },
+    "feelback-web-e2e": {
+      "tags": [],
+      "implicitDependencies": ["feelback-web"]
+    },
+    "feelback-api": {
+      "tags": []
+    }
+  }
 }
