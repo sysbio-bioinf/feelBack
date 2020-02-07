@@ -1,0 +1,33 @@
+{
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+
+  "todohighlight.keywords": [
+    {
+      "text": "TODO",
+      "color": "#2F4F4F",
+      "backgroundColor": "#FFD700",
+      "overviewRulerColor": "FFD700"
+    },
+    {
+      "text": "FIXME",
+      "color": "#FFFAFA",
+      "backgroundColor": "#FF8C00",
+      "overviewRulerColor": "#FF8C00"
+    },
+    {
+      "text": "BUG",
+      "color": "#FFFAFA",
+      "backgroundColor": "#DC143C",
+      "overviewRulerColor": "#DC143C"
+    },
+    {
+      "text": "DISCUSS",
+      "color": "#FFFAFA",
+      "backgroundColor": "#20B2AA",
+      "overviewRulerColor": "#20B2AA"
+    }
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
