@@ -32,6 +32,9 @@
     },
     "api-core": {
       "tags": []
+    },
+    "api-application": {
+      "tags": []
     }
   }
 }

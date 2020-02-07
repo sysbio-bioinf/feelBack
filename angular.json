@@ -306,6 +306,31 @@
           }
         }
       }
+    },
+    "api-application": {
+      "root": "libs/api/application",
+      "sourceRoot": "libs/api/application/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api/application/tsconfig.lib.json",
+              "libs/api/application/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api/application/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/application/jest.config.js",
+            "tsConfig": "libs/api/application/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
