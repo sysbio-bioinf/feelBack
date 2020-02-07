@@ -29,6 +29,9 @@
     },
     "util-core": {
       "tags": []
+    },
+    "api-core": {
+      "tags": []
     }
   }
 }

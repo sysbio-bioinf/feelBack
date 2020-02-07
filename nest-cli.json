@@ -1,5 +1,21 @@
 {
   "language": "ts",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/feelback-api/src"
+  "sourceRoot": "apps/feelback-api/src",
+  "monorepo": true,
+
+  "projects": {
+    "feelback-api": {
+      "type": "application",
+      "root": "apps/feelback-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/feelback-api/src"
+    },
+    "feelback-identity": {
+      "type": "application",
+      "root": "apps/feelback-identity",
+      "entryFile": "main",
+      "sourceRoot": "apps/feelback-identity/src"
+    }
+  }
 }
