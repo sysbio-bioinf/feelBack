@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  db_api:
+    image: postgres:11-alpine
+    ports:
+      - ${DB_PORT:-5432}:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME:-postgres}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    networks:
+      - backend
+
+  db_identity:
+    image: postgres:11-alpine
+    ports:
+      - ${ID_DB_PORT:-5433}:5432
+    environment:
+      POSTGRES_DB: ${ID_DB_NAME:-postgres}
+      POSTGRES_USER: ${ID_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${ID_DB_PASSWORD:-postgres}
+    networks:
+      - backend
+
+  # db_keycloak:
+  #   image: postgres:11-alpine
+  #   ports:
+  #     - ${KEYCLOAK_DB_PORT:-5434}:5432
+  #   environment:
+  #     POSTGRES_DB: ${KEYCLOAK_DB_NAME:-postgres}
+  #     POSTGRES_USER: ${KEYCLOAK_DB_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+  #   networks:
+  #     - backend
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db_api
+      - db_identity
+    ports:
+      - '5555:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+    networks:
+      - backend
+
+  # keycloak:
+  #   image: jboss/keycloak:8.0.1
+  #   depends_on:
+  #     - db_keycloak
+  #   environment:
+  #     DB_VENDOR: ${KEYCLOAK_DB_TYPE}
+  #     DB_ADDR: db_keycloak
+  #     DB_DATABASE: ${KEYCLOAK_DB_NAME:-keycloak}
+  #     DB_USER: ${KEYCLOAK_DB_USER:-postgres}
+  #     DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+  #     KEYCLOAK_USER: ${KEYCLOAK_USER:-keycloak}
+  #     KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD:-keycloak}
+  #     KEYCLOAK_LOGLEVEL: INFO
+  #     PROXY_ADDRESS_FORWARDING: 'true'
+  #   volumes:
+  #     - .deployment/keycloak/feelback-realm.json:/opt/jboss/keycloak/imports/feelback-realm.json
+  #   command:
+  #     - '-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/feelback-realm.json'
+  #   ports:
+  #     - '8080:8080'
+  #   networks:
+  #     - backend
+
+networks:
+  backend:
