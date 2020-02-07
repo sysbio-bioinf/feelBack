@@ -15,7 +15,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@env-cancerlog-api/environment": [
+        "apps/feelback-api/src/environments/environment.ts"
+      ],
+      "@env-cancerlog-identity/environment": [
+        "apps/feelback-identity/src/environments/environment.ts"
+      ],
+      "@cancerlog/api/config": ["libs/api/config/src/index.ts"],
+      "@cancerlog/util/core": ["libs/util/core/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

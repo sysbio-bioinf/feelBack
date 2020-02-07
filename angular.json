@@ -177,6 +177,110 @@
           }
         }
       }
+    },
+    "feelback-identity": {
+      "root": "apps/feelback-identity",
+      "sourceRoot": "apps/feelback-identity/src",
+      "projectType": "application",
+      "prefix": "feelback-identity",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/feelback-identity",
+            "main": "apps/feelback-identity/src/main.ts",
+            "tsConfig": "apps/feelback-identity/tsconfig.app.json",
+            "assets": ["apps/feelback-identity/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/feelback-identity/src/environments/environment.ts",
+                  "with": "apps/feelback-identity/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "feelback-identity:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/feelback-identity/tsconfig.app.json",
+              "apps/feelback-identity/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/feelback-identity/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/feelback-identity/jest.config.js",
+            "tsConfig": "apps/feelback-identity/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "api-config": {
+      "root": "libs/api/config",
+      "sourceRoot": "libs/api/config/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api/config/tsconfig.lib.json",
+              "libs/api/config/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api/config/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/config/jest.config.js",
+            "tsConfig": "libs/api/config/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "util-core": {
+      "root": "libs/util/core",
+      "sourceRoot": "libs/util/core/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/util/core/tsconfig.lib.json",
+              "libs/util/core/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/util/core/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/util/core/jest.config.js",
+            "tsConfig": "libs/util/core/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
