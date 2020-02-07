@@ -1,19 +1,32 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+import { environment as env } from '@env-cancerlog-api/environment';
 import { NestFactory } from '@nestjs/core';
-
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app/app.module';
+import { Logger } from '@nestjs/common';
+import * as compression from 'compression';
+import * as helmet from 'helmet';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  const globalPrefix = env.server.apiPrefix;
   app.setGlobalPrefix(globalPrefix);
-  const port = process.env.port || 3333;
+
+  if (env.platform.compression.enabled === true) {
+    app.use(compression());
+  }
+
+  if (env.platform.helmet.enabled === true) {
+    app.use(helmet());
+  }
+
+  if (env.platform.cors.enabled === true) {
+    app.enableCors(env.platform.cors.options);
+  }
+
+  const port = env.server.port;
   await app.listen(port, () => {
-    console.log('Listening at http://localhost:' + port + '/' + globalPrefix);
+    Logger.log(`Listening at ${env.server.url}${globalPrefix}`, 'Bootstrap');
   });
 }
 

@@ -6,9 +6,14 @@
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
-"""Create a new (empty) identity"""
-input CreateIdentityInput {
-  pseudonym: String!
+input CreateOrganizationInput {
+  name: String!
+  description: String
+  address: String
+  phone: String
+  email: String
+  url: String
+  logo: String
 }
 
 input CursorPaging {
@@ -35,78 +40,78 @@ type DeleteManyResponse {
   deletedCount: Int!
 }
 
-type IdentityObject {
+type Mutation {
+  deleteOneOrganization(
+    """The id of the record to delete."""
+    input: ID!
+  ): OrganizationDeleteResponse!
+  updateOneOrganization(
+    """The id of the record to update"""
+    id: ID!
+
+    """The update to apply."""
+    input: UpdateOrganizationInput!
+  ): Organization!
+  createOneOrganization(
+    """The record to create"""
+    input: CreateOrganizationInput!
+  ): Organization!
+}
+
+type Organization {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   version: Float!
-  pseudonym: String!
-  title: String!
-  firstname: String!
-  lastname: String!
+  name: String!
+  description: String
+  address: String
+  phone: String
+  email: String
+  url: String
+  logo: String
 }
 
-type IdentityObjectConnection {
+type OrganizationConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [IdentityObjectEdge!]!
+  edges: [OrganizationEdge!]!
 }
 
-type IdentityObjectDeleteResponse {
-  pseudonym: String
-  title: String
-  firstname: String
-  lastname: String
+type OrganizationDeleteResponse {
+  name: String
+  description: String
+  address: String
+  phone: String
+  email: String
+  url: String
+  logo: String
 }
 
-type IdentityObjectEdge {
-  """The node containing the IdentityObject"""
-  node: IdentityObject!
+type OrganizationEdge {
+  """The node containing the Organization"""
+  node: Organization!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-input IdentityObjectFilter {
-  and: [IdentityObjectFilter!]
-  or: [IdentityObjectFilter!]
-  pseudonym: StringFieldComparison
-  title: StringFieldComparison
-  firstname: StringFieldComparison
-  lastname: StringFieldComparison
+input OrganizationFilter {
+  and: [OrganizationFilter!]
+  or: [OrganizationFilter!]
+  name: StringFieldComparison
 }
 
-input IdentityObjectSort {
-  field: IdentityObjectSortFields!
+input OrganizationSort {
+  field: OrganizationSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum IdentityObjectSortFields {
-  pseudonym
-  title
-  firstname
-  lastname
-}
-
-type Mutation {
-  deleteOneIdentityObject(
-    """The id of the record to delete."""
-    input: ID!
-  ): IdentityObjectDeleteResponse!
-  updateOneIdentityObject(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdateIdentityInput!
-  ): IdentityObject!
-  createOneIdentityObject(
-    """The record to create"""
-    input: CreateIdentityInput!
-  ): IdentityObject!
+enum OrganizationSortFields {
+  name
 }
 
 type PageInfo {
@@ -124,17 +129,17 @@ type PageInfo {
 }
 
 type Query {
-  identityObject(id: ID!): IdentityObject
-  identityObjects(
+  organization(id: ID!): Organization
+  organizations(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: IdentityObjectFilter = {}
+    filter: OrganizationFilter = {}
 
     """Specify to sort results."""
-    sorting: [IdentityObjectSort!] = []
-  ): IdentityObjectConnection!
+    sorting: [OrganizationSort!] = []
+  ): OrganizationConnection!
 }
 
 """Sort Directions"""
@@ -166,14 +171,17 @@ input StringFieldComparison {
   notIn: [String!]
 }
 
-"""Update an Identity"""
-input UpdateIdentityInput {
-  title: String
-  firstname: String
-  lastname: String
-}
-
 type UpdateManyResponse {
   """The number of records updated."""
   updatedCount: Int!
+}
+
+input UpdateOrganizationInput {
+  name: String
+  description: String
+  address: String
+  phone: String
+  email: String
+  url: String
+  logo: String
 }
