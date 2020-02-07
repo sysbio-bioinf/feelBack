@@ -6,11 +6,9 @@
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
-input CreateIdentityObject {
-  pseudonym: String
-  title: String
-  firstname: String
-  lastname: String
+"""Create a new (empty) identity"""
+input CreateIdentityInput {
+  pseudonym: String!
 }
 
 input CursorPaging {
@@ -98,32 +96,17 @@ type Mutation {
     """The id of the record to delete."""
     input: ID!
   ): IdentityObjectDeleteResponse!
-  deleteManyIdentityObjects(
-    """Filter to find records to delete"""
-    input: IdentityObjectFilter!
-  ): DeleteManyResponse!
   updateOneIdentityObject(
     """The id of the record to update"""
     id: ID!
 
     """The update to apply."""
-    input: UpdateIdentityObject!
+    input: UpdateIdentityInput!
   ): IdentityObject!
-  updateManyIdentityObjects(
-    """Filter used to find fields to update"""
-    filter: IdentityObjectFilter!
-
-    """The update to apply to all records found using the filter"""
-    input: UpdateIdentityObject!
-  ): UpdateManyResponse!
   createOneIdentityObject(
     """The record to create"""
-    input: CreateIdentityObject!
+    input: CreateIdentityInput!
   ): IdentityObject!
-  createManyIdentityObjects(
-    """Array of records to create"""
-    input: [CreateIdentityObject!]!
-  ): [IdentityObject!]!
 }
 
 type PageInfo {
@@ -183,8 +166,8 @@ input StringFieldComparison {
   notIn: [String!]
 }
 
-input UpdateIdentityObject {
-  pseudonym: String
+"""Update an Identity"""
+input UpdateIdentityInput {
   title: String
   firstname: String
   lastname: String
