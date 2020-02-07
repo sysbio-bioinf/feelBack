@@ -1,7 +1,10 @@
 import { CoreObject } from './core.object';
-import { ID, GraphQLISODateTime } from 'type-graphql';
+import { ID, GraphQLISODateTime, ObjectType } from 'type-graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
 
+@ObjectType({
+  isAbstract: true
+})
 export abstract class IdentifiableObject extends CoreObject {
   @FilterableField(() => ID)
   id: string;
