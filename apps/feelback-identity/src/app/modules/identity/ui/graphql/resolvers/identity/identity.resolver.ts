@@ -8,7 +8,7 @@ import { UpdateIdentityInput } from '../../inputs/update-identity.input';
 @Resolver()
 export class IdentityResolver extends CRUDResolver(IdentityObject, {
   create: { many: { disabled: true }, CreateDTOClass: CreateIdentityInput },
-  delete: { many: { disabled: true } },
+  delete: { disabled: true },
   update: { many: { disabled: true }, UpdateDTOClass: UpdateIdentityInput }
 }) {
   constructor(readonly service: IdentityService) {
