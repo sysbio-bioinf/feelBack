@@ -1,0 +1,32 @@
+import { ObjectType, Field } from 'type-graphql';
+import { VersionableObject } from '@cancerlog/api/core';
+import { FilterableField } from '@nestjs-query/query-graphql';
+import { JSONObject } from '@cancerlog/api/application';
+
+@ObjectType('Instrument', {
+  description: 'An Instrument resource for a survey'
+})
+export class InstrumentObject extends VersionableObject {
+  @FilterableField({
+    description: 'The name of this instrument'
+  })
+  name: string;
+
+  @Field({
+    description: 'A description for this instrument',
+    nullable: true
+  })
+  description: string;
+
+  @Field({
+    description: 'An image / icon URL for this instrument',
+    nullable: true
+  })
+  image: string;
+
+  @Field(type => JSONObject, {
+    description: 'The actual payload / content / structure of this instrument',
+    nullable: true
+  })
+  instrument: object;
+}

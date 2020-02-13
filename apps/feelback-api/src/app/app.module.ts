@@ -5,9 +5,10 @@ import { ConfigModule, ConfigService } from '@cancerlog/api/config';
 import { OrganizationEntity } from './modules/organization/data/entities/organization.entity';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
+import { InstrumentEntity } from './modules/instrument/data/entities/instrument.entity';
 import { ScalarModule } from './modules/scalar.module';
 
-const availableEntities = [OrganizationEntity];
+const availableEntities = [OrganizationEntity, InstrumentEntity];
 
 @Module({
   imports: [
