@@ -54,6 +54,7 @@ type Instrument {
   version: Float!
   name: String!
   description: String
+  image: String
 
   """the actual payload / content / structure of this instrument"""
   instrument: JSONObject
@@ -70,6 +71,7 @@ type InstrumentConnection {
 type InstrumentDeleteResponse {
   name: String
   description: String
+  image: String
 
   """the actual payload / content / structure of this instrument"""
   instrument: JSONObject

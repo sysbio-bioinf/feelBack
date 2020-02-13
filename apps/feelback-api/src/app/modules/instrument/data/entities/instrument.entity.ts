@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 import { VersionableEntity } from '@cancerlog/api/core';
+import { ScreeningEntity } from '../../../screening/data/entities/screening.entity';
 
 @Entity({ name: 'instruments' })
 export class InstrumentEntity extends VersionableEntity {
@@ -14,4 +15,14 @@ export class InstrumentEntity extends VersionableEntity {
 
   @Column({ type: 'json', nullable: false, default: {} })
   instrument: object; // TODO: can we better type this in order to use surveyjs models?
+
+  // relationships
+  @OneToMany(
+    type => ScreeningEntity,
+    screening => screening.instrument,
+    {
+      onDelete: 'SET NULL'
+    }
+  )
+  screenings: ScreeningEntity[];
 }
