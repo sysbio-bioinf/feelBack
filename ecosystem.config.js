@@ -25,7 +25,7 @@ module.exports = {
       user: 'feelback',
       host: '134.60.71.108',
       ref: 'origin/master',
-      repo: 'https://github.com/johannesschobel/cancerlog.git',
+      repo: 'johannesschobel@github.com:cancerlog.git',
       path: '/home/feelback/wwwroot/apps/feelback',
       //'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
       'post-deploy': 'npm install && pm2 reload ecosystem.config.js'
