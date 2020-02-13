@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ScreeningResolver } from './screening/screening.resolver';
+import { ScreeningResolver } from './screening.resolver';
 
 describe('ScreeningResolver', () => {
   let resolver: ScreeningResolver;
