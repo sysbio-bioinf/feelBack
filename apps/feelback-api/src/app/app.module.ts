@@ -1,4 +1,4 @@
-import { environment } from '@env-cancerlog-identity/environment';
+import { environment } from '@env-cancerlog-api/environment';
 import { Module } from '@nestjs/common';
 import { ApiModule } from './modules/api.module';
 import { ConfigModule, ConfigService } from '@cancerlog/api/config';
