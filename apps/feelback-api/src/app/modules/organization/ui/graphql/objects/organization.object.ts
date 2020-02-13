@@ -2,26 +2,53 @@ import { VersionableObject } from '@cancerlog/api/core';
 import { ObjectType, Field } from 'type-graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
 
-@ObjectType('Organization')
+@ObjectType('Organization', {
+  description: 'An Organization resource'
+})
 export class OrganizationObject extends VersionableObject {
-  @FilterableField()
+  @FilterableField({
+    description: 'Name of the organization'
+  })
   name: string;
 
-  @Field({ nullable: true })
+  @Field({
+    description: 'A description of this organization',
+    nullable: true
+  })
   description?: string;
 
-  @Field({ nullable: true })
+  @FilterableField({
+    description: 'Type (hospital, service center, ...) of the organization'
+  })
+  type: string;
+
+  @Field({
+    description: 'The address of this organization',
+    nullable: true
+  })
   address?: string;
 
-  @Field({ nullable: true })
+  @Field({
+    description: 'The phone number of this organization',
+    nullable: true
+  })
   phone?: string;
 
-  @Field({ nullable: true })
+  @Field({
+    description: 'An email address of this organization',
+    nullable: true
+  })
   email?: string;
 
-  @Field({ nullable: true })
+  @Field({
+    description: 'The URL / website of this organization',
+    nullable: true
+  })
   url?: string;
 
-  @Field({ nullable: true })
+  @Field({
+    description: 'The URL for the logo of this organization',
+    nullable: true
+  })
   logo?: string;
 }

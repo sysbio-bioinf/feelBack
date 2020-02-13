@@ -9,18 +9,27 @@ export class UpdateIdentityInput extends CoreInput {
   @IsOptional()
   @IsString()
   @MaxLength(190)
-  @Field({ nullable: true })
+  @Field({
+    description: 'The (new) title of this identity',
+    nullable: true
+  })
   title?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(190)
-  @Field({ nullable: true })
+  @Field({
+    description: 'The (new) firstname',
+    nullable: true
+  })
   firstname?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(190)
-  @Field({ nullable: true })
+  @Field({
+    description: 'The (new) lastname',
+    nullable: true
+  })
   lastname?: string;
 }

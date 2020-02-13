@@ -8,6 +8,9 @@ import { IsString, MaxLength } from 'class-validator';
 export class CreateIdentityInput extends CoreInput {
   @IsString()
   @MaxLength(190)
-  @Field({ nullable: false })
+  @Field({
+    description: 'The pseudonym of the identity',
+    nullable: false
+  })
   pseudonym: string;
 }

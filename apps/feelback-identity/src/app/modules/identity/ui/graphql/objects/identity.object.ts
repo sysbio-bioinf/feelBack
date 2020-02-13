@@ -2,17 +2,30 @@ import { ObjectType } from 'type-graphql';
 import { VersionableObject } from '@cancerlog/api/core';
 import { FilterableField } from '@nestjs-query/query-graphql';
 
-@ObjectType('Identity')
+@ObjectType('Identity', {
+  description: 'Identity resource for an anonymized patient'
+})
 export class IdentityObject extends VersionableObject {
-  @FilterableField()
+  @FilterableField({
+    description: 'The pseudonym of an identity.'
+  })
   pseudonym: string;
 
-  @FilterableField({ nullable: true })
+  @FilterableField({
+    description: 'An academic title of this identity',
+    nullable: true
+  })
   title: string;
 
-  @FilterableField({ nullable: true })
+  @FilterableField({
+    description: 'The firstname of this identity',
+    nullable: true
+  })
   firstname: string;
 
-  @FilterableField({ nullable: true })
+  @FilterableField({
+    description: 'The lastname of this identity',
+    nullable: true
+  })
   lastname: string;
 }
