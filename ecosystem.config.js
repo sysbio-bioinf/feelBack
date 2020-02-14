@@ -22,7 +22,7 @@ module.exports = {
 
   deploy: {
     production: {
-      key: '~/.ssh/id_rsa.pem',
+      key: '~/.ssh/id_rsa',
       user: 'feelback',
       host: ['134.60.71.108'],
       ssh_options: 'ForwardAgent=yes',
