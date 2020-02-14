@@ -22,9 +22,10 @@ module.exports = {
 
   deploy: {
     production: {
+      key: '~/.ssh/id_rsa.pem',
       user: 'feelback',
       host: ['134.60.71.108'],
-      ssh_options: 'StrictHostKeyChecking=no',
+      ssh_options: 'ForwardAgent=yes',
       ref: 'origin/master',
       repo: 'git@github.com:johannesschobel/cancerlog.git',
       path: '/home/feelback/wwwroot/apps/feelback',
