@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { IEnvironment } from '@cancerlog/api/config';
 import * as env from 'env-var';
 import { ApiPathHelper } from '@cancerlog/util/core';
