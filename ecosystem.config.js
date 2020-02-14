@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'api-identity',
+      name: 'feelback-identity',
       script: 'dist/apps/feelback-identity/main.js',
 
       // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/

@@ -13,6 +13,7 @@
     "affected:lint": "nx affected:lint",
     "affected:test": "nx affected:test",
     "build": "ng build",
+    "clean:dist": "rimraf dist",
     "dep-graph": "nx dep-graph",
     "deps:bump": "npx ncu -iu",
     "e2e": "ng e2e",
