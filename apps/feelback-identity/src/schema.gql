@@ -6,21 +6,10 @@
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
-"""Create a new Instrument"""
-input CreateInstrumentInput {
-  name: String!
-  description: String
-  instrument: JSONObject
-}
-
-input CreateOrganizationInput {
-  name: String!
-  description: String
-  address: String
-  phone: String
-  email: String
-  url: String
-  logo: String
+"""Create a new (empty) identity"""
+input CreateIdentityInput {
+  """The pseudonym of the identity"""
+  pseudonym: String!
 }
 
 input CursorPaging {
@@ -47,142 +36,80 @@ type DeleteManyResponse {
   deletedCount: Int!
 }
 
-type Instrument {
+"""Identity resource for an anonymized patient"""
+type Identity {
+  """The ID of this resource."""
   id: ID!
+
+  """DateTime when this resource was created."""
   createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
   updatedAt: DateTime!
   version: Float!
-  name: String!
-  description: String
-
-  """the actual payload / content / structure of this instrument"""
-  instrument: JSONObject
+  pseudonym: String!
+  title: String!
+  firstname: String!
+  lastname: String!
 }
 
-type InstrumentConnection {
+type IdentityConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [InstrumentEdge!]!
+  edges: [IdentityEdge!]!
 }
 
-type InstrumentDeleteResponse {
-  name: String
-  description: String
-
-  """the actual payload / content / structure of this instrument"""
-  instrument: JSONObject
+type IdentityDeleteResponse {
+  pseudonym: String
+  title: String
+  firstname: String
+  lastname: String
 }
 
-type InstrumentEdge {
-  """The node containing the Instrument"""
-  node: Instrument!
+type IdentityEdge {
+  """The node containing the Identity"""
+  node: Identity!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-input InstrumentFilter {
-  and: [InstrumentFilter!]
-  or: [InstrumentFilter!]
-  name: StringFieldComparison
+input IdentityFilter {
+  and: [IdentityFilter!]
+  or: [IdentityFilter!]
+  pseudonym: StringFieldComparison
+  title: StringFieldComparison
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
 }
 
-input InstrumentSort {
-  field: InstrumentSortFields!
+input IdentitySort {
+  field: IdentitySortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum InstrumentSortFields {
-  name
+enum IdentitySortFields {
+  pseudonym
+  title
+  firstname
+  lastname
 }
-
-"""
-The JSONObject scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSONObject
 
 type Mutation {
-  updateOneInstrument(
+  updateOneIdentity(
     """The id of the record to update"""
     id: ID!
 
     """The update to apply."""
-    input: UpdateInstrumentInput!
-  ): Instrument!
-  createOneInstrument(
+    input: UpdateIdentityInput!
+  ): Identity!
+  createOneIdentity(
     """The record to create"""
-    input: CreateInstrumentInput!
-  ): Instrument!
-  updateOneOrganization(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdateOrganizationInput!
-  ): Organization!
-  createOneOrganization(
-    """The record to create"""
-    input: CreateOrganizationInput!
-  ): Organization!
-}
-
-type Organization {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  version: Float!
-  name: String!
-  description: String
-  address: String
-  phone: String
-  email: String
-  url: String
-  logo: String
-}
-
-type OrganizationConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [OrganizationEdge!]!
-}
-
-type OrganizationDeleteResponse {
-  name: String
-  description: String
-  address: String
-  phone: String
-  email: String
-  url: String
-  logo: String
-}
-
-type OrganizationEdge {
-  """The node containing the Organization"""
-  node: Organization!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-input OrganizationFilter {
-  and: [OrganizationFilter!]
-  or: [OrganizationFilter!]
-  name: StringFieldComparison
-}
-
-input OrganizationSort {
-  field: OrganizationSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum OrganizationSortFields {
-  name
+    input: CreateIdentityInput!
+  ): Identity!
 }
 
 type PageInfo {
@@ -200,28 +127,17 @@ type PageInfo {
 }
 
 type Query {
-  instrument(id: ID!): Instrument
-  instruments(
+  identity(id: ID!): Identity
+  identities(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: InstrumentFilter = {}
+    filter: IdentityFilter = {}
 
     """Specify to sort results."""
-    sorting: [InstrumentSort!] = []
-  ): InstrumentConnection!
-  organization(id: ID!): Organization
-  organizations(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: OrganizationFilter = {}
-
-    """Specify to sort results."""
-    sorting: [OrganizationSort!] = []
-  ): OrganizationConnection!
+    sorting: [IdentitySort!] = []
+  ): IdentityConnection!
 }
 
 """Sort Directions"""
@@ -253,24 +169,19 @@ input StringFieldComparison {
   notIn: [String!]
 }
 
-"""Update an existing Instrument"""
-input UpdateInstrumentInput {
-  name: String
-  description: String
-  instrument: JSONObject
+"""Update an Identity"""
+input UpdateIdentityInput {
+  """The (new) title of this identity"""
+  title: String
+
+  """The (new) firstname"""
+  firstname: String
+
+  """The (new) lastname"""
+  lastname: String
 }
 
 type UpdateManyResponse {
   """The number of records updated."""
   updatedCount: Int!
-}
-
-input UpdateOrganizationInput {
-  name: String
-  description: String
-  address: String
-  phone: String
-  email: String
-  url: String
-  logo: String
 }

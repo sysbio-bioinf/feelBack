@@ -1,11 +1,15 @@
-import { Injectable } from '@nestjs/common';
-import { IdentityEntity } from '../data/entities/identity.entity';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { QueryService } from '@nestjs-query/core';
 import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { IdentityEntity } from '../data/entities/identity.entity';
+import { IdentityObject } from '../ui/graphql/objects/identity.object';
 
-@Injectable()
-export class IdentityService extends TypeOrmQueryService<IdentityEntity> {
+@QueryService(IdentityObject)
+export class IdentityService extends TypeOrmQueryService<
+  IdentityObject,
+  IdentityEntity
+> {
   constructor(
     @InjectRepository(IdentityEntity) repository: Repository<IdentityEntity>
   ) {
