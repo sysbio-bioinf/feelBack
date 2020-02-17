@@ -7,8 +7,13 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { InstrumentEntity } from './modules/instrument/data/entities/instrument.entity';
 import { ScalarModule } from './modules/scalar.module';
+import { ScreeningEntity } from './modules/screening/data/entities/screening.entity';
 
-const availableEntities = [OrganizationEntity, InstrumentEntity];
+const availableEntities = [
+  InstrumentEntity,
+  OrganizationEntity,
+  ScreeningEntity
+];
 
 @Module({
   imports: [

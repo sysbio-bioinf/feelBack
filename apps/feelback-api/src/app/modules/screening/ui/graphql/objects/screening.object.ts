@@ -1,8 +1,10 @@
 import { VersionableObject } from '@cancerlog/api/core';
 import { ObjectType, GraphQLISODateTime, Field } from 'type-graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
-import { UserAgentObject } from './user-agent.object';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
+import { JSONObject } from '@cancerlog/api/application';
+import { UserAgentObject } from './user-agent.object';
+import { Type } from 'class-transformer';
 
 @ObjectType('Screening', {
   description: 'A processed screening'
@@ -20,11 +22,12 @@ export class ScreeningObject extends VersionableObject {
   })
   language: string;
 
-  @Field({
-    description: 'The language this screening was performed in',
-    nullable: false
+  @Field(() => JSONObject, {
+    description:
+      'UserAgent information for the device this screening was performed on',
+    nullable: true
   })
-  userAgent: UserAgentObject;
+  userAgent: object;
 
   // @Field({
   //   description: 'The instrument this screening belongs to',

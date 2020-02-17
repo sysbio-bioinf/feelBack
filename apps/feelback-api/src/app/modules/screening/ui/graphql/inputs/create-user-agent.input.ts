@@ -1,20 +1,27 @@
-import { CoreObject } from '@cancerlog/api/core';
-import { ObjectType, Field } from 'type-graphql';
+import { CoreInput } from '@cancerlog/api/core';
+import { InputType, Field } from 'type-graphql';
+import { IsOptional, IsString } from 'class-validator';
 
-@ObjectType('UserAgent', {})
-export class UserAgentObject extends CoreObject {
+@InputType()
+export class CreateUserAgentInput extends CoreInput {
+  @IsOptional()
+  @IsString()
   @Field({
     description: 'The device type used for this request',
     nullable: true
   })
   device: string;
 
+  @IsOptional()
+  @IsString()
   @Field({
     description: 'The OS used for this request',
     nullable: true
   })
   os: string;
 
+  @IsOptional()
+  @IsString()
   @Field({
     description: 'The application version used for this request',
     nullable: true

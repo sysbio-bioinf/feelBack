@@ -1,4 +1,4 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, RelationId } from 'typeorm';
 import { VersionableEntity } from '@cancerlog/api/core';
 import { ScreeningEntity } from '../../../screening/data/entities/screening.entity';
 
@@ -25,4 +25,7 @@ export class InstrumentEntity extends VersionableEntity {
     }
   )
   screenings: ScreeningEntity[];
+
+  @RelationId((instrument: InstrumentEntity) => instrument.screenings)
+  _screenings: string[];
 }

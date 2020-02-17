@@ -8,19 +8,62 @@ scalar ConnectionCursor
 
 """Create a new Instrument"""
 input CreateInstrumentInput {
+  """The name of the instrument"""
   name: String!
+
+  """The description of the instrument"""
   description: String
-  instrument: JSONObject
+
+  """The payload / structure of the instrument"""
+  payload: JSONObject
 }
 
 input CreateOrganizationInput {
+  """The name of the organization"""
   name: String!
+
+  """The description of the organization"""
   description: String
+
+  """The type of the organization"""
+  type: String!
+
+  """The address of the organization"""
   address: String
+
+  """The Phone number"""
   phone: String
+
+  """The main email address"""
   email: String
+
+  """The URL / Website of this organization"""
   url: String
+
+  """The logo as valid URL string)"""
   logo: String
+}
+
+input CreateScreeningInput {
+  """DateTime when this screening was performed"""
+  collectedAt: DateTime!
+
+  """The language this screening was performed in"""
+  language: String!
+
+  """UserAgent Information of the device"""
+  userAgent: CreateUserAgentInput
+}
+
+input CreateUserAgentInput {
+  """The device type used for this request"""
+  device: String
+
+  """The OS used for this request"""
+  os: String
+
+  """The application version used for this request"""
+  application: String
 }
 
 input CursorPaging {
@@ -37,6 +80,19 @@ input CursorPaging {
   last: Int
 }
 
+input DateFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: DateTime
+  neq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -47,17 +103,37 @@ type DeleteManyResponse {
   deletedCount: Int!
 }
 
+"""An Instrument resource for a survey"""
 type Instrument {
+  """The ID of this resource."""
   id: ID!
+
+  """DateTime when this resource was created."""
   createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
   updatedAt: DateTime!
   version: Float!
   name: String!
+
+  """A description for this instrument"""
   description: String
+
+  """An image / icon URL for this instrument"""
   image: String
 
-  """the actual payload / content / structure of this instrument"""
-  instrument: JSONObject
+  """The actual payload / content / structure of this instrument"""
+  payload: JSONObject
+  screenings(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ScreeningFilter = {}
+
+    """Specify to sort results."""
+    sorting: [ScreeningSort!] = []
+  ): ScreeningConnection
 }
 
 type InstrumentConnection {
@@ -70,11 +146,15 @@ type InstrumentConnection {
 
 type InstrumentDeleteResponse {
   name: String
+
+  """A description for this instrument"""
   description: String
+
+  """An image / icon URL for this instrument"""
   image: String
 
-  """the actual payload / content / structure of this instrument"""
-  instrument: JSONObject
+  """The actual payload / content / structure of this instrument"""
+  payload: JSONObject
 }
 
 type InstrumentEdge {
@@ -107,6 +187,10 @@ The JSONObject scalar type represents JSON objects as specified by [ECMA-404](ht
 scalar JSONObject
 
 type Mutation {
+  createOneScreening(
+    """The record to create"""
+    input: CreateScreeningInput!
+  ): Screening!
   updateOneInstrument(
     """The id of the record to update"""
     id: ID!
@@ -117,6 +201,13 @@ type Mutation {
   createOneInstrument(
     """The record to create"""
     input: CreateInstrumentInput!
+  ): Instrument!
+  addScreeningsToInstrument(
+    """The id of the record."""
+    id: ID!
+
+    """The ids of the relations."""
+    relationIds: [ID!]!
   ): Instrument!
   updateOneOrganization(
     """The id of the record to update"""
@@ -131,17 +222,36 @@ type Mutation {
   ): Organization!
 }
 
+"""An Organization resource"""
 type Organization {
+  """The ID of this resource."""
   id: ID!
+
+  """DateTime when this resource was created."""
   createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
   updatedAt: DateTime!
   version: Float!
   name: String!
+
+  """A description of this organization"""
   description: String
+  type: String!
+
+  """The address of this organization"""
   address: String
+
+  """The phone number of this organization"""
   phone: String
+
+  """An email address of this organization"""
   email: String
+
+  """The URL / website of this organization"""
   url: String
+
+  """The URL for the logo of this organization"""
   logo: String
 }
 
@@ -155,11 +265,24 @@ type OrganizationConnection {
 
 type OrganizationDeleteResponse {
   name: String
+
+  """A description of this organization"""
   description: String
+  type: String
+
+  """The address of this organization"""
   address: String
+
+  """The phone number of this organization"""
   phone: String
+
+  """An email address of this organization"""
   email: String
+
+  """The URL / website of this organization"""
   url: String
+
+  """The URL for the logo of this organization"""
   logo: String
 }
 
@@ -175,6 +298,7 @@ input OrganizationFilter {
   and: [OrganizationFilter!]
   or: [OrganizationFilter!]
   name: StringFieldComparison
+  type: StringFieldComparison
 }
 
 input OrganizationSort {
@@ -185,6 +309,7 @@ input OrganizationSort {
 
 enum OrganizationSortFields {
   name
+  type
 }
 
 type PageInfo {
@@ -202,6 +327,17 @@ type PageInfo {
 }
 
 type Query {
+  screening(id: ID!): Screening
+  screenings(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ScreeningFilter = {}
+
+    """Specify to sort results."""
+    sorting: [ScreeningSort!] = []
+  ): ScreeningConnection!
   instrument(id: ID!): Instrument
   instruments(
     """Limit or page results."""
@@ -224,6 +360,70 @@ type Query {
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
   ): OrganizationConnection!
+}
+
+"""A processed screening"""
+type Screening {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+  version: Float!
+
+  """DateTime when this screening was performed."""
+  collectedAt: DateTime!
+  language: String!
+
+  """UserAgent information for the device this screening was performed on"""
+  userAgent: JSONObject
+  instrument: Instrument
+}
+
+type ScreeningConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ScreeningEdge!]!
+}
+
+type ScreeningDeleteResponse {
+  """DateTime when this screening was performed."""
+  collectedAt: DateTime
+  language: String
+
+  """UserAgent information for the device this screening was performed on"""
+  userAgent: JSONObject
+}
+
+type ScreeningEdge {
+  """The node containing the Screening"""
+  node: Screening!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+input ScreeningFilter {
+  and: [ScreeningFilter!]
+  or: [ScreeningFilter!]
+  collectedAt: DateFieldComparison
+  language: StringFieldComparison
+}
+
+input ScreeningSort {
+  field: ScreeningSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ScreeningSortFields {
+  collectedAt
+  language
 }
 
 """Sort Directions"""
@@ -257,9 +457,14 @@ input StringFieldComparison {
 
 """Update an existing Instrument"""
 input UpdateInstrumentInput {
+  """The (new) name of this instrument"""
   name: String
+
+  """The (new) description of this instrument"""
   description: String
-  instrument: JSONObject
+
+  """The (new) payload / structure of the instrument"""
+  payload: JSONObject
 }
 
 type UpdateManyResponse {
@@ -268,11 +473,36 @@ type UpdateManyResponse {
 }
 
 input UpdateOrganizationInput {
+  """The (new) name of the organization"""
   name: String
+
+  """The (new) description of the organization"""
   description: String
+
+  """The (new) type of the organization"""
+  type: String
+
+  """The (new) address"""
   address: String
+
+  """The (new) phone number"""
   phone: String
+
+  """The (new) email address"""
   email: String
+
+  """The (new) URL"""
   url: String
+
+  """The (new) logo URL"""
   logo: String
+}
+
+input UpdateScreening {
+  """DateTime when this screening was performed."""
+  collectedAt: DateTime
+  language: String
+
+  """UserAgent information for the device this screening was performed on"""
+  userAgent: JSONObject
 }
