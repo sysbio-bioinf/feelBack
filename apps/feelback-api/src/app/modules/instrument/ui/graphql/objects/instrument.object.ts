@@ -28,5 +28,5 @@ export class InstrumentObject extends VersionableObject {
     description: 'The actual payload / content / structure of this instrument',
     nullable: true
   })
-  instrument: object;
+  payload: object;
 }

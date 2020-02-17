@@ -29,5 +29,5 @@ export class CreateInstrumentInput extends CoreInput {
     description: 'The payload / structure of the instrument',
     nullable: true
   })
-  instrument: object;
+  payload: object;
 }

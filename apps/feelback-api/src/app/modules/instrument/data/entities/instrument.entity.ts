@@ -14,7 +14,7 @@ export class InstrumentEntity extends VersionableEntity {
   image: string;
 
   @Column({ type: 'json', nullable: false, default: {} })
-  instrument: object; // TODO: can we better type this in order to use surveyjs models?
+  payload: object; // TODO: can we better type this in order to use surveyjs models?
 
   // relationships
   @OneToMany(

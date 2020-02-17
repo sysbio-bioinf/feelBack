@@ -30,5 +30,5 @@ export class UpdateInstrumentInput extends CoreInput {
     description: 'The (new) payload / structure of the instrument',
     nullable: true
   })
-  instrument: object;
+  payload: object;
 }

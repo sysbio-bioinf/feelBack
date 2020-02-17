@@ -11,7 +11,7 @@ export class ScreeningEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 10, nullable: false })
   language: string;
 
-  @Column({ type: 'json', nullable: false })
+  @Column({ type: 'json', nullable: false, default: {} })
   payload: object; // TODO better typings
 
   @Column({ type: 'json', nullable: true })
