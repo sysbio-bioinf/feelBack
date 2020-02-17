@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app_identity:
+    build:
+      context: .
+      dockerfile: identity.Dockerfile
+    ports:
+      - ${ID_API_PORT}:${ID_API_PORT}
+    networks:
+      - backend
+
+  db_identity:
+    image: postgres:11-alpine
+    ports:
+      - ${ID_DB_PORT:-5433}:5432
+    environment:
+      POSTGRES_DB: ${ID_DB_NAME:-postgres}
+      POSTGRES_USER: ${ID_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${ID_DB_PASSWORD:-postgres}
+    networks:
+      - backend
+
+networks:
+  backend:

@@ -1,0 +1,26 @@
+FROM node:lts-alpine3.11 as builder
+
+WORKDIR /usr/builder/feelback
+
+COPY . .
+
+RUN apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake \
+  && npm install -g node-gyp \
+  && npm install \
+  && apk del build-dependencies
+
+RUN npm run build feelback-identity
+
+# -----------------------------------------------
+
+FROM node:lts-alpine3.11 as production
+
+WORKDIR /usr/production/feelback
+
+RUN npm install pm2 -g
+
+COPY ./.env ./.env
+COPY --from=builder /usr/builder/feelback/dist/apps/feelback-identity .
+COPY --from=builder /usr/builder/feelback/node_modules ./node_modules
+
+CMD ["pm2-runtime", "./main.js"]
