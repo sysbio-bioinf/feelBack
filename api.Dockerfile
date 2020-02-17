@@ -9,7 +9,7 @@ RUN npm install -g node-gyp
 RUN npm install 
 RUN apk del build-dependencies
 
-RUN npm run build feelback-identity
+RUN npm run build feelback-api
 
 # -----------------------------------------------
 
@@ -20,7 +20,7 @@ WORKDIR /usr/production/feelback
 RUN npm install -g pm2
 
 COPY ./.env ./.env
-COPY --from=builder /usr/builder/feelback/dist/apps/feelback-identity .
+COPY --from=builder /usr/builder/feelback/dist/apps/feelback-api .
 COPY --from=builder /usr/builder/feelback/node_modules ./node_modules
 
 CMD ["pm2-runtime", "./main.js"]

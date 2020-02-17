@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app_api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    ports:
+      - ${API_PORT}:${API_PORT}
+    networks:
+      - backend
+
+  db_api:
+    image: postgres:11-alpine
+    ports:
+      - ${DB_PORT:-5432}:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME:-postgres}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    networks:
+      - backend
+
+networks:
+  backend:
