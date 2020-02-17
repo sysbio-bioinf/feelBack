@@ -17,7 +17,7 @@ FROM node:lts-alpine3.11 as production
 
 WORKDIR /usr/production/feelback
 
-RUN npm install pm2 -g
+RUN npm install -g pm2
 
 COPY ./.env ./.env
 COPY --from=builder /usr/builder/feelback/dist/apps/feelback-identity .
