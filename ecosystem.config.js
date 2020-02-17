@@ -29,8 +29,8 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:johannesschobel/cancerlog.git',
       path: '/home/feelback/wwwroot/apps/feelback',
-      //'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
-      'post-deploy': 'npm install && pm2 reload ecosystem.config.js'
+      'post-deploy':
+        'docker-compose -f identity.docker-compose.yml && docker-compose up -d'
     }
   }
 };
