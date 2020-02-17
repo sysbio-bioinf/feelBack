@@ -4,10 +4,10 @@ WORKDIR /usr/builder/feelback
 
 COPY . .
 
-RUN apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake \
-  && npm install -g node-gyp \
-  && npm install \
-  && apk del build-dependencies
+RUN apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake 
+RUN npm install -g node-gyp 
+RUN npm install 
+RUN apk del build-dependencies
 
 RUN npm run build feelback-identity
 
