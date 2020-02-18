@@ -156,7 +156,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "feelback-api:build"
+            "buildTarget": "feelback-api:build",
+            "port": 0
           }
         },
         "lint": {
@@ -210,7 +211,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "feelback-identity:build"
+            "buildTarget": "feelback-identity:build",
+            "port": 0
           }
         },
         "lint": {
