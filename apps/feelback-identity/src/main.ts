@@ -2,7 +2,7 @@ import { environment as env } from '@env-cancerlog-identity/environment';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app/app.module';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
 
@@ -11,6 +11,25 @@ async function bootstrap() {
 
   const globalPrefix = env.server.apiPrefix;
   app.setGlobalPrefix(globalPrefix);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      skipMissingProperties: false,
+      forbidUnknownValues: true
+      //   exceptionFactory: errors =>
+      //     new CoreException({
+      //       detail: 'Validation Error',
+      //       status: HttpStatus.PRECONDITION_FAILED,
+      //       debug: {
+      //         location: 'ValidationPipe',
+      //       },
+      //       error: errors,
+      //     }),
+    })
+  );
 
   if (env.platform.compression.enabled === true) {
     app.use(compression());
