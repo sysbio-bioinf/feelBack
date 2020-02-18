@@ -377,10 +377,10 @@ type Screening {
   """DateTime when this screening was performed."""
   collectedAt: DateTime!
   language: String!
-
-  """UserAgent information for the device this screening was performed on"""
-  userAgent: JSONObject
   instrument: Instrument
+
+  """UserAgent information"""
+  userAgent: UserAgent
 }
 
 type ScreeningConnection {
@@ -395,9 +395,6 @@ type ScreeningDeleteResponse {
   """DateTime when this screening was performed."""
   collectedAt: DateTime
   language: String
-
-  """UserAgent information for the device this screening was performed on"""
-  userAgent: JSONObject
 }
 
 type ScreeningEdge {
@@ -502,7 +499,15 @@ input UpdateScreening {
   """DateTime when this screening was performed."""
   collectedAt: DateTime
   language: String
+}
 
-  """UserAgent information for the device this screening was performed on"""
-  userAgent: JSONObject
+type UserAgent {
+  """The device type used for this request"""
+  device: String
+
+  """The OS used for this request"""
+  os: String
+
+  """The application version used for this request"""
+  application: String
 }

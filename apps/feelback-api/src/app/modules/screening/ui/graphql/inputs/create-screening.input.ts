@@ -6,7 +6,6 @@ import {
   ValidateNested
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { JSONObject } from '@cancerlog/api/application';
 import { CreateUserAgentInput } from './create-user-agent.input';
 import { CoreInput } from '@cancerlog/api/core';
 
