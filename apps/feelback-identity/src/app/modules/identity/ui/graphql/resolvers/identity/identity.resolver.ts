@@ -5,7 +5,7 @@ import { IdentityService } from '../../../../services/identity.service';
 import { CreateIdentityInput } from '../../inputs/create-identity.input';
 import { UpdateIdentityInput } from '../../inputs/update-identity.input';
 
-@Resolver()
+@Resolver(of => IdentityObject)
 export class IdentityResolver extends CRUDResolver(IdentityObject, {
   create: { many: { disabled: true }, CreateDTOClass: CreateIdentityInput },
   delete: { disabled: true },

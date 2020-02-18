@@ -5,7 +5,7 @@ import { OrganizationService } from '../../../services/organization.service';
 import { CreateOrganizationInput } from '../inputs/create-organization.input';
 import { UpdateOrganizationInput } from '../inputs/update-organization.input';
 
-@Resolver()
+@Resolver(of => OrganizationObject)
 export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
   create: { many: { disabled: true }, CreateDTOClass: CreateOrganizationInput },
   delete: { disabled: true },
