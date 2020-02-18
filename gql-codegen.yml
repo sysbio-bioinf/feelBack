@@ -1,0 +1,18 @@
+overwrite: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+config:
+  declarationKind: 'interface'
+generates:
+  apps/feelback-api/src/app/generated/feelback-identity.graphql.ts:
+    schema: 'apps/feelback-identity/src/schema.gql'
+    # documents: 'apps/feelback-identity/src/app/graphql/**/*.gql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'
+  apps/feelback-api/src/app/generated/feelback-identity.fragments.ts:
+    schema: 'apps/feelback-identity/src/schema.gql'
+    plugins:
+      - 'fragment-matcher'
