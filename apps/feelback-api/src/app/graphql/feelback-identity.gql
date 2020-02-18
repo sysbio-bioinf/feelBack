@@ -1,0 +1,20 @@
+query identities {
+  identities {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        id
+        pseudonym
+        title
+        firstname
+        lastname
+      }
+    }
+  }
+}

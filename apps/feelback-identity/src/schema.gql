@@ -48,9 +48,15 @@ type Identity {
   updatedAt: DateTime!
   version: Float!
   pseudonym: String!
-  title: String!
-  firstname: String!
-  lastname: String!
+
+  """An academic title of this identity"""
+  title: String
+
+  """The firstname of this identity"""
+  firstname: String
+
+  """The lastname of this identity"""
+  lastname: String
 }
 
 type IdentityConnection {
@@ -63,8 +69,14 @@ type IdentityConnection {
 
 type IdentityDeleteResponse {
   pseudonym: String
+
+  """An academic title of this identity"""
   title: String
+
+  """The firstname of this identity"""
   firstname: String
+
+  """The lastname of this identity"""
   lastname: String
 }
 
@@ -80,9 +92,6 @@ input IdentityFilter {
   and: [IdentityFilter!]
   or: [IdentityFilter!]
   pseudonym: StringFieldComparison
-  title: StringFieldComparison
-  firstname: StringFieldComparison
-  lastname: StringFieldComparison
 }
 
 input IdentitySort {
@@ -93,9 +102,6 @@ input IdentitySort {
 
 enum IdentitySortFields {
   pseudonym
-  title
-  firstname
-  lastname
 }
 
 type Mutation {

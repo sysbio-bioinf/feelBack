@@ -36,9 +36,32 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   ): Promise<PersonObject> {
     console.log('bla');
 
-    console.log(
-      await this.httpService.get('http://localhost:3001/api').toPromise()
-    );
+    const result = await this.httpService
+      .post('http://localhost:3001/graphql', {
+        query: `query identities {
+            identities {
+              pageInfo {
+                hasNextPage
+                hasPreviousPage
+                startCursor
+                endCursor
+              }
+              edges {
+                cursor
+                node {
+                  id
+                  pseudonym
+                  title
+                  firstname
+                  lastname
+                }
+              }
+            }
+          }`
+      })
+      .toPromise();
+
+    console.log(result.data);
 
     return super.createOne(input);
   }

@@ -7,7 +7,7 @@ config:
 generates:
   apps/feelback-api/src/app/generated/feelback-identity.graphql.ts:
     schema: 'apps/feelback-identity/src/schema.gql'
-    # documents: 'apps/feelback-identity/src/app/graphql/**/*.gql'
+    documents: 'apps/feelback-api/src/app/graphql/**/*.gql'
     plugins:
       - 'typescript'
       - 'typescript-operations'
