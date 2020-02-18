@@ -8,10 +8,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { InstrumentEntity } from './modules/instrument/data/entities/instrument.entity';
 import { ScalarModule } from './modules/scalar.module';
 import { ScreeningEntity } from './modules/screening/data/entities/screening.entity';
+import { PersonEntity } from './modules/person/data/entities/person.entity';
 
 const availableEntities = [
   InstrumentEntity,
   OrganizationEntity,
+  PersonEntity,
   ScreeningEntity
 ];
 

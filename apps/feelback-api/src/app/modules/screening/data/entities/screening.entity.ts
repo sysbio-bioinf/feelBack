@@ -2,6 +2,7 @@ import { VersionableEntity } from '@cancerlog/api/core';
 import { Entity, Column, ManyToOne, RelationId } from 'typeorm';
 import { InstrumentEntity } from '../../../instrument/data/entities/instrument.entity';
 import { UserAgentModel } from './models/user-agent.model';
+import { PersonEntity } from '../../../person/data/entities/person.entity';
 
 @Entity({ name: 'screenings' })
 export class ScreeningEntity extends VersionableEntity {
@@ -18,16 +19,16 @@ export class ScreeningEntity extends VersionableEntity {
   userAgent?: UserAgentModel;
 
   // relationships
-  // @ManyToOne(
-  //   type => PersonEntity,
-  //   person => person.screenings,
-  //   {
-  //     nullable: true,
-  //     cascade: true,
-  //     onDelete: 'SET NULL'
-  //   }
-  // )
-  // person: PersonEntity;
+  @ManyToOne(
+    type => PersonEntity,
+    person => person.screenings,
+    {
+      nullable: true,
+      cascade: true,
+      onDelete: 'SET NULL'
+    }
+  )
+  person: PersonEntity;
 
   @ManyToOne(
     type => InstrumentEntity,

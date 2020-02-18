@@ -6,6 +6,7 @@ import { CreateScreeningInput } from '../inputs/create-screening.input';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
 import { ScreeningEntity } from '../../../data/entities/screening.entity';
 import { UserAgentObject } from '../objects/user-agent.object';
+import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -17,6 +18,13 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       instrument: {
         relationName: 'instrument',
         DTO: InstrumentObject,
+        nullable: true,
+        disableRemove: true,
+        disableUpdate: true
+      },
+      person: {
+        relationName: 'person',
+        DTO: PersonObject,
         nullable: true,
         disableRemove: true,
         disableUpdate: true
