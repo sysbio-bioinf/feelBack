@@ -29,6 +29,15 @@ export class DoctorEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190, nullable: true })
   picture: string;
 
+  @Column({ type: 'timestamp with time zone', default: null, nullable: true })
+  lastLoginAt: Date;
+
+  @Column({ type: 'boolean', nullable: false, default: false })
+  acceptedTOS: boolean;
+
+  @Column({ type: 'json', nullable: false, default: {} })
+  settings: object;
+
   @ManyToMany(
     type => OrganizationEntity,
     organization => organization.members

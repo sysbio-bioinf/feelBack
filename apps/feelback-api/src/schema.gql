@@ -27,6 +27,9 @@ input CreateDoctor {
 
   """The URL for the picture of this doctor"""
   picture: String
+
+  """Settings for this user"""
+  settings: JSONObject
 }
 
 """Create a new Instrument"""
@@ -171,6 +174,9 @@ type Doctor {
 
   """The URL for the picture of this doctor"""
   picture: String
+
+  """Settings for this user"""
+  settings: JSONObject!
   organizations(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -212,6 +218,9 @@ type DoctorDeleteResponse {
 
   """The URL for the picture of this doctor"""
   picture: String
+
+  """Settings for this user"""
+  settings: JSONObject
 }
 
 type DoctorEdge {
@@ -756,10 +765,10 @@ input UpdateDoctorInput {
   title: String
 
   """Firstname of this doctor"""
-  firstname: String!
+  firstname: String
 
   """Lastname of this doctor"""
-  lastname: String!
+  lastname: String
 
   """The phone number of this doctor"""
   phone: String
@@ -772,6 +781,9 @@ input UpdateDoctorInput {
 
   """The URL for the picture of this doctor"""
   picture: String
+
+  """custom settings as json object"""
+  settings: JSONObject!
 }
 
 """Update an existing Instrument"""

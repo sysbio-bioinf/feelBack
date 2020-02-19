@@ -1,6 +1,7 @@
 import { ObjectType, Field } from 'type-graphql';
 import { VersionableObject } from '@cancerlog/api/core';
 import { FilterableField } from '@nestjs-query/query-graphql';
+import { JSONObject } from '@cancerlog/api/application';
 
 @ObjectType('Doctor', {
   description: 'A Doctor, Psychologist or Caregiver'
@@ -47,4 +48,10 @@ export class DoctorObject extends VersionableObject {
     nullable: true
   })
   picture?: string;
+
+  @Field({
+    description: 'Settings for this user',
+    nullable: false
+  })
+  settings: JSONObject;
 }

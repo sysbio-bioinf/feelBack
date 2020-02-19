@@ -1,6 +1,13 @@
 import { InputType, Field } from 'type-graphql';
 import { CoreInput } from '@cancerlog/api/core';
-import { IsOptional, IsString, MaxLength, IsUrl } from 'class-validator';
+import {
+  IsOptional,
+  IsString,
+  MaxLength,
+  IsUrl,
+  IsObject
+} from 'class-validator';
+import { JSONObject } from '@cancerlog/api/application';
 
 @InputType()
 export class UpdateDoctorInput extends CoreInput {
@@ -18,7 +25,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'Firstname of this doctor',
-    nullable: false
+    nullable: true
   })
   firstname?: string;
 
@@ -27,7 +34,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'Lastname of this doctor',
-    nullable: false
+    nullable: true
   })
   lastname?: string;
 
@@ -68,4 +75,12 @@ export class UpdateDoctorInput extends CoreInput {
     nullable: true
   })
   picture?: string;
+
+  @IsOptional()
+  @IsObject()
+  @Field(type => JSONObject, {
+    description: 'custom settings as json object',
+    nullable: false
+  })
+  settings: object;
 }
