@@ -25,7 +25,8 @@
       "@cancerlog/api/config": ["libs/api/config/src/index.ts"],
       "@cancerlog/util/core": ["libs/util/core/src/index.ts"],
       "@cancerlog/api/core": ["libs/api/core/src/index.ts"],
-      "@cancerlog/api/application": ["libs/api/application/src/index.ts"]
+      "@cancerlog/api/application": ["libs/api/application/src/index.ts"],
+      "@cancerlog/api/authentication": ["libs/api/authentication/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
