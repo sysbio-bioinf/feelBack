@@ -18,3 +18,12 @@ query identities {
     }
   }
 }
+
+mutation createOneIdentity($pseudonym: String!) {
+  createOneIdentity(input: { 
+    pseudonym: $pseudonym 
+  }) {
+    id
+    pseudonym
+  }
+}

@@ -119,7 +119,13 @@ type Instrument {
 
   """DateTime when this resource was last updated."""
   updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
   version: Float!
+
+  """The name of this instrument"""
   name: String!
 
   """A description for this instrument"""
@@ -151,6 +157,7 @@ type InstrumentConnection {
 }
 
 type InstrumentDeleteResponse {
+  """The name of this instrument"""
   name: String
 
   """A description for this instrument"""
@@ -249,11 +256,19 @@ type Organization {
 
   """DateTime when this resource was last updated."""
   updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
   version: Float!
+
+  """Name of the organization"""
   name: String!
 
   """A description of this organization"""
   description: String
+
+  """Type (hospital, service center, ...) of the organization"""
   type: String!
 
   """The address of this organization"""
@@ -281,10 +296,13 @@ type OrganizationConnection {
 }
 
 type OrganizationDeleteResponse {
+  """Name of the organization"""
   name: String
 
   """A description of this organization"""
   description: String
+
+  """Type (hospital, service center, ...) of the organization"""
   type: String
 
   """The address of this organization"""
@@ -353,7 +371,13 @@ type Person {
 
   """DateTime when this resource was last updated."""
   updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
   version: Float!
+
+  """the pseudonym of the person"""
   pseudonym: String!
 
   """indicates if the TOS were accepted"""
@@ -369,6 +393,7 @@ type PersonConnection {
 }
 
 type PersonDeleteResponse {
+  """the pseudonym of the person"""
   pseudonym: String
 
   """indicates if the TOS were accepted"""
@@ -456,10 +481,16 @@ type Screening {
 
   """DateTime when this resource was last updated."""
   updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
   version: Float!
 
   """DateTime when this screening was performed."""
   collectedAt: DateTime!
+
+  """The language this screening was performed in"""
   language: String!
   instrument: Instrument
   person: Person
@@ -479,6 +510,8 @@ type ScreeningConnection {
 type ScreeningDeleteResponse {
   """DateTime when this screening was performed."""
   collectedAt: DateTime
+
+  """The language this screening was performed in"""
   language: String
 }
 
@@ -589,6 +622,8 @@ input UpdatePersonInput {
 input UpdateScreening {
   """DateTime when this screening was performed."""
   collectedAt: DateTime
+
+  """The language this screening was performed in"""
   language: String
 }
 
