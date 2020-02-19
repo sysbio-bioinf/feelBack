@@ -11,8 +11,10 @@ generates:
     documents: 'apps/feelback-api/src/app/graphql/**/*.gql'
     plugins:
       - 'typescript'
+      - 'typescript-document-nodes'
       - 'typescript-operations'
-      - 'typescript-apollo-angular'
+    config:
+      nameSuffix: 'Document'
   apps/feelback-api/src/app/generated/feelback-identity.fragments.ts:
     schema: 'apps/feelback-identity/src/schema.gql'
     plugins:
