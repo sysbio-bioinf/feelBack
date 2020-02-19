@@ -1,60 +1,50 @@
 import { InputType, Field } from 'type-graphql';
 import { CoreInput } from '@cancerlog/api/core';
-import {
-  IsString,
-  MaxLength,
-  IsOptional,
-  IsEmail,
-  IsUrl
-} from 'class-validator';
+import { IsOptional, IsString, MaxLength, IsUrl } from 'class-validator';
 
 @InputType()
-export class CreateOrganizationInput extends CoreInput {
+export class UpdateDoctorInput extends CoreInput {
+  @IsOptional()
   @IsString()
   @MaxLength(190)
   @Field({
-    description: 'The name of the organization'
-  })
-  name: string;
-
-  @IsOptional()
-  @IsString()
-  @Field({
-    description: 'The description of the organization',
+    description: '(Academic) title of this doctor',
     nullable: true
   })
-  description?: string;
-
-  @IsString()
-  @MaxLength(190)
-  @Field({
-    description: 'The type of the organization'
-  })
-  type: string;
+  title?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(190)
   @Field({
-    description: 'The address of the organization',
-    nullable: true
+    description: 'Firstname of this doctor',
+    nullable: false
   })
-  address?: string;
+  firstname?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(190)
   @Field({
-    description: 'The Phone number',
+    description: 'Lastname of this doctor',
+    nullable: false
+  })
+  lastname?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(190)
+  @Field({
+    description: 'The phone number of this doctor',
     nullable: true
   })
   phone?: string;
 
   @IsOptional()
-  @IsEmail()
+  @IsString()
   @MaxLength(190)
   @Field({
-    description: 'The main email address',
+    description: 'An email address of this doctor',
     nullable: true
   })
   email?: string;
@@ -64,7 +54,7 @@ export class CreateOrganizationInput extends CoreInput {
   @IsUrl({ require_protocol: true })
   @MaxLength(190)
   @Field({
-    description: 'The URL / Website of this organization',
+    description: 'The URL / website of this doctor',
     nullable: true
   })
   url?: string;
@@ -74,8 +64,8 @@ export class CreateOrganizationInput extends CoreInput {
   @IsUrl({ require_protocol: true })
   @MaxLength(190)
   @Field({
-    description: 'The logo as valid URL string)',
+    description: 'The URL for the picture of this doctor',
     nullable: true
   })
-  logo?: string;
+  picture?: string;
 }

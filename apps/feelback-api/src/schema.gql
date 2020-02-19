@@ -6,6 +6,29 @@
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
+input CreateDoctor {
+  """(Academic) title of this doctor"""
+  title: String
+
+  """Firstname of this doctor"""
+  firstname: String
+
+  """Lastname of this doctor"""
+  lastname: String
+
+  """The phone number of this doctor"""
+  phone: String
+
+  """An email address of this doctor"""
+  email: String
+
+  """The URL / website of this doctor"""
+  url: String
+
+  """The URL for the picture of this doctor"""
+  picture: String
+}
+
 """Create a new Instrument"""
 input CreateInstrumentInput {
   """The name of the instrument"""
@@ -112,6 +135,111 @@ type DeleteManyResponse {
   deletedCount: Int!
 }
 
+"""A Doctor, Psychologist or Caregiver"""
+type Doctor {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Float!
+
+  """(Academic) title of this doctor"""
+  title: String
+
+  """Firstname of this doctor"""
+  firstname: String
+
+  """Lastname of this doctor"""
+  lastname: String
+
+  """The phone number of this doctor"""
+  phone: String
+
+  """An email address of this doctor"""
+  email: String
+
+  """The URL / website of this doctor"""
+  url: String
+
+  """The URL for the picture of this doctor"""
+  picture: String
+  organizations(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: OrganizationFilter = {}
+
+    """Specify to sort results."""
+    sorting: [OrganizationSort!] = []
+  ): OrganizationConnection
+}
+
+type DoctorConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [DoctorEdge!]!
+}
+
+type DoctorDeleteResponse {
+  """(Academic) title of this doctor"""
+  title: String
+
+  """Firstname of this doctor"""
+  firstname: String
+
+  """Lastname of this doctor"""
+  lastname: String
+
+  """The phone number of this doctor"""
+  phone: String
+
+  """An email address of this doctor"""
+  email: String
+
+  """The URL / website of this doctor"""
+  url: String
+
+  """The URL for the picture of this doctor"""
+  picture: String
+}
+
+type DoctorEdge {
+  """The node containing the Doctor"""
+  node: Doctor!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+input DoctorFilter {
+  and: [DoctorFilter!]
+  or: [DoctorFilter!]
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
+}
+
+input DoctorSort {
+  field: DoctorSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum DoctorSortFields {
+  firstname
+  lastname
+}
+
 """An Instrument resource for a survey"""
 type Instrument {
   """The ID of this resource."""
@@ -203,6 +331,13 @@ The JSONObject scalar type represents JSON objects as specified by [ECMA-404](ht
 scalar JSONObject
 
 type Mutation {
+  updateOneDoctor(
+    """The id of the record to update"""
+    id: ID!
+
+    """The update to apply."""
+    input: UpdateDoctorInput!
+  ): Doctor!
   updateOnePerson(
     """The id of the record to update"""
     id: ID!
@@ -250,6 +385,13 @@ type Mutation {
     """The record to create"""
     input: CreateOrganizationInput!
   ): Organization!
+  addMembersToOrganization(
+    """The id of the record."""
+    id: ID!
+
+    """The ids of the relations."""
+    relationIds: [ID!]!
+  ): Organization!
   createOnePerson(
     """The record to create"""
     input: CreatePersonInput!
@@ -295,6 +437,16 @@ type Organization {
 
   """The URL for the logo of this organization"""
   logo: String
+  members(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DoctorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [DoctorSort!] = []
+  ): DoctorConnection
 }
 
 type OrganizationConnection {
@@ -435,6 +587,17 @@ enum PersonSortFields {
 }
 
 type Query {
+  doctor(id: ID!): Doctor
+  doctors(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DoctorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [DoctorSort!] = []
+  ): DoctorConnection!
   person(id: ID!): Person
   people(
     """Limit or page results."""
@@ -586,6 +749,29 @@ input StringFieldComparison {
   notILike: String
   in: [String!]
   notIn: [String!]
+}
+
+input UpdateDoctorInput {
+  """(Academic) title of this doctor"""
+  title: String
+
+  """Firstname of this doctor"""
+  firstname: String!
+
+  """Lastname of this doctor"""
+  lastname: String!
+
+  """The phone number of this doctor"""
+  phone: String
+
+  """An email address of this doctor"""
+  email: String
+
+  """The URL / website of this doctor"""
+  url: String
+
+  """The URL for the picture of this doctor"""
+  picture: String
 }
 
 """Update an existing Instrument"""

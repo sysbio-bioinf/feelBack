@@ -9,8 +9,10 @@ import { InstrumentEntity } from './modules/instrument/data/entities/instrument.
 import { ScalarModule } from './modules/scalar.module';
 import { ScreeningEntity } from './modules/screening/data/entities/screening.entity';
 import { PersonEntity } from './modules/person/data/entities/person.entity';
+import { DoctorEntity } from './modules/doctor/data/entities/doctor.entity';
 
 const availableEntities = [
+  DoctorEntity,
   InstrumentEntity,
   OrganizationEntity,
   PersonEntity,

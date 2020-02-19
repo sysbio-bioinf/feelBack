@@ -64,7 +64,8 @@ export class UpdateOrganizationInput extends CoreInput {
   email?: string;
 
   @IsOptional()
-  @IsUrl()
+  @IsString()
+  @IsUrl({ require_protocol: true })
   @MaxLength(190)
   @Field({
     description: 'The (new) URL',
@@ -73,7 +74,8 @@ export class UpdateOrganizationInput extends CoreInput {
   url?: string;
 
   @IsOptional()
-  @IsUrl()
+  @IsString()
+  @IsUrl({ require_protocol: true })
   @MaxLength(190)
   @Field({
     description: 'The (new) logo URL',
