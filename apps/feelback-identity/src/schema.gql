@@ -46,7 +46,13 @@ type Identity {
 
   """DateTime when this resource was last updated."""
   updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
   version: Float!
+
+  """The pseudonym of an identity."""
   pseudonym: String!
 
   """An academic title of this identity"""
@@ -68,6 +74,7 @@ type IdentityConnection {
 }
 
 type IdentityDeleteResponse {
+  """The pseudonym of an identity."""
   pseudonym: String
 
   """An academic title of this identity"""
@@ -92,6 +99,8 @@ input IdentityFilter {
   and: [IdentityFilter!]
   or: [IdentityFilter!]
   pseudonym: StringFieldComparison
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
 }
 
 input IdentitySort {
@@ -102,6 +111,8 @@ input IdentitySort {
 
 enum IdentitySortFields {
   pseudonym
+  firstname
+  lastname
 }
 
 type Mutation {

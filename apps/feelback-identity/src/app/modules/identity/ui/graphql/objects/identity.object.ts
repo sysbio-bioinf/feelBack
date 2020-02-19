@@ -17,13 +17,13 @@ export class IdentityObject extends VersionableObject {
   })
   title?: string;
 
-  @Field({
+  @FilterableField({
     description: 'The firstname of this identity',
     nullable: true
   })
   firstname?: string;
 
-  @Field({
+  @FilterableField({
     description: 'The lastname of this identity',
     nullable: true
   })
