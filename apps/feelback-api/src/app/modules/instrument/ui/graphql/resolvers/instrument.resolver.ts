@@ -18,7 +18,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
         DTO: ScreeningObject,
         nullable: true,
         disableRemove: true,
-        disableUpdate: false
+        disableUpdate: true
       }
     }
   }

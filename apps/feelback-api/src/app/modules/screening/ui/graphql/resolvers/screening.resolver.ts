@@ -20,14 +20,14 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
         DTO: InstrumentObject,
         nullable: true,
         disableRemove: true,
-        disableUpdate: true
+        disableUpdate: false
       },
       person: {
         relationName: 'person',
         DTO: PersonObject,
         nullable: true,
         disableRemove: true,
-        disableUpdate: true
+        disableUpdate: false
       }
     }
   }

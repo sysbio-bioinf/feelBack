@@ -214,6 +214,20 @@ type Mutation {
     """The record to create"""
     input: CreateScreeningInput!
   ): Screening!
+  setInstrumentOnScreening(
+    """The id of the record."""
+    id: ID!
+
+    """The id of relation."""
+    relationId: ID!
+  ): Screening!
+  setPersonOnScreening(
+    """The id of the record."""
+    id: ID!
+
+    """The id of relation."""
+    relationId: ID!
+  ): Screening!
   updateOneInstrument(
     """The id of the record to update"""
     id: ID!
@@ -224,13 +238,6 @@ type Mutation {
   createOneInstrument(
     """The record to create"""
     input: CreateInstrumentInput!
-  ): Instrument!
-  addScreeningsToInstrument(
-    """The id of the record."""
-    id: ID!
-
-    """The ids of the relations."""
-    relationIds: [ID!]!
   ): Instrument!
   updateOneOrganization(
     """The id of the record to update"""
