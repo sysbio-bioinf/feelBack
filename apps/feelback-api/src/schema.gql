@@ -51,6 +51,9 @@ input CreatePersonInput {
 }
 
 input CreateScreeningInput {
+  """The instance ID (uuid v4) defined by the client"""
+  instanceId: String!
+
   """DateTime when this screening was performed"""
   collectedAt: DateTime!
 
@@ -487,6 +490,9 @@ type Screening {
   """
   version: Float!
 
+  """Instance ID (uuid v4) defined by the client"""
+  instanceId: String!
+
   """DateTime when this screening was performed."""
   collectedAt: DateTime!
 
@@ -508,6 +514,9 @@ type ScreeningConnection {
 }
 
 type ScreeningDeleteResponse {
+  """Instance ID (uuid v4) defined by the client"""
+  instanceId: String
+
   """DateTime when this screening was performed."""
   collectedAt: DateTime
 
@@ -526,6 +535,7 @@ type ScreeningEdge {
 input ScreeningFilter {
   and: [ScreeningFilter!]
   or: [ScreeningFilter!]
+  instanceId: StringFieldComparison
   collectedAt: DateFieldComparison
   language: StringFieldComparison
 }
@@ -537,6 +547,7 @@ input ScreeningSort {
 }
 
 enum ScreeningSortFields {
+  instanceId
   collectedAt
   language
 }
@@ -620,6 +631,9 @@ input UpdatePersonInput {
 }
 
 input UpdateScreening {
+  """Instance ID (uuid v4) defined by the client"""
+  instanceId: String
+
   """DateTime when this screening was performed."""
   collectedAt: DateTime
 

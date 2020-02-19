@@ -3,7 +3,8 @@ import {
   IsDateString,
   IsString,
   IsOptional,
-  ValidateNested
+  ValidateNested,
+  IsUUID
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CreateUserAgentInput } from './create-user-agent.input';
@@ -11,6 +12,14 @@ import { CoreInput } from '@cancerlog/api/core';
 
 @InputType()
 export class CreateScreeningInput extends CoreInput {
+  @IsUUID('4')
+  @IsString()
+  @Field({
+    description: 'The instance ID (uuid v4) defined by the client',
+    nullable: false
+  })
+  instanceId: string;
+
   @IsDateString()
   @Field({
     description: 'DateTime when this screening was performed',

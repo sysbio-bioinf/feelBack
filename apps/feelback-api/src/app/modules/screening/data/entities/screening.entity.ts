@@ -1,11 +1,15 @@
 import { VersionableEntity } from '@cancerlog/api/core';
-import { Entity, Column, ManyToOne, RelationId } from 'typeorm';
+import { Entity, Column, ManyToOne, RelationId, Index } from 'typeorm';
 import { InstrumentEntity } from '../../../instrument/data/entities/instrument.entity';
 import { UserAgentModel } from './models/user-agent.model';
 import { PersonEntity } from '../../../person/data/entities/person.entity';
 
 @Entity({ name: 'screenings' })
 export class ScreeningEntity extends VersionableEntity {
+  @Column({ type: 'varchar', length: 190, nullable: false, unique: true })
+  @Index({ unique: true })
+  instanceId: string;
+
   @Column({ type: 'timestamp with time zone', nullable: false })
   collectedAt: Date;
 
