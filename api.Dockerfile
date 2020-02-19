@@ -9,6 +9,7 @@ RUN npm install -g node-gyp
 RUN npm install 
 RUN apk del build-dependencies
 
+RUN npm run prebuild
 RUN npm run build feelback-api
 
 # -----------------------------------------------
