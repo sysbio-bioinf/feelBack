@@ -18,7 +18,8 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
         relationName: 'members',
         nullable: true,
         disableRemove: true,
-        disableUpdate: false
+        disableUpdate: false,
+        disableRead: true // TODO: READ is disabled because of many-to-many issues
       }
     }
   }

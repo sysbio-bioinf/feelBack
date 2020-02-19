@@ -17,7 +17,8 @@ export class DoctorResolver extends CRUDResolver(DoctorObject, {
         relationName: 'organizations',
         nullable: true,
         disableRemove: true,
-        disableUpdate: true
+        disableUpdate: true,
+        disableRead: true // TODO: READ is disabled because of many-to-many issues
       }
     }
   }
