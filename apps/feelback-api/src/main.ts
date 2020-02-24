@@ -6,12 +6,15 @@ import { Logger, ValidationPipe, HttpStatus } from '@nestjs/common';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
 import { CoreException } from '@cancerlog/api/core';
+import { ExceptionFilter } from '@cancerlog/api/application';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const globalPrefix = env.server.apiPrefix;
   app.setGlobalPrefix(globalPrefix);
+
+  app.useGlobalFilters(new ExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
