@@ -5,7 +5,7 @@ import {
   MaxLength,
   IsOptional,
   IsEmail,
-  IsUrl
+  IsUrl,
 } from 'class-validator';
 
 @InputType()
@@ -13,7 +13,7 @@ export class CreateOrganizationInput extends CoreInput {
   @IsString()
   @MaxLength(190)
   @Field({
-    description: 'The name of the organization'
+    description: 'The name of the organization',
   })
   name: string;
 
@@ -21,14 +21,14 @@ export class CreateOrganizationInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The description of the organization',
-    nullable: true
+    nullable: true,
   })
   description?: string;
 
   @IsString()
   @MaxLength(190)
   @Field({
-    description: 'The type of the organization'
+    description: 'The type of the organization',
   })
   type: string;
 
@@ -37,7 +37,7 @@ export class CreateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The address of the organization',
-    nullable: true
+    nullable: true,
   })
   address?: string;
 
@@ -46,7 +46,7 @@ export class CreateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The Phone number',
-    nullable: true
+    nullable: true,
   })
   phone?: string;
 
@@ -55,7 +55,7 @@ export class CreateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The main email address',
-    nullable: true
+    nullable: true,
   })
   email?: string;
 
@@ -65,7 +65,7 @@ export class CreateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The URL / Website of this organization',
-    nullable: true
+    nullable: true,
   })
   url?: string;
 
@@ -75,7 +75,7 @@ export class CreateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The logo as valid URL string)',
-    nullable: true
+    nullable: true,
   })
   logo?: string;
 }

@@ -10,14 +10,14 @@ export const environment: IEnvironment = {
     name: 'development',
     production: false,
     meta: {
-      LOG_LEVEL: 'debug'
-    }
+      LOG_LEVEL: 'debug',
+    },
   },
 
   auth: {
     keycloak: {
       host: {
-        url: env.get('KEYCLOAK_URL').asUrlString()
+        url: env.get('KEYCLOAK_URL').asUrlString(),
       },
       config: {
         cache: true,
@@ -26,33 +26,33 @@ export const environment: IEnvironment = {
         strictSsl: false,
         jwksUri: `${env
           .get('KEYCLOAK_URL')
-          .asUrlString()}auth/realms/feelback/protocol/openid-connect/certs`
+          .asUrlString()}auth/realms/feelback/protocol/openid-connect/certs`,
       },
       clients: [
         {
           // DISCUSS Do we need another client for the ID Service here?
           realm: 'feelback',
           client: 'feelback-api-client',
-          scope: 'feelback-api'
-        }
-      ]
-    }
+          scope: 'feelback-api',
+        },
+      ],
+    },
   },
 
   server: {
     host: env.get('ID_API_HOST', 'localhost').asString(),
     port: env.get('ID_API_PORT', '3000').asPortNumber(),
     url: env.get('ID_API_URL', 'http://localhost:3000').asUrlString(),
-    apiPrefix: env.get('ID_API_PREFIX', 'api').asString()
+    apiPrefix: env.get('ID_API_PREFIX', 'api').asString(),
   },
 
   graphql: {
     debug: true,
     autoSchemaFile: path.join(
       ApiPathHelper.srcPath('feelback-identity'),
-      'schema.gql'
+      'schema.gql',
     ),
-    playground: true
+    playground: true,
   },
 
   database: {
@@ -65,24 +65,24 @@ export const environment: IEnvironment = {
     keepConnectionAlive: true,
     logging: env.get('ID_DB_DEBUG', 'true').asBoolStrict(),
     synchronize: true,
-    uuidExtension: 'pgcrypto'
+    uuidExtension: 'pgcrypto',
   },
 
   platform: {
     compression: {
-      enabled: true
+      enabled: true,
     },
     cors: {
       enabled: true,
-      options: {}
+      options: {},
     },
     helmet: {
-      enabled: true
+      enabled: true,
     },
     ratelimit: {
       enabled: true,
       attempts: 100,
-      interval: 1
-    }
-  }
+      interval: 1,
+    },
+  },
 };

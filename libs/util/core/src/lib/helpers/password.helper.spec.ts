@@ -12,14 +12,14 @@ describe('PasswordHelper', () => {
     const password = await PasswordHelper.hashPassword('password');
 
     expect(
-      typeof (await PasswordHelper.validatePassword(password, 'password'))
+      typeof (await PasswordHelper.validatePassword(password, 'password')),
     ).toBe('boolean');
     expect(
-      await PasswordHelper.validatePassword(password, 'password')
+      await PasswordHelper.validatePassword(password, 'password'),
     ).toBeTruthy();
 
     expect(
-      await PasswordHelper.validatePassword(password, 'invalid')
+      await PasswordHelper.validatePassword(password, 'invalid'),
     ).toBeFalsy();
   });
 });

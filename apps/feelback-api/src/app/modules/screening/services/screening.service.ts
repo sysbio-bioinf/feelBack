@@ -11,7 +11,7 @@ export class ScreeningService extends TypeOrmQueryService<
   ScreeningEntity
 > {
   constructor(
-    @InjectRepository(ScreeningEntity) repository: Repository<ScreeningEntity>
+    @InjectRepository(ScreeningEntity) repository: Repository<ScreeningEntity>,
   ) {
     super(repository);
   }

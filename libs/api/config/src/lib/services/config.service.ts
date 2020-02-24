@@ -9,10 +9,10 @@ export class ConfigService {
 
   constructor(
     @Inject(ENV_CONFIGURATION)
-    private readonly config: IEnvironment
+    private readonly config: IEnvironment,
   ) {
     this.logger.log(
-      `Running ${this.config.env.name} environment (production = ${this.config.env.production})`
+      `Running ${this.config.env.name} environment (production = ${this.config.env.production})`,
     );
   }
 

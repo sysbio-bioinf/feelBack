@@ -3,7 +3,7 @@ import {
   IsString,
   MaxLength,
   IsEmail,
-  IsUrl
+  IsUrl,
 } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 import { CoreInput } from '@cancerlog/api/core';
@@ -15,7 +15,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) name of the organization',
-    nullable: true
+    nullable: true,
   })
   name?: string;
 
@@ -23,7 +23,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The (new) description of the organization',
-    nullable: true
+    nullable: true,
   })
   description?: string;
 
@@ -32,7 +32,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) type of the organization',
-    nullable: true
+    nullable: true,
   })
   type?: string;
 
@@ -41,7 +41,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) address',
-    nullable: true
+    nullable: true,
   })
   address?: string;
 
@@ -50,7 +50,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) phone number',
-    nullable: true
+    nullable: true,
   })
   phone?: string;
 
@@ -59,7 +59,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) email address',
-    nullable: true
+    nullable: true,
   })
   email?: string;
 
@@ -69,7 +69,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) URL',
-    nullable: true
+    nullable: true,
   })
   url?: string;
 
@@ -79,7 +79,7 @@ export class UpdateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) logo URL',
-    nullable: true
+    nullable: true,
   })
   logo?: string;
 }

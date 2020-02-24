@@ -3,7 +3,7 @@ module.exports = {
     return [
       `npm run affected:lint -- --fix --parallel --files=${files.join(',')}`,
       'npm run format:write -- --uncommitted',
-      `git add ${files.join(' ')}`
+      `git add ${files.join(' ')}`,
     ];
-  }
+  },
 };

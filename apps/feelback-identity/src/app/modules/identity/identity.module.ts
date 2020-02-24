@@ -6,6 +6,6 @@ import { IdentityEntity } from './data/entities/identity.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([IdentityEntity])],
-  providers: [IdentityResolver, IdentityService]
+  providers: [IdentityResolver, IdentityService],
 })
 export class IdentityModule {}

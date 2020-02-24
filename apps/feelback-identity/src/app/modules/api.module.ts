@@ -5,6 +5,6 @@ import { IdentityModule } from './identity/identity.module';
 @Module({
   imports: [IdentityModule],
   controllers: [],
-  providers: []
+  providers: [],
 })
 export class ApiModule {}

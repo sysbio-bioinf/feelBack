@@ -6,7 +6,7 @@ describe('ScreeningResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ScreeningResolver]
+      providers: [ScreeningResolver],
     }).compile();
 
     resolver = module.get<ScreeningResolver>(ScreeningResolver);

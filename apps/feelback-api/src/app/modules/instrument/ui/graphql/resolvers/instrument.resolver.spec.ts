@@ -6,7 +6,7 @@ describe('InstrumentResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [InstrumentResolver]
+      providers: [InstrumentResolver],
     }).compile();
 
     resolver = module.get<InstrumentResolver>(InstrumentResolver);

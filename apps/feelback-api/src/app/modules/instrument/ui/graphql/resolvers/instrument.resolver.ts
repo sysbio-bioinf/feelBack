@@ -18,10 +18,10 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
         DTO: ScreeningObject,
         nullable: true,
         disableRemove: true,
-        disableUpdate: true
-      }
-    }
-  }
+        disableUpdate: true,
+      },
+    },
+  },
 }) {
   constructor(readonly service: InstrumentService) {
     super(service);

@@ -11,7 +11,7 @@ export class PersonService extends TypeOrmQueryService<
   PersonEntity
 > {
   constructor(
-    @InjectRepository(PersonEntity) repository: Repository<PersonEntity>
+    @InjectRepository(PersonEntity) repository: Repository<PersonEntity>,
   ) {
     super(repository);
   }

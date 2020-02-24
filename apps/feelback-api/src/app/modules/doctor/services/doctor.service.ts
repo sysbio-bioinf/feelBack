@@ -11,7 +11,7 @@ export class DoctorService extends TypeOrmQueryService<
   DoctorEntity
 > {
   constructor(
-    @InjectRepository(DoctorEntity) repository: Repository<DoctorEntity>
+    @InjectRepository(DoctorEntity) repository: Repository<DoctorEntity>,
   ) {
     super(repository);
   }

@@ -14,8 +14,8 @@ describe('ConfigService', () => {
             production: false,
             meta: {
               LOG_LEVEL: 'debug',
-              foo: 'bar'
-            }
+              foo: 'bar',
+            },
           },
           auth: {},
           database: {},
@@ -24,32 +24,32 @@ describe('ConfigService', () => {
             apiPrefix: 'api',
             host: 'localhost',
             port: 1234,
-            url: 'http://localhost:1234'
+            url: 'http://localhost:1234',
           },
           platform: {
             compression: {
-              enabled: false
+              enabled: false,
             },
             cors: {
               enabled: false,
-              options: {}
+              options: {},
             },
             helmet: {
-              enabled: false
+              enabled: false,
             },
             ratelimit: {
               enabled: false,
               attempts: 100,
-              interval: 1
+              interval: 1,
             },
             i18n: {
               defaultLanguage: 'en',
               availableLanguages: ['en'],
-              fallbackLanguage: 'en'
-            }
-          }
-        })
-      ]
+              fallbackLanguage: 'en',
+            },
+          },
+        }),
+      ],
     }).compile();
 
     configService = module.get<ConfigService>(ConfigService);

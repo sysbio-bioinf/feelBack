@@ -3,7 +3,7 @@ import { InputType, Field } from 'type-graphql';
 import { IsOptional, IsString, MaxLength } from 'class-validator';
 
 @InputType({
-  description: 'Update an Identity'
+  description: 'Update an Identity',
 })
 export class UpdateIdentityInput extends CoreInput {
   @IsOptional()
@@ -11,7 +11,7 @@ export class UpdateIdentityInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) title of this identity',
-    nullable: true
+    nullable: true,
   })
   title?: string;
 
@@ -20,7 +20,7 @@ export class UpdateIdentityInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) firstname',
-    nullable: true
+    nullable: true,
   })
   firstname?: string;
 
@@ -29,7 +29,7 @@ export class UpdateIdentityInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) lastname',
-    nullable: true
+    nullable: true,
   })
   lastname?: string;
 }

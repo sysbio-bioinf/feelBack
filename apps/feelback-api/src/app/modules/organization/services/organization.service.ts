@@ -12,7 +12,7 @@ export class OrganizationService extends TypeOrmQueryService<
 > {
   constructor(
     @InjectRepository(OrganizationEntity)
-    repository: Repository<OrganizationEntity>
+    repository: Repository<OrganizationEntity>,
   ) {
     super(repository);
   }

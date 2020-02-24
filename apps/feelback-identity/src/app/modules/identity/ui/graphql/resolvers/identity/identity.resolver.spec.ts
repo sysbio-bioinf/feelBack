@@ -6,7 +6,7 @@ describe('IdentityResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [IdentityResolver]
+      providers: [IdentityResolver],
     }).compile();
 
     resolver = module.get<IdentityResolver>(IdentityResolver);

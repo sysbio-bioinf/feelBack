@@ -11,7 +11,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: '(Academic) title of this doctor',
-    nullable: true
+    nullable: true,
   })
   title?: string;
 
@@ -19,7 +19,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'Firstname of this doctor',
-    nullable: false
+    nullable: false,
   })
   firstname: string;
 
@@ -27,7 +27,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'Lastname of this doctor',
-    nullable: false
+    nullable: false,
   })
   lastname: string;
 
@@ -36,7 +36,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The phone number of this doctor',
-    nullable: true
+    nullable: true,
   })
   phone?: string;
 
@@ -45,7 +45,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'An email address of this doctor',
-    nullable: true
+    nullable: true,
   })
   email?: string;
 
@@ -55,7 +55,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The URL / website of this doctor',
-    nullable: true
+    nullable: true,
   })
   url?: string;
 
@@ -65,7 +65,7 @@ export class CreateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The URL for the picture of this doctor',
-    nullable: true
+    nullable: true,
   })
   picture?: string;
 }

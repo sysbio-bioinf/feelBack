@@ -7,7 +7,7 @@ export class PasswordHelper {
 
   static async validatePassword(
     hash: string,
-    password: string
+    password: string,
   ): Promise<boolean> {
     return await argon2.verify(hash, password);
   }

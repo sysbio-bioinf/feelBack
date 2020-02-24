@@ -1,6 +1,6 @@
 import { InputType } from 'type-graphql';
 
 @InputType({
-  isAbstract: true
+  isAbstract: true,
 })
 export abstract class CoreInput {}

@@ -9,13 +9,13 @@ export class ConfigModule {
   static forRoot(configuration: IEnvironment): DynamicModule {
     const configurationProvider = {
       provide: ENV_CONFIGURATION,
-      useValue: configuration
+      useValue: configuration,
     };
 
     return {
       module: ConfigModule,
       providers: [configurationProvider, ConfigService],
-      exports: [ConfigService]
+      exports: [ConfigService],
     };
   }
 }

@@ -3,7 +3,7 @@ import {
   UpdateDateColumn,
   CreateDateColumn,
   PrimaryGeneratedColumn,
-  Index
+  Index,
 } from 'typeorm';
 
 export abstract class IdentifiableEntity extends CoreEntity {

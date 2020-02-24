@@ -8,7 +8,7 @@ export class CreateUserAgentInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The device type used for this request',
-    nullable: true
+    nullable: true,
   })
   device: string;
 
@@ -16,7 +16,7 @@ export class CreateUserAgentInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The OS used for this request',
-    nullable: true
+    nullable: true,
   })
   os: string;
 
@@ -24,7 +24,7 @@ export class CreateUserAgentInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The application version used for this request',
-    nullable: true
+    nullable: true,
   })
   application: string;
 }

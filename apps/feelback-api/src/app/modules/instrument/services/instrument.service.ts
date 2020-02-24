@@ -11,7 +11,8 @@ export class InstrumentService extends TypeOrmQueryService<
   InstrumentEntity
 > {
   constructor(
-    @InjectRepository(InstrumentEntity) repository: Repository<InstrumentEntity>
+    @InjectRepository(InstrumentEntity)
+    repository: Repository<InstrumentEntity>,
   ) {
     super(repository);
   }

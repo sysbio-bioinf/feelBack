@@ -9,7 +9,7 @@ module.exports = {
       instances: 1,
       autorestart: true,
       watch: false,
-      max_memory_restart: '1G'
+      max_memory_restart: '1G',
 
       // env: {
       //   NODE_ENV: 'development'
@@ -17,7 +17,7 @@ module.exports = {
       // env_production: {
       //   NODE_ENV: 'production'
       // }
-    }
+    },
   ],
 
   deploy: {
@@ -30,7 +30,7 @@ module.exports = {
       repo: 'git@github.com:johannesschobel/cancerlog.git',
       path: '/home/feelback/wwwroot/apps/feelback',
       'post-deploy':
-        'cp ./../../.env ./.env && docker-compose -f identity.docker-compose.yml build app_identity && docker-compose -f identity.docker-compose.yml up -d'
-    }
-  }
+        'cp ./../../.env ./.env && docker-compose -f identity.docker-compose.yml build app_identity && docker-compose -f identity.docker-compose.yml up -d',
+    },
+  },
 };

@@ -11,7 +11,7 @@ import { CreateOneIdentityDocument } from '../../../../../generated/feelback-ide
 
 @ArgsType()
 export class CreateOnePersonArgsType extends CreateOneArgsType(
-  CreatePersonInput
+  CreatePersonInput,
 ) {}
 
 @Resolver(of => PersonObject)
@@ -19,28 +19,28 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   create: {
     many: { disabled: true },
     one: { disabled: true },
-    CreateDTOClass: CreatePersonInput
+    CreateDTOClass: CreatePersonInput,
   },
   delete: { disabled: true },
-  update: { many: { disabled: true }, UpdateDTOClass: UpdatePersonInput }
+  update: { many: { disabled: true }, UpdateDTOClass: UpdatePersonInput },
 }) {
   constructor(
     readonly service: PersonService,
-    private httpService: HttpService
+    private httpService: HttpService,
   ) {
     super(service);
   }
 
   @Mutation(() => PersonObject, { name: 'createOnePerson' })
   async createOnePerson(
-    @Args() input: CreateOnePersonArgsType
+    @Args() input: CreateOnePersonArgsType,
   ): Promise<PersonObject> {
     const identityResponse = await this.httpService
       .post('http://localhost:3001/graphql', {
         query: print(CreateOneIdentityDocument),
         variables: {
-          pseudonym: input.input.pseudonym
-        }
+          pseudonym: input.input.pseudonym,
+        },
       })
       .toPromise();
 
@@ -48,7 +48,7 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
       // something went wrong, because we got an error back!
       throw new InternalServerErrorException({
         service: 'feelback-identity',
-        message: 'Failed to create identity'
+        message: 'Failed to create identity',
       });
     }
 

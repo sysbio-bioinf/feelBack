@@ -26,13 +26,13 @@ async function bootstrap() {
             detail: 'Validation Error',
             status: HttpStatus.PRECONDITION_FAILED,
             debug: {
-              location: 'ValidationPipe'
+              location: 'ValidationPipe',
             },
-            error: errors
+            error: errors,
           },
-          HttpStatus.PRECONDITION_FAILED
-        )
-    })
+          HttpStatus.PRECONDITION_FAILED,
+        ),
+    }),
   );
 
   if (env.platform.compression.enabled === true) {

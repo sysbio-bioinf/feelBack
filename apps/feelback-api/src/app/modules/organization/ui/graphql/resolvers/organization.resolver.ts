@@ -19,10 +19,10 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
         nullable: true,
         disableRemove: true,
         disableUpdate: false,
-        disableRead: true // TODO: READ is disabled because of many-to-many issues
-      }
-    }
-  }
+        disableRead: true, // TODO: READ is disabled because of many-to-many issues
+      },
+    },
+  },
 }) {
   constructor(readonly service: OrganizationService) {
     super(service);

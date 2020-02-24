@@ -5,7 +5,7 @@ export class CoreException extends HttpException {
 
   constructor(
     protected readonly exception: ExceptionMessage,
-    readonly httpStatus: HttpStatus
+    readonly httpStatus: HttpStatus,
   ) {
     super(exception, httpStatus);
 

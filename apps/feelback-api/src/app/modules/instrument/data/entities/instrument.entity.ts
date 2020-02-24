@@ -21,8 +21,8 @@ export class InstrumentEntity extends VersionableEntity {
     type => ScreeningEntity,
     screening => screening.instrument,
     {
-      onDelete: 'SET NULL'
-    }
+      onDelete: 'SET NULL',
+    },
   )
   screenings: ScreeningEntity[];
 

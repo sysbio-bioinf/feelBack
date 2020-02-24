@@ -4,7 +4,7 @@ import { Field, InputType } from 'type-graphql';
 import { CoreInput } from '@cancerlog/api/core';
 
 @InputType({
-  description: 'Update an existing Instrument'
+  description: 'Update an existing Instrument',
 })
 export class UpdateInstrumentInput extends CoreInput {
   @IsOptional()
@@ -12,7 +12,7 @@ export class UpdateInstrumentInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The (new) name of this instrument',
-    nullable: true
+    nullable: true,
   })
   name: string;
 
@@ -20,7 +20,7 @@ export class UpdateInstrumentInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The (new) description of this instrument',
-    nullable: true
+    nullable: true,
   })
   description: string;
 
@@ -28,7 +28,7 @@ export class UpdateInstrumentInput extends CoreInput {
   @IsObject()
   @Field(type => JSONObject, {
     description: 'The (new) payload / structure of the instrument',
-    nullable: true
+    nullable: true,
   })
   payload: object;
 }

@@ -5,7 +5,7 @@ import {
   IsString,
   MaxLength,
   IsUrl,
-  IsObject
+  IsObject,
 } from 'class-validator';
 import { JSONObject } from '@cancerlog/api/application';
 
@@ -16,7 +16,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: '(Academic) title of this doctor',
-    nullable: true
+    nullable: true,
   })
   title?: string;
 
@@ -25,7 +25,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'Firstname of this doctor',
-    nullable: true
+    nullable: true,
   })
   firstname?: string;
 
@@ -34,7 +34,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'Lastname of this doctor',
-    nullable: true
+    nullable: true,
   })
   lastname?: string;
 
@@ -43,7 +43,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The phone number of this doctor',
-    nullable: true
+    nullable: true,
   })
   phone?: string;
 
@@ -52,7 +52,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'An email address of this doctor',
-    nullable: true
+    nullable: true,
   })
   email?: string;
 
@@ -62,7 +62,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The URL / website of this doctor',
-    nullable: true
+    nullable: true,
   })
   url?: string;
 
@@ -72,7 +72,7 @@ export class UpdateDoctorInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The URL for the picture of this doctor',
-    nullable: true
+    nullable: true,
   })
   picture?: string;
 
@@ -80,7 +80,7 @@ export class UpdateDoctorInput extends CoreInput {
   @IsObject()
   @Field(type => JSONObject, {
     description: 'custom settings as json object',
-    nullable: false
+    nullable: false,
   })
   settings: object;
 }

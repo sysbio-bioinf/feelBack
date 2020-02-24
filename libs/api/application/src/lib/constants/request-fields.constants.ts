@@ -1,4 +1,4 @@
 export const REQUEST_FIELDS = {
   AUTH_USER: 'auth.user',
-  AUTH_INFO: 'auth.info'
+  AUTH_INFO: 'auth.info',
 };

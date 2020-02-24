@@ -5,19 +5,19 @@ import { ObjectType, Field } from 'type-graphql';
 export class UserAgentObject extends CoreObject {
   @Field({
     description: 'The device type used for this request',
-    nullable: true
+    nullable: true,
   })
   device: string;
 
   @Field({
     description: 'The OS used for this request',
-    nullable: true
+    nullable: true,
   })
   os: string;
 
   @Field({
     description: 'The application version used for this request',
-    nullable: true
+    nullable: true,
   })
   application: string;
 }

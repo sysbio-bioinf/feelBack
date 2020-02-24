@@ -33,8 +33,8 @@ export class OrganizationEntity extends VersionableEntity {
     member => member.organizations,
     {
       cascade: true,
-      onDelete: 'CASCADE'
-    }
+      onDelete: 'CASCADE',
+    },
   )
   @JoinTable({ name: 'organization_members' })
   members: DoctorEntity[];

@@ -7,7 +7,7 @@ export class StringHelper {
 
   static randomString(
     length: number = 10,
-    alphabet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    alphabet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
   ): string {
     let text = '';
 

@@ -13,7 +13,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
     InstrumentModule,
     OrganizationModule,
     PersonModule,
-    ScreeningModule
-  ]
+    ScreeningModule,
+  ],
 })
 export class ApiModule {}

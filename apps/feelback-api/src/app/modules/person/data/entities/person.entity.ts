@@ -14,13 +14,13 @@ export class PersonEntity extends VersionableEntity {
   @Column({
     type: 'timestamp with time zone',
     default: null,
-    nullable: true
+    nullable: true,
   })
   acceptedTOSAt: Date;
 
   @OneToMany(
     type => ScreeningEntity,
-    screenings => screenings.person
+    screenings => screenings.person,
   )
   screenings: ScreeningEntity[];
 }

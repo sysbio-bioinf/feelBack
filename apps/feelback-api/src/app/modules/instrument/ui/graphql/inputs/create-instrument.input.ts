@@ -4,14 +4,14 @@ import { IsString, MaxLength, IsOptional, IsObject } from 'class-validator';
 import { JSONObject } from '@cancerlog/api/application';
 
 @InputType({
-  description: 'Create a new Instrument'
+  description: 'Create a new Instrument',
 })
 export class CreateInstrumentInput extends CoreInput {
   @IsString()
   @MaxLength(190)
   @Field({
     description: 'The name of the instrument',
-    nullable: false
+    nullable: false,
   })
   name: string;
 
@@ -19,7 +19,7 @@ export class CreateInstrumentInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The description of the instrument',
-    nullable: true
+    nullable: true,
   })
   description: string;
 
@@ -27,7 +27,7 @@ export class CreateInstrumentInput extends CoreInput {
   @IsOptional()
   @Field(type => JSONObject, {
     description: 'The payload / structure of the instrument',
-    nullable: true
+    nullable: true,
   })
   payload: object;
 }

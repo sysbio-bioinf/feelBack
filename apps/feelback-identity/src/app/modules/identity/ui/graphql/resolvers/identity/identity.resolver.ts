@@ -9,10 +9,10 @@ import { UpdateIdentityInput } from '../../inputs/update-identity.input';
 export class IdentityResolver extends CRUDResolver(IdentityObject, {
   create: {
     many: { disabled: true },
-    CreateDTOClass: CreateIdentityInput
+    CreateDTOClass: CreateIdentityInput,
   },
   delete: { disabled: true },
-  update: { many: { disabled: true }, UpdateDTOClass: UpdateIdentityInput }
+  update: { many: { disabled: true }, UpdateDTOClass: UpdateIdentityInput },
 }) {
   constructor(readonly service: IdentityService) {
     super(service);

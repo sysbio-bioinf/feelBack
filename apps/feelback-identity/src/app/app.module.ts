@@ -21,20 +21,20 @@ const availableEntities = [IdentityEntity];
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
         ...configService.get('database'),
-        entities: availableEntities
-      })
+        entities: availableEntities,
+      }),
     }),
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         ...configService.get('graphql'),
-        context: ({ req }) => ({ req })
-      })
+        context: ({ req }) => ({ req }),
+      }),
     }),
-    ApiModule
+    ApiModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
 export class AppModule {}

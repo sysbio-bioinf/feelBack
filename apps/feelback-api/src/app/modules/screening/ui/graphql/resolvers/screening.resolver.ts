@@ -20,17 +20,17 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
         DTO: InstrumentObject,
         nullable: true,
         disableRemove: true,
-        disableUpdate: false
+        disableUpdate: false,
       },
       person: {
         relationName: 'person',
         DTO: PersonObject,
         nullable: true,
         disableRemove: true,
-        disableUpdate: false
-      }
-    }
-  }
+        disableUpdate: false,
+      },
+    },
+  },
 }) {
   constructor(readonly service: ScreeningService) {
     super(service);
@@ -38,7 +38,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
 
   @ResolveProperty('userAgent', returns => UserAgentObject, {
     description: 'UserAgent information',
-    nullable: true
+    nullable: true,
   })
   resolveUserAgent(@Parent() parent: ScreeningEntity) {
     return parent.userAgent;

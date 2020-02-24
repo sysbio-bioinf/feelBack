@@ -29,8 +29,8 @@ export class ScreeningEntity extends VersionableEntity {
     {
       nullable: true,
       cascade: true,
-      onDelete: 'SET NULL'
-    }
+      onDelete: 'SET NULL',
+    },
   )
   person: PersonEntity;
 
@@ -40,8 +40,8 @@ export class ScreeningEntity extends VersionableEntity {
     {
       nullable: true,
       cascade: true,
-      onDelete: 'SET NULL'
-    }
+      onDelete: 'SET NULL',
+    },
   )
   instrument?: InstrumentEntity;
 

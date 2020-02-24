@@ -6,6 +6,6 @@ import { PersonResolver } from './ui/graphql/resolvers/person.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PersonEntity]), HttpModule],
-  providers: [PersonService, PersonResolver]
+  providers: [PersonService, PersonResolver],
 })
 export class PersonModule {}

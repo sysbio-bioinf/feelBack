@@ -11,7 +11,7 @@ export class IdentityService extends TypeOrmQueryService<
   IdentityEntity
 > {
   constructor(
-    @InjectRepository(IdentityEntity) repository: Repository<IdentityEntity>
+    @InjectRepository(IdentityEntity) repository: Repository<IdentityEntity>,
   ) {
     super(repository);
   }

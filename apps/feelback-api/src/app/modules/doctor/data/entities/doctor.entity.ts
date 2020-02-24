@@ -40,7 +40,7 @@ export class DoctorEntity extends VersionableEntity {
 
   @ManyToMany(
     type => OrganizationEntity,
-    organization => organization.members
+    organization => organization.members,
   )
   organizations: OrganizationEntity[];
 }

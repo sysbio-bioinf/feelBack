@@ -53,7 +53,7 @@ export class JSONObjectScalar implements CustomScalar<object, object> {
   ensureObject(value) {
     if (typeof value !== 'object' || value === null || Array.isArray(value)) {
       throw new TypeError(
-        `JSONObject cannot represent non-object value: ${value}`
+        `JSONObject cannot represent non-object value: ${value}`,
       );
     }
   }

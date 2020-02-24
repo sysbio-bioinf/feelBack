@@ -16,7 +16,7 @@ const availableEntities = [
   InstrumentEntity,
   OrganizationEntity,
   PersonEntity,
-  ScreeningEntity
+  ScreeningEntity,
 ];
 
 @Module({
@@ -27,21 +27,21 @@ const availableEntities = [
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
         ...configService.get('database'),
-        entities: availableEntities
-      })
+        entities: availableEntities,
+      }),
     }),
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         ...configService.get('graphql'),
-        context: ({ req }) => ({ req })
-      })
+        context: ({ req }) => ({ req }),
+      }),
     }),
     ScalarModule,
-    ApiModule
+    ApiModule,
   ],
   controllers: [],
-  providers: []
+  providers: [],
 })
 export class AppModule {}

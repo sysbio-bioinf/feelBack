@@ -6,6 +6,6 @@ import { ScreeningEntity } from './data/entities/screening.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ScreeningEntity])],
-  providers: [ScreeningResolver, ScreeningService]
+  providers: [ScreeningResolver, ScreeningService],
 })
 export class ScreeningModule {}
