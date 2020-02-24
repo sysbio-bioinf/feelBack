@@ -2,9 +2,10 @@ import { environment as env } from '@env-cancerlog-api/environment';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app/app.module';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe, HttpStatus } from '@nestjs/common';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
+import { CoreException } from '@cancerlog/api/core';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -18,16 +19,19 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       skipMissingProperties: false,
-      forbidUnknownValues: true
-      //   exceptionFactory: errors =>
-      //     new CoreException({
-      //       detail: 'Validation Error',
-      //       status: HttpStatus.PRECONDITION_FAILED,
-      //       debug: {
-      //         location: 'ValidationPipe',
-      //       },
-      //       error: errors,
-      //     }),
+      forbidUnknownValues: true,
+      exceptionFactory: errors =>
+        new CoreException(
+          {
+            detail: 'Validation Error',
+            status: HttpStatus.PRECONDITION_FAILED,
+            debug: {
+              location: 'ValidationPipe'
+            },
+            error: errors
+          },
+          HttpStatus.PRECONDITION_FAILED
+        )
     })
   );
 

@@ -6,6 +6,8 @@ export * from './data/entities/versionable.entity';
 
 export * from './data/models/core.model';
 
+export * from './exceptions/core.exception';
+
 export * from './ui/graphql/args/core.args';
 
 export * from './ui/graphql/inputs/core.input';
