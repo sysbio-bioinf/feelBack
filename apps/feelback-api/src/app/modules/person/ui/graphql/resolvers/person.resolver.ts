@@ -60,8 +60,6 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
       );
     }
 
-    return null;
-    // FIXME: find a solution for this.
-    // return super.createOne(input);
+    return this.service.createOne(input.input);
   }
 }

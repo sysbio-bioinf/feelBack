@@ -21,7 +21,9 @@ query identities {
 
 mutation createOneIdentity($pseudonym: String!) {
   createOneIdentity(input: { 
-    pseudonym: $pseudonym 
+    identity: {
+      pseudonym: $pseudonym 
+    }
   }) {
     id
     pseudonym
