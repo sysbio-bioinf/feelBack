@@ -21,5 +21,17 @@ services:
     networks:
       - backend
 
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db_api
+    ports:
+      - '5555:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${API_PGA_USER:-pgadmin}
+      PGADMIN_DEFAULT_PASSWORD: ${API_PGA_PASSWORD:-pgadmin}
+    networks:
+      - backend
+
 networks:
   backend:
