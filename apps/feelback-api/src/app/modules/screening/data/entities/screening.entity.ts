@@ -19,8 +19,20 @@ export class ScreeningEntity extends VersionableEntity {
   @Column({ type: 'json', nullable: false, default: {} })
   payload: object; // TODO better typings
 
+  @Column({ type: 'json', nullable: false, default: [] })
+  rules: object;
+
   @Column({ type: 'json', nullable: true })
   userAgent?: UserAgentModel;
+
+  @Column({ type: 'boolean', nullable: true })
+  isResolved: boolean;
+
+  @Column({ type: 'timestamp with time zone', nullable: true, default: null })
+  resolvedAt: Date;
+
+  @Column({ type: 'text', nullable: true })
+  resolveComment: string;
 
   // relationships
   @ManyToOne(

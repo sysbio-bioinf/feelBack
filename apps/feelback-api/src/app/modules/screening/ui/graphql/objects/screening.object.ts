@@ -1,6 +1,7 @@
 import { VersionableObject } from '@cancerlog/api/core';
 import { ObjectType, GraphQLISODateTime, Field } from 'type-graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
+import { JSONObject } from '@cancerlog/api/application';
 
 @ObjectType('Screening', {
   description: 'A processed screening',
@@ -23,4 +24,34 @@ export class ScreeningObject extends VersionableObject {
     nullable: false,
   })
   language: string;
+
+  @Field(() => JSONObject, {
+    description: 'the screening data (filled in questionnaires)',
+    nullable: false,
+  })
+  payload: object;
+
+  @Field(() => JSONObject, {
+    description: 'evaluation rules to be applied',
+    nullable: false,
+  })
+  rules: object;
+
+  @FilterableField({
+    description: 'if the screening issues has been resolved',
+    nullable: true,
+  })
+  isResolved?: boolean;
+
+  @FilterableField(() => GraphQLISODateTime, {
+    description: 'DateTime when the screening issues has been resolved.',
+    nullable: false,
+  })
+  resolvedAt: Date;
+
+  @Field({
+    description: 'data about resolving the screening issues',
+    nullable: true,
+  })
+  resolveComment: string;
 }
