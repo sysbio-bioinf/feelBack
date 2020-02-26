@@ -18,7 +18,6 @@ export class DoctorResolver extends CRUDResolver(DoctorObject, {
         nullable: true,
         disableRemove: true,
         disableUpdate: true,
-        disableRead: true, // TODO: READ is disabled because of many-to-many issues
       },
     },
   },
