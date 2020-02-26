@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input BooleanFieldComparison {
+  is: Boolean
+  isNot: Boolean
+}
+
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
@@ -42,6 +47,61 @@ input CreateInstrumentInput {
 
   """The payload / structure of the instrument"""
   payload: JSONObject
+}
+
+input CreateManyDoctorsInput {
+  """Array of records to create"""
+  doctors: [CreateDoctor!]!
+}
+
+input CreateManyInstrumentsInput {
+  """Array of records to create"""
+  instruments: [CreateInstrumentInput!]!
+}
+
+input CreateManyOrganizationsInput {
+  """Array of records to create"""
+  organizations: [CreateOrganizationInput!]!
+}
+
+input CreateManyPeopleInput {
+  """Array of records to create"""
+  people: [CreatePersonInput!]!
+}
+
+input CreateManyScreeningsInput {
+  """Array of records to create"""
+  screenings: [CreateScreeningInput!]!
+}
+
+input CreateOneDoctorInput {
+  """The record to create"""
+  doctor: CreateDoctor!
+}
+
+input CreateOneInstrumentInput {
+  """The record to create"""
+  instrument: CreateInstrumentInput!
+}
+
+input CreateOneOrganizationInput {
+  """The record to create"""
+  organization: CreateOrganizationInput!
+}
+
+input CreateOnePersonInput {
+  """The record to create"""
+  person: CreatePersonInput!
+}
+
+input CreateOnePersonInputType {
+  """The record to create"""
+  person: CreatePersonInput!
+}
+
+input CreateOneScreeningInput {
+  """The record to create"""
+  screening: ResolveScreeningInput!
 }
 
 input CreateOrganizationInput {
@@ -133,9 +193,39 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+input DeleteManyDoctorsInput {
+  """Filter to find records to delete"""
+  filter: DoctorFilter!
+}
+
+input DeleteManyInstrumentsInput {
+  """Filter to find records to delete"""
+  filter: InstrumentFilter!
+}
+
+input DeleteManyOrganizationsInput {
+  """Filter to find records to delete"""
+  filter: OrganizationFilter!
+}
+
+input DeleteManyPeopleInput {
+  """Filter to find records to delete"""
+  filter: PersonFilter!
+}
+
 type DeleteManyResponse {
   """The number of records deleted."""
   deletedCount: Int!
+}
+
+input DeleteManyScreeningsInput {
+  """Filter to find records to delete"""
+  filter: ScreeningFilter!
+}
+
+input DeleteOneInput {
+  """The id of the record to delete."""
+  id: ID!
 }
 
 """A Doctor, Psychologist or Caregiver"""
@@ -177,6 +267,16 @@ type Doctor {
 
   """Settings for this user"""
   settings: JSONObject!
+  organizations(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: OrganizationFilter = {}
+
+    """Specify to sort results."""
+    sorting: [OrganizationSort!] = []
+  ): OrganizationConnection
 }
 
 type DoctorConnection {
@@ -330,71 +430,18 @@ The JSONObject scalar type represents JSON objects as specified by [ECMA-404](ht
 scalar JSONObject
 
 type Mutation {
-  updateOneDoctor(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdateDoctorInput!
-  ): Doctor!
-  updateOnePerson(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdatePersonInput!
-  ): Person!
-  createOneScreening(
-    """The record to create"""
-    input: CreateScreeningInput!
-  ): Screening!
-  setInstrumentOnScreening(
-    """The id of the record."""
-    id: ID!
-
-    """The id of relation."""
-    relationId: ID!
-  ): Screening!
-  setPersonOnScreening(
-    """The id of the record."""
-    id: ID!
-
-    """The id of relation."""
-    relationId: ID!
-  ): Screening!
-  updateOneInstrument(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdateInstrumentInput!
-  ): Instrument!
-  createOneInstrument(
-    """The record to create"""
-    input: CreateInstrumentInput!
-  ): Instrument!
-  updateOneOrganization(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdateOrganizationInput!
-  ): Organization!
-  createOneOrganization(
-    """The record to create"""
-    input: CreateOrganizationInput!
-  ): Organization!
-  addMembersToOrganization(
-    """The id of the record."""
-    id: ID!
-
-    """The ids of the relations."""
-    relationIds: [ID!]!
-  ): Organization!
-  createOnePerson(
-    """The record to create"""
-    input: CreatePersonInput!
-  ): Person!
+  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
+  updateOnePerson(input: UpdateOnePersonInput!): Person!
+  createOneScreening(input: CreateOneScreeningInput!): Screening!
+  setInstrumentOnScreening(input: RelationInput!): Screening!
+  setPersonOnScreening(input: RelationInput!): Screening!
+  updateOneInstrument(input: UpdateOneInstrumentInput!): Instrument!
+  createOneInstrument(input: CreateOneInstrumentInput!): Instrument!
+  updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
+  createOneOrganization(input: CreateOneOrganizationInput!): Organization!
+  addMembersToOrganization(input: RelationsInput!): Organization!
+  resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
+  createOnePerson(input: CreateOnePersonInputType!): Person!
 }
 
 """An Organization resource"""
@@ -436,6 +483,16 @@ type Organization {
 
   """The URL for the logo of this organization"""
   logo: String
+  members(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DoctorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [DoctorSort!] = []
+  ): DoctorConnection
 }
 
 type OrganizationConnection {
@@ -631,6 +688,36 @@ type Query {
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
   ): OrganizationConnection!
+  evaluateScreening(id: String!): Screening!
+}
+
+input RelationInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input RelationsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input ResolveOneScreeningInputType {
+  """The record to create"""
+  screening: ResolveScreeningInput!
+
+  """id"""
+  id: String!
+}
+
+input ResolveScreeningInput {
+  """comments for resolving this issue"""
+  resolveComment: String
 }
 
 """A processed screening"""
@@ -657,6 +744,21 @@ type Screening {
 
   """The language this screening was performed in"""
   language: String!
+
+  """the screening data (filled in questionnaires)"""
+  payload: JSONObject!
+
+  """evaluation rules to be applied"""
+  rules: JSONObject!
+
+  """if the screening issues has been resolved"""
+  isResolved: Boolean
+
+  """DateTime when the screening issues has been resolved."""
+  resolvedAt: DateTime!
+
+  """data about resolving the screening issues"""
+  resolveComment: String
   instrument: Instrument
   person: Person
 
@@ -681,6 +783,21 @@ type ScreeningDeleteResponse {
 
   """The language this screening was performed in"""
   language: String
+
+  """the screening data (filled in questionnaires)"""
+  payload: JSONObject
+
+  """evaluation rules to be applied"""
+  rules: JSONObject
+
+  """if the screening issues has been resolved"""
+  isResolved: Boolean
+
+  """DateTime when the screening issues has been resolved."""
+  resolvedAt: DateTime
+
+  """data about resolving the screening issues"""
+  resolveComment: String
 }
 
 type ScreeningEdge {
@@ -697,6 +814,8 @@ input ScreeningFilter {
   instanceId: StringFieldComparison
   collectedAt: DateFieldComparison
   language: StringFieldComparison
+  isResolved: BooleanFieldComparison
+  resolvedAt: DateFieldComparison
 }
 
 input ScreeningSort {
@@ -709,6 +828,8 @@ enum ScreeningSortFields {
   instanceId
   collectedAt
   language
+  isResolved
+  resolvedAt
 }
 
 """Sort Directions"""
@@ -778,9 +899,89 @@ input UpdateInstrumentInput {
   payload: JSONObject
 }
 
+input UpdateManyDoctorsInput {
+  """Filter used to find fields to update"""
+  filter: DoctorFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateDoctorInput!
+}
+
+input UpdateManyInstrumentsInput {
+  """Filter used to find fields to update"""
+  filter: InstrumentFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateInstrumentInput!
+}
+
+input UpdateManyOrganizationsInput {
+  """Filter used to find fields to update"""
+  filter: OrganizationFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateOrganizationInput!
+}
+
+input UpdateManyPeopleInput {
+  """Filter used to find fields to update"""
+  filter: PersonFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdatePersonInput!
+}
+
 type UpdateManyResponse {
   """The number of records updated."""
   updatedCount: Int!
+}
+
+input UpdateManyScreeningsInput {
+  """Filter used to find fields to update"""
+  filter: ScreeningFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateScreening!
+}
+
+input UpdateOneDoctorInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateDoctorInput!
+}
+
+input UpdateOneInstrumentInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateInstrumentInput!
+}
+
+input UpdateOneOrganizationInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateOrganizationInput!
+}
+
+input UpdateOnePersonInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdatePersonInput!
+}
+
+input UpdateOneScreeningInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateScreening!
 }
 
 input UpdateOrganizationInput {
@@ -824,6 +1025,21 @@ input UpdateScreening {
 
   """The language this screening was performed in"""
   language: String
+
+  """the screening data (filled in questionnaires)"""
+  payload: JSONObject
+
+  """evaluation rules to be applied"""
+  rules: JSONObject
+
+  """if the screening issues has been resolved"""
+  isResolved: Boolean
+
+  """DateTime when the screening issues has been resolved."""
+  resolvedAt: DateTime
+
+  """data about resolving the screening issues"""
+  resolveComment: String
 }
 
 type UserAgent {

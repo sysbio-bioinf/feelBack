@@ -4,11 +4,7 @@ import { PersonService } from '../../../services/person.service';
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
 import { PersonObject } from '../objects/person.object';
-import {
-  HttpService,
-  InternalServerErrorException,
-  HttpStatus,
-} from '@nestjs/common';
+import { HttpService, HttpStatus } from '@nestjs/common';
 import { print } from 'graphql';
 import { CreateOneIdentityDocument } from '../../../../../generated/feelback-identity.graphql';
 import { InputType } from 'type-graphql';

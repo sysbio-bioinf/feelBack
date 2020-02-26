@@ -12,6 +12,16 @@ input CreateIdentityInput {
   pseudonym: String!
 }
 
+input CreateManyIdentitiesInput {
+  """Array of records to create"""
+  identities: [CreateIdentityInput!]!
+}
+
+input CreateOneIdentityInput {
+  """The record to create"""
+  identity: CreateIdentityInput!
+}
+
 input CursorPaging {
   """Paginate before opaque cursor"""
   before: ConnectionCursor
@@ -31,9 +41,19 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+input DeleteManyIdentitiesInput {
+  """Filter to find records to delete"""
+  filter: IdentityFilter!
+}
+
 type DeleteManyResponse {
   """The number of records deleted."""
   deletedCount: Int!
+}
+
+input DeleteOneInput {
+  """The id of the record to delete."""
+  id: ID!
 }
 
 """Identity resource for an anonymized patient"""
@@ -116,17 +136,8 @@ enum IdentitySortFields {
 }
 
 type Mutation {
-  updateOneIdentity(
-    """The id of the record to update"""
-    id: ID!
-
-    """The update to apply."""
-    input: UpdateIdentityInput!
-  ): Identity!
-  createOneIdentity(
-    """The record to create"""
-    input: CreateIdentityInput!
-  ): Identity!
+  updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
+  createOneIdentity(input: CreateOneIdentityInput!): Identity!
 }
 
 type PageInfo {
@@ -198,7 +209,23 @@ input UpdateIdentityInput {
   lastname: String
 }
 
+input UpdateManyIdentitiesInput {
+  """Filter used to find fields to update"""
+  filter: IdentityFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateIdentityInput!
+}
+
 type UpdateManyResponse {
   """The number of records updated."""
   updatedCount: Int!
+}
+
+input UpdateOneIdentityInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateIdentityInput!
 }
