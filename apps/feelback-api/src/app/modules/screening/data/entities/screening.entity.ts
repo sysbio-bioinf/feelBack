@@ -19,9 +19,6 @@ export class ScreeningEntity extends VersionableEntity {
   @Column({ type: 'json', nullable: false, default: {} })
   payload: object; // TODO better typings
 
-  @Column({ type: 'json', nullable: false, default: [] })
-  rules: object;
-
   @Column({ type: 'json', nullable: true })
   userAgent?: UserAgentModel;
 

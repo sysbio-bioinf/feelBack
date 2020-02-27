@@ -1,6 +1,7 @@
 import { Entity, Column, OneToMany, RelationId } from 'typeorm';
 import { VersionableEntity } from '@cancerlog/api/core';
 import { ScreeningEntity } from '../../../screening/data/entities/screening.entity';
+import { RuleModel } from '../models/rule.model';
 
 @Entity({ name: 'instruments' })
 export class InstrumentEntity extends VersionableEntity {
@@ -15,6 +16,9 @@ export class InstrumentEntity extends VersionableEntity {
 
   @Column({ type: 'json', nullable: false, default: {} })
   payload: object; // TODO: can we better type this in order to use surveyjs models?
+
+  @Column({ type: 'json', nullable: false, default: [] })
+  rules: RuleModel[];
 
   // relationships
   @OneToMany(

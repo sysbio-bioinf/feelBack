@@ -29,4 +29,10 @@ export class InstrumentObject extends VersionableObject {
     nullable: true,
   })
   payload: object;
+
+  @Field(type => [JSONObject], {
+    description: 'rules that are applied to calculate some kind of result',
+    nullable: true,
+  })
+  rules: object[];
 }

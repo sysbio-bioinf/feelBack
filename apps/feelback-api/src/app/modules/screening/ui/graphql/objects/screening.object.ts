@@ -31,12 +31,6 @@ export class ScreeningObject extends VersionableObject {
   })
   payload: object;
 
-  @Field(() => JSONObject, {
-    description: 'evaluation rules to be applied',
-    nullable: false,
-  })
-  rules: object;
-
   @FilterableField({
     description: 'if the screening issues has been resolved',
     nullable: true,
