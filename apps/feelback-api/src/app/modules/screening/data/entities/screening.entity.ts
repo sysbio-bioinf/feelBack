@@ -56,4 +56,9 @@ export class ScreeningEntity extends VersionableEntity {
 
   @RelationId((screening: ScreeningEntity) => screening.instrument)
   _instrumentId?: string;
+
+  // functions
+  getScreeningData(): object {
+    return this.payload;
+  }
 }

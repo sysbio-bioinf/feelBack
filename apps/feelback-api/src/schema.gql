@@ -47,6 +47,7 @@ input CreateInstrumentInput {
 
   """The payload / structure of the instrument"""
   payload: JSONObject
+  rules: [RuleInput!]
 }
 
 input CreateManyDoctorsInput {
@@ -101,7 +102,7 @@ input CreateOnePersonInputType {
 
 input CreateOneScreeningInput {
   """The record to create"""
-  screening: ResolveScreeningInput!
+  screening: CreateScreeningInput!
 }
 
 input CreateOrganizationInput {
@@ -339,6 +340,23 @@ enum DoctorSortFields {
   lastname
 }
 
+type Evaluation {
+  """the name of the rule"""
+  name: String!
+
+  """the expression that was used to evaluate the data"""
+  expression: String!
+
+  """the headline to be displayed if this rule is true"""
+  headline: String!
+
+  """the text to be displayed if this rule is true"""
+  text: String!
+
+  """The boolean result of the evaluation, NULL = failure"""
+  result: Boolean
+}
+
 """An Instrument resource for a survey"""
 type Instrument {
   """The ID of this resource."""
@@ -366,6 +384,9 @@ type Instrument {
 
   """The actual payload / content / structure of this instrument"""
   payload: JSONObject
+
+  """rules that are applied to calculate some kind of result"""
+  rules: [JSONObject!]
   screenings(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -398,6 +419,9 @@ type InstrumentDeleteResponse {
 
   """The actual payload / content / structure of this instrument"""
   payload: JSONObject
+
+  """rules that are applied to calculate some kind of result"""
+  rules: [JSONObject!]
 }
 
 type InstrumentEdge {
@@ -440,7 +464,6 @@ type Mutation {
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
-  resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
   createOnePerson(input: CreateOnePersonInputType!): Person!
 }
 
@@ -707,17 +730,18 @@ input RelationsInput {
   relationIds: [ID!]!
 }
 
-input ResolveOneScreeningInputType {
-  """The record to create"""
-  screening: ResolveScreeningInput!
+input RuleInput {
+  """the name of the rule"""
+  name: String!
 
-  """id"""
-  id: String!
-}
+  """the (boolean) expression of the rule"""
+  expression: String!
 
-input ResolveScreeningInput {
-  """comments for resolving this issue"""
-  resolveComment: String
+  """the headline to be shown if the rule evaluates positive (true)"""
+  headline: String!
+
+  """the text to be shown if the rule evaluates positive (true)"""
+  text: String!
 }
 
 """A processed screening"""
@@ -748,9 +772,6 @@ type Screening {
   """the screening data (filled in questionnaires)"""
   payload: JSONObject!
 
-  """evaluation rules to be applied"""
-  rules: JSONObject!
-
   """if the screening issues has been resolved"""
   isResolved: Boolean
 
@@ -764,6 +785,9 @@ type Screening {
 
   """UserAgent information"""
   userAgent: UserAgent
+
+  """Evaluation Results for this screening"""
+  evaluationResult: [Evaluation!]
 }
 
 type ScreeningConnection {
@@ -786,9 +810,6 @@ type ScreeningDeleteResponse {
 
   """the screening data (filled in questionnaires)"""
   payload: JSONObject
-
-  """evaluation rules to be applied"""
-  rules: JSONObject
 
   """if the screening issues has been resolved"""
   isResolved: Boolean
@@ -897,6 +918,7 @@ input UpdateInstrumentInput {
 
   """The (new) payload / structure of the instrument"""
   payload: JSONObject
+  rules: [RuleInput!]
 }
 
 input UpdateManyDoctorsInput {
@@ -1028,9 +1050,6 @@ input UpdateScreening {
 
   """the screening data (filled in questionnaires)"""
   payload: JSONObject
-
-  """evaluation rules to be applied"""
-  rules: JSONObject
 
   """if the screening issues has been resolved"""
   isResolved: Boolean
