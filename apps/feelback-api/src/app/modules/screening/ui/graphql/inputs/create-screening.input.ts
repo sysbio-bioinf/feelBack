@@ -6,9 +6,11 @@ import {
   IsString,
   IsUUID,
   ValidateNested,
+  IsObject,
 } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 import { CreateUserAgentInput } from './create-user-agent.input';
+import { JSONObject } from '@cancerlog/api/application';
 
 @InputType()
 export class CreateScreeningInput extends CoreInput {
@@ -26,6 +28,13 @@ export class CreateScreeningInput extends CoreInput {
     nullable: false,
   })
   collectedAt: Date;
+
+  @IsObject()
+  @Field(() => JSONObject, {
+    description: 'the collected data',
+    nullable: false,
+  })
+  payload: object;
 
   @IsString()
   // TODO: add a @IsLocale() Validator once it is available

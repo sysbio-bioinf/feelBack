@@ -144,6 +144,9 @@ input CreateScreeningInput {
   """DateTime when this screening was performed"""
   collectedAt: DateTime!
 
+  """the collected data"""
+  payload: JSONObject!
+
   """The language this screening was performed in"""
   language: String!
 
@@ -711,7 +714,6 @@ type Query {
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
   ): OrganizationConnection!
-  evaluateScreening(id: String!): Screening!
 }
 
 input RelationInput {
