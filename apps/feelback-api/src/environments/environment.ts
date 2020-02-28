@@ -49,10 +49,22 @@ export const environment: IEnvironment = {
   },
 
   server: {
-    host: env.get('API_HOST', 'localhost').asString(),
-    port: env.get('API_PORT', '3000').asPortNumber(),
-    url: env.get('API_URL', 'http://localhost:3000').asUrlString(),
-    apiPrefix: env.get('API_PREFIX', 'api').asString(),
+    host: env
+      .get('API_HOST')
+      .default('localhost')
+      .asString(),
+    port: env
+      .get('API_PORT')
+      .default(3000)
+      .asPortNumber(),
+    url: env
+      .get('API_URL')
+      .default('http://localhost:3000')
+      .asUrlString(),
+    apiPrefix: env
+      .get('API_PREFIX')
+      .default('api')
+      .asString(),
   },
 
   graphql: {
@@ -65,14 +77,35 @@ export const environment: IEnvironment = {
   },
 
   database: {
-    type: env.get('DB_TYPE', 'postgres').asString() as 'postgres',
-    host: env.get('DB_HOST', 'localhost').asString(),
-    port: env.get('DB_PORT', '5432').asPortNumber(),
-    database: env.get('DB_NAME', 'postgres').asString(),
-    username: env.get('DB_USER', 'postgres').asString(),
-    password: env.get('DB_PASSWORD', 'postgres').asString(),
+    type: env
+      .get('DB_TYPE')
+      .default('postgres')
+      .asString() as 'postgres',
+    host: env
+      .get('DB_HOST')
+      .default('localhost')
+      .asString(),
+    port: env
+      .get('DB_PORT')
+      .default(5432)
+      .asPortNumber(),
+    database: env
+      .get('DB_NAME')
+      .default('postgres')
+      .asString(),
+    username: env
+      .get('DB_USER')
+      .default('postgres')
+      .asString(),
+    password: env
+      .get('DB_PASSWORD')
+      .default('postgres')
+      .asString(),
     keepConnectionAlive: true,
-    logging: env.get('DB_DEBUG', 'true').asBoolStrict(),
+    logging: env
+      .get('DB_DEBUG')
+      .default('true')
+      .asBoolStrict(),
     synchronize: true,
     uuidExtension: 'pgcrypto',
   },

@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 import { IEnvironment } from '@cancerlog/api/config';
-import * as env from 'env-var';
 import { ApiPathHelper } from '@cancerlog/util/core';
+import * as env from 'env-var';
 import * as path from 'path';
 
 export const environment: IEnvironment = {
@@ -40,10 +40,22 @@ export const environment: IEnvironment = {
   },
 
   server: {
-    host: env.get('ID_API_HOST', 'localhost').asString(),
-    port: env.get('ID_API_PORT', '3000').asPortNumber(),
-    url: env.get('ID_API_URL', 'http://localhost:3000').asUrlString(),
-    apiPrefix: env.get('ID_API_PREFIX', 'api').asString(),
+    host: env
+      .get('ID_API_HOST')
+      .default('localhost')
+      .asString(),
+    port: env
+      .get('ID_API_PORT')
+      .default(3000)
+      .asPortNumber(),
+    url: env
+      .get('ID_API_URL')
+      .default('http://localhost:3000')
+      .asUrlString(),
+    apiPrefix: env
+      .get('ID_API_PREFIX')
+      .default('api')
+      .asString(),
   },
 
   graphql: {
@@ -56,14 +68,35 @@ export const environment: IEnvironment = {
   },
 
   database: {
-    type: env.get('ID_DB_TYPE', 'postgres').asString() as 'postgres',
-    host: env.get('ID_DB_HOST', 'localhost').asString(),
-    port: env.get('ID_DB_PORT', '5432').asPortNumber(),
-    database: env.get('ID_DB_NAME', 'postgres').asString(),
-    username: env.get('ID_DB_USER', 'postgres').asString(),
-    password: env.get('ID_DB_PASSWORD', 'postgres').asString(),
+    type: env
+      .get('ID_DB_TYPE')
+      .default('postgres')
+      .asString() as 'postgres',
+    host: env
+      .get('ID_DB_HOST')
+      .default('localhost')
+      .asString(),
+    port: env
+      .get('ID_DB_PORT')
+      .default(5432)
+      .asPortNumber(),
+    database: env
+      .get('ID_DB_NAME')
+      .default('postgres')
+      .asString(),
+    username: env
+      .get('ID_DB_USER')
+      .default('postgres')
+      .asString(),
+    password: env
+      .get('ID_DB_PASSWORD')
+      .default('postgres')
+      .asString(),
     keepConnectionAlive: true,
-    logging: env.get('ID_DB_DEBUG', 'true').asBoolStrict(),
+    logging: env
+      .get('ID_DB_DEBUG')
+      .default('true')
+      .asBoolStrict(),
     synchronize: true,
     uuidExtension: 'pgcrypto',
   },
