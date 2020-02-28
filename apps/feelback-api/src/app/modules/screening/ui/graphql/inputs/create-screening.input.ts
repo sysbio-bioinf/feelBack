@@ -1,14 +1,14 @@
-import { Field, InputType } from 'type-graphql';
-import {
-  IsDateString,
-  IsString,
-  IsOptional,
-  ValidateNested,
-  IsUUID,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import { CreateUserAgentInput } from './create-user-agent.input';
 import { CoreInput } from '@cancerlog/api/core';
+import { Type } from 'class-transformer';
+import {
+  IsDate,
+  IsOptional,
+  IsString,
+  IsUUID,
+  ValidateNested,
+} from 'class-validator';
+import { Field, InputType } from 'type-graphql';
+import { CreateUserAgentInput } from './create-user-agent.input';
 
 @InputType()
 export class CreateScreeningInput extends CoreInput {
@@ -20,7 +20,7 @@ export class CreateScreeningInput extends CoreInput {
   })
   instanceId: string;
 
-  @IsDateString()
+  @IsDate()
   @Field({
     description: 'DateTime when this screening was performed',
     nullable: false,
