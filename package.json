@@ -70,7 +70,7 @@
     "argon2": "0.26.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
-    "core-js": "^2.5.4",
+    "core-js": "^3.6.4",
     "cuid": "^2.1.8",
     "dataloader": "^2.0.0",
     "deepmerge": "^4.2.2",
