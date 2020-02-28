@@ -8,6 +8,8 @@ export * from './data/models/core.model';
 
 export * from './exceptions/core.exception';
 
+export * from './services/core.service';
+
 export * from './ui/graphql/args/core.args';
 
 export * from './ui/graphql/inputs/core.input';
