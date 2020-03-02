@@ -2,9 +2,7 @@ version: '3'
 
 services:
   app_api:
-    build:
-      context: .
-      dockerfile: api.Dockerfile
+    image: cancerlog.api:latest
     ports:
       - ${API_PORT}:${API_PORT}
     networks:
@@ -12,8 +10,6 @@ services:
 
   db_api:
     image: postgres:11-alpine
-    ports:
-      - ${DB_PORT:-5432}:5432
     environment:
       POSTGRES_DB: ${DB_NAME:-postgres}
       POSTGRES_USER: ${DB_USER:-postgres}
@@ -26,7 +22,7 @@ services:
     depends_on:
       - db_api
     ports:
-      - ${API_PGA_PORT:80}
+      - ${API_PGA_PORT:-80}
     environment:
       PGADMIN_DEFAULT_EMAIL: ${API_PGA_USER:-pgadmin}
       PGADMIN_DEFAULT_PASSWORD: ${API_PGA_PASSWORD:-pgadmin}

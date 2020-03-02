@@ -4,7 +4,7 @@ services:
   db_api:
     image: postgres:11-alpine
     ports:
-      - ${DB_PORT:-5432}:5432
+      - 5432:5432
     environment:
       POSTGRES_DB: ${DB_NAME:-postgres}
       POSTGRES_USER: ${DB_USER:-postgres}
@@ -15,7 +15,7 @@ services:
   db_identity:
     image: postgres:11-alpine
     ports:
-      - ${ID_DB_PORT:-5433}:5432
+      - 5433:5432
     environment:
       POSTGRES_DB: ${ID_DB_NAME:-postgres}
       POSTGRES_USER: ${ID_DB_USER:-postgres}

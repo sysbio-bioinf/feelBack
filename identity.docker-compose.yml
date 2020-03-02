@@ -2,9 +2,7 @@ version: '3'
 
 services:
   app_identity:
-    build:
-      context: .
-      dockerfile: identity.Dockerfile
+    image: cancerlog.identity:latest
     ports:
       - ${ID_API_PORT}:${ID_API_PORT}
     networks:
@@ -12,8 +10,6 @@ services:
 
   db_identity:
     image: postgres:11-alpine
-    ports:
-      - ${ID_DB_PORT:-5433}:5432
     environment:
       POSTGRES_DB: ${ID_DB_NAME:-postgres}
       POSTGRES_USER: ${ID_DB_USER:-postgres}
@@ -26,7 +22,7 @@ services:
     depends_on:
       - db_identity
     ports:
-      - ${ID_PGA_PORT:80}
+      - ${ID_PGA_PORT:-80}
     environment:
       PGADMIN_DEFAULT_EMAIL: ${ID_PGA_USER:-pgadmin}
       PGADMIN_DEFAULT_PASSWORD: ${ID_PGA_PASSWORD:-pgadmin}
