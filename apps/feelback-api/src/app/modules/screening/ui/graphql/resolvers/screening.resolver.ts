@@ -1,5 +1,11 @@
-import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { Parent, ResolveProperty, Resolver } from '@nestjs/graphql';
+import { CRUDResolver, RelationInputType } from '@nestjs-query/query-graphql';
+import {
+  Parent,
+  ResolveProperty,
+  Resolver,
+  Mutation,
+  Args,
+} from '@nestjs/graphql';
 import { InstrumentEntity } from '../../../../instrument/data/entities/instrument.entity';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
 import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
@@ -10,6 +16,7 @@ import { CreateScreeningInput } from '../inputs/create-screening.input';
 import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
+import { SetInstrumentOnScreeningInput } from '../types/custom.types';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -100,5 +107,17 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
         result: item.result,
       } as EvaluationObject;
     });
+  }
+
+  @Mutation()
+  async setInstrumentOnScreening(
+    @Args('input') input: SetInstrumentOnScreeningInput,
+  ) {
+    console.log('---');
+    console.log(input.id);
+    console.log(input.relationId);
+    await this.service.setRelation('instrument', input.id, input.relationId);
+
+    return await this.findById(input.id);
   }
 }

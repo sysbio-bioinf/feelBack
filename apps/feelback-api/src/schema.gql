@@ -105,7 +105,7 @@ input CreateOnePersonInputType {
 
 input CreateOneScreeningInput {
   """The record to create"""
-  screening: CreateScreeningInput!
+  screening: ResolveScreeningInput!
 }
 
 input CreateOrganizationInput {
@@ -741,6 +741,19 @@ input RelationsInput {
   relationIds: [ID!]!
 }
 
+input ResolveOneScreeningInputType {
+  """The record to create"""
+  screening: ResolveScreeningInput!
+
+  """id"""
+  id: String!
+}
+
+input ResolveScreeningInput {
+  """comments for resolving this issue"""
+  resolveComment: String
+}
+
 input RuleInput {
   """the name of the rule"""
   name: String!
@@ -862,6 +875,14 @@ enum ScreeningSortFields {
   language
   isResolved
   resolvedAt
+}
+
+input SetInstrumentOnScreeningInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
 }
 
 """Sort Directions"""
