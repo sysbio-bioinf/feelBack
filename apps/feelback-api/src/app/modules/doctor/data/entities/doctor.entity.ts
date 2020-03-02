@@ -8,6 +8,9 @@ export class DoctorEntity extends VersionableEntity {
   @Index({ unique: true })
   keycloakId: string;
 
+  @Column({ type: 'boolean', nullable: false, default: true })
+  isActive: boolean;
+
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   title: string;
 
