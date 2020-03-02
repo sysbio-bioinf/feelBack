@@ -47,19 +47,3 @@ export class EvaluationService extends CoreService {
     return evaluationResults;
   }
 }
-
-//   const evaluationExpression = evaluationParser.parse(
-//     instrument.rules.expression,
-//   );
-//   const evaluationResult = evaluationExpression.evaluate(data as any);
-
-//   finalResults = {
-//     status: ScreeningResultEnum.SUCCESS,
-//     value: evaluationResult,
-//   };
-// } catch (e) {
-//   finalResult = {
-//     status: ScreeningResultEnum.ERROR,
-//     value: null,
-//   };
-// }
