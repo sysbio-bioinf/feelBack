@@ -48,6 +48,9 @@ input CreateInstrumentInput {
   """The payload / structure of the instrument"""
   payload: JSONObject
   rules: [RuleInput!]
+
+  """what has changed so far"""
+  changelog: String!
 }
 
 input CreateManyDoctorsInput {
@@ -390,6 +393,9 @@ type Instrument {
 
   """rules that are applied to calculate some kind of result"""
   rules: [JSONObject!]
+
+  """the changelog of this instrument (i.e., what has been changed)"""
+  changelog: String!
   screenings(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -425,6 +431,9 @@ type InstrumentDeleteResponse {
 
   """rules that are applied to calculate some kind of result"""
   rules: [JSONObject!]
+
+  """the changelog of this instrument (i.e., what has been changed)"""
+  changelog: String
 }
 
 type InstrumentEdge {
@@ -921,6 +930,9 @@ input UpdateInstrumentInput {
   """The (new) payload / structure of the instrument"""
   payload: JSONObject
   rules: [RuleInput!]
+
+  """what has changed so far"""
+  changelog: String!
 }
 
 input UpdateManyDoctorsInput {

@@ -35,4 +35,11 @@ export class InstrumentObject extends VersionableObject {
     nullable: true,
   })
   rules: object[];
+
+  @Field({
+    description:
+      'the changelog of this instrument (i.e., what has been changed)',
+    nullable: false,
+  })
+  changelog: string;
 }

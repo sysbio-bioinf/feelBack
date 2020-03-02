@@ -48,4 +48,11 @@ export class UpdateInstrumentInput extends CoreInput {
   @ValidateNested({ each: true })
   @Field(type => [RuleInput], { nullable: true })
   rules: RuleInput[];
+
+  @IsString()
+  @Field({
+    description: 'what has changed so far',
+    nullable: false,
+  })
+  changelog: string;
 }

@@ -20,6 +20,9 @@ export class InstrumentEntity extends VersionableEntity {
   @Column({ type: 'json', nullable: false, default: [] })
   rules: RuleModel[];
 
+  @Column({ type: 'text', nullable: false, default: '' })
+  changelog: string;
+
   // relationships
   @OneToMany(
     type => ScreeningEntity,
