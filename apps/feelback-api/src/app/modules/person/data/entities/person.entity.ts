@@ -8,6 +8,9 @@ export class PersonEntity extends VersionableEntity {
   @Index({ unique: true })
   pseudonym: string;
 
+  @Column({ type: 'boolean', nullable: false, default: true })
+  isActive: boolean;
+
   @Column({ type: 'boolean', default: false })
   acceptedTOS: boolean;
 
