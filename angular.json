@@ -92,7 +92,8 @@
           "options": {
             "jestConfig": "apps/feelback-web/jest.config.js",
             "tsConfig": "apps/feelback-web/tsconfig.spec.json",
-            "setupFile": "apps/feelback-web/src/test-setup.ts"
+            "setupFile": "apps/feelback-web/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       }
@@ -174,7 +175,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/feelback-api/jest.config.js",
-            "tsConfig": "apps/feelback-api/tsconfig.spec.json"
+            "tsConfig": "apps/feelback-api/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -229,7 +231,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/feelback-identity/jest.config.js",
-            "tsConfig": "apps/feelback-identity/tsconfig.spec.json"
+            "tsConfig": "apps/feelback-identity/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -254,7 +257,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/api/config/jest.config.js",
-            "tsConfig": "libs/api/config/tsconfig.spec.json"
+            "tsConfig": "libs/api/config/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -279,7 +283,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/util/core/jest.config.js",
-            "tsConfig": "libs/util/core/tsconfig.spec.json"
+            "tsConfig": "libs/util/core/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -304,7 +309,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/api/core/jest.config.js",
-            "tsConfig": "libs/api/core/tsconfig.spec.json"
+            "tsConfig": "libs/api/core/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -329,7 +335,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/api/application/jest.config.js",
-            "tsConfig": "libs/api/application/tsconfig.spec.json"
+            "tsConfig": "libs/api/application/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
@@ -354,7 +361,8 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/api/authentication/jest.config.js",
-            "tsConfig": "libs/api/authentication/tsconfig.spec.json"
+            "tsConfig": "libs/api/authentication/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
