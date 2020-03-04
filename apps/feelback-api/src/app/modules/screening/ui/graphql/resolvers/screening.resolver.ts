@@ -113,11 +113,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   async setInstrumentOnScreening(
     @Args('input') input: SetInstrumentOnScreeningInput,
   ) {
-    console.log('---');
-    console.log(input.id);
-    console.log(input.relationId);
     await this.service.setRelation('instrument', input.id, input.relationId);
-
     return await this.findById(input.id);
   }
 }
