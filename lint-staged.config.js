@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  '{apps,libs}/**/*.{ts,json,md,scss,html}': files => {
+  '{apps,libs}/**/!(generated)/**/*.{ts,json,md,scss,html}': files => {
     const cwd = process.cwd();
     const relPaths = files.map(file => {
       return path.relative(cwd, file);
