@@ -38,6 +38,9 @@
     },
     "api-authentication": {
       "tags": []
+    },
+    "util-connection": {
+      "tags": []
     }
   }
 }
