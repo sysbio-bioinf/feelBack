@@ -50,19 +50,19 @@ export const environment: IEnvironment = {
 
   server: {
     host: env
-      .get('API_HOST')
+      .get('FB_API_HOST')
       .default('localhost')
       .asString(),
     port: env
-      .get('API_PORT')
+      .get('FB_API_PORT')
       .default(3000)
       .asPortNumber(),
     url: env
-      .get('API_URL')
+      .get('FB_API_URL')
       .default('http://localhost:3000')
       .asUrlString(),
     apiPrefix: env
-      .get('API_PREFIX')
+      .get('FB_API_PREFIX')
       .default('api')
       .asString(),
   },
@@ -78,32 +78,32 @@ export const environment: IEnvironment = {
 
   database: {
     type: env
-      .get('DB_TYPE')
+      .get('FB_DB_TYPE')
       .default('postgres')
       .asString() as 'postgres',
     host: env
-      .get('DB_HOST')
+      .get('FB_DB_HOST')
       .default('localhost')
       .asString(),
     port: env
-      .get('DB_PORT')
+      .get('FB_DB_PORT')
       .default(5432)
       .asPortNumber(),
     database: env
-      .get('DB_NAME')
+      .get('FB_DB_NAME')
       .default('postgres')
       .asString(),
     username: env
-      .get('DB_USER')
+      .get('FB_DB_USER')
       .default('postgres')
       .asString(),
     password: env
-      .get('DB_PASSWORD')
+      .get('FB_DB_PASSWORD')
       .default('postgres')
       .asString(),
     keepConnectionAlive: true,
     logging: env
-      .get('DB_DEBUG')
+      .get('FB_DB_DEBUG')
       .default('true')
       .asBoolStrict(),
     synchronize: true,
