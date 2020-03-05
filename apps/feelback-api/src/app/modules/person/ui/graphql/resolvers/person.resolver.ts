@@ -9,6 +9,7 @@ import { print } from 'graphql';
 import { CreateOneIdentityDocument } from '../../../../../generated/feelback-identity.graphql';
 import { InputType } from 'type-graphql';
 import { CoreException } from '@cancerlog/api/core';
+import { IdentityServiceConnection } from '@cancerlog/util/connection';
 
 @InputType()
 export class CreateOnePersonInputType extends CreateOneInputType(
@@ -38,8 +39,9 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   async createOnePerson(
     @Args('input') input: CreateOnePersonInputType,
   ): Promise<PersonObject> {
+    const identityConnectionAddress = new IdentityServiceConnection().getAddress();
     const identityResponse = await this.httpService
-      .post('http://localhost:3001/graphql', {
+      .post(identityConnectionAddress, {
         query: print(CreateOneIdentityDocument),
         variables: {
           pseudonym: input.input.pseudonym,
