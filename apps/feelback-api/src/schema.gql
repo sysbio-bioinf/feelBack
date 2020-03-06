@@ -3,6 +3,28 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type AccessToken {
+  """the generated access token to work with the api"""
+  accessToken: String!
+
+  """the type of this token (e.g., BEARER)"""
+  tokenType: String!
+
+  """indicates, how long this token is valid (value in seconds)"""
+  accessTokenExpiresIn: Float!
+
+  """
+  the generated refresh token that can be used to issue another access token
+  """
+  refreshToken: String!
+
+  """indicates, how long this refresh token is valid (value in seconds)"""
+  refreshTokenExpiresIn: Float!
+
+  """the scopes used within this token"""
+  scope: String!
+}
+
 input BooleanFieldComparison {
   is: Boolean
   isNot: Boolean
@@ -465,6 +487,15 @@ The JSONObject scalar type represents JSON objects as specified by [ECMA-404](ht
 """
 scalar JSONObject
 
+"""Credentials to login"""
+input LoginInput {
+  """The email to login with"""
+  email: String!
+
+  """The password to login with"""
+  password: String!
+}
+
 type Mutation {
   updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
   updateOnePerson(input: UpdateOnePersonInput!): Person!
@@ -477,6 +508,9 @@ type Mutation {
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
   createOnePerson(input: CreateOnePersonInputType!): Person!
+
+  """login via username / password"""
+  login(input: LoginInput!): AccessToken!
 }
 
 """An Organization resource"""
