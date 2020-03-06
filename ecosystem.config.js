@@ -16,8 +16,7 @@ module.exports = {
         && npm run docker:build:deps \
         && npm run docker:build:identity \
         && npm run docker:build:api \
-        && docker-compose -f identity.docker-compose.yml up -d \
-        && docker-compose -f api.docker-compose.yml up -d',
+        && docker-compose -f prod.docker-compose.yml up -d',
     },
   },
 };

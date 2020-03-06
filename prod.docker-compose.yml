@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  main_app:
+    image: cancerlog.api:latest
+    container_name: 'fb_main_api'
+    ports:
+      - ${FB_API_PORT}:${FB_API_PORT}
+    networks:
+      - backend
+
+  identity_app:
+    image: cancerlog.identity:latest
+    container_name: 'fb_identity_api'
+    ports:
+      - ${ID_API_PORT}:${ID_API_PORT}
+    networks:
+      - backend
+
+  main_db:
+    image: postgres:11-alpine
+    container_name: 'fb_main_db'
+    environment:
+      POSTGRES_DB: ${FB_DB_NAME:-postgres}
+      POSTGRES_USER: ${FB_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${FB_DB_PASSWORD:-postgres}
+    networks:
+      - backend
+
+  identity_db:
+    image: postgres:11-alpine
+    container_name: 'fb_identity_db'
+    environment:
+      POSTGRES_DB: ${ID_DB_NAME:-postgres}
+      POSTGRES_USER: ${ID_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${ID_DB_PASSWORD:-postgres}
+    networks:
+      - backend
+
+  # db_keycloak:
+  #   image: postgres:11-alpine
+  #   ports:
+  #     - ${KEYCLOAK_DB_PORT:-5434}:5432
+  #   environment:
+  #     POSTGRES_DB: ${KEYCLOAK_DB_NAME:-postgres}
+  #     POSTGRES_USER: ${KEYCLOAK_DB_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+  #   networks:
+  #     - backend
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: 'fb_pgadmin'
+    depends_on:
+      - main_db
+      - identity_db
+    ports:
+      - ${PGA_PORT}:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGA_USER:-pgadmin}
+      PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD:-pgadmin}
+    networks:
+      - backend
+
+networks:
+  backend:
