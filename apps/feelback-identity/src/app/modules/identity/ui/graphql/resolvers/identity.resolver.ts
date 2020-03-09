@@ -1,9 +1,9 @@
-import { Resolver } from '@nestjs/graphql';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { IdentityObject } from '../../objects/identity.object';
-import { IdentityService } from '../../../../services/identity.service';
-import { CreateIdentityInput } from '../../inputs/create-identity.input';
-import { UpdateIdentityInput } from '../../inputs/update-identity.input';
+import { Resolver } from '@nestjs/graphql';
+import { IdentityService } from '../../../services/identity.service';
+import { CreateIdentityInput } from '../inputs/create-identity.input';
+import { UpdateIdentityInput } from '../inputs/update-identity.input';
+import { IdentityObject } from '../objects/identity.object';
 
 @Resolver(of => IdentityObject)
 export class IdentityResolver extends CRUDResolver(IdentityObject, {
