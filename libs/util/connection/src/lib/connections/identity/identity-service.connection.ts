@@ -1,4 +1,4 @@
-import { ServiceConnectionModel } from './models/service.connection.model';
+import { ServiceConnectionModel } from '../../data/models/service.connection.model';
 
 export class IdentityServiceConnection implements ServiceConnectionModel {
   protocol = 'http';
