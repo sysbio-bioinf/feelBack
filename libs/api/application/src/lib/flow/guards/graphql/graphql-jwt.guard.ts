@@ -1,14 +1,16 @@
+import { KeycloakJwtModel } from '@cancerlog/api/authentication';
+import { CoreException } from '@cancerlog/api/core';
 import {
+  CanActivate,
   ExecutionContext,
   HttpStatus,
   Injectable,
-  CanActivate,
 } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
+import * as _ from 'lodash';
 import * as passport from 'passport';
-import { CoreException } from '@cancerlog/api/core';
-import { KeycloakJwtModel } from '@cancerlog/api/authentication';
+import { REQUEST_FIELDS } from '../../../constants/request-fields.constants';
 
 const defaultOptions = {
   session: false,
@@ -57,9 +59,8 @@ export class GraphqlJwtGuard extends AuthGuard('jwt') implements CanActivate {
     const passportFunction = createPassportContext(request, response);
     const resolvedUser = await passportFunction('jwt', defaultOptions);
 
-    request['auth'] = {};
-    request['auth']['user'] = resolvedUser.user;
-    request['auth']['info'] = resolvedUser.info;
+    _.set(request, REQUEST_FIELDS.AUTH_USER, resolvedUser.user);
+    _.set(request, REQUEST_FIELDS.AUTH_INFO, resolvedUser.info);
 
     return true;
   }
