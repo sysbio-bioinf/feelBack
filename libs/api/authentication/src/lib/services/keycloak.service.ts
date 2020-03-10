@@ -29,10 +29,13 @@ export class KeycloakService {
     credentials: CredentialsDto,
   ): Promise<AuthTokenModel> {
     try {
-      const keycloakAddress = new KeycloakServiceConnection().getAddress();
+      // TODO remove magic string
+      const keycloakTokenAddress = new KeycloakServiceConnection().getTokenAddress(
+        'feelback',
+      );
       const tokenResponse = await this.http
         .post(
-          `${keycloakAddress}/token`,
+          keycloakTokenAddress,
           qs.stringify({
             username: credentials.username,
             password: credentials.password,
@@ -76,17 +79,16 @@ export class KeycloakService {
    */
   async getUserInfoForToken(accessToken: AuthTokenModel) {
     try {
+      // TODO remove magic string
+      const keycloakUserInfoAddress = new KeycloakServiceConnection().getUserInfoAddress(
+        'feelback',
+      );
       const userResponse = await this.http
-        .get<KeycloakUserInfo>(
-          `${this.config.getKeyCloakUriForRealm(
-            this.config.get('auth.keycloak.clients[0].realm'),
-          )}protocol/openid-connect/userinfo`,
-          {
-            headers: {
-              authorization: `Bearer ${accessToken.accessToken}`,
-            },
+        .get<KeycloakUserInfo>(keycloakUserInfoAddress, {
+          headers: {
+            authorization: `Bearer ${accessToken.accessToken}`,
           },
-        )
+        })
         .pipe(map(response => response))
         .toPromise();
 

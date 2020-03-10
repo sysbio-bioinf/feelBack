@@ -10,6 +10,7 @@ import { ScalarModule } from './modules/scalar.module';
 import { ScreeningEntity } from './modules/screening/data/entities/screening.entity';
 import { PersonEntity } from './modules/person/data/entities/person.entity';
 import { DoctorEntity } from './modules/doctor/data/entities/doctor.entity';
+import { ApplicationGuardModule } from '@cancerlog/api/application';
 
 const availableEntities = [
   DoctorEntity,
@@ -39,6 +40,7 @@ const availableEntities = [
       }),
     }),
     ScalarModule,
+    ApplicationGuardModule,
     ApiModule,
   ],
   controllers: [],
