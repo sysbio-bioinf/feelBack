@@ -1,6 +1,6 @@
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
-import { IdentityService } from '../../../services/identity.service';
+import { IdentityService } from '../../../services/identity/identity.service';
 import { CreateIdentityInput } from '../inputs/create-identity.input';
 import { UpdateIdentityInput } from '../inputs/update-identity.input';
 import { IdentityObject } from '../objects/identity.object';
