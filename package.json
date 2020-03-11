@@ -31,6 +31,8 @@
     "help": "nx help",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "lint": "nx workspace-lint && ng lint",
+    "migration:create": "bash -c 'cd apps/${1}/src && npx typeorm migration:create -n ${2}' -- ",
+    "migration:run": "bash -c 'cd apps/${1}/src && npx tsc database/migrations/src/*.ts --outDir database/migrations/generated && npx typeorm migration:run' -- ",
     "ng": "ng",
     "nx": "nx",
     "start": "ng serve",
