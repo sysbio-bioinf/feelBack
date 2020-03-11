@@ -1,12 +1,6 @@
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import {
-  Args,
-  Mutation,
-  Parent,
-  ResolveProperty,
-  Resolver,
-} from '@nestjs/graphql';
-import { InstrumentEntity } from '../../../../instrument/data/entities/instrument.entity';
+import { Parent, ResolveProperty, Resolver } from '@nestjs/graphql';
+import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
 import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
 import { ScreeningEntity } from '../../../data/entities/screening.entity';
@@ -16,9 +10,6 @@ import { CreateScreeningInput } from '../inputs/create-screening.input';
 import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
-import { SetInstrumentOnScreeningInput } from '../types/custom.types';
-import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
-import { CoreException } from '@cancerlog/api/core';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -113,13 +104,5 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     });
 
     return resultObject;
-  }
-
-  @Mutation()
-  async setInstrumentOnScreening(
-    @Args('input') input: SetInstrumentOnScreeningInput,
-  ) {
-    await this.service.setRelation('instrument', input.id, input.relationId);
-    return await this.findById(input.id);
   }
 }

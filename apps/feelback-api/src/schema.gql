@@ -775,19 +775,6 @@ input RelationsInput {
   relationIds: [ID!]!
 }
 
-input ResolveOneScreeningInputType {
-  """id"""
-  id: String!
-
-  """The update to apply."""
-  update: ResolveScreeningInput!
-}
-
-input ResolveScreeningInput {
-  """comments for resolving this issue"""
-  resolveComment: String
-}
-
 input RuleInput {
   """the name of the rule"""
   name: String!
@@ -909,14 +896,6 @@ enum ScreeningSortFields {
   language
   isResolved
   resolvedAt
-}
-
-input SetInstrumentOnScreeningInput {
-  """The id of the record."""
-  id: ID!
-
-  """The id of relation."""
-  relationId: ID!
 }
 
 """Sort Directions"""
@@ -1072,7 +1051,7 @@ input UpdateOneScreeningInput {
   id: ID!
 
   """The update to apply."""
-  update: ResolveScreeningInput!
+  update: UpdateScreening!
 }
 
 input UpdateOrganizationInput {
