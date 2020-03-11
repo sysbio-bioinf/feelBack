@@ -1,6 +1,6 @@
 import { CRUDResolver, CreateOneInputType } from '@nestjs-query/query-graphql';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { PersonService } from '../../../services/person.service';
+import { PersonDatabaseService } from '../../../services/person/person-database.service';
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
 import { PersonObject } from '../objects/person.object';
@@ -10,6 +10,7 @@ import { CreateOneIdentityDocument } from '../../../../../generated/feelback-ide
 import { InputType } from 'type-graphql';
 import { CoreException } from '@cancerlog/api/core';
 import { IdentityServiceConnection } from '@cancerlog/util/connection';
+import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 
 @InputType()
 export class CreateOnePersonInputType extends CreateOneInputType(
@@ -29,7 +30,7 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   update: { many: { disabled: true }, UpdateDTOClass: UpdatePersonInput },
 }) {
   constructor(
-    readonly service: PersonService,
+    readonly service: PersonAssemblerService,
     private httpService: HttpService,
   ) {
     super(service);

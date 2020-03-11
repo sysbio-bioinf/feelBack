@@ -1,22 +1,24 @@
-import { CRUDResolver, RelationInputType } from '@nestjs-query/query-graphql';
+import { CRUDResolver } from '@nestjs-query/query-graphql';
 import {
+  Args,
+  Mutation,
   Parent,
   ResolveProperty,
   Resolver,
-  Mutation,
-  Args,
 } from '@nestjs/graphql';
 import { InstrumentEntity } from '../../../../instrument/data/entities/instrument.entity';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
 import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
 import { ScreeningEntity } from '../../../data/entities/screening.entity';
-import { EvaluationService } from '../../../services/evaluation.service';
-import { ScreeningService } from '../../../services/screening.service';
+import { EvaluationService } from '../../../services/evaluation/evaluation.service';
+import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
 import { CreateScreeningInput } from '../inputs/create-screening.input';
 import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
 import { SetInstrumentOnScreeningInput } from '../types/custom.types';
+import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
+import { CoreException } from '@cancerlog/api/core';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -43,7 +45,8 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   },
 }) {
   constructor(
-    readonly service: ScreeningService,
+    readonly service: ScreeningAssemblerService,
+    readonly instrumentService: InstrumentAssemblerService,
     private evaluationService: EvaluationService,
   ) {
     super(service);
@@ -87,18 +90,19 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       return null;
     }
 
-    const screeningEntity = await this.service.assemblerService
-      .getAssembler(ScreeningObject, ScreeningEntity)
-      .convertToEntity(screening);
-    const instrumentEntity = this.service.assemblerService
-      .getAssembler(InstrumentObject, InstrumentEntity)
-      .convertToEntity(instrument);
+    const screeningEntity = await this.service.queryService.findById(
+      screening.id,
+    );
+    const instrumentEntity = await this.instrumentService.queryService.findById(
+      instrument.id,
+    );
+
     const evaluationResults = await this.evaluationService.evaluate(
       screeningEntity,
       instrumentEntity,
     );
 
-    return evaluationResults.map(item => {
+    const resultObject = evaluationResults.map(item => {
       return {
         name: item.name,
         expression: item.expression,
@@ -107,6 +111,8 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
         result: item.result,
       } as EvaluationObject;
     });
+
+    return resultObject;
   }
 
   @Mutation()

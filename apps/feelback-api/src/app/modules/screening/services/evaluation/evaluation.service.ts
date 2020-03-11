@@ -2,9 +2,9 @@ import { CoreService } from '@cancerlog/api/core';
 import { Injectable } from '@nestjs/common';
 import * as deepmerge from 'deepmerge';
 import * as expreval from 'expr-eval';
-import { InstrumentEntity } from '../../instrument/data/entities/instrument.entity';
-import { ScreeningEntity } from '../data/entities/screening.entity';
-import { EvaluationModel } from '../data/models/evaluation.model';
+import { InstrumentEntity } from '../../../instrument/data/entities/instrument.entity';
+import { ScreeningEntity } from '../../data/entities/screening.entity';
+import { EvaluationModel } from '../../data/models/evaluation.model';
 
 @Injectable()
 export class EvaluationService extends CoreService {

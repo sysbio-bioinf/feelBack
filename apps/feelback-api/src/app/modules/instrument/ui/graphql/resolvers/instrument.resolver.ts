@@ -1,10 +1,10 @@
-import { Resolver } from '@nestjs/graphql';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { InstrumentObject } from '../objects/instrument.object';
-import { InstrumentService } from '../../../services/instrument.service';
+import { Resolver } from '@nestjs/graphql';
+import { ScreeningObject } from '../../../../screening/ui/graphql/objects/screening.object';
+import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
 import { CreateInstrumentInput } from '../inputs/create-instrument.input';
 import { UpdateInstrumentInput } from '../inputs/update-instrument.input';
-import { ScreeningObject } from '../../../../screening/ui/graphql/objects/screening.object';
+import { InstrumentObject } from '../objects/instrument.object';
 
 @Resolver(of => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
@@ -23,7 +23,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     },
   },
 }) {
-  constructor(readonly service: InstrumentService) {
+  constructor(readonly service: InstrumentAssemblerService) {
     super(service);
   }
 }

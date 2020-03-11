@@ -1,10 +1,10 @@
-import { Resolver } from '@nestjs/graphql';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { OrganizationObject } from '../objects/organization.object';
-import { OrganizationService } from '../../../services/organization.service';
+import { Resolver } from '@nestjs/graphql';
+import { DoctorObject } from '../../../../doctor/ui/graphql/objects/doctor.object';
+import { OrganizationAssemblerService } from '../../../services/organization/organization-assembler.service';
 import { CreateOrganizationInput } from '../inputs/create-organization.input';
 import { UpdateOrganizationInput } from '../inputs/update-organization.input';
-import { DoctorObject } from '../../../../doctor/ui/graphql/objects/doctor.object';
+import { OrganizationObject } from '../objects/organization.object';
 
 @Resolver(of => OrganizationObject)
 export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
@@ -23,7 +23,7 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
     },
   },
 }) {
-  constructor(readonly service: OrganizationService) {
+  constructor(readonly service: OrganizationAssemblerService) {
     super(service);
   }
 }

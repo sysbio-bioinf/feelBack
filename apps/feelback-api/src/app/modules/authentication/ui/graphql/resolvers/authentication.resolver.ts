@@ -18,6 +18,7 @@ export class AuthenticationResolver {
       username: input.email,
       password: input.password,
     });
+
     if (!token) {
       throw new CoreException(
         {

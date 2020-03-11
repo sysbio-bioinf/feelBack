@@ -1,9 +1,9 @@
-import { Resolver } from '@nestjs/graphql';
-import { DoctorObject } from '../objects/doctor.object';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { DoctorService } from '../../../services/doctor.service';
-import { UpdateDoctorInput } from '../inputs/update-doctor.input';
+import { Resolver } from '@nestjs/graphql';
 import { OrganizationObject } from '../../../../organization/ui/graphql/objects/organization.object';
+import { DoctorAssemblerService } from '../../../services/doctor/doctor-assembler.service';
+import { UpdateDoctorInput } from '../inputs/update-doctor.input';
+import { DoctorObject } from '../objects/doctor.object';
 
 @Resolver(of => DoctorObject)
 export class DoctorResolver extends CRUDResolver(DoctorObject, {
@@ -22,7 +22,7 @@ export class DoctorResolver extends CRUDResolver(DoctorObject, {
     },
   },
 }) {
-  constructor(readonly service: DoctorService) {
+  constructor(readonly service: DoctorAssemblerService) {
     super(service);
   }
 }

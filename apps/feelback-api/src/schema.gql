@@ -127,7 +127,7 @@ input CreateOnePersonInputType {
 
 input CreateOneScreeningInput {
   """The record to create"""
-  screening: ResolveScreeningInput!
+  screening: CreateScreeningInput!
 }
 
 input CreateOrganizationInput {
@@ -776,11 +776,11 @@ input RelationsInput {
 }
 
 input ResolveOneScreeningInputType {
-  """The record to create"""
-  screening: ResolveScreeningInput!
-
   """id"""
   id: String!
+
+  """The update to apply."""
+  update: ResolveScreeningInput!
 }
 
 input ResolveScreeningInput {
@@ -1072,7 +1072,7 @@ input UpdateOneScreeningInput {
   id: ID!
 
   """The update to apply."""
-  update: UpdateScreening!
+  update: ResolveScreeningInput!
 }
 
 input UpdateOrganizationInput {

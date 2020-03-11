@@ -1,15 +1,15 @@
-import { InputType, Field } from 'type-graphql';
 import {
-  CreateOneInputType,
   RelationInputType,
+  UpdateOneInputType,
 } from '@nestjs-query/query-graphql';
-import { ScreeningObject } from '../objects/screening.object';
-import { ResolveScreeningInput } from '../inputs/resolve-screening.input';
 import { IsUUID } from 'class-validator';
+import { Field, InputType } from 'type-graphql';
+import { ResolveScreeningInput } from '../inputs/resolve-screening.input';
+import { ScreeningObject } from '../objects/screening.object';
 
 // FIXME: This results in a wrong type for GQL
 @InputType()
-export class ResolveOneScreeningInputType extends CreateOneInputType(
+export class ResolveOneScreeningInputType extends UpdateOneInputType(
   ScreeningObject,
   ResolveScreeningInput,
 ) {

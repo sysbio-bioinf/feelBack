@@ -4,13 +4,9 @@ import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DoctorEntity } from '../../doctor/data/entities/doctor.entity';
-import { DoctorObject } from '../../doctor/ui/graphql/objects/doctor.object';
 
-@QueryService(DoctorObject)
-export class AuthenticationService extends TypeOrmQueryService<
-  DoctorObject,
-  DoctorEntity
-> {
+@QueryService(DoctorEntity)
+export class AuthenticationService extends TypeOrmQueryService<DoctorEntity> {
   constructor(
     @InjectRepository(DoctorEntity) repository: Repository<DoctorEntity>,
   ) {
