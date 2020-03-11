@@ -1,7 +1,4 @@
-import {
-  RelationInputType,
-  UpdateOneInputType,
-} from '@nestjs-query/query-graphql';
+import { UpdateOneInputType } from '@nestjs-query/query-graphql';
 import { IsUUID } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 import { ResolveScreeningInput } from '../inputs/resolve-screening.input';
@@ -19,6 +16,3 @@ export class ResolveOneScreeningInputType extends UpdateOneInputType(
   })
   id: string;
 }
-
-@InputType()
-export class SetInstrumentOnScreeningInput extends RelationInputType() {}

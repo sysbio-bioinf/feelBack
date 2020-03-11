@@ -1,5 +1,11 @@
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { Parent, ResolveProperty, Resolver } from '@nestjs/graphql';
+import {
+  Parent,
+  ResolveProperty,
+  Resolver,
+  Mutation,
+  Args,
+} from '@nestjs/graphql';
 import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
 import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
@@ -10,6 +16,8 @@ import { CreateScreeningInput } from '../inputs/create-screening.input';
 import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
+import { ResolveOneScreeningInputType } from '../types/custom.types';
+import { DeepPartial } from '@nestjs-query/core';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -43,18 +51,18 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     super(service);
   }
 
-  // @Mutation(returns => ScreeningObject, { name: 'resolveScreeningIssues' })
-  // async resolveScreeningIssues(
-  //   @Args('input') input: ResolveOneScreeningInputType,
-  // ): Promise<ScreeningObject> {
-  //   const dto: DeepPartial<ScreeningObject> = {
-  //     isResolved: true,
-  //     resolvedAt: new Date(),
-  //   };
-  //   const data = deepmerge(input.input, dto);
+  @Mutation(returns => ScreeningObject, { name: 'resolveScreeningIssues' })
+  async resolveScreeningIssues(
+    @Args('input') input: ResolveOneScreeningInputType,
+  ): Promise<ScreeningObject> {
+    const dto: DeepPartial<ScreeningObject> = {
+      isResolved: true,
+      resolvedAt: input.update.resolvedAt,
+      resolveComment: input.update.resolveComment,
+    };
 
-  //   return this.service.updateOne(input.id, data);
-  // }
+    return this.service.updateOne(input.id, dto);
+  }
 
   @ResolveProperty('userAgent', returns => UserAgentObject, {
     description: 'UserAgent information',

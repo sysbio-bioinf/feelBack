@@ -1,14 +1,20 @@
 import { InputType, Field } from 'type-graphql';
 import { CoreInput } from '@cancerlog/api/core';
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString, IsDate } from 'class-validator';
 
 @InputType()
 export class ResolveScreeningInput extends CoreInput {
-  @IsOptional()
   @IsString()
   @Field({
     description: 'comments for resolving this issue',
-    nullable: true,
+    nullable: false,
   })
-  resolveComment?: string;
+  resolveComment: string;
+
+  @IsDate()
+  @Field({
+    description: 'Date this issue was resolved',
+    nullable: false,
+  })
+  resolvedAt: Date;
 }

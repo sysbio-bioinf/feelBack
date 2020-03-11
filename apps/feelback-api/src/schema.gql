@@ -507,6 +507,7 @@ type Mutation {
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
+  resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
   createOnePerson(input: CreateOnePersonInputType!): Person!
 
   """login via username / password"""
@@ -773,6 +774,22 @@ input RelationsInput {
 
   """The ids of the relations."""
   relationIds: [ID!]!
+}
+
+input ResolveOneScreeningInputType {
+  """id"""
+  id: String!
+
+  """The update to apply."""
+  update: ResolveScreeningInput!
+}
+
+input ResolveScreeningInput {
+  """comments for resolving this issue"""
+  resolveComment: String!
+
+  """Date this issue was resolved"""
+  resolvedAt: DateTime!
 }
 
 input RuleInput {
@@ -1051,7 +1068,7 @@ input UpdateOneScreeningInput {
   id: ID!
 
   """The update to apply."""
-  update: UpdateScreening!
+  update: ResolveScreeningInput!
 }
 
 input UpdateOrganizationInput {
