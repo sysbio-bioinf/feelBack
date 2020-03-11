@@ -5,7 +5,9 @@ import { Repository } from 'typeorm';
 import { IdentityEntity } from '../../data/entities/identity.entity';
 
 @QueryService(IdentityEntity)
-export class IdentityService extends TypeOrmQueryService<IdentityEntity> {
+export class IdentityDatabaseService extends TypeOrmQueryService<
+  IdentityEntity
+> {
   constructor(
     @InjectRepository(IdentityEntity) repository: Repository<IdentityEntity>,
   ) {

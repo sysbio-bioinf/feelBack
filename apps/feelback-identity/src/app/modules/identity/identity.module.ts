@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { IdentityResolver } from './ui/graphql/resolvers/identity.resolver';
-import { IdentityService } from './services/identity/identity.service';
+import { IdentityDatabaseService } from './services/identity/identity-database.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IdentityEntity } from './data/entities/identity.entity';
-import { IdentityAssemblerService } from './services/identity-assembler/identity-assembler.service';
+import { IdentityAssemblerService } from './services/identity/identity-assembler.service';
 import { IdentityAssembler } from './data/assemblers/identity.assembler';
 
 @Module({
@@ -11,7 +11,7 @@ import { IdentityAssembler } from './data/assemblers/identity.assembler';
   providers: [
     IdentityResolver,
     IdentityAssembler,
-    IdentityService,
+    IdentityDatabaseService,
     IdentityAssemblerService,
   ],
 })
