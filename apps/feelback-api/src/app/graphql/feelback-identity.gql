@@ -1,5 +1,5 @@
-query identities {
-  identities {
+query getIdentities($paging: CursorPaging = {}) {
+  identities(paging: $paging) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -16,6 +16,17 @@ query identities {
         lastname
       }
     }
+  }
+}
+
+
+query getIdentityById($id: ID!) {
+  identity(id:$id) {
+    id
+    pseudonym
+    title
+    firstname
+    lastname
   }
 }
 

@@ -12,10 +12,5 @@ generates:
     plugins:
       - 'typescript'
       - 'typescript-document-nodes'
-      - 'typescript-operations'
     config:
       nameSuffix: 'Document'
-  # apps/feelback-api/src/app/generated/feelback-identity.fragments.ts:
-  #   schema: 'apps/feelback-identity/src/schema.gql'
-  #   plugins:
-  #     - 'fragment-matcher'
