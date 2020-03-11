@@ -4,7 +4,7 @@ import { IdentityDatabaseService } from './services/identity/identity-database.s
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IdentityEntity } from './data/entities/identity.entity';
 import { IdentityAssemblerService } from './services/identity/identity-assembler.service';
-import { IdentityAssembler } from './data/assemblers/identity.assembler';
+import { IdentityAssembler } from './ui/graphql/assemblers/identity.assembler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([IdentityEntity])],

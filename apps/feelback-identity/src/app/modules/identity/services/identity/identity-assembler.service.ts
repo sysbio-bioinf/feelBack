@@ -1,5 +1,5 @@
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
-import { IdentityAssembler } from '../../data/assemblers/identity.assembler';
+import { IdentityAssembler } from '../../ui/graphql/assemblers/identity.assembler';
 import { IdentityEntity } from '../../data/entities/identity.entity';
 import { IdentityObject } from '../../ui/graphql/objects/identity.object';
 import { IdentityDatabaseService } from './identity-database.service';
