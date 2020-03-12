@@ -7,6 +7,7 @@ import {
   IsObject,
   IsArray,
   ValidateNested,
+  IsUrl,
 } from 'class-validator';
 import { JSONObject } from '@cancerlog/api/application';
 import { RuleInput } from './rule.input';
@@ -31,6 +32,23 @@ export class CreateInstrumentInput extends CoreInput {
     nullable: true,
   })
   description: string;
+
+  @IsString()
+  @MaxLength(190)
+  @Field({
+    description: 'The type of the instrument',
+  })
+  type: string;
+
+  @IsOptional()
+  @IsString()
+  @IsUrl({ require_protocol: true })
+  @MaxLength(190)
+  @Field({
+    description: 'The logo as valid URL string)',
+    nullable: true,
+  })
+  image: string;
 
   @IsOptional()
   @IsObject()

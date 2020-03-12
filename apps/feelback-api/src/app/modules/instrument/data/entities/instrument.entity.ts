@@ -11,6 +11,9 @@ export class InstrumentEntity extends VersionableEntity {
   @Column({ type: 'text', nullable: true, default: null })
   description: string;
 
+  @Column({ type: 'varchar', length: 190, nullable: false })
+  type: string;
+
   @Column({ type: 'varchar', length: 190, nullable: true })
   image: string;
 

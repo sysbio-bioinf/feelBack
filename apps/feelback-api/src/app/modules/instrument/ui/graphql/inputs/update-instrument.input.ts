@@ -6,6 +6,7 @@ import {
   MaxLength,
   IsArray,
   ValidateNested,
+  IsUrl,
 } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 import { CoreInput } from '@cancerlog/api/core';
@@ -32,6 +33,24 @@ export class UpdateInstrumentInput extends CoreInput {
     nullable: true,
   })
   description: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(190)
+  @Field({
+    description: 'The type of the instrument',
+  })
+  type: string;
+
+  @IsOptional()
+  @IsString()
+  @IsUrl({ require_protocol: true })
+  @MaxLength(190)
+  @Field({
+    description: 'The logo as valid URL string)',
+    nullable: true,
+  })
+  image: string;
 
   @IsOptional()
   @IsObject()

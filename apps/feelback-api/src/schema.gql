@@ -67,6 +67,12 @@ input CreateInstrumentInput {
   """The description of the instrument"""
   description: String
 
+  """The type of the instrument"""
+  type: String!
+
+  """The logo as valid URL string)"""
+  image: String
+
   """The payload / structure of the instrument"""
   payload: JSONObject
   rules: [RuleInput!]
@@ -977,6 +983,12 @@ input UpdateInstrumentInput {
 
   """The (new) description of this instrument"""
   description: String
+
+  """The type of the instrument"""
+  type: String!
+
+  """The logo as valid URL string)"""
+  image: String
 
   """The (new) payload / structure of the instrument"""
   payload: JSONObject
