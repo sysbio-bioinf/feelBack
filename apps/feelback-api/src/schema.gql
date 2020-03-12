@@ -413,6 +413,9 @@ type Instrument {
   """A description for this instrument"""
   description: String
 
+  """The type of this instrument"""
+  type: String!
+
   """An image / icon URL for this instrument"""
   image: String
 
@@ -451,6 +454,9 @@ type InstrumentDeleteResponse {
   """A description for this instrument"""
   description: String
 
+  """The type of this instrument"""
+  type: String
+
   """An image / icon URL for this instrument"""
   image: String
 
@@ -476,6 +482,7 @@ input InstrumentFilter {
   and: [InstrumentFilter!]
   or: [InstrumentFilter!]
   name: StringFieldComparison
+  type: StringFieldComparison
 }
 
 input InstrumentSort {
@@ -486,6 +493,7 @@ input InstrumentSort {
 
 enum InstrumentSortFields {
   name
+  type
 }
 
 """

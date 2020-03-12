@@ -9,6 +9,7 @@ import { JSONObject } from '@cancerlog/api/application';
 export class InstrumentObject extends VersionableObject {
   @FilterableField({
     description: 'The name of this instrument',
+    nullable: false,
   })
   name: string;
 
@@ -17,6 +18,12 @@ export class InstrumentObject extends VersionableObject {
     nullable: true,
   })
   description: string;
+
+  @FilterableField({
+    description: 'The type of this instrument',
+    nullable: false,
+  })
+  type: string;
 
   @Field({
     description: 'An image / icon URL for this instrument',
