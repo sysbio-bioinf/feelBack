@@ -37,16 +37,39 @@ services:
     networks:
       - backend
 
-  # db_keycloak:
-  #   image: postgres:11-alpine
-  #   ports:
-  #     - ${KEYCLOAK_DB_PORT:-5434}:5432
-  #   environment:
-  #     POSTGRES_DB: ${KEYCLOAK_DB_NAME:-postgres}
-  #     POSTGRES_USER: ${KEYCLOAK_DB_USER:-postgres}
-  #     POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
-  #   networks:
-  #     - backend
+  keycloak:
+    image: jboss/keycloak:9.0.0
+    container_name: 'fb_keycloak'
+    depends_on:
+      - keycloak_db
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: keycloak_db
+      DB_DATABASE: ${KEYCLOAK_DB_NAME:-keycloak}
+      DB_USER: ${KEYCLOAK_DB_USER:-postgres}
+      DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+      KEYCLOAK_USER: ${KEYCLOAK_USER:-keycloak}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD:-keycloak}
+      KEYCLOAK_LOGLEVEL: INFO
+      PROXY_ADDRESS_FORWARDING: 'true'
+    volumes:
+      - .deployment/keycloak/feelback.realm-export.json:/opt/jboss/keycloak/imports/feelback.realm-export.json
+    command:
+      - '-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/feelback.realm-export.json'
+    ports:
+      - ${KEYCLOAK_PORT:-8080}:8080
+    networks:
+      - backend
+
+  keycloak_db:
+    image: postgres:11-alpine
+    container_name: 'fb_keycloak_db'
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB_NAME:-postgres}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+    networks:
+      - backend
 
   pgadmin:
     image: dpage/pgadmin4
