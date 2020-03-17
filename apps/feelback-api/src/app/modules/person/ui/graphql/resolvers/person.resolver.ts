@@ -1,5 +1,5 @@
 import { CRUDResolver, CreateOneInputType } from '@nestjs-query/query-graphql';
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
@@ -31,6 +31,7 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
 }) {
   constructor(
     readonly service: PersonAssemblerService,
+    readonly personDatabaseService: PersonDatabaseService,
     private httpService: HttpService,
   ) {
     super(service);
@@ -64,5 +65,12 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     }
 
     return this.service.createOne(input.input);
+  }
+
+  @Query(returns => PersonObject, { nullable: true })
+  async personByPseudonym(@Args('pseudonym') pseudonym: string) {
+    const person = await this.personDatabaseService.repo.findOne({
+      where: { pseudonym: pseudonym },
+    });
   }
 }

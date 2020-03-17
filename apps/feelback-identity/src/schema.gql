@@ -166,6 +166,7 @@ type Query {
     """Specify to sort results."""
     sorting: [IdentitySort!] = []
   ): IdentityConnection!
+  identityByPseudonym(pseudonym: String!): Identity
 }
 
 """Sort Directions"""

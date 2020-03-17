@@ -772,6 +772,7 @@ type Query {
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
   ): OrganizationConnection!
+  personByPseudonym(pseudonym: String!): Person
 }
 
 input RelationInput {
