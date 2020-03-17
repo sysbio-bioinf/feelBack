@@ -72,5 +72,11 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     const person = await this.personDatabaseService.repo.findOne({
       where: { pseudonym: pseudonym },
     });
+
+    if (person.isActive !== true) {
+      return null;
+    }
+
+    return this.service.assembler.convertToDTO(person);
   }
 }
