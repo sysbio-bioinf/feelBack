@@ -97,7 +97,6 @@
     "qs": "^6.9.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",
-    "type-graphql": "^0.17.6",
     "typeorm": "^0.2.24",
     "zone.js": "^0.10.3"
   },
