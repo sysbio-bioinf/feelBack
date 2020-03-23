@@ -1,10 +1,11 @@
+import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import {
-  Parent,
-  ResolveProperty,
-  Resolver,
-  Mutation,
   Args,
+  Mutation,
+  Parent,
+  ResolveField,
+  Resolver,
 } from '@nestjs/graphql';
 import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
@@ -17,7 +18,6 @@ import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
 import { ResolveOneScreeningInputType } from '../types/custom.types';
-import { DeepPartial } from '@nestjs-query/core';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -64,7 +64,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     return this.service.updateOne(input.id, dto);
   }
 
-  @ResolveProperty('userAgent', returns => UserAgentObject, {
+  @ResolveField('userAgent', returns => UserAgentObject, {
     description: 'UserAgent information',
     nullable: true,
   })
@@ -72,7 +72,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     return parent.userAgent;
   }
 
-  @ResolveProperty('evaluationResult', returns => [EvaluationObject], {
+  @ResolveField('evaluationResult', returns => [EvaluationObject], {
     description: 'Evaluation Results for this screening',
     nullable: true,
   })
