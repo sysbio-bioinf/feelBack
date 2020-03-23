@@ -1,4 +1,4 @@
-import { InputType } from 'type-graphql';
+import { InputType } from '@nestjs/graphql';
 
 @InputType({
   isAbstract: true,

@@ -1,5 +1,5 @@
 import { VersionableObject } from '@cancerlog/api/core';
-import { ObjectType, GraphQLISODateTime, Field } from 'type-graphql';
+import { ObjectType, GraphQLISODateTime, Field } from '@nestjs/graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { JSONObject } from '@cancerlog/api/application';
 

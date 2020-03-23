@@ -1,5 +1,5 @@
 import { CoreInput } from '@cancerlog/api/core';
-import { InputType, Field } from 'type-graphql';
+import { InputType, Field } from '@nestjs/graphql';
 import { IsBoolean } from 'class-validator';
 
 @InputType({

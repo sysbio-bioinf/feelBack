@@ -1,6 +1,6 @@
 import { UpdateOneInputType } from '@nestjs-query/query-graphql';
 import { IsUUID } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { ResolveScreeningInput } from '../inputs/resolve-screening.input';
 import { ScreeningObject } from '../objects/screening.object';
 

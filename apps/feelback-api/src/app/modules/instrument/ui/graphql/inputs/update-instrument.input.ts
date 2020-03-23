@@ -8,7 +8,7 @@ import {
   ValidateNested,
   IsUrl,
 } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { CoreInput } from '@cancerlog/api/core';
 import { RuleInput } from './rule.input';
 import { Type } from 'class-transformer';

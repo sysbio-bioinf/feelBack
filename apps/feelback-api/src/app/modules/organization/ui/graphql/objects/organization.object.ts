@@ -1,5 +1,5 @@
 import { VersionableObject } from '@cancerlog/api/core';
-import { ObjectType, Field } from 'type-graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
 
 @ObjectType('Organization', {

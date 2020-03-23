@@ -1,5 +1,5 @@
 import { CoreObject } from './core.object';
-import { ID, GraphQLISODateTime, ObjectType } from 'type-graphql';
+import { ID, GraphQLISODateTime, ObjectType } from '@nestjs/graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
 
 @ObjectType({

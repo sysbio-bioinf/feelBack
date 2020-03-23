@@ -1,4 +1,4 @@
-import { InputType, Field } from 'type-graphql';
+import { InputType, Field } from '@nestjs/graphql';
 import { CoreInput } from '@cancerlog/api/core';
 import { IsOptional, IsString, IsDate } from 'class-validator';
 

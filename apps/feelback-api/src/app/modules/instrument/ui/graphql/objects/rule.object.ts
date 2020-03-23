@@ -1,5 +1,5 @@
 import { CoreObject } from '@cancerlog/api/core';
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('Rule')
 export class RuleObject extends CoreObject {

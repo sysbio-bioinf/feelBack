@@ -8,7 +8,7 @@ import {
   ValidateNested,
   IsObject,
 } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { CreateUserAgentInput } from './create-user-agent.input';
 import { JSONObject } from '@cancerlog/api/application';
 

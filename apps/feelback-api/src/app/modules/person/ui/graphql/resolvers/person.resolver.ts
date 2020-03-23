@@ -1,16 +1,15 @@
-import { CRUDResolver, CreateOneInputType } from '@nestjs-query/query-graphql';
-import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
+import { CoreException } from '@cancerlog/api/core';
+import { IdentityServiceConnection } from '@cancerlog/util/connection';
+import { CreateOneInputType, CRUDResolver } from '@nestjs-query/query-graphql';
+import { HttpService, HttpStatus } from '@nestjs/common';
+import { Args, InputType, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { print } from 'graphql';
+import { CreateOneIdentityDocument } from '../../../../../generated/feelback-identity.graphql';
+import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
 import { PersonObject } from '../objects/person.object';
-import { HttpService, HttpStatus } from '@nestjs/common';
-import { print } from 'graphql';
-import { CreateOneIdentityDocument } from '../../../../../generated/feelback-identity.graphql';
-import { InputType } from 'type-graphql';
-import { CoreException } from '@cancerlog/api/core';
-import { IdentityServiceConnection } from '@cancerlog/util/connection';
-import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 
 @InputType()
 export class CreateOnePersonInputType extends CreateOneInputType(

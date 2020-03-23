@@ -1,5 +1,5 @@
 import { CoreObject } from '@cancerlog/api/core';
-import { ObjectType, Field } from 'type-graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType('UserAgent', {})
 export class UserAgentObject extends CoreObject {

@@ -5,7 +5,7 @@ import {
   IsEmail,
   IsUrl,
 } from 'class-validator';
-import { Field, InputType } from 'type-graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { CoreInput } from '@cancerlog/api/core';
 
 @InputType()
