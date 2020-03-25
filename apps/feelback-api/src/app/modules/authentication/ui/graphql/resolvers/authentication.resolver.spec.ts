@@ -1,11 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthenticationResolver } from './authentication.resolver';
+import { AuthModule } from '@cancerlog/api/authentication';
+import { ConfigModule } from '@cancerlog/api/config';
+import { environment } from '@env-cancerlog-identity/environment';
+
+const mockRepository = jest.fn(() => ({
+  metadata: {
+    columns: [],
+    relations: [],
+  },
+}));
 
 describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [AuthModule, ConfigModule.forRoot(environment)],
       providers: [AuthenticationResolver],
     }).compile();
 
