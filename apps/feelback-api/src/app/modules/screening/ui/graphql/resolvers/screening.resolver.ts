@@ -18,6 +18,7 @@ import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
 import { ResolveOneScreeningInputType } from '../types/custom.types';
+import { InstrumentDatabaseService } from '../../../../instrument/services/instrument/instrument-database.service';
 
 @Resolver(of => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
