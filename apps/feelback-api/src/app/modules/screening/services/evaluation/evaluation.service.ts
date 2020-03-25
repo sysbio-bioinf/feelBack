@@ -12,7 +12,10 @@ export class EvaluationService extends CoreService {
     super();
   }
 
-  evaluate(screening: ScreeningEntity, instrument: InstrumentEntity) {
+  evaluate(
+    screening: ScreeningEntity,
+    instrument: InstrumentEntity,
+  ): EvaluationModel[] {
     const evaluationResults: EvaluationModel[] = [];
 
     if (!screening) {
