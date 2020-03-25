@@ -1,18 +1,13 @@
+import { ApplicationGuardModule } from '@cancerlog/api/application';
+import { ConfigModule, ConfigService } from '@cancerlog/api/config';
 import { environment } from '@env-cancerlog-identity/environment';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ApiModule } from './modules/api.module';
-import { ConfigModule, ConfigService } from '@cancerlog/api/config';
-import { IdentityEntity } from './modules/identity/data/entities/identity.entity';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { ApplicationGuardModule } from '@cancerlog/api/application';
-
-/**
- * The entities that should be persisted to the database
- */
-const availableEntities = [IdentityEntity];
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { availableEntities } from './db.connection';
+import { ApiModule } from './modules/api.module';
 
 @Module({
   imports: [
