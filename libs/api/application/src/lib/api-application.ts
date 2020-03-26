@@ -9,6 +9,7 @@ export * from './decorators/graphql/current-user.decorator';
 
 export * from './enums/api-realms.enum';
 export * from './enums/api-roles.enum';
+export * from './enums/http-type.enum';
 
 export * from './flow/filters/exception.filter';
 
@@ -22,6 +23,8 @@ export * from './flow/guards/graphql/graphql-role.guard';
 
 export * from './flow/pipes/parse-int.pipe.pipe';
 export * from './flow/pipes/parse-uuid.pipe.pipe';
+
+export * from './helpers/context.helper';
 
 export * from './ui/graphql/scalars/any.scalar';
 export * from './ui/graphql/scalars/jsonobject.scalar';
