@@ -1,7 +1,8 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Res, NotFoundException } from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './app.service';
 import * as path from 'path';
+import * as fs from 'fs';
 
 @Controller()
 export class AppController {
@@ -12,17 +13,20 @@ export class AppController {
     return this.appService.getData();
   }
 
-  @Get('/_schema')
+  @Get('_schema')
   getSchema(@Res() res: Response) {
-    return res.download(
-      path.join(
-        process.cwd(),
-        'apps',
-        'feelback-identity',
-        'src',
-        'schema.gql',
-      ),
+    const filePath = path.join(
+      process.cwd(),
+      'apps',
+      'feelback-identity',
+      'src',
       'schema.gql',
     );
+
+    if (!fs.existsSync(filePath)) {
+      throw new NotFoundException('Schema File not found');
+    }
+
+    return res.download(filePath, 'schema.gql');
   }
 }
