@@ -1,12 +1,12 @@
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { IdentityAssemblerService } from '../../../services/identity/identity-assembler.service';
+import { IdentityDatabaseService } from '../../../services/identity/identity-database.service';
 import { CreateIdentityInput } from '../inputs/create-identity.input';
 import { UpdateIdentityInput } from '../inputs/update-identity.input';
 import { IdentityObject } from '../objects/identity.object';
-import { IdentityDatabaseService } from '../../../services/identity/identity-database.service';
 
-@Resolver(of => IdentityObject)
+@Resolver((of) => IdentityObject)
 export class IdentityResolver extends CRUDResolver(IdentityObject, {
   create: {
     many: { disabled: true },
@@ -22,7 +22,7 @@ export class IdentityResolver extends CRUDResolver(IdentityObject, {
     super(service);
   }
 
-  @Query(returns => IdentityObject, { nullable: true })
+  @Query((returns) => IdentityObject, { nullable: true })
   async identityByPseudonym(
     @Args('pseudonym') pseudonym: string,
   ): Promise<IdentityObject> {

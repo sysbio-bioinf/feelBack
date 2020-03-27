@@ -4,28 +4,18 @@ import {
   ExceptionFilter as NestExceptionFilter,
   HttpException,
 } from '@nestjs/common';
+import { GqlContextType } from '@nestjs/graphql';
 import { Request, Response } from 'express';
-import { ContextHelper } from '../../helpers/context.helper';
-import { HttpTypeEnum } from '../../enums/http-type.enum';
 
 @Catch(HttpException)
 export class ExceptionFilter implements NestExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
-    switch (host.getType()) {
-      case 'http':
-        switch (ContextHelper.determineHttpContext(host)) {
-          case HttpTypeEnum.GRAPHQL:
-            return this.handleGraphQLException(exception, host);
-            break;
-          case HttpTypeEnum.HTTP:
-            return this.handleHttpException(exception, host);
-            break;
-          default:
-            break;
-        }
-        break;
-      default:
-        return;
+    if (host.getType() === 'http') {
+      return this.handleHttpException(exception, host);
+    }
+
+    if (host.getType<GqlContextType>() === 'graphql') {
+      return this.handleGraphQLException(exception, host);
     }
   }
 

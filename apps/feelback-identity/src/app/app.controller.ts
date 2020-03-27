@@ -1,8 +1,8 @@
-import { Controller, Get, Res, NotFoundException } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { AppService } from './app.service';
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
