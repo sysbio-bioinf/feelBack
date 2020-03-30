@@ -82,6 +82,7 @@
     "argon2": "0.26.1",
     "class-transformer": "^0.2.3",
     "class-validator": "~0.11.1",
+    "commander": "^5.0.0",
     "core-js": "^3.6.4",
     "cuid": "^2.1.8",
     "dataloader": "^2.0.0",
@@ -95,6 +96,7 @@
     "graphql-tools": "^4.0.7",
     "helmet": "3.22.0",
     "jwks-rsa": "^1.7.0",
+    "nestjs-console": "^2.1.0",
     "passport": "^0.4.1",
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
@@ -102,6 +104,7 @@
     "qs": "^6.9.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.4",
+    "tsconfig-paths": "^3.9.0",
     "typeorm": "^0.2.24",
     "zone.js": "^0.10.3"
   },
