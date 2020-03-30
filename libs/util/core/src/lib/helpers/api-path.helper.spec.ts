@@ -28,5 +28,8 @@ describe('ApiPathHelper', () => {
 
     const migrationsPath = ApiPathHelper.migrationsPath('foo');
     expect(migrationsPath).toContain('apps/foo/src/database/migrations');
+
+    const seedsPath = ApiPathHelper.seedsPath('foo');
+    expect(seedsPath).toContain('apps/foo/src/database/seeds');
   });
 });

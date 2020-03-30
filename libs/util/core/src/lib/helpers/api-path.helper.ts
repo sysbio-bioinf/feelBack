@@ -51,4 +51,8 @@ export class ApiPathHelper {
   static migrationsPath(app: string): string {
     return path.join(this.dbPath(app), 'migrations');
   }
+
+  static seedsPath(app: string): string {
+    return path.join(this.dbPath(app), 'seeds');
+  }
 }
