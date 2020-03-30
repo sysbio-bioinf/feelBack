@@ -106,6 +106,7 @@
     "rxjs": "~6.5.4",
     "tsconfig-paths": "^3.9.0",
     "typeorm": "^0.2.24",
+    "uuidv4": "^6.0.6",
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
