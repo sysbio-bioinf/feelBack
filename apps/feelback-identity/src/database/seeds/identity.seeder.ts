@@ -1,6 +1,6 @@
-import { IdentityEntity } from '../../app/modules/identity/data/entities/identity.entity';
 import { StringHelper } from '@cancerlog/util/core';
 import { getConnection } from 'typeorm';
+import { IdentityEntity } from '../../app/modules/identity/data/entities/identity.entity';
 
 export async function seed() {
   const connection = getConnection();

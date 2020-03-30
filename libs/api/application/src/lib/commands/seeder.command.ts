@@ -1,13 +1,13 @@
-import { Console, Command, createSpinner } from 'nestjs-console';
-import { getConnection } from 'typeorm';
-import * as fs from 'fs';
-import * as path from 'path';
 import { ApiPathHelper } from '@cancerlog/util/core';
+import * as fs from 'fs';
+import { Command, Console, createSpinner } from 'nestjs-console';
+import * as path from 'path';
+import { getConnection } from 'typeorm';
 
 @Console()
-export class SeederService {
+export class SeederCommand {
   @Command({
-    command: 'truncate <tables>',
+    command: 'db:truncate <tables>',
     description: 'Truncate database tables',
   })
   async truncateTables(input: string): Promise<void> {
@@ -29,7 +29,7 @@ export class SeederService {
   }
 
   @Command({
-    command: 'seed <project> <file>',
+    command: 'db:seed <project> <file>',
     description: 'Seed the Database with new data from a file',
   })
   async seedFile(project: string, file: string): Promise<void> {
