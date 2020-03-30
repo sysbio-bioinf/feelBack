@@ -16,6 +16,8 @@
     "build": "ng build",
     "clean:dist": "rimraf dist",
     "clean:docs": "rimraf documentation",
+    "cmd:identity": "npx ts-node --project apps/feelback-identity/tsconfig.app.json -r tsconfig-paths/register ./apps/feelback-identity/src/cli.ts",
+    "cmd:feelback": "npx ts-node --project apps/feelback-api/tsconfig.app.json -r tsconfig-paths/register ./apps/feelback-api/src/cli.ts",
     "dep-graph": "nx dep-graph",
     "deps:bump": "npx ncu -iu",
     "docker:build:api": "docker build -f .docker/api.Dockerfile -t cancerlog.api:latest .",
