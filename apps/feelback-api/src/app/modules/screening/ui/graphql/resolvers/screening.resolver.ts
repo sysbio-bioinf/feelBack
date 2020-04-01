@@ -1,27 +1,36 @@
+import { CoreException } from '@cancerlog/api/core';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
+import { HttpStatus } from '@nestjs/common';
 import {
   Args,
   Mutation,
   Parent,
+  Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
 import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
+import { PersonDatabaseService } from '../../../../person/services/person/person-database.service';
 import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
 import { ScreeningEntity } from '../../../data/entities/screening.entity';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
+import { ScreeningDatabaseService } from '../../../services/screening/screening-database.service';
 import { CreateScreeningInput } from '../inputs/create-screening.input';
 import { EvaluationObject } from '../objects/evaluation.object';
 import { ScreeningObject } from '../objects/screening.object';
 import { UserAgentObject } from '../objects/user-agent.object';
-import { ResolveOneScreeningInputType } from '../types/custom.types';
-import { InstrumentDatabaseService } from '../../../../instrument/services/instrument/instrument-database.service';
+import {
+  GetScreeningsByPersonAndInstrumentArgsType,
+  ResolveOneScreeningInputType,
+  ScreeningConnection,
+} from '../types/custom.types';
 
-@Resolver(of => ScreeningObject)
+@Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
+  read: { disabled: true },
   create: { many: { disabled: true }, CreateDTOClass: CreateScreeningInput },
   delete: { disabled: true },
   update: { disabled: true },
@@ -46,13 +55,57 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
 }) {
   constructor(
     readonly service: ScreeningAssemblerService,
+    readonly screeningDatabaseService: ScreeningDatabaseService,
     readonly instrumentService: InstrumentAssemblerService,
+    readonly personDatabaseService: PersonDatabaseService,
     private evaluationService: EvaluationService,
   ) {
     super(service);
   }
 
-  @Mutation(returns => ScreeningObject, { name: 'resolveScreeningIssues' })
+  @Query((returns) => ScreeningConnection, {
+    name: 'screeningsForPersonAndInstrument',
+  })
+  async getScreeningsForPersonAndInstrument(
+    @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
+  ) {
+    const person = await this.personDatabaseService.getPersonByPseudonym(
+      query.pseudonym,
+    );
+
+    if (!person) {
+      throw new CoreException(
+        {
+          detail: 'Pseudonym not found',
+        },
+        HttpStatus.PRECONDITION_FAILED,
+      );
+    }
+
+    const screenings = await this.screeningDatabaseService.query({
+      paging: query.paging,
+      sorting: query.sorting,
+      // FIXME: This really (!) needs to be fixed; as this is very (!) ugly :(
+      filter: {
+        ...query.filter,
+        ...{
+          'person.id': { eq: person.id },
+          'instrument.id': { eq: query.instrument },
+        },
+      },
+    });
+
+    const transformedScreenings = this.service.assembler.convertToDTOs(
+      screenings,
+    );
+
+    return ScreeningConnection.createFromArray(
+      transformedScreenings,
+      query.paging || {},
+    );
+  }
+
+  @Mutation((returns) => ScreeningObject, { name: 'resolveScreeningIssues' })
   async resolveScreeningIssues(
     @Args('input') input: ResolveOneScreeningInputType,
   ): Promise<ScreeningObject> {
@@ -65,7 +118,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     return this.service.updateOne(input.id, dto);
   }
 
-  @ResolveField('userAgent', returns => UserAgentObject, {
+  @ResolveField('userAgent', (returns) => UserAgentObject, {
     description: 'UserAgent information',
     nullable: true,
   })
@@ -73,7 +126,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     return parent.userAgent;
   }
 
-  @ResolveField('evaluationResult', returns => [EvaluationObject], {
+  @ResolveField('evaluationResult', (returns) => [EvaluationObject], {
     description: 'Evaluation Results for this screening',
     nullable: true,
   })
@@ -102,7 +155,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       instrumentEntity,
     );
 
-    const resultObject = evaluationResults.map(item => {
+    const resultObject = evaluationResults.map((item) => {
       return {
         name: item.name,
         expression: item.expression,

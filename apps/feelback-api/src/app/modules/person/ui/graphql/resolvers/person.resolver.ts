@@ -17,7 +17,7 @@ export class CreateOnePersonInputType extends CreateOneInputType(
   CreatePersonInput,
 ) {}
 
-@Resolver(of => PersonObject)
+@Resolver((of) => PersonObject)
 export class PersonResolver extends CRUDResolver(PersonObject, {
   create: {
     many: { disabled: true },
@@ -66,11 +66,15 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     return this.service.createOne(input.input);
   }
 
-  @Query(returns => PersonObject, { nullable: true })
+  @Query((returns) => PersonObject, { nullable: true })
   async personByPseudonym(@Args('pseudonym') pseudonym: string) {
-    const person = await this.personDatabaseService.repo.findOne({
-      where: { pseudonym: pseudonym },
-    });
+    const person = await this.personDatabaseService.getPersonByPseudonym(
+      pseudonym,
+    );
+
+    if (!person) {
+      return null;
+    }
 
     if (person.isActive !== true) {
       return null;

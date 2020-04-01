@@ -7,9 +7,14 @@ import { EvaluationService } from './services/evaluation/evaluation.service';
 import { ScreeningAssembler } from './ui/graphql/assemblers/screening.assembler';
 import { ScreeningAssemblerService } from './services/screening/screening-assembler.service';
 import { InstrumentModule } from '../instrument/instrument.module';
+import { PersonModule } from '../person/person.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ScreeningEntity]), InstrumentModule],
+  imports: [
+    TypeOrmModule.forFeature([ScreeningEntity]),
+    InstrumentModule,
+    PersonModule,
+  ],
   providers: [
     ScreeningResolver,
     ScreeningAssembler,

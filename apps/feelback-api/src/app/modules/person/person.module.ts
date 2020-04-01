@@ -14,5 +14,6 @@ import { PersonResolver } from './ui/graphql/resolvers/person.resolver';
     PersonDatabaseService,
     PersonAssemblerService,
   ],
+  exports: [PersonDatabaseService, PersonAssemblerService],
 })
 export class PersonModule {}

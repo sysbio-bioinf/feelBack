@@ -559,8 +559,7 @@ type Query {
     """Specify to sort results."""
     sorting: [InstrumentSort!] = []
   ): InstrumentConnection!
-  screening(id: ID!): Screening
-  screenings(
+  screeningsForPersonAndInstrument(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
@@ -569,6 +568,8 @@ type Query {
 
     """Specify to sort results."""
     sorting: [ScreeningSort!] = []
+    pseudonym: String!
+    instrument: String!
   ): ScreeningConnection!
   person(id: ID!): Person
   people(

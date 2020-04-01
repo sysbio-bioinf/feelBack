@@ -1,5 +1,5 @@
 import { VersionableEntity } from '@cancerlog/api/core';
-import { Entity, Column, Index, OneToMany } from 'typeorm';
+import { Entity, Column, Index, OneToMany, RelationId } from 'typeorm';
 import { ScreeningEntity } from '../../../screening/data/entities/screening.entity';
 
 @Entity('persons', {})
@@ -21,9 +21,9 @@ export class PersonEntity extends VersionableEntity {
   })
   acceptedTOSAt: Date;
 
-  @OneToMany(
-    type => ScreeningEntity,
-    screenings => screenings.person,
-  )
+  @OneToMany((type) => ScreeningEntity, (screening) => screening.person)
   screenings: ScreeningEntity[];
+
+  @RelationId((person: PersonEntity) => person.screenings)
+  _screenings: string[];
 }

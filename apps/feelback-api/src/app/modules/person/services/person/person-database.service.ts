@@ -11,4 +11,14 @@ export class PersonDatabaseService extends TypeOrmQueryService<PersonEntity> {
   ) {
     super(repository);
   }
+
+  async getPersonByPseudonym(pseudonym: string): Promise<PersonEntity> {
+    const person = await this.repo.findOne({
+      where: {
+        pseudonym: pseudonym,
+      },
+    });
+
+    return person;
+  }
 }

@@ -32,20 +32,19 @@ export class ScreeningEntity extends VersionableEntity {
   resolveComment: string;
 
   // relationships
-  @ManyToOne(
-    type => PersonEntity,
-    person => person.screenings,
-    {
-      nullable: true,
-      cascade: true,
-      onDelete: 'SET NULL',
-    },
-  )
+  @ManyToOne((type) => PersonEntity, (person) => person.screenings, {
+    nullable: true,
+    cascade: true,
+    onDelete: 'SET NULL',
+  })
   person: PersonEntity;
 
+  @RelationId((screening: ScreeningEntity) => screening.person)
+  _personId?: string;
+
   @ManyToOne(
-    type => InstrumentEntity,
-    instrument => instrument.screenings,
+    (type) => InstrumentEntity,
+    (instrument) => instrument.screenings,
     {
       nullable: true,
       cascade: true,
