@@ -10,6 +10,8 @@ import { InstrumentAssemblerService } from '../../../../instrument/services/inst
 import { InstrumentAssembler } from '../../../../instrument/ui/graphql/assemblers/instrument.assembler';
 import { InstrumentDatabaseService } from '../../../../instrument/services/instrument/instrument-database.service';
 import { InstrumentEntity } from '../../../../instrument/data/entities/instrument.entity';
+import { PersonDatabaseService } from '../../../../person/services/person/person-database.service';
+import { PersonEntity } from '../../../../person/data/entities/person.entity';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -32,12 +34,17 @@ describe('ScreeningResolver', () => {
         InstrumentAssemblerService,
         InstrumentDatabaseService,
         InstrumentAssembler,
+        PersonDatabaseService,
         {
           provide: getRepositoryToken(ScreeningEntity),
           useClass: mockRepository,
         },
         {
           provide: getRepositoryToken(InstrumentEntity),
+          useClass: mockRepository,
+        },
+        {
+          provide: getRepositoryToken(PersonEntity),
           useClass: mockRepository,
         },
       ],
