@@ -138,7 +138,8 @@
             "outputPath": "dist/apps/feelback-api",
             "main": "apps/feelback-api/src/main.ts",
             "tsConfig": "apps/feelback-api/tsconfig.app.json",
-            "assets": ["apps/feelback-api/src/assets"]
+            "assets": ["apps/feelback-api/src/assets"],
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
@@ -194,7 +195,8 @@
             "outputPath": "dist/apps/feelback-identity",
             "main": "apps/feelback-identity/src/main.ts",
             "tsConfig": "apps/feelback-identity/tsconfig.app.json",
-            "assets": ["apps/feelback-identity/src/assets"]
+            "assets": ["apps/feelback-identity/src/assets"],
+            "buildLibsFromSource": true
           },
           "configurations": {
             "production": {
