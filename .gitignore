@@ -47,3 +47,4 @@ Thumbs.db
 
 # other stuff
 /todo
+*.nx-tmp
