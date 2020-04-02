@@ -20,7 +20,7 @@ export abstract class AbstractRoleGuard implements CanActivate {
       return true;
     }
 
-    endpointRoles = endpointRoles.map(role => role.toLocaleLowerCase());
+    endpointRoles = endpointRoles.map((role) => role.toLocaleLowerCase());
 
     // get the request
     const request = this.getRequest(context);
@@ -46,7 +46,7 @@ export abstract class AbstractRoleGuard implements CanActivate {
 
     return (
       userRoles.filter(
-        role => endpointRoles.indexOf(role.toLocaleLowerCase()) !== -1,
+        (role) => endpointRoles.indexOf(role.toLocaleLowerCase()) !== -1,
       ).length > 0
     );
   }

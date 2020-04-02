@@ -44,7 +44,7 @@ export class KeycloakService {
             scope: 'openid',
           }),
         )
-        .pipe(map(response => response))
+        .pipe(map((response) => response))
         .toPromise();
 
       const token: AuthTokenModel = {
@@ -89,7 +89,7 @@ export class KeycloakService {
             authorization: `Bearer ${accessToken.accessToken}`,
           },
         })
-        .pipe(map(response => response))
+        .pipe(map((response) => response))
         .toPromise();
 
       const keycloakUserInfo: KeycloakUserInfo = userResponse.data;

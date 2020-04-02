@@ -5,7 +5,7 @@ import { DoctorAssemblerService } from '../../../services/doctor/doctor-assemble
 import { UpdateDoctorInput } from '../inputs/update-doctor.input';
 import { DoctorObject } from '../objects/doctor.object';
 
-@Resolver(of => DoctorObject)
+@Resolver((of) => DoctorObject)
 export class DoctorResolver extends CRUDResolver(DoctorObject, {
   create: { disabled: true },
   delete: { disabled: true },

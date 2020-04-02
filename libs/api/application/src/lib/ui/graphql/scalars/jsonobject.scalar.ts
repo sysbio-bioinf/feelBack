@@ -3,7 +3,7 @@ import { Kind, ValueNode } from 'graphql';
 
 export class JSONObject {}
 
-@Scalar('JSONObject', type => JSONObject)
+@Scalar('JSONObject', (type) => JSONObject)
 export class JSONObjectScalar implements CustomScalar<object, object> {
   description =
     'The JSONObject scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).';
@@ -21,7 +21,7 @@ export class JSONObjectScalar implements CustomScalar<object, object> {
   parseLiteral(ast: ValueNode): object {
     const value = new Object(null);
     if (ast.kind === Kind.OBJECT) {
-      ast.fields.forEach(field => {
+      ast.fields.forEach((field) => {
         value[field.name.value] = this.parseObject(field.value);
       });
     }
@@ -39,7 +39,7 @@ export class JSONObjectScalar implements CustomScalar<object, object> {
       case Kind.OBJECT:
         return this.parseLiteral(ast);
       case Kind.LIST:
-        return ast.values.map(n => this.parseObject(n));
+        return ast.values.map((n) => this.parseObject(n));
       case Kind.NULL:
         return null;
       case Kind.VARIABLE:

@@ -23,7 +23,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
       skipMissingProperties: false,
       forbidUnknownValues: true,
-      exceptionFactory: errors =>
+      exceptionFactory: (errors) =>
         new CoreException(
           {
             detail: 'Validation Error',

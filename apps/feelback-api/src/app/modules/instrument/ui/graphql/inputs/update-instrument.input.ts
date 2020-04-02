@@ -54,7 +54,7 @@ export class UpdateInstrumentInput extends CoreInput {
 
   @IsOptional()
   @IsObject()
-  @Field(type => JSONObject, {
+  @Field((type) => JSONObject, {
     description: 'The (new) payload / structure of the instrument',
     nullable: true,
   })
@@ -65,7 +65,7 @@ export class UpdateInstrumentInput extends CoreInput {
   @IsObject({ each: true })
   @Type(() => RuleInput)
   @ValidateNested({ each: true })
-  @Field(type => [RuleInput], { nullable: true })
+  @Field((type) => [RuleInput], { nullable: true })
   rules: RuleInput[];
 
   @IsString()

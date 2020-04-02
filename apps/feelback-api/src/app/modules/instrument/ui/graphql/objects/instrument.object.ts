@@ -31,13 +31,13 @@ export class InstrumentObject extends VersionableObject {
   })
   image: string;
 
-  @Field(type => JSONObject, {
+  @Field((type) => JSONObject, {
     description: 'The actual payload / content / structure of this instrument',
     nullable: true,
   })
   payload: object;
 
-  @Field(type => [JSONObject], {
+  @Field((type) => [JSONObject], {
     description: 'rules that are applied to calculate some kind of result',
     nullable: true,
   })

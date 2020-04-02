@@ -27,13 +27,9 @@ export class InstrumentEntity extends VersionableEntity {
   changelog: string;
 
   // relationships
-  @OneToMany(
-    type => ScreeningEntity,
-    screening => screening.instrument,
-    {
-      onDelete: 'SET NULL',
-    },
-  )
+  @OneToMany((type) => ScreeningEntity, (screening) => screening.instrument, {
+    onDelete: 'SET NULL',
+  })
   screenings: ScreeningEntity[];
 
   @RelationId((instrument: InstrumentEntity) => instrument.screenings)

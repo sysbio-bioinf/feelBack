@@ -78,7 +78,7 @@ export class UpdateDoctorInput extends CoreInput {
 
   @IsOptional()
   @IsObject()
-  @Field(type => JSONObject, {
+  @Field((type) => JSONObject, {
     description: 'custom settings as json object',
     nullable: false,
   })

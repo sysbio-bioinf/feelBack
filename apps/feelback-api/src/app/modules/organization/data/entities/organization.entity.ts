@@ -28,14 +28,10 @@ export class OrganizationEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190, nullable: true })
   logo: string;
 
-  @ManyToMany(
-    type => DoctorEntity,
-    member => member.organizations,
-    {
-      cascade: true,
-      onDelete: 'CASCADE',
-    },
-  )
+  @ManyToMany((type) => DoctorEntity, (member) => member.organizations, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinTable({ name: 'organization_members' })
   members: DoctorEntity[];
 }

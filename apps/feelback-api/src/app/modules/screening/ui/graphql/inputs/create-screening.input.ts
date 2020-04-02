@@ -47,7 +47,7 @@ export class CreateScreeningInput extends CoreInput {
   @IsOptional()
   @ValidateNested()
   @Type(() => CreateUserAgentInput)
-  @Field(type => CreateUserAgentInput, {
+  @Field((type) => CreateUserAgentInput, {
     description: 'UserAgent Information of the device',
     nullable: true,
   })

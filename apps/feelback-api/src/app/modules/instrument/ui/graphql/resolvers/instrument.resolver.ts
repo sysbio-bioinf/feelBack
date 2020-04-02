@@ -6,7 +6,7 @@ import { CreateInstrumentInput } from '../inputs/create-instrument.input';
 import { UpdateInstrumentInput } from '../inputs/update-instrument.input';
 import { InstrumentObject } from '../objects/instrument.object';
 
-@Resolver(of => InstrumentObject)
+@Resolver((of) => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   create: { many: { disabled: true }, CreateDTOClass: CreateInstrumentInput },
   delete: { disabled: true },
