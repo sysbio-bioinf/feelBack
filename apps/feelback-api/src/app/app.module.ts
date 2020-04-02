@@ -11,8 +11,10 @@ import { ScreeningEntity } from './modules/screening/data/entities/screening.ent
 import { PersonEntity } from './modules/person/data/entities/person.entity';
 import { DoctorEntity } from './modules/doctor/data/entities/doctor.entity';
 import { ApplicationGuardModule } from '@cancerlog/api/application';
+import { IdentityEntity } from './modules/identity/data/entities/identity.entity';
+import { IDENTITY_DB_CONNECTION } from './constants/db.constants';
 
-const availableEntities = [
+const feelbackEntities = [
   DoctorEntity,
   InstrumentEntity,
   OrganizationEntity,
@@ -20,15 +22,27 @@ const availableEntities = [
   ScreeningEntity,
 ];
 
+const identityEntities = [IdentityEntity];
+
 @Module({
   imports: [
     ConfigModule.forRoot(environment),
     TypeOrmModule.forRootAsync({
+      // name: FEELBACK_DB_CONNECTION,
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
-        ...configService.get('database'),
-        entities: availableEntities,
+        ...configService.get('dbConnections.feelback'),
+        entities: feelbackEntities,
+      }),
+    }),
+    TypeOrmModule.forRootAsync({
+      name: IDENTITY_DB_CONNECTION,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
+        ...configService.get('dbConnections.identity'),
+        entities: identityEntities,
       }),
     }),
     GraphQLModule.forRootAsync({

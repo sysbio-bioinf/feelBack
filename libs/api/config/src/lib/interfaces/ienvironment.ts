@@ -65,6 +65,10 @@ export interface IEnvironment {
 
   database?: TypeOrmModuleOptions;
 
+  dbConnections?: {
+    [name: string]: TypeOrmModuleOptions;
+  };
+
   graphql?: GqlModuleOptions;
 
   /**
