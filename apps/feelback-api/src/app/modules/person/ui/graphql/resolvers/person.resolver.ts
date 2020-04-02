@@ -1,17 +1,14 @@
 import { CoreException } from '@cancerlog/api/core';
-import { IdentityServiceConnection } from '@cancerlog/util/connection';
-import { CreateOneInputType, CRUDResolver } from '@nestjs-query/query-graphql';
-import { HttpService, HttpStatus } from '@nestjs/common';
-import { Args, InputType, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { print } from 'graphql';
-import { CreateOneIdentityDocument } from '../../../../../generated/feelback-identity.graphql';
+import { CRUDResolver } from '@nestjs-query/query-graphql';
+import { HttpStatus } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
 import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
+import { CreateOnePersonInputType } from '../custom.types';
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
 import { PersonObject } from '../objects/person.object';
-import { CreateOnePersonInputType } from '../custom.types';
-import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
 
 @Resolver((of) => PersonObject)
 export class PersonResolver extends CRUDResolver(PersonObject, {
@@ -36,29 +33,6 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   async createOnePerson(
     @Args('input') input: CreateOnePersonInputType,
   ): Promise<PersonObject> {
-    // const identityConnectionAddress = new IdentityServiceConnection().getAddress();
-    // const identityResponse = await this.httpService
-    //   .post(identityConnectionAddress, {
-    //     query: print(CreateOneIdentityDocument),
-    //     variables: {
-    //       pseudonym: input.input.pseudonym,
-    //     },
-    //   })
-    //   .toPromise();
-
-    // if (identityResponse.data.errors) {
-    //   // something went wrong, because we got an error back!
-    //   throw new CoreException(
-    //     {
-    //       source: {
-    //         pointer: 'feelback-identity',
-    //       },
-    //       detail: 'Failed to create identity',
-    //     },
-    //     HttpStatus.INTERNAL_SERVER_ERROR,
-    //   );
-    // }
-
     const identity = await this.identityDatabaseService.createOne({
       pseudonym: input.input.pseudonym,
     });

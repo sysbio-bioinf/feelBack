@@ -1,11 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PersonResolver } from './person.resolver';
-import { PersonAssembler } from '../assemblers/person.assembler';
-import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
-import { PersonEntity } from '../../../data/entities/person.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { IDENTITY_DB_CONNECTION } from '../../../../../constants/db.constants';
+import { IdentityEntity } from '../../../../identity/data/entities/identity.entity';
+import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
+import { PersonEntity } from '../../../data/entities/person.entity';
+import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
-import { HttpModule } from '@nestjs/common';
+import { PersonAssembler } from '../assemblers/person.assembler';
+import { PersonResolver } from './person.resolver';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -19,14 +21,19 @@ describe('PersonResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [HttpModule],
+      imports: [],
       providers: [
         PersonResolver,
         PersonAssembler,
         PersonAssemblerService,
         PersonDatabaseService,
+        IdentityDatabaseService,
         {
           provide: getRepositoryToken(PersonEntity),
+          useClass: mockRepository,
+        },
+        {
+          provide: getRepositoryToken(IdentityEntity, IDENTITY_DB_CONNECTION),
           useClass: mockRepository,
         },
       ],

@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { IdentityEntity } from '../../data/entities/identity.entity';
 import { IdentityDatabaseService } from './identity-database.service';
+import { IDENTITY_DB_CONNECTION } from '../../../../constants/db.constants';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -18,7 +19,7 @@ describe('IdentityDatabaseService', () => {
       providers: [
         IdentityDatabaseService,
         {
-          provide: getRepositoryToken(IdentityEntity),
+          provide: getRepositoryToken(IdentityEntity, IDENTITY_DB_CONNECTION),
           useClass: mockRepository,
         },
       ],

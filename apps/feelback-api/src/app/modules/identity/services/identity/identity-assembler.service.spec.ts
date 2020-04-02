@@ -4,6 +4,7 @@ import { IdentityEntity } from '../../data/entities/identity.entity';
 import { IdentityAssembler } from '../../ui/graphql/assemblers/identity.assembler';
 import { IdentityAssemblerService } from './identity-assembler.service';
 import { IdentityDatabaseService } from './identity-database.service';
+import { IDENTITY_DB_CONNECTION } from '../../../../constants/db.constants';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -22,7 +23,7 @@ describe('IdentityAssemblerService', () => {
         IdentityAssembler,
         IdentityDatabaseService,
         {
-          provide: getRepositoryToken(IdentityEntity),
+          provide: getRepositoryToken(IdentityEntity, IDENTITY_DB_CONNECTION),
           useClass: mockRepository,
         },
       ],

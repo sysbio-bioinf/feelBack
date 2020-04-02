@@ -5,6 +5,7 @@ import { IdentityDatabaseService } from '../../../services/identity/identity-dat
 import { IdentityAssembler } from '../assemblers/identity.assembler';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { IdentityEntity } from '../../../data/entities/identity.entity';
+import { IDENTITY_DB_CONNECTION } from '../../../../../constants/db.constants';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -24,7 +25,7 @@ describe('IdentityResolver', () => {
         IdentityDatabaseService,
         IdentityAssembler,
         {
-          provide: getRepositoryToken(IdentityEntity),
+          provide: getRepositoryToken(IdentityEntity, IDENTITY_DB_CONNECTION),
           useClass: mockRepository,
         },
       ],
