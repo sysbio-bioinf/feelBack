@@ -10,12 +10,8 @@ import { PersonDatabaseService } from '../../../services/person/person-database.
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
 import { PersonObject } from '../objects/person.object';
-
-@InputType()
-export class CreateOnePersonInputType extends CreateOneInputType(
-  PersonObject,
-  CreatePersonInput,
-) {}
+import { CreateOnePersonInputType } from '../custom.types';
+import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
 
 @Resolver((of) => PersonObject)
 export class PersonResolver extends CRUDResolver(PersonObject, {
@@ -31,7 +27,7 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   constructor(
     readonly service: PersonAssemblerService,
     readonly personDatabaseService: PersonDatabaseService,
-    private httpService: HttpService,
+    readonly identityDatabaseService: IdentityDatabaseService,
   ) {
     super(service);
   }
@@ -40,24 +36,37 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   async createOnePerson(
     @Args('input') input: CreateOnePersonInputType,
   ): Promise<PersonObject> {
-    const identityConnectionAddress = new IdentityServiceConnection().getAddress();
-    const identityResponse = await this.httpService
-      .post(identityConnectionAddress, {
-        query: print(CreateOneIdentityDocument),
-        variables: {
-          pseudonym: input.input.pseudonym,
-        },
-      })
-      .toPromise();
+    // const identityConnectionAddress = new IdentityServiceConnection().getAddress();
+    // const identityResponse = await this.httpService
+    //   .post(identityConnectionAddress, {
+    //     query: print(CreateOneIdentityDocument),
+    //     variables: {
+    //       pseudonym: input.input.pseudonym,
+    //     },
+    //   })
+    //   .toPromise();
 
-    if (identityResponse.data.errors) {
-      // something went wrong, because we got an error back!
+    // if (identityResponse.data.errors) {
+    //   // something went wrong, because we got an error back!
+    //   throw new CoreException(
+    //     {
+    //       source: {
+    //         pointer: 'feelback-identity',
+    //       },
+    //       detail: 'Failed to create identity',
+    //     },
+    //     HttpStatus.INTERNAL_SERVER_ERROR,
+    //   );
+    // }
+
+    const identity = await this.identityDatabaseService.createOne({
+      pseudonym: input.input.pseudonym,
+    });
+
+    if (!identity) {
       throw new CoreException(
         {
-          source: {
-            pointer: 'feelback-identity',
-          },
-          detail: 'Failed to create identity',
+          detail: 'Failed to create a new Identity',
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
