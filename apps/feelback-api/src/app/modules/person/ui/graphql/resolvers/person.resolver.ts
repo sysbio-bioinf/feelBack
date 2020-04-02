@@ -5,10 +5,10 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
 import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
-import { CreateOnePersonInputType } from '../custom.types';
 import { CreatePersonInput } from '../inputs/create-person.input';
 import { UpdatePersonInput } from '../inputs/update-person.input';
 import { PersonObject } from '../objects/person.object';
+import { CreateOnePersonInputType } from '../types/custom.types';
 
 @Resolver((of) => PersonObject)
 export class PersonResolver extends CRUDResolver(PersonObject, {
