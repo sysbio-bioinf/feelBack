@@ -32,6 +32,12 @@ input BooleanFieldComparison {
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
+"""Create a new (empty) identity"""
+input CreateIdentityInput {
+  """The pseudonym of the identity"""
+  pseudonym: String!
+}
+
 """Create a new Instrument"""
 input CreateInstrumentInput {
   """The name of the instrument"""
@@ -52,6 +58,11 @@ input CreateInstrumentInput {
 
   """what has changed so far"""
   changelog: String!
+}
+
+input CreateOneIdentityInput {
+  """The record to create"""
+  identity: CreateIdentityInput!
 }
 
 input CreateOneInstrumentInput {
@@ -268,6 +279,71 @@ type Evaluation {
   result: Boolean
 }
 
+"""Identity resource for an anonymized patient"""
+type Identity {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Float!
+
+  """The pseudonym of an identity."""
+  pseudonym: String!
+
+  """An academic title of this identity"""
+  title: String
+
+  """The firstname of this identity"""
+  firstname: String
+
+  """The lastname of this identity"""
+  lastname: String
+}
+
+type IdentityConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [IdentityEdge!]!
+}
+
+type IdentityEdge {
+  """The node containing the Identity"""
+  node: Identity!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+input IdentityFilter {
+  and: [IdentityFilter!]
+  or: [IdentityFilter!]
+  pseudonym: StringFieldComparison
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
+}
+
+input IdentitySort {
+  field: IdentitySortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum IdentitySortFields {
+  pseudonym
+  firstname
+  lastname
+}
+
 """An Instrument resource for a survey"""
 type Instrument {
   """The ID of this resource."""
@@ -365,21 +441,22 @@ input LoginInput {
 }
 
 type Mutation {
+  """login via username / password"""
+  login(input: LoginInput!): AccessToken!
+  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
+  updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
+  createOneIdentity(input: CreateOneIdentityInput!): Identity!
+  updateOneInstrument(input: UpdateOneInstrumentInput!): Instrument!
+  createOneInstrument(input: CreateOneInstrumentInput!): Instrument!
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
-  updateOneInstrument(input: UpdateOneInstrumentInput!): Instrument!
-  createOneInstrument(input: CreateOneInstrumentInput!): Instrument!
+  updateOnePerson(input: UpdateOnePersonInput!): Person!
+  createOnePerson(input: CreateOnePersonInputType!): Person!
   createOneScreening(input: CreateOneScreeningInput!): Screening!
   setInstrumentOnScreening(input: RelationInput!): Screening!
   setPersonOnScreening(input: RelationInput!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
-  updateOnePerson(input: UpdateOnePersonInput!): Person!
-  createOnePerson(input: CreateOnePersonInputType!): Person!
-  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
-
-  """login via username / password"""
-  login(input: LoginInput!): AccessToken!
 }
 
 """An Organization resource"""
@@ -537,17 +614,29 @@ enum PersonSortFields {
 }
 
 type Query {
-  organization(id: ID!): Organization
-  organizations(
+  doctor(id: ID!): Doctor
+  doctors(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: OrganizationFilter = {}
+    filter: DoctorFilter = {}
 
     """Specify to sort results."""
-    sorting: [OrganizationSort!] = []
-  ): OrganizationConnection!
+    sorting: [DoctorSort!] = []
+  ): DoctorConnection!
+  identity(id: ID!): Identity
+  identities(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: IdentityFilter = {}
+
+    """Specify to sort results."""
+    sorting: [IdentitySort!] = []
+  ): IdentityConnection!
+  identityByPseudonym(pseudonym: String!): Identity
   instrument(id: ID!): Instrument
   instruments(
     """Limit or page results."""
@@ -559,18 +648,17 @@ type Query {
     """Specify to sort results."""
     sorting: [InstrumentSort!] = []
   ): InstrumentConnection!
-  screeningsForPersonAndInstrument(
+  organization(id: ID!): Organization
+  organizations(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: ScreeningFilter = {}
+    filter: OrganizationFilter = {}
 
     """Specify to sort results."""
-    sorting: [ScreeningSort!] = []
-    pseudonym: String!
-    instrument: String!
-  ): ScreeningConnection!
+    sorting: [OrganizationSort!] = []
+  ): OrganizationConnection!
   person(id: ID!): Person
   people(
     """Limit or page results."""
@@ -583,17 +671,18 @@ type Query {
     sorting: [PersonSort!] = []
   ): PersonConnection!
   personByPseudonym(pseudonym: String!): Person
-  doctor(id: ID!): Doctor
-  doctors(
+  screeningsForPersonAndInstrument(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: DoctorFilter = {}
+    filter: ScreeningFilter = {}
 
     """Specify to sort results."""
-    sorting: [DoctorSort!] = []
-  ): DoctorConnection!
+    sorting: [ScreeningSort!] = []
+    pseudonym: String!
+    instrument: String!
+  ): ScreeningConnection!
 }
 
 input RelationInput {
@@ -783,6 +872,18 @@ input UpdateDoctorInput {
   settings: JSONObject!
 }
 
+"""Update an Identity"""
+input UpdateIdentityInput {
+  """The (new) title of this identity"""
+  title: String
+
+  """The (new) firstname"""
+  firstname: String
+
+  """The (new) lastname"""
+  lastname: String
+}
+
 """Update an existing Instrument"""
 input UpdateInstrumentInput {
   """The (new) name of this instrument"""
@@ -811,6 +912,14 @@ input UpdateOneDoctorInput {
 
   """The update to apply."""
   update: UpdateDoctorInput!
+}
+
+input UpdateOneIdentityInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateIdentityInput!
 }
 
 input UpdateOneInstrumentInput {
