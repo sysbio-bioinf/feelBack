@@ -9,14 +9,6 @@ services:
     networks:
       - backend
 
-  identity_app:
-    image: cancerlog.identity:latest
-    container_name: 'fb_identity_api'
-    ports:
-      - ${ID_API_PORT}:${ID_API_PORT}
-    networks:
-      - backend
-
   main_db:
     image: postgres:11-alpine
     container_name: 'fb_main_db'

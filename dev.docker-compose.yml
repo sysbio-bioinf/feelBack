@@ -13,18 +13,6 @@ services:
     networks:
       - backend
 
-  identity_app:
-    image: node:lts-alpine3.11
-    container_name: 'fb_identity_api'
-    volumes:
-      - .:/usr/src/service
-    working_dir: /usr/src/service
-    command: npm run ng serve feelback-identity
-    ports:
-      - ${ID_API_PORT}:${ID_API_PORT}
-    networks:
-      - backend
-
   main_db:
     image: postgres:11-alpine
     container_name: 'fb_main_db'

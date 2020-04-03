@@ -14,7 +14,6 @@ module.exports = {
         'cp ./../../.env ./.env \
         && npm run docker:build:core \
         && npm run docker:build:deps \
-        && npm run docker:build:identity \
         && npm run docker:build:api \
         && docker-compose -f prod.docker-compose.yml up -d',
     },
