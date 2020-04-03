@@ -182,63 +182,6 @@
         }
       }
     },
-    "feelback-identity": {
-      "root": "apps/feelback-identity",
-      "sourceRoot": "apps/feelback-identity/src",
-      "projectType": "application",
-      "prefix": "feelback-identity",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "outputPath": "dist/apps/feelback-identity",
-            "main": "apps/feelback-identity/src/main.ts",
-            "tsConfig": "apps/feelback-identity/tsconfig.app.json",
-            "assets": ["apps/feelback-identity/src/assets"],
-            "buildLibsFromSource": true
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/feelback-identity/src/environments/environment.ts",
-                  "with": "apps/feelback-identity/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "feelback-identity:build",
-            "port": 0
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/feelback-identity/tsconfig.app.json",
-              "apps/feelback-identity/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/feelback-identity/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/feelback-identity/jest.config.js",
-            "tsConfig": "apps/feelback-identity/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "api-config": {
       "root": "libs/api/config",
       "sourceRoot": "libs/api/config/src",

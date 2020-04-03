@@ -10,12 +10,6 @@
       "root": "apps/feelback-api",
       "entryFile": "main",
       "sourceRoot": "apps/feelback-api/src"
-    },
-    "feelback-identity": {
-      "type": "application",
-      "root": "apps/feelback-identity",
-      "entryFile": "main",
-      "sourceRoot": "apps/feelback-identity/src"
     }
   }
 }
