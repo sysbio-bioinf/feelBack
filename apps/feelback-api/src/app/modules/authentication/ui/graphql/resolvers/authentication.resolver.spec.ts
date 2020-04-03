@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AuthenticationResolver } from './authentication.resolver';
 import { AuthModule } from '@cancerlog/api/authentication';
 import { ConfigModule } from '@cancerlog/api/config';
-import { environment } from '@env-cancerlog-identity/environment';
+import { environment } from '@env-cancerlog-api/environment';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AuthenticationResolver } from './authentication.resolver';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
