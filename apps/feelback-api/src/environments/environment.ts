@@ -1,10 +1,12 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
 
 import { IEnvironment } from '@cancerlog/api/config';
 import { ApiPathHelper } from '@cancerlog/util/core';
 import * as env from 'env-var';
 import * as path from 'path';
 import { IDENTITY_DB_CONNECTION } from '../app/constants/db.constants';
+
+dotenv.config();
 
 export const environment: IEnvironment = {
   env: {
@@ -63,6 +65,10 @@ export const environment: IEnvironment = {
       'schema.gql',
     ),
     playground: true,
+    cors: {
+      credentials: true,
+      origin: true,
+    },
   },
 
   dbConnections: {
@@ -100,7 +106,11 @@ export const environment: IEnvironment = {
     },
     cors: {
       enabled: true,
-      options: {},
+      options: {
+        origin: true,
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+        credentials: true,
+      },
     },
     helmet: {
       enabled: true,
