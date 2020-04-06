@@ -12,7 +12,7 @@
     "affected:libs": "nx affected:libs",
     "affected:lint": "nx affected:lint",
     "affected:test": "nx affected:test",
-    "prebuild": "npm run clean:dist",
+    "prebuild": "npm run clean:dist && npm run gql-codegen",
     "build": "ng build",
     "clean:dist": "rimraf dist",
     "clean:docs": "rimraf documentation",

@@ -6,11 +6,12 @@ config:
   declarationKind: 'interface'
 generates:
   # FILES TO BE GENERATED WITHIN THE API PACKAGE (from other services!)
-  apps/feelback-api/src/app/generated/feelback-identity.graphql.ts:
-    schema: 'apps/feelback-identity/src/schema.gql'
-    documents: 'apps/feelback-api/src/app/graphql/**/*.gql'
+  apps/feelback-web/src/app/graphql/generated/feelback.graphql.ts:
+    schema: 'apps/feelback-api/src/schema.gql'
+    documents: 'apps/feelback-web/src/app/graphql/src/**/*.gql'
     plugins:
       - 'typescript'
-      - 'typescript-document-nodes'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'
     config:
       nameSuffix: 'Document'
