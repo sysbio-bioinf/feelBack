@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+
+  connections: {
+    feelback: 'http://localhost:3000/graphql',
+  },
 };
 
 /*

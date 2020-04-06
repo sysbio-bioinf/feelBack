@@ -1,0 +1,16 @@
+query getOrganizationById($id: ID!) {
+  organization(id: $id) {
+    id
+    name
+    description
+    type
+    address
+    phone
+    email
+    url
+    logo
+    createdAt
+    updatedAt
+    version
+  }
+}

@@ -19,6 +19,9 @@
       "@env-cancerlog-api/environment": [
         "apps/feelback-api/src/environments/environment.ts"
       ],
+      "@env-cancerlog-web/environment": [
+        "apps/feelback-web/src/environments/environment.ts"
+      ],
       "@cancerlog/api/config": ["libs/api/config/src/index.ts"],
       "@cancerlog/util/core": ["libs/util/core/src/index.ts"],
       "@cancerlog/api/core": ["libs/api/core/src/index.ts"],
