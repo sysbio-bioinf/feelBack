@@ -25,6 +25,22 @@
       },
       "home": {
         "title": "FeelBack"
+      },
+      "imprint": {
+        "title": "Imprint",
+        "contact": {
+          "title": "Contact",
+          "organization": "Ulm University",
+          "institute": "Institute of Medical Systems Biology",
+          "address1": "Albert-Einstein-Allee 11",
+          "address2": "89081 Ulm, Germany",
+          "phone": "+49 / (0)731 / 50 24500",
+          "fax": "+49 / (0)731 / 50 24502",
+          "email": "hans.kestler@uni-ulm.de"
+        },
+        "team": {
+          "title": "Team"
+        }
       }
     }
   }
