@@ -54,6 +54,7 @@ export class CoreModule {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
 
     // ensure default platform language is set
+    translate.setDefaultLang('en');
     translate.use(lang);
   }
 }
