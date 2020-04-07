@@ -1,8 +1,8 @@
 {
   "name": "feelback",
-  "type": "angular",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
-  "app_id": ""
+  "type": "angular"
 }
