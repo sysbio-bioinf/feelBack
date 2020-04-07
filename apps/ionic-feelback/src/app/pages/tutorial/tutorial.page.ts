@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 import { SlideModel } from '@cancerlog/core/models/mobile/slide.model';
 
 @Component({
-  selector: 'app-tutorial',
+  selector: 'page-tutorial',
   templateUrl: './tutorial.page.html',
   styleUrls: ['./tutorial.page.scss'],
 })
