@@ -356,10 +356,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "testing/tsconfig.libs.json",
-              "testing/tsconfig.libs.spec.json"
-            ],
+            "tsConfig": ["testing/tsconfig.libs.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -383,10 +380,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "testing/tsconfig.xplat.json",
-              "testing/tsconfig.xplat.spec.json"
-            ],
+            "tsConfig": ["testing/tsconfig.xplat.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -517,8 +511,7 @@
           "options": {
             "tsConfig": [
               "apps/ionic-feelback/tsconfig.app.json",
-              "apps/ionic-feelback/tsconfig.spec.json",
-              "apps/ionic-feelback/e2e/tsconfig.json"
+              "apps/ionic-feelback/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
