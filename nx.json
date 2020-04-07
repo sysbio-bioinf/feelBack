@@ -38,6 +38,15 @@
     },
     "util-connection": {
       "tags": []
+    },
+    "libs": {
+      "tags": []
+    },
+    "xplat": {
+      "tags": []
+    },
+    "ionic-feelback": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

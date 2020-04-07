@@ -27,7 +27,7 @@
     ],
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
+    "no-console": [true, "debug", "time", "timeEnd", "trace"],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
@@ -63,8 +63,8 @@
         ]
       }
     ],
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"],
+    "directive-selector": [true, "attribute", "cancerlog", "camelCase"],
+    "component-selector": [true, "element", "cancerlog", "kebab-case"],
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,

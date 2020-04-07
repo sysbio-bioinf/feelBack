@@ -337,6 +337,217 @@
           }
         }
       }
+    },
+    "libs": {
+      "root": "libs",
+      "sourceRoot": "libs",
+      "projectType": "library",
+      "prefix": "cancerlog",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "testing/jest.libs.config.js",
+            "tsConfig": "testing/tsconfig.libs.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "testing/test-setup.ts"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "testing/tsconfig.libs.json",
+              "testing/tsconfig.libs.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "xplat": {
+      "root": "xplat",
+      "sourceRoot": "xplat",
+      "projectType": "library",
+      "prefix": "cancerlog",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "testing/jest.xplat.config.js",
+            "tsConfig": "testing/tsconfig.xplat.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "testing/test-setup.ts"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "testing/tsconfig.xplat.json",
+              "testing/tsconfig.xplat.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "ionic-feelback": {
+      "root": "apps/ionic-feelback/",
+      "sourceRoot": "apps/ionic-feelback/src",
+      "projectType": "application",
+      "prefix": "cancerlog",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "apps/ionic-feelback/www",
+            "index": "apps/ionic-feelback/src/index.html",
+            "main": "apps/ionic-feelback/src/main.ts",
+            "polyfills": "apps/ionic-feelback/src/polyfills.ts",
+            "tsConfig": "apps/ionic-feelback/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/ionic-feelback/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
+            ],
+            "styles": [
+              {
+                "input": "apps/ionic-feelback/src/theme/variables.scss"
+              },
+              {
+                "input": "apps/ionic-feelback/src/global.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ionic-feelback/src/environments/environment.ts",
+                  "with": "apps/ionic-feelback/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "ci": {
+              "progress": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ionic-feelback:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ionic-feelback:build:production"
+            },
+            "ci": {
+              "progress": false
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ionic-feelback:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/ionic-feelback/src/test.ts",
+            "polyfills": "apps/ionic-feelback/src/polyfills.ts",
+            "tsConfig": "apps/ionic-feelback/tsconfig.spec.json",
+            "karmaConfig": "apps/ionic-feelback/karma.conf.js",
+            "styles": [],
+            "scripts": [],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "apps/ionic-feelback/src/",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "apps/ionic-feelback/src/assets",
+                "output": "/assets"
+              }
+            ]
+          },
+          "configurations": {
+            "ci": {
+              "progress": false,
+              "watch": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ionic-feelback/tsconfig.app.json",
+              "apps/ionic-feelback/tsconfig.spec.json",
+              "apps/ionic-feelback/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "ionic-feelback:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ionic-feelback:build:production"
+            }
+          }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "ionic-feelback:ionic-cordova-build",
+            "devServerTarget": "ionic-feelback:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "ionic-feelback:ionic-cordova-build:production",
+              "devServerTarget": "ionic-feelback:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "cli": {

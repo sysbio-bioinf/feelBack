@@ -1,0 +1,8 @@
+{
+  "name": "feelback",
+  "type": "angular",
+  "integrations": {
+    "capacitor": {}
+  },
+  "app_id": ""
+}
