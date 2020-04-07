@@ -9,4 +9,4 @@ import { StartComponent } from './start.component';
   declarations: [StartComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class StartModule {}
+export class StartPageModule {}

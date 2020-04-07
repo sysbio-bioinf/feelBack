@@ -10,4 +10,4 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class HomeModule {}
+export class HomePageModule {}
