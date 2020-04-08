@@ -1,13 +1,15 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-
+import { NgPipesModule } from 'ngx-pipes';
 import { UIModule as UIWebModule } from '@cancerlog/web';
-import { HeaderComponent } from './components';
+import { HeaderComponent, OrganizationCardComponent } from './components';
+
+const customComponents = [HeaderComponent, OrganizationCardComponent];
 
 @NgModule({
-  imports: [UIWebModule, IonicModule],
-  declarations: [HeaderComponent],
-  exports: [UIWebModule, IonicModule, HeaderComponent],
+  imports: [UIWebModule, IonicModule, NgPipesModule],
+  declarations: [...customComponents],
+  exports: [UIWebModule, IonicModule, ...customComponents],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UIModule {}
