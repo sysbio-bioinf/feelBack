@@ -4,29 +4,29 @@ import { DoctorEntity } from '../../../doctor/data/entities/doctor.entity';
 
 @Entity({ name: 'organizations' })
 export class OrganizationEntity extends VersionableEntity {
-  @Column({ type: 'varchar', length: 190 })
+  @Column({ type: 'varchar', length: 190, nullable: false })
   name: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'text', nullable: false })
   description: string;
 
-  @Column({ type: 'varchar', length: 190 })
+  @Column({ type: 'varchar', length: 190, nullable: false })
   type: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  address: string;
+  address?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  phone: string;
+  phone?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  email: string;
+  email?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  url: string;
+  url?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  logo: string;
+  logo?: string;
 
   @ManyToMany((type) => DoctorEntity, (member) => member.organizations, {
     cascade: true,

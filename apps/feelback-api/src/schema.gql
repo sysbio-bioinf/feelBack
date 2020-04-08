@@ -24,61 +24,126 @@ type AccessToken {
   scope: String!
 }
 
-"""An Organization resource"""
-type Organization {
-  """The ID of this resource."""
-  id: ID!
-
-  """DateTime when this resource was created."""
-  createdAt: DateTime!
-
-  """DateTime when this resource was last updated."""
-  updatedAt: DateTime!
-
-  """
-  The version number of this resource (incremented each time this resource was updated).
-  """
-  version: Float!
-
-  """Name of the organization"""
-  name: String!
-
-  """A description of this organization"""
-  description: String
-
-  """Type (hospital, service center, ...) of the organization"""
-  type: String!
-
-  """The address of this organization"""
-  address: String
-
-  """The phone number of this organization"""
-  phone: String
-
-  """An email address of this organization"""
-  email: String
-
-  """The URL / website of this organization"""
-  url: String
-
-  """The URL for the logo of this organization"""
-  logo: String
-  members(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: DoctorFilter = {}
-
-    """Specify to sort results."""
-    sorting: [DoctorSort!] = []
-  ): DoctorConnection
+input BooleanFieldComparison {
+  is: Boolean
+  isNot: Boolean
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+"""Create a new (empty) identity"""
+input CreateIdentityInput {
+  """The pseudonym of the identity"""
+  pseudonym: String!
+}
+
+"""Create a new Instrument"""
+input CreateInstrumentInput {
+  """The name of the instrument"""
+  name: String!
+
+  """The description of the instrument"""
+  description: String
+
+  """The type of the instrument"""
+  type: String!
+
+  """The logo as valid URL string)"""
+  image: String
+
+  """The payload / structure of the instrument"""
+  payload: JSONObject
+  rules: [RuleInput!]
+
+  """what has changed so far"""
+  changelog: String!
+}
+
+input CreateOneIdentityInput {
+  """The record to create"""
+  identity: CreateIdentityInput!
+}
+
+input CreateOneInstrumentInput {
+  """The record to create"""
+  instrument: CreateInstrumentInput!
+}
+
+input CreateOneOrganizationInput {
+  """The record to create"""
+  organization: CreateOrganizationInput!
+}
+
+input CreateOnePersonInputType {
+  """The record to create"""
+  person: CreatePersonInput!
+}
+
+input CreateOneScreeningInput {
+  """The record to create"""
+  screening: CreateScreeningInput!
+}
+
+input CreateOrganizationInput {
+  """The name of the organization"""
+  name: String!
+
+  """The description of the organization"""
+  description: String!
+
+  """The type of the organization"""
+  type: String!
+
+  """The address of the organization"""
+  address: String
+
+  """The Phone number"""
+  phone: String
+
+  """The main email address"""
+  email: String
+
+  """The URL / Website of this organization"""
+  url: String
+
+  """The logo as valid URL string)"""
+  logo: String
+}
+
+"""Create a new person"""
+input CreatePersonInput {
+  """the pseudonym to be applied"""
+  pseudonym: String!
+}
+
+input CreateScreeningInput {
+  """The instance ID (uuid v4) defined by the client"""
+  instanceId: String!
+
+  """DateTime when this screening was performed"""
+  collectedAt: DateTime!
+
+  """the collected data"""
+  payload: JSONObject!
+
+  """The language this screening was performed in"""
+  language: String!
+
+  """UserAgent Information of the device"""
+  userAgent: CreateUserAgentInput
+}
+
+input CreateUserAgentInput {
+  """The device type used for this request"""
+  device: String
+
+  """The OS used for this request"""
+  os: String
+
+  """The application version used for this request"""
+  application: String
+}
 
 input CursorPaging {
   """Paginate before opaque cursor"""
@@ -94,55 +159,23 @@ input CursorPaging {
   last: Int
 }
 
-"""Cursor for paging through collections"""
-scalar ConnectionCursor
-
-input DoctorFilter {
-  and: [DoctorFilter!]
-  or: [DoctorFilter!]
-  firstname: StringFieldComparison
-  lastname: StringFieldComparison
-}
-
-input StringFieldComparison {
+input DateFieldComparison {
   is: Boolean
   isNot: Boolean
-  eq: String
-  neq: String
-  gt: String
-  gte: String
-  lt: String
-  lte: String
-  like: String
-  notLike: String
-  iLike: String
-  notILike: String
-  in: [String!]
-  notIn: [String!]
+  eq: DateTime
+  neq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
 }
 
-input DoctorSort {
-  field: DoctorSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum DoctorSortFields {
-  firstname
-  lastname
-}
-
-"""Sort Directions"""
-enum SortDirection {
-  ASC
-  DESC
-}
-
-"""Sort Nulls Options"""
-enum SortNulls {
-  NULLS_FIRST
-  NULLS_LAST
-}
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 """A Doctor, Psychologist or Caregiver"""
 type Doctor {
@@ -195,27 +228,12 @@ type Doctor {
   ): OrganizationConnection
 }
 
-"""
-The JSONObject scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSONObject
+type DoctorConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
 
-input OrganizationFilter {
-  and: [OrganizationFilter!]
-  or: [OrganizationFilter!]
-  name: StringFieldComparison
-  type: StringFieldComparison
-}
-
-input OrganizationSort {
-  field: OrganizationSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum OrganizationSortFields {
-  name
-  type
+  """Array of edges."""
+  edges: [DoctorEdge!]!
 }
 
 type DoctorEdge {
@@ -226,42 +244,39 @@ type DoctorEdge {
   cursor: ConnectionCursor!
 }
 
-type PageInfo {
-  """true if paging forward and there are more records."""
-  hasNextPage: Boolean
-
-  """true if paging backwards and there are more records."""
-  hasPreviousPage: Boolean
-
-  """The cursor of the first returned record."""
-  startCursor: ConnectionCursor
-
-  """The cursor of the last returned record."""
-  endCursor: ConnectionCursor
+input DoctorFilter {
+  and: [DoctorFilter!]
+  or: [DoctorFilter!]
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
 }
 
-type DoctorConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [DoctorEdge!]!
+input DoctorSort {
+  field: DoctorSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
 }
 
-type OrganizationEdge {
-  """The node containing the Organization"""
-  node: Organization!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
+enum DoctorSortFields {
+  firstname
+  lastname
 }
 
-type OrganizationConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
+type Evaluation {
+  """the name of the rule"""
+  name: String!
 
-  """Array of edges."""
-  edges: [OrganizationEdge!]!
+  """the expression that was used to evaluate the data"""
+  expression: String!
+
+  """the headline to be displayed if this rule is true"""
+  headline: String!
+
+  """the text to be displayed if this rule is true"""
+  text: String!
+
+  """The boolean result of the evaluation, NULL = failure"""
+  result: Boolean
 }
 
 """Identity resource for an anonymized patient"""
@@ -293,14 +308,6 @@ type Identity {
   lastname: String
 }
 
-type IdentityEdge {
-  """The node containing the Identity"""
-  node: Identity!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
 type IdentityConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -309,50 +316,32 @@ type IdentityConnection {
   edges: [IdentityEdge!]!
 }
 
-"""A processed screening"""
-type Screening {
-  """The ID of this resource."""
-  id: ID!
+type IdentityEdge {
+  """The node containing the Identity"""
+  node: Identity!
 
-  """DateTime when this resource was created."""
-  createdAt: DateTime!
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
 
-  """DateTime when this resource was last updated."""
-  updatedAt: DateTime!
+input IdentityFilter {
+  and: [IdentityFilter!]
+  or: [IdentityFilter!]
+  pseudonym: StringFieldComparison
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
+}
 
-  """
-  The version number of this resource (incremented each time this resource was updated).
-  """
-  version: Float!
+input IdentitySort {
+  field: IdentitySortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
 
-  """Instance ID (uuid v4) defined by the client"""
-  instanceId: String!
-
-  """DateTime when this screening was performed."""
-  collectedAt: DateTime!
-
-  """The language this screening was performed in"""
-  language: String!
-
-  """the screening data (filled in questionnaires)"""
-  payload: JSONObject!
-
-  """if the screening issues has been resolved"""
-  isResolved: Boolean
-
-  """DateTime when the screening issues has been resolved."""
-  resolvedAt: DateTime!
-
-  """data about resolving the screening issues"""
-  resolveComment: String
-  instrument: Instrument
-  person: Person
-
-  """UserAgent information"""
-  userAgent: UserAgent
-
-  """Evaluation Results for this screening"""
-  evaluationResult: [Evaluation!]
+enum IdentitySortFields {
+  pseudonym
+  firstname
+  lastname
 }
 
 """An Instrument resource for a survey"""
@@ -403,46 +392,12 @@ type Instrument {
   ): ScreeningConnection
 }
 
-input ScreeningFilter {
-  and: [ScreeningFilter!]
-  or: [ScreeningFilter!]
-  instanceId: StringFieldComparison
-  collectedAt: DateFieldComparison
-  language: StringFieldComparison
-  isResolved: BooleanFieldComparison
-  resolvedAt: DateFieldComparison
-}
+type InstrumentConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
 
-input DateFieldComparison {
-  is: Boolean
-  isNot: Boolean
-  eq: DateTime
-  neq: DateTime
-  gt: DateTime
-  gte: DateTime
-  lt: DateTime
-  lte: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-}
-
-input BooleanFieldComparison {
-  is: Boolean
-  isNot: Boolean
-}
-
-input ScreeningSort {
-  field: ScreeningSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum ScreeningSortFields {
-  instanceId
-  collectedAt
-  language
-  isResolved
-  resolvedAt
+  """Array of edges."""
+  edges: [InstrumentEdge!]!
 }
 
 type InstrumentEdge {
@@ -453,28 +408,154 @@ type InstrumentEdge {
   cursor: ConnectionCursor!
 }
 
-type InstrumentConnection {
+input InstrumentFilter {
+  and: [InstrumentFilter!]
+  or: [InstrumentFilter!]
+  name: StringFieldComparison
+  type: StringFieldComparison
+}
+
+input InstrumentSort {
+  field: InstrumentSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum InstrumentSortFields {
+  name
+  type
+}
+
+"""
+The JSONObject scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+"""Credentials to login"""
+input LoginInput {
+  """The email to login with"""
+  email: String!
+
+  """The password to login with"""
+  password: String!
+}
+
+type Mutation {
+  """login via username / password"""
+  login(input: LoginInput!): AccessToken!
+  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
+  updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
+  createOneIdentity(input: CreateOneIdentityInput!): Identity!
+  updateOneInstrument(input: UpdateOneInstrumentInput!): Instrument!
+  createOneInstrument(input: CreateOneInstrumentInput!): Instrument!
+  updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
+  createOneOrganization(input: CreateOneOrganizationInput!): Organization!
+  addMembersToOrganization(input: RelationsInput!): Organization!
+  updateOnePerson(input: UpdateOnePersonInput!): Person!
+  createOnePerson(input: CreateOnePersonInputType!): Person!
+  createOneScreening(input: CreateOneScreeningInput!): Screening!
+  setInstrumentOnScreening(input: RelationInput!): Screening!
+  setPersonOnScreening(input: RelationInput!): Screening!
+  resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
+}
+
+"""An Organization resource"""
+type Organization {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Float!
+
+  """Name of the organization"""
+  name: String!
+
+  """A description of this organization"""
+  description: String!
+
+  """Type (hospital, service center, ...) of the organization"""
+  type: String!
+
+  """The address of this organization"""
+  address: String
+
+  """The phone number of this organization"""
+  phone: String
+
+  """An email address of this organization"""
+  email: String
+
+  """The URL / website of this organization"""
+  url: String
+
+  """The URL for the logo of this organization"""
+  logo: String
+  members(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DoctorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [DoctorSort!] = []
+  ): DoctorConnection
+}
+
+type OrganizationConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [InstrumentEdge!]!
+  edges: [OrganizationEdge!]!
 }
 
-type ScreeningEdge {
-  """The node containing the Screening"""
-  node: Screening!
+type OrganizationEdge {
+  """The node containing the Organization"""
+  node: Organization!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type ScreeningConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
+input OrganizationFilter {
+  and: [OrganizationFilter!]
+  or: [OrganizationFilter!]
+  name: StringFieldComparison
+  type: StringFieldComparison
+}
 
-  """Array of edges."""
-  edges: [ScreeningEdge!]!
+input OrganizationSort {
+  field: OrganizationSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum OrganizationSortFields {
+  name
+  type
+}
+
+type PageInfo {
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
 }
 
 """A person"""
@@ -500,14 +581,6 @@ type Person {
   acceptedTOS: Boolean!
 }
 
-type PersonEdge {
-  """The node containing the Person"""
-  node: Person!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
 type PersonConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -516,32 +589,28 @@ type PersonConnection {
   edges: [PersonEdge!]!
 }
 
-type Evaluation {
-  """the name of the rule"""
-  name: String!
+type PersonEdge {
+  """The node containing the Person"""
+  node: Person!
 
-  """the expression that was used to evaluate the data"""
-  expression: String!
-
-  """the headline to be displayed if this rule is true"""
-  headline: String!
-
-  """the text to be displayed if this rule is true"""
-  text: String!
-
-  """The boolean result of the evaluation, NULL = failure"""
-  result: Boolean
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
 }
 
-type UserAgent {
-  """The device type used for this request"""
-  device: String
+input PersonFilter {
+  and: [PersonFilter!]
+  or: [PersonFilter!]
+  pseudonym: StringFieldComparison
+}
 
-  """The OS used for this request"""
-  os: String
+input PersonSort {
+  field: PersonSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
 
-  """The application version used for this request"""
-  application: String
+enum PersonSortFields {
+  pseudonym
 }
 
 type Query {
@@ -616,94 +685,165 @@ type Query {
   ): ScreeningConnection!
 }
 
-input IdentityFilter {
-  and: [IdentityFilter!]
-  or: [IdentityFilter!]
-  pseudonym: StringFieldComparison
-  firstname: StringFieldComparison
-  lastname: StringFieldComparison
-}
-
-input IdentitySort {
-  field: IdentitySortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum IdentitySortFields {
-  pseudonym
-  firstname
-  lastname
-}
-
-input InstrumentFilter {
-  and: [InstrumentFilter!]
-  or: [InstrumentFilter!]
-  name: StringFieldComparison
-  type: StringFieldComparison
-}
-
-input InstrumentSort {
-  field: InstrumentSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum InstrumentSortFields {
-  name
-  type
-}
-
-input PersonFilter {
-  and: [PersonFilter!]
-  or: [PersonFilter!]
-  pseudonym: StringFieldComparison
-}
-
-input PersonSort {
-  field: PersonSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum PersonSortFields {
-  pseudonym
-}
-
-type Mutation {
-  """login via username / password"""
-  login(input: LoginInput!): AccessToken!
-  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
-  updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
-  createOneIdentity(input: CreateOneIdentityInput!): Identity!
-  updateOneInstrument(input: UpdateOneInstrumentInput!): Instrument!
-  createOneInstrument(input: CreateOneInstrumentInput!): Instrument!
-  updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
-  createOneOrganization(input: CreateOneOrganizationInput!): Organization!
-  addMembersToOrganization(input: RelationsInput!): Organization!
-  updateOnePerson(input: UpdateOnePersonInput!): Person!
-  createOnePerson(input: CreateOnePersonInputType!): Person!
-  createOneScreening(input: CreateOneScreeningInput!): Screening!
-  setInstrumentOnScreening(input: RelationInput!): Screening!
-  setPersonOnScreening(input: RelationInput!): Screening!
-  resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
-}
-
-"""Credentials to login"""
-input LoginInput {
-  """The email to login with"""
-  email: String!
-
-  """The password to login with"""
-  password: String!
-}
-
-input UpdateOneDoctorInput {
-  """The id of the record to update"""
+input RelationInput {
+  """The id of the record."""
   id: ID!
 
+  """The id of relation."""
+  relationId: ID!
+}
+
+input RelationsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input ResolveOneScreeningInputType {
+  """id"""
+  id: String!
+
   """The update to apply."""
-  update: UpdateDoctorInput!
+  update: ResolveScreeningInput!
+}
+
+input ResolveScreeningInput {
+  """comments for resolving this issue"""
+  resolveComment: String!
+
+  """Date this issue was resolved"""
+  resolvedAt: DateTime!
+}
+
+input RuleInput {
+  """the name of the rule"""
+  name: String!
+
+  """the (boolean) expression of the rule"""
+  expression: String!
+
+  """the headline to be shown if the rule evaluates positive (true)"""
+  headline: String!
+
+  """the text to be shown if the rule evaluates positive (true)"""
+  text: String!
+}
+
+"""A processed screening"""
+type Screening {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Float!
+
+  """Instance ID (uuid v4) defined by the client"""
+  instanceId: String!
+
+  """DateTime when this screening was performed."""
+  collectedAt: DateTime!
+
+  """The language this screening was performed in"""
+  language: String!
+
+  """the screening data (filled in questionnaires)"""
+  payload: JSONObject!
+
+  """if the screening issues has been resolved"""
+  isResolved: Boolean
+
+  """DateTime when the screening issues has been resolved."""
+  resolvedAt: DateTime!
+
+  """data about resolving the screening issues"""
+  resolveComment: String
+  instrument: Instrument
+  person: Person
+
+  """UserAgent information"""
+  userAgent: UserAgent
+
+  """Evaluation Results for this screening"""
+  evaluationResult: [Evaluation!]
+}
+
+type ScreeningConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ScreeningEdge!]!
+}
+
+type ScreeningEdge {
+  """The node containing the Screening"""
+  node: Screening!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+input ScreeningFilter {
+  and: [ScreeningFilter!]
+  or: [ScreeningFilter!]
+  instanceId: StringFieldComparison
+  collectedAt: DateFieldComparison
+  language: StringFieldComparison
+  isResolved: BooleanFieldComparison
+  resolvedAt: DateFieldComparison
+}
+
+input ScreeningSort {
+  field: ScreeningSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ScreeningSortFields {
+  instanceId
+  collectedAt
+  language
+  isResolved
+  resolvedAt
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+input StringFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: String
+  neq: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  like: String
+  notLike: String
+  iLike: String
+  notILike: String
+  in: [String!]
+  notIn: [String!]
 }
 
 input UpdateDoctorInput {
@@ -732,14 +872,6 @@ input UpdateDoctorInput {
   settings: JSONObject!
 }
 
-input UpdateOneIdentityInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateIdentityInput!
-}
-
 """Update an Identity"""
 input UpdateIdentityInput {
   """The (new) title of this identity"""
@@ -750,25 +882,6 @@ input UpdateIdentityInput {
 
   """The (new) lastname"""
   lastname: String
-}
-
-input CreateOneIdentityInput {
-  """The record to create"""
-  identity: CreateIdentityInput!
-}
-
-"""Create a new (empty) identity"""
-input CreateIdentityInput {
-  """The pseudonym of the identity"""
-  pseudonym: String!
-}
-
-input UpdateOneInstrumentInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdateInstrumentInput!
 }
 
 """Update an existing Instrument"""
@@ -793,45 +906,28 @@ input UpdateInstrumentInput {
   changelog: String!
 }
 
-input RuleInput {
-  """the name of the rule"""
-  name: String!
+input UpdateOneDoctorInput {
+  """The id of the record to update"""
+  id: ID!
 
-  """the (boolean) expression of the rule"""
-  expression: String!
-
-  """the headline to be shown if the rule evaluates positive (true)"""
-  headline: String!
-
-  """the text to be shown if the rule evaluates positive (true)"""
-  text: String!
+  """The update to apply."""
+  update: UpdateDoctorInput!
 }
 
-input CreateOneInstrumentInput {
-  """The record to create"""
-  instrument: CreateInstrumentInput!
+input UpdateOneIdentityInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateIdentityInput!
 }
 
-"""Create a new Instrument"""
-input CreateInstrumentInput {
-  """The name of the instrument"""
-  name: String!
+input UpdateOneInstrumentInput {
+  """The id of the record to update"""
+  id: ID!
 
-  """The description of the instrument"""
-  description: String
-
-  """The type of the instrument"""
-  type: String!
-
-  """The logo as valid URL string)"""
-  image: String
-
-  """The payload / structure of the instrument"""
-  payload: JSONObject
-  rules: [RuleInput!]
-
-  """what has changed so far"""
-  changelog: String!
+  """The update to apply."""
+  update: UpdateInstrumentInput!
 }
 
 input UpdateOneOrganizationInput {
@@ -840,6 +936,14 @@ input UpdateOneOrganizationInput {
 
   """The update to apply."""
   update: UpdateOrganizationInput!
+}
+
+input UpdateOnePersonInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdatePersonInput!
 }
 
 input UpdateOrganizationInput {
@@ -868,93 +972,13 @@ input UpdateOrganizationInput {
   logo: String
 }
 
-input CreateOneOrganizationInput {
-  """The record to create"""
-  organization: CreateOrganizationInput!
-}
-
-input CreateOrganizationInput {
-  """The name of the organization"""
-  name: String!
-
-  """The description of the organization"""
-  description: String
-
-  """The type of the organization"""
-  type: String!
-
-  """The address of the organization"""
-  address: String
-
-  """The Phone number"""
-  phone: String
-
-  """The main email address"""
-  email: String
-
-  """The URL / Website of this organization"""
-  url: String
-
-  """The logo as valid URL string)"""
-  logo: String
-}
-
-input RelationsInput {
-  """The id of the record."""
-  id: ID!
-
-  """The ids of the relations."""
-  relationIds: [ID!]!
-}
-
-input UpdateOnePersonInput {
-  """The id of the record to update"""
-  id: ID!
-
-  """The update to apply."""
-  update: UpdatePersonInput!
-}
-
 """Update a person"""
 input UpdatePersonInput {
   """if the person has accepted the TOS"""
   acceptedTOS: Boolean!
 }
 
-input CreateOnePersonInputType {
-  """The record to create"""
-  person: CreatePersonInput!
-}
-
-"""Create a new person"""
-input CreatePersonInput {
-  """the pseudonym to be applied"""
-  pseudonym: String!
-}
-
-input CreateOneScreeningInput {
-  """The record to create"""
-  screening: CreateScreeningInput!
-}
-
-input CreateScreeningInput {
-  """The instance ID (uuid v4) defined by the client"""
-  instanceId: String!
-
-  """DateTime when this screening was performed"""
-  collectedAt: DateTime!
-
-  """the collected data"""
-  payload: JSONObject!
-
-  """The language this screening was performed in"""
-  language: String!
-
-  """UserAgent Information of the device"""
-  userAgent: CreateUserAgentInput
-}
-
-input CreateUserAgentInput {
+type UserAgent {
   """The device type used for this request"""
   device: String
 
@@ -963,28 +987,4 @@ input CreateUserAgentInput {
 
   """The application version used for this request"""
   application: String
-}
-
-input RelationInput {
-  """The id of the record."""
-  id: ID!
-
-  """The id of relation."""
-  relationId: ID!
-}
-
-input ResolveOneScreeningInputType {
-  """id"""
-  id: String!
-
-  """The update to apply."""
-  update: ResolveScreeningInput!
-}
-
-input ResolveScreeningInput {
-  """comments for resolving this issue"""
-  resolveComment: String!
-
-  """Date this issue was resolved"""
-  resolvedAt: DateTime!
 }

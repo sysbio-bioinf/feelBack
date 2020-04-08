@@ -8,17 +8,19 @@ import { FilterableField } from '@nestjs-query/query-graphql';
 export class OrganizationObject extends VersionableObject {
   @FilterableField({
     description: 'Name of the organization',
+    nullable: false,
   })
   name: string;
 
   @Field({
     description: 'A description of this organization',
-    nullable: true,
+    nullable: false,
   })
-  description?: string;
+  description: string;
 
   @FilterableField({
     description: 'Type (hospital, service center, ...) of the organization',
+    nullable: false,
   })
   type: string;
 

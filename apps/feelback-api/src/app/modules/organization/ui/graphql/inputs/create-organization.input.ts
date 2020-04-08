@@ -14,6 +14,7 @@ export class CreateOrganizationInput extends CoreInput {
   @MaxLength(190)
   @Field({
     description: 'The name of the organization',
+    nullable: false,
   })
   name: string;
 
@@ -21,14 +22,15 @@ export class CreateOrganizationInput extends CoreInput {
   @IsString()
   @Field({
     description: 'The description of the organization',
-    nullable: true,
+    nullable: false,
   })
-  description?: string;
+  description: string;
 
   @IsString()
   @MaxLength(190)
   @Field({
     description: 'The type of the organization',
+    nullable: false,
   })
   type: string;
 
