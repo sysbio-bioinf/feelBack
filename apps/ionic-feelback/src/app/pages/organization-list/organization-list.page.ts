@@ -34,7 +34,6 @@ export class OrganizationListPage extends BaseComponent implements OnInit {
   async ionViewWillEnter() {
     await this.presentLoading();
     this.organizations = await this.organizationService.getAll();
-    console.log(this.organizations);
     await this.loading.dismiss();
   }
 

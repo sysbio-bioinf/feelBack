@@ -22,10 +22,22 @@ const routes: Routes = [
       },
       {
         path: 'organizations',
-        loadChildren: () =>
-          import('./../organization-list/organization-list.module').then(
-            (m) => m.OrganizationListPageModule,
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../organization-list/organization-list.module').then(
+                (m) => m.OrganizationListPageModule,
+              ),
+          },
+          {
+            path: ':id',
+            loadChildren: () =>
+              import(
+                './../organization-detail/organization-detail.module'
+              ).then((m) => m.OrganizationDetailPageModule),
+          },
+        ],
       },
     ],
   },

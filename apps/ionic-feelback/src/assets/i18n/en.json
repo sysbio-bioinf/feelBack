@@ -46,6 +46,9 @@
       "organization-list": {
         "title": "Organizations"
       },
+      "organization-detail": {
+        "title": "Detail"
+      },
       "instrument-list": {
         "title": "Instruments"
       }
