@@ -9,18 +9,12 @@ import {
   providedIn: 'root',
 })
 export class OrganizationService {
-  private organizations: Organization[] = [];
-
   constructor(
     private gqlOrganizations: GetOrganizationsGQL,
     private gqlOrganizationById: GetOrganizationByIdGQL,
   ) {}
 
-  getAll(): Organization[] {
-    return this.organizations;
-  }
-
-  async loadOrganizations(): Promise<Organization[]> {
+  async getAll(): Promise<Organization[]> {
     const organizationsResponse = await this.gqlOrganizations
       .fetch()
       .toPromise();

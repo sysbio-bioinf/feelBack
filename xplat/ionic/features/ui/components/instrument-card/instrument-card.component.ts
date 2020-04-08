@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InstrumentCardBaseComponent } from '@cancerlog/features';
 import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
+import { Instrument } from '@cancerlog/core/models/mobile/instrument.model';
 
 @Component({
   selector: 'cancerlog-instrument-card',
@@ -8,6 +9,8 @@ import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
   providers: [StripTagsPipe, ShortenPipe],
 })
 export class InstrumentCardComponent extends InstrumentCardBaseComponent {
+  @Input() instrument: Instrument;
+
   constructor(
     readonly shortenPipe: ShortenPipe,
     readonly stripTags: StripTagsPipe,

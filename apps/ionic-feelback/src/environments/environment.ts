@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   connections: {
-    feelback: 'http://localhost:3000/graphql',
+    feelback: 'http://134.60.71.108:3000/graphql',
   },
 };
 

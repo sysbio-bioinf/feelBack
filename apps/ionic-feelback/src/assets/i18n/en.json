@@ -1,7 +1,8 @@
 {
   "app": {
     "general": {
-      "back": "Back"
+      "back": "Back",
+      "loading": "Loading Data..."
     },
 
     "menu": {
@@ -41,6 +42,12 @@
         "team": {
           "title": "Team"
         }
+      },
+      "organization-list": {
+        "title": "Organizations"
+      },
+      "instrument-list": {
+        "title": "Instruments"
       }
     }
   }

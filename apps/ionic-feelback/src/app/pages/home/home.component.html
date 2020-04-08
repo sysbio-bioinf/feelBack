@@ -3,4 +3,11 @@
   [showNavButton]="true"
 ></cancerlog-ion-header>
 
-<ion-content padding></ion-content>
+<ion-content>
+  <cancerlog-instrument-card
+    *ngFor="let instrument of instruments"
+    [instrument]="instrument"
+    (click)="startInstrument(instrument)"
+  >
+  </cancerlog-instrument-card>
+</ion-content>

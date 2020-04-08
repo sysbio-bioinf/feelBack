@@ -3,21 +3,27 @@ import { Organization } from '@cancerlog/core/models/mobile/organization.model';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { OrganizationService } from 'src/app/services/api/organization.service';
+import { BaseComponent } from '@cancerlog/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'cancerlog-organization-list',
   templateUrl: './organization-list.page.html',
   styleUrls: ['./organization-list.page.scss'],
+  providers: [TranslatePipe],
 })
-export class OrganizationListPage implements OnInit {
+export class OrganizationListPage extends BaseComponent implements OnInit {
   organizations: Organization[];
-  loading: any;
+  loading: HTMLIonLoadingElement;
 
   constructor(
     private router: Router,
     private loadingController: LoadingController,
     private organizationService: OrganizationService,
-  ) {}
+    private translatePipe: TranslatePipe,
+  ) {
+    super();
+  }
 
   ngOnInit() {}
 
@@ -27,17 +33,15 @@ export class OrganizationListPage implements OnInit {
 
   async ionViewWillEnter() {
     await this.presentLoading();
-    this.organizations = await this.organizationService.loadOrganizations();
+    this.organizations = await this.organizationService.getAll();
+    console.log(this.organizations);
     await this.loading.dismiss();
   }
 
   async presentLoading() {
-    // Prepare a loading controller
     this.loading = await this.loadingController.create({
-      message: 'Lade Daten...',
+      message: this.translatePipe.transform('app.general.loading'),
     });
-
-    // Present the loading controller
     await this.loading.present();
   }
 }
