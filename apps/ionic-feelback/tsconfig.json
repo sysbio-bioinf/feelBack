@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -12,8 +13,9 @@
     "target": "es2015",
     "typeRoots": ["./node_modules/@types"],
     "lib": ["es2018", "dom"],
-    "baseUrl": "./",
+
     "paths": {
+      "@env-cancerlog-ionic": ["./src/environments/environment.ts"],
       "@cancerlog/*": ["../../libs/*"],
       "@cancerlog/ionic": ["../../xplat/ionic/index.ts"],
       "@cancerlog/ionic/*": ["../../xplat/ionic/*"],
@@ -21,5 +23,9 @@
       "@cancerlog/web/*": ["../../xplat/web/*"],
       "@angular/*": ["../../node_modules/@angular/*"]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

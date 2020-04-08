@@ -20,6 +20,13 @@ const routes: Routes = [
             (m) => m.ImprintPageModule,
           ),
       },
+      {
+        path: 'organizations',
+        loadChildren: () =>
+          import('./../organization-list/organization-list.module').then(
+            (m) => m.OrganizationListPageModule,
+          ),
+      },
     ],
   },
 ];
