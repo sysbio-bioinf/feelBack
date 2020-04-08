@@ -30,9 +30,7 @@ export class OrganizationDetailPage extends BaseComponent implements OnInit {
   async ionViewWillEnter() {
     await this.currentRoute.params.subscribe(async (params) => {
       await this.presentLoading();
-      this.organization = await this.organizationService.getOrganizationById(
-        params.id,
-      );
+      this.organization = await this.organizationService.getById(params.id);
       this.loading.dismiss();
     });
   }

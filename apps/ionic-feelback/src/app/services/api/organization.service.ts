@@ -41,7 +41,7 @@ export class OrganizationService {
     return organizations;
   }
 
-  async getOrganizationById(id: string): Promise<Organization> {
+  async getById(id: string): Promise<Organization> {
     const organizationResponse = await this.gqlOrganizationById
       .fetch({ id })
       .toPromise();

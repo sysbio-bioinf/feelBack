@@ -39,7 +39,7 @@ export class InstrumentService {
     return instruments;
   }
 
-  async getInstrument(id: string): Promise<Instrument> {
+  async getById(id: string): Promise<Instrument> {
     const instrumentResponse = await this.getInstrumentByIdService
       .fetch({ id })
       .toPromise();
