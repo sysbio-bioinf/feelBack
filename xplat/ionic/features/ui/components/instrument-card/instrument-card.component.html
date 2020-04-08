@@ -1,0 +1,16 @@
+<ion-card>
+  <div style="padding: 10px;">
+    <ion-img [src]="instrument.image"></ion-img>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle color="medium">{{ instrument.type }}</ion-card-subtitle>
+    <ion-card-title color="primary">{{ instrument.name }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content
+    ><ion-text>{{
+      this.stripTags.transform(
+        this.shortenPipe.transform(instrument.description, 300, '...')
+      )
+    }}</ion-text></ion-card-content
+  >
+</ion-card>

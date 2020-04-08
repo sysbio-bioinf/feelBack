@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { OrganizationCardBaseComponent } from '@cancerlog/features';
+import { InstrumentCardBaseComponent } from '@cancerlog/features';
 import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
 
 @Component({
-  selector: 'cancerlog-organization-card',
-  templateUrl: 'organization-card.component.html',
+  selector: 'cancerlog-instrument-card',
+  templateUrl: 'instrument-card.component.html',
   providers: [StripTagsPipe, ShortenPipe],
 })
-export class OrganizationCardComponent extends OrganizationCardBaseComponent {
+export class InstrumentCardComponent extends InstrumentCardBaseComponent {
   constructor(
     readonly shortenPipe: ShortenPipe,
     readonly stripTags: StripTagsPipe,
