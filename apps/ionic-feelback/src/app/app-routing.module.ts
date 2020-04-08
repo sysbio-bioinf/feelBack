@@ -20,13 +20,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/menu/menu.module').then((m) => m.MenuPageModule),
   },
-  {
-    path: 'organization-detail',
-    loadChildren: () =>
-      import('./pages/organization-detail/organization-detail.module').then(
-        (m) => m.OrganizationDetailPageModule,
-      ),
-  },
 ];
 
 @NgModule({

@@ -39,5 +39,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     await this.loading.present();
   }
 
-  startInstrument(instrument: Instrument) {}
+  startInstrument(id: string) {
+    this.router.navigate(['main', 'surveys', id]);
+  }
 }

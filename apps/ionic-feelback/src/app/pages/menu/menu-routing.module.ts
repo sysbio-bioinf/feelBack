@@ -39,6 +39,18 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'surveys',
+        children: [
+          {
+            path: ':id',
+            loadChildren: () =>
+              import('./../survey/survey.module').then(
+                (m) => m.SurveyPageModule,
+              ),
+          },
+        ],
+      },
     ],
   },
 ];
