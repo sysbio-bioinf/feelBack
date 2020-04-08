@@ -84,7 +84,11 @@
               "apps/feelback-web/tsconfig.app.json",
               "apps/feelback-web/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/feelback-web/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "**/generated/**",
+              "!apps/feelback-web/**"
+            ]
           }
         },
         "test": {
@@ -513,7 +517,7 @@
               "apps/ionic-feelback/tsconfig.app.json",
               "apps/ionic-feelback/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "**/generated/**"]
           }
         },
         "ionic-cordova-build": {
