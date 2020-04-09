@@ -6,13 +6,20 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { throwIfAlreadyLoaded } from '@cancerlog/utils';
 import { CancerlogCoreModule } from '@cancerlog/web';
+import { File } from '@ionic-native/file/ngx';
+import { StorageService } from './services';
 
 @NgModule({
   imports: [CancerlogCoreModule, IonicModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy,
+    },
+    File,
+    StorageService,
   ],
 })
 export class CancerlogIonicCoreModule {

@@ -132,7 +132,8 @@
     "tsconfig-paths": "^3.9.0",
     "typeorm": "^0.2.24",
     "uuidv4": "^6.0.7",
-    "zone.js": "^0.10.3"
+    "zone.js": "^0.10.3",
+    "@ionic-native/file": "5.23.0"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.901.0",
