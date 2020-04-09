@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '@cancerlog/core';
 import { Instrument } from '@cancerlog/core/models/mobile/instrument.model';
 import { LoadingController } from '@ionic/angular';
-import { InstrumentService } from 'src/app/services/api/instrument.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ActivatedRoute } from '@angular/router';
+import { InstrumentService } from 'src/app/services/api/instrument.service';
 
 @Component({
   selector: 'cancerlog-survey',
@@ -17,6 +17,7 @@ export class SurveyPage extends BaseComponent implements OnInit {
   instrument: Instrument;
 
   constructor(
+    private router: Router,
     private currentRoute: ActivatedRoute,
     private translatePipe: TranslatePipe,
     private loadingController: LoadingController,
@@ -26,6 +27,10 @@ export class SurveyPage extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  navigateHome() {
+    this.router.navigate(['main', 'home']);
+  }
 
   async ionViewWillEnter() {
     await this.currentRoute.params.subscribe(async (params) => {

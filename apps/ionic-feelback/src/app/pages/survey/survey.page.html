@@ -3,4 +3,9 @@
   [title]="this.instrument.name"
 ></cancerlog-ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <cancerlog-survey-view
+    *ngIf="this.instrument"
+    [instrument]="this.instrument"
+  ></cancerlog-survey-view>
+</ion-content>

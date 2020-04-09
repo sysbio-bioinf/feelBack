@@ -4,10 +4,12 @@ import { SurveyViewBaseComponent } from '@cancerlog/features';
 import * as Survey from 'survey-angular';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'cancerlog-survey-view',
   templateUrl: 'survey-view.component.html',
+  providers: [TranslatePipe],
 })
 export class SurveyViewComponent extends SurveyViewBaseComponent
   implements OnInit {
@@ -17,6 +19,7 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
   constructor(
     private alertController: AlertController,
     private router: Router,
+    private translatePipe: TranslatePipe,
   ) {
     super();
   }
@@ -27,20 +30,24 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
 
   async cancelSurvey() {
     const alert = await this.alertController.create({
-      header: 'Abbrechen?',
-      message: 'Wollen Sie die Bearbeitung des Fragebogens wirklich abbrechen?',
+      header: this.translatePipe.transform(
+        'app.dialogs.cancelQuestionnaire.title',
+      ),
+      message: this.translatePipe.transform(
+        'app.dialogs.cancelQuestionnaire.text',
+      ),
       cssClass: 'alertDialog',
       buttons: [
         {
-          text: 'Nein',
+          text: this.translatePipe.transform('app.general.no'),
           cssClass: 'success',
           handler: () => {
             // do nothing, because the user wants to work on the questionnaire
           },
         },
         {
-          text: 'Ja',
-          cssClass: 'cancel',
+          text: this.translatePipe.transform('app.general.yes'),
+          cssClass: 'danger',
           handler: () => {
             this.router.navigate(['main', 'home']);
           },

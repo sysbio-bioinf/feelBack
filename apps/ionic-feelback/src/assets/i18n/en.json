@@ -2,7 +2,16 @@
   "app": {
     "general": {
       "back": "Back",
-      "loading": "Loading Data..."
+      "loading": "Loading Data...",
+      "yes": "Yes",
+      "no": "No"
+    },
+
+    "dialogs": {
+      "cancelQuestionnaire": {
+        "title": "Cancel",
+        "text": "Are you sure you want to cancel the questionnaire and return to the main page of the application?"
+      }
     },
 
     "menu": {
