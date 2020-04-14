@@ -32,6 +32,20 @@
     },
 
     "pages": {
+      "login": {
+        "title": "Login",
+        "scanner": {
+          "title": "Scan your FeelBack Card",
+          "text": "Scan your FeelBack Card",
+          "button": "Scan Card"
+        },
+        "form": {
+          "title": "Enter Your Pseudonym",
+          "text": "You can type in your pseudonym here.",
+          "pseudonym": "Pseudonym"
+        },
+        "submit": "Login"
+      },
       "login-form": {
         "title": "Login",
         "text": "Login with your Pseudonym",
@@ -49,6 +63,7 @@
       },
       "start": {
         "title": "FeelBack",
+        "login": "Login with your ID",
         "qrcode": "Scan FeelBack Card",
         "form": "Enter Pseudonym",
         "anonymous": "Private Mode",

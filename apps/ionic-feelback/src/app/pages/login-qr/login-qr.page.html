@@ -1,22 +1,34 @@
 <cancerlog-ion-header
-  [title]="'app.pages.login-form.title' | translate"
+  [title]="'app.pages.login.title' | translate"
   [showBackButton]="true"
->
-</cancerlog-ion-header>
+></cancerlog-ion-header>
 
 <ion-content>
+  <br /><br />
+
+  <ion-button
+    size="large"
+    expand="block"
+    color="primary"
+    fill="outline"
+    (click)="this.openScanner()"
+    >{{ 'app.pages.login.scanner.button' | translate }}</ion-button
+  >
+
+  <br /><br />
+
   <form #form="ngForm">
     <ion-card>
       <ion-card-header>
         <ion-card-title>
-          {{'app.pages.login-form.text' | translate }}
+          {{'app.pages.login.form.title' | translate }}
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <!-- <ion-label>{{'app.pages.login-form.text' | translate }}</ion-label> -->
+        <ion-label>{{'app.pages.login.form.text' | translate }}</ion-label>
         <ion-item>
           <ion-label position="floating">
-            {{ 'app.pages.login-form.form.pseudonym' | translate }}
+            {{ 'app.pages.login.form.pseudonym' | translate }}
           </ion-label>
           <ion-input
             id="login-form"
@@ -36,10 +48,10 @@
       shape="round"
       color="primary"
       [disabled]="!this.pseudonym"
-      (click)="this.submitForm()"
+      (click)="this.login()"
     >
       <ion-icon slot="end" name="navigate-outline"></ion-icon>
-      {{ 'app.pages.login-form.form.submit' | translate }}
+      {{ 'app.pages.login.submit' | translate }}
     </ion-button>
   </ion-fab>
 </ion-content>

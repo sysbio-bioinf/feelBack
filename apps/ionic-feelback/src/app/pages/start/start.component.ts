@@ -19,7 +19,13 @@ export class StartComponent extends BaseComponent {
     this.router.navigate(['/tutorial']);
   }
 
-  loginWithQRCode() {}
+  navigateToLogin() {
+    this.router.navigate(['/auth/qrcode']);
+  }
+
+  loginWithQRCode() {
+    this.router.navigate(['/auth/qrcode']);
+  }
 
   loginWithForm() {
     this.router.navigate(['/auth/form']);

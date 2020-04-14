@@ -5,6 +5,15 @@
 <ion-content padding>
   <br /><br />
   <ion-button
+    size="large"
+    expand="block"
+    color="primary"
+    fill="outline"
+    (click)="this.navigateToLogin()"
+  >
+    {{ 'app.pages.start.login' | translate }}
+  </ion-button>
+  <!-- <ion-button
     id="LoginButtonQR"
     class="loginbutton"
     size="large"
@@ -13,8 +22,8 @@
     fill="outline"
     (click)="this.loginWithQRCode()"
     >{{ 'app.pages.start.qrcode' | translate }}</ion-button
-  >
-  <ion-button
+  > -->
+  <!-- <ion-button
     id="LoginButtonForm"
     class="loginbutton"
     size="large"
@@ -23,7 +32,7 @@
     fill="outline"
     (click)="this.loginWithForm()"
     >{{ 'app.pages.start.form' | translate }}</ion-button
-  >
+  > -->
   <br /><br />
   <ion-button
     id="LoginButtonAnonymous"
@@ -33,8 +42,9 @@
     color="medium"
     fill="outline"
     (click)="this.loginAsAnonymous()"
-    >{{ 'app.pages.start.anonymous' | translate }}</ion-button
   >
+    {{ 'app.pages.start.anonymous' | translate }}
+  </ion-button>
 </ion-content>
 
 <ion-footer>
@@ -43,6 +53,7 @@
     size="normal"
     expand="block"
     (click)="this.showTutorial()"
-    >{{ 'app.pages.start.tutorial' | translate }}</ion-button
   >
+    {{ 'app.pages.start.tutorial' | translate }}
+  </ion-button>
 </ion-footer>
