@@ -1,3 +1,4 @@
+export * from './card.model';
 export * from './instrument.model';
 export * from './organization.model';
 export * from './slide.model';
