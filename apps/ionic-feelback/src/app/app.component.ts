@@ -39,7 +39,8 @@ export class AppComponent {
           if (this.router.url === '/start') {
             if (window.confirm('Ausloggen und Anwendung beenden?')) {
               // this.userService.logout();
-              navigator.app.exitApp();
+              const appString = 'app';
+              navigator[appString].exitApp();
             }
           }
         },
