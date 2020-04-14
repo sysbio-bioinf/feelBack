@@ -20,6 +20,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/menu/menu.module').then((m) => m.MenuPageModule),
   },
+  {
+    path: 'auth',
+    children: [
+      {
+        path: 'form',
+        loadChildren: () =>
+          import('./pages/login-form/login-form.module').then(
+            (m) => m.LoginFormPageModule,
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({

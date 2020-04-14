@@ -32,6 +32,14 @@
     },
 
     "pages": {
+      "login-form": {
+        "title": "Login with your pseudonym",
+        "text": "Login with your pseudonym",
+        "form": {
+          "pseudonym": "Pseudonym",
+          "submit": "Login"
+        }
+      },
       "start": {
         "title": "FeelBack",
         "qrcode": "Scan FeelBack Card",

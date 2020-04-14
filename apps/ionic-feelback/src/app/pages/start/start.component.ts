@@ -21,7 +21,9 @@ export class StartComponent extends BaseComponent {
 
   loginWithQRCode() {}
 
-  loginWithForm() {}
+  loginWithForm() {
+    this.router.navigate(['/auth/form']);
+  }
 
   loginAsAnonymous() {
     this.router.navigate(['/main/home']);
