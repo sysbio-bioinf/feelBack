@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseComponent } from '@cancerlog/core';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'page-start',
@@ -11,6 +12,7 @@ export class StartComponent extends BaseComponent {
   constructor(
     readonly router: Router,
     readonly translateService: TranslateService,
+    private userService: UserService,
   ) {
     super();
   }
@@ -32,6 +34,7 @@ export class StartComponent extends BaseComponent {
   }
 
   loginAsAnonymous() {
+    this.userService.loginAnonymous();
     this.router.navigate(['/main/home']);
   }
 }

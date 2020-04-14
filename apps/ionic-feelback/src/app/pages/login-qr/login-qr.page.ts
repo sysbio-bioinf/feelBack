@@ -5,6 +5,8 @@ import {
 } from '@ionic-native/barcode-scanner/ngx';
 import { CardService } from 'src/app/services/card.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'cancerlog-login-qr',
@@ -16,9 +18,11 @@ export class LoginQrPage implements OnInit {
   pseudonym: string;
 
   constructor(
+    private router: Router,
     private scanner: BarcodeScanner,
     private cardService: CardService,
     private translatePipe: TranslatePipe,
+    private userService: UserService,
   ) {}
 
   ngOnInit() {}
@@ -45,8 +49,14 @@ export class LoginQrPage implements OnInit {
   }
 
   login() {
-    if (!this.pseudonym || this.pseudonym.trim().length === 0) {
+    this.pseudonym = this.pseudonym.trim();
+
+    if (!this.pseudonym || this.pseudonym.length === 0) {
       console.log('error');
     }
+
+    this.userService.loginWithPseudonym(this.pseudonym);
+
+    this.router.navigate(['main', 'home']);
   }
 }

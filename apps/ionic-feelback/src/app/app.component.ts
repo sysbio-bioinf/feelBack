@@ -7,6 +7,7 @@ import { StatusBar as NgxStatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { StorageService } from '@cancerlog/ionic/core/services';
 import { TranslatePipe } from '@ngx-translate/core';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'cancerlog-root',
@@ -23,6 +24,7 @@ export class AppComponent {
     private statusBar: NgxStatusBar,
     private storageService: StorageService,
     private translatePipe: TranslatePipe,
+    private userService: UserService,
   ) {
     this.initializeApp();
   }
@@ -49,7 +51,8 @@ export class AppComponent {
                 ),
               )
             ) {
-              // this.userService.logout();
+              this.userService.logout();
+
               const appString = 'app';
               navigator[appString].exitApp();
             }
