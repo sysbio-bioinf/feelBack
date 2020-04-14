@@ -30,6 +30,13 @@ const routes: Routes = [
             (m) => m.LoginFormPageModule,
           ),
       },
+      {
+        path: 'qrcode',
+        loadChildren: () =>
+          import('./pages/login-qr/login-qr.module').then(
+            (m) => m.LoginQrPageModule,
+          ),
+      },
     ],
   },
 ];

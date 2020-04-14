@@ -9,5 +9,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class LoginFormPage implements OnInit {
   constructor(private translatePipe: TranslatePipe) {}
 
+  pseudonym: string;
+
   ngOnInit() {}
+
+  async submitForm() {
+    console.log(this.pseudonym);
+  }
 }

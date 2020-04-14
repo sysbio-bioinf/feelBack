@@ -1,33 +1,54 @@
 <cancerlog-ion-header
   [title]="'app.pages.login-form.title' | translate"
   [showBackButton]="true"
-></cancerlog-ion-header>
+>
+</cancerlog-ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title
-        >{{'app.pages.login-form.title' | translate }}</ion-card-title
-      >
-    </ion-card-header>
-    <ion-card-content>
-      <!-- <ion-label>{{'app.pages.login-form.text' | translate }}</ion-label> -->
-      <ion-item>
-        <ion-label position="floating"
-          >{{ 'app.pages.login-form.form.pseudonym' | translate }}</ion-label
-        >
-        <ion-input
-          id="login-form"
-          inputmode="text"
-          clearInput="true"
-          required="true"
-        ></ion-input>
-      </ion-item>
-    </ion-card-content>
-    <ion-card-footer>
-      <ion-button
-        >{{ 'app.pages.login-form.form.submit' | translate }}</ion-button
-      >
-    </ion-card-footer>
-  </ion-card>
+  <form #form="ngForm">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          {{'app.pages.login-form.text' | translate }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- <ion-label>{{'app.pages.login-form.text' | translate }}</ion-label> -->
+        <ion-item>
+          <ion-label position="floating">
+            {{ 'app.pages.login-form.form.pseudonym' | translate }}
+          </ion-label>
+          <ion-input
+            id="login-form"
+            inputmode="text"
+            clearInput="true"
+            required="true"
+            name="pseudonym"
+            [(ngModel)]="this.pseudonym"
+          ></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </form>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-button
+      shape="round"
+      color="primary"
+      [disabled]="!this.pseudonym"
+      (click)="this.submitForm()"
+    >
+      <ion-icon slot="end" name="navigate-outline"></ion-icon>
+      {{ 'app.pages.login-form.form.submit' | translate }}
+    </ion-button>
+    <!-- <ion-fab-button
+      size="normal"
+      color="primary"
+      [disabled]="!this.pseudonym"
+      (click)="this.submitForm()"
+    >
+      <ion-icon name="navigate-outline"></ion-icon>
+      {{ 'app.pages.login-form.form.submit' | translate }}
+    </ion-fab-button> -->
+  </ion-fab>
 </ion-content>
