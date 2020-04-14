@@ -12,7 +12,6 @@ export class SettingsPage implements OnInit {
   ngOnInit() {}
 
   switchLanguage(event: CustomEvent) {
-    console.log(event);
     this.translateService.use(event.detail.value);
   }
 }

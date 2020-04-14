@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { InstrumentCardBaseComponent } from '@cancerlog/features';
 import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
-import { Instrument } from '@cancerlog/core/models/mobile/instrument.model';
+import { Instrument } from '@cancerlog/core/models/mobile';
 
 @Component({
   selector: 'cancerlog-instrument-card',

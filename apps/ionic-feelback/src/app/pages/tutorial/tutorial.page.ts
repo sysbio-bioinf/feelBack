@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { SlideModel } from '@cancerlog/core/models/mobile/slide.model';
+import { SlideModel } from '@cancerlog/core/models/mobile';
 
 @Component({
   selector: 'page-tutorial',

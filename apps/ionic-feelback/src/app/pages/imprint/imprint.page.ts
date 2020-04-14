@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from '@cancerlog/core';
-import { TeamModel } from '@cancerlog/core';
+import { BaseComponent, TeamModel } from '@cancerlog/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

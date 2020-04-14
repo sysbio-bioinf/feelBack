@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '@cancerlog/core';
 import { Router } from '@angular/router';
-import { Instrument } from '@cancerlog/core/models/mobile/instrument.model';
+import { Instrument } from '@cancerlog/core/models/mobile';
 import { LoadingController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InstrumentService } from 'src/app/services/api/instrument.service';

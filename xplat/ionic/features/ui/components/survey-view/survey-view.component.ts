@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Instrument } from '@cancerlog/core/models/mobile/instrument.model';
+import { Instrument } from '@cancerlog/core/models/mobile';
 import { SurveyViewBaseComponent } from '@cancerlog/features';
 import { AlertController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';

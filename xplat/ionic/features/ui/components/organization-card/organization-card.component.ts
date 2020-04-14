@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OrganizationCardBaseComponent } from '@cancerlog/features';
 import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
-import { Organization } from '@cancerlog/core/models/mobile/organization.model';
+import { Organization } from '@cancerlog/core/models/mobile';
 
 @Component({
   selector: 'cancerlog-organization-card',

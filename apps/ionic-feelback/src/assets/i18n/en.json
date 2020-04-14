@@ -10,6 +10,10 @@
     },
 
     "dialogs": {
+      "exitApplication": {
+        "title": "Exit Application",
+        "text": "Are you sure you want to exit the application?"
+      },
       "cancelQuestionnaire": {
         "title": "Cancel",
         "text": "Are you sure you want to cancel the questionnaire and return to the main page of the application?"

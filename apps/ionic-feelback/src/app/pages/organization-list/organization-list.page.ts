@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Organization } from '@cancerlog/core/models/mobile/organization.model';
+import { Organization } from '@cancerlog/core/models/mobile';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { OrganizationService } from 'src/app/services/api/organization.service';

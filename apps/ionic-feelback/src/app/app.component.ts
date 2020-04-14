@@ -6,10 +6,12 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar as NgxStatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { StorageService } from '@cancerlog/ionic/core/services';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'cancerlog-root',
   templateUrl: 'app.component.html',
+  providers: [TranslatePipe],
 })
 export class AppComponent {
   exitAppSubscription: any;
@@ -20,6 +22,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: NgxStatusBar,
     private storageService: StorageService,
+    private translatePipe: TranslatePipe,
   ) {
     this.initializeApp();
   }
@@ -36,10 +39,16 @@ export class AppComponent {
       }
 
       this.exitAppSubscription = this.platform.backButton.subscribeWithPriority(
-        1000,
+        1000000,
         () => {
           if (this.router.url === '/start') {
-            if (window.confirm('Ausloggen und Anwendung beenden?')) {
+            if (
+              window.confirm(
+                this.translatePipe.transform(
+                  'app.dialogs.exitApplication.text',
+                ),
+              )
+            ) {
               // this.userService.logout();
               const appString = 'app';
               navigator[appString].exitApp();

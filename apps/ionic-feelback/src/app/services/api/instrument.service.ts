@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Instrument } from '@cancerlog/core/models/mobile/instrument.model';
+import { Instrument } from '@cancerlog/core/models/mobile';
 import {
   GetInstrumentsGQL,
   GetInstrumentByIdGQL,

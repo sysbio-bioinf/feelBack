@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Organization } from '@cancerlog/core/models/mobile/organization.model';
+import { Organization } from '@cancerlog/core/models/mobile';
 import {
   GetOrganizationsGQL,
   GetOrganizationByIdGQL,
