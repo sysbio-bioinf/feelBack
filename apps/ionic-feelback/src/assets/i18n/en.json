@@ -4,7 +4,9 @@
       "back": "Back",
       "loading": "Loading Data...",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "cancel": "Cancel",
+      "ok": "Ok"
     },
 
     "dialogs": {
@@ -32,6 +34,12 @@
         "form": "Enter Pseudonym",
         "anonymous": "Private Mode",
         "tutorial": "Open Tutorial"
+      },
+      "settings": {
+        "title": "Settings",
+        "form": {
+          "switchLanguage": "Switch Language"
+        }
       },
       "home": {
         "title": "FeelBack"

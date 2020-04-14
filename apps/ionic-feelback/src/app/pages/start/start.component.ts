@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from '@cancerlog/core';
 import { Router } from '@angular/router';
+import { BaseComponent } from '@cancerlog/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -25,9 +25,5 @@ export class StartComponent extends BaseComponent {
 
   loginAsAnonymous() {
     this.router.navigate(['/main/home']);
-  }
-
-  setLanguage(lang: string) {
-    this.translateService.use(lang);
   }
 }

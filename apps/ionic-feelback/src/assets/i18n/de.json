@@ -22,6 +22,9 @@
         "form": "Pseudonym eingeben",
         "anonymous": "Anonym bleiben",
         "tutorial": "Tutorial öffnen"
+      },
+      "settings": {
+        "title": "Einstellungen"
       }
     }
   }
