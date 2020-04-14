@@ -1,6 +1,6 @@
 {
-  "appId": "com.example.app",
-  "appName": "feelback",
+  "appId": "com.johannesschobel.apps.feelback",
+  "appName": "FeelBack",
   "bundledWebRuntime": false,
   "webDir": "www"
 }
