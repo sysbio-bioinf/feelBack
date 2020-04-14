@@ -5,6 +5,7 @@ const { StatusBar } = Plugins;
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar as NgxStatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
+import { StorageService } from '@cancerlog/ionic/core/services';
 
 @Component({
   selector: 'cancerlog-root',
@@ -18,6 +19,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: NgxStatusBar,
+    private storageService: StorageService,
   ) {
     this.initializeApp();
   }
@@ -45,6 +47,11 @@ export class AppComponent {
           }
         },
       );
+
+      this.storageService
+        .createFeelbackDirectories()
+        .then(() => console.log('feelback download directory created'))
+        .catch((exception) => console.log(exception));
     });
   }
 }
