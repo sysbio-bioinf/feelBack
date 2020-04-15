@@ -32,7 +32,7 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
   }
 
   navigateHome() {
-    this.router.navigate(['main', 'home']);
+    this.router.navigate(['main', 'home'], { replaceUrl: true });
   }
 
   async cancelSurvey() {
@@ -56,7 +56,7 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
           text: this.translatePipe.transform('app.general.yes'),
           cssClass: 'danger',
           handler: () => {
-            this.router.navigate(['main', 'home']);
+            this.router.navigate(['main', 'home'], { replaceUrl: true });
           },
         },
       ],

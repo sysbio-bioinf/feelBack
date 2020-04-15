@@ -40,6 +40,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   startInstrument(id: string) {
-    this.router.navigate(['main', 'surveys', id]);
+    this.router.navigate(['main', 'surveys', id], { replaceUrl: true });
   }
 }

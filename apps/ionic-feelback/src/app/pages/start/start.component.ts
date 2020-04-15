@@ -35,6 +35,6 @@ export class StartComponent extends BaseComponent {
 
   loginAsAnonymous() {
     this.userService.loginAnonymous();
-    this.router.navigate(['/main/home']);
+    this.router.navigate(['/main/home'], { replaceUrl: true });
   }
 }

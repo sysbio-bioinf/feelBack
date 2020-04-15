@@ -29,7 +29,7 @@ export class SurveyPage extends BaseComponent implements OnInit {
   ngOnInit() {}
 
   navigateHome() {
-    this.router.navigate(['main', 'home']);
+    this.router.navigate(['main', 'home'], { replaceUrl: true });
   }
 
   async ionViewWillEnter() {
