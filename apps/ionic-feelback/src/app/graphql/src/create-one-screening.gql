@@ -1,0 +1,9 @@
+mutation createScreening($data: CreateScreeningInput!) {
+  createOneScreening(input: { screening: $data }) {
+    id
+    instanceId
+    collectedAt
+    language
+    payload
+  }
+}

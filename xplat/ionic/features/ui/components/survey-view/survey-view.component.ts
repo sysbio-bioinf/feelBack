@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Instrument } from '@cancerlog/core/models/mobile';
 import { SurveyViewBaseComponent } from '@cancerlog/features';
 import { AlertController } from '@ionic/angular';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import * as Survey from 'survey-angular';
 import { uuid } from 'uuidv4';
 import { StorageService } from '@cancerlog/ionic/core/services';
@@ -17,11 +17,13 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
   implements OnInit {
   @Input() instrument: Instrument;
   survey: Survey.Survey;
+  printData: string;
 
   constructor(
     private alertController: AlertController,
     private router: Router,
     private translatePipe: TranslatePipe,
+    private translateService: TranslateService,
     private storageService: StorageService,
   ) {
     super();
@@ -124,33 +126,37 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
         filename + '.json',
         JSON.stringify(survey.data),
       );
-      // await this.storageService.writeResultsToJSON(survey.data);
+
       const plainData = survey.getPlainData({ includeEmpty: true });
-      console.log(plainData);
 
-      // let resultText = '';
+      let resultText = '';
 
-      // resultText = resultText + '<h1>Distress Thermometer</h1>';
-      // resultText = resultText + `<p>${new Date().toUTCString()}</p>`;
-      // resultText = resultText + '<table>';
+      resultText = resultText + '<h1>' + this.instrument.name + '</h1>';
+      resultText =
+        resultText +
+        `<p>${new Date().toLocaleString(
+          this.translateService.currentLang,
+        )}</p>`;
+      resultText = resultText + '<table>';
 
-      // let id = 0;
+      let id = 0;
 
-      // for (const q of plainData) {
-      //   id++;
-      //   resultText =
-      //     resultText +
-      //     `<tr>
-      //     <td>${id}<td>
-      //     <td>${q.name}<td>
-      //     <td>${q.title}<td>
-      //     <td>${q.displayValue} (${q.value})<td>
-      //   </tr>`;
-      // }
+      for (const q of plainData) {
+        id++;
+        resultText =
+          resultText +
+          `<tr>
+          <td>${id}<td>
+          <td>${q.name}<td>
+          <td>${q.title}<td>
+          <td>${q.displayValue} (${q.value})<td>
+        </tr>`;
+      }
 
-      // resultText = resultText + '</table>';
-      // this.printData = resultText;
-      // await this.storageService.writeResultsToHTML(resultText);
+      resultText = resultText + '</table>';
+      this.printData = resultText;
+
+      await this.storageService.writeDataToFile(filename + '.html', resultText);
 
       // // now we upload the data to our server
       // const screening: Screening = {
