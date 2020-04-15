@@ -19,14 +19,14 @@
 
       <ion-list lines="full">
         <ion-item *ngIf="this.organization.address">
-          <ion-icon name="pin" slot="start"></ion-icon>
+          <ion-icon name="map-outline" slot="start"></ion-icon>
           <ion-label>
             <p>{{ organization.address }}</p>
           </ion-label>
         </ion-item>
 
         <ion-item *ngIf="this.organization.phone">
-          <ion-icon name="call" slot="start"></ion-icon>
+          <ion-icon name="call-outline" slot="start"></ion-icon>
           <ion-label>
             <p>{{ organization.phone }}</p>
           </ion-label>
@@ -36,14 +36,14 @@
           *ngIf="this.organization.email"
           href="mailto:{{organization.email}}"
         >
-          <ion-icon name="mail-open" slot="start"></ion-icon>
+          <ion-icon name="mail-open-outline" slot="start"></ion-icon>
           <ion-label>
             <p>{{ organization.email }}</p>
           </ion-label>
         </ion-item>
 
         <ion-item *ngIf="this.organization.url" href="{{ organization.url }}">
-          <ion-icon name="globe" slot="start"></ion-icon>
+          <ion-icon name="globe-outline" slot="start"></ion-icon>
           <ion-label>
             <p>{{ organization.url }}</p>
           </ion-label>

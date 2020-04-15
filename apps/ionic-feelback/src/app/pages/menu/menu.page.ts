@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-menu',
@@ -41,14 +42,19 @@ export class MenuPage implements OnInit {
       url: '/main/imprint',
       icon: 'mail-outline',
     },
-    {
-      title: 'app.menu.logout',
-      url: '/',
-      icon: 'log-out-outline',
-    },
+    // {
+    //   title: 'app.menu.logout',
+    //   url: '/',
+    //   icon: 'log-out-outline',
+    // },
   ];
 
-  constructor(private navController: NavController) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {}
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/'], { replaceUrl: true });
+  }
 }
