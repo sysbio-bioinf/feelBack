@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { SlideModel } from '@cancerlog/core/models/mobile';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-tutorial',
@@ -10,6 +11,7 @@ import { SlideModel } from '@cancerlog/core/models/mobile';
 export class TutorialPage implements OnInit {
   showSkip = true;
 
+  // TODO Extract to I18N file
   tutorialSlides: SlideModel[] = [
     {
       image: 'assets/imgs/tutorial/tutorial-01.png',
@@ -36,7 +38,7 @@ export class TutorialPage implements OnInit {
     },
   ];
 
-  constructor(private navController: NavController) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -47,6 +49,6 @@ export class TutorialPage implements OnInit {
   }
 
   async navigateBack() {
-    await this.navController.navigateRoot(['/']);
+    await this.router.navigate(['start'], { replaceUrl: true });
   }
 }

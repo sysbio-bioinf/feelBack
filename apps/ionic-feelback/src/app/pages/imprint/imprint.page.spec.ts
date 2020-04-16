@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { ImprintComponent } from './imprint.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ImprintPage', () => {
   let component: ImprintComponent;
@@ -10,7 +11,7 @@ describe('ImprintPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ImprintComponent],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(), TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ImprintComponent);
