@@ -130,7 +130,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "6.5.5",
     "semver": "^7.2.1",
-    "survey-angular": "^1.5.19",
+    "survey-angular": "^1.7.1",
     "tsconfig-paths": "^3.9.0",
     "typeorm": "^0.2.24",
     "uuidv4": "^6.0.7",

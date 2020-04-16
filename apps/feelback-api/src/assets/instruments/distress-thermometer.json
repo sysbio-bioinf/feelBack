@@ -8,7 +8,7 @@
           "type": "html",
           "name": "intro1",
           "html": {
-            "de": "<p>Krebserkrankungen gehen bei Betroffenen als auch bei Angehörigen mit einer Vielzahl an Belastungen einher. Die Belastungen können in jeder Krankheitsphase auftreten, sämtliche Lebensbereiche durchdringen und unterschiedlich schwerwiegend ausfallen.</p>"
+            "de": "<p>Krebserkrankungen gehen bei Betroffenen als auch bei Angehörigen mit einer Vielzahl an Belastungen einher. Die Belastungen können in jeder Krankheitsphase auftreten, sämtliche Lebensbereiche durchdringen und unterschiedlich schwerwiegend ausfallen.</p><p>Belastungen können aus Krankheit und Behandlung (z. B. Nebenwirkungen der Behandlung; einrichtungsbedingten Problemen, wie Zeitmangel oder wechselnde Ärzte) resultieren und/oder durch familiäre, finanzielle, berufliche sowie soziale Probleme bedingt sein. Durch die Erkrankung selbst und den damit verbundenen Belastungen kann es zu einer drastischen Einschränkung in der Lebensqualität sowie einer anhaltenden Beeinträchtigung der Krankheitsverarbeitung kommen.</p>"
           }
         }
       ]
@@ -18,7 +18,10 @@
       "elements": [
         {
           "type": "html",
-          "name": "DT00"
+          "name": "DT00",
+          "html": {
+            "de": "<p>Bitte geben Sie die Zahl an (0-10) die am besten beschreibt, wie belastet Sie sich in der letzten Woche einschließlich heute gefühlt haben.</p>"
+          }
         },
         {
           "type": "rating",
