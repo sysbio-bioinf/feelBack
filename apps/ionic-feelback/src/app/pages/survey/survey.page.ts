@@ -15,6 +15,7 @@ import { InstrumentService } from 'src/app/services/api/instrument.service';
 export class SurveyPage extends BaseComponent implements OnInit {
   loading: HTMLIonLoadingElement;
   instrument: Instrument;
+  selectedLanguage: string;
 
   constructor(
     private router: Router,
@@ -24,6 +25,12 @@ export class SurveyPage extends BaseComponent implements OnInit {
     private instrumentService: InstrumentService,
   ) {
     super();
+
+    this.currentRoute.queryParams.subscribe((params) => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.selectedLanguage = this.router.getCurrentNavigation().extras.state.locale;
+      }
+    });
   }
 
   ngOnInit() {}

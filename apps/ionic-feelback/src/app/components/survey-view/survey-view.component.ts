@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Instrument, Screening } from '@cancerlog/core/models/mobile';
+import { Instrument } from '@cancerlog/core/models/mobile';
 import { SurveyViewBaseComponent } from '@cancerlog/features';
 import { AlertController } from '@ionic/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ import { CreateScreeningInput } from '../../graphql/generated/feelback.graphql';
 export class SurveyViewComponent extends SurveyViewBaseComponent
   implements OnInit {
   @Input() instrument: Instrument;
+  @Input() selectedLanguage: string;
   survey: Survey.Survey;
   printData: string;
 
@@ -81,6 +82,8 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
     this.survey.showCompletedPage = false;
     this.survey.showPageNumbers = false;
     this.survey.showProgressBar = 'top';
+
+    this.survey.locale = this.selectedLanguage || this.survey.getUsedLocales[0];
 
     // ------------------------------------------
     // Color scheme
