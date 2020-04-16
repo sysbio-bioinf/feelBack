@@ -6,14 +6,12 @@ import {
   HeaderComponent,
   OrganizationCardComponent,
   InstrumentCardComponent,
-  SurveyViewComponent,
 } from './components';
 
 const customComponents = [
   HeaderComponent,
   OrganizationCardComponent,
   InstrumentCardComponent,
-  SurveyViewComponent,
 ];
 
 @NgModule({

@@ -1,12 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Instrument } from '@cancerlog/core/models/mobile';
+import { Instrument, Screening } from '@cancerlog/core/models/mobile';
 import { SurveyViewBaseComponent } from '@cancerlog/features';
 import { AlertController } from '@ionic/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import * as Survey from 'survey-angular';
 import { uuid } from 'uuidv4';
 import { StorageService } from '@cancerlog/ionic/core/services';
+import { UserService } from '../../services/user.service';
+import { ScreeningService } from '../../services/api/screening.service';
+import { CreateScreeningInput } from '../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'cancerlog-survey-view',
@@ -25,6 +28,8 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
     private translatePipe: TranslatePipe,
     private translateService: TranslateService,
     private storageService: StorageService,
+    private userService: UserService,
+    private screeningService: ScreeningService,
   ) {
     super();
   }
@@ -79,7 +84,7 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
 
     // ------------------------------------------
     // Color scheme
-    const feelbackColorScheme = Survey.StylesManager.ThemeColors['default'];
+    const feelbackColorScheme = Survey.StylesManager.ThemeColors.default;
 
     feelbackColorScheme['$header-background-color'] =
       'var(--ion-color-primary)';
@@ -158,20 +163,21 @@ export class SurveyViewComponent extends SurveyViewBaseComponent
 
       await this.storageService.writeDataToFile(filename + '.html', resultText);
 
-      // // now we upload the data to our server
-      // const screening: Screening = {
-      //   instanceId: uuid(),
-      //   collectedAt: new Date(),
-      //   language: 'de', // TODO
-      //   payload: survey.data,
-      // };
-      // const person = this.userService.person;
+      // now we upload the data to our server
+      const screeningInput: CreateScreeningInput = {
+        instanceId: uuid(),
+        collectedAt: new Date(),
+        language: 'de', // TODO get from survey.locale
+        payload: survey.data,
+        // TODO: userAgent ??
+      };
+      const person = this.userService.person;
 
-      // const result = await this.screeningService.uploadScreening(
-      //   screening,
-      //   person,
-      //   this.instrument,
-      // );
+      const result = await this.screeningService.uploadScreening(
+        screeningInput,
+        person,
+        this.instrument,
+      );
     });
 
     Survey.SurveyNG.render('surveyElement', {
