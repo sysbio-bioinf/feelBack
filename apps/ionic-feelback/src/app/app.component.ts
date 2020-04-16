@@ -40,25 +40,25 @@ export class AppComponent {
         this.splashScreen.hide();
       }
 
-      this.exitAppSubscription = this.platform.backButton.subscribeWithPriority(
-        1000000,
-        () => {
-          if (this.router.url === '/start') {
-            if (
-              window.confirm(
-                this.translatePipe.transform(
-                  'app.dialogs.exitApplication.text',
-                ),
-              )
-            ) {
-              this.userService.logout();
+      // this.exitAppSubscription = this.platform.backButton.subscribeWithPriority(
+      //   1000000,
+      //   () => {
+      //     if (this.router.url === '/start') {
+      //       if (
+      //         window.confirm(
+      //           this.translatePipe.transform(
+      //             'app.dialogs.exitApplication.text',
+      //           ),
+      //         )
+      //       ) {
+      //         this.userService.logout();
 
-              const appString = 'app';
-              navigator[appString].exitApp();
-            }
-          }
-        },
-      );
+      //         const appString = 'app';
+      //         navigator[appString].exitApp();
+      //       }
+      //     }
+      //   },
+      // );
 
       this.storageService
         .createFeelbackDirectories()
