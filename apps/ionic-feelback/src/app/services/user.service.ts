@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Person } from '@cancerlog/core/models/mobile';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   pseudonym: string;
   loggedIn = false;
-  person: any; // TODO Change this to actual PERSON Type
+  person: Person;
 
   constructor() {}
 
