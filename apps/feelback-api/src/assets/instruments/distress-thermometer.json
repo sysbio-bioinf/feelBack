@@ -1,5 +1,4 @@
 {
-  "locale": "de",
   "title": "Distress Thermometer",
   "pages": [
     {
@@ -9,24 +8,17 @@
           "type": "html",
           "name": "intro1",
           "html": {
-            "de": "<p>Krebserkrankungen gehen bei Betroffenen als auch bei Angehörigen mit einer Vielzahl an Belastungen einher. Die Belastungen können in jeder Krankheitsphase auftreten, sämtliche Lebensbereiche durchdringen und unterschiedlich schwerwiegend ausfallen.</p>\n\n<p>Belastungen können aus Krankheit und Behandlung (z. B. Nebenwirkungen der Behandlung; einrichtungsbedingten Problemen, wie Zeitmangel oder wechselnde Ärzte) resultieren und/oder durch familiäre, finanzielle, berufliche sowie soziale Probleme bedingt sein. Durch die Erkrankung selbst und den damit verbundenen Belastungen kann es zu einer drastischen Einschränkung in der Lebensqualität sowie einer anhaltenden Beeinträchtigung der Krankheitsverarbeitung kommen.</p>"
+            "de": "<p>Krebserkrankungen gehen bei Betroffenen als auch bei Angehörigen mit einer Vielzahl an Belastungen einher. Die Belastungen können in jeder Krankheitsphase auftreten, sämtliche Lebensbereiche durchdringen und unterschiedlich schwerwiegend ausfallen.</p>"
           }
         }
-      ],
-      "title": {
-        "de": "Distress Thermometer"
-      }
+      ]
     },
     {
       "name": "page1",
       "elements": [
         {
           "type": "html",
-          "name": "DT00",
-          "html": {
-            "default": "Bitte geben Sie die Zahl an (0-10) die am besten beschreibt, wie belastet Sie sich in der letzten Woche einschließlich heute gefühlt haben.",
-            "de": "<p>Bitte geben Sie die Zahl an (0-10) die am besten beschreibt, wie belastet Sie sich in der letzten Woche einschließlich heute gefühlt haben.</p>"
-          }
+          "name": "DT00"
         },
         {
           "type": "rating",
@@ -35,28 +27,42 @@
           "isRequired": true,
           "rateMin": 0,
           "rateMax": 10,
-          "minRateDescription": "Gar nicht belastet",
-          "maxRateDescription": "Extrem belastet"
+          "minRateDescription": {
+            "de": "Gar nicht belastet",
+            "default": "Not stressed at all"
+          },
+          "maxRateDescription": {
+            "de": "Extrem belastet",
+            "default": "Extremely stressed"
+          }
         },
         {
           "type": "radiogroup",
           "name": "DT02",
-          "title": "Möchten Sie die Möglichkeit einer psychosozialen Beratung nutzen?",
+          "title": {
+            "de": "Möchten Sie die Möglichkeit einer psychosozialen Beratung nutzen?",
+            "default": "Would you like to take advantage of the possibility of psychosocial counseling?"
+          },
           "isRequired": true,
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja",
+                "default": "Yes"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein",
+                "default": "No"
+              }
             }
           ],
           "colCount": 2
         }
-      ],
-      "title": "Distress Thermometer"
+      ]
     },
     {
       "name": "page2",
@@ -65,22 +71,29 @@
           "type": "html",
           "name": "PP00",
           "html": {
-            "default": "Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich JA oder NEIN an.",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
         {
           "type": "radiogroup",
           "name": "PP01",
-          "title": "Wohnsituation",
+          "title": {
+            "de": "Wohnsituation"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "default": "Yes",
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein",
+                "default": "No"
+              }
             }
           ],
           "colCount": 2
@@ -88,15 +101,21 @@
         {
           "type": "radiogroup",
           "name": "PP02",
-          "title": "Versicherung",
+          "title": {
+            "de": "Versicherung"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -104,15 +123,21 @@
         {
           "type": "radiogroup",
           "name": "PP03",
-          "title": "Arbeit/Schule",
+          "title": {
+            "de": "Arbeit/Schule"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -120,15 +145,17 @@
         {
           "type": "radiogroup",
           "name": "PP04",
-          "title": "Beförderung (Transport)",
+          "title": {
+            "de": "Beförderung (Transport)"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": "Yes"
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": "No"
             }
           ],
           "colCount": 2
@@ -136,15 +163,21 @@
         {
           "type": "radiogroup",
           "name": "PP05",
-          "title": "Kinderbetreuung",
+          "title": {
+            "de": "Kinderbetreuung"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -152,15 +185,21 @@
         {
           "type": "radiogroup",
           "name": "PP06",
-          "title": "Finanzielle Sorgen",
+          "title": {
+            "de": "Finanzielle Sorgen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -168,21 +207,29 @@
         {
           "type": "radiogroup",
           "name": "PP08",
-          "title": "Betreuung / Pflege Angehöriger",
+          "title": {
+            "de": "Betreuung / Pflege Angehöriger"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
         }
       ],
-      "title": "Praktische Probleme"
+      "title": {
+        "de": "Praktische Probleme"
+      }
     },
     {
       "name": "page3",
@@ -191,22 +238,27 @@
           "type": "html",
           "name": "FP00",
           "html": {
-            "default": "Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich JA oder NEIN an.",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
         {
           "type": "radiogroup",
           "name": "FP01",
-          "title": "Im Umgang mit dem Partner",
+          "title": {
+            "de": "Im Umgang mit dem Partner"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -214,21 +266,29 @@
         {
           "type": "radiogroup",
           "name": "FP02",
-          "title": "Im Umgang mit den Kindern",
+          "title": {
+            "de": "Im Umgang mit den Kindern"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
         }
       ],
-      "title": "Familiäre Probleme"
+      "title": {
+        "de": "Familiäre Probleme"
+      }
     },
     {
       "name": "page4",
@@ -237,22 +297,27 @@
           "type": "html",
           "name": "EP00",
           "html": {
-            "default": "Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich JA oder NEIN an.",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
         {
           "type": "radiogroup",
           "name": "EP01",
-          "title": "Sorgen",
+          "title": {
+            "de": "Sorgen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -260,15 +325,21 @@
         {
           "type": "radiogroup",
           "name": "EP02",
-          "title": "Ängste",
+          "title": {
+            "de": "Ängste"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -276,15 +347,21 @@
         {
           "type": "radiogroup",
           "name": "EP03",
-          "title": "Traurigkeit",
+          "title": {
+            "de": "Traurigkeit"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -292,15 +369,21 @@
         {
           "type": "radiogroup",
           "name": "EP04",
-          "title": "Depression",
+          "title": {
+            "de": "Depression"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -308,15 +391,21 @@
         {
           "type": "radiogroup",
           "name": "EP05",
-          "title": "Nervosität",
+          "title": {
+            "de": "Nervosität"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -324,21 +413,29 @@
         {
           "type": "radiogroup",
           "name": "EP06",
-          "title": "Verlust des Interesses an alltäglichen Aktivitäten",
+          "title": {
+            "de": "Verlust des Interesses an alltäglichen Aktivitäten"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
         }
       ],
-      "title": "Emotionale Probleme"
+      "title": {
+        "de": "Emotionale Probleme"
+      }
     },
     {
       "name": "page5",
@@ -347,22 +444,27 @@
           "type": "html",
           "name": "SP00",
           "html": {
-            "default": "Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich JA oder NEIN an.",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
         {
           "type": "radiogroup",
           "name": "SP01",
-          "title": "In Bezug auf Gott",
+          "title": {
+            "de": "In Bezug auf Gott"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -370,21 +472,29 @@
         {
           "type": "radiogroup",
           "name": "SP02",
-          "title": "Verlust des Glaubens",
+          "title": {
+            "de": "Verlust des Glaubens"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
         }
       ],
-      "title": "Spirituelle / religiöse Probleme"
+      "title": {
+        "de": "Spirituelle / religiöse Probleme"
+      }
     },
     {
       "name": "page6",
@@ -393,22 +503,27 @@
           "type": "html",
           "name": "KP00",
           "html": {
-            "default": "Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich JA oder NEIN an.",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
         {
           "type": "radiogroup",
           "name": "KP01",
-          "title": "Schmerzen",
+          "title": {
+            "de": "Schmerzen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -416,15 +531,21 @@
         {
           "type": "radiogroup",
           "name": "KP02",
-          "title": "Übelkeit",
+          "title": {
+            "de": "Übelkeit"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -432,15 +553,21 @@
         {
           "type": "radiogroup",
           "name": "KP03",
-          "title": "Erschöpfung",
+          "title": {
+            "de": "Erschöpfung"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -448,15 +575,21 @@
         {
           "type": "radiogroup",
           "name": "KP04",
-          "title": "Schlaf",
+          "title": {
+            "de": "Schlaf"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -464,15 +597,21 @@
         {
           "type": "radiogroup",
           "name": "KP05",
-          "title": "Bewegung / Mobilität",
+          "title": {
+            "de": "Bewegung / Mobilität"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -480,15 +619,21 @@
         {
           "type": "radiogroup",
           "name": "KP06",
-          "title": "Waschen, Ankleiden",
+          "title": {
+            "de": "Waschen, Ankleiden"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -496,15 +641,21 @@
         {
           "type": "radiogroup",
           "name": "KP07",
-          "title": "Äußeres Erscheinungsbild",
+          "title": {
+            "de": "Äußeres Erscheinungsbild"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -512,15 +663,21 @@
         {
           "type": "radiogroup",
           "name": "KP08",
-          "title": "Atmung",
+          "title": {
+            "de": "Atmung"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -528,15 +685,21 @@
         {
           "type": "radiogroup",
           "name": "KP09",
-          "title": "Entzündungen im Mundbereich",
+          "title": {
+            "de": "Entzündungen im Mundbereich"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -544,15 +707,21 @@
         {
           "type": "radiogroup",
           "name": "KP10",
-          "title": "Essen / Ernährung",
+          "title": {
+            "de": "Essen / Ernährung"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -560,15 +729,21 @@
         {
           "type": "radiogroup",
           "name": "KP11",
-          "title": "Verdauungsstörungen",
+          "title": {
+            "de": "Verdauungsstörungen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -576,15 +751,21 @@
         {
           "type": "radiogroup",
           "name": "KP12",
-          "title": "Verstopfung",
+          "title": {
+            "de": "Verstopfung"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -592,15 +773,21 @@
         {
           "type": "radiogroup",
           "name": "KP13",
-          "title": "Durchfall",
+          "title": {
+            "de": "Durchfall"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -608,15 +795,21 @@
         {
           "type": "radiogroup",
           "name": "KP14",
-          "title": "Veränderung beim Wasser lassen",
+          "title": {
+            "de": "Veränderung beim Wasser lassen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -624,15 +817,21 @@
         {
           "type": "radiogroup",
           "name": "KP15",
-          "title": "Fieber",
+          "title": {
+            "de": "Fieber"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -640,15 +839,21 @@
         {
           "type": "radiogroup",
           "name": "KP16",
-          "title": "Trockene / juckende Haut",
+          "title": {
+            "de": "Trockene / juckende Haut"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -656,15 +861,21 @@
         {
           "type": "radiogroup",
           "name": "KP17",
-          "title": "Trockene / verstopfte Nase",
+          "title": {
+            "de": "Trockene / verstopfte Nase"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -672,15 +883,21 @@
         {
           "type": "radiogroup",
           "name": "KP18",
-          "title": "Kribbeln in den Händen / Füßen",
+          "title": {
+            "de": "Kribbeln in den Händen / Füßen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -688,15 +905,21 @@
         {
           "type": "radiogroup",
           "name": "KP19",
-          "title": "Angeschwollen / aufgedunsen fühlen",
+          "title": {
+            "de": "Angeschwollen / aufgedunsen fühlen"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -704,15 +927,21 @@
         {
           "type": "radiogroup",
           "name": "KP20",
-          "title": "Hitzewallungen / Schweißausbrüche",
+          "title": {
+            "de": "Hitzewallungen / Schweißausbrüche"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -720,15 +949,21 @@
         {
           "type": "radiogroup",
           "name": "KP21",
-          "title": "Schwindel",
+          "title": {
+            "de": "Schwindel"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -736,15 +971,21 @@
         {
           "type": "radiogroup",
           "name": "KP22",
-          "title": "Gedächtnis / Konzentration",
+          "title": {
+            "de": "Gedächtnis / Konzentration"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
@@ -752,21 +993,29 @@
         {
           "type": "radiogroup",
           "name": "KP23",
-          "title": "Sexuelle Probleme",
+          "title": {
+            "de": "Sexuelle Probleme"
+          },
           "choices": [
             {
               "value": "true",
-              "text": "Ja"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "Nein"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
         }
       ],
-      "title": "Körperliche Probleme"
+      "title": {
+        "de": "Körperliche Probleme"
+      }
     },
     {
       "name": "page7",
@@ -774,18 +1023,28 @@
         {
           "type": "comment",
           "name": "other",
-          "title": "Sonstige Probleme",
+          "title": {
+            "de": "Sonstige Probleme"
+          },
           "rows": 5
         }
-      ],
-      "title": "Körperliche Probleme"
+      ]
     }
   ],
-  "showPageNumbers": true,
-  "showQuestionNumbers": "off",
-  "showProgressBar": "top",
-  "startSurveyText": "Starten",
-  "pagePrevText": "Zurück",
-  "pageNextText": "Weiter",
-  "completeText": "Fertig"
+  "startSurveyText": {
+    "default": "Start",
+    "de": "Starten"
+  },
+  "pagePrevText": {
+    "default": "Back",
+    "de": "Zurück"
+  },
+  "pageNextText": {
+    "default": "Next",
+    "de": "Weiter"
+  },
+  "completeText": {
+    "default": "Save",
+    "de": "Speichern"
+  }
 }
