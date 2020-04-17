@@ -13,6 +13,7 @@ export abstract class AbstractComponent implements OnDestroy {
     }
     return this._destroy$;
   }
+
   ngOnDestroy() {
     if (this._destroy$) {
       this._destroy$.next(true);
