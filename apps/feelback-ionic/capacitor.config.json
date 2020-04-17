@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.app",
+  "appName": "feelback",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

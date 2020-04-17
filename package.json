@@ -51,7 +51,15 @@
     "sync.ionic.feelback": "cd apps/ionic-feelback && npm run cap.copy",
     "test": "ng test",
     "update": "ng update @nrwl/workspace",
-    "workspace-schematic": "nx workspace-schematic"
+    "workspace-schematic": "nx workspace-schematic",
+    "build.feelback.ionic": "nx build feelback-ionic",
+    "prepare.feelback.ionic": "npm run clean && npm run clean.feelback.ionic && npm run build.feelback.ionic",
+    "prepare.feelback.ionic.ios": "npm run prepare.feelback.ionic && cd apps/feelback-ionic && npm run cap.add.ios",
+    "prepare.feelback.ionic.android": "npm run prepare.feelback.ionic && cd apps/feelback-ionic && npm run cap.add.android",
+    "open.feelback.ionic.ios": "cd apps/feelback-ionic && npm run cap.ios",
+    "open.feelback.ionic.android": "cd apps/feelback-ionic && npm run cap.android",
+    "sync.feelback.ionic": "cd apps/feelback-ionic && npm run cap.copy",
+    "clean.feelback.ionic": "cd apps/feelback-ionic && npx rimraf -- hooks node_modules platforms www plugins ios android package-lock.json && npm i && rimraf -- package-lock.json"
   },
   "husky": {
     "hooks": {
@@ -180,6 +188,7 @@
     "@types/jasminewd2": "~2.0.8",
     "@types/jest": "~25.2.1",
     "@types/lodash": "^4.14.149",
+    "@types/mocha": "^5.2.7",
     "@types/node": "~13.11.0",
     "@types/passport": "^1.0.3",
     "@types/passport-jwt": "^3.0.3",
@@ -222,7 +231,8 @@
     "npm": "6.11.x"
   },
   "xplat": {
-    "prefix": "cancerlog",
-    "framework": "angular"
+    "prefix": "feelback",
+    "framework": "angular",
+    "groupByName": true
   }
 }
