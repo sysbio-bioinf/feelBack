@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { StartPageRoutingModule } from './start-routing.module';
 import { StartPage } from './start.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { StartPage } from './start.page';
     IonicModule,
     StartPageRoutingModule,
     ComponentsModule,
+    TranslateModule.forChild(),
   ],
   declarations: [StartPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,9 +1,42 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
-    <ion-title>tutorial</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        color="primary"
+        (click)="this.navigateToStart()"
+        [hidden]="!showSkip"
+        >{{ 'app.general.back' | translate }}</ion-button
+      >
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-slides
+    #slides
+    (ionSlideWillChange)="onSlideChangeStart($event)"
+    pager="true"
+  >
+    <ion-slide *ngFor="let slide of this.tutorialSlides; let i = index">
+      <img src="{{ slide.image }}" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
 
+      <div
+        *ngIf="i !== (this.tutorialSlides.length - 1);then description else button"
+      ></div>
+
+      <ng-template #description>
+        <p [innerHTML]="slide.text"></p>
+      </ng-template>
+
+      <ng-template #button>
+        <ion-button
+          *ngIf="i === (this.tutorialSlides.length-1)"
+          fill="clear"
+          (click)="navigateToStart()"
+          >{{ slide.text }}</ion-button
+        >
+      </ng-template>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

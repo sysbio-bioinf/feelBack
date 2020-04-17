@@ -1,9 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>start</ion-title>
-  </ion-toolbar>
-</ion-header>
+<feelback-header
+  [title]="'app.pages.start.title' | translate"
+></feelback-header>
 
-<ion-content>
-
+<ion-content padding>
+  <br /><br />
+  <ion-button
+    size="large"
+    expand="block"
+    color="primary"
+    fill="outline"
+    (click)="this.navigateToLogin()"
+  >
+    {{ 'app.pages.start.login' | translate }}
+  </ion-button>
+  <br /><br />
+  <ion-button
+    id="LoginButtonAnonymous"
+    class="loginbutton"
+    size="large"
+    expand="block"
+    color="medium"
+    fill="outline"
+    (click)="this.loginAsAnonymous()"
+  >
+    {{ 'app.pages.start.anonymous' | translate }}
+  </ion-button>
 </ion-content>
+
+<ion-footer>
+  <ion-button
+    fill="clear"
+    size="normal"
+    expand="block"
+    (click)="this.navigateToTutorial()"
+  >
+    {{ 'app.pages.start.tutorial' | translate }}
+  </ion-button>
+</ion-footer>
