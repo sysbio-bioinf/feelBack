@@ -1,8 +1,8 @@
 {
-  "name": "feelback",
+  "name": "feelback-ionic",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "description": "An Ionic project",
+  "author": "Johannes Schobel",
+  "description": "FeelBack Mobile Application",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "cap.add.ios": "npx cap add ios",
@@ -10,14 +10,17 @@
     "cap.ios": "npx cap open ios",
     "cap.android": "npx cap open android",
     "cap.copy": "npx cap copy",
-    "cap.update": "npx cap update"
+    "cap.update": "npx cap update",
+    "gen-resources": "ionic cordova resources android && node scripts/resource-generator.js"
   },
   "dependencies": {
-    "@capacitor/android": "~2.0.0",
-    "@capacitor/core": "~2.0.0",
-    "@capacitor/ios": "~2.0.0"
+    "@capacitor/android": "^2.0.1",
+    "@capacitor/core": "~2.0.1",
+    "@capacitor/ios": "~2.0.1",
+    "cordova-plugin-file": "^6.0.2",
+    "phonegap-plugin-barcodescanner": "^8.1.0"
   },
   "devDependencies": {
-    "@capacitor/cli": "~2.0.0"
+    "@capacitor/cli": "^2.0.1"
   }
 }
