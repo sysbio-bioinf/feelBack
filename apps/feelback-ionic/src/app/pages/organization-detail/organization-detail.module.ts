@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { ComponentsModule } from 'src/app/components/components.module';
 import { OrganizationDetailPageRoutingModule } from './organization-detail-routing.module';
-
 import { OrganizationDetailPage } from './organization-detail.page';
 
 @NgModule({
@@ -13,8 +12,10 @@ import { OrganizationDetailPage } from './organization-detail.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    OrganizationDetailPageRoutingModule
+    OrganizationDetailPageRoutingModule,
+    ComponentsModule,
+    TranslateModule.forChild(),
   ],
-  declarations: [OrganizationDetailPage]
+  declarations: [OrganizationDetailPage],
 })
 export class OrganizationDetailPageModule {}

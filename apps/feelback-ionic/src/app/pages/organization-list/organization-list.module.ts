@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { OrganizationListPageRoutingModule } from './organization-list-routing.module';
 
 import { OrganizationListPage } from './organization-list.page';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OrganizationListPageRoutingModule
+    OrganizationListPageRoutingModule,
+    ComponentsModule,
+    TranslateModule.forChild()
   ],
   declarations: [OrganizationListPage]
 })

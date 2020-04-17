@@ -1,3 +1,18 @@
-<p>
-  organization-card works!
-</p>
+<ion-card>
+  <div style="padding: 10px;">
+    <ion-img [src]="organization.logo"></ion-img>
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle color="medium">{{
+      organization.type
+    }}</ion-card-subtitle>
+    <ion-card-title color="primary">{{ organization.name }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content
+    ><ion-text>{{
+      this.stripTags.transform(
+        this.shortenPipe.transform(organization.description, 300, '...')
+      )
+    }}</ion-text></ion-card-content
+  >
+</ion-card>

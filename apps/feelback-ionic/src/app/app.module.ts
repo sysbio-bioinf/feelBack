@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlatformLanguageToken } from './misc/tokens';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgPipesModule } from 'ngx-pipes';
+import { GraphQLModule } from './modules/graphql.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `./assets/i18n/`, '.json');
@@ -34,6 +36,7 @@ export function platformLangFactory() {
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    NgPipesModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -42,6 +45,7 @@ export function platformLangFactory() {
       },
     }),
     MarkdownModule.forRoot({ loader: HttpClient }),
+    GraphQLModule,
   ],
   providers: [
     {
