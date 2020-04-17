@@ -1,0 +1,31 @@
+{
+  "app": {
+    "navigation": {
+      "back": "Zurück"
+    },
+
+    "menu": {
+      "title": "Menü",
+      "start": "Start",
+      "profile": "Profile",
+      "organizations": "Kliniken",
+      "settings": "Einstellungen",
+      "faq": "Hilfe",
+      "contact": "Kontakt",
+      "logout": "Abmelden"
+    },
+
+    "pages": {
+      "start": {
+        "title": "FeelBack",
+        "qrcode": "FeelBack Karte scannen",
+        "form": "Pseudonym eingeben",
+        "anonymous": "Anonym bleiben",
+        "tutorial": "Tutorial öffnen"
+      },
+      "settings": {
+        "title": "Einstellungen"
+      }
+    }
+  }
+}

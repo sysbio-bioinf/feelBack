@@ -1,0 +1,5 @@
+mutation attachPersonToScreening($screeningId: ID!, $personId: ID!) {
+  setPersonOnScreening(input: { id: $screeningId, relationId: $personId }) {
+    id
+  }
+}

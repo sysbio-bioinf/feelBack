@@ -1,0 +1,115 @@
+{
+  "app": {
+    "general": {
+      "back": "Back",
+      "loading": "Loading Data...",
+      "yes": "Yes",
+      "no": "No",
+      "cancel": "Cancel",
+      "ok": "Ok"
+    },
+
+    "dialogs": {
+      "exitApplication": {
+        "title": "Exit Application",
+        "text": "Are you sure you want to exit the application?"
+      },
+      "cancelQuestionnaire": {
+        "title": "Cancel",
+        "text": "Are you sure you want to cancel the questionnaire and return to the main page of the application?"
+      }
+    },
+
+    "menu": {
+      "title": "Menu",
+      "start": "Home",
+      "profile": "Profile",
+      "organizations": "Organizations",
+      "settings": "Settings",
+      "faq": "FAQs",
+      "contact": "Contact",
+      "logout": "Logout"
+    },
+
+    "components": {
+      "instrument-card": {
+        "selectLanguage": "Select Language",
+        "start": "Start"
+      }
+    },
+
+    "pages": {
+      "login": {
+        "title": "Login",
+        "scanner": {
+          "title": "Scan your FeelBack Card",
+          "text": "Scan your FeelBack Card",
+          "button": "Scan Card"
+        },
+        "form": {
+          "title": "Enter Your Pseudonym",
+          "text": "You can type in your pseudonym here.",
+          "pseudonym": "Pseudonym"
+        },
+        "submit": "Login"
+      },
+      "login-form": {
+        "title": "Login",
+        "text": "Login with your Pseudonym",
+        "form": {
+          "pseudonym": "Pseudonym",
+          "submit": "Login"
+        }
+      },
+      "login-qrcode": {
+        "title": "Login",
+        "text": "Login with your FeelBack Card",
+        "form": {
+          "submit": "Login"
+        }
+      },
+      "start": {
+        "title": "FeelBack",
+        "login": "Login with your ID",
+        "qrcode": "Scan FeelBack Card",
+        "form": "Enter Pseudonym",
+        "anonymous": "Private Mode",
+        "tutorial": "Open Tutorial"
+      },
+      "settings": {
+        "title": "Settings",
+        "form": {
+          "switchLanguage": "Switch Language"
+        }
+      },
+      "home": {
+        "title": "FeelBack"
+      },
+      "imprint": {
+        "title": "Imprint",
+        "contact": {
+          "title": "Contact",
+          "organization": "Ulm University",
+          "institute": "Institute of Medical Systems Biology",
+          "address1": "Albert-Einstein-Allee 11",
+          "address2": "89081 Ulm, Germany",
+          "phone": "+49 / (0)731 / 50 24500",
+          "fax": "+49 / (0)731 / 50 24502",
+          "email": "hans.kestler@uni-ulm.de"
+        },
+        "team": {
+          "title": "Team"
+        }
+      },
+      "organization-list": {
+        "title": "Organizations"
+      },
+      "organization-detail": {
+        "title": "Detail"
+      },
+      "instrument-list": {
+        "title": "Instruments"
+      }
+    }
+  }
+}
