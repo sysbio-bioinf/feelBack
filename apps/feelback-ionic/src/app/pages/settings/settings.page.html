@@ -1,16 +1,17 @@
 <feelback-header
   [title]="'app.pages.settings.title' | translate"
   [showNavButton]="true"
-></feelback-header>
+>
+</feelback-header>
 
 <ion-content>
   <ion-item>
     <ion-icon slot="start" name="language-outline"></ion-icon>
-    <ion-label
-      >{{ 'app.pages.settings.form.switchLanguage' | translate }}</ion-label
-    >
+    <ion-label>
+      {{ 'app.pages.settings.form.switchLanguage' | translate }}
+    </ion-label>
     <ion-select
-      value="notifications"
+      value="{{ this.currentLanguage }}"
       interface="action-sheet"
       cancelText="{{ 'app.general.cancel' | translate }}"
       (ionChange)="this.switchLanguage($event)"

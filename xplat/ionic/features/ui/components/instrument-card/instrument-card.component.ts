@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InstrumentCardBaseComponent } from '@cancerlog/features';
-import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
-import { Instrument } from '@cancerlog/core/models/mobile';
-import * as Survey from 'survey-angular';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { Instrument } from '@cancerlog/core/models/mobile';
+import { InstrumentCardBaseComponent } from '@cancerlog/features';
+import { TranslateService } from '@ngx-translate/core';
+import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
+import * as Survey from 'survey-angular';
 
 @Component({
   selector: 'cancerlog-instrument-card',

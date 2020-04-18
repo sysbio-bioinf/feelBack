@@ -1,16 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ShortenPipe, StripTagsPipe } from 'ngx-pipes';
-import * as Survey from 'survey-angular';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { Instrument } from 'src/app/models/instrument.model';
+import * as Survey from 'survey-angular';
 
 @Component({
   selector: 'feelback-instrument-card',
   templateUrl: './instrument-card.component.html',
   styleUrls: ['./instrument-card.component.scss'],
-  providers: [StripTagsPipe, ShortenPipe],
 })
 export class InstrumentCardComponent extends AbstractComponent
   implements OnInit {
@@ -19,8 +17,6 @@ export class InstrumentCardComponent extends AbstractComponent
   selectedLanguage: string;
 
   constructor(
-    readonly shortenPipe: ShortenPipe,
-    readonly stripTags: StripTagsPipe,
     readonly translateService: TranslateService,
     readonly router: Router,
   ) {

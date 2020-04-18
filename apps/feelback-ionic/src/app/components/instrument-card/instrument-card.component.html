@@ -11,16 +11,12 @@
     </ion-card-header>
     <ion-card-content>
       <ion-text>
-        {{
-          this.stripTags.transform(
-            this.shortenPipe.transform(instrument.description, 300, '...')
-          )
-        }}
+        {{ instrument.description | stripTags | shorten: 300:'...' }}
       </ion-text>
       <ion-item>
-        <ion-label>{{
-          'app.components.instrument-card.selectLanguage' | translate
-        }}</ion-label>
+        <ion-label>
+          {{ 'app.components.instrument-card.selectLanguage' | translate }}
+        </ion-label>
         <ion-select
           okText="{{ 'app.general.ok' | translate }}"
           cancelText="{{ 'app.general.cancel' | translate }}"

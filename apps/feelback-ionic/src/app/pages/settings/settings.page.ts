@@ -8,13 +8,18 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage extends AbstractComponent implements OnInit {
+  currentLanguage: string;
+
   constructor(private translateService: TranslateService) {
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentLanguage = this.translateService.currentLang;
+  }
 
   switchLanguage(event: CustomEvent) {
     this.translateService.use(event.detail.value);
+    this.currentLanguage = this.translateService.currentLang;
   }
 }

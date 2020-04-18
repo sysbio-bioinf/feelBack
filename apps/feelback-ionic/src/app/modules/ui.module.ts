@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgPipesModule } from 'ngx-pipes';
@@ -13,5 +13,6 @@ import { NgPipesModule } from 'ngx-pipes';
     NgPipesModule,
   ],
   exports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UIModule {}
