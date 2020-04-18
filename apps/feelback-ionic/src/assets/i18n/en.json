@@ -53,20 +53,9 @@
         },
         "submit": "Login"
       },
-      "login-form": {
-        "title": "Login",
-        "text": "Login with your Pseudonym",
-        "form": {
-          "pseudonym": "Pseudonym",
-          "submit": "Login"
-        }
-      },
-      "login-qrcode": {
-        "title": "Login",
-        "text": "Login with your FeelBack Card",
-        "form": {
-          "submit": "Login"
-        }
+      "survey": {
+        "back": "Back to Home",
+        "print": "Print Results"
       },
       "start": {
         "title": "FeelBack",

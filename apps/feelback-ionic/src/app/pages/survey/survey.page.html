@@ -1,9 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>survey</ion-title>
-  </ion-toolbar>
-</ion-header>
+<feelback-header
+  *ngIf="this.instrument"
+  [title]="this.instrument.name"
+></feelback-header>
 
 <ion-content>
-
+  <feelback-survey-view
+    *ngIf="this.instrument"
+    [instrument]="this.instrument"
+    [selectedLanguage]="this.selectedLanguage"
+  ></feelback-survey-view>
 </ion-content>

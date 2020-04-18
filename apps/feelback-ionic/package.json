@@ -18,6 +18,7 @@
     "@capacitor/core": "~2.0.1",
     "@capacitor/ios": "~2.0.1",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-printer": "^0.8.0",
     "phonegap-plugin-barcodescanner": "^8.1.0"
   },
   "devDependencies": {
