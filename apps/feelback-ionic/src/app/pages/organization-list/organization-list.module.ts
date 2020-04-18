@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OrganizationListPageRoutingModule } from './organization-list-routing.module';
 
 import { OrganizationListPage } from './organization-list.page';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { ComponentsModule } from 'src/app/modules/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
