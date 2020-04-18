@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () =>
       import('./pages/menu/menu.module').then((m) => m.MenuPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth',

@@ -12,7 +12,8 @@ export class UserService {
   constructor() {}
 
   loginWithPseudonym(pseudonym: string) {
-    // do something
+    // TODO make GraphQL request to service
+
     this.loggedIn = true;
     this.pseudonym = pseudonym;
   }
