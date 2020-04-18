@@ -1,69 +1,28 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule, Inject } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Inject, NgModule } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import {
-  TranslateLoader,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IonicModule } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { MarkdownModule } from 'ngx-markdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlatformLanguageToken } from './misc/tokens';
-import { MarkdownModule } from 'ngx-markdown';
-import { NgPipesModule } from 'ngx-pipes';
+import { CoreModule } from './modules/core.module';
 import { GraphQLModule } from './modules/graphql.module';
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, `./assets/i18n/`, '.json');
-}
-
-export function platformLangFactory() {
-  const browserLang = window.navigator.language || 'en'; // fallback English
-  // browser language has 2 codes, ex: 'en-US'
-  return browserLang.split('-')[0];
-}
+import { SharedModule } from './modules/shared.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     IonicModule.forRoot(),
+    CoreModule,
+    SharedModule,
     AppRoutingModule,
-    NgPipesModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
     MarkdownModule.forRoot({ loader: HttpClient }),
     GraphQLModule,
   ],
-  providers: [
-    {
-      provide: PlatformLanguageToken,
-      useFactory: platformLangFactory,
-    },
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  ],
+  providers: [StatusBar, SplashScreen],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(
-    @Inject(PlatformLanguageToken) lang: string,
-    translationService: TranslateService,
-  ) {
-    translationService.setDefaultLang('en');
-    translationService.use(lang);
-  }
-}
+export class AppModule {}
