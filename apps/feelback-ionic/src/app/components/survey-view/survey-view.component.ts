@@ -12,6 +12,7 @@ import { uuid } from 'uuidv4';
 import { StorageService } from 'src/app/services/storage.service';
 import { PrinterService } from 'src/app/services/printer.service';
 import { PrintOptions } from '@ionic-native/printer/ngx';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'feelback-survey-view',
@@ -131,7 +132,9 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     // ------------------------------------------
 
     this.survey.onComplete.add(async (survey: Survey.Survey) => {
-      const filename = new Date().toISOString();
+      const now = dayjs();
+      const filename = now.format('YYYY-MM-DD HH-mm-ss');
+
       await this.storageService.writeDataToFile(
         filename + '.json',
         JSON.stringify(survey.data),

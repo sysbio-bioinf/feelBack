@@ -12,7 +12,7 @@ export class StorageService {
 
   private getBaseDirectory(): string {
     if (this.platform.is('android')) {
-      return this.fileSystem.externalRootDirectory + '/Download/';
+      return this.fileSystem.externalRootDirectory + 'Download/';
     } else {
       console.error('Find me in StorageService');
       throw new Error('Device not found');
@@ -41,12 +41,4 @@ export class StorageService {
       replace: true,
     });
   }
-
-  // print(data: any, options?: PrintOptions) {
-  //   this.printer.isAvailable().then((success) => {
-  //     this.printer.print(data, options).then(() => {
-  //       console.log('file printed');
-  //     });
-  //   });
-  // }
 }

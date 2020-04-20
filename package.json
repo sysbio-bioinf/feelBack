@@ -116,6 +116,7 @@
     "core-js": "^3.6.4",
     "cuid": "^2.1.8",
     "dataloader": "^2.0.0",
+    "dayjs": "^1.8.24",
     "deepmerge": "^4.2.2",
     "dotenv": "8.2.0",
     "env-var": "^6.0.4",
