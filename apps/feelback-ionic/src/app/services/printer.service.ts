@@ -8,15 +8,10 @@ export class PrinterService {
   constructor(private printer: Printer) {}
 
   printData(data: string, options?: PrintOptions) {
-    this.printer
-      .isAvailable()
-      .then((success) => {
-        this.printer.print(data, options).then(() => {
-          console.log('file printed');
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    this.printer.isAvailable().then((success) => {
+      this.printer.print(data, options).then(() => {
+        console.log('file printed');
       });
+    });
   }
 }

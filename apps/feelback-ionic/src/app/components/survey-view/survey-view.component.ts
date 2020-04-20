@@ -1,18 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PrintOptions } from '@ionic-native/printer/ngx';
 import { AlertController } from '@ionic/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import * as dayjs from 'dayjs';
 import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { CreateScreeningInput } from 'src/app/graphql/generated/feelback.graphql';
 import { Instrument } from 'src/app/models/instrument.model';
 import { ScreeningService } from 'src/app/services/api/screening.service';
+import { PrinterService } from 'src/app/services/printer.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 import * as Survey from 'survey-angular';
 import { uuid } from 'uuidv4';
-import { StorageService } from 'src/app/services/storage.service';
-import { PrinterService } from 'src/app/services/printer.service';
-import { PrintOptions } from '@ionic-native/printer/ngx';
-import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'feelback-survey-view',
@@ -239,7 +239,6 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
       duplex: false,
       orientation: 'portrait',
     };
-
     this.printerService.printData(this.printData, printOptions);
   }
 }
