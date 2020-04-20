@@ -74,6 +74,13 @@
       "home": {
         "title": "FeelBack"
       },
+      "profile": {
+        "title": "My Profile",
+        "pseudonym": "Pseudonym",
+        "toasts": {
+          "notLoggedIn": "You are not logged in. Therefore, we cannot get your profile!"
+        }
+      },
       "imprint": {
         "title": "Imprint",
         "contact": {

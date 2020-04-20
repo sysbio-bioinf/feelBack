@@ -1,0 +1,12 @@
+query getIdentityByPseudonym($pseudonym: String!) {
+  identityByPseudonym(pseudonym: $pseudonym) {
+    id
+    pseudonym
+    title
+    firstname
+    lastname
+  }
+}
+
+
+

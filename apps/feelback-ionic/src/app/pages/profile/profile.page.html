@@ -1,0 +1,39 @@
+<feelback-header
+  [title]="'app.pages.profile.title' | translate"
+  [showNavButton]="true"
+></feelback-header>
+
+<ion-content *ngIf="this.identity">
+  <ion-card>
+    <ion-card-content>
+      <ion-avatar>
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-avatar>
+    </ion-card-content>
+    <ion-card-header>
+      <ion-card-subtitle
+        >{{ 'app.pages.profile.pseudonym' | translate }}</ion-card-subtitle
+      >
+      <ion-card-title>{{ this.identity.pseudonym }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item *ngIf="this.identity.title">
+          <ion-label>
+            <p>{{ identity.title }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="this.identity.firstname">
+          <ion-label>
+            <p>{{ identity.firstname }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="this.identity.lastname">
+          <ion-label>
+            <p>{{ identity.lastname }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

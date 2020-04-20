@@ -30,6 +30,18 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'my',
+        children: [
+          {
+            path: 'profile',
+            loadChildren: () =>
+              import('./../profile/profile.module').then(
+                (m) => m.ProfilePageModule,
+              ),
+          },
+        ],
+      },
+      {
         path: 'organizations',
         children: [
           {
