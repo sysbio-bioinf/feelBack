@@ -61,6 +61,6 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
 
     this.userService.loginWithPseudonym(this.pseudonym);
 
-    this.router.navigate(['main', 'home']);
+    this.router.navigate(['main', 'home'], { replaceUrl: true });
   }
 }

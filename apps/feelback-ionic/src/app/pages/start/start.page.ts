@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from 'src/app/services/user.service';
 import { AbstractComponent } from '../../core/components/abstract.component';
 
 @Component({
@@ -11,7 +12,8 @@ import { AbstractComponent } from '../../core/components/abstract.component';
 export class StartPage extends AbstractComponent {
   constructor(
     readonly router: Router,
-    readonly translateService: TranslateService, // private userService: UserService,
+    readonly translateService: TranslateService,
+    readonly userService: UserService,
   ) {
     super();
   }
@@ -25,7 +27,7 @@ export class StartPage extends AbstractComponent {
   }
 
   loginAsAnonymous() {
-    // this.userService.loginAnonymous();
+    this.userService.loginAnonymous();
     this.router.navigate(['/main/home'], { replaceUrl: true });
   }
 }
