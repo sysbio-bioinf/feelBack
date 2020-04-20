@@ -32,26 +32,42 @@ export class ProfilePage extends AbstractComponent implements OnInit {
     this.router.navigate(['main', 'home'], { replaceUrl: true });
   }
 
-  ngOnInit() {
-    // if (!this.userService.pseudonym) {
-    //   const toast = this.toastController
-    //     .create({
-    //       message: this.translatePipe.transform('app.pages.profile.toasts.notLoggedIn'),
-    //       duration: 2000,
-    //     })
-    //     .then((toast) => {
-    //       toast.present();
-    //     });
-    //   this.navigateToHome();
-    // }
-  }
+  ngOnInit() {}
 
   async ionViewWillEnter() {
+    if (!this.userService.pseudonym) {
+      const toast = this.toastController
+        .create({
+          message: this.translatePipe.transform(
+            'app.pages.profile.toasts.notLoggedIn',
+          ),
+          duration: 2000,
+        })
+        .then((toast) => {
+          toast.present();
+        });
+      this.navigateToHome();
+      return;
+    }
+
     await this.presentLoading();
-    this.identity = await this.identityService.getIdentityByPseudonym('foobar');
+    this.identity = await this.identityService.getIdentityByPseudonym(
+      this.userService.pseudonym,
+    );
     await this.loading.dismiss();
 
-    console.log(this.identity);
+    if (!this.identity) {
+      const toast = this.toastController
+        .create({
+          message: this.translatePipe.transform('app.errors.api.noData'),
+          duration: 3000,
+        })
+        .then((toast) => {
+          toast.present();
+        });
+      this.navigateToHome();
+      return;
+    }
   }
 
   async presentLoading() {

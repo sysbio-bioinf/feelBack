@@ -20,6 +20,12 @@
       }
     },
 
+    "errors": {
+      "api": {
+        "noData": "No Data found"
+      }
+    },
+
     "menu": {
       "title": "Menu",
       "start": "Home",
