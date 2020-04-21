@@ -2,6 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { OrganizationDetailPage } from './organization-detail.page';
+import { RouterModule, Router } from '@angular/router';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { Apollo } from 'apollo-angular';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 describe('OrganizationDetailPage', () => {
   let component: OrganizationDetailPage;
@@ -9,8 +13,13 @@ describe('OrganizationDetailPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganizationDetailPage ],
-      imports: [IonicModule.forRoot()]
+      declarations: [OrganizationDetailPage],
+      imports: [
+        IonicModule.forRoot(),
+        RouterModule.forRoot([]),
+        TranslateModule.forRoot(),
+      ],
+      providers: [TranslatePipe, Apollo, HttpClient],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OrganizationDetailPage);
