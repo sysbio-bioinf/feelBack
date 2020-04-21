@@ -43,6 +43,7 @@
     "ng": "ng",
     "nx": "nx",
     "open.feelback.ionic.android": "cd apps/feelback-ionic && npm run cap.android",
+    "open.feelback.ionic.ios": "cd apps/feelback-ionic && npm run cap.ios",
     "prepare.feelback.ionic": "npm run clean && npm run clean.feelback.ionic && npm run build.feelback.ionic",
     "prepare.feelback.ionic.android": "npm run prepare.feelback.ionic && cd apps/feelback-ionic && npm run cap.add.android",
     "prepare.feelback.ionic.ios": "npm run prepare.feelback.ionic && cd apps/feelback-ionic && npm run cap.add.ios",
