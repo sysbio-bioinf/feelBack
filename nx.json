@@ -47,6 +47,9 @@
     },
     "feelback-ionic": {
       "tags": []
+    },
+    "features-ui": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
