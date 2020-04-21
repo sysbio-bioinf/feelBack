@@ -247,6 +247,10 @@ type DoctorEdge {
 input DoctorFilter {
   and: [DoctorFilter!]
   or: [DoctorFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
 }
@@ -258,6 +262,10 @@ input DoctorSort {
 }
 
 enum DoctorSortFields {
+  id
+  createdAt
+  updatedAt
+  version
   firstname
   lastname
 }
@@ -327,6 +335,10 @@ type IdentityEdge {
 input IdentityFilter {
   and: [IdentityFilter!]
   or: [IdentityFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
   pseudonym: StringFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
@@ -339,9 +351,30 @@ input IdentitySort {
 }
 
 enum IdentitySortFields {
+  id
+  createdAt
+  updatedAt
+  version
   pseudonym
   firstname
   lastname
+}
+
+input IDFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: ID
+  neq: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  like: ID
+  notLike: ID
+  iLike: ID
+  notILike: ID
+  in: [ID!]
+  notIn: [ID!]
 }
 
 """An Instrument resource for a survey"""
@@ -411,6 +444,10 @@ type InstrumentEdge {
 input InstrumentFilter {
   and: [InstrumentFilter!]
   or: [InstrumentFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
 }
@@ -422,6 +459,10 @@ input InstrumentSort {
 }
 
 enum InstrumentSortFields {
+  id
+  createdAt
+  updatedAt
+  version
   name
   type
 }
@@ -457,6 +498,19 @@ type Mutation {
   setInstrumentOnScreening(input: RelationInput!): Screening!
   setPersonOnScreening(input: RelationInput!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
+}
+
+input NumberFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: Float
+  neq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  in: [Float!]
+  notIn: [Float!]
 }
 
 """An Organization resource"""
@@ -529,6 +583,10 @@ type OrganizationEdge {
 input OrganizationFilter {
   and: [OrganizationFilter!]
   or: [OrganizationFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
 }
@@ -540,6 +598,10 @@ input OrganizationSort {
 }
 
 enum OrganizationSortFields {
+  id
+  createdAt
+  updatedAt
+  version
   name
   type
 }
@@ -600,6 +662,10 @@ type PersonEdge {
 input PersonFilter {
   and: [PersonFilter!]
   or: [PersonFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
   pseudonym: StringFieldComparison
 }
 
@@ -610,6 +676,10 @@ input PersonSort {
 }
 
 enum PersonSortFields {
+  id
+  createdAt
+  updatedAt
+  version
   pseudonym
 }
 
@@ -796,6 +866,10 @@ type ScreeningEdge {
 input ScreeningFilter {
   and: [ScreeningFilter!]
   or: [ScreeningFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
   instanceId: StringFieldComparison
   collectedAt: DateFieldComparison
   language: StringFieldComparison
@@ -810,6 +884,10 @@ input ScreeningSort {
 }
 
 enum ScreeningSortFields {
+  id
+  createdAt
+  updatedAt
+  version
   instanceId
   collectedAt
   language

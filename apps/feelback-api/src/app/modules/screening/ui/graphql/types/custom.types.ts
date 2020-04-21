@@ -11,7 +11,6 @@ import { ScreeningObject } from '../objects/screening.object';
 // FIXME: This results in a wrong type for GQL
 @InputType()
 export class ResolveOneScreeningInputType extends UpdateOneInputType(
-  ScreeningObject,
   ResolveScreeningInput,
 ) {
   @IsUUID('4')

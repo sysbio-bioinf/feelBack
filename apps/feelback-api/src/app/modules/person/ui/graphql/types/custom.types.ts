@@ -5,6 +5,6 @@ import { PersonObject } from '../objects/person.object';
 
 @InputType()
 export class CreateOnePersonInputType extends CreateOneInputType(
-  PersonObject,
+  'person',
   CreatePersonInput,
 ) {}
