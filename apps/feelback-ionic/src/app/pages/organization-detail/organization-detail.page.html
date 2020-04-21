@@ -5,7 +5,7 @@
 
 <ion-content>
   <ion-card *ngIf="this.organization">
-    <div style="padding: 10px;">
+    <div style="padding: 10px;" *ngIf="organization.logo">
       <ion-img [src]="organization.logo"></ion-img>
     </div>
     <ion-card-header>
@@ -15,7 +15,7 @@
       <ion-card-title color="primary">{{organization.name}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div [innerHtml]="organization.description"></div>
+      <div [innerHtml]="organization.description" *ngIf="organization.description"></div>
 
       <ion-list lines="full">
         <ion-item *ngIf="this.organization.address">
