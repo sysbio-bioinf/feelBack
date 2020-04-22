@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetOrganizationByIdGQL } from './graphql/generated/feelback.graphql';
 
 @Component({
-  selector: 'cancerlog-root',
+  selector: 'feelback-web-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

@@ -10,7 +10,7 @@
       },
       "root": "apps/feelback-web",
       "sourceRoot": "apps/feelback-web/src",
-      "prefix": "cancerlog",
+      "prefix": "feelback-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
