@@ -9,6 +9,8 @@ import { GetOrganizationByIdGQL } from './graphql/generated/feelback.graphql';
 export class AppComponent implements OnInit {
   title = 'feelback-web';
 
+  year = new Date().getFullYear();
+
   constructor(readonly getOrganizationService: GetOrganizationByIdGQL) {}
 
   async ngOnInit() {
