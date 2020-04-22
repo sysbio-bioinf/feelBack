@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './modules/graphql/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
     HttpClientModule,
     GraphQLModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

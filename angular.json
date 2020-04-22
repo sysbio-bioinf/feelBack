@@ -25,7 +25,10 @@
               "apps/feelback-web/src/favicon.ico",
               "apps/feelback-web/src/assets"
             ],
-            "styles": ["apps/feelback-web/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/feelback-web/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
