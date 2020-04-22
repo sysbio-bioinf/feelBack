@@ -12,44 +12,52 @@
   },
   "projects": {
     "feelback-web": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "feelback-web-e2e": {
-      "tags": [],
+      "tags": ["type:e2e"],
       "implicitDependencies": ["feelback-web"]
     },
     "feelback-api": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "api-config": {
-      "tags": []
+      "tags": ["type:lib"]
     },
     "util-core": {
-      "tags": []
+      "tags": ["type:lib"]
     },
     "api-core": {
-      "tags": []
+      "tags": ["type:lib"]
     },
     "api-application": {
-      "tags": []
+      "tags": ["type:lib"]
     },
     "api-authentication": {
-      "tags": []
+      "tags": ["type:lib"]
     },
     "util-connection": {
-      "tags": []
-    },
-    "libs": {
-      "tags": []
-    },
-    "xplat": {
-      "tags": []
+      "tags": ["type:lib"]
     },
     "feelback-ionic": {
-      "tags": []
+      "tags": ["type:app"]
     },
     "features-ui": {
-      "tags": []
+      "tags": ["type:lib"]
+    },
+    "feelback-admin": {
+      "tags": ["type:app"]
+    },
+    "feelback-admin-e2e": {
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["feelback-admin"]
+    },
+    "feelback-doctor": {
+      "tags": ["type:app"]
+    },
+    "feelback-doctor-e2e": {
+      "tags": ["type:e2e"],
+      "implicitDependencies": ["feelback-doctor"]
     }
   },
   "tasksRunnerOptions": {

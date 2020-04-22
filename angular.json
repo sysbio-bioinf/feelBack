@@ -524,6 +524,252 @@
           }
         }
       }
+    },
+    "feelback-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/feelback-admin",
+      "sourceRoot": "apps/feelback-admin/src",
+      "prefix": "cancerlog",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/feelback-admin",
+            "index": "apps/feelback-admin/src/index.html",
+            "main": "apps/feelback-admin/src/main.ts",
+            "polyfills": "apps/feelback-admin/src/polyfills.ts",
+            "tsConfig": "apps/feelback-admin/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/feelback-admin/src/favicon.ico",
+              "apps/feelback-admin/src/assets"
+            ],
+            "styles": ["apps/feelback-admin/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/feelback-admin/src/environments/environment.ts",
+                  "with": "apps/feelback-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "feelback-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "feelback-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "feelback-admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/feelback-admin/tsconfig.app.json",
+              "apps/feelback-admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/feelback-admin/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/feelback-admin/jest.config.js",
+            "tsConfig": "apps/feelback-admin/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/feelback-admin/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "feelback-admin-e2e": {
+      "root": "apps/feelback-admin-e2e",
+      "sourceRoot": "apps/feelback-admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/feelback-admin-e2e/cypress.json",
+            "tsConfig": "apps/feelback-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "feelback-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "feelback-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/feelback-admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/feelback-admin-e2e/**"]
+          }
+        }
+      }
+    },
+    "feelback-doctor": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/feelback-doctor",
+      "sourceRoot": "apps/feelback-doctor/src",
+      "prefix": "cancerlog",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/feelback-doctor",
+            "index": "apps/feelback-doctor/src/index.html",
+            "main": "apps/feelback-doctor/src/main.ts",
+            "polyfills": "apps/feelback-doctor/src/polyfills.ts",
+            "tsConfig": "apps/feelback-doctor/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/feelback-doctor/src/favicon.ico",
+              "apps/feelback-doctor/src/assets"
+            ],
+            "styles": ["apps/feelback-doctor/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/feelback-doctor/src/environments/environment.ts",
+                  "with": "apps/feelback-doctor/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "feelback-doctor:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "feelback-doctor:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "feelback-doctor:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/feelback-doctor/tsconfig.app.json",
+              "apps/feelback-doctor/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/feelback-doctor/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/feelback-doctor/jest.config.js",
+            "tsConfig": "apps/feelback-doctor/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/feelback-doctor/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "feelback-doctor-e2e": {
+      "root": "apps/feelback-doctor-e2e",
+      "sourceRoot": "apps/feelback-doctor-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/feelback-doctor-e2e/cypress.json",
+            "tsConfig": "apps/feelback-doctor-e2e/tsconfig.e2e.json",
+            "devServerTarget": "feelback-doctor:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "feelback-doctor:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/feelback-doctor-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/feelback-doctor-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
