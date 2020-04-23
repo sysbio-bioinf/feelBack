@@ -537,7 +537,7 @@
       },
       "root": "apps/feelback-admin",
       "sourceRoot": "apps/feelback-admin/src",
-      "prefix": "cancerlog",
+      "prefix": "feelback-admin",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -660,7 +660,7 @@
       },
       "root": "apps/feelback-doctor",
       "sourceRoot": "apps/feelback-doctor/src",
-      "prefix": "cancerlog",
+      "prefix": "feelback-doctor",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
