@@ -14,12 +14,9 @@ export class AppComponent implements OnInit {
   constructor(readonly getOrganizationService: GetOrganizationByIdGQL) {}
 
   async ngOnInit() {
-    console.log('hallo');
-
-    const asdf = await this.getOrganizationService
-      .fetch({ id: '61c0362c-33cd-4a32-b4cd-a435040fda84' })
-      .toPromise();
-
-    console.log(JSON.stringify(asdf.data.organization));
+    // const asdf = await this.getOrganizationService
+    //   .fetch({ id: '61c0362c-33cd-4a32-b4cd-a435040fda84' })
+    //   .toPromise();
+    // console.log(JSON.stringify(asdf.data.organization));
   }
 }
