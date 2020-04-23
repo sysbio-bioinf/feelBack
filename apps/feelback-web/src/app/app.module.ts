@@ -1,11 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core.module';
 import { GraphQLModule } from './modules/graphql.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from './modules/shared.module';
 
 @NgModule({
