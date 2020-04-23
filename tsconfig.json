@@ -28,7 +28,8 @@
       "@cancerlog/api/application": ["libs/api/application/src/index.ts"],
       "@cancerlog/api/authentication": ["libs/api/authentication/src/index.ts"],
       "@cancerlog/util/connection": ["libs/util/connection/src/index.ts"],
-      "@cancerlog/features/ui": ["libs/features/ui/src/index.ts"]
+      "@cancerlog/features/ui": ["libs/features/ui/src/index.ts"],
+      "@cancerlog/shared/misc": ["libs/shared/misc/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

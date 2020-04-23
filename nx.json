@@ -58,6 +58,9 @@
     "feelback-doctor-e2e": {
       "tags": ["type:e2e"],
       "implicitDependencies": ["feelback-doctor"]
+    },
+    "shared-misc": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
