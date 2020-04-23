@@ -8,7 +8,7 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { PlatformLanguageToken } from '../misc/tokens';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, `./assets/i18n/`, '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 export function platformLangFactory() {
