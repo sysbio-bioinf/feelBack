@@ -1,6 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Inject, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import {
   TranslateLoader,
   TranslateModule,
@@ -8,9 +7,10 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PlatformLanguageToken } from './../misc/tokens';
+import { BrowserModule } from '@angular/platform-browser';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/i18n', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 export function platformLangFactory() {
@@ -21,7 +21,6 @@ export function platformLangFactory() {
 
 @NgModule({
   imports: [
-    BrowserModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -43,7 +42,7 @@ export class CoreModule {
     @Inject(PlatformLanguageToken) lang: string,
     translationService: TranslateService,
   ) {
-    translationService.setDefaultLang('en');
-    translationService.use('en');
+    translationService.setDefaultLang(lang);
+    translationService.use(lang);
   }
 }
