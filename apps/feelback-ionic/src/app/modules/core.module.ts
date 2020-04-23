@@ -1,21 +1,18 @@
-import { NgModule, Inject } from '@angular/core';
-import { RouteReuseStrategy } from '@angular/router';
-import { IonicRouteStrategy } from '@ionic/angular';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { PlatformLanguageToken } from '../misc/tokens';
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
-export function platformLangFactory() {
-  const browserLang = window.navigator.language || 'en'; // fallback English
-  // browser language has 2 codes, ex: 'en-US'
-  return browserLang.split('-')[0];
-}
+import { RouteReuseStrategy } from '@angular/router';
+import {
+  createTranslateLoader,
+  platformLanguageFactory,
+  PlatformLanguageToken,
+} from '@cancerlog/shared/misc';
+import { IonicRouteStrategy } from '@ionic/angular';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService,
+} from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -36,7 +33,7 @@ export function platformLangFactory() {
     },
     {
       provide: PlatformLanguageToken,
-      useFactory: platformLangFactory,
+      useFactory: platformLanguageFactory,
     },
   ],
 })
