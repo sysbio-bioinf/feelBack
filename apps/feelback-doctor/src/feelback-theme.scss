@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$feelback-theme-primary: mat-palette($mat-blue, 700, 300, 900);
+$feelback-theme-accent: mat-palette($mat-light-blue);
+$feelback-theme-warn: mat-palette($mat-red, A200);
+
+$feelback-theme: mat-light-theme(
+    $feelback-theme-primary,
+    $feelback-theme-accent,
+    $feelback-theme-warn
+);
+
+@include angular-material-theme($feelback-theme);
