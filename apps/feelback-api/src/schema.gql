@@ -32,6 +32,17 @@ input BooleanFieldComparison {
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
+input CreateFaqInput {
+  """the question for this entry"""
+  question: String!
+
+  """the answer for this entry"""
+  answer: String!
+
+  """if this entry shall be activated"""
+  isActive: Boolean!
+}
+
 """Create a new (empty) identity"""
 input CreateIdentityInput {
   """The pseudonym of the identity"""
@@ -58,6 +69,11 @@ input CreateInstrumentInput {
 
   """what has changed so far"""
   changelog: String!
+}
+
+input CreateOneFaqInput {
+  """The record to create"""
+  faq: CreateFaqInput!
 }
 
 input CreateOneIdentityInput {
@@ -177,6 +193,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DeleteOneInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
 """A Doctor, Psychologist or Caregiver"""
 type Doctor {
   """The ID of this resource."""
@@ -285,6 +306,97 @@ type Evaluation {
 
   """The boolean result of the evaluation, NULL = failure"""
   result: Boolean
+}
+
+"""A FAQ entry"""
+type Faq {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Float!
+
+  """the question of this FAQ entry"""
+  question: String!
+
+  """the answer to this question"""
+  answer: String!
+
+  """indicates if this FAQ entry is active an can be displayed"""
+  isActive: Boolean!
+}
+
+type FaqConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [FaqEdge!]!
+}
+
+type FaqDeleteResponse {
+  """The ID of this resource."""
+  id: ID
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Float
+
+  """the question of this FAQ entry"""
+  question: String
+
+  """the answer to this question"""
+  answer: String
+
+  """indicates if this FAQ entry is active an can be displayed"""
+  isActive: Boolean
+}
+
+type FaqEdge {
+  """The node containing the Faq"""
+  node: Faq!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+input FaqFilter {
+  and: [FaqFilter!]
+  or: [FaqFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: NumberFieldComparison
+  isActive: BooleanFieldComparison
+}
+
+input FaqSort {
+  field: FaqSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum FaqSortFields {
+  id
+  createdAt
+  updatedAt
+  version
+  isActive
 }
 
 """Identity resource for an anonymized patient"""
@@ -498,6 +610,9 @@ type Mutation {
   setInstrumentOnScreening(input: RelationInput!): Screening!
   setPersonOnScreening(input: RelationInput!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
+  deleteOneFaq(input: DeleteOneInput!): FaqDeleteResponse!
+  updateOneFaq(input: UpdateOneFaqInput!): Faq!
+  createOneFaq(input: CreateOneFaqInput!): Faq!
 }
 
 input NumberFieldComparison {
@@ -753,6 +868,17 @@ type Query {
     pseudonym: String!
     instrument: String!
   ): ScreeningConnection!
+  faq(id: ID!): Faq
+  faqs(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: FaqFilter = {}
+
+    """Specify to sort results."""
+    sorting: [FaqSort!] = []
+  ): FaqConnection!
 }
 
 input RelationInput {
@@ -950,6 +1076,17 @@ input UpdateDoctorInput {
   settings: JSONObject!
 }
 
+input UpdateFaqInput {
+  """the question for this entry"""
+  question: String
+
+  """the answer for this entry"""
+  answer: String
+
+  """if this entry shall be activated"""
+  isActive: Boolean
+}
+
 """Update an Identity"""
 input UpdateIdentityInput {
   """The (new) title of this identity"""
@@ -990,6 +1127,14 @@ input UpdateOneDoctorInput {
 
   """The update to apply."""
   update: UpdateDoctorInput!
+}
+
+input UpdateOneFaqInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateFaqInput!
 }
 
 input UpdateOneIdentityInput {

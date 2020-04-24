@@ -6,6 +6,7 @@ import { InstrumentModule } from './instrument/instrument.module';
 import { OrganizationModule } from './organization/organization.module';
 import { PersonModule } from './person/person.module';
 import { ScreeningModule } from './screening/screening.module';
+import { FaqModule } from './faq/faq.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ScreeningModule } from './screening/screening.module';
     OrganizationModule,
     PersonModule,
     ScreeningModule,
+    FaqModule,
   ],
 })
 export class ApiModule {}
