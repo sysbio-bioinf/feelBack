@@ -349,7 +349,7 @@
       "root": "apps/feelback-ionic/",
       "sourceRoot": "apps/feelback-ionic/src",
       "projectType": "application",
-      "prefix": "feelback",
+      "prefix": "feelback-ionic",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
