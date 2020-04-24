@@ -2,9 +2,9 @@
 
 @include mat-core();
 
-$feelback-theme-primary: mat-palette($mat-blue, 700, 300, 900);
-$feelback-theme-accent: mat-palette($mat-light-blue);
-$feelback-theme-warn: mat-palette($mat-red, A200);
+$feelback-theme-primary: mat-palette($mat-blue);
+$feelback-theme-accent: mat-palette($mat-blue-grey);
+$feelback-theme-warn: mat-palette($mat-red);
 
 $feelback-theme: mat-light-theme(
     $feelback-theme-primary,
