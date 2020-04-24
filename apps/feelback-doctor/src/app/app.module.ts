@@ -1,17 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
+import { AppRoutingModule } from './app-routing.module';
+import { PatientListPage } from './pages/patient-list/patient-list.page';
+import { PatientDetailsPage } from './pages/patient-details/patient-details.page';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    PatientListPage,
+    PatientDetailsPage
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
-    MatSliderModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
