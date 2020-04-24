@@ -1,0 +1,19 @@
+query getFaqs($pagination: CursorPaging = {}) {
+  faqs(paging: $pagination) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        id
+        question
+        answer
+        isActive
+      }
+    }
+  }
+}

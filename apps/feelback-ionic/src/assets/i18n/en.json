@@ -111,6 +111,13 @@
       },
       "instrument-list": {
         "title": "Instruments"
+      },
+      "faq-list": {
+        "title": "FAQs"
+      },
+      "faq-detail": {
+        "title": "Detail",
+        "type": "FAQ"
       }
     }
   }

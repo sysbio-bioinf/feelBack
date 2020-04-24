@@ -1,37 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { Organization } from 'src/app/models/organization.model';
-import { OrganizationService } from 'src/app/services/api/organization.service';
+import { Faq } from 'src/app/models/faq.model';
+import { FaqService } from 'src/app/services/api/faq.service';
 
 @Component({
-  selector: 'feelback-organization-list',
-  templateUrl: './organization-list.page.html',
-  styleUrls: ['./organization-list.page.scss'],
+  selector: 'feelback-ionic-faq-list',
+  templateUrl: './faq-list.page.html',
+  styleUrls: ['./faq-list.page.scss'],
   providers: [TranslatePipe],
 })
-export class OrganizationListPage extends AbstractComponent {
-  organizations: Organization[];
+export class FaqListPage extends AbstractComponent implements OnInit {
+  faqs: Faq[];
   loading: HTMLIonLoadingElement;
 
   constructor(
     private router: Router,
     private loadingController: LoadingController,
-    private organizationService: OrganizationService,
     private translatePipe: TranslatePipe,
+    private faqService: FaqService,
   ) {
     super();
   }
 
-  showDetails(id: string) {
-    this.router.navigate(['main', 'organizations', id]);
-  }
+  ngOnInit() {}
 
   async ionViewWillEnter() {
     await this.presentLoading();
-    this.organizations = await this.organizationService.getAll();
+    this.faqs = await this.faqService.getAll();
     await this.loading.dismiss();
   }
 
@@ -40,5 +38,9 @@ export class OrganizationListPage extends AbstractComponent {
       message: this.translatePipe.transform('app.general.loading'),
     });
     await this.loading.present();
+  }
+
+  showDetails(id: string) {
+    this.router.navigate(['main', 'faqs', id]);
   }
 }

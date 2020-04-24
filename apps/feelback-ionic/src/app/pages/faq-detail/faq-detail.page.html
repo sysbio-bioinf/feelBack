@@ -1,0 +1,18 @@
+<feelback-header
+  [title]="'app.pages.faq-detail.title' | translate"
+  [showBackButton]="true"
+></feelback-header>
+
+<ion-content *ngIf="this.faq">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle
+        >{{'app.pages.faq-detail.type' | translate}}</ion-card-subtitle
+      >
+      <ion-card-title>{{ this.faq.question }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label [innerHtml]="this.faq.answer"></ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,8 @@
+query getFaqById($id: ID!) {
+  faq(id: $id) {
+    id
+    question
+    answer
+    isActive
+  }
+}

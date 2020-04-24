@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AbstractComponent } from 'src/app/core/components/abstract.component';
 
 @Component({
   selector: 'feelback-menu',
@@ -34,7 +34,7 @@ export class MenuPage extends AbstractComponent {
     },
     {
       title: 'app.menu.faq',
-      url: '/main/faq',
+      url: '/main/faqs',
       icon: 'help-circle-outline',
     },
     {

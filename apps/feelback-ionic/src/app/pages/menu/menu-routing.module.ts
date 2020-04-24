@@ -72,6 +72,25 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'faqs',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./../faq-list/faq-list.module').then(
+                (m) => m.FaqListPageModule,
+              ),
+          },
+          {
+            path: ':id',
+            loadChildren: () =>
+              import('./../faq-detail/faq-detail.module').then(
+                (m) => m.FaqDetailPageModule,
+              ),
+          },
+        ],
+      },
     ],
   },
 ];

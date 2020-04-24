@@ -1,0 +1,19 @@
+<feelback-header
+  [title]="'app.pages.faq-list.title' | translate"
+  [showNavButton]="true"
+></feelback-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      *ngFor="let faq of this.faqs"
+      detail
+      button
+      (click)="showDetails(faq.id)"
+    >
+      <ion-label>
+        {{faq.question}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
