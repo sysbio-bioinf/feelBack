@@ -5,6 +5,7 @@
     "ms-vscode.vscode-typescript-tslint-plugin",
     "esbenp.prettier-vscode",
     "wayou.vscode-todo-highlight",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "kumar-harsh.graphql-for-vscode"
   ]
 }
