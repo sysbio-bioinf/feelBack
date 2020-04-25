@@ -5,10 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
+import { MainLayout } from './layouts/main/main.layout';
+import { LoginLayout } from './layouts/login/login.layout';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginLayout,
+    MainLayout
   ],
   imports: [
     BrowserModule,
