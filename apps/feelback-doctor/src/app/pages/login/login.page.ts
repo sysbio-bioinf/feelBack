@@ -13,6 +13,11 @@ export class LoginPage implements OnInit {
   ngOnInit(): void {
   }
 
+  public forgotPassword() {
+    // todo
+    console.log("forgot password")
+  }
+
   public login() {
     this.router.navigateByUrl('/patient-list');
   }

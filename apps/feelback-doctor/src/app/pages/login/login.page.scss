@@ -1,17 +1,31 @@
-mat-card{
+mat-card {
   max-width: 400px;
   margin: 0 auto;
 }
 
-mat-card-title{
+mat-card-title {
   margin-bottom: 1em;
 }
 
-mat-form-field{
+mat-form-field {
   width: 100%;
 }
 
-.button {
+mat-icon {
+  margin-right: 0.5em;
+}
+
+.remember-me {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin-bottom: 2em;
+  margin-left: 0.5em;
+}
+
+.action {
+  display: flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
