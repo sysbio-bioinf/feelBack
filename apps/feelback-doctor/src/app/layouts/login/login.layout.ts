@@ -12,4 +12,6 @@ export class LoginLayout implements OnInit {
   ngOnInit(): void {
   }
 
+  public date: Date = new Date();
+
 }

@@ -1,3 +1,13 @@
 <div class="login">
-  <router-outlet></router-outlet>
+  <header>
+    <img class="logo" src="assets/img/feelback-logo-dark.png" />
+    <mat-divider></mat-divider>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="mat-caption">
+    <mat-divider></mat-divider>
+    &copy; {{ date | date: "yyyy" }} Feelback
+  </footer>
 </div>
