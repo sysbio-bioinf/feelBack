@@ -1,6 +1,9 @@
 .feelback-logo {
   height: 50px;
 }
+.feelback-logo:focus {
+  outline: none;
+}
 
 .icon {
   padding: 0 14px;
