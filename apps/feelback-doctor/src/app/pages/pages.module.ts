@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [PatientListPage, PatientDetailsPage, LoginPage],
@@ -27,7 +28,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     FormsModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatChipsModule
   ],
 })
 export class PagesModule {}
