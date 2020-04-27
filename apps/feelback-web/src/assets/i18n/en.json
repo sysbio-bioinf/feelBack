@@ -15,6 +15,36 @@
       "start": {
         "title": "FeelBack",
         "tagline": "A Short description about FeelBack here",
+        "features": {
+          "title": "Features",
+          "headline": "Do more with our Application",
+          "features": {
+            "a": {
+              "title": "Instruments",
+              "headline": "Headline a",
+              "lead": "adfasf",
+              "text": "aasdfasdf adfa dsf as fa"
+            },
+            "b": {
+              "title": "blabla b",
+              "headline": "Headline b",
+              "lead": "adfasf b",
+              "text": "aasdfasdf adfa dsf as fa"
+            },
+            "c": {
+              "title": "blabla c",
+              "headline": "Headline c",
+              "lead": "adfasf c",
+              "text": "aasdfasdf adfa dsf as fa"
+            },
+            "d": {
+              "title": "blabla d",
+              "headline": "Headline d",
+              "lead": "adfasf d",
+              "text": "aasdfasdf adfa dsf as fa"
+            }
+          }
+        },
         "gallery": {
           "title": "Gallery",
           "headline": "FeelBack App Screenshots"
