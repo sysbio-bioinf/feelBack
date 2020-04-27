@@ -1,11 +1,10 @@
 {
   "app": {
-
     "title": "FeelBack",
 
     "nav": {
       "title": "FeelBack",
-      "home": "Start", 
+      "home": "Start",
       "features": "Features",
       "gallery": "Gallery",
       "contact": "Contact",
@@ -15,7 +14,29 @@
     "pages": {
       "start": {
         "title": "FeelBack",
-        "tagline": "A Short description about FeelBack here"
+        "tagline": "A Short description about FeelBack here",
+        "gallery": {
+          "title": "Gallery",
+          "headline": "FeelBack App Screenshots"
+        },
+        "faq": {
+          "title": "FAQs",
+          "headline": "Frequently Asked Questions"
+        },
+        "download": {
+          "title": "Download",
+          "headline": "Download",
+          "text": "The FeelBack application is available for all major mobile platforms.",
+          "android": "https://android-link",
+          "ios": "https://ios-link",
+          "info": "Works on Android 8 and above."
+        },
+        "contact": {
+          "organization": "Ulm University, Institute of Medical Systems Biology",
+          "address": "James Franck Ring 1, 89081 Ulm, Germany",
+          "email": "info@feelback-app.com",
+          "phone": "+49 / (0) 731 / xxx yyy zzz"
+        }
       }
     },
 

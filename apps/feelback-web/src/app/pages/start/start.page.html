@@ -390,8 +390,8 @@
 <div class="section light-bg" id="gallery">
   <div class="container">
     <div class="section-title">
-      <small>GALLERY</small>
-      <h3>App Screenshots</h3>
+      <small>{{'app.pages.start.gallery.title' | translate}}</small>
+      <h3>{{'app.pages.start.gallery.headline' | translate }}</h3>
     </div>
 
     <div class="img-gallery owl-carousel owl-theme">
@@ -407,8 +407,8 @@
 <div class="section">
   <div class="container">
     <div class="section-title">
-      <small>FAQ</small>
-      <h3>Frequently Asked Questions</h3>
+      <small>{{'app.pages.start.faq.title' | translate }}</small>
+      <h3>{{'app.pages.start.faq.headline' | translate}}</h3>
     </div>
 
     <div class="row pt-4">
@@ -451,22 +451,26 @@
       <div class="box-icon">
         <span class="ti-mobile gradient-fill ti-3x"></span>
       </div>
-      <h2>Download Anywhere</h2>
-      <p class="tagline">
-        Available for all major mobile and desktop platforms. Rapidiously
-        visualize optimal ROI rather than enterprise-wide methods of
-        empowerment.
-      </p>
+      <h2>{{'app.pages.start.download.headline' | translate }}</h2>
+      <p class="tagline">{{'app.pages.start.download.text' | translate}}</p>
       <div class="my-4">
-        <a href="#" class="btn btn-light"
-          ><img src="./assets/images/appleicon.png" alt="icon" /> App Store</a
+        <a
+          href="{{'app.pages.start.download.android' | translate}}"
+          class="btn btn-light"
+          target="_blank"
         >
-        <a href="#" class="btn btn-light"
-          ><img src="./assets/images/playicon.png" alt="icon" /> Google play</a
-        >
+          <img src="./assets/images/playicon.png" alt="icon" />
+          Google Play
+        </a>
+        <!-- 
+        <a href="#" class="btn btn-light">
+          <img src="./assets/images/appleicon.png" alt="icon" />
+          App Store
+        </a
+        > -->
       </div>
       <p class="text-primary">
-        <small><i>*Works on iOS 10.0.5+, Android Kitkat and above. </i></small>
+        <small><i>{{'app.pages.start.download.info' | translate}}</i></small>
       </p>
     </div>
   </div>
@@ -478,21 +482,30 @@
     <div class="row">
       <div class="col-lg-6 text-center text-lg-left">
         <p class="mb-2">
-          <span class="ti-location-pin mr-2"></span> 1485 Pacific St, Brooklyn,
-          NY 11216 USA
+          <span class="ti-home mr-2"></span>
+          {{ 'app.pages.start.contact.organization' | translate }}
+        </p>
+        <p class="mb-2">
+          <span class="ti-location-pin mr-2"></span>
+          {{ 'app.pages.start.contact.address' | translate }}
         </p>
         <div class="d-block d-sm-inline-block">
           <p class="mb-2">
             <span class="ti-email mr-2"></span>
-            <a class="mr-4" href="mailto:support@mobileapp.com"
-              >support@mobileapp.com</a
+            <a
+              class="mr-4"
+              href="mailto:{{ 'app.pages.start.contact.email' | translate }}"
             >
+              {{ 'app.pages.start.contact.email' | translate}}
+            </a>
           </p>
         </div>
         <div class="d-block d-sm-inline-block">
           <p class="mb-0">
             <span class="ti-headphone-alt mr-2"></span>
-            <a href="tel:51836362800">518-3636-2800</a>
+            <a href="tel:{{ 'app.pages.start.contact.phone' | translate }}">
+              {{ 'app.pages.start.contact.phone' | translate }}
+            </a>
           </p>
         </div>
       </div>
@@ -500,7 +513,6 @@
         <div class="social-icons">
           <a href="#"><span class="ti-facebook"></span></a>
           <a href="#"><span class="ti-twitter-alt"></span></a>
-          <a href="#"><span class="ti-instagram"></span></a>
         </div>
       </div>
     </div>
