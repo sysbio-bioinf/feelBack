@@ -9,6 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [PatientListPage, PatientDetailsPage, LoginPage],
@@ -20,6 +24,10 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatCheckboxModule,
     RouterModule,
+    MatTableModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
 })
 export class PagesModule {}
