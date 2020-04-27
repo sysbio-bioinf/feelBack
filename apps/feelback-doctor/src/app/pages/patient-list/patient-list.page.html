@@ -38,18 +38,8 @@
       <ng-container matColumnDef="consultation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Consultation</th>
         <td mat-cell *matCellDef="let element">
-          <img
-            *ngIf="element.consultation"
-            height="15"
-            src="assets/img/check.png"
-            alt="check"
-          />
-          <img
-            *ngIf="!element.consultation"
-            height="15"
-            src="assets/img/uncheck.png"
-            alt="uncheck"
-          />
+          <mat-icon *ngIf="element.consultation" color="accent">check</mat-icon>
+          <mat-icon *ngIf="!element.consultation" color="warn">close</mat-icon>
         </td>
       </ng-container>
 
