@@ -14,7 +14,7 @@ export class ParseUUIDPipe extends NestUUIDPipe {
 
   async transform(value: string, metadata: ArgumentMetadata): Promise<string> {
     try {
-      return await super.transform(value, metadata);
+      return super.transform(value, metadata);
     } catch (error) {
       throw new CoreException(
         {

@@ -14,7 +14,7 @@ export class ParseIntPipe extends NestParseIntPipe {
     }
 
     try {
-      return await super.transform(value, metadata);
+      return super.transform(value, metadata);
     } catch (error) {
       throw new CoreException(
         {
