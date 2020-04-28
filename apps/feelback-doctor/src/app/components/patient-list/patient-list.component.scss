@@ -1,0 +1,26 @@
+mat-card{
+  margin-top: 1em;
+}
+
+mat-form-field{
+  min-width: 200px;
+  width: 33%;
+  margin-left: 1em;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.action{
+  display: flex;
+}
+
+table {
+  width: 100%;
+}
+
+tr.mat-row:hover{
+  background: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}

@@ -1,22 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { PatientFilterComponent } from './patient-filter/patient-filter.component';
+import { MaterialModule } from '../modules/material.module';
+import { PatientListComponent } from './patient-list/patient-list.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PatientFilterComponent, PatientListComponent],
   imports: [
     CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    MatButtonModule,
     RouterModule,
+    MaterialModule
   ],
-  exports: [NavbarComponent],
+  exports: [NavbarComponent, PatientFilterComponent, PatientListComponent],
 })
 export class ComponentsModule {}

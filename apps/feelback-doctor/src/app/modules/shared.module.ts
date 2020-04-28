@@ -3,7 +3,7 @@ import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
-    ComponentsModule
+    ComponentsModule,
   ],
   exports: [
     ComponentsModule
