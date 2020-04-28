@@ -1,0 +1,22 @@
+query getInstruments($paging:CursorPaging={}) {
+  instruments(paging:$paging) {
+    pageInfo {
+      hasNextPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        description
+        type
+        image
+        payload
+        rules
+        changelog
+      }
+    }
+  }
+}
