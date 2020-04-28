@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GetInstrumentsGQL } from '../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-patient-details',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-details.page.scss'],
 })
 export class PatientDetailsPage implements OnInit {
-  constructor() {}
+  constructor(private instrumentService: GetInstrumentsGQL) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.instrumentService.fetch().subscribe(instrument => this.instrument = instrument);
+  }
+
+  public instrument: any;
 }

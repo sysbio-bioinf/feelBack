@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { LayoutsModule } from './layouts/layouts.module';
+import { GraphQLModule } from './modules/graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +16,8 @@ import { LayoutsModule } from './layouts/layouts.module';
     AppRoutingModule,
     PagesModule,
     LayoutsModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,10 +7,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core.module';
 import { GraphQLModule } from './modules/graphql.module';
 import { SharedModule } from './modules/shared.module';
-import { PatientListPage } from './patient-list/patient-list.page';
 
 @NgModule({
-  declarations: [AppComponent, PatientListPage],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

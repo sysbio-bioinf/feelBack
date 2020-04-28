@@ -18,6 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
+import { GraphQLModule } from '../modules/graphql.module';
 
 @NgModule({
   declarations: [PatientListPage, PatientDetailsPage, LoginPage],
@@ -39,5 +40,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatSliderModule,
     MatSelectModule,
   ],
+  providers: [GraphQLModule],
 })
 export class PagesModule {}
