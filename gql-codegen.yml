@@ -25,3 +25,13 @@ generates:
       - 'typescript-apollo-angular'
     config:
       nameSuffix: 'Document'
+
+  apps/feelback-doctor/src/app/graphql/generated/feelback.graphql.ts:
+      schema: 'apps/feelback-api/src/schema.gql'
+      documents: 'apps/feelback-doctor/src/app/graphql/src/**/*.gql'
+      plugins:
+        - 'typescript'
+        - 'typescript-operations'
+        - 'typescript-apollo-angular'
+      config:
+        nameSuffix: 'Document'
