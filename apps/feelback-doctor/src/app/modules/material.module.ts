@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatDividerModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatGridListModule,
   ],
   exports: [
     MatCardModule,
@@ -51,7 +53,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatDividerModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatGridListModule,
   ],
 })
 export class MaterialModule {}

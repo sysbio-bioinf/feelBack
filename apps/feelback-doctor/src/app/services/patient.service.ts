@@ -11,7 +11,7 @@ export class PatientService {
   getPatients(): Observable<Patient[]> {
     const patients = [
       {
-        id: 0,
+        id: '1dde001d-b1be-4244-9d5f-4f0820d877d5',
         name: 'test',
         organization: 'test',
         consultation: true,
@@ -20,7 +20,7 @@ export class PatientService {
         screenings: 76,
       },
       {
-        id: 1,
+        id: 'a0316bbf-4719-4fe3-b979-f7aa17ef915e',
         name: 'Patient A',
         organization: 'Organization A',
         consultation: true,
@@ -29,7 +29,7 @@ export class PatientService {
         screenings: 44,
       },
       {
-        id: 2,
+        id: '4f2dd126-37ba-415e-b3b2-fc06160d7099',
         name: 'Patient B',
         organization: 'Organization B',
         consultation: true,
@@ -38,7 +38,7 @@ export class PatientService {
         screenings: 99,
       },
       {
-        id: 3,
+        id: '535c13e6-e87a-4ddc-a9ee-4317b16280f1',
         name: 'Patient C',
         organization: 'Organization A',
         consultation: false,
@@ -47,7 +47,7 @@ export class PatientService {
         screenings: 5,
       },
       {
-        id: 4,
+        id: 'cc300649-3705-462c-8d88-5c72b2621986',
         name: 'Patient D',
         organization: 'Organization C',
         consultation: true,
@@ -56,7 +56,7 @@ export class PatientService {
         screenings: 96,
       },
       {
-        id: 5,
+        id: '5f8fcd45-fdd8-4be7-9b57-b1cb26ff378f',
         name: 'Patient E',
         organization: 'Organization A',
         consultation: true,
@@ -65,7 +65,7 @@ export class PatientService {
         screenings: 30,
       },
       {
-        id: 6,
+        id: 'e6139b0c-4c7b-48e7-b29d-87c3968dbff0',
         name: 'Patient F',
         organization: 'Organization C',
         consultation: false,
@@ -74,7 +74,7 @@ export class PatientService {
         screenings: 56,
       },
       {
-        id: 7,
+        id: 'c983f778-834b-4318-b383-8e2e1ea3ff13',
         name: 'Patient G',
         organization: 'Organization B',
         consultation: false,
@@ -86,11 +86,11 @@ export class PatientService {
     return of(patients);
   }
 
-  getPatientByName(name: string): Observable<Patient> {
+  getPatientById(id: string): Observable<Patient> {
     let patients = [];
     this.getPatients().subscribe((data) => (patients = data));
     for (const patient of patients) {
-      if (patient.name === name) {
+      if (patient.id === id) {
         return of(patient);
       }
     }

@@ -1,5 +1,5 @@
 export class Patient {
-  id: number;
+  id: string;
   name: string;
   organization: string;
   consultation: boolean;

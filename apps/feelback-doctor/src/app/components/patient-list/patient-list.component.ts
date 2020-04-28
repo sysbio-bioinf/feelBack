@@ -42,7 +42,7 @@ export class PatientListComponent implements OnInit {
 
   public selectPatient(patient: Patient) {
     this.router.navigateByUrl(
-      '/patient-details/' + patient.name + '/Distress Thermometer',
+      '/patient-details/' + patient.id + '/a1cf3754-9aab-4530-9818-735bf63e53c8',
     );
   }
 }
