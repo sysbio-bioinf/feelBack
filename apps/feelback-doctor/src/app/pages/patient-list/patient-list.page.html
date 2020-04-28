@@ -1,29 +1,84 @@
-<header>
-  <button id="toggle" mat-flat-button color="primary">Toggle filter</button>
-  <label id="filter-label">Quick filters:</label>
-  <mat-form-field>
-    <mat-label>Filter patients and organizations</mat-label>
-    <input
-      matInput
-      type="text"
-      (keyup)="applyFilter($event)"
-      autocomplete="off"
-    />
-  </mat-form-field>
-</header>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Toggle filter
+      </mat-panel-title>
+      <mat-panel-description>Set detailed filters to search patients</mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="mat-subheading-1">Filter organizations</div>
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle value="organizationA">
+        Organization A
+      </mat-button-toggle>
+      <mat-button-toggle value="organizationB">
+        Organization B
+      </mat-button-toggle>
+      <mat-button-toggle value="organizationC">
+        Organization C
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="mat-subheading-1">Filter consultation</div>
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle value="true">
+    Consultation <mat-icon color="accent">check</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="false">
+        Consultation <mat-icon color="warn">close</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="mat-subheading-1">Filter ratings</div>
+    <mat-form-field>
+      <mat-label>Show ratings</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let option of options" [value]="option.value">
+          {{option.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-slider 
+        color="primary"
+        max="100"
+        min="0"
+        value="50"
+        thumbLabel="true">
+    </mat-slider>
+    
+  </mat-expansion-panel>
+</mat-accordion>
+
 <mat-card>
   <mat-card-header>
     <mat-card-title>List</mat-card-title>
     <mat-card-subtitle>of Patients</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
-    ></mat-paginator>
+    <div class="action">
+      <mat-form-field>
+        <mat-label>Filter patients and organizations</mat-label>
+        <input
+          matInput
+          type="text"
+          (keyup)="applyFilter($event)"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <span class="spacer"></span>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
     <table mat-table matSort [dataSource]="dataSource">
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let patient; columns: displayedColumns" (click)="selectPatient(patient)"></tr>
+      <tr
+        mat-row
+        *matRowDef="let patient; columns: displayedColumns"
+        (click)="selectPatient(patient)"
+      ></tr>
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>

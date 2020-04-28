@@ -14,6 +14,10 @@ import { FormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [PatientListPage, PatientDetailsPage, LoginPage],
@@ -29,7 +33,11 @@ import { MatChipsModule } from '@angular/material/chips';
     FormsModule,
     MatPaginatorModule,
     MatSortModule,
-    MatChipsModule
+    MatChipsModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatSliderModule,
+    MatSelectModule
   ],
 })
 export class PagesModule {}

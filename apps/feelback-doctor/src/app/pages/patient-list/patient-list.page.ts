@@ -2,9 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PatientService } from '../../services/patient.service';
 import { Patient } from '../../models/Patient';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,9 +19,13 @@ export class PatientListPage implements OnInit {
     'consultation',
     'rating',
   ];
-  public selection: SelectionModel<Patient>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  public panelOpenState = false;
+  public options = [
+    {value: 'over'},
+    {value: 'under'}
+  ];
 
   constructor(private patientService: PatientService, private router: Router) {}
 
@@ -35,7 +38,6 @@ export class PatientListPage implements OnInit {
       );
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.selection = new SelectionModel<Patient>(false, []);
   }
 
   public applyFilter(event: Event) {
@@ -48,5 +50,4 @@ export class PatientListPage implements OnInit {
       '/patient-details/' + patient.name + '/Distress Thermometer',
     );
   }
-
 }
