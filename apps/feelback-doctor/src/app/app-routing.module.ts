@@ -18,7 +18,10 @@ const routes: Routes = [
     component: MainLayout,
     children: [
       { path: 'patient-list', component: PatientListPage },
-      { path: 'patient-details/:patient/:instrument', component: PatientDetailsPage },
+      {
+        path: 'patient-details/:patient/:instrument',
+        component: PatientDetailsPage,
+      },
     ],
   },
 ];
