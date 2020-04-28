@@ -3,19 +3,21 @@
     <div mat-card-avatar class="header-image"></div>
     <mat-card-title>{{ patient.name }}</mat-card-title>
     <mat-card-subtitle>{{ patient.organization }}</mat-card-subtitle>
+    <span class="spacer"></span>
+    <div class="stats">
+      <span class="stats-value" matTooltip="Rating" matTooltipPosition="above">
+        <mat-icon [color]="patient.rating > 50 ? 'accent' : 'warn'">star</mat-icon>
+        <span>{{ patient.rating }}</span>
+      </span>
+      <span class="stats-value" matTooltip="Instruments" matTooltipPosition="above">
+        <mat-icon>event_note</mat-icon>
+        <span>{{ patient.instruments }}</span>
+      </span>
+      <span class="stats-value" matTooltip="Screenings" matTooltipPosition="above">
+        <mat-icon>message</mat-icon>
+        <span>{{ patient.screenings }}</span>
+      </span>
+    </div>
   </mat-card-header>
-  <mat-card-content>
-    <div>
-      <label>Rating:</label>
-      <span>{{ patient.rating }}</span>
-    </div>
-    <div>
-      <label>Instruments:</label>
-      <span>{{ patient.instruments }}</span>
-    </div>
-    <div>
-      <label>Screenings:</label>
-      <span>{{ patient.screenings }}</span>
-    </div>
-  </mat-card-content>
+  <mat-card-content> </mat-card-content>
 </mat-card>
