@@ -7,15 +7,13 @@ import { PagesModule } from './pages/pages.module';
 import { LayoutsModule } from './layouts/layouts.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     PagesModule,
-    LayoutsModule
+    LayoutsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

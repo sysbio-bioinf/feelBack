@@ -11,13 +11,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSelectModule} from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [PatientListPage, PatientDetailsPage, LoginPage],
@@ -37,7 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatExpansionModule,
     MatButtonToggleModule,
     MatSliderModule,
-    MatSelectModule
+    MatSelectModule,
   ],
 })
 export class PagesModule {}
