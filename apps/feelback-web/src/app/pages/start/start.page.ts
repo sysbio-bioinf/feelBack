@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Feature } from '../../models/feature.model';
+import { FaqService } from '../../services/api/faq.service';
+import { CursorPaging } from '../../graphql/generated/feelback.graphql';
+import { Faq } from '../../models/faq.model';
 
 @Component({
   selector: 'feelback-web-start',
@@ -8,8 +11,9 @@ import { Feature } from '../../models/feature.model';
 })
 export class StartPage implements OnInit {
   features: Feature[] = [];
+  faqs: Faq[] = [];
 
-  constructor() {}
+  constructor(readonly faqService: FaqService) {}
 
   ngOnInit(): void {
     this.features.push(
@@ -42,5 +46,24 @@ export class StartPage implements OnInit {
         text: 'app.pages.start.features.features.d.text',
       },
     );
+
+    this.loadFaqs({ first: 10 });
+  }
+
+  loadFaqs(paging: CursorPaging = {}) {
+    this.faqService.getFaqs(paging).then((result) => {
+      const nodes = result.edges.map((entry) => {
+        return {
+          id: entry.node.id,
+          question: entry.node.question,
+          answer: entry.node.answer,
+        } as Faq;
+      });
+      this.faqs.push(...nodes);
+
+      if (result.pageInfo.hasNextPage === true) {
+        this.loadFaqs({ after: result.pageInfo.endCursor, first: 10 });
+      }
+    });
   }
 }
