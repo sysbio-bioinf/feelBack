@@ -1,35 +1,49 @@
-<div class="wrapper">
-  <div class="screenings">
-    <h1>Screenings</h1>
-    <div class="chart-wrapper">
-      <ngx-charts-line-chart
-        [scheme]="commonService.colorScheme"
-        xAxis="true"
-        yAxis="true"
-        yScaleMin="0"
-        yScaleMax="100"
-        [xAxisTicks]="commonService.xAxisTicks"
-        [curve]="commonService.curveStepAfter"
-        [results]="screenings"
-        (select)="selectScreening($event)"
-      >
-      </ngx-charts-line-chart>
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Screenings
+      </mat-panel-title>
+      <mat-panel-description>
+        Show screenings and categories
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="wrapper">
+      <div class="screenings">
+        <div class="chart-wrapper">
+          <ngx-charts-line-chart
+            [scheme]="commonService.colorScheme"
+            xAxis="true"
+            yAxis="true"
+            yScaleMin="0"
+            yScaleMax="100"
+            [xAxisTicks]="commonService.xAxisTicks"
+            [curve]="commonService.curveStepAfter"
+            [results]="screenings"
+            (select)="selectScreening($event)"
+          >
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+      <div class="categories">
+        <div class="chart-wrapper">
+          <ngx-charts-polar-chart
+            [scheme]="commonService.colorScheme"
+            showXAxisLabel="true"
+            showYAxisLabel="true"
+            xAxis="true"
+            yAxis="true"
+            labelTrimSize="35"
+            [curve]="commonService.curveLinear"
+            [results]="categories"
+          >
+          </ngx-charts-polar-chart>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="categories">
-    <h1>Categories</h1>
-    <div class="chart-wrapper">
-      <ngx-charts-polar-chart
-        [scheme]="commonService.colorScheme"
-        showXAxisLabel="true"
-        showYAxisLabel="true"
-        xAxis="true"
-        yAxis="true"
-        labelTrimSize="35"
-        [curve]="commonService.curveLinear"
-        [results]="categories"
-      >
-      </ngx-charts-polar-chart>
-    </div>
-  </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div *ngIf="screening.date" id="screening">
+  <h1>Screening of {{ screening.date }}</h1>
 </div>

@@ -1,23 +1,28 @@
-.wrapper{
+.wrapper {
   display: flex;
-    flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
 }
 
-.screenings{
+.screenings {
   flex: 0 0 70%;
   max-width: 70%;
 }
 
-.categories{
+.categories {
   flex: 0 0 30%;
   max-width: 30%;
 }
 
-.chart-wrapper{
+.chart-wrapper {
   height: 300px;
   width: 90%;
 }
 
 .ngx-charts .line-highlight {
   display: block !important;
+}
+
+#screening{
+  margin-top: 2em;
 }
