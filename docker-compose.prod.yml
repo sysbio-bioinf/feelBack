@@ -1,0 +1,90 @@
+version: '3.7'
+
+volumes:
+  data-db-feelback:
+    driver: local
+
+  data-db-identity:
+    driver: local
+
+  data-db-keycloak:
+    driver: local
+
+services:
+  feelback-web:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: feelback-web
+
+  pgadmin:
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGA_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD}
+
+  feelback-db:
+    restart: always
+    volumes:
+      - data-db-feelback:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${FB_DB_NAME}
+      POSTGRES_USER: ${FB_DB_USER}
+      POSTGRES_PASSWORD: ${FB_DB_PASSWORD}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  identity-db:
+    restart: always
+    volumes:
+      - data-db-identity:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${ID_DB_NAME}
+      POSTGRES_USER: ${ID_DB_USER}
+      POSTGRES_PASSWORD: ${ID_DB_PASSWORD}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  feelback-api:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: feelback-api
+
+  keycloak-db:
+    restart: always
+    volumes:
+      - data-db-keycloak:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB_NAME}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  keycloak:
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: keycloak-db
+      DB_DATABASE: ${KEYCLOAK_DB_NAME}
+      DB_SCHEMA: public
+      DB_USER: ${KEYCLOAK_DB_USER}
+      DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://keycloak:8080/auth']
+      interval: 30s
+      timeout: 5s
+      retries: 3

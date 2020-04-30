@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  feelback-web:
+    image: nginx
+    volumes:
+      - ./dist/apps/feelback-web:/usr/share/nginx/html
+      - ./dist/apps/feelback-web:/var/www/html
+      - ./docker/nginx/web.conf:/etc/nginx/nginx.conf
+    working_dir: /usr/share/nginx/html
+
+  pgadmin:
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGA_USER:-pgadmin}
+      PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD:-pgadmin}
+
+  feelback-db:
+    environment:
+      POSTGRES_DB: ${FB_DB_NAME:-postgres}
+      POSTGRES_USER: ${FB_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${FB_DB_PASSWORD:-postgres}
+
+  identity-db:
+    environment:
+      POSTGRES_DB: ${ID_DB_NAME:-postgres}
+      POSTGRES_USER: ${ID_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${ID_DB_PASSWORD:-postgres}
+
+  keycloak-db:
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB_NAME:-postgres}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+
+  keycloak:
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: keycloak_db
+      DB_DATABASE: ${KEYCLOAK_DB_NAME:-keycloak}
+      DB_SCHEMA: public
+      DB_USER: ${KEYCLOAK_DB_USER:-postgres}
+      DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-postgres}
+      KEYCLOAK_USER: ${KEYCLOAK_USER:-keycloak}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD:-keycloak}
+      KEYCLOAK_LOGLEVEL: INFO
+      PROXY_ADDRESS_FORWARDING: 'true'
