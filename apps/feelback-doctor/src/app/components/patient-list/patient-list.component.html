@@ -29,17 +29,20 @@
       ></tr>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-icon class="header-icon">face</mat-icon> Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="organization">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Organization</th>
-        <td mat-cell *matCellDef="let element">{{element.organization}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-icon class="header-icon">business</mat-icon> Organization</th>
+        <td mat-cell *matCellDef="let element">{{ element.organization }}</td>
       </ng-container>
 
       <ng-container matColumnDef="consultation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Consultation</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-icon class="header-icon">people</mat-icon> Consultation</th>
         <td mat-cell *matCellDef="let element">
           <mat-icon *ngIf="element.consultation" color="accent">check</mat-icon>
           <mat-icon *ngIf="!element.consultation" color="warn">close</mat-icon>
@@ -47,17 +50,33 @@
       </ng-container>
 
       <ng-container matColumnDef="rating">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rating</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-icon class="header-icon">star</mat-icon> Rating
+        </th>
         <td mat-cell *matCellDef="let element">
           <mat-chip-list>
             <mat-chip
               [color]="element.rating > 50 ? 'accent' : 'warn'"
               selected
             >
-              {{element.rating}}
+              {{ element.rating }}
             </mat-chip>
           </mat-chip-list>
         </td>
+      </ng-container>
+
+      <ng-container matColumnDef="instruments">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-icon class="header-icon">event_note</mat-icon>Instruments
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.instruments }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="screenings">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <mat-icon class="header-icon">collections</mat-icon>Screenings
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.screenings }}</td>
       </ng-container>
     </table>
   </mat-card-content>

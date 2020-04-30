@@ -18,6 +18,8 @@ export class PatientListComponent implements OnInit {
     'organization',
     'consultation',
     'rating',
+    'instruments',
+    'screenings'
   ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

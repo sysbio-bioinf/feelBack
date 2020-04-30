@@ -5,10 +5,19 @@
     <mat-card-subtitle>{{ patient.organization }}</mat-card-subtitle>
     <span class="spacer"></span>
     <div class="stats">
+      <span
+        class="stats-value"
+        matTooltip="Consultation"
+        matTooltipPosition="above"
+      >
+        <mat-icon>people</mat-icon>
+        <span class="consultation">
+          <mat-icon *ngIf="patient.consultation" color="accent">check</mat-icon>
+          <mat-icon *ngIf="!patient.consultation" color="warn">close</mat-icon>
+        </span>
+      </span>
       <span class="stats-value" matTooltip="Rating" matTooltipPosition="above">
-        <mat-icon [color]="patient.rating > 50 ? 'accent' : 'warn'"
-          >star</mat-icon
-        >
+        <mat-icon>star</mat-icon>
         <span>{{ patient.rating }}</span>
       </span>
       <span
@@ -24,7 +33,7 @@
         matTooltip="Screenings"
         matTooltipPosition="above"
       >
-        <mat-icon>message</mat-icon>
+        <mat-icon>collections</mat-icon>
         <span>{{ patient.screenings }}</span>
       </span>
     </div>
