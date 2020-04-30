@@ -8,7 +8,7 @@ import { Patient } from '../models/Patient';
 export class PatientService {
   constructor() {}
 
-  getPatients(): Observable<Patient[]> {
+  public getPatients(): Observable<Patient[]> {
     const patients = [
       {
         id: '1dde001d-b1be-4244-9d5f-4f0820d877d5',
@@ -86,7 +86,7 @@ export class PatientService {
     return of(patients);
   }
 
-  getPatientById(id: string): Observable<Patient> {
+  public getPatientById(id: string): Observable<Patient> {
     let patients = [];
     this.getPatients().subscribe((data) => (patients = data));
     for (const patient of patients) {

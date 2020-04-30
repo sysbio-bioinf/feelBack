@@ -3,13 +3,13 @@
     <h1>Screenings</h1>
     <div class="chart-wrapper">
       <ngx-charts-line-chart
-        [scheme]="colorScheme"
+        [scheme]="commonService.colorScheme"
         xAxis="true"
         yAxis="true"
         yScaleMin="0"
         yScaleMax="100"
-        [xAxisTicks]="xAxisTicks"
-        [curve]="curveStepAfter"
+        [xAxisTicks]="commonService.xAxisTicks"
+        [curve]="commonService.curveStepAfter"
         [results]="screenings"
         (select)="selectScreening($event)"
       >
@@ -20,13 +20,13 @@
     <h1>Categories</h1>
     <div class="chart-wrapper">
       <ngx-charts-polar-chart
-        [scheme]="colorScheme"
+        [scheme]="commonService.colorScheme"
         showXAxisLabel="true"
         showYAxisLabel="true"
         xAxis="true"
         yAxis="true"
         labelTrimSize="35"
-        [curve]="curveLinear"
+        [curve]="commonService.curveLinear"
         [results]="categories"
       >
       </ngx-charts-polar-chart>

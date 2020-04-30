@@ -9,10 +9,10 @@ export class ScreeningService {
 
   constructor() { }
 
-  getScreenings(): Observable<ChartSeries[]> {
+  public getScreenings(): Observable<ChartSeries[]> {
     const lineChart = [
       {
-        "name": "Ratings",
+        "name": "Rating",
         "series": [
           {
             "value": 58,
@@ -216,7 +216,7 @@ export class ScreeningService {
     return of(lineChart);
   }
 
-  getRadarChart(): Observable<ChartSeries[]> {
+  public getRadarChart(): Observable<ChartSeries[]> {
     const radarChart =  [
       {
         "name": "Category",

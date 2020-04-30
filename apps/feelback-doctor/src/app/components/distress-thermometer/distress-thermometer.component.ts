@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as shape from 'd3-shape';
 import { ChartDataPoint } from '../../models/ChartDataPoint';
 import { ChartSeries } from '../../models/ChartSeries';
 import { ScreeningService } from '../../services/screening.service';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',
@@ -12,26 +12,8 @@ import { ScreeningService } from '../../services/screening.service';
 })
 export class DistressThermometerComponent implements OnInit {
 
-  constructor(private screeningService: ScreeningService) { }
+  constructor(private screeningService: ScreeningService, public commonService: CommonService) { }
 
-  public xAxisTicks = [
-    new Date(2019, 0, 1),
-    new Date(2019, 1, 1),
-    new Date(2019, 2, 1),
-    new Date(2019, 3, 1),
-    new Date(2019, 4, 1),
-    new Date(2019, 5, 1),
-    new Date(2019, 6, 1),
-    new Date(2019, 7, 1),
-    new Date(2019, 8, 1),
-    new Date(2019, 9, 1),
-    new Date(2019, 10, 1),
-    new Date(2019, 11, 1),
-    new Date(2020, 0, 1),
-  ];
-  public colorScheme = {domain: ['#00a3ff']};
-  public curveStepAfter: any = shape.curveStepAfter;
-  public curveLinear: any = shape.curveLinearClosed;
   public screenings: ChartSeries[];
   public categories: ChartSeries[];
 
