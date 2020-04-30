@@ -10,31 +10,44 @@
         matTooltip="Consultation"
         matTooltipPosition="above"
       >
-        <mat-icon>people</mat-icon>
-        <span class="consultation">
-          <mat-icon *ngIf="patient.consultation" color="accent">check</mat-icon>
-          <mat-icon *ngIf="!patient.consultation" color="warn">close</mat-icon>
-        </span>
+        <mat-icon
+          [matBadge]="patient.consultation ? '✓' : '×'"
+          [matBadgeColor]="patient.consultation ? 'accent' : 'warn'"
+          matBadgeOverlap="false"
+          >people</mat-icon
+        >
       </span>
       <span class="stats-value" matTooltip="Rating" matTooltipPosition="above">
-        <mat-icon>star</mat-icon>
-        <span>{{ patient.rating }}</span>
+        <mat-icon
+          [matBadge]="patient.rating"
+          [matBadgeColor]="patient.rating > 50 ? 'accent' : 'warn'"
+          matBadgeOverlap="false"
+          >star</mat-icon
+        >
       </span>
       <span
         class="stats-value"
         matTooltip="Instruments"
         matTooltipPosition="above"
       >
-        <mat-icon>event_note</mat-icon>
-        <span>{{ patient.instruments }}</span>
+        <mat-icon
+          [matBadge]="patient.instruments"
+          matBadgeColor="primary"
+          matBadgeOverlap="false"
+          >event_note</mat-icon
+        >
       </span>
       <span
         class="stats-value"
         matTooltip="Screenings"
         matTooltipPosition="above"
       >
-        <mat-icon>collections</mat-icon>
-        <span>{{ patient.screenings }}</span>
+        <mat-icon
+          [matBadge]="patient.screenings"
+          matBadgeColor="primary"
+          matBadgeOverlap="false"
+          >collections</mat-icon
+        >
       </span>
     </div>
   </mat-card-header>
