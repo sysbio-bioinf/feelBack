@@ -23,6 +23,8 @@ FROM dependencies AS build
 WORKDIR /app
 COPY . .
 
+RUN npm run gql-codegen
+
 # now we build the applications
 RUN npx ng build feelback-web --prod
 RUN npx ng build feelback-api --prod
