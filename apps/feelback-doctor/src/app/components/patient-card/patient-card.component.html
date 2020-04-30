@@ -6,14 +6,24 @@
     <span class="spacer"></span>
     <div class="stats">
       <span class="stats-value" matTooltip="Rating" matTooltipPosition="above">
-        <mat-icon [color]="patient.rating > 50 ? 'accent' : 'warn'">star</mat-icon>
+        <mat-icon [color]="patient.rating > 50 ? 'accent' : 'warn'"
+          >star</mat-icon
+        >
         <span>{{ patient.rating }}</span>
       </span>
-      <span class="stats-value" matTooltip="Instruments" matTooltipPosition="above">
+      <span
+        class="stats-value"
+        matTooltip="Instruments"
+        matTooltipPosition="above"
+      >
         <mat-icon>event_note</mat-icon>
         <span>{{ patient.instruments }}</span>
       </span>
-      <span class="stats-value" matTooltip="Screenings" matTooltipPosition="above">
+      <span
+        class="stats-value"
+        matTooltip="Screenings"
+        matTooltipPosition="above"
+      >
         <mat-icon>message</mat-icon>
         <span>{{ patient.screenings }}</span>
       </span>
@@ -22,11 +32,31 @@
   <mat-card-content>
     <mat-tab-group>
       <mat-tab label="Distress Thermometer">
-        Distress Thermometer
+        <ng-template matTabContent>
+          <feelback-doctor-distress-thermometer></feelback-doctor-distress-thermometer>
+        </ng-template>
       </mat-tab>
-      <mat-tab label="Instrument A"> Instrument A </mat-tab>
-      <mat-tab label="Instrument B"> Instrument B </mat-tab>
-      <mat-tab label="Instrument C"> Instrument C </mat-tab>
+      <mat-tab label="Instrument B">
+        <ng-template matTabContent>
+          <feelback-doctor-sample-instrument>
+            Instrument B
+          </feelback-doctor-sample-instrument>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Instrument C">
+        <ng-template matTabContent>
+          <feelback-doctor-sample-instrument>
+            Instrument C
+          </feelback-doctor-sample-instrument>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Instrument D">
+        <ng-template matTabContent>
+          <feelback-doctor-sample-instrument>
+            Instrument D
+          </feelback-doctor-sample-instrument>
+        </ng-template>
+      </mat-tab>
     </mat-tab-group>
   </mat-card-content>
 </mat-card>

@@ -6,9 +6,11 @@ import { PatientFilterComponent } from './patient-filter/patient-filter.componen
 import { MaterialModule } from '../modules/material.module';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { PatientCardComponent } from './patient-card/patient-card.component';
+import { DistressThermometerComponent } from './distress-thermometer/distress-thermometer.component';
+import { SampleInstrumentComponent } from './sample-instrument/sample-instrument.component';
 
 @NgModule({
-  declarations: [NavbarComponent, PatientFilterComponent, PatientListComponent, PatientCardComponent],
+  declarations: [NavbarComponent, PatientFilterComponent, PatientListComponent, PatientCardComponent, DistressThermometerComponent, SampleInstrumentComponent],
   imports: [
     CommonModule,
     RouterModule,
