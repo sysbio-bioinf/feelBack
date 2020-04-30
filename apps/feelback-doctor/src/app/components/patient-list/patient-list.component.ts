@@ -44,7 +44,7 @@ export class PatientListComponent implements OnInit {
 
   public selectPatient(patient: Patient) {
     this.router.navigateByUrl(
-      '/patient-details/' + patient.id + '/a1cf3754-9aab-4530-9818-735bf63e53c8',
+      '/patients/' + patient.id + '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
     );
   }
 }

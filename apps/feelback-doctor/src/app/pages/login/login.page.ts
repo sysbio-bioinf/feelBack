@@ -14,12 +14,11 @@ export class LoginPage implements OnInit {
   }
 
   public forgotPassword() {
-    // todo
     console.log("forgot password")
   }
 
   public login() {
-    this.router.navigateByUrl('/patient-list');
+    this.router.navigateByUrl('/list');
   }
 
 }
