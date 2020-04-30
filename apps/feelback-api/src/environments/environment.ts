@@ -39,16 +39,6 @@ export const environment: IEnvironment = {
         },
       ],
     },
-    /*
-    jwt: {
-      secret: env.get('JWT_SECRET', 'MyT0pS3cr37P4s$w0rd').asString(),
-      issuer: env.get('JWT_UUID', '').asString(),
-      audience: env.get('APP_URL', 'http://www.example.com').asUrlString(),
-      options: {
-        expiresIn: env.get('JWT_EXPIRES', '3600').asIntPositive(),
-      },
-    },
-    */
   },
 
   server: {
