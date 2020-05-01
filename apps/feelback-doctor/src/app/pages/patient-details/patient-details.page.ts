@@ -11,7 +11,6 @@ import { PatientService } from '../../services/patient.service';
 })
 export class PatientDetailsPage implements OnInit {
   constructor(
-    private instrumentService: GetInstrumentsGQL,
     private patientService: PatientService,
     private route: ActivatedRoute,
   ) {
@@ -20,15 +19,11 @@ export class PatientDetailsPage implements OnInit {
     });
   }
 
+  public patient: Patient = new Patient();
+
   ngOnInit(): void {
-    this.instrumentService
-      .fetch()
-      .subscribe((instrument) => (this.instrument = instrument));
     this.patientService
       .getPatientById(this.patient.id)
       .subscribe((patient) => (this.patient = patient));
   }
-
-  public instrument: any;
-  public patient: Patient = new Patient();
 }

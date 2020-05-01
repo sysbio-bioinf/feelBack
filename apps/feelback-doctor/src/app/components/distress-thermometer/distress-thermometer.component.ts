@@ -1,9 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { ChartDataPoint } from '../../models/ChartDataPoint';
 import { ChartSeries } from '../../models/ChartSeries';
 import { ScreeningService } from '../../services/screening.service';
 import { CommonService } from '../../services/common.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Patient } from '../../models/Patient';
 import { Screening } from '../../models/Screening';
 import { MatExpansionPanel } from '@angular/material/expansion';
@@ -19,13 +25,19 @@ export class DistressThermometerComponent implements OnInit {
     private screeningService: ScreeningService,
     public commonService: CommonService,
     private router: Router,
-  ) {}
+    private route: ActivatedRoute,
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      this.screening.date = params['screening'];
+    });
+    this.screeningService.getScreening().subscribe(screening => this.screening = screening);
+  }
 
   @Input() patient: Patient;
+  @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   public screenings: ChartSeries[];
   public categories: ChartSeries[];
-  public screening: Screening = new Screening();
-  @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
+  public screening: Screening;
 
   ngOnInit(): void {
     this.screeningService
@@ -46,5 +58,14 @@ export class DistressThermometerComponent implements OnInit {
         '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8?screening=' +
         screening,
     );
+  }
+
+  closeScreening() {
+    this.router.navigateByUrl(
+      '/patients/' +
+        this.patient.id +
+        '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
+    );
+    this.expansionPanel.open();
   }
 }

@@ -9,6 +9,7 @@ import { PatientCardComponent } from './patient-card/patient-card.component';
 import { DistressThermometerComponent } from './distress-thermometer/distress-thermometer.component';
 import { SampleInstrumentComponent } from './sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     PatientCardComponent,
     DistressThermometerComponent,
     SampleInstrumentComponent,
+    QuestionnaireComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -25,6 +27,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     PatientFilterComponent,
     PatientListComponent,
     PatientCardComponent,
+    SampleInstrumentComponent
   ],
 })
 export class ComponentsModule {}
