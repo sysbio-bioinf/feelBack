@@ -25,17 +25,16 @@ export class QuestionnaireComponent implements OnInit {
       this.survey.data = this.screening.result;
       // this.survey.currentPage = this.urlParameters.page;
       this.survey.mode = "display";
-      this.survey.showNavigationButtons = false;
+      // this.survey.showNavigationButtons = false;
       this.survey.showTitle = false;
       this.survey.locale = 'de';
 
       this.survey.onUpdateQuestionCssClasses.add(function (survey, options) {
         const classes = options.cssClasses;
-        classes.mainRoot += " sv_qstn";
+        classes.mainRoot += " sv-qstn";
         classes.root = "sq-root";
         classes.title += " sq-title";
         classes.label += " sq-label";
-        classes.navigationButton += " btn btn-primary";
       });
 
       this.loading = false;

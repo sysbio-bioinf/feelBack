@@ -1,7 +1,5 @@
 @import '~@angular/material/theming';
 
-@include mat-core();
-
 $feelback-primary: (
     50 : #e0f4ff,
     100 : #b3e3ff,
@@ -105,10 +103,7 @@ $feelback-theme-primary: mat-palette($feelback-primary);
 $feelback-theme-accent: mat-palette($feelback-accent);
 $feelback-theme-warn: mat-palette($feelback-warn);
 
-$feelback-theme: mat-light-theme(
-    $feelback-theme-primary,
-    $feelback-theme-accent,
-    $feelback-theme-warn
-);
-
-@include angular-material-theme($feelback-theme);
+$primary: mat-color($feelback-theme-primary);
+$accent: mat-color($feelback-theme-accent);
+$warn: mat-color($feelback-theme-warn);
+$light-grey: #adb5bd;

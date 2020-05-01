@@ -1,5 +1,46 @@
+@import "variables";
+
 #surveyContainer{
   overflow-y: auto;
   overflow-x: hidden;
   height: 60vh;
+}
+
+.sv-qstn .sq-root {
+  border: 1px solid $light-grey;
+  border-left: 4px solid $primary;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.sv-title {
+  font-size: 22px !important;
+}
+
+.sq-title {
+  font-size: 18px !important;
+}
+
+.sv-question__title--answer {
+  background-color: unset !important;
+}
+
+.sv-root-modern .sv-radio--disabled.sv-radio--checked .sv-radio__svg {
+  fill: $primary !important;
+}
+
+.sv-question, .sv-row__question, .sv_qstn, .sv-row__question--small {
+  min-width: 100%;
+}
+
+.sq-label {
+  margin-left: 30px;
+}
+
+.sv-selectbase__item {
+  margin-bottom: 0 !important
+}
+
+textarea:disabled{
+  background-color: unset;
 }

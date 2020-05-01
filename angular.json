@@ -655,9 +655,14 @@
               "apps/feelback-doctor/src/favicon.ico",
               "apps/feelback-doctor/src/assets"
             ],
-            "styles": ["apps/feelback-doctor/src/styles.scss", 
-              "apps/feelback-doctor/src/feelback-theme.scss"
+            "styles": ["apps/feelback-doctor/src/styles/styles.scss", 
+              "apps/feelback-doctor/src/styles/feelback-theme.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "apps/feelback-doctor/src/styles"
+              ]
+          },
             "scripts": []
           },
           "configurations": {

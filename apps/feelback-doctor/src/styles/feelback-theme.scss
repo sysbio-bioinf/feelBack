@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+@import 'variables';
+
+@include mat-core();
+
+$feelback-theme: mat-light-theme(
+    $feelback-theme-primary,
+    $feelback-theme-accent,
+    $feelback-theme-warn
+);
+
+@include angular-material-theme($feelback-theme);
