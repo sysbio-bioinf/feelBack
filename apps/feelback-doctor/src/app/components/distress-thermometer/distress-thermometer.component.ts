@@ -30,7 +30,9 @@ export class DistressThermometerComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.screening.date = params['screening'];
     });
-    this.screeningService.getScreening().subscribe(screening => this.screening = screening);
+    this.screeningService
+      .getScreening()
+      .subscribe((screening) => (this.screening = screening));
   }
 
   @Input() patient: Patient;

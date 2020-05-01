@@ -1,1 +1,6 @@
+<nav>
+  <button class="nav-button" mat-flat-button color="primary" *ngIf="!survey.isFirstPage" (click)="survey.prevPage()">Prev</button>
+  <span class="spacer"></span>
+  <button class="nav-button" mat-flat-button color="primary" *ngIf="!survey.isLastPage" (click)="survey.nextPage()">Next</button>
+</nav>
 <div id="surveyContainer"></div>

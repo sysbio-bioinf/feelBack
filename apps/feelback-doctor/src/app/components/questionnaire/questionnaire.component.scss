@@ -1,6 +1,6 @@
-@import "variables";
+@import 'variables';
 
-#surveyContainer{
+#surveyContainer {
   overflow-y: auto;
   overflow-x: hidden;
   height: 60vh;
@@ -29,7 +29,10 @@
   fill: $primary !important;
 }
 
-.sv-question, .sv-row__question, .sv_qstn, .sv-row__question--small {
+.sv-question,
+.sv-row__question,
+.sv_qstn,
+.sv-row__question--small {
   min-width: 100%;
 }
 
@@ -38,9 +41,31 @@
 }
 
 .sv-selectbase__item {
-  margin-bottom: 0 !important
+  margin-bottom: 0 !important;
 }
 
-textarea:disabled{
+textarea:disabled {
   background-color: unset;
+  width: 94%;
+  resize: none !important;
+}
+
+nav {
+  display: flex;
+}
+
+.nav-button {
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav-button {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
