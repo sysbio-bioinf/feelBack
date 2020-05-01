@@ -27,9 +27,6 @@ export class DistressThermometerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    this.route.queryParams.subscribe((params) => {
-      this.screening.date = params['screening'];
-    });
     this.screeningService
       .getScreening()
       .subscribe((screening) => (this.screening = screening));
@@ -42,6 +39,9 @@ export class DistressThermometerComponent implements OnInit {
   public screening: Screening;
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.screening.date = params['screening'];
+    });
     this.screeningService
       .getScreenings()
       .subscribe((data) => (this.screenings = data));
