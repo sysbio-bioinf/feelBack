@@ -1,23 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PatientListPage } from './patient-list/patient-list.page';
-import { PatientDetailsPage } from './patient-details/patient-details.page';
-import { LoginPage } from './login/login.page';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { GraphQLModule } from '../modules/graphql.module';
-import { ComponentsModule } from '../components/components.module';
-import { MaterialModule } from '../modules/material.module';
+import { LoginModule } from './login/login.module';
+import { PatientDetailsModule } from './patient-details/patient-details.module';
+import { PatientListModule } from './patient-list/patient-list.module';
 
 @NgModule({
-  declarations: [PatientListPage, PatientDetailsPage, LoginPage],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    ComponentsModule,
-    MaterialModule
-  ],
+  declarations: [],
+  imports: [LoginModule, PatientListModule, PatientDetailsModule],
   providers: [GraphQLModule],
 })
 export class PagesModule {}
