@@ -4,7 +4,6 @@ import { MainLayout } from '../../layouts/main/main.layout';
 import { PatientDetailsPage } from './patient-details.page';
 import { ChooseInstrumentComponent } from '../../components/choose-instrument/choose-instrument.component';
 import { DistressThermometerComponent } from '../../components/distress-thermometer/distress-thermometer.component';
-import { SampleInstrumentComponent } from '../../components/sample-instrument/sample-instrument.component';
 
 const routes: Routes = [
   {
@@ -20,16 +19,8 @@ const routes: Routes = [
             component: ChooseInstrumentComponent
           },
           {
-            path: 'instruments/distress',
+            path: 'instruments/:instrument',
             component: DistressThermometerComponent,
-          },
-          {
-            path: 'instruments/instrument A',
-            component: SampleInstrumentComponent,
-          },
-          {
-            path: 'instruments/instrument B',
-            component: SampleInstrumentComponent,
           },
         ],
       },

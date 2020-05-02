@@ -24,7 +24,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
     NavbarComponent,
     PatientFilterComponent,
     PatientListComponent,
-    SampleInstrumentComponent
+    SampleInstrumentComponent,
   ],
 })
 export class ComponentsModule {}
