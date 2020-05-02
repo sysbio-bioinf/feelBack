@@ -20,6 +20,22 @@ export class PatientDetailsPage implements OnInit {
   }
 
   public patient: Patient = new Patient();
+  public links = [
+    {
+        label: 'Distress Thermometer',
+        link: './instruments/distress',
+        index: 0
+    }, {
+        label: 'Instrument A',
+        link: './instruments/instrument A',
+        index: 1
+    }, {
+        label: 'Instrument B',
+        link: './instruments/instrument B',
+        index: 2
+    }, 
+];
+  public activeLink = this.links[0];
 
   ngOnInit(): void {
     this.patientService

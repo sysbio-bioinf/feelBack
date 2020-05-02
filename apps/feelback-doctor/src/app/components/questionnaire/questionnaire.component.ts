@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { GetInstrumentsGQL } from '../../graphql/generated/feelback.graphql';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../models/Screening';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'feelback-doctor-questionnaire',
@@ -14,6 +14,7 @@ export class QuestionnaireComponent implements OnInit {
   constructor(
     private instrumentService: GetInstrumentsGQL,
     private route: ActivatedRoute,
+    private router: Router
   ) {
     const defaultThemeColors = Survey.StylesManager.ThemeColors.modern;
       defaultThemeColors['$main-color'] = '#00a3ff';
@@ -49,4 +50,11 @@ export class QuestionnaireComponent implements OnInit {
       });
     });
   }
+
+  closeScreening() {
+    this.router.navigateByUrl(
+      '/patients/a0316bbf-4719-4fe3-b979-f7aa17ef915e/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
+    );
+  }
+
 }

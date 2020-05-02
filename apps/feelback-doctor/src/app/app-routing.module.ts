@@ -5,6 +5,9 @@ import { PatientListPage } from './pages/patient-list/patient-list.page';
 import { LoginPage } from './pages/login/login.page';
 import { LoginLayout } from './layouts/login/login.layout';
 import { MainLayout } from './layouts/main/main.layout';
+import { DistressThermometerComponent } from './components/distress-thermometer/distress-thermometer.component';
+import { SampleInstrumentComponent } from './components/sample-instrument/sample-instrument.component';
+import { ChooseInstrumentComponent } from './components/choose-instrument/choose-instrument.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,8 +22,26 @@ const routes: Routes = [
     children: [
       { path: 'list', component: PatientListPage },
       {
-        path: 'patients/:patient/instruments/:instrument',
+        path: 'patients/:patient',
         component: PatientDetailsPage,
+        children: [
+          {
+            path: '',
+            component: ChooseInstrumentComponent
+          },
+          {
+            path: 'instruments/distress',
+            component: DistressThermometerComponent,
+          },
+          {
+            path: 'instruments/instrument A',
+            component: SampleInstrumentComponent,
+          },
+          {
+            path: 'instruments/instrument B',
+            component: SampleInstrumentComponent,
+          },
+        ],
       },
     ],
   },

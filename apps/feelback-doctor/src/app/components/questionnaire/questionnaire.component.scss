@@ -1,5 +1,9 @@
 @import 'variables';
 
+mat-card{
+  margin-top: 2em;
+}
+
 #surveyContainer {
   overflow-y: auto;
   overflow-x: hidden;
@@ -48,24 +52,4 @@ textarea:disabled {
   background-color: unset;
   width: 94%;
   resize: none !important;
-}
-
-nav {
-  display: flex;
-}
-
-.nav-button {
-  margin-right: 5%;
-  margin-left: 5%;
-}
-
-@media only screen and (max-width: 1000px) {
-  .nav-button {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-}
-
-.spacer {
-  flex: 1 1 auto;
 }

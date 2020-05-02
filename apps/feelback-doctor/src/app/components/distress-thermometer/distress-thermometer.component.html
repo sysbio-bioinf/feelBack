@@ -43,19 +43,5 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
-<div *ngIf="screening.date" id="screening">
-  <div>
-    <span class="mat-h1">Screening of {{ screening.date }}</span>
-    <button
-      id="closeScreening"
-      mat-icon-button
-      color="warn"
-      (click)="closeScreening()"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
-  <feelback-doctor-questionnaire
-    [screening]="screening"
-  ></feelback-doctor-questionnaire>
-</div>
+
+<feelback-doctor-questionnaire *ngIf="screening.date" [screening]="screening"></feelback-doctor-questionnaire>

@@ -37,6 +37,7 @@ export class DistressThermometerComponent implements OnInit {
   public screenings: ChartSeries[];
   public categories: ChartSeries[];
   public screening: Screening;
+  public icon = "close";
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -62,12 +63,12 @@ export class DistressThermometerComponent implements OnInit {
     );
   }
 
-  closeScreening() {
-    this.router.navigateByUrl(
-      '/patients/' +
-        this.patient.id +
-        '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
-    );
-    this.expansionPanel.open();
-  }
+  // closeScreening() {
+  //   this.router.navigateByUrl(
+  //     '/patients/' +
+  //       this.patient.id +
+  //       '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
+  //   );
+  //   this.expansionPanel.open();
+  // }
 }
