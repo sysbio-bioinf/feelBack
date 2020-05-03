@@ -1,31 +1,26 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Screening</mat-card-title>
-    <mat-card-subtitle>{{screening.date}}</mat-card-subtitle>
+    <mat-card-subtitle>{{ screening.date }}</mat-card-subtitle>
     <span class="spacer"></span>
-    <button mat-icon-button color="warn" aria-label="Close screening" (click)="closeScreening()">
+    <mat-paginator
+    [length]="survey.pageCount"
+    pageSize="1"
+    hidePageSize="true"
+    showFirstLastButtons
+    (page)="changePage($event)"
+  ></mat-paginator>
+    <button
+      id="closeButton"
+      mat-icon-button
+      color="warn"
+      aria-label="Close screening"
+      (click)="closeScreening()"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </mat-card-header>
   <mat-card-content>
-    <nav>
-      <button
-        mat-flat-button
-        color="primary"
-        *ngIf="!survey.isFirstPage"
-        (click)="survey.prevPage()"
-      >
-        Prev
-      </button>
-      <button
-        mat-flat-button
-        color="primary"
-        *ngIf="!survey.isLastPage"
-        (click)="survey.nextPage()"
-      >
-        Next
-      </button>
-    </nav>
     <div id="surveyContainer"></div>
   </mat-card-content>
 </mat-card>

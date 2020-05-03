@@ -8,6 +8,11 @@ mat-card{
   flex: 1 1 auto;
 }
 
+#closeButton{
+  position: relative;
+  top: 8px;
+}
+
 #surveyContainer {
   overflow-y: auto;
   overflow-x: hidden;

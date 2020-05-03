@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   Input,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { ChartDataPoint } from '../../models/ChartDataPoint';
 import { ChartSeries } from '../../models/ChartSeries';
@@ -20,7 +21,7 @@ import { MatExpansionPanel } from '@angular/material/expansion';
   styleUrls: ['./distress-thermometer.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DistressThermometerComponent implements OnInit {
+export class DistressThermometerComponent implements OnInit, AfterViewInit {
   constructor(
     private screeningService: ScreeningService,
     public commonService: CommonService,
@@ -49,6 +50,14 @@ export class DistressThermometerComponent implements OnInit {
     this.screeningService
       .getRadarChart()
       .subscribe((data) => (this.categories = data));
+  }
+
+  ngAfterViewInit(): void{
+    this.route.queryParams.subscribe((params) => {
+      if(!params['screening']){
+        this.expansionPanel.open();
+      }
+    });
   }
 
   public selectScreening(data: ChartDataPoint): void {

@@ -14,7 +14,6 @@ export class InstrumentComponent implements OnInit {
     private route: ActivatedRoute,
     private instrumentService: InstrumentService,
   ) {
-    console.log(history.state.data);
     this.route.paramMap.subscribe((params) => {
       this.instrumentService
         .getInstrumentById(params.get('instrument'))
