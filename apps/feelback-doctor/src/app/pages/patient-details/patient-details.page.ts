@@ -23,6 +23,7 @@ export class PatientDetailsPage implements OnInit {
   }
 
   public patient: Patient = new Patient();
+  public instrument: Instrument = new Instrument();
   public links = [];
 
   ngOnInit(): void {

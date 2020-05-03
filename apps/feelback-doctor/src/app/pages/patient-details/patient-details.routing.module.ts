@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MainLayout } from '../../layouts/main/main.layout';
 import { PatientDetailsPage } from './patient-details.page';
 import { ChooseInstrumentComponent } from '../../components/choose-instrument/choose-instrument.component';
-import { DistressThermometerComponent } from '../../components/distress-thermometer/distress-thermometer.component';
+import { InstrumentComponent } from '../../components/instrument/instrument.component';
 
 const routes: Routes = [
   {
@@ -16,11 +16,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: ChooseInstrumentComponent
+            component: ChooseInstrumentComponent,
           },
           {
             path: 'instruments/:instrument',
-            component: DistressThermometerComponent,
+            component: InstrumentComponent,
           },
         ],
       },
@@ -29,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class PatientDetailsRoutingModule { }
+export class PatientDetailsRoutingModule {}

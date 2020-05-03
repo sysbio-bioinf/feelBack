@@ -31,4 +31,14 @@ export class InstrumentService {
     return of(instruments);
   }
 
+  public getInstrumentById(id: string): Observable<Instrument> {
+    let instruments = [];
+    this.getInstruments().subscribe((data) => (instruments = data));
+    for (const instrument of instruments) {
+      if (instrument.id === id) {
+        return of(instrument);
+      }
+    }
+  }
+
 }
