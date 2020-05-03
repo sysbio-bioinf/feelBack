@@ -33,11 +33,11 @@ export class DistressThermometerComponent implements OnInit {
   }
 
   @Input() patient: Patient;
+  @Input() instrument: Patient;
   @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   public screenings: ChartSeries[];
   public categories: ChartSeries[];
   public screening: Screening;
-  public icon = "close";
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -51,24 +51,16 @@ export class DistressThermometerComponent implements OnInit {
       .subscribe((data) => (this.categories = data));
   }
 
-  selectScreening(data: ChartDataPoint): void {
+  public selectScreening(data: ChartDataPoint): void {
     const screening = data.name.toLocaleDateString('de');
     this.screening.date = screening;
     this.expansionPanel.close();
-    this.router.navigateByUrl(
-      '/patients/' +
-        this.patient.id +
-        '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8?screening=' +
-        screening,
-    );
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        screening: screening
+      },
+    })
   }
 
-  // closeScreening() {
-  //   this.router.navigateByUrl(
-  //     '/patients/' +
-  //       this.patient.id +
-  //       '/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
-  //   );
-  //   this.expansionPanel.open();
-  // }
 }

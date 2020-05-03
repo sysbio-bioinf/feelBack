@@ -4,6 +4,10 @@ mat-card{
   margin-top: 2em;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 #surveyContainer {
   overflow-y: auto;
   overflow-x: hidden;

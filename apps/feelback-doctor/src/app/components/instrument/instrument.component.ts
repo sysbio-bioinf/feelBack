@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InstrumentService } from '../../services/instrument.service';
 import { ActivatedRoute } from '@angular/router';
 import { Instrument } from '../../models/Instrument';
+import { Patient } from '../../models/Patient';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -13,17 +14,16 @@ export class InstrumentComponent implements OnInit {
     private route: ActivatedRoute,
     private instrumentService: InstrumentService,
   ) {
+    console.log(history.state.data);
     this.route.paramMap.subscribe((params) => {
-      this.instrument.id = params.get('instrument');
       this.instrumentService
-      .getInstrumentById(this.instrument.id)
-      .subscribe((instrument) => (this.instrument = instrument));
+        .getInstrumentById(params.get('instrument'))
+        .subscribe((instrument) => (this.instrument = instrument));
     });
   }
 
+  public patient: Patient = new Patient();
   public instrument: Instrument = new Instrument();
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 }

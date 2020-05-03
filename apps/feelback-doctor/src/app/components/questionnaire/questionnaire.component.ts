@@ -1,8 +1,15 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { GetInstrumentsGQL } from '../../graphql/generated/feelback.graphql';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'feelback-doctor-questionnaire',
@@ -14,20 +21,20 @@ export class QuestionnaireComponent implements OnInit {
   constructor(
     private instrumentService: GetInstrumentsGQL,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {
     const defaultThemeColors = Survey.StylesManager.ThemeColors.modern;
-      defaultThemeColors['$main-color'] = '#00a3ff';
-      defaultThemeColors['$main-hover-color'] = '#00a3ff';
-      Survey.StylesManager.applyTheme('modern');
+    defaultThemeColors['$main-color'] = '#00a3ff';
+    defaultThemeColors['$main-hover-color'] = '#00a3ff';
+    Survey.StylesManager.applyTheme('modern');
   }
 
   @Input() screening: Screening;
+  @Input() expansionPanel: MatExpansionPanel;
   public survey = new Survey.Model();
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(() => {
-      
       this.instrumentService.fetch().subscribe((data) => {
         this.survey = new Survey.Model(
           data.data.instruments.edges[0].node.payload,
@@ -52,9 +59,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   closeScreening() {
-    this.router.navigateByUrl(
-      '/patients/a0316bbf-4719-4fe3-b979-f7aa17ef915e/instruments/a1cf3754-9aab-4530-9818-735bf63e53c8',
-    );
+    this.router.navigate([]);
+    this.expansionPanel.open();
   }
-
 }
