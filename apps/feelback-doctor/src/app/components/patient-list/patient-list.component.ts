@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PatientService } from '../../services/patient.service';
 import { Router } from '@angular/router';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'feelback-doctor-patient-list',
@@ -19,12 +20,16 @@ export class PatientListComponent implements OnInit {
     'consultation',
     'rating',
     'instruments',
-    'screenings'
+    'screenings',
   ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private patientService: PatientService, private router: Router) {}
+  constructor(
+    private patientService: PatientService,
+    private router: Router,
+    public commonService: CommonService,
+  ) {}
 
   ngOnInit(): void {
     this.patientService
@@ -43,8 +48,6 @@ export class PatientListComponent implements OnInit {
   }
 
   public selectPatient(patient: Patient) {
-    this.router.navigateByUrl(
-      '/patients/' + patient.id
-    );
+    this.router.navigateByUrl('/patients/' + patient.id);
   }
 }

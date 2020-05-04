@@ -5,6 +5,7 @@ import { Patient } from '../../models/Patient';
 import { PatientService } from '../../services/patient.service';
 import { InstrumentService } from '../../services/instrument.service';
 import { Instrument } from '../../models/Instrument';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'feelback-doctor-patient-details',
@@ -15,7 +16,8 @@ export class PatientDetailsPage implements OnInit {
   constructor(
     private patientService: PatientService,
     private instrumentService: InstrumentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public commonService: CommonService,
   ) {
     this.route.paramMap.subscribe((params) => {
       this.patient.id = params.get('patient');
@@ -27,11 +29,14 @@ export class PatientDetailsPage implements OnInit {
   public links = [];
 
   ngOnInit(): void {
-    this.patientService.getPatientById(this.patient.id).subscribe((patient) => (this.patient = patient));
+    this.patientService
+      .getPatientById(this.patient.id)
+      .subscribe((patient) => (this.patient = patient));
     this.instrumentService
       .getInstruments()
-      .subscribe((instruments) => this.transformInstrumentsToLinks(instruments)
-        );
+      .subscribe((instruments) =>
+        this.transformInstrumentsToLinks(instruments),
+      );
   }
 
   private transformInstrumentsToLinks(instruments: Instrument[]) {

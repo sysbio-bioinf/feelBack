@@ -26,4 +26,12 @@ export class CommonService {
   public colorScheme: {} = { domain: [this.colors.primary] };
   public curveStepAfter: any = shape.curveStepAfter;
   public curveLinear: any = shape.curveLinearClosed;
+  public icons = {
+    name: 'face',
+    organization: 'business',
+    consultation: 'people',
+    rating: 'star',
+    instrument: 'event_note',
+    screening: 'collections',
+  };
 }
