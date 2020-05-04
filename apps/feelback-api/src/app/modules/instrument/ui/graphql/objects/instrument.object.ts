@@ -17,7 +17,7 @@ export class InstrumentObject extends VersionableObject {
     description: 'A description for this instrument',
     nullable: true,
   })
-  description: string;
+  description?: string;
 
   @FilterableField({
     description: 'The type of this instrument',
@@ -29,19 +29,25 @@ export class InstrumentObject extends VersionableObject {
     description: 'An image / icon URL for this instrument',
     nullable: true,
   })
-  image: string;
+  image?: string;
 
   @Field((type) => JSONObject, {
     description: 'The actual payload / content / structure of this instrument',
     nullable: true,
   })
-  payload: object;
+  payload?: object;
 
   @Field((type) => [JSONObject], {
     description: 'rules that are applied to calculate some kind of result',
     nullable: true,
   })
-  rules: object[];
+  rules?: object[];
+
+  @Field((type) => JSONObject, {
+    description: 'Information on how to create diagrams for this instrument',
+    nullable: true,
+  })
+  diagram?: object;
 
   @Field({
     description:

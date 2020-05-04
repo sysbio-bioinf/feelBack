@@ -23,7 +23,9 @@ export async function seed() {
       'https://www.uniklinik-ulm.de/typo3conf/ext/as_template/Resources/Public/Images/logo.png',
   };
 
-  const organizationRepository = mainConnection.getRepository(OrganizationEntity);
+  const organizationRepository = mainConnection.getRepository(
+    OrganizationEntity,
+  );
   await organizationRepository.save([uulmOrganization]);
 
   const distressInstrument: Partial<InstrumentEntity> = {
@@ -53,6 +55,25 @@ export async function seed() {
       },
     ],
     changelog: 'initial version',
+    diagram: {
+      history: {
+        type: 'line',
+        axis: {
+          distress: 'DT01',
+        },
+      },
+      overview: {
+        type: 'radar',
+        axis: {
+          pp: '(PP01 + PP02 + PP03 + PP04 + PP05 + PP06 + PP07)/7',
+          fp: '(FP01 + FP02)/2',
+          ep: '(EP01 + EP02 + EP03 + EP04 + EP05 + EP06)/6',
+          sp: '(SP01 + SP02)/2',
+          kp:
+            '(KP01 + KP02 + KP03 + KP04 + KP05 + KP06 + KP07 + KP08 + KP09 + KP10 + KP11 + KP12 + KP13 + KP14 + KP15 + KP16 + KP17 + KP18 + KP19 + KP20 + KP21 + KP22 + KP23)/23',
+        },
+      },
+    },
   };
 
   const instrumentRepository = mainConnection.getRepository(InstrumentEntity);

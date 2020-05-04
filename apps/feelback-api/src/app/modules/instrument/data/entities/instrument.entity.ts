@@ -23,6 +23,9 @@ export class InstrumentEntity extends VersionableEntity {
   @Column({ type: 'json', nullable: false, default: [] })
   rules: RuleModel[];
 
+  @Column({ type: 'json', nullable: false, default: {} })
+  diagram: object; // TODO: maybe we can have a better typing for this?
+
   @Column({ type: 'text', nullable: false, default: '' })
   changelog: string;
 

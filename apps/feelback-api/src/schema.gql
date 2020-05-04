@@ -67,6 +67,9 @@ input CreateInstrumentInput {
   payload: JSONObject
   rules: [RuleInput!]
 
+  """Information on how to create diagrams for this instrument"""
+  diagram: JSONObject
+
   """what has changed so far"""
   changelog: String!
 }
@@ -522,6 +525,9 @@ type Instrument {
 
   """rules that are applied to calculate some kind of result"""
   rules: [JSONObject!]
+
+  """Information on how to create diagrams for this instrument"""
+  diagram: JSONObject
 
   """the changelog of this instrument (i.e., what has been changed)"""
   changelog: String!
@@ -1108,7 +1114,7 @@ input UpdateInstrumentInput {
   description: String
 
   """The type of the instrument"""
-  type: String!
+  type: String
 
   """The logo as valid URL string)"""
   image: String
@@ -1116,6 +1122,9 @@ input UpdateInstrumentInput {
   """The (new) payload / structure of the instrument"""
   payload: JSONObject
   rules: [RuleInput!]
+
+  """Diagram information"""
+  diagram: JSONObject
 
   """what has changed so far"""
   changelog: String!

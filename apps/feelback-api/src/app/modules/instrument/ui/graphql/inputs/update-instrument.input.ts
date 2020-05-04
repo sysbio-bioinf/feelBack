@@ -24,7 +24,7 @@ export class UpdateInstrumentInput extends CoreInput {
     description: 'The (new) name of this instrument',
     nullable: true,
   })
-  name: string;
+  name?: string;
 
   @IsOptional()
   @IsString()
@@ -32,15 +32,16 @@ export class UpdateInstrumentInput extends CoreInput {
     description: 'The (new) description of this instrument',
     nullable: true,
   })
-  description: string;
+  description?: string;
 
   @IsOptional()
   @IsString()
   @MaxLength(190)
   @Field({
     description: 'The type of the instrument',
+    nullable: true,
   })
-  type: string;
+  type?: string;
 
   @IsOptional()
   @IsString()
@@ -50,7 +51,7 @@ export class UpdateInstrumentInput extends CoreInput {
     description: 'The logo as valid URL string)',
     nullable: true,
   })
-  image: string;
+  image?: string;
 
   @IsOptional()
   @IsObject()
@@ -58,7 +59,7 @@ export class UpdateInstrumentInput extends CoreInput {
     description: 'The (new) payload / structure of the instrument',
     nullable: true,
   })
-  payload: object;
+  payload?: object;
 
   @IsOptional()
   @IsArray()
@@ -66,7 +67,15 @@ export class UpdateInstrumentInput extends CoreInput {
   @Type(() => RuleInput)
   @ValidateNested({ each: true })
   @Field((type) => [RuleInput], { nullable: true })
-  rules: RuleInput[];
+  rules?: RuleInput[];
+
+  @IsOptional()
+  @IsObject()
+  @Field((type) => JSONObject, {
+    description: 'Diagram information',
+    nullable: true,
+  })
+  diagram?: object;
 
   @IsString()
   @Field({

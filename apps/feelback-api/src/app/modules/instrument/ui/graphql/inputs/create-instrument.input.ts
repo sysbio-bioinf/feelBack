@@ -31,7 +31,7 @@ export class CreateInstrumentInput extends CoreInput {
     description: 'The description of the instrument',
     nullable: true,
   })
-  description: string;
+  description?: string;
 
   @IsString()
   @MaxLength(190)
@@ -48,7 +48,7 @@ export class CreateInstrumentInput extends CoreInput {
     description: 'The logo as valid URL string)',
     nullable: true,
   })
-  image: string;
+  image?: string;
 
   @IsOptional()
   @IsObject()
@@ -56,7 +56,7 @@ export class CreateInstrumentInput extends CoreInput {
     description: 'The payload / structure of the instrument',
     nullable: true,
   })
-  payload: object;
+  payload?: object;
 
   @IsOptional()
   @IsArray()
@@ -64,7 +64,15 @@ export class CreateInstrumentInput extends CoreInput {
   @Type(() => RuleInput)
   @ValidateNested({ each: true })
   @Field((type) => [RuleInput], { nullable: true })
-  rules: RuleInput[];
+  rules?: RuleInput[];
+
+  @IsOptional()
+  @IsObject()
+  @Field((type) => JSONObject, {
+    description: 'Information on how to create diagrams for this instrument',
+    nullable: true,
+  })
+  diagram?: object;
 
   @IsString()
   @Field({
