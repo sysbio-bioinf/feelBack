@@ -1,3 +1,5 @@
+@import "variables";
+
 mat-card{
   margin-top: 1em;
 }
@@ -21,7 +23,7 @@ table {
 }
 
 tr.mat-row:hover{
-  background: rgba(0, 0, 0, 0.04);
+  background: $hover;
   cursor: pointer;
 }
 

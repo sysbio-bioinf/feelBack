@@ -1,8 +1,17 @@
-.mat-mini-fab{
+.mat-mini-fab {
   margin-bottom: 1em;
 }
 
-mat-tab-group{
+.mat-card-header {
+  align-items: center;
+}
+
+.title-position {
+  position: relative;
+  top: 9px;
+}
+
+mat-tab-group {
   margin-top: 2em;
 }
 
@@ -15,15 +24,16 @@ mat-tab-group{
   flex: 1 1 auto;
 }
 
-.stats{
+.stats {
   margin-top: 0.7em;
 }
 
-.stats-value{
+.stats-value {
   margin-right: 3em;
   cursor: help;
 }
 
-.mat-tab-header, mat-card {
+.mat-tab-header,
+mat-card {
   margin-bottom: 2em;
 }

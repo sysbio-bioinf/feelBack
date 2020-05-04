@@ -9,8 +9,8 @@
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>{{ patient.name }}</mat-card-title>
-    <mat-card-subtitle>{{ patient.organization }}</mat-card-subtitle>
+    <mat-card-title class="title-position">{{ patient.name }}</mat-card-title>
+    <mat-card-subtitle class="title-position">{{ patient.organization }}</mat-card-subtitle>
     <span class="spacer"></span>
     <div class="stats">
       <span
@@ -60,7 +60,7 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar *ngIf="showTabBar">
       <a
         mat-tab-link
         *ngFor="let link of links"

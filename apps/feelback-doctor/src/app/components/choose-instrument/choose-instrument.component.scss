@@ -1,0 +1,13 @@
+@import "variables";
+
+.choose-instrument{
+  display: inline-block;
+  width: 400px;
+  margin-right: 2em;
+  margin-bottom: 2em;
+  cursor: pointer;
+}
+
+.choose-instrument-card:hover {
+  background: $hover;
+}
