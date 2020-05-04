@@ -9,6 +9,13 @@ services:
       - ./docker/nginx/web.conf:/etc/nginx/nginx.conf
     working_dir: /usr/share/nginx/html
 
+  feelback-api:
+    image: node:lts-alpine3.11
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm run ng serve feelback-api
+
   pgadmin:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGA_USER:-pgadmin}

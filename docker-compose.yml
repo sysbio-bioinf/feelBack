@@ -11,6 +11,16 @@ services:
     ports:
       - '80:80'
 
+  feelback-api:
+    container_name: 'feelback-api'
+    depends_on:
+      - feelback-db
+      - identity-db
+    networks:
+      - feelback
+    ports:
+      - ${FB_API_PORT}:${FB_API_PORT}
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: 'feelback-pgadmin'
@@ -39,16 +49,6 @@ services:
     container_name: 'feelback-db-keycloak'
     networks:
       - feelback
-
-  feelback-api:
-    container_name: 'feelback-api'
-    depends_on:
-      - feelback-db
-      - identity-db
-    networks:
-      - feelback
-    ports:
-      - ${FB_API_PORT}:${FB_API_PORT}
 
   keycloak:
     image: jboss/keycloak:9.0.0
