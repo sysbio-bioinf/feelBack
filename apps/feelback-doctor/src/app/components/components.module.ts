@@ -10,6 +10,7 @@ import { SampleInstrumentComponent } from './sample-instrument/sample-instrument
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { InstrumentComponent } from './instrument/instrument.component';
+import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { InstrumentComponent } from './instrument/instrument.component';
     SampleInstrumentComponent,
     QuestionnaireComponent,
     InstrumentComponent,
+    ChooseInstrumentComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -27,7 +29,8 @@ import { InstrumentComponent } from './instrument/instrument.component';
     PatientFilterComponent,
     PatientListComponent,
     SampleInstrumentComponent,
-    InstrumentComponent
+    InstrumentComponent,
+    ChooseInstrumentComponent
   ],
 })
 export class ComponentsModule {}

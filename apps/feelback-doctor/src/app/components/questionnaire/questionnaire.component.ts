@@ -3,14 +3,11 @@ import {
   OnInit,
   ViewEncapsulation,
   Input,
-  ViewChild,
 } from '@angular/core';
 import { GetInstrumentsGQL } from '../../graphql/generated/feelback.graphql';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatExpansionPanel } from '@angular/material/expansion';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'feelback-doctor-questionnaire',
