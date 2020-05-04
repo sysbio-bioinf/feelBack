@@ -6,7 +6,7 @@ import { InstrumentEntity } from '../../app/modules/instrument/data/entities/ins
 import { OrganizationEntity } from '../../app/modules/organization/data/entities/organization.entity';
 
 export async function seed() {
-  const connection = getConnection();
+  const mainConnection = getConnection();
 
   const uulmOrganization: Partial<OrganizationEntity> = {
     name: 'Universitätsklinikum Ulm',
@@ -23,7 +23,7 @@ export async function seed() {
       'https://www.uniklinik-ulm.de/typo3conf/ext/as_template/Resources/Public/Images/logo.png',
   };
 
-  const organizationRepository = connection.getRepository(OrganizationEntity);
+  const organizationRepository = mainConnection.getRepository(OrganizationEntity);
   await organizationRepository.save([uulmOrganization]);
 
   const distressInstrument: Partial<InstrumentEntity> = {
@@ -55,6 +55,6 @@ export async function seed() {
     changelog: 'initial version',
   };
 
-  const instrumentRepository = connection.getRepository(InstrumentEntity);
+  const instrumentRepository = mainConnection.getRepository(InstrumentEntity);
   await instrumentRepository.save([distressInstrument]);
 }

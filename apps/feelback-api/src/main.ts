@@ -1,12 +1,12 @@
+import { ExceptionFilter } from '@cancerlog/api/application';
+import { CoreException } from '@cancerlog/api/core';
 import { environment as env } from '@env-cancerlog-api/environment';
+import { HttpStatus, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app/app.module';
-import { Logger, ValidationPipe, HttpStatus } from '@nestjs/common';
 import * as compression from 'compression';
 import * as helmet from 'helmet';
-import { CoreException } from '@cancerlog/api/core';
-import { ExceptionFilter } from '@cancerlog/api/application';
+import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
