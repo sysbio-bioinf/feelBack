@@ -1,4 +1,4 @@
-# Dockerfile to build UI and API
+# Dockerfile to build different applications
 # This file follows the multistage approach.
 
 # -----------------------------------------------
@@ -56,7 +56,6 @@ COPY --from=build /app/dist/apps/feelback-api .
 # TODO can we improve this?
 COPY ./.env ./.env
 
-CMD ["node", "main"]
-
 EXPOSE 3000/tcp
 
+CMD ["node", "main"]
