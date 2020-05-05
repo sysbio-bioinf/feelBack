@@ -27,7 +27,7 @@ export class CommonService {
   public curveStepAfter: any = shape.curveStepAfter;
   public curveLinear: any = shape.curveLinearClosed;
   public icons = {
-    name: 'face',
+    patient: 'face',
     organization: 'business',
     consultation: 'people',
     rating: 'star',

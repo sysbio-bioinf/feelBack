@@ -5,7 +5,7 @@ import { PatientListPage } from './patient-list.page';
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: 'patients',
     component: MainLayout,
     children: [{ path: '', component: PatientListPage }],
   },

@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    this.router.navigateByUrl('/list');
+    this.router.navigateByUrl('/patients');
   }
 
 }

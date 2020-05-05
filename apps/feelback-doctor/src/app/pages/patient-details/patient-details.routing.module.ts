@@ -14,8 +14,9 @@ const routes: Routes = [
         path: ':patient',
         component: PatientDetailsPage,
         children: [
+          { path: '', redirectTo: 'instruments', pathMatch: 'full' },
           {
-            path: '',
+            path: 'instruments',
             component: ChooseInstrumentComponent,
           },
           {

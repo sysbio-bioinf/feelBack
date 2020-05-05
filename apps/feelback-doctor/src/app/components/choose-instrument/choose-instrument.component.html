@@ -1,4 +1,4 @@
-<div *ngFor="let instrument of instruments" class="choose-instrument" [routerLink]="'./instruments/' + instrument.id">
+<div *ngFor="let instrument of instruments" class="choose-instrument" [routerLink]="'./' + instrument.id">
   <mat-card class="choose-instrument-card" >
     <mat-card-header>
       <img mat-card-avatar [src]="instrument.image"/>

@@ -1,16 +1,22 @@
+<button mat-raised-button class="nav-button" routerLink="/patients">
+  <mat-icon>{{commonService.icons.patient}}</mat-icon>
+  Show patients
+</button>
 <button
-  routerLink="/list"
-  color="default"
-  mat-mini-fab
-  aria-label="Go back to patient-list"
+  mat-raised-button
+  class="nav-button"
+  [routerLink]="'/patients/' + this.patient.id"
 >
-  <mat-icon>arrow_back</mat-icon>
+  <mat-icon>{{commonService.icons.instrument}}</mat-icon>
+  Show instruments
 </button>
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
     <mat-card-title class="title-position">{{ patient.name }}</mat-card-title>
-    <mat-card-subtitle class="title-position">{{ patient.organization }}</mat-card-subtitle>
+    <mat-card-subtitle class="title-position"
+      >{{ patient.organization }}</mat-card-subtitle
+    >
     <span class="spacer"></span>
     <div class="stats">
       <span

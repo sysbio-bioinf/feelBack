@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterEvent, NavigationEnd } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  RouterEvent,
+  NavigationEnd,
+} from '@angular/router';
 import { Patient } from '../../models/Patient';
 import { PatientService } from '../../services/patient.service';
 import { InstrumentService } from '../../services/instrument.service';
@@ -17,15 +22,15 @@ export class PatientDetailsPage implements OnInit {
     private instrumentService: InstrumentService,
     private route: ActivatedRoute,
     public commonService: CommonService,
-    private router: Router,
+    public router: Router,
   ) {
     this.route.paramMap.subscribe((params) => {
       this.patient.id = params.get('patient');
     });
 
     this.router.events.subscribe((event: RouterEvent) => {
-      if(event instanceof NavigationEnd){
-        this.showTabBar = event.url.includes('instrument');
+      if (event instanceof NavigationEnd) {
+        this.showTabBar = event.url.includes('instruments');
       }
     });
   }
@@ -34,6 +39,7 @@ export class PatientDetailsPage implements OnInit {
   public instrument: Instrument = new Instrument();
   public links = [];
   public showTabBar;
+  public showInstrumentsButton;
 
   ngOnInit(): void {
     this.patientService

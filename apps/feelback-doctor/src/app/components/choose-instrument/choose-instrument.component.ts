@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InstrumentService } from '../../services/instrument.service';
 import { Instrument } from '../../models/Instrument';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'feelback-doctor-choose-instrument',
@@ -9,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./choose-instrument.component.scss'],
 })
 export class ChooseInstrumentComponent implements OnInit {
-  constructor(private instrumentService: InstrumentService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private instrumentService: InstrumentService) {}
 
   public instruments: Instrument[];
 
@@ -18,5 +17,4 @@ export class ChooseInstrumentComponent implements OnInit {
       .getInstruments()
       .subscribe((instruments) => (this.instruments = instruments));
   }
-
 }
