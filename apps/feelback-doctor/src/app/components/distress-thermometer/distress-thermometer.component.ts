@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Screening } from '../../models/Screening';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Instrument } from '../../graphql/generated/feelback.graphql';
+import { Parser } from 'expr-eval';
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',
@@ -36,7 +37,7 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
   @Input() instrument: Instrument;
   @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   public screenings: ChartSeries[];
-  public categories: ChartSeries[];
+  public overview: ChartSeries[];
   public screening: Screening;
 
   ngOnInit(): void {
@@ -48,15 +49,26 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
       .subscribe((data) => (this.screenings = data));
     this.screeningService
       .getRadarChart()
-      .subscribe((data) => (this.categories = data));
+      .subscribe((data) => (this.overview = data));
   }
 
-  ngAfterViewInit(): void{
+  ngAfterViewInit(): void {
     this.route.queryParams.subscribe((params) => {
-      if(!params['screening']){
+      if (!params['screening']) {
         this.expansionPanel.open();
       }
     });
+  }
+
+  private createRadarChart() {
+    // this.overview = [
+    //   {
+    //     name: 'Overview',
+    //     series: [],
+    //   },
+    // ];
+
+    console.log(Parser.evaluate(this.instrument.diagram.overview.axis.fp, this.screening.result));
   }
 
   public selectScreening(data: ChartDataPoint): void {
@@ -66,9 +78,8 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        screening: screening
+        screening: screening,
       },
-    })
+    });
   }
-
 }

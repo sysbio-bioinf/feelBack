@@ -15,199 +15,199 @@ export class ScreeningService {
         name: 'Rating',
         series: [
           {
-            value: 58,
+            value: 5,
             name: new Date(2019, 0, 1),
           },
           {
-            value: 72,
+            value: 7,
             name: new Date(2019, 0, 8),
           },
           {
-            value: 63,
+            value: 6,
             name: new Date(2019, 0, 15),
           },
           {
-            value: 40,
+            value: 4,
             name: new Date(2019, 0, 22),
           },
           {
-            value: 65,
+            value: 6,
             name: new Date(2019, 1, 1),
           },
           {
-            value: 77,
+            value: 7,
             name: new Date(2019, 1, 8),
           },
           {
-            value: 89,
+            value: 9,
             name: new Date(2019, 1, 15),
           },
           {
-            value: 95,
+            value: 9,
             name: new Date(2019, 1, 22),
           },
           {
-            value: 81,
+            value: 8,
             name: new Date(2019, 2, 1),
           },
           {
-            value: 85,
+            value: 8,
             name: new Date(2019, 2, 8),
           },
           {
-            value: 71,
+            value: 7,
             name: new Date(2019, 2, 15),
           },
           {
-            value: 63,
+            value: 6,
             name: new Date(2019, 2, 22),
           },
           {
-            value: 82,
+            value: 8,
             name: new Date(2019, 3, 1),
           },
           {
-            value: 86,
+            value: 8,
             name: new Date(2019, 3, 8),
           },
           {
-            value: 91,
+            value: 9,
             name: new Date(2019, 3, 15),
           },
           {
-            value: 85,
+            value: 8,
             name: new Date(2019, 3, 22),
           },
           {
-            value: 70,
+            value: 7,
             name: new Date(2019, 4, 1),
           },
           {
-            value: 64,
+            value: 6,
             name: new Date(2019, 4, 8),
           },
           {
-            value: 60,
+            value: 6,
             name: new Date(2019, 4, 15),
           },
           {
-            value: 58,
+            value: 5,
             name: new Date(2019, 4, 22),
           },
           {
-            value: 50,
+            value: 5,
             name: new Date(2019, 5, 1),
           },
           {
-            value: 45,
+            value: 4,
             name: new Date(2019, 5, 8),
           },
           {
-            value: 53,
+            value: 5,
             name: new Date(2019, 5, 15),
           },
           {
-            value: 38,
+            value: 3,
             name: new Date(2019, 5, 22),
           },
           {
-            value: 35,
+            value: 3,
             name: new Date(2019, 6, 1),
           },
           {
-            value: 37,
+            value: 3,
             name: new Date(2019, 6, 8),
           },
           {
-            value: 46,
+            value: 4,
             name: new Date(2019, 6, 15),
           },
           {
-            value: 51,
+            value: 5,
             name: new Date(2019, 6, 22),
           },
           {
-            value: 56,
+            value: 5,
             name: new Date(2019, 7, 1),
           },
           {
-            value: 71,
+            value: 7,
             name: new Date(2019, 7, 8),
           },
           {
-            value: 65,
+            value: 6,
             name: new Date(2019, 7, 15),
           },
           {
-            value: 59,
+            value: 5,
             name: new Date(2019, 7, 22),
           },
           {
-            value: 54,
+            value: 5,
             name: new Date(2019, 8, 1),
           },
           {
-            value: 51,
+            value: 5,
             name: new Date(2019, 8, 8),
           },
           {
-            value: 59,
+            value: 5,
             name: new Date(2019, 8, 15),
           },
           {
-            value: 61,
+            value: 6,
             name: new Date(2019, 8, 22),
           },
           {
-            value: 63,
+            value: 6,
             name: new Date(2019, 9, 1),
           },
           {
-            value: 71,
+            value: 7,
             name: new Date(2019, 9, 8),
           },
           {
-            value: 74,
+            value: 7,
             name: new Date(2019, 9, 15),
           },
           {
-            value: 77,
+            value: 7,
             name: new Date(2019, 9, 22),
           },
           {
-            value: 81,
+            value: 8,
             name: new Date(2019, 10, 1),
           },
           {
-            value: 67,
+            value: 6,
             name: new Date(2019, 10, 8),
           },
           {
-            value: 56,
+            value: 5,
             name: new Date(2019, 10, 15),
           },
           {
-            value: 71,
+            value: 7,
             name: new Date(2019, 10, 22),
           },
           {
-            value: 74,
+            value: 7,
             name: new Date(2019, 11, 1),
           },
           {
-            value: 77,
+            value: 7,
             name: new Date(2019, 11, 8),
           },
           {
-            value: 72,
+            value: 7,
             name: new Date(2019, 11, 15),
           },
           {
-            value: 65,
+            value: 6,
             name: new Date(2019, 11, 22),
           },
           {
-            value: 70,
+            value: 7,
             name: new Date(2019, 11, 31),
           },
         ],
@@ -261,9 +261,9 @@ export class ScreeningService {
         "PP04": "false",
         "PP05": "true",
         "PP06": "false",
-        "PP08": "true",
-        "FP01": "true",
-        "FP02": "false",
+        "PP07": "true",
+        "FP01": "1",
+        "FP02": "0",
         "EP01": "true",
         "EP02": "false",
         "EP03": "true",

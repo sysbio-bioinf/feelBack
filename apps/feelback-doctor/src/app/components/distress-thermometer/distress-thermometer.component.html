@@ -5,7 +5,7 @@
         Screenings
       </mat-panel-title>
       <mat-panel-description>
-        Show screenings and categories
+        Show screenings and overview
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="wrapper">
@@ -16,7 +16,7 @@
             xAxis="true"
             yAxis="true"
             yScaleMin="0"
-            yScaleMax="100"
+            yScaleMax="10"
             [xAxisTicks]="commonService.xAxisTicks"
             [curve]="commonService.curveStepAfter"
             [results]="screenings"
@@ -35,7 +35,7 @@
             yAxis="true"
             labelTrimSize="35"
             [curve]="commonService.curveLinear"
-            [results]="categories"
+            [results]="overview"
           >
           </ngx-charts-polar-chart>
         </div>
