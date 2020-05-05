@@ -38,6 +38,10 @@
     },
 
     "components": {
+      "empty": {
+        "title": "Nothing to show",
+        "text": "There is no content to show"
+      },
       "instrument-card": {
         "selectLanguage": "Select Language",
         "start": "Start"

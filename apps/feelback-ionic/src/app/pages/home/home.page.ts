@@ -13,8 +13,9 @@ import { InstrumentService } from 'src/app/services/api/instrument.service';
   providers: [TranslatePipe],
 })
 export class HomePage extends AbstractComponent {
-  instruments: Instrument[];
+  instruments: Instrument[] = [];
   loading: HTMLIonLoadingElement;
+  loaded = false;
 
   constructor(
     readonly router: Router,
@@ -28,6 +29,7 @@ export class HomePage extends AbstractComponent {
   async ionViewWillEnter() {
     await this.presentLoading();
     this.instruments = await this.instrumentService.getAll();
+    this.loaded = true;
     await this.loading.dismiss();
   }
 

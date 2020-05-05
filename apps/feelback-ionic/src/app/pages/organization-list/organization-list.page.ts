@@ -13,8 +13,9 @@ import { OrganizationService } from 'src/app/services/api/organization.service';
   providers: [TranslatePipe],
 })
 export class OrganizationListPage extends AbstractComponent {
-  organizations: Organization[];
+  organizations: Organization[] = [];
   loading: HTMLIonLoadingElement;
+  loaded = false;
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class OrganizationListPage extends AbstractComponent {
   async ionViewWillEnter() {
     await this.presentLoading();
     this.organizations = await this.organizationService.getAll();
+    this.loaded = true;
     await this.loading.dismiss();
   }
 

@@ -13,8 +13,9 @@ import { FaqService } from 'src/app/services/api/faq.service';
   providers: [TranslatePipe],
 })
 export class FaqListPage extends AbstractComponent implements OnInit {
-  faqs: Faq[];
+  faqs: Faq[] = [];
   loading: HTMLIonLoadingElement;
+  loaded = false;
 
   constructor(
     private router: Router,
@@ -30,6 +31,7 @@ export class FaqListPage extends AbstractComponent implements OnInit {
   async ionViewWillEnter() {
     await this.presentLoading();
     this.faqs = await this.faqService.getAll();
+    this.loaded = true;
     await this.loading.dismiss();
   }
 

@@ -4,16 +4,28 @@
 ></feelback-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item
-      *ngFor="let faq of this.faqs"
-      detail
-      button
-      (click)="showDetails(faq.id)"
-    >
-      <ion-label>
-        {{faq.question}}
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div
+    *ngIf="(this.loaded && this.faqs.length === 0); 
+        then empty 
+        else content"
+  ></div>
+
+  <ng-template #empty>
+    <feelback-ionic-empty></feelback-ionic-empty>
+  </ng-template>
+
+  <ng-template #content>
+    <ion-list>
+      <ion-item
+        *ngFor="let faq of this.faqs"
+        detail
+        button
+        (click)="showDetails(faq.id)"
+      >
+        <ion-label>
+          {{faq.question}}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-template>
 </ion-content>

@@ -4,9 +4,21 @@
 ></feelback-header>
 
 <ion-content>
-  <feelback-instrument-card
-    *ngFor="let instrument of instruments"
-    [instrument]="instrument"
-  >
-  </feelback-instrument-card>
+  <div
+    *ngIf="(this.loaded && this.instruments.length === 0); 
+        then empty 
+        else content"
+  ></div>
+
+  <ng-template #empty>
+    <feelback-ionic-empty></feelback-ionic-empty>
+  </ng-template>
+
+  <ng-template #content>
+    <feelback-instrument-card
+      *ngFor="let instrument of instruments"
+      [instrument]="instrument"
+    >
+    </feelback-instrument-card>
+  </ng-template>
 </ion-content>

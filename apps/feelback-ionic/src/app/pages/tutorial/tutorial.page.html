@@ -22,7 +22,9 @@
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
 
       <div
-        *ngIf="i !== (this.tutorialSlides.length - 1);then description else button"
+        *ngIf="i !== (this.tutorialSlides.length - 1);
+        then description 
+        else button"
       ></div>
 
       <ng-template #description>

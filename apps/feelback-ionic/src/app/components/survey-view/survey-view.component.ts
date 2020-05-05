@@ -129,6 +129,8 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
     document.getElementById('instrument-navigation-cancel').style.visibility =
       'visible';
+
+    document.getElementById('divSuccess').style.visibility = 'hidden';
     // ------------------------------------------
 
     this.survey.onComplete.add(async (survey: Survey.Survey) => {
@@ -230,8 +232,9 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     document.getElementById('instrument-navigation-submit').style.visibility =
       'hidden';
 
-    document.getElementById('printButton').style.visibility = 'visible';
-    document.getElementById('navigateHome').style.visibility = 'visible';
+    document.getElementById('divSuccess').style.visibility = 'visible';
+    // document.getElementById('printButton').style.visibility = 'visible';
+    // document.getElementById('navigateHome').style.visibility = 'visible';
   }
 
   printResult() {
