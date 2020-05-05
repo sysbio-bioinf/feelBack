@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FeelBack</string>
+    <string name="title_activity_main">FeelBack</string>
+    <string name="package_name">com.johannesschobel.apps.feelback</string>
+    <string name="custom_url_scheme">com.johannesschobel.apps.feelback</string>
+</resources>
