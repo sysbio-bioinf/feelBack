@@ -7,75 +7,74 @@
     <div id="surveyElement"></div>
   </div>
 
-  <div id="divNavigationButtons">
-    <ion-fab
-      vertical="bottom"
-      horizontal="start"
-      slot="fixed"
-      style="visibility: hidden;"
+  <ion-fab
+    vertical="bottom"
+    horizontal="start"
+    slot="fixed"
+    style="visibility: hidden;"
+  >
+    <ion-fab-button
+      size="small"
+      color="light"
+      id="instrument-navigation-back"
+      (click)="this.survey.prevPage()"
     >
-      <ion-fab-button
-        size="small"
-        color="light"
-        id="instrument-navigation-back"
-        (click)="this.survey.prevPage()"
-      >
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-    <ion-fab
-      vertical="bottom"
-      horizontal="center"
-      slot="fixed"
-      style="visibility: hidden;"
+  <ion-fab
+    vertical="bottom"
+    horizontal="center"
+    slot="fixed"
+    style="visibility: hidden;"
+  >
+    <ion-fab-button
+      size="small"
+      color="danger"
+      id="instrument-navigation-cancel"
+      (click)="this.cancelSurvey()"
     >
-      <ion-fab-button
-        size="small"
-        color="danger"
-        id="instrument-navigation-cancel"
-        (click)="this.cancelSurvey()"
-      >
-        <ion-icon name="trash"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-    <ion-fab
-      vertical="bottom"
-      horizontal="end"
-      slot="fixed"
-      style="visibility: hidden;"
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    style="visibility: hidden;"
+  >
+    <ion-fab-button
+      size="small"
+      color="light"
+      id="instrument-navigation-next"
+      (click)="this.survey.nextPage()"
     >
-      <ion-fab-button
-        size="small"
-        color="light"
-        id="instrument-navigation-next"
-        (click)="this.survey.nextPage()"
-      >
-        <ion-icon name="arrow-forward"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-    <ion-fab
-      vertical="bottom"
-      horizontal="end"
-      slot="fixed"
-      style="visibility: hidden;"
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    style="visibility: hidden;"
+  >
+    <ion-fab-button
+      size="small"
+      color="success"
+      id="instrument-navigation-submit"
+      (click)="this.survey.completeLastPage()"
     >
-      <ion-fab-button
-        size="small"
-        color="success"
-        id="instrument-navigation-submit"
-        (click)="this.survey.completeLastPage()"
-      >
-        <ion-icon name="save"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-  <div id="divSuccess" style="visibility: hidden;">
-    <ion-img [src]="'assets/images/empty/success.svg'"></ion-img>
-    <br />
+  <div *ngIf="this.surveyCompleted; then completedTemplate"></div>
+
+  <ng-template #completedTemplate>
+    <ion-img [src]="'assets/images/empty/success.svg'" class="boxed"></ion-img>
     <br />
 
     <div id="printButton">
@@ -84,7 +83,7 @@
       </ion-button>
     </div>
 
-    <br /><br /><br />
+    <br /><br />
 
     <div id="navigateHome">
       <ion-button
@@ -96,5 +95,5 @@
         {{ 'app.pages.survey.back' | translate }}
       </ion-button>
     </div>
-  </div>
+  </ng-template>
 </ion-content>

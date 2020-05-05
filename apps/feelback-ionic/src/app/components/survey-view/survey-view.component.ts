@@ -24,6 +24,7 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
   @Input() selectedLanguage: string;
   survey: Survey.Survey;
   printData: string;
+  surveyCompleted = false;
 
   constructor(
     private alertController: AlertController,
@@ -77,6 +78,8 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
   }
 
   async setupInstrumentPage() {
+    this.surveyCompleted = false;
+
     this.survey = new Survey.Model(this.instrument.payload);
 
     this.survey.showTitle = false;
@@ -129,11 +132,20 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
     document.getElementById('instrument-navigation-cancel').style.visibility =
       'visible';
-
-    document.getElementById('divSuccess').style.visibility = 'hidden';
     // ------------------------------------------
 
     this.survey.onComplete.add(async (survey: Survey.Survey) => {
+      this.surveyCompleted = true;
+
+      document.getElementById('instrument-navigation-back').style.visibility =
+        'hidden';
+      document.getElementById('instrument-navigation-cancel').style.visibility =
+        'hidden';
+      document.getElementById('instrument-navigation-next').style.visibility =
+        'hidden';
+      document.getElementById('instrument-navigation-submit').style.visibility =
+        'hidden';
+
       const now = dayjs();
       const filename = now.format('YYYY-MM-DD HH-mm-ss');
 
@@ -190,49 +202,41 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
       );
     });
 
+    this.survey.onCurrentPageChanged.add(async (survey: Survey.Survey) => {
+      if (survey.isFirstPage === true) {
+        document.getElementById('instrument-navigation-back').style.visibility =
+          'hidden';
+      } else {
+        document.getElementById('instrument-navigation-back').style.visibility =
+          'visible';
+      }
+
+      if (survey.isLastPage === true) {
+        document.getElementById('instrument-navigation-next').style.visibility =
+          'hidden';
+        document.getElementById(
+          'instrument-navigation-submit',
+        ).style.visibility = 'visible';
+      } else {
+        document.getElementById('instrument-navigation-next').style.visibility =
+          'visible';
+        document.getElementById(
+          'instrument-navigation-submit',
+        ).style.visibility = 'hidden';
+      }
+
+      document.getElementById('instrument-navigation-cancel').style.visibility =
+        'visible';
+    });
+
     Survey.SurveyNG.render('surveyElement', {
       model: this.survey,
-      onCurrentPageChanged: this.surveyPageChanged,
-      onComplete: this.surveyOnComplete,
+      // onCurrentPageChanged: this.surveyPageChanged,
+      // onComplete: this.surveyOnComplete,
     });
   }
 
-  private surveyPageChanged(survey: Survey.Survey) {
-    if (survey.isFirstPage === true) {
-      document.getElementById('instrument-navigation-back').style.visibility =
-        'hidden';
-    } else {
-      document.getElementById('instrument-navigation-back').style.visibility =
-        'visible';
-    }
-
-    if (survey.isLastPage === true) {
-      document.getElementById('instrument-navigation-next').style.visibility =
-        'hidden';
-      document.getElementById('instrument-navigation-submit').style.visibility =
-        'visible';
-    } else {
-      document.getElementById('instrument-navigation-next').style.visibility =
-        'visible';
-      document.getElementById('instrument-navigation-submit').style.visibility =
-        'hidden';
-    }
-
-    document.getElementById('instrument-navigation-cancel').style.visibility =
-      'visible';
-  }
-
   private async surveyOnComplete(survey: Survey.Survey) {
-    document.getElementById('instrument-navigation-back').style.visibility =
-      'hidden';
-    document.getElementById('instrument-navigation-cancel').style.visibility =
-      'hidden';
-    document.getElementById('instrument-navigation-next').style.visibility =
-      'hidden';
-    document.getElementById('instrument-navigation-submit').style.visibility =
-      'hidden';
-
-    document.getElementById('divSuccess').style.visibility = 'visible';
     // document.getElementById('printButton').style.visibility = 'visible';
     // document.getElementById('navigateHome').style.visibility = 'visible';
   }
