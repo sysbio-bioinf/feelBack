@@ -3,6 +3,7 @@
   Show patients
 </button>
 <button
+  *ngIf="router.url.split('/').length > 4"
   mat-raised-button
   class="nav-button"
   [routerLink]="'/patients/' + this.patient.id"
