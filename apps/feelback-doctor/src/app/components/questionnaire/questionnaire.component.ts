@@ -1,10 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  Input,
-} from '@angular/core';
-import { GetInstrumentsGQL } from '../../graphql/generated/feelback.graphql';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Instrument } from '../../graphql/generated/feelback.graphql';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,32 +11,25 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionnaireComponent implements OnInit {
-  constructor(
-    private instrumentService: GetInstrumentsGQL,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   @Input() screening: Screening;
+  @Input() payload: {};
   public survey = new Survey.Model();
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.instrumentService.fetch().subscribe((data) => {
-        this.survey = new Survey.Model(
-          data.data.instruments.edges[0].node.payload,
-        );
-        this.survey.data = this.screening.result;
-        this.survey.currentPageNo = params['page'] ? params['page'] : 0;
-        this.survey.mode = 'display';
-        this.survey.showNavigationButtons = false;
-        this.survey.showTitle = false;
-        this.survey.locale = 'de';
+      this.survey = new Survey.Model(this.payload);
+      this.survey.data = this.screening.result;
+      this.survey.currentPageNo = params['page'] ? params['page'] : 0;
+      this.survey.mode = 'display';
+      this.survey.showNavigationButtons = false;
+      this.survey.showTitle = false;
+      this.survey.locale = 'de';
 
-        this.setSurveyTheme();
-        this.setCustomCssClasses();
-        this.renderSurvey();
-      });
+      this.setSurveyTheme();
+      this.setCustomCssClasses();
+      this.renderSurvey();
     });
   }
 

@@ -11,9 +11,9 @@ import { ChartSeries } from '../../models/ChartSeries';
 import { ScreeningService } from '../../services/screening.service';
 import { CommonService } from '../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Patient } from '../../models/Patient';
 import { Screening } from '../../models/Screening';
 import { MatExpansionPanel } from '@angular/material/expansion';
+import { Instrument } from '../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',
@@ -33,8 +33,7 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
       .subscribe((screening) => (this.screening = screening));
   }
 
-  @Input() patient: Patient;
-  @Input() instrument: Patient;
+  @Input() instrument: Instrument;
   @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   public screenings: ChartSeries[];
   public categories: ChartSeries[];

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { InstrumentService } from '../../services/instrument.service';
+import {
+  GetInstrumentsGQL,
+  Instrument,
+  GetInstrumentsQuery,
+} from '../../graphql/generated/feelback.graphql';
+import { Observable } from 'rxjs';
+import { ApolloQueryResult } from 'apollo-client';
 import { ActivatedRoute } from '@angular/router';
-import { Instrument } from '../../models/Instrument';
-import { Patient } from '../../models/Patient';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -12,17 +16,17 @@ import { Patient } from '../../models/Patient';
 export class InstrumentComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private instrumentService: InstrumentService,
+    private instrumentService: GetInstrumentsGQL,
   ) {
     this.route.paramMap.subscribe((params) => {
-      this.instrumentService
-        .getInstrumentById(params.get('instrument'))
-        .subscribe((instrument) => (this.instrument = instrument));
+      this.currentID = params.get('instrument');
+      this.instrument$ = this.instrumentService.fetch();
     });
   }
 
-  public patient: Patient = new Patient();
-  public instrument: Instrument = new Instrument();
+  public currentID: string;
+  public instrument: Instrument;
+  public instrument$: Observable<ApolloQueryResult<GetInstrumentsQuery>>;
 
   ngOnInit(): void {}
 }

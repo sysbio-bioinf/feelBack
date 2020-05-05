@@ -11,7 +11,7 @@ export class InstrumentService {
   public getInstruments(): Observable<Instrument[]> {
     const instruments = [
       {
-        id: '64d1c980-c32d-4b23-903a-702629e5917f',
+        id: '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
         name: 'Distress Thermometer',
         description:
           'Das NCCN Distress-Thermometer ist ein vom National Comprehensive Cancer Network (NCCN) entwickeltes Screeninginstrument zur Erfassung psychosozialer Belastungen bei onkologischen Patienten.',
