@@ -6,15 +6,15 @@
 <ion-content>
   <div
     *ngIf="(this.loaded && this.faqs.length === 0); 
-        then empty 
-        else content"
+        then emptyTemplate 
+        else contentTemplate"
   ></div>
 
-  <ng-template #empty>
+  <ng-template #emptyTemplate>
     <feelback-ionic-empty></feelback-ionic-empty>
   </ng-template>
 
-  <ng-template #content>
+  <ng-template #contentTemplate>
     <ion-list>
       <ion-item
         *ngFor="let faq of this.faqs"

@@ -6,15 +6,15 @@
 <ion-content>
   <div
     *ngIf="(this.loaded && this.instruments.length === 0); 
-        then empty 
-        else content"
+        then emptyTemplate 
+        else contentTemplate"
   ></div>
 
-  <ng-template #empty>
+  <ng-template #emptyTemplate>
     <feelback-ionic-empty></feelback-ionic-empty>
   </ng-template>
 
-  <ng-template #content>
+  <ng-template #contentTemplate>
     <feelback-instrument-card
       *ngFor="let instrument of instruments"
       [instrument]="instrument"

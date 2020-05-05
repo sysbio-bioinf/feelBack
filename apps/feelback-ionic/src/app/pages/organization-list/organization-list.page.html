@@ -6,15 +6,15 @@
 <ion-content>
   <div
     *ngIf="(this.loaded && this.organizations.length === 0); 
-        then empty 
-        else content"
+        then emptyTemplate 
+        else contentTemplate"
   ></div>
 
-  <ng-template #empty>
+  <ng-template #emptyTemplate>
     <feelback-ionic-empty></feelback-ionic-empty>
   </ng-template>
 
-  <ng-template #content>
+  <ng-template #contentTemplate>
     <feelback-organization-card
       *ngFor="let organization of organizations"
       [organization]="organization"
