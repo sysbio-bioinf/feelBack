@@ -1,0 +1,15 @@
+body {
+  background: url(/assets/images/bg.svg) repeat-y 20% 20%;
+}
+
+ion-content {
+  --background: none;
+}
+
+.centered {
+  text-align: center;
+}
+
+.boxed {
+  padding: 50px;
+}
