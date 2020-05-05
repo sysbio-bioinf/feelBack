@@ -5,16 +5,14 @@ import { PatientListPage } from './patient-list.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'list',
     component: MainLayout,
-    children: [
-      { path: 'list', component: PatientListPage },
-    ],
+    children: [{ path: '', component: PatientListPage }],
   },
 ];
 
 @NgModule({
-imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class PatientListRoutingModule { }
+export class PatientListRoutingModule {}

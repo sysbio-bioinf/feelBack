@@ -7,11 +7,11 @@ import { InstrumentComponent } from '../../components/instrument/instrument.comp
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'patients',
     component: MainLayout,
     children: [
       {
-        path: 'patients/:patient',
+        path: ':patient',
         component: PatientDetailsPage,
         children: [
           {

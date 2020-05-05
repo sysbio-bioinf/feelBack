@@ -11,6 +11,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { InstrumentComponent } from './instrument/instrument.component';
 import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument
     SampleInstrumentComponent,
     QuestionnaireComponent,
     InstrumentComponent,
-    ChooseInstrumentComponent
+    ChooseInstrumentComponent,
+    PageNotFoundComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [

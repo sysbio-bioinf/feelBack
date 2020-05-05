@@ -4,10 +4,9 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { MaterialModule } from '../../modules/material.module';
 import { PatientDetailsPage } from './patient-details.page';
-import { PatientDetailsRoutingModule } from './patient-details.routing.module';
 
 @NgModule({
   declarations: [PatientDetailsPage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, PatientDetailsRoutingModule],
+  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule],
 })
 export class PatientDetailsModule {}
