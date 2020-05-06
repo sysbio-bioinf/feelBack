@@ -5,9 +5,9 @@
     "nav": {
       "title": "FeelBack",
       "home": "Start",
-      "features": "Features",
-      "gallery": "Gallery",
-      "contact": "Contact",
+      "features": "Funktionen",
+      "gallery": "Gallerie",
+      "contact": "Kontakt",
       "download": "Download"
     },
 
@@ -16,11 +16,11 @@
         "title": "FeelBack",
         "tagline": "A Short description about FeelBack here",
         "features": {
-          "title": "Features",
+          "title": "Funktionen",
           "headline": "Do more with our Application",
           "features": {
             "a": {
-              "title": "Instruments",
+              "title": "Validierte Instrumente",
               "headline": "Headline a",
               "lead": "adfasf",
               "text": "aasdfasdf adfa dsf as fa"
@@ -46,24 +46,24 @@
           }
         },
         "gallery": {
-          "title": "Gallery",
+          "title": "Bilder",
           "headline": "FeelBack App Screenshots"
         },
         "faq": {
           "title": "FAQs",
-          "headline": "Frequently Asked Questions"
+          "headline": "Fragen & Antworten"
         },
         "download": {
           "title": "Download",
           "headline": "Download",
-          "text": "The FeelBack application is available for all major mobile platforms.",
+          "text": "Die FeelBack Anwendung ist für die gängigen mobilen Plattformen verfügbar.",
           "android": "https://android-link",
           "ios": "https://ios-link",
-          "info": "Works on Android 8 and above."
+          "info": "Benötigt Android 8 oder höher"
         },
         "contact": {
-          "organization": "Ulm University, Institute of Medical Systems Biology",
-          "address": "James Franck Ring 1, 89081 Ulm, Germany",
+          "organization": "Universität Ulm, Institut für medizinische Systembiologie",
+          "address": "James Franck Ring 1, 89081 Ulm, Deutschland",
           "email": "info@feelback-app.com",
           "phone": "+49 / (0) 731 / 50 245 00"
         }
@@ -71,12 +71,12 @@
     },
 
     "footer": {
-      "copyright": "Copyright © 2020. All Rights Reserved. Ulm University. Developed by Johannes Schobel.",
-      "link": "Ulm University",
-      "press": "Press",
-      "terms": "Terms",
-      "imprint": "Imprint",
-      "privacy": "Privacy"
+      "copyright": "Copyright © 2020. Alle Rechte vorbehalten. Universität Ulm. Entwickelt von Johannes Schobel.",
+      "link": "Universität Ulm",
+      "press": "Presse",
+      "terms": "Bedingungen",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz"
     }
   }
 }
