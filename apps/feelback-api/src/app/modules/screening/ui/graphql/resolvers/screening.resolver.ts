@@ -1,6 +1,6 @@
 import { CoreException } from '@cancerlog/api/core';
 import { DeepPartial } from '@nestjs-query/core';
-import { CRUDResolver } from '@nestjs-query/query-graphql';
+import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import { HttpStatus } from '@nestjs/common';
 import {
   Args,
@@ -68,7 +68,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   })
   async getScreeningsForPersonAndInstrument(
     @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
-  ) {
+  ): Promise<ConnectionType<ScreeningObject>> {
     const person = await this.personDatabaseService.getPersonByPseudonym(
       query.pseudonym,
     );
@@ -82,7 +82,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       );
     }
 
-    const screenings = await this.screeningDatabaseService.query({
+    const screenings = this.screeningDatabaseService.query({
       paging: query.paging,
       sorting: query.sorting,
       // FIXME: This really (!) needs to be fixed; as this is very (!) ugly :(
@@ -95,14 +95,13 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       },
     });
 
-    const transformedScreenings = this.service.assembler.convertToDTOs(
+    const transformedScreenings = this.service.assembler.convertAsyncToDTOs(
       screenings,
     );
 
-    return ScreeningConnection.createFromArray(
-      transformedScreenings,
-      query.paging || {},
-    );
+    return ScreeningConnection.createFromPromise(() => transformedScreenings, {
+      paging: query.paging || {},
+    });
   }
 
   @Mutation((returns) => ScreeningObject, { name: 'resolveScreeningIssues' })
