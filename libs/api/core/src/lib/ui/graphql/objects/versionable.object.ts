@@ -1,6 +1,6 @@
-import { IdentifiableObject } from './identifiable.object';
 import { FilterableField } from '@nestjs-query/query-graphql';
-import { ObjectType } from '@nestjs/graphql';
+import { GraphQLISODateTime, ObjectType } from '@nestjs/graphql';
+import { IdentifiableObject } from './identifiable.object';
 
 @ObjectType({
   isAbstract: true,
@@ -12,4 +12,10 @@ export class VersionableObject extends IdentifiableObject {
       'The version number of this resource (incremented each time this resource was updated).',
   })
   version: number;
+
+  @FilterableField(() => GraphQLISODateTime, {
+    description: 'Date this entry was deleted.',
+    nullable: true,
+  })
+  deletedAt?: Date;
 }

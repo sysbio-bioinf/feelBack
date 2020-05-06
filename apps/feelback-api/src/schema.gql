@@ -217,6 +217,9 @@ type Doctor {
   """
   version: Float!
 
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
   """(Academic) title of this doctor"""
   title: String
 
@@ -275,6 +278,7 @@ input DoctorFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
 }
@@ -290,6 +294,7 @@ enum DoctorSortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   firstname
   lastname
 }
@@ -327,6 +332,9 @@ type Faq {
   """
   version: Float!
 
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
   """the question of this FAQ entry"""
   question: String!
 
@@ -360,6 +368,9 @@ type FaqDeleteResponse {
   """
   version: Float
 
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
   """the question of this FAQ entry"""
   question: String
 
@@ -385,6 +396,7 @@ input FaqFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   isActive: BooleanFieldComparison
 }
 
@@ -399,6 +411,7 @@ enum FaqSortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   isActive
 }
 
@@ -417,6 +430,9 @@ type Identity {
   The version number of this resource (incremented each time this resource was updated).
   """
   version: Float!
+
+  """Date this entry was deleted."""
+  deletedAt: DateTime
 
   """The pseudonym of an identity."""
   pseudonym: String!
@@ -454,6 +470,7 @@ input IdentityFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   pseudonym: StringFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
@@ -470,6 +487,7 @@ enum IdentitySortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   pseudonym
   firstname
   lastname
@@ -507,6 +525,9 @@ type Instrument {
   The version number of this resource (incremented each time this resource was updated).
   """
   version: Float!
+
+  """Date this entry was deleted."""
+  deletedAt: DateTime
 
   """The name of this instrument"""
   name: String!
@@ -566,6 +587,7 @@ input InstrumentFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
 }
@@ -581,6 +603,7 @@ enum InstrumentSortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   name
   type
 }
@@ -650,6 +673,9 @@ type Organization {
   """
   version: Float!
 
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
   """Name of the organization"""
   name: String!
 
@@ -708,6 +734,7 @@ input OrganizationFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
 }
@@ -723,6 +750,7 @@ enum OrganizationSortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   name
   type
 }
@@ -757,6 +785,9 @@ type Person {
   """
   version: Float!
 
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
   """the pseudonym of the person"""
   pseudonym: String!
 
@@ -787,6 +818,7 @@ input PersonFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   pseudonym: StringFieldComparison
 }
 
@@ -801,6 +833,7 @@ enum PersonSortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   pseudonym
 }
 
@@ -949,6 +982,9 @@ type Screening {
   """
   version: Float!
 
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
   """Instance ID (uuid v4) defined by the client"""
   instanceId: String!
 
@@ -1002,6 +1038,7 @@ input ScreeningFilter {
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
   version: NumberFieldComparison
+  deletedAt: DateFieldComparison
   instanceId: StringFieldComparison
   collectedAt: DateFieldComparison
   language: StringFieldComparison
@@ -1020,6 +1057,7 @@ enum ScreeningSortFields {
   createdAt
   updatedAt
   version
+  deletedAt
   instanceId
   collectedAt
   language

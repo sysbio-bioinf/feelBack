@@ -10,16 +10,19 @@ import { FilterableField } from '@nestjs-query/query-graphql';
 export abstract class IdentifiableObject extends CoreObject {
   @FilterableField(() => ID, {
     description: 'The ID of this resource.',
+    nullable: false,
   })
   id: string;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when this resource was created.',
+    nullable: false,
   })
   createdAt: Date;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when this resource was last updated.',
+    nullable: false,
   })
   updatedAt: Date;
 }
