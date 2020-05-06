@@ -22,7 +22,7 @@
     "cmd:feelback": "npx ts-node --project apps/feelback-api/tsconfig.app.json -r tsconfig-paths/register ./apps/feelback-api/src/cli.ts",
     "dep-graph": "nx dep-graph",
     "deps:bump": "npx ncu -iu",
-    "docker:dev:serve": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -dV",
+    "docker:dev:serve": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d",
     "docker:dev:stop": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml stop",
     "docker:prod:build": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml build",
     "docker:prod:serve": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
