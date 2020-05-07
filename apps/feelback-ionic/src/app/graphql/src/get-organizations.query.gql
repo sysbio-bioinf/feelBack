@@ -1,5 +1,5 @@
-query getOrganizations($pagination: CursorPaging = {}) {
-  organizations(paging:$pagination) {
+query getOrganizations($pagination: CursorPaging = { first: 10 }) {
+  organizations(paging: $pagination) {
     pageInfo {
       hasNextPage
       hasPreviousPage

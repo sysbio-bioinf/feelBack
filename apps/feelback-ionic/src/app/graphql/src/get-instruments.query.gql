@@ -1,4 +1,4 @@
-query getInstruments($pagination: CursorPaging = {}) {
+query getInstruments($pagination: CursorPaging = { first: 10 }) {
   instruments(paging: $pagination) {
     pageInfo {
       hasNextPage

@@ -1,4 +1,4 @@
-query getFaqs($pagination: CursorPaging = {}) {
+query getFaqs($pagination: CursorPaging = { first: 10 }) {
   faqs(paging: $pagination) {
     pageInfo {
       hasNextPage
