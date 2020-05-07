@@ -41,12 +41,40 @@
                 }}</a>
               </li>
               <li class="nav-item">
-                <a
-                  href="#download"
-                  class="btn btn-outline-light my-3 my-sm-0 ml-lg-3"
-                >
+                <a href="#download" class="nav-link">
                   {{ 'app.nav.download' | translate }}
                 </a>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-outline-light dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-language fa-2x"></i>
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a
+                      class="dropdown-item"
+                      (click)="this.switchLanguage('en')"
+                    >
+                      English</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      (click)="this.switchLanguage('de')"
+                    >
+                      Deutsch</a
+                    >
+                  </div>
+                </div>
               </li>
             </ul>
           </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GetOrganizationByIdGQL } from './graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-web-root',
@@ -11,12 +10,7 @@ export class AppComponent implements OnInit {
 
   year = new Date().getFullYear();
 
-  constructor(readonly getOrganizationService: GetOrganizationByIdGQL) {}
+  constructor() {}
 
-  async ngOnInit() {
-    // const asdf = await this.getOrganizationService
-    //   .fetch({ id: '61c0362c-33cd-4a32-b4cd-a435040fda84' })
-    //   .toPromise();
-    // console.log(JSON.stringify(asdf.data.organization));
-  }
+  ngOnInit() {}
 }
