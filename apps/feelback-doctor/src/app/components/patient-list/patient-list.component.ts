@@ -6,6 +6,8 @@ import { MatSort } from '@angular/material/sort';
 import { PatientService } from '../../services/patient.service';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'feelback-doctor-patient-list',
@@ -22,6 +24,7 @@ export class PatientListComponent implements OnInit {
     'instruments',
     'screenings',
   ];
+  public patients$: Observable<Observable<Patient[]>>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -32,14 +35,14 @@ export class PatientListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.patientService
-      .getPatients()
-      .subscribe(
-        (patients) =>
-          (this.dataSource = new MatTableDataSource<Patient>(patients)),
-      );
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.patients$ = this.patientService.getPatients().pipe(
+      map((data) => {
+        this.dataSource = new MatTableDataSource<Patient>(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        return of(data);
+      }),
+    );
   }
 
   public applyFilter(event: Event) {

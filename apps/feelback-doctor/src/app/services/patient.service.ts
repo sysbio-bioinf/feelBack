@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Patient } from '../models/Patient';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -84,7 +85,7 @@ export class PatientService {
   ];
 
   public getPatients(): Observable<Patient[]> {
-    return of(this.patients);
+    return of(this.patients).pipe(delay(500));
   }
 
   public getPatientById(id: string): Observable<Patient> {
