@@ -1,4 +1,15 @@
-.loading{
+.loading {
   display: flex;
   justify-content: center;
+}
+
+mat-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  font-size: 40px;
+}
+
+.header{
+  margin-top: 1em;
 }

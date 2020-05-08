@@ -29,7 +29,7 @@ export class InstrumentComponent implements OnInit {
       if (!getInstrument) {
         this.router.navigate(['instrument-not-found', this.instrumentId]);
       }
-      this.instrument$ = this.instrumentService.fetch();
+      this.instrument$ = this.instrumentService.fetch().pipe();
     });
   }
 
