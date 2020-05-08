@@ -1,13 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MainLayout } from '../../layouts/main/main.layout';
-import { PatientListPage } from './patient-list.page';
+import { PatientsPage } from './patients.page';
 
 const routes: Routes = [
   {
     path: 'patients',
     component: MainLayout,
-    children: [{ path: '', component: PatientListPage }],
+    children: [{ path: '', component: PatientsPage }],
   },
 ];
 
@@ -15,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PatientListRoutingModule {}
+export class PatientsRoutingModule {}

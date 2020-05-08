@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginRoutingModule } from './pages/login/login.routing.module';
 import { PatientDetailsRoutingModule } from './pages/patient-details/patient-details.routing.module';
-import { PatientListRoutingModule } from './pages/patient-list/patient-list.routing.module';
+import { PatientsRoutingModule } from './pages/patients/patients.routing.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginLayout } from './layouts/login/login.layout';
 
@@ -19,7 +19,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     LoginRoutingModule,
-    PatientListRoutingModule,
+    PatientsRoutingModule,
     PatientDetailsRoutingModule,
   ],
   exports: [RouterModule],
