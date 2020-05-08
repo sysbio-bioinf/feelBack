@@ -38,13 +38,15 @@ export class PatientDetailsPage implements OnInit {
   public patient: Patient = new Patient();
   public instrument: Instrument = new Instrument();
   public links = [];
-  public showTabBar;
-  public showInstrumentsButton;
+  public showTabBar: boolean;
+  public showInstrumentsButton: boolean;
 
   ngOnInit(): void {
-    this.patientService
-      .getPatientById(this.patient.id)
-      .subscribe((patient) => (this.patient = patient));
+    const getPatients = this.patientService.getPatientById(this.patient.id);
+    if (!getPatients) {
+      this.router.navigate(['patient-not-found', this.patient.id]);
+    }
+    getPatients.subscribe((patient) => (this.patient = patient));
     this.instrumentService
       .getInstruments()
       .subscribe((instruments) =>
