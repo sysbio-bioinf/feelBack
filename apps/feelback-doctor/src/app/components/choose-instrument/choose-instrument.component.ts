@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InstrumentService } from '../../services/instrument.service';
 import { Instrument } from '../../models/Instrument';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'feelback-doctor-choose-instrument',
@@ -10,11 +11,12 @@ import { Instrument } from '../../models/Instrument';
 export class ChooseInstrumentComponent implements OnInit {
   constructor(private instrumentService: InstrumentService) {}
 
+  public instruments$: Observable<Instrument[]>;
   public instruments: Instrument[];
 
   ngOnInit(): void {
-    this.instrumentService
-      .getInstruments()
-      .subscribe((instruments) => (this.instruments = instruments));
+      this.instruments$ = this.instrumentService.getInstruments();
   }
+
+
 }

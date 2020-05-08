@@ -1,14 +1,26 @@
-<div *ngFor="let instrument of instruments" class="choose-instrument" [routerLink]="'./' + instrument.id">
-  <mat-card class="choose-instrument-card" >
-    <mat-card-header>
-      <img mat-card-avatar [src]="instrument.image"/>
-      <mat-card-title>{{instrument.name}}</mat-card-title>
-      <mat-card-subtitle>Instrument</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        {{instrument.description}}
-      </p>
-    </mat-card-content>
-  </mat-card>
+<div *ngIf="instruments$ | async as instruments; else loading">
+  <div
+    *ngFor="let instrument of instruments"
+    class="choose-instrument"
+    [routerLink]="'./' + instrument.id"
+  >
+    <mat-card class="choose-instrument-card">
+      <mat-card-header>
+        <img mat-card-avatar [src]="instrument.image" />
+        <mat-card-title>{{ instrument.name }}</mat-card-title>
+        <mat-card-subtitle>Instrument</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ instrument.description }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>
