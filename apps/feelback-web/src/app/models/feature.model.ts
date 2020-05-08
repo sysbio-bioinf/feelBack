@@ -4,4 +4,5 @@ export interface Feature {
   headline: string;
   lead: string;
   text: string;
+  image: string;
 }

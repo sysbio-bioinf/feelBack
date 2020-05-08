@@ -23,6 +23,7 @@ export class StartPage implements OnInit {
         headline: 'app.pages.start.features.features.a.title',
         lead: 'app.pages.start.features.features.a.title',
         text: 'app.pages.start.features.features.a.text',
+        image: 'passport',
       },
       {
         id: 'b',
@@ -30,6 +31,7 @@ export class StartPage implements OnInit {
         headline: 'app.pages.start.features.features.b.title',
         lead: 'app.pages.start.features.features.b.title',
         text: 'app.pages.start.features.features.b.text',
+        image: 'user',
       },
       {
         id: 'c',
@@ -37,6 +39,7 @@ export class StartPage implements OnInit {
         headline: 'app.pages.start.features.features.c.title',
         lead: 'app.pages.start.features.features.c.title',
         text: 'app.pages.start.features.features.c.text',
+        image: 'smiley',
       },
       {
         id: 'd',
@@ -44,6 +47,7 @@ export class StartPage implements OnInit {
         headline: 'app.pages.start.features.features.d.title',
         lead: 'app.pages.start.features.features.d.title',
         text: 'app.pages.start.features.features.d.text',
+        image: 'file',
       },
     );
 
