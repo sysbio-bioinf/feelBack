@@ -3,10 +3,10 @@ import {
   GetInstrumentsGQL,
   Instrument,
 } from '../../graphql/generated/feelback.graphql';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InstrumentService } from '../../services/instrument.service';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -17,33 +17,23 @@ export class InstrumentComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private instrumentService: GetInstrumentsGQL,
-    private instrumentServiceLocal: InstrumentService,
+    private instrumentService: InstrumentService,
   ) {
     this.route.paramMap.subscribe((params) => {
       this.instrumentId = params.get('instrument');
-      const getInstrument = this.instrumentServiceLocal.getInstrumentById(
-        this.instrumentId,
-      );
-      if (!getInstrument) {
+
+      if (!this.instrumentService.checkIfInstrumentExists(this.instrumentId)) {
         this.router.navigate(['instrument-not-found', this.instrumentId]);
       }
-      this.instrument$ = this.instrumentService.fetch().pipe(
-        map((data) => {
-          const instruments = data.data.instruments.edges;
-          if (instruments.length === 0) {
-            this.error = true;
-            return true;
-          } else {
-            return instruments[0].node;
-          }
-        }),
+
+      this.instrument$ = this.instrumentService.getInstrumentById(
+        this.instrumentId,
       );
     });
   }
 
   public instrumentId: string;
-  public instrument$: Observable<Instrument | boolean>;
+  public instrument$: Observable<Instrument>;
   public error: boolean;
 
   ngOnInit(): void {}

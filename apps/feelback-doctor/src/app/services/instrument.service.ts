@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Instrument } from '../models/Instrument';
-import { delay } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
+import {
+  GetInstrumentsGQL,
+  Instrument,
+} from '../graphql/generated/feelback.graphql';
+import { InstrumentWrapper } from '../models/InstrumentWrapper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InstrumentService {
-  constructor() {}
+  constructor(private instrumentService: GetInstrumentsGQL) {}
 
   private instruments = [
     {
       id: '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      version: 1.0,
+      type: '',
+      changelog: '',
       name: 'Distress Thermometer',
       description:
         'Das NCCN Distress-Thermometer ist ein vom National Comprehensive Cancer Network (NCCN) entwickeltes Screeninginstrument zur Erfassung psychosozialer Belastungen bei onkologischen Patienten.',
@@ -20,6 +29,11 @@ export class InstrumentService {
     },
     {
       id: '35b24590-cf4a-4bff-9ee4-828dba3cc9e4',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      version: 1.0,
+      type: '',
+      changelog: '',
       name: 'Instrument A',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
@@ -28,6 +42,11 @@ export class InstrumentService {
     },
     {
       id: 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      version: 1.0,
+      type: '',
+      changelog: '',
       name: 'Instrument B',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
@@ -36,6 +55,11 @@ export class InstrumentService {
     },
     {
       id: 'eab19dff-d4c3-46ae-99df-59db5d8e3842',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      version: 1.0,
+      type: '',
+      changelog: '',
       name: 'Instrument C',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
@@ -48,11 +72,34 @@ export class InstrumentService {
     return of(this.instruments).pipe(delay(300));
   }
 
-  public getInstrumentById(id: string): Observable<Instrument> {
+  public getInstrumentById(id: string): Observable<any> {
+    if (id === '53f2a7c3-9c37-4a52-9194-8a3186af6f57') {
+      return this.instrumentService.fetch().pipe(
+        map((data) => {
+          const instruments = data.data.instruments.edges;
+          const distress = instruments[0].node;
+          if (instruments.length === 0) {
+            distress['error'] = true;
+          }
+          return distress;
+        }),
+      );
+    } else if (id === '35b24590-cf4a-4bff-9ee4-828dba3cc9e4') {
+      this.instruments[1]['error'] = true;
+      return of(this.instruments[1]);
+    } else if (id === 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958') {
+      return of(this.instruments[2]);
+    } else if (id === 'eab19dff-d4c3-46ae-99df-59db5d8e3842') {
+      return of(this.instruments[3]);
+    }
+  }
+
+  public checkIfInstrumentExists(id: string): boolean {
     for (const instrument of this.instruments) {
       if (instrument.id === id) {
-        return of(instrument);
+        return true;
       }
     }
+    return false;
   }
 }
