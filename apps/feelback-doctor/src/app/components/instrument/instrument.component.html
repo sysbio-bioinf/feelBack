@@ -1,31 +1,31 @@
 <div *ngIf="instrument$ | async as instrument; else loading">
-  <div *ngIf="instrument.data.instruments.edges.length > 0">
+  <div *ngIf="!error" [ngSwitch]="instrumentId">
     <feelback-doctor-distress-thermometer
-      *ngIf="instrumentId === '53f2a7c3-9c37-4a52-9194-8a3186af6f57'"
+      *ngSwitchCase="'53f2a7c3-9c37-4a52-9194-8a3186af6f57'"
       [instrument]="instrument"
     ></feelback-doctor-distress-thermometer>
     <feelback-doctor-sample-instrument
-      *ngIf="instrumentId === '35b24590-cf4a-4bff-9ee4-828dba3cc9e4'"
+      *ngSwitchCase="'35b24590-cf4a-4bff-9ee4-828dba3cc9e4'"
       >Instrument A</feelback-doctor-sample-instrument
     >
     <feelback-doctor-sample-instrument
-      *ngIf="instrumentId === 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958'"
+      *ngSwitchCase="'f9fe3be8-9749-4c19-b03e-2be4c3e7f958'"
       >Instrument B</feelback-doctor-sample-instrument
     >
     <feelback-doctor-sample-instrument
-      *ngIf="instrumentId === 'eab19dff-d4c3-46ae-99df-59db5d8e3842'"
+      *ngSwitchCase="'eab19dff-d4c3-46ae-99df-59db5d8e3842'"
       >Instrument C</feelback-doctor-sample-instrument
     >
   </div>
-  <div *ngIf="instrument.data.instruments.edges.length == 0">
+
+  <div *ngIf="error">
     <mat-card>
       <mat-card-header class="header">
         <mat-icon mat-card-avatar color="warn">error</mat-icon>
-        <mat-card-title>Error</mat-card-title>
+        <mat-card-title>Error occurred</mat-card-title>
         <mat-card-subtitle>While loading instrument</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
-    
   </div>
 </div>
 

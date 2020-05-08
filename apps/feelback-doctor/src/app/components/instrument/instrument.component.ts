@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {
   GetInstrumentsGQL,
   Instrument,
-  GetInstrumentsQuery,
 } from '../../graphql/generated/feelback.graphql';
 import { Observable } from 'rxjs';
-import { ApolloQueryResult } from 'apollo-client';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InstrumentService } from '../../services/instrument.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -29,13 +28,23 @@ export class InstrumentComponent implements OnInit {
       if (!getInstrument) {
         this.router.navigate(['instrument-not-found', this.instrumentId]);
       }
-      this.instrument$ = this.instrumentService.fetch();
+      this.instrument$ = this.instrumentService.fetch().pipe(
+        map((data) => {
+          const instruments = data.data.instruments.edges;
+          if (instruments.length === 0) {
+            this.error = true;
+            return true;
+          } else {
+            return instruments[0].node;
+          }
+        }),
+      );
     });
   }
 
   public instrumentId: string;
-  public instrument: Instrument;
-  public instrument$: Observable<ApolloQueryResult<GetInstrumentsQuery>>;
+  public instrument$: Observable<Instrument | boolean>;
+  public error: boolean;
 
   ngOnInit(): void {}
 }
