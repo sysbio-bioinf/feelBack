@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  GetInstrumentsGQL,
-  Instrument,
-} from '../../graphql/generated/feelback.graphql';
-import { Observable, of } from 'rxjs';
+import { Instrument } from '../../graphql/generated/feelback.graphql';
+import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InstrumentService } from '../../services/instrument.service';
-import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -34,7 +30,6 @@ export class InstrumentComponent implements OnInit {
 
   public instrumentId: string;
   public instrument$: Observable<Instrument>;
-  public error: boolean;
 
   ngOnInit(): void {}
 }
