@@ -5,7 +5,6 @@ import {
   GetInstrumentsGQL,
   Instrument,
 } from '../graphql/generated/feelback.graphql';
-import { InstrumentWrapper } from '../models/InstrumentWrapper';
 
 @Injectable({
   providedIn: 'root',
@@ -86,11 +85,11 @@ export class InstrumentService {
       );
     } else if (id === '35b24590-cf4a-4bff-9ee4-828dba3cc9e4') {
       this.instruments[1]['error'] = true;
-      return of(this.instruments[1]);
+      return of(this.instruments[1]).pipe(delay(1500));
     } else if (id === 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958') {
-      return of(this.instruments[2]);
+      return of(this.instruments[2]).pipe(delay(300));
     } else if (id === 'eab19dff-d4c3-46ae-99df-59db5d8e3842') {
-      return of(this.instruments[3]);
+      return of(this.instruments[3]).pipe(delay(500));
     }
   }
 
