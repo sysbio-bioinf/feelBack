@@ -13,6 +13,7 @@ import { InstrumentComponent } from './instrument/instrument.component';
 import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PatientNotFoundComponent } from './patient-not-found/patient-not-found.component';
+import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PatientNotFoundComponent } from './patient-not-found/patient-not-found.
     InstrumentComponent,
     ChooseInstrumentComponent,
     PageNotFoundComponent,
-    PatientNotFoundComponent
+    PatientNotFoundComponent,
+    InstrumentNotFoundComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [

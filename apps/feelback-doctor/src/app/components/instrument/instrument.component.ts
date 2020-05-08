@@ -6,7 +6,8 @@ import {
 } from '../../graphql/generated/feelback.graphql';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InstrumentService } from '../../services/instrument.service';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -16,15 +17,23 @@ import { ActivatedRoute } from '@angular/router';
 export class InstrumentComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private instrumentService: GetInstrumentsGQL,
+    private instrumentServiceLocal: InstrumentService,
   ) {
     this.route.paramMap.subscribe((params) => {
-      this.currentID = params.get('instrument');
+      this.instrumentId = params.get('instrument');
+      const getInstrument = this.instrumentServiceLocal.getInstrumentById(
+        this.instrumentId,
+      );
+      if (!getInstrument) {
+        this.router.navigate(['instrument-not-found', this.instrumentId]);
+      }
       this.instrument$ = this.instrumentService.fetch();
     });
   }
 
-  public currentID: string;
+  public instrumentId: string;
   public instrument: Instrument;
   public instrument$: Observable<ApolloQueryResult<GetInstrumentsQuery>>;
 
