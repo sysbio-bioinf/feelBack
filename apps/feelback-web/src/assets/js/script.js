@@ -1,12 +1,10 @@
 /*
-
 Style   : MobApp Script JS
 Version : 1.0
 Author  : Surjith S M
 URI     : https://surjithctly.in/
 
 Copyright © All rights Reserved 
-
 */
 
 $(function () {
@@ -23,25 +21,29 @@ $(function () {
       $navmenu.removeClass('is-scrolling');
     }
   }
+
   menuscroll();
   $(window).on('scroll', function () {
     menuscroll();
   });
+
   /*-----------------------------------
    * NAVBAR CLOSE ON CLICK
    *-----------------------------------*/
-
   $('.navbar-nav > li:not(.dropdown) > a').on('click', function () {
     $('.navbar-collapse').collapse('hide');
   });
+
   /*
    * NAVBAR TOGGLE BG
    *-----------------*/
   var siteNav = $('#navbar');
   siteNav.on('show.bs.collapse', function (e) {
+    console.log('show');
     $(this).parents('.nav-menu').addClass('menu-is-open');
   });
   siteNav.on('hide.bs.collapse', function (e) {
+    console.log('hide');
     $(this).parents('.nav-menu').removeClass('menu-is-open');
   });
 
@@ -91,6 +93,7 @@ $(function () {
         }
       }
     });
+
   /*-----------------------------------
    * OWL CAROUSEL
    *-----------------------------------*/
@@ -129,4 +132,5 @@ $(function () {
       },
     });
   }
-}); /* End Fn */
+});
+/* End Fn */
