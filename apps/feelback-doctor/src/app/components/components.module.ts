@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PatientNotFoundComponent } from './patient-not-found/patient-not-found.component';
 import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-not-found.component';
 import { ScreeningComponent } from './screening/screening.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ScreeningComponent } from './screening/screening.component';
     PageNotFoundComponent,
     PatientNotFoundComponent,
     InstrumentNotFoundComponent,
-    ScreeningComponent
+    ScreeningComponent,
+    LoadingComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
