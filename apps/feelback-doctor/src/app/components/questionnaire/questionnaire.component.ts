@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Instrument } from '../../graphql/generated/feelback.graphql';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';

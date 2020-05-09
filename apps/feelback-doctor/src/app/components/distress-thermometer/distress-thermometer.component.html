@@ -44,4 +44,8 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<feelback-doctor-questionnaire *ngIf="screening.date" [screening]="screening" [payload]="instrument.payload"></feelback-doctor-questionnaire>
+<feelback-doctor-screening
+  *ngIf="selectedScreening"
+  [selectedScreening]="selectedScreening"
+  [payload]="instrument.payload"
+></feelback-doctor-screening>

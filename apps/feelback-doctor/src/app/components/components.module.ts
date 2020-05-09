@@ -14,6 +14,7 @@ import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PatientNotFoundComponent } from './patient-not-found/patient-not-found.component';
 import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-not-found.component';
+import { ScreeningComponent } from './screening/screening.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-n
     ChooseInstrumentComponent,
     PageNotFoundComponent,
     PatientNotFoundComponent,
-    InstrumentNotFoundComponent
+    InstrumentNotFoundComponent,
+    ScreeningComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [

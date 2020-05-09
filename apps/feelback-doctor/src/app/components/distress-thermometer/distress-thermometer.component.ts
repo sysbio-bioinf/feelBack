@@ -11,7 +11,6 @@ import { ChartSeries } from '../../models/ChartSeries';
 import { ScreeningService } from '../../services/screening.service';
 import { CommonService } from '../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Screening } from '../../models/Screening';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Instrument } from '../../graphql/generated/feelback.graphql';
 import { Parser } from 'expr-eval';
@@ -28,21 +27,17 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
     public commonService: CommonService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
-    this.screeningService
-      .getScreening()
-      .subscribe((screening) => (this.screening = screening));
-  }
+  ) {}
 
   @Input() instrument: Instrument;
   @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   public screenings: ChartSeries[];
   public overview: ChartSeries[];
-  public screening: Screening;
+  public selectedScreening: string;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.screening.date = params['screening'];
+      this.selectedScreening = params['screening'];
     });
     this.screeningService
       .getScreenings()
@@ -68,12 +63,17 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
     //   },
     // ];
 
-    console.log(Parser.evaluate(this.instrument.diagram.overview.axis.fp, this.screening.result));
+    // console.log(
+    //   Parser.evaluate(
+    //     this.instrument.diagram.overview.axis.fp,
+    //     this.screening.result,
+    //   ),
+    // );
   }
 
   public selectScreening(data: ChartDataPoint): void {
     const screening = data.name.toLocaleDateString('de');
-    this.screening.date = screening;
+    this.selectedScreening = screening;
     this.expansionPanel.close();
     this.router.navigate([], {
       relativeTo: this.route,

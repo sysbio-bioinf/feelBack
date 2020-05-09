@@ -1,0 +1,12 @@
+<div *ngIf="screening$ | async as screening; else loading">
+  <feelback-doctor-questionnaire
+    [screening]="screening"
+    [payload]="payload"
+  ></feelback-doctor-questionnaire>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

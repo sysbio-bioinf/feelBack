@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ChartSeries } from '../models/ChartSeries';
 import { Screening } from '../models/Screening';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -247,11 +248,11 @@ export class ScreeningService {
     return of(radarChart);
   }
   
-  getScreening(): Observable<Screening> {
+  getScreening(date: string): Observable<Screening> {
     const screening = {
       locale: "de",
       instrument: "Distress Thermometer",
-      date: new Date(2019, 0, 1),
+      date: date,
       result: {
         "DT01": 5,
         "DT02": "true",
@@ -326,7 +327,7 @@ export class ScreeningService {
       ],
       comment: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
     };
-    return of(screening);
+    return of(screening).pipe(delay(500));
   }
 
 
