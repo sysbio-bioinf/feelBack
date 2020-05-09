@@ -20,13 +20,7 @@
     </div>
 
     <div *ngIf="instrument['error']">
-      <mat-card>
-        <mat-card-header class="header">
-          <mat-icon mat-card-avatar color="warn">error</mat-icon>
-          <mat-card-title>Error occurred</mat-card-title>
-          <mat-card-subtitle>While loading instrument</mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
+      <feelback-doctor-error></feelback-doctor-error>
     </div>
   </div>
 </div>
