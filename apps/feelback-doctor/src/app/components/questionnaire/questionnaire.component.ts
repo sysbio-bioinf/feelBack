@@ -45,10 +45,6 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
-  public closeScreening() {
-    this.router.navigate([]);
-  }
-
   private async renderSurvey() {
     Survey.SurveyNG.render('surveyContainer', { model: this.survey });
   }

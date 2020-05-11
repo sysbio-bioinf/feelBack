@@ -17,6 +17,7 @@ import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-n
 import { ScreeningComponent } from './screening/screening.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ErrorComponent } from './error/error.component';
+import { ScreeningOverviewComponent } from './screening-overview/screening-overview.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ErrorComponent } from './error/error.component';
     InstrumentNotFoundComponent,
     ScreeningComponent,
     LoadingComponent,
-    ErrorComponent
+    ErrorComponent,
+    ScreeningOverviewComponent
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [

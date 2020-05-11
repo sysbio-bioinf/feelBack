@@ -255,7 +255,7 @@ export class ScreeningService {
       date: date,
       result: {
         "DT01": 5,
-        "DT02": "true",
+        "DT02": "false",
         "PP01": "true",
         "PP02": "true",
         "PP03": "false",

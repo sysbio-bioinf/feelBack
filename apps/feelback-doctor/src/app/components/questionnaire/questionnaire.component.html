@@ -1,7 +1,11 @@
-<mat-card id="screening">
+<mat-card>
   <mat-card-header>
-    <mat-card-title>Screening</mat-card-title>
-    <mat-card-subtitle>{{ screening.date }}</mat-card-subtitle>
+    <mat-card-title>
+      Questionnaire
+    </mat-card-title>
+    <mat-card-subtitle>
+      Results
+    </mat-card-subtitle>
     <span class="spacer"></span>
     <span class="locale-wrapper">
       <span
@@ -52,17 +56,6 @@
       showFirstLastButtons
       (page)="changePage($event)"
     ></mat-paginator>
-    <button
-      id="closeButton"
-      mat-icon-button
-      matTooltip="Close screening"
-      matTooltipPosition="above"
-      color="warn"
-      aria-label="Close screening"
-      (click)="closeScreening()"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
   </mat-card-header>
   <mat-card-content>
     <div id="surveyContainer"></div>

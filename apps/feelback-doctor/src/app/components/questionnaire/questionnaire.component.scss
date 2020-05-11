@@ -1,29 +1,16 @@
 @import 'variables';
 
-#screening {
-  margin-top: 2em;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
-
 .locale-wrapper {
   margin-top: 1em;
 }
 
-.locale{
+.locale {
   margin-right: 3em;
   cursor: help;
 }
 
-#change-locale{
+#change-locale {
   cursor: pointer;
-}
-
-#closeButton {
-  position: relative;
-  top: 8px;
 }
 
 #surveyContainer {

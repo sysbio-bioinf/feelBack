@@ -1,6 +1,6 @@
 <div *ngIf="instrument$ | async as instrument; else loading">
   <div [ngSwitch]="instrumentId">
-    <div *ngIf="!instrument['error']" [ngSwitch]="instrumentId">
+    <div *ngIf="!instrument['error']">
       <feelback-doctor-distress-thermometer
         *ngSwitchCase="'53f2a7c3-9c37-4a52-9194-8a3186af6f57'"
         [instrument]="instrument"

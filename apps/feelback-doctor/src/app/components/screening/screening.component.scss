@@ -1,1 +1,41 @@
+#screening {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
 
+.consultation-wrapper {
+  display: flex;
+}
+
+.consultation {
+  width: 150px;
+  text-align: center;
+}
+
+.consultation-text {
+  position: relative;
+  top: 10px;
+  right: 15px;
+  width: 60px;
+  display: inline-block;
+}
+
+.consultation-icon {
+  font-size: 60pt;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.wrapper{
+  display: flex;
+}
+
+#questionnaire{
+  flex: 0 0 70%;
+}
+
+#overview{
+  flex: 0 0 30%;
+}
