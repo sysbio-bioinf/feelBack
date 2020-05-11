@@ -1,7 +1,5 @@
-import { CoreException } from '@cancerlog/api/core';
 import { DeepPartial } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
-import { HttpStatus } from '@nestjs/common';
 import {
   Args,
   Mutation,
@@ -69,19 +67,6 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   async getScreeningsForPersonAndInstrument(
     @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
   ): Promise<ConnectionType<ScreeningObject>> {
-    const person = await this.personDatabaseService.getPersonByPseudonym(
-      query.pseudonym,
-    );
-
-    if (!person) {
-      throw new CoreException(
-        {
-          detail: 'Pseudonym not found',
-        },
-        HttpStatus.PRECONDITION_FAILED,
-      );
-    }
-
     const screenings = this.screeningDatabaseService.query({
       paging: query.paging,
       sorting: query.sorting,
@@ -89,8 +74,8 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       filter: {
         ...query.filter,
         ...{
-          'person.id': { eq: person.id },
-          'instrument.id': { eq: query.instrument },
+          'person.id': { eq: query.personId },
+          'instrument.id': { eq: query.instrumentId },
         },
       },
     });

@@ -39,11 +39,9 @@ $(function () {
    *-----------------*/
   var siteNav = $('#navbar');
   siteNav.on('show.bs.collapse', function (e) {
-    console.log('show');
     $(this).parents('.nav-menu').addClass('menu-is-open');
   });
   siteNav.on('hide.bs.collapse', function (e) {
-    console.log('hide');
     $(this).parents('.nav-menu').removeClass('menu-is-open');
   });
 

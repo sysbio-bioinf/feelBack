@@ -904,8 +904,8 @@ type Query {
 
     """Specify to sort results."""
     sorting: [ScreeningSort!] = []
-    pseudonym: String!
-    instrument: String!
+    instrumentId: String!
+    personId: String!
   ): ScreeningConnection!
   faq(id: ID!): Faq
   faqs(

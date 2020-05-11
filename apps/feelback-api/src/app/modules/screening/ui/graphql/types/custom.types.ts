@@ -1,10 +1,10 @@
 import {
-  UpdateOneInputType,
-  QueryArgsType,
   ConnectionType,
+  QueryArgsType,
+  UpdateOneInputType,
 } from '@nestjs-query/query-graphql';
-import { IsUUID, IsString } from 'class-validator';
-import { Field, InputType, ArgsType } from '@nestjs/graphql';
+import { ArgsType, Field, InputType } from '@nestjs/graphql';
+import { IsString, IsUUID } from 'class-validator';
 import { ResolveScreeningInput } from '../inputs/resolve-screening.input';
 import { ScreeningObject } from '../objects/screening.object';
 
@@ -25,13 +25,14 @@ export class GetScreeningsByPersonAndInstrumentArgsType extends QueryArgsType(
   ScreeningObject,
 ) {
   @IsString()
+  @IsUUID('4')
   @Field()
-  pseudonym: string;
+  instrumentId: string;
 
   @IsString()
   @IsUUID('4')
   @Field()
-  instrument: string;
+  personId: string;
 }
 
 export const ScreeningConnection = ConnectionType(ScreeningObject);
