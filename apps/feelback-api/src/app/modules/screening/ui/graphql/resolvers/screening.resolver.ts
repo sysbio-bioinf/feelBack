@@ -1,4 +1,4 @@
-import { DeepPartial } from '@nestjs-query/core';
+import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import {
   Args,
@@ -25,6 +25,7 @@ import {
   ResolveOneScreeningInputType,
   ScreeningConnection,
 } from '../types/custom.types';
+import { ResolverQuery } from '@nestjs-query/query-graphql/dist/src/decorators';
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -67,7 +68,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   async getScreeningsForPersonAndInstrument(
     @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
   ): Promise<ConnectionType<ScreeningObject>> {
-    const screenings = this.screeningDatabaseService.query({
+    const qa: QA<ScreeningObject> = {
       paging: query.paging,
       sorting: query.sorting,
       // FIXME: This really (!) needs to be fixed; as this is very (!) ugly :(
@@ -78,15 +79,12 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
           'instrument.id': { eq: query.instrumentId },
         },
       },
-    });
+    };
 
-    const transformedScreenings = this.service.assembler.convertAsyncToDTOs(
-      screenings,
+    return ScreeningConnection.createFromPromise(
+      (q) => this.service.query(q),
+      qa,
     );
-
-    return ScreeningConnection.createFromPromise(() => transformedScreenings, {
-      paging: query.paging || {},
-    });
   }
 
   @Mutation((returns) => ScreeningObject, { name: 'resolveScreeningIssues' })
