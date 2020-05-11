@@ -10,26 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionnaireComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe((params) => {
+      this.page = params['page'] ? params['page'] : 0;
+    });
+  }
 
   @Input() screening: Screening;
   @Input() payload: {};
-  public survey = new Survey.Model();
+  public page: number;
+  public locale: string;
+  public survey: Survey.Model;
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.survey = new Survey.Model(this.payload);
-      this.survey.data = this.screening.result;
-      this.survey.currentPageNo = params['page'] ? params['page'] : 0;
-      this.survey.mode = 'display';
-      this.survey.showNavigationButtons = false;
-      this.survey.showTitle = false;
-      this.survey.locale = 'de';
+    this.createSurveyWithDefaultValues();
+    this.setSurveyTheme();
+    this.setCustomCssClasses();
+    this.renderSurvey();
+  }
 
-      this.setSurveyTheme();
-      this.setCustomCssClasses();
-      this.renderSurvey();
-    });
+  public changeLocale(locale: string) {
+    this.survey.locale = locale;
+    this.renderSurvey();
   }
 
   public changePage($event) {
@@ -49,6 +51,16 @@ export class QuestionnaireComponent implements OnInit {
 
   private async renderSurvey() {
     Survey.SurveyNG.render('surveyContainer', { model: this.survey });
+  }
+
+  private createSurveyWithDefaultValues() {
+    this.survey = new Survey.Model(this.payload);
+    this.survey.currentPageNo = this.page;
+    this.survey.data = this.screening.result;
+    this.survey.mode = 'display';
+    this.survey.showNavigationButtons = false;
+    this.survey.showTitle = false;
+    this.survey.locale = this.screening.locale;
   }
 
   private setSurveyTheme() {

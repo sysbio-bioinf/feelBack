@@ -1,6 +1,6 @@
 @import 'variables';
 
-#screening{
+#screening {
   margin-top: 2em;
 }
 
@@ -8,7 +8,20 @@
   flex: 1 1 auto;
 }
 
-#closeButton{
+.locale-wrapper {
+  margin-top: 1em;
+}
+
+.locale{
+  margin-right: 3em;
+  cursor: help;
+}
+
+#change-locale{
+  cursor: pointer;
+}
+
+#closeButton {
   position: relative;
   top: 8px;
 }

@@ -3,13 +3,55 @@
     <mat-card-title>Screening</mat-card-title>
     <mat-card-subtitle>{{ screening.date }}</mat-card-subtitle>
     <span class="spacer"></span>
+    <span class="locale-wrapper">
+      <span
+        class="locale"
+        [matTooltip]="'Screening answered in ' + screening.locale"
+        matTooltipPosition="above"
+      >
+        <mat-icon
+          [matBadge]="screening.locale"
+          matBadgeColor="primary"
+          matBadgeOverlap="false"
+          >edit</mat-icon
+        >
+      </span>
+      <span
+        id="change-locale"
+        class="locale"
+        [matTooltip]="
+          'Screening viewed in ' +
+          (survey.locale == '' ? 'en' : survey.locale) +
+          '. Click to change!'
+        "
+        matTooltipPosition="above"
+      >
+        <mat-icon
+          [matBadge]="survey.locale === '' ? 'en' : survey.locale"
+          [matMenuTriggerFor]="menu"
+          matBadgeColor="primary"
+          matBadgeOverlap="false"
+          >visibility</mat-icon
+        >
+      </span>
+      <mat-menu #menu="matMenu">
+        <button
+          *ngFor="let locale of survey.getUsedLocales()"
+          mat-menu-item
+          (click)="changeLocale(locale)"
+        >
+          {{ locale }}
+        </button>
+      </mat-menu>
+    </span>
     <mat-paginator
-    [length]="survey.pageCount"
-    pageSize="1"
-    hidePageSize="true"
-    showFirstLastButtons
-    (page)="changePage($event)"
-  ></mat-paginator>
+      [length]="survey.pageCount"
+      [pageIndex]="survey.currentPageNo"
+      pageSize="1"
+      hidePageSize="true"
+      showFirstLastButtons
+      (page)="changePage($event)"
+    ></mat-paginator>
     <button
       id="closeButton"
       mat-icon-button
