@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'feelback-doctor-questionnaire',
@@ -10,7 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionnaireComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private commonService: CommonService,
+  ) {
     this.route.queryParams.subscribe((params) => {
       this.page = params['page'] ? params['page'] : 0;
     });
@@ -61,8 +66,8 @@ export class QuestionnaireComponent implements OnInit {
 
   private setSurveyTheme() {
     const defaultThemeColors = Survey.StylesManager.ThemeColors.modern;
-    defaultThemeColors['$main-color'] = '#00a3ff';
-    defaultThemeColors['$main-hover-color'] = '#00a3ff';
+    defaultThemeColors['$main-color'] = this.commonService.colors.primary;
+    defaultThemeColors['$main-hover-color'] = this.commonService.colors.primary;
     Survey.StylesManager.applyTheme('modern');
   }
 
