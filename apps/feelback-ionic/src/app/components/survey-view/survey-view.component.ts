@@ -25,6 +25,7 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
   survey: Survey.Survey;
   printData: string;
   surveyCompleted = false;
+  currentFontSize = 1;
 
   constructor(
     private alertController: AlertController,
@@ -41,6 +42,20 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
   async ngOnInit() {
     await this.setupInstrumentPage();
+  }
+
+  changeFontSize(delta: number) {
+    let newValue = this.currentFontSize + delta;
+    newValue = +newValue.toFixed(2);
+
+    this.currentFontSize = newValue;
+
+    const surveyHtmlRoot: HTMLElement = document.getElementsByClassName(
+      'sv_main',
+    )[0] as HTMLElement;
+    if (surveyHtmlRoot != null) {
+      surveyHtmlRoot.style.fontSize = newValue + 'em';
+    }
   }
 
   navigateHome() {
@@ -136,6 +151,8 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
     this.survey.onComplete.add(async (survey: Survey.Survey) => {
       this.surveyCompleted = true;
+
+      document.getElementById('fontSizeButtons').style.visibility = 'hidden';
 
       document.getElementById('instrument-navigation-back').style.visibility =
         'hidden';

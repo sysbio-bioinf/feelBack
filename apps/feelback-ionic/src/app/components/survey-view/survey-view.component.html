@@ -1,4 +1,16 @@
 <ion-content>
+  <div id="fontSizeButtons" class="ion-text-end" style="visibility: visible;">
+    <ion-icon
+      size="large"
+      (click)="changeFontSize(-0.1)"
+      name="caret-down-outline"
+    ></ion-icon>
+    <ion-icon
+      size="large"
+      (click)="changeFontSize(+0.1)"
+      name="caret-up-outline"
+    ></ion-icon>
+  </div>
   <div
     id="surveyContainer"
     class="survey-container contentcontainer codecontainer"
