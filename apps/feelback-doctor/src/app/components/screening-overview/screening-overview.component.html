@@ -1,7 +1,7 @@
 <mat-card id="overview">
   <mat-card-header>
     <mat-card-title>
-      {{ currentView[currentViewIndex] }}
+      {{ currentView }}
     </mat-card-title>
     <mat-card-subtitle>
       Overview
@@ -11,12 +11,13 @@
       length="3"
       pageSize="1"
       hidePageSize="true"
+      [pageIndex]="currentViewMapping['toIndex'][currentView]"
       showFirstLastButtons
       (page)="changePage($event)"
     ></mat-paginator>
   </mat-card-header>
   <mat-card-content>
-    <div *ngIf="currentViewIndex === 0" class="chart-wrapper">
+    <div *ngIf="currentView === 'Radar'" class="chart-wrapper">
       <ngx-charts-polar-chart
         [scheme]="commonService.colorScheme"
         showXAxisLabel="true"
@@ -30,7 +31,7 @@
       </ngx-charts-polar-chart>
     </div>
 
-    <div *ngIf="currentViewIndex === 1">
+    <div *ngIf="currentView === 'Progress'">
       <div *ngFor="let category of screening.categories" class="progress-value">
         <label>{{ category.name }}</label>
         <mat-progress-bar
@@ -42,7 +43,7 @@
       </div>
     </div>
 
-    <div *ngIf="currentViewIndex === 2">
+    <div *ngIf="currentView === 'Table'">
       <table mat-table [dataSource]="screening.categories">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>

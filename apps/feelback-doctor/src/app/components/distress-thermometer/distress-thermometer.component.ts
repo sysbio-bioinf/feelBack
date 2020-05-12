@@ -62,7 +62,6 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
     //     series: [],
     //   },
     // ];
-
     // console.log(
     //   Parser.evaluate(
     //     this.instrument.diagram.overview.axis.fp,
@@ -80,6 +79,7 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
       queryParams: {
         screening: screening,
       },
+      queryParamsHandling: 'merge',
     });
   }
 }

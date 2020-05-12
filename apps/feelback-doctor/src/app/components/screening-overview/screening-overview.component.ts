@@ -4,6 +4,7 @@ import { ScreeningService } from '../../services/screening.service';
 import { Category } from '../../models/Category';
 import { ChartSeries } from '../../models/ChartSeries';
 import { Screening } from '../../models/Screening';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'feelback-doctor-screening-overview',
@@ -11,12 +12,23 @@ import { Screening } from '../../models/Screening';
   styleUrls: ['./screening-overview.component.scss'],
 })
 export class ScreeningOverviewComponent implements OnInit {
-  constructor(public commonService: CommonService) {}
+  constructor(
+    public commonService: CommonService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      this.currentView = params['overview'] ? params['overview'] : 'Radar';
+    });
+  }
 
   @Input() screening: Screening;
   public chartData: ChartSeries[];
-  public currentViewIndex = 0;
-  public currentView: {} = { 0: 'Radar', 1: 'Progress', 2: 'Table' };
+  public currentViewMapping: {} = {
+    fromIndex: { 0: 'Radar', 1: 'Progress', 2: 'Table' },
+    toIndex: { Radar: 0, Progress: 1, Table: 2 },
+  };
+  public currentView: string;
   public displayedColumns: string[] = ['name', 'positive', 'total'];
 
   ngOnInit(): void {
@@ -39,6 +51,13 @@ export class ScreeningOverviewComponent implements OnInit {
   }
 
   public changePage($event) {
-    this.currentViewIndex = $event.pageIndex;
+    this.currentView = this.currentViewMapping['fromIndex'][$event.pageIndex];
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        overview: this.currentView,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }
