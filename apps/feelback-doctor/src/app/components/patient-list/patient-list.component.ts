@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Patient } from '../../models/Patient';
 import { MatPaginator } from '@angular/material/paginator';
@@ -24,25 +24,19 @@ export class PatientListComponent implements OnInit {
     'instruments',
     'screenings',
   ];
-  public patients$: Observable<Observable<Patient[]>>;
+  @Input() patients: Patient[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private patientService: PatientService,
     private router: Router,
     public commonService: CommonService,
   ) {}
 
   ngOnInit(): void {
-    this.patients$ = this.patientService.getPatients().pipe(
-      map((data) => {
-        this.dataSource = new MatTableDataSource<Patient>(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        return of(data);
-      }),
-    );
+    this.dataSource = new MatTableDataSource<Patient>(this.patients);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   public applyFilter(event: Event) {

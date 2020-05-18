@@ -1,2 +1,8 @@
-<feelback-doctor-patient-filter></feelback-doctor-patient-filter>
-<feelback-doctor-patient-list></feelback-doctor-patient-list>
+<div *ngIf="(patients$ | async) as patients; else loading">
+  <feelback-doctor-patient-filter></feelback-doctor-patient-filter>
+  <feelback-doctor-patient-list [patients]="patients"></feelback-doctor-patient-list>
+</div>
+
+<ng-template #loading>
+  <feelback-doctor-loading></feelback-doctor-loading>
+</ng-template>

@@ -44,7 +44,8 @@ import { ScreeningOverviewComponent } from './screening-overview/screening-overv
     PatientListComponent,
     SampleInstrumentComponent,
     InstrumentComponent,
-    ChooseInstrumentComponent
+    ChooseInstrumentComponent,
+    LoadingComponent
   ],
 })
 export class ComponentsModule {}
