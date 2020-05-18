@@ -68,6 +68,7 @@ export class InstrumentService {
   ];
 
   public getInstruments(): Observable<Instrument[]> {
+    this.instruments = [];
     return of(this.instruments).pipe(delay(300));
   }
 

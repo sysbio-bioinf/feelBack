@@ -18,6 +18,7 @@ import { ScreeningComponent } from './screening/screening.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ErrorComponent } from './error-indicator/error-indicator.component';
 import { ScreeningOverviewComponent } from './screening-overview/screening-overview.component';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ScreeningOverviewComponent } from './screening-overview/screening-overv
     ScreeningComponent,
     LoadingComponent,
     ErrorComponent,
-    ScreeningOverviewComponent
+    ScreeningOverviewComponent,
+    EmptyStateComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -45,7 +47,8 @@ import { ScreeningOverviewComponent } from './screening-overview/screening-overv
     SampleInstrumentComponent,
     InstrumentComponent,
     ChooseInstrumentComponent,
-    LoadingComponent
+    LoadingComponent,
+    EmptyStateComponent,
   ],
 })
 export class ComponentsModule {}

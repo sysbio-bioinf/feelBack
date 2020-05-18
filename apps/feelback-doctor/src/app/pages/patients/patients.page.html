@@ -1,6 +1,16 @@
 <div *ngIf="(patients$ | async) as patients; else loading">
-  <feelback-doctor-patient-filter></feelback-doctor-patient-filter>
-  <feelback-doctor-patient-list [patients]="patients"></feelback-doctor-patient-list>
+  
+  <div *ngIf="patients.length > 0">
+    <feelback-doctor-patient-filter></feelback-doctor-patient-filter>
+    <feelback-doctor-patient-list
+      [patients]="patients"
+    ></feelback-doctor-patient-list>
+  </div>
+
+  <div *ngIf="patients.length === 0">
+    <feelback-doctor-empty-state [entity]="'patient'"></feelback-doctor-empty-state>
+  </div>
+
 </div>
 
 <ng-template #loading>
