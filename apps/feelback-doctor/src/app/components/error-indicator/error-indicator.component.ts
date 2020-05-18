@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'feelback-doctor-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss']
+  selector: 'feelback-doctor-error-indicator',
+  templateUrl: './error-indicator.component.html',
+  styleUrls: ['./error-indicator.component.scss']
 })
 export class ErrorComponent implements OnInit {
 

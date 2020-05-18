@@ -16,7 +16,7 @@ import { PatientNotFoundComponent } from './patient-not-found/patient-not-found.
 import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-not-found.component';
 import { ScreeningComponent } from './screening/screening.component';
 import { LoadingComponent } from './loading/loading.component';
-import { ErrorComponent } from './error/error.component';
+import { ErrorComponent } from './error-indicator/error-indicator.component';
 import { ScreeningOverviewComponent } from './screening-overview/screening-overview.component';
 
 @NgModule({
