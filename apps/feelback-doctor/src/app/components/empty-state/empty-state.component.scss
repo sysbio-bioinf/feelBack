@@ -6,6 +6,24 @@
   flex-direction: column;
 }
 
+.image-wrapper {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.image-background {
+  height: 400px;
+  width: 400px;
+  background-color: #00a3ff;
+  opacity: 0.2;
+  border-radius: 50%;
+}
+
 .image {
-  height: 300px;
+  height: 400px;
+  opacity: 0.75;
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  filter: drop-shadow(3px 3px 2px #222);
 }
