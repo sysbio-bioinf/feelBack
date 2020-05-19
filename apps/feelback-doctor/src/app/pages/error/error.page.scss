@@ -1,33 +1,15 @@
-@import 'variables';
-
 .wrapper {
   display: flex;
   justify-content: center;
 }
 
-.image-wrapper {
-  position: relative;
-  margin-right: 3em;
+feelback-doctor-circle-image {
+  text-align: left;
+  margin-right: 2em;
 }
 
 .error-code {
   font: 300 200px/200px Roboto, 'Helvetica Neue', sans-serif;
   letter-spacing: -0.05em;
   margin: 50px 0 20px;
-}
-
-.image-background {
-  height: 400px;
-  width: 400px;
-  background-color: #00a3ff;
-  opacity: 0.2;
-  border-radius: 50%;
-}
-
-.image {
-  height: 400px;
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  filter: drop-shadow(3px 3px 2px #222);
 }

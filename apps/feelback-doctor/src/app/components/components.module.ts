@@ -16,6 +16,7 @@ import { ScreeningOverviewComponent } from './screening-overview/screening-overv
 import { EmptyStateComponent } from './empty-state/empty-state.component';
 import { ScreeningComponent } from './screening/screening.component';
 import { ErrorIndicatorComponent } from './error-indicator/error-indicator.component';
+import { CircleImageComponent } from './circle-image/circle-image.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ErrorIndicatorComponent } from './error-indicator/error-indicator.compo
     ErrorIndicatorComponent,
     ScreeningOverviewComponent,
     EmptyStateComponent,
+    CircleImageComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -43,6 +45,7 @@ import { ErrorIndicatorComponent } from './error-indicator/error-indicator.compo
     ChooseInstrumentComponent,
     LoadingComponent,
     EmptyStateComponent,
+    CircleImageComponent,
   ],
 })
 export class ComponentsModule {}

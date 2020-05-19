@@ -1,0 +1,9 @@
+<span [ngSwitch]="image" class="image-wrapper">
+  <div class="background"></div>
+  <img
+    *ngSwitchCase="image"
+    class="image"
+    [src]="'/assets/img/' + image + '.png'"
+  />
+  <img *ngSwitchDefault class="image" src="/assets/img/error.png" />
+</span>

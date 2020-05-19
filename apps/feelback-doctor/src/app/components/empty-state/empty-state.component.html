@@ -1,8 +1,4 @@
 <div id="empty-state-wrapper">
-  <span [ngSwitch]="entity" class="image-wrapper">
-    <div class="image-background"></div>
-    <img *ngSwitchCase="'patient'" class="image" src="/assets/img/patient.png" />
-    <img *ngSwitchCase="'instrument'" class="image" src="/assets/img/instrument.png" />
-  </span>
+  <feelback-doctor-circle-image [image]="entity"></feelback-doctor-circle-image>
   <h1>Sorry, but there are no {{ entity }}s available!</h1>
 </div>
