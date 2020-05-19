@@ -13,7 +13,6 @@ import { CommonService } from '../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Instrument } from '../../graphql/generated/feelback.graphql';
-import { Parser } from 'expr-eval';
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',
@@ -53,21 +52,6 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
         this.expansionPanel.open();
       }
     });
-  }
-
-  private createRadarChart() {
-    // this.overview = [
-    //   {
-    //     name: 'Overview',
-    //     series: [],
-    //   },
-    // ];
-    // console.log(
-    //   Parser.evaluate(
-    //     this.instrument.diagram.overview.axis.fp,
-    //     this.screening.result,
-    //   ),
-    // );
   }
 
   public selectScreening(data: ChartDataPoint): void {

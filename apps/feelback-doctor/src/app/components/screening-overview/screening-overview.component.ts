@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonService } from '../../services/common.service';
-import { ScreeningService } from '../../services/screening.service';
 import { Category } from '../../models/Category';
 import { ChartSeries } from '../../models/ChartSeries';
 import { Screening } from '../../models/Screening';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Parser } from 'expr-eval';
+import { transformOperation } from 'apollo-link/lib/linkUtils';
 
 @Component({
   selector: 'feelback-doctor-screening-overview',
@@ -23,6 +24,7 @@ export class ScreeningOverviewComponent implements OnInit {
   }
 
   @Input() screening: Screening;
+  @Input() diagram;
   public chartData: ChartSeries[];
   public currentViewMapping: {} = {
     fromIndex: { 0: 'Radar', 1: 'Progress', 2: 'Table' },
@@ -32,22 +34,34 @@ export class ScreeningOverviewComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'positive', 'total'];
 
   ngOnInit(): void {
-    this.transformCategoryToChart(this.screening.categories);
+    this.transformCategoryToChart(this.diagram, this.screening.categories);
   }
 
-  private transformCategoryToChart(categories: Category[]) {
+  private transformCategoryToChart(diagram: {}, categories: Category[]) {
     this.chartData = [
       {
         name: 'Category',
         series: [],
       },
     ];
-    for (const category of categories) {
+
+    const result = this.transformScreeningResult(this.screening.result);
+
+    for (const axis of diagram['overview']['axis']) {
+      const value = Parser.evaluate(axis.rule, result)*100;
       this.chartData[0]['series'].push({
-        name: category.name,
-        value: (category.positive / category.total) * 100,
+        name: axis.name,
+        value,
       });
     }
+  }
+
+  private transformScreeningResult(result) {
+    let resultString = JSON.stringify(result);
+    resultString = resultString
+      .replace(new RegExp('true', 'g'), '1')
+      .replace(new RegExp('false', 'g'), '0');
+    return JSON.parse(resultString);
   }
 
   public changePage($event) {

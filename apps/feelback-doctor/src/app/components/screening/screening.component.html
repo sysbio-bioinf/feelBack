@@ -69,11 +69,11 @@
     <div id="questionnaire">
       <feelback-doctor-questionnaire
         [screening]="screening"
-        [payload]="payload"
+        [payload]="instrument.payload"
       ></feelback-doctor-questionnaire>
     </div>
     <div id="overview">
-      <feelback-doctor-screening-overview [screening]="screening"></feelback-doctor-screening-overview>
+      <feelback-doctor-screening-overview [screening]="screening" [diagram]="instrument.diagram"></feelback-doctor-screening-overview>
     </div>
   </div>
 </div>

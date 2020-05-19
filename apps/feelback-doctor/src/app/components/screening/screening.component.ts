@@ -5,8 +5,7 @@ import { Screening } from '../../models/Screening';
 import { Router } from '@angular/router';
 import * as fileSaver from 'file-saver';
 import { CommonService } from '../../services/common.service';
-import { Category } from '../../models/Category';
-import { ChartSeries } from '../../models/ChartSeries';
+import { Instrument } from '../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-screening',
@@ -21,7 +20,7 @@ export class ScreeningComponent implements OnInit {
   ) {}
 
   @Input() selectedScreening: string;
-  @Input() payload: {};
+  @Input() instrument: Instrument;
   public screening$: Observable<Screening>;
 
   ngOnInit(): void {
