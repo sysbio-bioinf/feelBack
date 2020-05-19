@@ -19,7 +19,7 @@ export class InstrumentComponent implements OnInit {
       this.instrumentId = params.get('instrument');
 
       if (!this.instrumentService.checkIfInstrumentExists(this.instrumentId)) {
-        this.router.navigate(['instrument-not-found', this.instrumentId]);
+        this.navigateToErrorPage();
       }
 
       this.instrument$ = this.instrumentService.getInstrumentById(
@@ -31,5 +31,22 @@ export class InstrumentComponent implements OnInit {
   public instrumentId: string;
   public instrument$: Observable<Instrument>;
 
+  private navigateToErrorPage() {
+    this.router.navigate(['error'], {
+      queryParams: {},
+      queryParamsHandling: 'merge',
+      state: {
+        code: 404,
+        entity: 'instrument',
+        callbackUrl: this.buildCallbackUrl()
+      },
+    });
+  }
+
   ngOnInit(): void {}
+
+  private buildCallbackUrl(){
+    const url = this.router.url;
+    return url.substring(0, url.lastIndexOf("/"));
+  }
 }

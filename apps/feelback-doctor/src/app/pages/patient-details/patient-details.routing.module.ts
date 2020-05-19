@@ -4,9 +4,6 @@ import { MainLayout } from '../../layouts/main/main.layout';
 import { PatientDetailsPage } from './patient-details.page';
 import { ChooseInstrumentComponent } from '../../components/choose-instrument/choose-instrument.component';
 import { InstrumentComponent } from '../../components/instrument/instrument.component';
-import { PatientNotFoundComponent } from '../../components/patient-not-found/patient-not-found.component';
-import { LoginLayout } from '../../layouts/login/login.layout';
-import { InstrumentNotFoundComponent } from '../../components/instrument-not-found/instrument-not-found.component';
 
 const routes: Routes = [
   {
@@ -29,16 +26,6 @@ const routes: Routes = [
         ],
       },
     ],
-  },
-  {
-    path: 'patient-not-found/:patient',
-    component: LoginLayout,
-    children: [{ path: '', component: PatientNotFoundComponent }],
-  },
-  {
-    path: 'instrument-not-found/:instrument',
-    component: LoginLayout,
-    children: [{ path: '', component: InstrumentNotFoundComponent }],
   },
 ];
 

@@ -11,14 +11,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { InstrumentComponent } from './instrument/instrument.component';
 import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PatientNotFoundComponent } from './patient-not-found/patient-not-found.component';
-import { InstrumentNotFoundComponent } from './instrument-not-found/instrument-not-found.component';
-import { ScreeningComponent } from './screening/screening.component';
 import { LoadingComponent } from './loading/loading.component';
-import { ErrorComponent } from './error-indicator/error-indicator.component';
 import { ScreeningOverviewComponent } from './screening-overview/screening-overview.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
+import { ScreeningComponent } from './screening/screening.component';
+import { ErrorIndicatorComponent } from './error-indicator/error-indicator.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +27,9 @@ import { EmptyStateComponent } from './empty-state/empty-state.component';
     QuestionnaireComponent,
     InstrumentComponent,
     ChooseInstrumentComponent,
-    PageNotFoundComponent,
-    PatientNotFoundComponent,
-    InstrumentNotFoundComponent,
     ScreeningComponent,
     LoadingComponent,
-    ErrorComponent,
+    ErrorIndicatorComponent,
     ScreeningOverviewComponent,
     EmptyStateComponent,
   ],

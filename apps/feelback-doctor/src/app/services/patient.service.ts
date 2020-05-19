@@ -85,7 +85,6 @@ export class PatientService {
   ];
 
   public getPatients(): Observable<Patient[]> {
-    this.patients = [];
     return of(this.patients).pipe(delay(500));
   }
 

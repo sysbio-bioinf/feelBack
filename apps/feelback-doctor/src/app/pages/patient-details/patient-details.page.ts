@@ -44,7 +44,15 @@ export class PatientDetailsPage implements OnInit {
   ngOnInit(): void {
     const getPatients = this.patientService.getPatientById(this.patient.id);
     if (!getPatients) {
-      this.router.navigate(['patient-not-found', this.patient.id]);
+      this.router.navigate(['error'], {
+        queryParams: {},
+        queryParamsHandling: 'merge',
+        state: {
+          code: 404,
+          entity: 'patient',
+          callbackUrl: 'patients'
+        },
+      });
     }
     getPatients.subscribe((patient) => (this.patient = patient));
     this.instrumentService
@@ -63,4 +71,5 @@ export class PatientDetailsPage implements OnInit {
       });
     }
   }
+
 }

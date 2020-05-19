@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './error-indicator.component.html',
   styleUrls: ['./error-indicator.component.scss']
 })
-export class ErrorComponent implements OnInit {
+export class ErrorIndicatorComponent implements OnInit {
 
   constructor() { }
 

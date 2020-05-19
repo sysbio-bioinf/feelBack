@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <span [ngSwitch]="error.entity" class="image-wrapper">
+    <div class="image-background"></div>
+    <img *ngSwitchCase="'patient'" class="image" src="/assets/img/patient.png" />
+    <img *ngSwitchCase="'instrument'" class="image" src="/assets/img/instrument.png" />
+    <img *ngSwitchCase="'page'" class="image" src="/assets/img/page.png" />
+    <img *ngSwitchCase="'error'" class="image" src="/assets/img/error.png" />
+  </span>
+  <div>
+    <div class="error-code">
+      {{error.code }}
+    </div>
+    <div class="mat-h1">
+      We are sorry, but this {{error.entity}} doesn't exist.
+    </div>
+    <button mat-raised-button color="primary" (click)="navigateToCallbackUrl()">
+      Go back
+      <span *ngIf="error.entity !== 'Page'">to search {{error.entity}}</span>
+    </button>
+  </div>
+</div>
