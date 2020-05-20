@@ -1,12 +1,11 @@
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { MainLayout } from '../../layouts/main/main.layout';
+import { Routes } from '@angular/router';
 import { InstrumentPage } from './instrument.page';
 import { ChooseInstrumentComponent } from '../../components/choose-instrument/choose-instrument.component';
 import { InstrumentComponent } from '../../components/instrument/instrument.component';
-import { ScreeningRoutingModule } from '../screening/screening.page.routing.module';
+import { ScreeningModule } from '../screening/screening.page.module';
+import { ScreeningRouting } from '../screening/screening.page.routing';
 
-const routes: Routes = [
+export const InstrumentRouting: Routes = [
   {
     path: ':patient',
     component: InstrumentPage,
@@ -23,9 +22,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes), ScreeningRoutingModule],
-  exports: [RouterModule],
-})
-export class InstrumentRoutingModule {}
