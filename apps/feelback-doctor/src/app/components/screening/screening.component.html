@@ -1,4 +1,5 @@
 <div *ngIf="screening$ | async as screening; else loading">
+  <pre>{{screening | json}}</pre>
   <mat-card id="screening">
     <mat-card-header>
       <mat-card-title>Screening</mat-card-title>
