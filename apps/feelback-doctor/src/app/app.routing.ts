@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginRoutingModule } from './pages/login/login.routing.module';
-import { PatientDetailsRoutingModule } from './pages/patient-details/patient-details.routing.module';
+import { LoginRouting } from './pages/login/login.routing';
 import { LoginLayout } from './layouts/login/login.layout';
 import { ErrorPage } from './pages/error/error.page';
-import { PatientRouting } from './pages/patient/patient.page.routing';
+import { InstrumentRouting } from './pages/instrument/instrument.routing';
+import { PatientRouting } from './pages/patient/patient.routing';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,10 +18,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    LoginRoutingModule,
+    LoginRouting,
     PatientRouting,
-    PatientDetailsRoutingModule,
+    InstrumentRouting,
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRouting {}
