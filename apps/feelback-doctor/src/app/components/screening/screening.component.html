@@ -1,9 +1,8 @@
 <div *ngIf="screening$ | async as screening; else loading">
-  <pre>{{screening | json}}</pre>
   <mat-card id="screening">
     <mat-card-header>
       <mat-card-title>Screening</mat-card-title>
-      <mat-card-subtitle>{{ screening.date }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ screening.date |  date: 'dd.MM.yyyy' }}</mat-card-subtitle>
       <span class="spacer"></span>
       <button
         mat-icon-button
