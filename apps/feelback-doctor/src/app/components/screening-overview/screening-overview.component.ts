@@ -5,7 +5,6 @@ import { ChartSeries } from '../../models/ChartSeries';
 import { Screening } from '../../models/Screening';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Parser } from 'expr-eval';
-import { transformOperation } from 'apollo-link/lib/linkUtils';
 
 @Component({
   selector: 'feelback-doctor-screening-overview',
@@ -34,10 +33,10 @@ export class ScreeningOverviewComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'positive', 'total'];
 
   ngOnInit(): void {
-    this.transformCategoryToChart(this.diagram, this.screening.categories);
+    this.transformCategoryToChart(this.diagram);
   }
 
-  private transformCategoryToChart(diagram: {}, categories: Category[]) {
+  private transformCategoryToChart(diagram: {}) {
     this.chartData = [
       {
         name: 'Category',

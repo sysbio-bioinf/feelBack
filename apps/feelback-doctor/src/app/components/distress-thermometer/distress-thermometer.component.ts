@@ -54,14 +54,13 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public selectScreening(data: ChartDataPoint): void {
-    const screening = data.name.toLocaleDateString('de');
-    this.selectedScreening = screening;
+  public selectScreening(screening: ChartDataPoint): void {
+    this.selectedScreening = screening.id;
     this.expansionPanel.close();
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        screening: screening,
+        screening: screening.id,
       },
       queryParamsHandling: 'merge',
     });
