@@ -1,5 +1,16 @@
 <feelback-doctor-navbar></feelback-doctor-navbar>
 <div class="content">
-  <router-outlet></router-outlet>
+  <!-- <mat-horizontal-stepper linear>
+    (selectionChange)="selectionChanged($event)">
+    <mat-step
+      *ngFor="let step of steps"
+      [stepControl]="step.form"
+      (click)="goto(step.path)"
+      [label]="step.title"
+    >
+    {{step.path}}
+      <div (click)="go()">click me</div> -->
+      <router-outlet></router-outlet>
+    <!-- </mat-step>
+  </mat-horizontal-stepper> -->
 </div>
-

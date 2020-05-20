@@ -5,9 +5,10 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../modules/shared.module';
 import { MaterialModule } from '../modules/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginLayout, MainLayout],
-  imports: [RouterModule, SharedModule, MaterialModule, CommonModule],
+  imports: [RouterModule, SharedModule, MaterialModule, CommonModule, ReactiveFormsModule],
 })
 export class LayoutsModule {}

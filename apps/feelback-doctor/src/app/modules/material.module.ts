@@ -21,6 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -46,6 +48,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatBadgeModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatStepperModule,
+    MatFormFieldModule,
   ],
   exports: [
     MatCardModule,
@@ -70,6 +74,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatBadgeModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    MatStepperModule,
+    MatFormFieldModule,
   ],
 })
 export class MaterialModule {}
