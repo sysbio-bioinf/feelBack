@@ -37,7 +37,7 @@ export class InstrumentService {
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
       image:
-        'https://st2.depositphotos.com/5722118/11457/v/950/depositphotos_114576810-stock-illustration-coloring-page-outline-of-medical.jpg',
+        'https://img.icons8.com/office/64/000000/caduceus.png',
     },
     {
       id: 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958',
@@ -50,7 +50,7 @@ export class InstrumentService {
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
       image:
-        'https://st2.depositphotos.com/5722118/11457/v/950/depositphotos_114576810-stock-illustration-coloring-page-outline-of-medical.jpg',
+        'https://img.icons8.com/plasticine/100/000000/hospital-room.png',
     },
     {
       id: 'eab19dff-d4c3-46ae-99df-59db5d8e3842',
@@ -63,7 +63,7 @@ export class InstrumentService {
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
       image:
-        'https://st2.depositphotos.com/5722118/11457/v/950/depositphotos_114576810-stock-illustration-coloring-page-outline-of-medical.jpg',
+        'https://img.icons8.com/doodle/48/000000/treatment-list.png',
     },
   ];
 
