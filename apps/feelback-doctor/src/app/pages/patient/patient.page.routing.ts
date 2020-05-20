@@ -1,11 +1,18 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { MainLayout } from '../../layouts/main/main.layout';
 import { PatientPage } from './patient.page';
-import { InstrumentRouting } from '../instrument/instrument.page.routing';
 
-export const PatientRouting: Routes = [
+const routes: Routes = [
   {
-    path: ':patient',
-    component: PatientPage,
-    children: [...InstrumentRouting]
+    path: 'patients',
+    component: MainLayout,
+    children: [{ path: '', component: PatientPage }],
   },
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class PatientRouting {}

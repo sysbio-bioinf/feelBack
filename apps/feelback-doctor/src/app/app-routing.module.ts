@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginRoutingModule } from './pages/login/login.routing.module';
 import { PatientDetailsRoutingModule } from './pages/patient-details/patient-details.routing.module';
-import { PatientsRoutingModule } from './pages/patients/patients.routing.module';
 import { LoginLayout } from './layouts/login/login.layout';
 import { ErrorPage } from './pages/error/error.page';
+import { PatientRouting } from './pages/patient/patient.page.routing';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,7 +19,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     LoginRoutingModule,
-    PatientsRoutingModule,
+    PatientRouting,
     PatientDetailsRoutingModule,
   ],
   exports: [RouterModule],
