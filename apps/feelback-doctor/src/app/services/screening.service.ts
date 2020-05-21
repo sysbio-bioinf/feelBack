@@ -299,8 +299,6 @@ export class ScreeningService {
   }
 
   public getScreening(id: string): Observable<Screening> {
-    console.log(id);
-    console.log(this.getDateForScreening(id))
     const screening = {
       locale: 'de',
       instrument: 'Distress Thermometer',
@@ -380,7 +378,7 @@ export class ScreeningService {
       comment:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
     };
-    return of(screening).pipe(delay(100));
+    return of(screening).pipe(delay(250));
   }
 
   private getDateForScreening(id: string): Date {

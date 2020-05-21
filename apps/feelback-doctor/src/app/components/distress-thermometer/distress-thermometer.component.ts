@@ -20,7 +20,7 @@ import { Instrument } from '../../graphql/generated/feelback.graphql';
   styleUrls: ['./distress-thermometer.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DistressThermometerComponent implements OnInit, AfterViewInit {
+export class DistressThermometerComponent implements OnInit {
   constructor(
     private screeningService: ScreeningService,
     public commonService: CommonService,
@@ -29,7 +29,6 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
   ) {}
 
   @Input() instrument: Instrument;
-  @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   public screenings: ChartSeries[];
   public overview: ChartSeries[];
   public selectedScreening: string;
@@ -46,17 +45,8 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
       .subscribe((data) => (this.overview = data));
   }
 
-  ngAfterViewInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      if (!params['screening']) {
-        this.expansionPanel.open();
-      }
-    });
-  }
-
   public selectScreening(screening: ChartDataPoint): void {
     this.selectedScreening = screening.id;
-    this.expansionPanel.close();
     this.router.navigate(['screenings', this.selectedScreening], {
       relativeTo: this.route,
     });

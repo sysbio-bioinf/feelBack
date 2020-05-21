@@ -1,15 +1,15 @@
-<mat-accordion>
-  <mat-expansion-panel expanded="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Screenings
-      </mat-panel-title>
-      <mat-panel-description>
-        Show screenings and overview
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div class="wrapper">
-      <div class="main">
+<div class="wrapper">
+  <div class="main">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Screenings
+        </mat-card-title>
+        <mat-card-subtitle>
+          Distress Thermometer
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
         <div class="chart-wrapper">
           <ngx-charts-line-chart
             [scheme]="commonService.colorScheme"
@@ -24,8 +24,21 @@
           >
           </ngx-charts-line-chart>
         </div>
-      </div>
-      <div class="sidebar">
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="sidebar">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Radar
+        </mat-card-title>
+        <mat-card-subtitle>
+          Overview
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
         <div class="chart-wrapper">
           <ngx-charts-polar-chart
             [scheme]="commonService.colorScheme"
@@ -39,7 +52,7 @@
           >
           </ngx-charts-polar-chart>
         </div>
-      </div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
