@@ -18,7 +18,7 @@ export class MainLayout implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
-        console.log(event);
+        // console.log(event);
       });
   }
 

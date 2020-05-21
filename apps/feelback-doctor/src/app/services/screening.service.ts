@@ -197,67 +197,67 @@ export class ScreeningService {
         {
           value: 6,
           name: new Date(2019, 9, 1),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed1',
-        },
-        {
-          value: 7,
-          name: new Date(2019, 9, 8),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed2',
-        },
-        {
-          value: 7,
-          name: new Date(2019, 9, 15),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed3',
-        },
-        {
-          value: 7,
-          name: new Date(2019, 9, 22),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed4',
-        },
-        {
-          value: 8,
-          name: new Date(2019, 10, 1),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed5',
-        },
-        {
-          value: 6,
-          name: new Date(2019, 10, 8),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed6',
-        },
-        {
-          value: 5,
-          name: new Date(2019, 10, 15),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed7',
-        },
-        {
-          value: 7,
-          name: new Date(2019, 10, 22),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed8',
-        },
-        {
-          value: 7,
-          name: new Date(2019, 11, 1),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed9',
-        },
-        {
-          value: 7,
-          name: new Date(2019, 11, 8),
           id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee1',
         },
         {
           value: 7,
+          name: new Date(2019, 9, 8),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee2',
+        },
+        {
+          value: 7,
+          name: new Date(2019, 9, 15),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee3',
+        },
+        {
+          value: 7,
+          name: new Date(2019, 9, 22),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee4',
+        },
+        {
+          value: 8,
+          name: new Date(2019, 10, 1),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee5',
+        },
+        {
+          value: 6,
+          name: new Date(2019, 10, 8),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee6',
+        },
+        {
+          value: 5,
+          name: new Date(2019, 10, 15),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee7',
+        },
+        {
+          value: 7,
+          name: new Date(2019, 10, 22),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee8',
+        },
+        {
+          value: 7,
+          name: new Date(2019, 11, 1),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ee9',
+        },
+        {
+          value: 7,
+          name: new Date(2019, 11, 8),
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ef1',
+        },
+        {
+          value: 7,
           name: new Date(2019, 11, 15),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed2',
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ef2',
         },
         {
           value: 6,
           name: new Date(2019, 11, 22),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed3',
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ef3',
         },
         {
           value: 7,
           name: new Date(2019, 11, 31),
-          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ed4',
+          id: 'c10237f6-c5de-4cdf-84bc-b62b859b5ef4',
         },
       ],
     },
@@ -299,6 +299,8 @@ export class ScreeningService {
   }
 
   public getScreening(id: string): Observable<Screening> {
+    console.log(id);
+    console.log(this.getDateForScreening(id))
     const screening = {
       locale: 'de',
       instrument: 'Distress Thermometer',

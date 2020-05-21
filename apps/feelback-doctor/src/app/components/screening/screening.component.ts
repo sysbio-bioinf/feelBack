@@ -28,7 +28,9 @@ export class ScreeningComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.screening$ = this.screeningService.getScreening(params['screening']);
+      this.screening$ = this.screeningService.getScreening(
+        params.get('screening'),
+      );
     });
     this.route.parent.paramMap.subscribe((params) => {
       this.instrumentId = params.get('instrument');
