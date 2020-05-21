@@ -8,15 +8,15 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { DistressThermometerComponent } from './distress-thermometer/distress-thermometer.component';
 import { SampleInstrumentComponent } from './sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { QuestionnaireComponent } from './screening/questionnaire/questionnaire.component';
 import { InstrumentComponent } from './instrument/instrument.component';
 import { ChooseInstrumentComponent } from './choose-instrument/choose-instrument.component';
 import { LoadingComponent } from './loading/loading.component';
-import { ScreeningOverviewComponent } from './screening-overview/screening-overview.component';
+import { OverviewComponent } from './screening/overview/overview.component';
 import { EmptyStateComponent } from './empty-state/empty-state.component';
-import { ScreeningComponent } from './screening/screening.component';
 import { ErrorIndicatorComponent } from './error-indicator/error-indicator.component';
 import { CircleImageComponent } from './circle-image/circle-image.component';
+import { ConsultationComponent } from './screening/consultation/consultation.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +28,12 @@ import { CircleImageComponent } from './circle-image/circle-image.component';
     QuestionnaireComponent,
     InstrumentComponent,
     ChooseInstrumentComponent,
-    ScreeningComponent,
     LoadingComponent,
     ErrorIndicatorComponent,
-    ScreeningOverviewComponent,
+    OverviewComponent,
     EmptyStateComponent,
     CircleImageComponent,
+    ConsultationComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -46,7 +46,9 @@ import { CircleImageComponent } from './circle-image/circle-image.component';
     LoadingComponent,
     EmptyStateComponent,
     CircleImageComponent,
-    ScreeningComponent
+    ConsultationComponent,
+    QuestionnaireComponent,
+    OverviewComponent,
   ],
 })
 export class ComponentsModule {}

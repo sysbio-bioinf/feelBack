@@ -1,0 +1,67 @@
+<mat-card id="screening">
+  <mat-card-header>
+    <mat-card-title>Screening</mat-card-title>
+    <mat-card-subtitle>{{
+      screening.date | date: 'dd.MM.yyyy'
+    }}</mat-card-subtitle>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      matTooltip="Print screening"
+      matTooltipPosition="above"
+      aria-label="Print screening"
+      (click)="printScreening()"
+    >
+      <mat-icon>print</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="Download screening"
+      matTooltipPosition="above"
+      aria-label="Download screening"
+      (click)="downloadScreening(screening)"
+    >
+      <mat-icon>save_alt</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="Close screening"
+      matTooltipPosition="above"
+      color="warn"
+      aria-label="Close screening"
+      (click)="closeScreening()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="consultation-wrapper">
+      <div class="consultation">
+        <mat-icon
+          *ngIf="getConsultation(screening) !== 'no'"
+          class="consultation-icon"
+          color="accent"
+          >check</mat-icon
+        >
+        <mat-icon
+          *ngIf="getConsultation(screening) === 'no'"
+          class="consultation-icon"
+          color="warn"
+          >cancel</mat-icon
+        >
+        <span class="consultation-text">{{
+          getConsultation(screening)
+        }}</span>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Comment</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          [value]="screening.comment"
+          disabled="true"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

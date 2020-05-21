@@ -47,7 +47,7 @@ export class DistressThermometerComponent implements OnInit {
 
   public selectScreening(screening: ChartDataPoint): void {
     this.selectedScreening = screening.id;
-    this.router.navigate(['screenings', this.selectedScreening], {
+    this.router.navigate([this.selectedScreening], {
       relativeTo: this.route,
     });
   }

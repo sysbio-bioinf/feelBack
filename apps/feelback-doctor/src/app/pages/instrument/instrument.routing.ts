@@ -19,8 +19,9 @@ const routes: Routes = [
             path: 'instruments',
             component: ChooseInstrumentComponent,
           },
+          { path: 'instruments/:instrument', redirectTo: 'instruments/:instrument/screenings', pathMatch: 'full' },
           {
-            path: 'instruments/:instrument',
+            path: 'instruments/:instrument/screenings',
             component: InstrumentComponent,
           },
         ],

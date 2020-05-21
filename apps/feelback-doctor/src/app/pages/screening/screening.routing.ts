@@ -5,12 +5,11 @@ import { ScreeningPage } from './screening.page';
 
 const routes: Routes = [
   {
-    path: 'patients/:patient/instruments/:instrument',
+    path: 'patients/:patient/instruments/:instrument/screenings',
     component: MainLayout,
     children: [
-      { path: '', redirectTo: 'screenings', pathMatch: 'full' },
       {
-        path: 'screenings/:screening',
+        path: ':screening',
         component: ScreeningPage
       },
     ],

@@ -1,1 +1,26 @@
-<feelback-doctor-screening></feelback-doctor-screening>
+<div *ngIf="instrument$ | async as instrument; else loading">
+  <div *ngIf="screening$ | async as screening; else loading">
+    <feelback-doctor-screening-consultation
+      [screening]="screening"
+    ></feelback-doctor-screening-consultation>
+
+    <div class="wrapper">
+      <div id="questionnaire">
+        <feelback-doctor-screening-questionnaire
+          [screening]="screening"
+          [payload]="instrument.payload"
+        ></feelback-doctor-screening-questionnaire>
+      </div>
+      <div id="overview">
+        <feelback-doctor-screening-overview
+          [screening]="screening"
+          [diagram]="instrument.diagram"
+        ></feelback-doctor-screening-overview>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <feelback-doctor-loading></feelback-doctor-loading>
+</ng-template>

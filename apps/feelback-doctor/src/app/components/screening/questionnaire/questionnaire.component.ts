@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import * as Survey from 'survey-angular';
-import { Screening } from '../../models/Screening';
+import { Screening } from '../../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from '../../services/common.service';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
-  selector: 'feelback-doctor-questionnaire',
+  selector: 'feelback-doctor-screening-questionnaire',
   templateUrl: './questionnaire.component.html',
   styleUrls: ['./questionnaire.component.scss'],
   encapsulation: ViewEncapsulation.None,

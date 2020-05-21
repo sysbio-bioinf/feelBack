@@ -1,17 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonService } from '../../services/common.service';
-import { Category } from '../../models/Category';
-import { ChartSeries } from '../../models/ChartSeries';
-import { Screening } from '../../models/Screening';
+import { CommonService } from '../../../services/common.service';
+import { Category } from '../../../models/Category';
+import { ChartSeries } from '../../../models/ChartSeries';
+import { Screening } from '../../../models/Screening';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Parser } from 'expr-eval';
 
 @Component({
   selector: 'feelback-doctor-screening-overview',
-  templateUrl: './screening-overview.component.html',
-  styleUrls: ['./screening-overview.component.scss'],
+  templateUrl: './overview.component.html',
+  styleUrls: ['./overview.component.scss'],
 })
-export class ScreeningOverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit {
   constructor(
     public commonService: CommonService,
     private router: Router,
