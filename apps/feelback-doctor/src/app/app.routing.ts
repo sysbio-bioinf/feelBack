@@ -5,6 +5,7 @@ import { LoginLayout } from './layouts/login/login.layout';
 import { ErrorPage } from './pages/error/error.page';
 import { InstrumentRouting } from './pages/instrument/instrument.routing';
 import { PatientRouting } from './pages/patient/patient.routing';
+import { ScreeningRouting } from './pages/screening/screening.routing';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
     LoginRouting,
     PatientRouting,
     InstrumentRouting,
+    ScreeningRouting,
   ],
   exports: [RouterModule],
 })

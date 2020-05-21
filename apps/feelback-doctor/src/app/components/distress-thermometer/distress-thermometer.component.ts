@@ -57,12 +57,8 @@ export class DistressThermometerComponent implements OnInit, AfterViewInit {
   public selectScreening(screening: ChartDataPoint): void {
     this.selectedScreening = screening.id;
     this.expansionPanel.close();
-    this.router.navigate([], {
+    this.router.navigate(['screenings', this.selectedScreening], {
       relativeTo: this.route,
-      queryParams: {
-        screening: screening.id,
-      },
-      queryParamsHandling: 'merge',
     });
   }
 }

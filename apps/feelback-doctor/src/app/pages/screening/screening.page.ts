@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'feelback-doctor-screening',
+  selector: 'feelback-doctor-screening-page',
   templateUrl: './screening.page.html',
   styleUrls: ['./screening.page.scss']
 })

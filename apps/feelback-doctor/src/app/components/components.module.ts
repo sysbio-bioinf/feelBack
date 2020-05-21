@@ -46,6 +46,7 @@ import { CircleImageComponent } from './circle-image/circle-image.component';
     LoadingComponent,
     EmptyStateComponent,
     CircleImageComponent,
+    ScreeningComponent
   ],
 })
 export class ComponentsModule {}

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as fileSaver from 'file-saver';
 import { CommonService } from '../../services/common.service';
 import { Instrument } from '../../graphql/generated/feelback.graphql';
+import { InstrumentService } from '../../services/instrument.service';
 
 @Component({
   selector: 'feelback-doctor-screening',
@@ -18,19 +19,30 @@ export class ScreeningComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public commonService: CommonService,
+    private instrumentService: InstrumentService,
   ) {}
 
-  @Input() instrument: Instrument;
   public screening$: Observable<Screening>;
+  public instrument$: Observable<Instrument>;
+  public instrumentId: string;
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
+    this.route.paramMap.subscribe((params) => {
       this.screening$ = this.screeningService.getScreening(params['screening']);
+    });
+    this.route.parent.paramMap.subscribe((params) => {
+      this.instrumentId = params.get('instrument');
+
+      this.instrument$ = this.instrumentService.getInstrumentById(
+        this.instrumentId,
+      );
     });
   }
 
   public closeScreening() {
-    this.router.navigate([]);
+    this.router.navigate(['../../'], {
+      relativeTo: this.route,
+    });
   }
 
   public printScreening() {

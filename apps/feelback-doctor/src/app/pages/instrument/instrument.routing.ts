@@ -4,7 +4,6 @@ import { MainLayout } from '../../layouts/main/main.layout';
 import { InstrumentPage } from './instrument.page';
 import { ChooseInstrumentComponent } from '../../components/choose-instrument/choose-instrument.component';
 import { InstrumentComponent } from '../../components/instrument/instrument.component';
-import { ScreeningComponent } from '../../components/screening/screening.component';
 
 const routes: Routes = [
   {
@@ -23,12 +22,6 @@ const routes: Routes = [
           {
             path: 'instruments/:instrument',
             component: InstrumentComponent,
-            children: [
-              {
-                path: 'screening/:screening',
-                component: ScreeningComponent,
-              },
-            ],
           },
         ],
       },
