@@ -25,5 +25,7 @@ export * from './flow/guards/graphql/graphql-role.guard';
 export * from './flow/pipes/parse-int.pipe.pipe';
 export * from './flow/pipes/parse-uuid.pipe.pipe';
 
+export * from './helpers/statemachine.helper';
+
 export * from './ui/graphql/scalars/any.scalar';
 export * from './ui/graphql/scalars/jsonobject.scalar';
