@@ -138,6 +138,7 @@
     "tsconfig-paths": "^3.9.0",
     "typeorm": "^0.2.25",
     "uuidv4": "^6.0.9",
+    "xstate": "^4.10.0",
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
