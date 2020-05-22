@@ -24,7 +24,7 @@ import {
   GetScreeningsByPersonAndInstrumentArgsType,
   ResolveOneScreeningInputType,
   ScreeningConnection,
-} from '../types/custom.types';
+} from '../types/screening.types';
 import { ResolverQuery } from '@nestjs-query/query-graphql/dist/src/decorators';
 
 @Resolver((of) => ScreeningObject)
