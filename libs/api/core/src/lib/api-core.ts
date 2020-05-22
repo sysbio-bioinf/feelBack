@@ -13,6 +13,7 @@ export * from './services/core.service';
 export * from './ui/graphql/args/core.args';
 
 export * from './ui/graphql/inputs/core.input';
+export * from './ui/graphql/inputs/select-one.input';
 
 export * from './ui/graphql/objects/core.object';
 export * from './ui/graphql/objects/identifiable.object';
