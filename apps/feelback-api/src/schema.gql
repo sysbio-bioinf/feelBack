@@ -84,7 +84,7 @@ input CreateOneIdentityInput {
   identity: CreateIdentityInput!
 }
 
-input CreateOneInstrumentInput {
+input CreateOneInstrumentInputType {
   """The record to create"""
   instrument: CreateInstrumentInput!
 }
@@ -628,8 +628,10 @@ type Mutation {
   updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
   updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
   createOneIdentity(input: CreateOneIdentityInput!): Identity!
-  updateOneInstrument(input: UpdateOneInstrumentInput!): Instrument!
-  createOneInstrument(input: CreateOneInstrumentInput!): Instrument!
+  createOneInstrument(input: CreateOneInstrumentInputType!): Instrument!
+  updateOneInstrument(input: UpdateOneInstrumentInputType!): Instrument!
+  releaseInstrument(input: ReleaseOneInstrumentInputType!): Instrument!
+  retireInstrument(input: RetireOneInstrumentInputType!): Instrument!
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
@@ -936,6 +938,11 @@ input RelationsInput {
   relationIds: [ID!]!
 }
 
+input ReleaseOneInstrumentInputType {
+  """The ID of the record"""
+  id: ID!
+}
+
 input ResolveOneScreeningInputType {
   """id"""
   id: String!
@@ -950,6 +957,11 @@ input ResolveScreeningInput {
 
   """Date this issue was resolved"""
   resolvedAt: DateTime!
+}
+
+input RetireOneInstrumentInputType {
+  """The ID of the record"""
+  id: ID!
 }
 
 input RuleInput {
@@ -1192,7 +1204,7 @@ input UpdateOneIdentityInput {
   update: UpdateIdentityInput!
 }
 
-input UpdateOneInstrumentInput {
+input UpdateOneInstrumentInputType {
   """The id of the record to update"""
   id: ID!
 

@@ -1,7 +1,7 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { JSONObject } from '@cancerlog/api/application';
 import { VersionableObject } from '@cancerlog/api/core';
 import { FilterableField } from '@nestjs-query/query-graphql';
-import { JSONObject } from '@cancerlog/api/application';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('Instrument', {
   description: 'An Instrument resource for a survey',
@@ -55,4 +55,6 @@ export class InstrumentObject extends VersionableObject {
     nullable: false,
   })
   changelog: string;
+
+  xState: string;
 }

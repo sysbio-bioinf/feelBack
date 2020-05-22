@@ -1,5 +1,5 @@
-import { Entity, Column, OneToMany, RelationId } from 'typeorm';
 import { VersionableEntity } from '@cancerlog/api/core';
+import { Column, Entity, OneToMany, RelationId } from 'typeorm';
 import { ScreeningEntity } from '../../../screening/data/entities/screening.entity';
 import { RuleModel } from '../models/rule.model';
 
@@ -28,6 +28,9 @@ export class InstrumentEntity extends VersionableEntity {
 
   @Column({ type: 'text', nullable: false, default: '' })
   changelog: string;
+
+  @Column({ type: 'text', nullable: false, default: '' })
+  xState: string; // the serialized xState object
 
   // relationships
   @OneToMany((type) => ScreeningEntity, (screening) => screening.instrument, {
