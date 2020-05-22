@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: ':screening',
-        component: ScreeningPage
+        component: ScreeningPage,
       },
     ],
   },

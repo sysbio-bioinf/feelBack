@@ -2,8 +2,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MainLayout } from '../../layouts/main/main.layout';
 import { InstrumentPage } from './instrument.page';
-import { ChooseInstrumentComponent } from '../../components/choose-instrument/choose-instrument.component';
-import { InstrumentComponent } from '../../components/instrument/instrument.component';
+import { ChooseInstrumentComponent } from '../../components/instrument/choose-instrument/choose-instrument.component';
+import { InstrumentWrapperComponent } from '../../components/instrument/instrument-wrapper/instrument-wrapper.component';
 
 const routes: Routes = [
   {
@@ -12,17 +12,25 @@ const routes: Routes = [
     children: [
       {
         path: ':patient',
+        redirectTo: ':patient/instruments',
+        pathMatch: 'full',
+      },
+      {
+        path: ':patient/instruments',
         component: InstrumentPage,
         children: [
-          { path: '', redirectTo: 'instruments', pathMatch: 'full' },
           {
-            path: 'instruments',
+            path: '',
             component: ChooseInstrumentComponent,
           },
-          { path: 'instruments/:instrument', redirectTo: 'instruments/:instrument/screenings', pathMatch: 'full' },
           {
-            path: 'instruments/:instrument/screenings',
-            component: InstrumentComponent,
+            path: ':instrument',
+            redirectTo: ':instrument/screenings',
+            pathMatch: 'full',
+          },
+          {
+            path: ':instrument/screenings',
+            component: InstrumentWrapperComponent,
           },
         ],
       },

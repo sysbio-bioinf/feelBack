@@ -6,13 +6,13 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { ChartDataPoint } from '../../models/ChartDataPoint';
-import { ChartSeries } from '../../models/ChartSeries';
-import { ScreeningService } from '../../services/screening.service';
-import { CommonService } from '../../services/common.service';
+import { ChartDataPoint } from '../../../models/ChartDataPoint';
+import { ChartSeries } from '../../../models/ChartSeries';
+import { ScreeningService } from '../../../services/screening.service';
+import { CommonService } from '../../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { Instrument } from '../../graphql/generated/feelback.graphql';
+import { Instrument } from '../../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',

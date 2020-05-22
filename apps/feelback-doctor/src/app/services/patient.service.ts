@@ -95,4 +95,13 @@ export class PatientService {
       }
     }
   }
+
+  public checkIfPatientExists(id: string): boolean {
+    for (const patient of this.patients) {
+      if (patient.id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

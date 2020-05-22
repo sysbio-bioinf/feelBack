@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-  RouterEvent,
-  NavigationEnd,
-} from '@angular/router';
+import { Observable } from 'rxjs';
+import { Instrument } from '../../graphql/generated/feelback.graphql';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InstrumentService } from '../../services/instrument.service';
 import { Patient } from '../../models/Patient';
 import { PatientService } from '../../services/patient.service';
-import { InstrumentService } from '../../services/instrument.service';
-import { Instrument } from '../../models/Instrument';
-import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'feelback-doctor-instrument-page',
@@ -18,58 +13,35 @@ import { CommonService } from '../../services/common.service';
 })
 export class InstrumentPage implements OnInit {
   constructor(
-    private patientService: PatientService,
-    private instrumentService: InstrumentService,
     private route: ActivatedRoute,
-    public commonService: CommonService,
-    public router: Router,
+    private router: Router,
+    private patientService: PatientService,
   ) {
     this.route.paramMap.subscribe((params) => {
-      this.patient.id = params.get('patient');
-    });
-
-    this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationEnd) {
-        this.showTabBar = event.url.includes('instruments');
+      this.patientId = params.get('patient');
+      console.log(this.patientId);
+      if (!this.patientService.checkIfPatientExists(this.patientId)) {
+        this.navigateToErrorPage();
+      } else {
+        this.patient$ = this.patientService.getPatientById(this.patientId);
       }
     });
   }
 
-  public patient: Patient = new Patient();
-  public instrument: Instrument = new Instrument();
-  public links = [];
-  public showTabBar: boolean;
-  public showInstrumentsButton: boolean;
+  public patientId: string;
+  public patient$: Observable<Patient>;
 
-  ngOnInit(): void {
-    const getPatients = this.patientService.getPatientById(this.patient.id);
-    if (!getPatients) {
-      this.router.navigate(['error'], {
-        queryParams: {},
-        queryParamsHandling: 'merge',
-        state: {
-          code: 404,
-          entity: 'patient',
-          callbackUrl: 'patients'
-        },
-      });
-    }
-    getPatients.subscribe((patient) => (this.patient = patient));
-    this.instrumentService
-      .getInstruments()
-      .subscribe((instruments) =>
-        this.transformInstrumentsToLinks(instruments),
-      );
+  ngOnInit(): void {}
+
+  private navigateToErrorPage() {
+    this.router.navigate(['error'], {
+      queryParams: {},
+      queryParamsHandling: 'merge',
+      state: {
+        code: 404,
+        entity: 'patient',
+        callbackUrl: 'patients',
+      },
+    });
   }
-
-  private transformInstrumentsToLinks(instruments: Instrument[]) {
-    for (const [index, instrument] of instruments.entries()) {
-      this.links.push({
-        label: instrument.name,
-        link: './instruments/' + instrument.id,
-        index: index,
-      });
-    }
-  }
-
 }
