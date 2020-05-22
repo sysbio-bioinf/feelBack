@@ -2,11 +2,13 @@ import {
   ConnectionType,
   QueryArgsType,
   UpdateOneInputType,
+  CreateOneInputType,
 } from '@nestjs-query/query-graphql';
 import { ArgsType, Field, InputType } from '@nestjs/graphql';
-import { IsString, IsUUID } from 'class-validator';
+import { IsString, IsUUID, IsOptional } from 'class-validator';
 import { ResolveScreeningInput } from '../inputs/resolve-screening.input';
 import { ScreeningObject } from '../objects/screening.object';
+import { CreateScreeningInput } from '../inputs/create-screening.input';
 
 // FIXME: This results in a wrong type for GQL
 @InputType()
@@ -18,6 +20,23 @@ export class ResolveOneScreeningInputType extends UpdateOneInputType(
     description: 'id',
   })
   id: string;
+}
+
+@InputType()
+export class UploadScreeningInputType extends CreateOneInputType(
+  'screening',
+  CreateScreeningInput,
+) {
+  @IsString()
+  @IsUUID('4')
+  @Field()
+  instrumentId: string;
+
+  @IsOptional()
+  @IsString()
+  @IsUUID('4')
+  @Field({ nullable: true })
+  personId?: string;
 }
 
 @ArgsType()

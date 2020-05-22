@@ -24,8 +24,9 @@ import {
   GetScreeningsByPersonAndInstrumentArgsType,
   ResolveOneScreeningInputType,
   ScreeningConnection,
+  UploadScreeningInputType,
 } from '../types/screening.types';
-import { ResolverQuery } from '@nestjs-query/query-graphql/dist/src/decorators';
+import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -56,10 +57,31 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     readonly service: ScreeningAssemblerService,
     readonly screeningDatabaseService: ScreeningDatabaseService,
     readonly instrumentService: InstrumentAssemblerService,
-    readonly personDatabaseService: PersonDatabaseService,
+    readonly personService: PersonAssemblerService,
     private evaluationService: EvaluationService,
   ) {
     super(service);
+  }
+
+  @Mutation((returns) => ScreeningObject, { name: 'uploadScreening' })
+  async uploadScreening(
+    @Args('input') input: UploadScreeningInputType,
+  ): Promise<ScreeningObject> {
+    const instrument = await this.instrumentService.getById(input.instrumentId);
+
+    // TODO: Maybe we can improve this,
+    let person = {
+      id: null,
+    };
+    if (input.personId) {
+      person = await this.personService.getById(input.personId);
+    }
+
+    const screening = await this.service.createOne(input.input);
+    await this.service.setRelation('instrument', screening.id, instrument.id);
+    await this.service.setRelation('person', screening.id, person.id);
+
+    return screening;
   }
 
   @Query((returns) => ScreeningConnection, {

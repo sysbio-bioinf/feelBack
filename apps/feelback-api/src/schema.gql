@@ -640,6 +640,7 @@ type Mutation {
   createOneScreening(input: CreateOneScreeningInput!): Screening!
   setInstrumentOnScreening(input: RelationInput!): Screening!
   setPersonOnScreening(input: RelationInput!): Screening!
+  uploadScreening(input: UploadScreeningInputType!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
   deleteOneFaq(input: DeleteOneInput!): FaqDeleteResponse!
   updateOneFaq(input: UpdateOneFaqInput!): Faq!
@@ -1258,6 +1259,13 @@ input UpdateOrganizationInput {
 input UpdatePersonInput {
   """if the person has accepted the TOS"""
   acceptedTOS: Boolean!
+}
+
+input UploadScreeningInputType {
+  """The record to create"""
+  screening: CreateScreeningInput!
+  instrumentId: String!
+  personId: String
 }
 
 type UserAgent {
