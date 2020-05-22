@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
-import { PatientFilterComponent } from './patient-filter/patient-filter.component';
 import { MaterialModule } from '../modules/material.module';
-import { PatientListComponent } from './patient-list/patient-list.component';
+import { ListComponent } from './patient/list/list.component';
 import { DistressThermometerComponent } from './instrument/distress-thermometer/distress-thermometer.component';
 import { SampleInstrumentComponent } from './instrument/sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -18,12 +17,13 @@ import { CircleImageComponent } from './util/circle-image/circle-image.component
 import { ConsultationComponent } from './screening/consultation/consultation.component';
 import { HeaderComponent } from './instrument/header/header.component';
 import { InstrumentWrapperComponent } from './instrument/instrument-wrapper/instrument-wrapper.component';
+import { FilterComponent } from './patient/filter/filter.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    PatientFilterComponent,
-    PatientListComponent,
+    FilterComponent,
+    ListComponent,
     DistressThermometerComponent,
     SampleInstrumentComponent,
     QuestionnaireComponent,
@@ -40,8 +40,8 @@ import { InstrumentWrapperComponent } from './instrument/instrument-wrapper/inst
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
     NavbarComponent,
-    PatientFilterComponent,
-    PatientListComponent,
+    FilterComponent,
+    ListComponent,
     SampleInstrumentComponent,
     ChooseInstrumentComponent,
     LoadingComponent,

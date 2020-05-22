@@ -1,20 +1,17 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Patient } from '../../models/Patient';
+import { Patient } from '../../../models/Patient';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { PatientService } from '../../services/patient.service';
 import { Router } from '@angular/router';
-import { CommonService } from '../../services/common.service';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
   selector: 'feelback-doctor-patient-list',
-  templateUrl: './patient-list.component.html',
-  styleUrls: ['./patient-list.component.scss'],
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
 })
-export class PatientListComponent implements OnInit {
+export class ListComponent implements OnInit {
   public dataSource: MatTableDataSource<Patient>;
   public displayedColumns: string[] = [
     'name',

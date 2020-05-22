@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'feelback-doctor-patient-filter',
-  templateUrl: './patient-filter.component.html',
-  styleUrls: ['./patient-filter.component.scss'],
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
 })
-export class PatientFilterComponent implements OnInit {
+export class FilterComponent implements OnInit {
   constructor() {}
-
-  ngOnInit(): void {}
 
   public panelOpenState = false;
   public options = [{ value: 'over' }, { value: 'under' }];
+
+  ngOnInit(): void {}
 }
