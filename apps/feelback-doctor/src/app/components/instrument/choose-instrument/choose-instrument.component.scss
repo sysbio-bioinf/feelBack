@@ -1,8 +1,8 @@
-@import "variables";
+@import 'variables';
 
-.choose-instrument{
+.choose-instrument {
   display: inline-block;
-  width: 400px;
+  width: 500px;
   margin-right: 2em;
   margin-bottom: 2em;
   cursor: pointer;
@@ -10,4 +10,14 @@
 
 .choose-instrument-card:hover {
   background: $hover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5em;
+}
+
+.justify-text{
+  text-align: justify;
 }

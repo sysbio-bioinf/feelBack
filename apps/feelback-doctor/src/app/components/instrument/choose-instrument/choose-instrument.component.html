@@ -1,5 +1,4 @@
 <div *ngIf="instruments$ | async as instruments; else loading">
-  
   <div *ngIf="instruments.length > 0">
     <div
       *ngFor="let instrument of instruments"
@@ -13,16 +12,34 @@
           <mat-card-subtitle>Instrument</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>
+          <div class="info">
+            <span>
+              <span class="mat-body-strong">Version: </span>
+              <span>{{ instrument.version }}</span>
+            </span>
+            <span>&bull;</span>
+            <span>
+              <span class="mat-body-strong">Created at: </span>
+              <span>{{ instrument.createdAt | date: 'dd.MM.yyy' }}</span>
+            </span>
+            <span>&bull;</span>
+            <span>
+              <span class="mat-body-strong">Updated at: </span>
+              <span>{{ instrument.updatedAt | date: 'dd.MM.yyy' }}</span>
+            </span>
+          </div>
+          <div class="justify-text">
             {{ instrument.description }}
-          </p>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
 
   <div *ngIf="instruments.length === 0">
-    <feelback-doctor-empty-state [entity]="'instrument'"></feelback-doctor-empty-state>
+    <feelback-doctor-empty-state
+      [entity]="'instrument'"
+    ></feelback-doctor-empty-state>
   </div>
 </div>
 

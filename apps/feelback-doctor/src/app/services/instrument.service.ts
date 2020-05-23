@@ -15,9 +15,9 @@ export class InstrumentService {
   private instruments = [
     {
       id: '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      version: 1.0,
+      createdAt: new Date(2020, 2, 14),
+      updatedAt: new Date(2020, 2, 17),
+      version: 1.1,
       type: '',
       changelog: '',
       name: 'Distress Thermometer',
