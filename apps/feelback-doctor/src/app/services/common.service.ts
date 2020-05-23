@@ -33,5 +33,7 @@ export class CommonService {
     rating: 'star',
     instrument: 'event_note',
     screening: 'collections',
+    check: 'done',
+    uncheck: 'close'
   };
 }

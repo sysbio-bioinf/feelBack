@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Instrument } from '../../graphql/generated/feelback.graphql';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InstrumentService } from '../../services/instrument.service';
 import { Patient } from '../../models/Patient';
 import { PatientService } from '../../services/patient.service';
 
@@ -19,7 +17,6 @@ export class InstrumentPage implements OnInit {
   ) {
     this.route.paramMap.subscribe((params) => {
       this.patientId = params.get('patient');
-      console.log(this.patientId);
       if (!this.patientService.checkIfPatientExists(this.patientId)) {
         this.navigateToErrorPage();
       } else {
