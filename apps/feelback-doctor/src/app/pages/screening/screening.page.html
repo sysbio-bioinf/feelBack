@@ -1,8 +1,11 @@
-<div *ngIf="patient$ | async as patient; else loading">
-  <feelback-doctor-instrument-header
+<div *ngIf="patient$ | async as patient; else loadingPatient">
+  <feelback-doctor-patient-header
     [patient]="patient"
-  ></feelback-doctor-instrument-header>
+  ></feelback-doctor-patient-header>
 </div>
+<ng-template #loadingPatient>
+  <feelback-doctor-loading></feelback-doctor-loading>
+</ng-template>
 
 <div *ngIf="instrument$ | async as instrument; else loading">
   <div *ngIf="screening$ | async as screening; else loading">

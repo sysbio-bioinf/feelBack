@@ -1,22 +1,7 @@
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.main {
-  flex: 0 0 70%;
-}
-
-.sidebar {
-  flex: 0 0 28.5%;
-}
-
 .chart-wrapper {
   margin: 0 auto;
   text-align: center;
   height: 300px;
-  width: 98%;
 }
 
 .ngx-charts .line-highlight {

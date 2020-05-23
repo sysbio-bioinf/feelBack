@@ -91,7 +91,7 @@ export class PatientService {
   public getPatientById(id: string): Observable<Patient> {
     for (const patient of this.patients) {
       if (patient.id === id) {
-        return of(patient);
+        return of(patient).pipe(delay(250));
       }
     }
   }

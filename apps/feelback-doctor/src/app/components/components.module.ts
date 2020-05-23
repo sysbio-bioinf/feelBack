@@ -14,7 +14,7 @@ import { EmptyStateComponent } from './util/empty-state/empty-state.component';
 import { ErrorIndicatorComponent } from './util/error-indicator/error-indicator.component';
 import { CircleImageComponent } from './util/circle-image/circle-image.component';
 import { ConsultationComponent } from './screening/consultation/consultation.component';
-import { HeaderComponent } from './instrument/header/header.component';
+import { HeaderComponent } from './screening/header/header.component';
 import { FilterComponent } from './patient/filter/filter.component';
 
 @NgModule({

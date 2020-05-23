@@ -12,7 +12,7 @@ import { InstrumentService } from '../../../services/instrument.service';
 import { CommonService } from '../../../services/common.service';
 
 @Component({
-  selector: 'feelback-doctor-instrument-header',
+  selector: 'feelback-doctor-patient-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
