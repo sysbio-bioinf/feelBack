@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonService } from '../../services/common.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'feelback-doctor-main-layout',
@@ -35,8 +35,8 @@ export class MainLayout implements OnInit {
       icon: this.commonService.icons.screening,
     },
     {
-      label: 'Finished',
-      icon: this.commonService.icons.check,
+      label: 'Analyze results',
+      icon: 'image_search',
     },
   ];
   public stepThreshold: number;

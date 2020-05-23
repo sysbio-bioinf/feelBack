@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InstrumentWrapperComponent } from './instrument-wrapper.component';
+import { ChooseInstrumentPage } from './choose-instrument.page';
 
-describe('InstrumentWrapperComponent', () => {
-  let component: InstrumentWrapperComponent;
-  let fixture: ComponentFixture<InstrumentWrapperComponent>;
+describe('ChooseInstrumentPage', () => {
+  let component: ChooseInstrumentPage;
+  let fixture: ComponentFixture<ChooseInstrumentPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InstrumentWrapperComponent ]
+      declarations: [ ChooseInstrumentPage ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InstrumentWrapperComponent);
+    fixture = TestBed.createComponent(ChooseInstrumentPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

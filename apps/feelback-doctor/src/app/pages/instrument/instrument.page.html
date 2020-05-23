@@ -1,10 +1,29 @@
-<div *ngIf="patient$ | async as patient; else loading">
-  <feelback-doctor-instrument-header
-    [patient]="patient"
-  ></feelback-doctor-instrument-header>
-</div>
+<div *ngIf="instrument$ | async as instrument; else loading">
+  <div [ngSwitch]="instrumentId">
+    <div *ngIf="!instrument['error']">
+      <feelback-doctor-distress-thermometer
+        *ngSwitchCase="'53f2a7c3-9c37-4a52-9194-8a3186af6f57'"
+        [instrument]="instrument"
+      ></feelback-doctor-distress-thermometer>
+      <feelback-doctor-sample-instrument
+        *ngSwitchCase="'35b24590-cf4a-4bff-9ee4-828dba3cc9e4'"
+        >Instrument A</feelback-doctor-sample-instrument
+      >
+      <feelback-doctor-sample-instrument
+        *ngSwitchCase="'f9fe3be8-9749-4c19-b03e-2be4c3e7f958'"
+        >Instrument B</feelback-doctor-sample-instrument
+      >
+      <feelback-doctor-sample-instrument
+        *ngSwitchCase="'eab19dff-d4c3-46ae-99df-59db5d8e3842'"
+        >Instrument C</feelback-doctor-sample-instrument
+      >
+    </div>
 
-<router-outlet></router-outlet>
+    <div *ngIf="instrument['error']">
+      <feelback-doctor-error-indicator></feelback-doctor-error-indicator>
+    </div>
+  </div>
+</div>
 
 <ng-template #loading>
   <feelback-doctor-loading></feelback-doctor-loading>

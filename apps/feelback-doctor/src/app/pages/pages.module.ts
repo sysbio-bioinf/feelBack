@@ -5,10 +5,11 @@ import { ErrorModule } from './error/error.module';
 import { PatientModule } from './patient/patient.module';
 import { InstrumentModule } from './instrument/instrument.module';
 import { ScreeningModule } from './screening/screening.module';
+import { ChooseInstrumentModule } from './choose-instrument/choose-instrument.module';
 
 @NgModule({
   declarations: [],
-  imports: [LoginModule, PatientModule, InstrumentModule, ScreeningModule, ErrorModule],
+  imports: [LoginModule, PatientModule, ChooseInstrumentModule, InstrumentModule, ScreeningModule, ErrorModule],
   providers: [GraphQLModule],
 })
 export class PagesModule {}

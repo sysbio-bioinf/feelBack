@@ -1,3 +1,9 @@
+<div *ngIf="patient$ | async as patient; else loading">
+  <feelback-doctor-instrument-header
+    [patient]="patient"
+  ></feelback-doctor-instrument-header>
+</div>
+
 <div *ngIf="instrument$ | async as instrument; else loading">
   <div *ngIf="screening$ | async as screening; else loading">
     <feelback-doctor-screening-consultation
