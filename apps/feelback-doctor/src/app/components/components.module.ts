@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../modules/material.module';
-import { ListComponent } from './patient/list/list.component';
+import { ListComponent } from './patients/list/list.component';
 import { DistressThermometerComponent } from './instrument/distress-thermometer/distress-thermometer.component';
 import { SampleInstrumentComponent } from './instrument/sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -15,7 +15,7 @@ import { ErrorIndicatorComponent } from './util/error-indicator/error-indicator.
 import { CircleImageComponent } from './util/circle-image/circle-image.component';
 import { ConsultationComponent } from './screening/consultation/consultation.component';
 import { HeaderComponent } from './screening/header/header.component';
-import { FilterComponent } from './patient/filter/filter.component';
+import { FilterComponent } from './patients/filter/filter.component';
 
 @NgModule({
   declarations: [

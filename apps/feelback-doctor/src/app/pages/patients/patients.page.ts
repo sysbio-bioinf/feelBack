@@ -5,10 +5,10 @@ import { PatientService } from '../../services/patient.service';
 
 @Component({
   selector: 'feelback-doctor-patients-page',
-  templateUrl: './patient.page.html',
-  styleUrls: ['./patient.page.scss'],
+  templateUrl: './patients.page.html',
+  styleUrls: ['./patients.page.scss'],
 })
-export class PatientPage implements OnInit {
+export class PatientsPage implements OnInit {
   constructor(private patientService: PatientService) {}
 
   public patients$: Observable<Patient[]>;
