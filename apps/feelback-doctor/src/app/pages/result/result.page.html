@@ -1,7 +1,7 @@
 <div *ngIf="patient$ | async as patient; else loadingPatient">
-  <feelback-doctor-patient-header
+  <feelback-doctor-patient-info
     [patient]="patient"
-  ></feelback-doctor-patient-header>
+  ></feelback-doctor-patient-info>
 </div>
 <ng-template #loadingPatient>
   <feelback-doctor-loading></feelback-doctor-loading>

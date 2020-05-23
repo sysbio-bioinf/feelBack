@@ -1,21 +1,21 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MainLayout } from '../../layouts/main/main.layout';
-import { InstrumentPage } from './instrument.page';
+import { InstrumentsPage } from './instruments.page';
 
 const routes: Routes = [
   {
-    path: 'patients/:patient/instruments/:instrument',
+    path: 'patients/:patient',
     component: MainLayout,
     children: [
       {
         path: '',
-        redirectTo: 'screenings',
+        redirectTo: 'instruments',
         pathMatch: 'full',
       },
       {
-        path: 'screenings',
-        component: InstrumentPage,
+        path: 'instruments',
+        component: InstrumentsPage,
       },
     ],
   },
@@ -25,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class InstrumentRouting {}
+export class InstrumentsRouting {}

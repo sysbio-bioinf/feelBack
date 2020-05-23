@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { MainLayout } from '../../layouts/main/main.layout';
-import { ScreeningPage } from './screening.page';
+import { ResultPage } from './result.page';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: ':screening',
-        component: ScreeningPage,
+        component: ResultPage,
       },
     ],
   },
@@ -20,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ScreeningRouting {}
+export class ResultRouting {}

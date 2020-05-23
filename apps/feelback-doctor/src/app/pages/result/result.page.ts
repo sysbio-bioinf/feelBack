@@ -10,11 +10,11 @@ import { Patient } from '../../models/Patient';
 import { PatientService } from '../../services/patient.service';
 
 @Component({
-  selector: 'feelback-doctor-screening',
-  templateUrl: './screening.page.html',
-  styleUrls: ['./screening.page.scss']
+  selector: 'feelback-doctor-result',
+  templateUrl: './result.page.html',
+  styleUrls: ['./result.page.scss']
 })
-export class ScreeningPage implements OnInit {
+export class ResultPage implements OnInit {
 
   constructor(
     private screeningService: ScreeningService,

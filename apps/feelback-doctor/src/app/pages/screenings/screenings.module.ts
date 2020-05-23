@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { MaterialModule } from '../../modules/material.module';
-import { InstrumentPage } from './instrument.page';
+import { ScreeningsPage } from './screenings.page';
 
 @NgModule({
-  declarations: [InstrumentPage],
+  declarations: [ScreeningsPage],
   imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule],
 })
-export class InstrumentModule {}
+export class ScreeningsModule {}

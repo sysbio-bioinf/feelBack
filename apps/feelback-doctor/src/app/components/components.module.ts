@@ -4,17 +4,17 @@ import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../modules/material.module';
 import { ListComponent } from './patients/list/list.component';
-import { DistressThermometerComponent } from './instrument/distress-thermometer/distress-thermometer.component';
-import { SampleInstrumentComponent } from './instrument/sample-instrument/sample-instrument.component';
+import { DistressThermometerComponent } from './instruments/distress-thermometer/distress-thermometer.component';
+import { SampleInstrumentComponent } from './instruments/sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { QuestionnaireComponent } from './screening/questionnaire/questionnaire.component';
+import { QuestionnaireComponent } from './result/questionnaire/questionnaire.component';
 import { LoadingComponent } from './util/loading/loading.component';
-import { OverviewComponent } from './screening/overview/overview.component';
+import { OverviewComponent } from './result/overview/overview.component';
 import { EmptyStateComponent } from './util/empty-state/empty-state.component';
 import { ErrorIndicatorComponent } from './util/error-indicator/error-indicator.component';
 import { CircleImageComponent } from './util/circle-image/circle-image.component';
-import { ConsultationComponent } from './screening/consultation/consultation.component';
-import { HeaderComponent } from './screening/header/header.component';
+import { ConsultationComponent } from './result/consultation/consultation.component';
+import { PatientInfoComponent } from './result/patient-info/patient-info.component';
 import { FilterComponent } from './patients/filter/filter.component';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { FilterComponent } from './patients/filter/filter.component';
     EmptyStateComponent,
     CircleImageComponent,
     ConsultationComponent,
-    HeaderComponent,
+    PatientInfoComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -45,7 +45,7 @@ import { FilterComponent } from './patients/filter/filter.component';
     ConsultationComponent,
     QuestionnaireComponent,
     OverviewComponent,
-    HeaderComponent,
+    PatientInfoComponent,
     DistressThermometerComponent,
     ErrorIndicatorComponent,
   ],
