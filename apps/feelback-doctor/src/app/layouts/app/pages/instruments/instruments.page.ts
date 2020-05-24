@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Instrument } from '../../../../graphql/generated/feelback.graphql';
 import { Patient } from '../../../../models/Patient';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PatientService } from 'apps/feelback-doctor/src/app/services/patient.service';
 
 @Component({
   selector: 'feelback-doctor-instruments',
@@ -12,10 +13,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class InstrumentsPage implements OnInit {
   constructor(
+    private patientService: PatientService,
     private instrumentService: InstrumentService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {}
+  ) {
+    this.route.paramMap.subscribe((params) => {
+      this.patientId = params.get('patient');
+      if (!this.patientService.checkIfPatientExists(this.patientId)) {
+        this.navigateToPatientErrorPage();
+      } else {
+        this.patient$ = this.patientService.getPatientById(this.patientId);
+      }
+    });
+  }
 
   public patientId: string;
   public patient$: Observable<Patient>;
@@ -27,8 +38,18 @@ export class InstrumentsPage implements OnInit {
   }
 
   public selectInstrument(id: string) {
-    console.log(id);
     this.router.navigate([id], { relativeTo: this.route });
-    console.log(this.router.url);
+  }
+
+  private navigateToPatientErrorPage() {
+    this.router.navigate(['error'], {
+      queryParams: {},
+      queryParamsHandling: 'merge',
+      state: {
+        code: 404,
+        entity: 'patient',
+        callbackUrl: '/app/patients',
+      },
+    });
   }
 }

@@ -267,37 +267,6 @@ export class ScreeningService {
     return of(this.screenings);
   }
 
-  public getRadarChart(): Observable<ChartSeries[]> {
-    const radarChart = [
-      {
-        name: 'Category',
-        series: [
-          {
-            name: 'Praktische Probleme',
-            value: 83,
-          },
-          {
-            name: 'Familiäre Probleme',
-            value: 51,
-          },
-          {
-            name: 'Emotionale Probleme',
-            value: 74,
-          },
-          {
-            name: 'Spirituelle / religiöse Probleme',
-            value: 78,
-          },
-          {
-            name: 'Körperliche Probleme',
-            value: 42,
-          },
-        ],
-      },
-    ];
-    return of(radarChart);
-  }
-
   public getScreening(id: string): Observable<Screening> {
     const screening = {
       locale: 'de',
@@ -388,4 +357,14 @@ export class ScreeningService {
       }
     }
   }
+
+  public checkIfScreeningExists(id: string): boolean {
+    for (const screening of this.screenings[0].series) {
+      if (screening.id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

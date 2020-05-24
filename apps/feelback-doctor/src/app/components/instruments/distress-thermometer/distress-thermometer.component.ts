@@ -34,20 +34,13 @@ export class DistressThermometerComponent implements OnInit {
   public selectedScreening: string;
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.selectedScreening = params['screening'];
-    });
     this.screeningService
       .getScreenings()
       .subscribe((data) => (this.screenings = data));
-    this.screeningService
-      .getRadarChart()
-      .subscribe((data) => (this.overview = data));
   }
 
   public selectScreening(screening: ChartDataPoint): void {
-    this.selectedScreening = screening.id;
-    this.router.navigate([this.selectedScreening], {
+    this.router.navigate([screening.id], {
       relativeTo: this.route,
     });
   }

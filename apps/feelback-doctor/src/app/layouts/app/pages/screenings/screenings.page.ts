@@ -50,6 +50,7 @@ export class ScreeningsPage implements OnInit {
 
   private buildCallbackUrl() {
     const url = this.router.url;
-    return url.substring(0, url.lastIndexOf('/'));
+    const url_mod = url.substring(0, url.lastIndexOf('/'));
+    return url_mod.substring(0, url_mod.lastIndexOf('/'));
   }
 }
