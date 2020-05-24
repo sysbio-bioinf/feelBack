@@ -11,6 +11,7 @@ const routes: Routes = [
       {
         path: ':screening',
         component: ResultPage,
+        data: { animation: 'Result' },
       },
     ],
   },

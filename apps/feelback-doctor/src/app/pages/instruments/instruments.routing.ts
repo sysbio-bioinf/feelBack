@@ -16,6 +16,7 @@ const routes: Routes = [
       {
         path: 'instruments',
         component: InstrumentsPage,
+        data: {animation: 'Instruments'}
       },
     ],
   },

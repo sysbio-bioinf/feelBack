@@ -16,6 +16,7 @@ const routes: Routes = [
       {
         path: 'screenings',
         component: ScreeningsPage,
+        data: { animation: 'Screenings' },
       },
     ],
   },

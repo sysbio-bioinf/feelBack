@@ -7,7 +7,13 @@ const routes: Routes = [
   {
     path: 'patients',
     component: MainLayout,
-    children: [{ path: '', component: PatientsPage }],
+    children: [
+      {
+        path: '',
+        component: PatientsPage,
+        data: { animation: 'Patients' },
+      },
+    ],
   },
 ];
 
