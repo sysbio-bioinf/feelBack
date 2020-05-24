@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Patient } from '../../../models/Patient';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
 
 @Component({
@@ -27,6 +27,7 @@ export class ListComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     public commonService: CommonService,
   ) {}
 
@@ -42,6 +43,6 @@ export class ListComponent implements OnInit {
   }
 
   public selectPatient(patient: Patient) {
-    this.router.navigate(['patients', patient.id]);
+    this.router.navigate([patient.id], { relativeTo: this.route });
   }
 }

@@ -48,6 +48,7 @@ import { FilterComponent } from './patients/filter/filter.component';
     PatientInfoComponent,
     DistressThermometerComponent,
     ErrorIndicatorComponent,
+    CircleImageComponent,
   ],
 })
 export class ComponentsModule {}

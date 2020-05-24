@@ -1,0 +1,25 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CommonLayout } from './common.layout';
+
+describe('LoginLayoutComponent', () => {
+  let component: CommonLayout;
+  let fixture: ComponentFixture<CommonLayout>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ CommonLayout ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CommonLayout);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
