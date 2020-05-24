@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonService } from '../../services/common.service';
-import { FormBuilder } from '@angular/forms';
-import { slideInAnimation } from './slideInAnimation';
+import { slideInAnimation } from './slide-in-animations';
 
 @Component({
   selector: 'feelback-doctor-app-layout',
   templateUrl: './app.layout.html',
   styleUrls: ['./app.layout.scss'],
-  // animations: [slideInAnimation],
+  animations: [slideInAnimation],
 })
 export class AppLayout implements OnInit {
   constructor(private router: Router, private commonService: CommonService) {

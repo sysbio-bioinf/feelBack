@@ -8,30 +8,8 @@ import {
 } from '@angular/animations';
 
 export const slideInAnimation = trigger('routeAnimations', [
-  transition('Result => *', [
-    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
-      optional: true,
-    }),
-    group([
-      query(
-        ':enter',
-        [
-          style({ transform: 'translateX(-100%)' }),
-          animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
-        ],
-        { optional: true },
-      ),
-      query(
-        ':leave',
-        [
-          style({ transform: 'translateX(0%)' }),
-          animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
-        ],
-        { optional: true },
-      ),
-    ]),
-  ]),
-  transition('Patients => *', [
+  // navigate to right
+  transition('Patients => Instruments', [
     query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
       optional: true,
     }),
@@ -78,6 +56,102 @@ export const slideInAnimation = trigger('routeAnimations', [
             '0.5s ease-in-out',
             style({ transform: 'translateX(-100%)' }),
           ),
+        ],
+        { optional: true },
+      ),
+    ]),
+  ]),
+  transition('Screenings => Result', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
+    group([
+      query(
+        ':enter',
+        [
+          style({ transform: 'translateX(100%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
+        ],
+        { optional: true },
+      ),
+      query(
+        ':leave',
+        [
+          style({ transform: 'translateX(0%)' }),
+          animate(
+            '0.5s ease-in-out',
+            style({ transform: 'translateX(-100%)' }),
+          ),
+        ],
+        { optional: true },
+      ),
+    ]),
+  ]),
+  // navigate to left
+  transition('Result => *', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
+    group([
+      query(
+        ':enter',
+        [
+          style({ transform: 'translateX(-100%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
+        ],
+        { optional: true },
+      ),
+      query(
+        ':leave',
+        [
+          style({ transform: 'translateX(0%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
+        ],
+        { optional: true },
+      ),
+    ]),
+  ]),
+  transition('Screenings => Instruments', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
+    group([
+      query(
+        ':enter',
+        [
+          style({ transform: 'translateX(-100%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
+        ],
+        { optional: true },
+      ),
+      query(
+        ':leave',
+        [
+          style({ transform: 'translateX(0%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
+        ],
+        { optional: true },
+      ),
+    ]),
+  ]),
+  transition('Screenings => Patients', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
+    group([
+      query(
+        ':enter',
+        [
+          style({ transform: 'translateX(-100%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(0%)' })),
+        ],
+        { optional: true },
+      ),
+      query(
+        ':leave',
+        [
+          style({ transform: 'translateX(0%)' }),
+          animate('0.5s ease-in-out', style({ transform: 'translateX(100%)' })),
         ],
         { optional: true },
       ),
