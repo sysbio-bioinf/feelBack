@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouting } from './app.routing';
-import { GraphQLModule } from './modules/graphql.module';
+import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './modules/material.module';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [AppComponent],

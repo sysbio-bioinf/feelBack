@@ -3,7 +3,7 @@ import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { DefaultOptions } from 'apollo-client';
-import { environment } from '../../environments/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   exports: [ApolloModule, HttpLinkModule],

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../modules/material.module';
+import { MaterialModule } from '../material.module';
 import { ListComponent } from './patients/list/list.component';
 import { DistressThermometerComponent } from './instruments/distress-thermometer/distress-thermometer.component';
 import { SampleInstrumentComponent } from './instruments/sample-instrument/sample-instrument.component';
