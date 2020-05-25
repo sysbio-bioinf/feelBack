@@ -11,7 +11,7 @@ export class InstrumentInfoComponent implements OnInit {
   constructor() { }
 
   @Input() instrument: Instrument;
-
+  @Input() hoverable = false;
   ngOnInit(): void {
   }
 

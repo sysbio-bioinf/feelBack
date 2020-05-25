@@ -1,5 +1,9 @@
 @import 'variables';
 
+.hoverable:hover {
+  background: $hover;
+}
+
 .info {
   display: flex;
   justify-content: space-between;

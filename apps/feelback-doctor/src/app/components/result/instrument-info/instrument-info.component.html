@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card [class]="hoverable ? 'hoverable' : ''">
   <mat-card-header>
     <img mat-card-avatar [src]="instrument.image" />
     <mat-card-title>{{ instrument.name }}</mat-card-title>
