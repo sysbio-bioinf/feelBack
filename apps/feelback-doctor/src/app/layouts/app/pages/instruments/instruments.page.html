@@ -1,11 +1,11 @@
 <div *ngIf="instruments$ | async as instruments; else loading">
   <div *ngIf="instruments.length > 0">
-    <div
-      *ngFor="let instrument of instruments"
-      class="choose-instrument"
-      (click)="selectInstrument(instrument.id)"
-    >
-      <mat-card class="choose-instrument-card">
+    <div class="choose-instrument">
+      <mat-card
+        *ngFor="let instrument of instruments"
+        (click)="selectInstrument(instrument.id)"
+        class="choose-instrument-card"
+      >
         <mat-card-header>
           <img mat-card-avatar [src]="instrument.image" />
           <mat-card-title>{{ instrument.name }}</mat-card-title>
@@ -17,12 +17,12 @@
               <span class="mat-body-strong">Version: </span>
               <span>{{ instrument.version }}</span>
             </span>
-            <span>&bull;</span>
+            <span class="divider">&bull;</span>
             <span>
               <span class="mat-body-strong">Created at: </span>
               <span>{{ instrument.createdAt | date: 'dd.MM.yyy' }}</span>
             </span>
-            <span>&bull;</span>
+            <span class="divider">&bull;</span>
             <span>
               <span class="mat-body-strong">Updated at: </span>
               <span>{{ instrument.updatedAt | date: 'dd.MM.yyy' }}</span>

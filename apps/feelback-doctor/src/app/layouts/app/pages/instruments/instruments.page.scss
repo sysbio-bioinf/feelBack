@@ -1,9 +1,14 @@
 @import 'variables';
 
 .choose-instrument {
-  display: inline-block;
-  width: 500px;
-  margin-right: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.choose-instrument-card {
+  width: calc(50% - 50px);
+  min-width: 450px;
   margin-bottom: 2em;
   cursor: pointer;
 }
@@ -18,6 +23,12 @@
   padding-bottom: 0.5em;
 }
 
-.justify-text{
+.divider {
+  color: $primary;
+  position: relative;
+  top: 2px;
+}
+
+.justify-text {
   text-align: justify;
 }
