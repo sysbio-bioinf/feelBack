@@ -10,28 +10,26 @@ export class RuleInput extends CoreInput {
     description: 'the name of the rule',
     nullable: false,
   })
-  name: string;
+  name!: string;
 
   @IsString()
   @Field({
     description: 'the (boolean) expression of the rule',
     nullable: false,
   })
-  expression: string;
-
-  @IsString()
-  @MaxLength(190)
-  @Field({
-    description:
-      'the headline to be shown if the rule evaluates positive (true)',
-    nullable: false,
-  })
-  headline: string;
+  condition!: string;
 
   @IsString()
   @Field({
     description: 'the text to be shown if the rule evaluates positive (true)',
     nullable: false,
   })
-  text: string;
+  then!: string;
+
+  @IsString()
+  @Field({
+    description: 'the text to be shown if the rule evaluates negative (false)',
+    nullable: false,
+  })
+  else!: string;
 }

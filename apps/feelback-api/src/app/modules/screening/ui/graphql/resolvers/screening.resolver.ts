@@ -185,9 +185,9 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     const resultObject = evaluationResults.map((item) => {
       return {
         name: item.name,
-        expression: item.expression,
-        headline: item.headline,
-        text: item.text,
+        condition: item.condition,
+        then: item.then,
+        else: item.else,
         result: item.result,
       } as EvaluationObject;
     });

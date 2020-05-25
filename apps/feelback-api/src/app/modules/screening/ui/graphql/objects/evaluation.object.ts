@@ -7,25 +7,25 @@ export class EvaluationObject extends CoreObject {
     description: 'the name of the rule',
     nullable: false,
   })
-  name: string;
+  name!: string;
 
   @Field({
     description: 'the expression that was used to evaluate the data',
     nullable: false,
   })
-  expression: string;
-
-  @Field({
-    description: 'the headline to be displayed if this rule is true',
-    nullable: false,
-  })
-  headline: string;
+  condition!: string;
 
   @Field({
     description: 'the text to be displayed if this rule is true',
     nullable: false,
   })
-  text: string;
+  then!: string;
+
+  @Field({
+    description: 'the text to be displayed if this rule is false',
+    nullable: false,
+  })
+  else!: string;
 
   @Field({
     description: 'The boolean result of the evaluation, NULL = failure',

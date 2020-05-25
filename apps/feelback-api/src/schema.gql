@@ -309,13 +309,13 @@ type Evaluation {
   name: String!
 
   """the expression that was used to evaluate the data"""
-  expression: String!
-
-  """the headline to be displayed if this rule is true"""
-  headline: String!
+  condition: String!
 
   """the text to be displayed if this rule is true"""
-  text: String!
+  then: String!
+
+  """the text to be displayed if this rule is false"""
+  else: String!
 
   """The boolean result of the evaluation, NULL = failure"""
   result: Boolean
@@ -976,13 +976,13 @@ input RuleInput {
   name: String!
 
   """the (boolean) expression of the rule"""
-  expression: String!
-
-  """the headline to be shown if the rule evaluates positive (true)"""
-  headline: String!
+  condition: String!
 
   """the text to be shown if the rule evaluates positive (true)"""
-  text: String!
+  then: String!
+
+  """the text to be shown if the rule evaluates negative (false)"""
+  else: String!
 }
 
 """A processed screening"""

@@ -2,8 +2,8 @@ import { CoreModel } from '@cancerlog/api/core';
 
 export interface RuleModel extends CoreModel {
   name: string;
-  expression: string;
+  condition: string;
 
-  headline: string;
-  text: string;
+  then: string;
+  else: string;
 }

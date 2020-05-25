@@ -31,7 +31,7 @@ export class EvaluationService extends CoreService {
 
     for (const rule of rules) {
       try {
-        const normalExpression = rule.expression;
+        const normalExpression = rule.condition;
         const parsedExpression = evaluationParser.parse(normalExpression);
         const expressionResult = parsedExpression.evaluate(data as any);
 
