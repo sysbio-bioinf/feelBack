@@ -18,6 +18,7 @@ import {
   ReleaseOneInstrumentInputType,
   RetireOneInstrumentInputType,
   UpdateOneInstrumentInputType,
+  CopyOneInstrumentInputType,
 } from '../types/instrument.types';
 
 @Resolver((of) => InstrumentObject)
@@ -141,5 +142,29 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     });
 
     return updatedInstrument;
+  }
+
+  @Mutation((returns) => InstrumentObject, { name: 'copyInstrument' })
+  async copyInstrument(
+    @Args('input') input: CopyOneInstrumentInputType,
+  ): Promise<InstrumentObject> {
+    const instrument = await this.service.getById(input.id);
+
+    const instrumentFSM = interpret(instrumentMachine).start();
+    const newState = instrumentFSM.state;
+
+    const newInstrumentDTO: DeepPartial<InstrumentObject> = {
+      changelog: `initial version - copied from instrument ${instrument.name} (${instrument.id})`,
+      name: `${instrument.name} (copy)`,
+      description: instrument.description,
+      type: instrument.type,
+      image: instrument.image,
+      payload: instrument.payload,
+      rules: instrument.rules,
+      diagram: instrument.diagram,
+      xState: JSON.stringify(newState),
+    };
+
+    return this.service.createOne(newInstrumentDTO);
   }
 }

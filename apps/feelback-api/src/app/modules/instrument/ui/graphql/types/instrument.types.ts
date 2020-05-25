@@ -23,3 +23,6 @@ export class ReleaseOneInstrumentInputType extends SelectOneInputType {}
 
 @InputType()
 export class RetireOneInstrumentInputType extends SelectOneInputType {}
+
+@InputType()
+export class CopyOneInstrumentInputType extends SelectOneInputType {}

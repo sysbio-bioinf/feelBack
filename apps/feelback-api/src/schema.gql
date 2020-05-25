@@ -32,6 +32,11 @@ input BooleanFieldComparison {
 """Cursor for paging through collections"""
 scalar ConnectionCursor
 
+input CopyOneInstrumentInputType {
+  """The ID of the record"""
+  id: ID!
+}
+
 input CreateFaqInput {
   """the question for this entry"""
   question: String!
@@ -632,6 +637,7 @@ type Mutation {
   updateOneInstrument(input: UpdateOneInstrumentInputType!): Instrument!
   releaseInstrument(input: ReleaseOneInstrumentInputType!): Instrument!
   retireInstrument(input: RetireOneInstrumentInputType!): Instrument!
+  copyInstrument(input: CopyOneInstrumentInputType!): Instrument!
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
