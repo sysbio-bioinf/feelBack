@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonService } from '../../services/common.service';
-import { slideInAnimation } from './slide-in-animations';
+import { slideInAnimation } from './app.layout.animation';
 
 @Component({
   selector: 'feelback-doctor-app-layout',

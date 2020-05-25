@@ -347,7 +347,7 @@ export class ScreeningService {
       comment:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
     };
-    return of(screening).pipe(delay(250));
+    return of(screening).pipe(delay(50));
   }
 
   private getDateForScreening(id: string): Date {
