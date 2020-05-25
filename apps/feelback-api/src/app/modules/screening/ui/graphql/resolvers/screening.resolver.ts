@@ -27,6 +27,13 @@ import {
   UploadScreeningInputType,
 } from '../types/screening.types';
 import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
+import {
+  instrumentMachine,
+  INSTRUMENT_MACHINE_STATES,
+} from '../../../../instrument/machine/instrument.machine';
+import { startFSMFromState } from '@cancerlog/api/application';
+import { CoreException } from '@cancerlog/api/core';
+import { HttpStatus } from '@nestjs/common';
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -58,6 +65,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     readonly screeningDatabaseService: ScreeningDatabaseService,
     readonly instrumentService: InstrumentAssemblerService,
     readonly personService: PersonAssemblerService,
+    readonly personDbService: PersonDatabaseService,
     private evaluationService: EvaluationService,
   ) {
     super(service);
@@ -68,6 +76,21 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     @Args('input') input: UploadScreeningInputType,
   ): Promise<ScreeningObject> {
     const instrument = await this.instrumentService.getById(input.instrumentId);
+
+    const instrumentFSM = startFSMFromState(
+      instrumentMachine,
+      instrument.xState,
+    );
+
+    if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.RELEASED)) {
+      throw new CoreException(
+        {
+          detail: 'Invalid Resource State',
+          status: HttpStatus.CONFLICT,
+        },
+        HttpStatus.CONFLICT,
+      );
+    }
 
     // TODO: Maybe we can improve this,
     let person = {
