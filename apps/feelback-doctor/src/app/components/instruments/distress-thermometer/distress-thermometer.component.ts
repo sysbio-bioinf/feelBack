@@ -13,6 +13,7 @@ import { CommonService } from '../../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Instrument } from '../../../graphql/generated/feelback.graphql';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',
@@ -29,14 +30,12 @@ export class DistressThermometerComponent implements OnInit {
   ) {}
 
   @Input() instrument: Instrument;
-  public screenings: ChartSeries[];
+  public screenings$: Observable<ChartSeries[]>;
   public overview: ChartSeries[];
   public selectedScreening: string;
 
   ngOnInit(): void {
-    this.screeningService
-      .getScreenings()
-      .subscribe((data) => (this.screenings = data));
+    this.screenings$ = this.screeningService.getScreenings();
   }
 
   public selectScreening(screening: ChartDataPoint): void {

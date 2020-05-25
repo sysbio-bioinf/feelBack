@@ -264,7 +264,7 @@ export class ScreeningService {
   ];
 
   public getScreenings(): Observable<ChartSeries[]> {
-    return of(this.screenings);
+    return of(this.screenings).pipe(delay(400));
   }
 
   public getScreening(id: string): Observable<Screening> {
