@@ -49,9 +49,9 @@ export async function seed() {
     rules: [
       {
         name: 'Distress',
-        expression: 'DT01 > 5',
-        headline: 'Stress',
-        text: 'Ein Text hier',
+        condition: 'DT01 > 5',
+        then: 'Ein Text hier',
+        else: '',
       },
     ],
     changelog: 'initial version',
