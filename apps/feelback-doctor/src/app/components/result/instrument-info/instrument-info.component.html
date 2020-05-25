@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header>
+    <img mat-card-avatar [src]="instrument.image" />
+    <mat-card-title>{{ instrument.name }}</mat-card-title>
+    <mat-card-subtitle>Instrument</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="info">
+      <span>
+        <span class="mat-body-strong">Version: </span>
+        <span>{{ instrument.version }}</span>
+      </span>
+      <span class="divider">&bull;</span>
+      <span>
+        <span class="mat-body-strong">Created at: </span>
+        <span>{{ instrument.createdAt | date: 'dd.MM.yyy' }}</span>
+      </span>
+      <span class="divider">&bull;</span>
+      <span>
+        <span class="mat-body-strong">Updated at: </span>
+        <span>{{ instrument.updatedAt | date: 'dd.MM.yyy' }}</span>
+      </span>
+    </div>
+    <div class="justify-text">
+      {{ instrument.description }}
+    </div>
+  </mat-card-content>
+</mat-card>

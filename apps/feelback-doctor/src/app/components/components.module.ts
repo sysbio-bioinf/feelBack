@@ -16,6 +16,7 @@ import { CircleImageComponent } from './util/circle-image/circle-image.component
 import { ConsultationComponent } from './result/consultation/consultation.component';
 import { PatientInfoComponent } from './result/patient-info/patient-info.component';
 import { FilterComponent } from './patients/filter/filter.component';
+import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FilterComponent } from './patients/filter/filter.component';
     CircleImageComponent,
     ConsultationComponent,
     PatientInfoComponent,
+    InstrumentInfoComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -49,6 +51,7 @@ import { FilterComponent } from './patients/filter/filter.component';
     DistressThermometerComponent,
     ErrorIndicatorComponent,
     CircleImageComponent,
+    InstrumentInfoComponent
   ],
 })
 export class ComponentsModule {}

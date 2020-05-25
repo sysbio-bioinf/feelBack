@@ -1,4 +1,13 @@
-.nav-button{
+mat-card {
+  height: calc(100% - 32px);
+}
+
+mat-card-header {
+  position: relative;
+  top: 30%;
+}
+
+.nav-button {
   margin-right: 1em;
   margin-bottom: 2em;
 }
@@ -10,10 +19,6 @@
 .title-position {
   position: relative;
   top: 9px;
-}
-
-mat-tab-group {
-  margin-top: 2em;
 }
 
 .header-image {
@@ -28,9 +33,4 @@ mat-tab-group {
 .stats-value {
   margin-right: 3em;
   cursor: help;
-}
-
-.mat-tab-header,
-mat-card {
-  margin-bottom: 2em;
 }

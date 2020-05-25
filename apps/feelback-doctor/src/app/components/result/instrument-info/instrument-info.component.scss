@@ -1,0 +1,17 @@
+@import 'variables';
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5em;
+}
+
+.divider {
+  color: $primary;
+  position: relative;
+  top: 2px;
+}
+
+.justify-text {
+  text-align: justify;
+}
