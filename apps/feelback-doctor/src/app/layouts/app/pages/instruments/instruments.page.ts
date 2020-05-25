@@ -17,7 +17,14 @@ export class InstrumentsPage implements OnInit {
     private instrumentService: InstrumentService,
     private router: Router,
     private route: ActivatedRoute,
-  ) {
+  ) {}
+
+  public patientId: string;
+  public patient$: Observable<Patient>;
+  public instruments$: Observable<Instrument[]>;
+  public instruments: Instrument[];
+
+  ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.patientId = params.get('patient');
       if (!this.patientService.checkIfPatientExists(this.patientId)) {
@@ -26,14 +33,6 @@ export class InstrumentsPage implements OnInit {
         this.patient$ = this.patientService.getPatientById(this.patientId);
       }
     });
-  }
-
-  public patientId: string;
-  public patient$: Observable<Patient>;
-  public instruments$: Observable<Instrument[]>;
-  public instruments: Instrument[];
-
-  ngOnInit(): void {
     this.instruments$ = this.instrumentService.getInstruments();
   }
 

@@ -16,7 +16,14 @@ export class ScreeningsPage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private instrumentService: InstrumentService,
-  ) {
+  ) {}
+
+  public patientId: string;
+  public patient$: Observable<Patient>;
+  public instrumentId: string;
+  public instrument$: Observable<Instrument>;
+
+  ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.instrumentId = params.get('instrument');
       if (!this.instrumentService.checkIfInstrumentExists(this.instrumentId)) {
@@ -28,13 +35,6 @@ export class ScreeningsPage implements OnInit {
       }
     });
   }
-
-  public patientId: string;
-  public patient$: Observable<Patient>;
-  public instrumentId: string;
-  public instrument$: Observable<Instrument>;
-
-  ngOnInit(): void {}
 
   private navigateToInstrumentErrorPage() {
     this.router.navigate(['error'], {
