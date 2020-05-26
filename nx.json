@@ -67,6 +67,9 @@
     },
     "api-util": {
       "tags": []
+    },
+    "feelback-cli": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

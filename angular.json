@@ -851,6 +851,61 @@
           }
         }
       }
+    },
+    "feelback-cli": {
+      "root": "apps/feelback-cli",
+      "sourceRoot": "apps/feelback-cli/src",
+      "projectType": "application",
+      "prefix": "feelback-cli",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/feelback-cli",
+            "main": "apps/feelback-cli/src/main.ts",
+            "tsConfig": "apps/feelback-cli/tsconfig.app.json",
+            "assets": ["apps/feelback-cli/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/feelback-cli/src/environments/environment.ts",
+                  "with": "apps/feelback-cli/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "feelback-cli:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/feelback-cli/tsconfig.app.json",
+              "apps/feelback-cli/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/feelback-cli/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/feelback-cli/jest.config.js",
+            "tsConfig": "apps/feelback-cli/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
