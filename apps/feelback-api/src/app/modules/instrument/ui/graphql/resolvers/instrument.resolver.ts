@@ -1,25 +1,25 @@
 import { startFSMFromState } from '@cancerlog/api/application';
 import { CoreException } from '@cancerlog/api/core';
+import {
+  CopyOneInstrumentInputType,
+  CreateOneInstrumentInputType,
+  InstrumentObject,
+  ReleaseOneInstrumentInputType,
+  RetireOneInstrumentInputType,
+  ScreeningObject,
+  UpdateOneInstrumentInputType,
+} from '@cancerlog/api/interfaces';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { HttpStatus } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { interpret } from 'xstate';
-import { ScreeningObject } from '../../../../screening/ui/graphql/objects/screening.object';
 import {
   instrumentMachine,
   INSTRUMENT_MACHINE_EVENTS,
   INSTRUMENT_MACHINE_STATES,
 } from '../../../machine/instrument.machine';
 import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
-import { InstrumentObject } from '../objects/instrument.object';
-import {
-  CreateOneInstrumentInputType,
-  ReleaseOneInstrumentInputType,
-  RetireOneInstrumentInputType,
-  UpdateOneInstrumentInputType,
-  CopyOneInstrumentInputType,
-} from '../types/instrument.types';
 
 @Resolver((of) => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {

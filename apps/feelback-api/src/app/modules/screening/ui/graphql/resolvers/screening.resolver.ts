@@ -1,6 +1,18 @@
 import { startFSMFromState } from '@cancerlog/api/application';
 import { CoreException } from '@cancerlog/api/core';
 import { ScreeningEntity } from '@cancerlog/api/data';
+import {
+  CreateScreeningInput,
+  EvaluationObject,
+  GetScreeningsByPersonAndInstrumentArgsType,
+  InstrumentObject,
+  PersonObject,
+  ResolveOneScreeningInputType,
+  ScreeningConnection,
+  ScreeningObject,
+  UploadScreeningInputType,
+  UserAgentObject,
+} from '@cancerlog/api/interfaces';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import { HttpStatus } from '@nestjs/common';
@@ -17,23 +29,11 @@ import {
   INSTRUMENT_MACHINE_STATES,
 } from '../../../../instrument/machine/instrument.machine';
 import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
-import { InstrumentObject } from '../../../../instrument/ui/graphql/objects/instrument.object';
 import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../../person/services/person/person-database.service';
-import { PersonObject } from '../../../../person/ui/graphql/objects/person.object';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
 import { ScreeningDatabaseService } from '../../../services/screening/screening-database.service';
-import { CreateScreeningInput } from '../inputs/create-screening.input';
-import { EvaluationObject } from '../objects/evaluation.object';
-import { ScreeningObject } from '../objects/screening.object';
-import { UserAgentObject } from '../objects/user-agent.object';
-import {
-  GetScreeningsByPersonAndInstrumentArgsType,
-  ResolveOneScreeningInputType,
-  ScreeningConnection,
-  UploadScreeningInputType,
-} from '../types/screening.types';
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {

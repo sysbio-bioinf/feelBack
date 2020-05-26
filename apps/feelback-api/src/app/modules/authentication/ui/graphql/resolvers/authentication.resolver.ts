@@ -1,9 +1,8 @@
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
-import { TokenObject } from '../objects/token.object';
 import { KeycloakService } from '@cancerlog/api/authentication';
 import { CoreException } from '@cancerlog/api/core';
+import { LoginInput, TokenObject } from '@cancerlog/api/interfaces';
 import { HttpStatus } from '@nestjs/common';
-import { LoginInput } from '../inputs/login.input';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
 @Resolver(() => TokenObject)
 export class AuthenticationResolver {

@@ -1,4 +1,4 @@
-import { DoctorObject } from '../objects/doctor.object';
+import { DoctorObject } from '@cancerlog/api/interfaces';
 import { DoctorEntity } from '@cancerlog/api/data';
 import { ClassTransformerAssembler, Assembler } from '@nestjs-query/core';
 

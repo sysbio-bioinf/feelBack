@@ -1,6 +1,6 @@
-import { Assembler, ClassTransformerAssembler } from '@nestjs-query/core';
-import { InstrumentObject } from '../objects/instrument.object';
 import { InstrumentEntity } from '@cancerlog/api/data';
+import { InstrumentObject } from '@cancerlog/api/interfaces';
+import { Assembler, ClassTransformerAssembler } from '@nestjs-query/core';
 
 @Assembler(InstrumentObject, InstrumentEntity)
 export class InstrumentAssembler extends ClassTransformerAssembler<

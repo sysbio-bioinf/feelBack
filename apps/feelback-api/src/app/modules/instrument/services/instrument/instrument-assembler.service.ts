@@ -1,7 +1,7 @@
-import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
 import { InstrumentEntity } from '@cancerlog/api/data';
+import { InstrumentObject } from '@cancerlog/api/interfaces';
+import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
 import { InstrumentAssembler } from '../../ui/graphql/assemblers/instrument.assembler';
-import { InstrumentObject } from '../../ui/graphql/objects/instrument.object';
 import { InstrumentDatabaseService } from './instrument-database.service';
 
 @QueryService(InstrumentObject)
