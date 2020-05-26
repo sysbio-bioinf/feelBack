@@ -1,4 +1,4 @@
-import { IdentityEntity } from './entities';
+import { IdentityEntity } from './identity.entity';
 
 describe('IdentityEntity', () => {
   it('should be defined', () => {
