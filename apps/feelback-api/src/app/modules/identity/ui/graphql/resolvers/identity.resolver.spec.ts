@@ -1,11 +1,11 @@
+import { IdentityEntity } from '@cancerlog/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
 import { Test, TestingModule } from '@nestjs/testing';
-import { IdentityResolver } from './identity.resolver';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { IdentityAssemblerService } from '../../../services/identity/identity-assembler.service';
 import { IdentityDatabaseService } from '../../../services/identity/identity-database.service';
 import { IdentityAssembler } from '../assemblers/identity.assembler';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { IdentityEntity } from '@cancerlog/api/data';
-import { IDENTITY_DB_CONNECTION } from '../../../../../constants/db.constants';
+import { IdentityResolver } from './identity.resolver';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -25,7 +25,10 @@ describe('IdentityResolver', () => {
         IdentityDatabaseService,
         IdentityAssembler,
         {
-          provide: getRepositoryToken(IdentityEntity, IDENTITY_DB_CONNECTION),
+          provide: getRepositoryToken(
+            IdentityEntity,
+            IDENTITY_DB_CONNECTION_NAME,
+          ),
           useClass: mockRepository,
         },
       ],

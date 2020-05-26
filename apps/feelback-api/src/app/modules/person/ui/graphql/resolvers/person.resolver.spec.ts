@@ -1,7 +1,7 @@
 import { IdentityEntity, PersonEntity } from '@cancerlog/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { IDENTITY_DB_CONNECTION } from '../../../../../constants/db.constants';
 import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
 import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
@@ -32,7 +32,10 @@ describe('PersonResolver', () => {
           useClass: mockRepository,
         },
         {
-          provide: getRepositoryToken(IdentityEntity, IDENTITY_DB_CONNECTION),
+          provide: getRepositoryToken(
+            IdentityEntity,
+            IDENTITY_DB_CONNECTION_NAME,
+          ),
           useClass: mockRepository,
         },
       ],

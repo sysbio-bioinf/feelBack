@@ -13,7 +13,7 @@ import { environment } from '@env-cancerlog-api/environment';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { IDENTITY_DB_CONNECTION } from './constants/db.constants';
+import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
 import { ApiModule } from './modules/api.module';
 import { ScalarModule } from './modules/scalar.module';
 
@@ -41,7 +41,7 @@ const identityEntities = [IdentityEntity];
       }),
     }),
     TypeOrmModule.forRootAsync({
-      name: IDENTITY_DB_CONNECTION,
+      name: IDENTITY_DB_CONNECTION_NAME,
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
