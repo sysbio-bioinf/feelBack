@@ -1,10 +1,12 @@
 import { CoreService } from '@cancerlog/api/core';
+import {
+  EvaluationEntity,
+  InstrumentEntity,
+  ScreeningEntity,
+} from '@cancerlog/api/data';
 import { Injectable } from '@nestjs/common';
 import * as deepmerge from 'deepmerge';
 import * as expreval from 'expr-eval';
-import { InstrumentEntity } from '../../../instrument/data/entities/instrument.entity';
-import { ScreeningEntity } from '../../data/entities/screening.entity';
-import { EvaluationModel } from '../../data/models/evaluation.model';
 
 @Injectable()
 export class EvaluationService extends CoreService {
@@ -15,8 +17,8 @@ export class EvaluationService extends CoreService {
   evaluate(
     screening: ScreeningEntity,
     instrument: InstrumentEntity,
-  ): EvaluationModel[] {
-    const evaluationResults: EvaluationModel[] = [];
+  ): EvaluationEntity[] {
+    const evaluationResults: EvaluationEntity[] = [];
 
     if (!screening) {
       return evaluationResults;
@@ -35,12 +37,12 @@ export class EvaluationService extends CoreService {
         const parsedExpression = evaluationParser.parse(normalExpression);
         const expressionResult = parsedExpression.evaluate(data as any);
 
-        const result = deepmerge<EvaluationModel>(rule, {
+        const result = deepmerge<EvaluationEntity>(rule, {
           result: expressionResult,
         });
         evaluationResults.push(result);
       } catch (exception) {
-        const result = deepmerge<EvaluationModel>(rule, {
+        const result = deepmerge<EvaluationEntity>(rule, {
           result: null,
         });
         evaluationResults.push(result);

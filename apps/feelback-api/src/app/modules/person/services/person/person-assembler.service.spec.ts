@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PersonAssemblerService } from './person-assembler.service';
-import { PersonEntity } from '../../data/entities/person.entity';
+import { PersonEntity } from '@cancerlog/api/data';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { PersonAssembler } from '../../ui/graphql/assemblers/person.assembler';
 import { PersonDatabaseService } from './person-database.service';

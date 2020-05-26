@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrganizationAssemblerService } from './organization-assembler.service';
-import { OrganizationEntity } from '../../data/entities/organization.entity';
+import { OrganizationEntity } from '@cancerlog/api/data';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { OrganizationAssembler } from '../../ui/graphql/assemblers/organization.assembler';
 import { OrganizationDatabaseService } from './organization-database.service';

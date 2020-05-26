@@ -4,7 +4,7 @@ import { FaqAssemblerService } from '../../../services/faq/faq-assembler.service
 import { FaqDatabaseService } from '../../../services/faq/faq-database.service';
 import { FaqAssembler } from '../assemblers/faq.assembler';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { FaqEntity } from '../../../data/entities/faq.entity';
+import { FaqEntity } from '@cancerlog/api/data';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

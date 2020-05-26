@@ -1,9 +1,8 @@
+import { InstrumentEntity, OrganizationEntity } from '@cancerlog/api/data';
 import { ApiPathHelper } from '@cancerlog/util/core';
 import * as fs from 'fs';
 import * as path from 'path';
 import { getConnection } from 'typeorm';
-import { InstrumentEntity } from '../../app/modules/instrument/data/entities/instrument.entity';
-import { OrganizationEntity } from '../../app/modules/organization/data/entities/organization.entity';
 
 export async function seed() {
   const mainConnection = getConnection();

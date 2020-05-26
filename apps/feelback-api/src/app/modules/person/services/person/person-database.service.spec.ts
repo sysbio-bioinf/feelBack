@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PersonDatabaseService } from './person-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { PersonEntity } from '../../data/entities/person.entity';
+import { PersonEntity } from '@cancerlog/api/data';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

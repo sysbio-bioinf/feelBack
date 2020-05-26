@@ -2,7 +2,7 @@ import { QueryService } from '@nestjs-query/core';
 import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { DoctorEntity } from '../../data/entities/doctor.entity';
+import { DoctorEntity } from '@cancerlog/api/data';
 
 @QueryService(DoctorEntity)
 export class DoctorDatabaseService extends TypeOrmQueryService<DoctorEntity> {

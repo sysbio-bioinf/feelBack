@@ -1,5 +1,5 @@
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
-import { ScreeningEntity } from '../../data/entities/screening.entity';
+import { ScreeningEntity } from '@cancerlog/api/data';
 import { ScreeningAssembler } from '../../ui/graphql/assemblers/screening.assembler';
 import { ScreeningObject } from '../../ui/graphql/objects/screening.object';
 import { ScreeningDatabaseService } from './screening-database.service';

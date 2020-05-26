@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ScreeningDatabaseService } from './screening-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { ScreeningEntity } from '../../data/entities/screening.entity';
+import { ScreeningEntity } from '@cancerlog/api/data';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

@@ -4,7 +4,7 @@ import { AuthenticationResolver } from './ui/graphql/resolvers/authentication.re
 import { AuthModule } from '@cancerlog/api/authentication';
 import { KeycloakStrategy } from './strategies/keycloak.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DoctorEntity } from '../doctor/data/entities/doctor.entity';
+import { DoctorEntity } from '@cancerlog/api/data';
 
 @Module({
   imports: [AuthModule, TypeOrmModule.forFeature([DoctorEntity])],

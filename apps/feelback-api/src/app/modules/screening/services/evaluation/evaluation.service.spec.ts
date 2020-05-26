@@ -1,7 +1,6 @@
+import { InstrumentEntity, ScreeningEntity } from '@cancerlog/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EvaluationService } from './evaluation.service';
-import { InstrumentEntity } from '../../../instrument/data/entities/instrument.entity';
-import { ScreeningEntity } from '../../data/entities/screening.entity';
 
 describe('EvaluationService', () => {
   let service: EvaluationService;

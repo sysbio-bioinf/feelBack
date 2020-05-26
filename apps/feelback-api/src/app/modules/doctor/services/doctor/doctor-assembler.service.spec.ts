@@ -3,7 +3,7 @@ import { DoctorAssemblerService } from './doctor-assembler.service';
 import { DoctorAssembler } from '../../ui/graphql/assemblers/doctor.assembler';
 import { DoctorDatabaseService } from './doctor-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { DoctorEntity } from '../../data/entities/doctor.entity';
+import { DoctorEntity } from '@cancerlog/api/data';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

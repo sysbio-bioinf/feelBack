@@ -4,7 +4,7 @@ import { InstrumentAssemblerService } from '../../../services/instrument/instrum
 import { InstrumentAssembler } from '../assemblers/instrument.assembler';
 import { InstrumentDatabaseService } from '../../../services/instrument/instrument-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { InstrumentEntity } from '../../../data/entities/instrument.entity';
+import { InstrumentEntity } from '@cancerlog/api/data';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

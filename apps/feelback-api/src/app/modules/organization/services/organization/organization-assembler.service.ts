@@ -1,5 +1,5 @@
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
-import { OrganizationEntity } from '../../data/entities/organization.entity';
+import { OrganizationEntity } from '@cancerlog/api/data';
 import { OrganizationAssembler } from '../../ui/graphql/assemblers/organization.assembler';
 import { OrganizationObject } from '../../ui/graphql/objects/organization.object';
 import { OrganizationDatabaseService } from './organization-database.service';

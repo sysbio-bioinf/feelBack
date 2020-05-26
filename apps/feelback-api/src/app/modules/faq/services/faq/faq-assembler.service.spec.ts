@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { FaqAssemblerService } from './faq-assembler.service';
 import { FaqAssembler } from '../../ui/graphql/assemblers/faq.assembler';
 import { FaqDatabaseService } from './faq-database.service';
-import { FaqEntity } from '../../data/entities/faq.entity';
+import { FaqEntity } from '@cancerlog/api/data';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 const mockRepository = jest.fn(() => ({

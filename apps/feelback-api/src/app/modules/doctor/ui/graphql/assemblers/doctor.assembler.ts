@@ -1,5 +1,5 @@
 import { DoctorObject } from '../objects/doctor.object';
-import { DoctorEntity } from '../../../data/entities/doctor.entity';
+import { DoctorEntity } from '@cancerlog/api/data';
 import { ClassTransformerAssembler, Assembler } from '@nestjs-query/core';
 
 @Assembler(DoctorObject, DoctorEntity)

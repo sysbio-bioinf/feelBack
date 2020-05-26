@@ -1,5 +1,5 @@
 import { Assembler, ClassTransformerAssembler } from '@nestjs-query/core';
-import { FaqEntity } from '../../../data/entities/faq.entity';
+import { FaqEntity } from '@cancerlog/api/data';
 import { FaqObject } from '../objects/faq.object';
 
 @Assembler(FaqObject, FaqEntity)

@@ -1,5 +1,5 @@
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
-import { PersonEntity } from '../../data/entities/person.entity';
+import { PersonEntity } from '@cancerlog/api/data';
 import { PersonAssembler } from '../../ui/graphql/assemblers/person.assembler';
 import { PersonObject } from '../../ui/graphql/objects/person.object';
 import { PersonDatabaseService } from './person-database.service';
