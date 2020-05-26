@@ -1,10 +1,10 @@
+import { OrganizationEntity } from '@cancerlog/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrganizationResolver } from './organization.resolver';
-import { OrganizationAssembler } from '../assemblers/organization.assembler';
-import { OrganizationDatabaseService } from '../../../services/organization/organization-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { OrganizationEntity } from '../../../data/entities/organization.entity';
 import { OrganizationAssemblerService } from '../../../services/organization/organization-assembler.service';
+import { OrganizationDatabaseService } from '../../../services/organization/organization-database.service';
+import { OrganizationAssembler } from '../assemblers/organization.assembler';
+import { OrganizationResolver } from './organization.resolver';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

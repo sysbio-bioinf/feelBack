@@ -1,9 +1,8 @@
+import { IdentityEntity, PersonEntity } from '@cancerlog/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { IDENTITY_DB_CONNECTION } from '../../../../../constants/db.constants';
-import { IdentityEntity } from '@cancerlog/api/data';
 import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
-import { PersonEntity } from '../../../data/entities/person.entity';
 import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
 import { PersonAssembler } from '../assemblers/person.assembler';

@@ -34,15 +34,15 @@ describe('EvaluationService', () => {
     instrument.rules = [
       {
         name: 'rule1',
-        expression: 'foo == true',
-        headline: 'foo',
-        text: 'a',
+        condition: 'foo == true',
+        then: 'rule1 then',
+        else: 'rule1 else',
       },
       {
         name: 'rule2',
-        expression: 'bar < 3',
-        headline: 'bar',
-        text: 'b',
+        condition: 'bar < 3',
+        then: 'rule2 then',
+        else: 'rule2 else',
       },
     ];
 
@@ -63,15 +63,15 @@ describe('EvaluationService', () => {
     instrument.rules = [
       {
         name: 'rule1',
-        expression: 'x == "foobar',
-        headline: 'foo',
-        text: 'a',
+        condition: 'x == "foobar',
+        then: 'rule1 then',
+        else: 'rule1 else',
       },
       {
         name: 'rule2',
-        expression: 'y >= 100',
-        headline: 'bar',
-        text: 'b',
+        condition: 'y >= 100',
+        then: 'rule2 then',
+        else: 'rule2 else',
       },
     ];
 
