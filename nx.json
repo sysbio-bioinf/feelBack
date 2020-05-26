@@ -64,6 +64,9 @@
     },
     "api-data": {
       "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
