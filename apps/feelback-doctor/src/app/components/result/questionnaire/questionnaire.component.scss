@@ -19,7 +19,7 @@
   height: 60vh;
 }
 
-.sv-qstn .sq-root {
+.sv-question, .sq-root {
   border: 1px solid $light-grey;
   border-left: 4px solid $primary;
   border-radius: 5px;
@@ -27,11 +27,8 @@
 }
 
 .sv-title {
-  font-size: 22px !important;
-}
-
-.sq-title {
-  font-size: 18px !important;
+  font-size: 20px !important;
+  color: black;
 }
 
 .sv-question__title--answer {
@@ -49,10 +46,6 @@
   min-width: 100%;
 }
 
-.sq-label {
-  margin-left: 30px;
-}
-
 .sv-selectbase__item {
   margin-bottom: 0 !important;
 }
@@ -61,4 +54,5 @@ textarea:disabled {
   background-color: unset;
   width: 94%;
   resize: none !important;
+  border: none;
 }

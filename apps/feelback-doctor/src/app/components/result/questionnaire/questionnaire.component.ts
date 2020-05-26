@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+} from '@angular/core';
 import * as Survey from 'survey-angular';
 import { Screening } from '../../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +21,7 @@ export class QuestionnaireComponent implements OnInit {
     private router: Router,
     private commonService: CommonService,
   ) {
+    this.setSurveyTheme();
     this.route.queryParams.subscribe((params) => {
       this.page = params['page'] ? params['page'] : 0;
     });
@@ -27,10 +33,8 @@ export class QuestionnaireComponent implements OnInit {
   public locale: string;
   public survey: Survey.Model;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.createSurveyWithDefaultValues();
-    this.setSurveyTheme();
-    this.setCustomCssClasses();
     this.renderSurvey();
   }
 
@@ -51,7 +55,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   private async renderSurvey() {
-    Survey.SurveyNG.render('surveyContainer', { model: this.survey });
+    Survey.SurveyNG.render('surveyElement', { model: this.survey });
   }
 
   private createSurveyWithDefaultValues() {
@@ -69,15 +73,5 @@ export class QuestionnaireComponent implements OnInit {
     defaultThemeColors['$main-color'] = this.commonService.colors.primary;
     defaultThemeColors['$main-hover-color'] = this.commonService.colors.primary;
     Survey.StylesManager.applyTheme('modern');
-  }
-
-  private setCustomCssClasses() {
-    this.survey.onUpdateQuestionCssClasses.add(function (survey, options) {
-      const classes = options.cssClasses;
-      classes.mainRoot += ' sv-qstn';
-      classes.root = 'sq-root';
-      classes.title += ' sq-title';
-      classes.label += ' sq-label';
-    });
   }
 }
