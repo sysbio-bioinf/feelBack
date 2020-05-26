@@ -7,11 +7,11 @@ export class LoginInput extends CoreInput {
   @IsEmail()
   @IsNotEmpty()
   @Field({ description: 'The email to login with' })
-  email: string;
+  email!: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
   @Field({ description: 'The password to login with' })
-  password: string;
+  password!: string;
 }

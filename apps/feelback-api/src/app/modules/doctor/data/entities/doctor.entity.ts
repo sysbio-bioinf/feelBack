@@ -6,44 +6,44 @@ import { OrganizationEntity } from '../../../organization/data/entities/organiza
 export class DoctorEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190, unique: true, nullable: false })
   @Index({ unique: true })
-  keycloakId: string;
+  keycloakId!: string;
 
   @Column({ type: 'boolean', nullable: false, default: true })
-  isActive: boolean;
+  isActive!: boolean;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  title: string;
+  title?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  firstname: string;
+  firstname?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  lastname: string;
+  lastname?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  phone: string;
+  phone?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  email: string;
+  email?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  url: string;
+  url?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true })
-  picture: string;
+  picture?: string;
 
   @Column({ type: 'timestamp with time zone', default: null, nullable: true })
-  lastLoginAt: Date;
+  lastLoginAt?: Date;
 
   @Column({ type: 'boolean', nullable: false, default: false })
-  acceptedTOS: boolean;
+  acceptedTOS!: boolean;
 
   @Column({ type: 'json', nullable: false, default: {} })
-  settings: object;
+  settings!: object;
 
   @ManyToMany(
     (type) => OrganizationEntity,
     (organization) => organization.members,
   )
-  organizations: OrganizationEntity[];
+  organizations!: OrganizationEntity[];
 }
