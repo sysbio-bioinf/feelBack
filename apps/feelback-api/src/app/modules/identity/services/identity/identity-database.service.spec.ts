@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { IdentityEntity } from '../../data/entities/identity.entity';
+import { IdentityEntity } from '@cancerlog/api/data';
 import { IdentityDatabaseService } from './identity-database.service';
 import { IDENTITY_DB_CONNECTION } from '../../../../constants/db.constants';
 

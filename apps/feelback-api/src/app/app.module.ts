@@ -1,5 +1,6 @@
 import { ApplicationGuardModule } from '@cancerlog/api/application';
 import { ConfigModule, ConfigService } from '@cancerlog/api/config';
+import { IdentityEntity } from '@cancerlog/api/data';
 import { environment } from '@env-cancerlog-api/environment';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -8,7 +9,6 @@ import { IDENTITY_DB_CONNECTION } from './constants/db.constants';
 import { ApiModule } from './modules/api.module';
 import { DoctorEntity } from './modules/doctor/data/entities/doctor.entity';
 import { FaqEntity } from './modules/faq/data/entities/faq.entity';
-import { IdentityEntity } from './modules/identity/data/entities/identity.entity';
 import { InstrumentEntity } from './modules/instrument/data/entities/instrument.entity';
 import { OrganizationEntity } from './modules/organization/data/entities/organization.entity';
 import { PersonEntity } from './modules/person/data/entities/person.entity';

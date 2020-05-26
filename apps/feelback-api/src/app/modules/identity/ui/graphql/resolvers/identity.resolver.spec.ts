@@ -4,7 +4,7 @@ import { IdentityAssemblerService } from '../../../services/identity/identity-as
 import { IdentityDatabaseService } from '../../../services/identity/identity-database.service';
 import { IdentityAssembler } from '../assemblers/identity.assembler';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { IdentityEntity } from '../../../data/entities/identity.entity';
+import { IdentityEntity } from '@cancerlog/api/data';
 import { IDENTITY_DB_CONNECTION } from '../../../../../constants/db.constants';
 
 const mockRepository = jest.fn(() => ({
