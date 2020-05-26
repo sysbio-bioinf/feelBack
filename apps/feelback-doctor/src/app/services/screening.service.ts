@@ -317,33 +317,6 @@ export class ScreeningService {
         KP23: 'false',
         other: 'test',
       },
-      categories: [
-        {
-          name: 'Praktische Probleme',
-          positive: 5,
-          total: 8,
-        },
-        {
-          name: 'Familiäre Probleme',
-          positive: 1,
-          total: 2,
-        },
-        {
-          name: 'Emotionale Probleme',
-          positive: 5,
-          total: 6,
-        },
-        {
-          name: 'Spirituelle / religiöse Probleme',
-          positive: 2,
-          total: 2,
-        },
-        {
-          name: 'Körperliche Probleme',
-          positive: 13,
-          total: 23,
-        },
-      ],
       comment:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
     };

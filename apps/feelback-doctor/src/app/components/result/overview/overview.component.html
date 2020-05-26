@@ -32,7 +32,7 @@
     </div>
 
     <div *ngIf="currentView === 'Progress'">
-      <div *ngFor="let category of screening.categories" class="progress-value">
+      <div *ngFor="let category of data" class="progress-value">
         <label>{{ category.name }}</label>
         <mat-progress-bar
           color="primary"
@@ -44,7 +44,7 @@
     </div>
 
     <div *ngIf="currentView === 'Table'">
-      <table mat-table [dataSource]="screening.categories">
+      <table mat-table [dataSource]="data">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let element">{{ element.name }}</td>

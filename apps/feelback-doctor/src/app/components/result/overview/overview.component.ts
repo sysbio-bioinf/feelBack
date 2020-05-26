@@ -30,12 +30,25 @@ export class OverviewComponent implements OnInit {
   };
   public currentView: string;
   public displayedColumns: string[] = ['name', 'positive', 'total'];
+  public data = [];
 
   ngOnInit(): void {
-    this.transformCategoryToChart(this.diagram);
+    const result = this.transformScreeningResult(this.screening.result);
+
+    for (const axis of this.diagram['instance']['overview']['axis']) {
+      const ruleParts = axis.rule.split('/');
+      const positive = Parser.evaluate(ruleParts[0], result);
+      this.data.push({
+        name: axis.name,
+        positive: positive,
+        total: ruleParts[1]
+      });
+    }
+
+    this.transformDataForChart();
   }
 
-  private transformCategoryToChart(diagram: {}) {
+  private transformDataForChart() {
     this.chartData = [
       {
         name: 'Category',
@@ -43,13 +56,10 @@ export class OverviewComponent implements OnInit {
       },
     ];
 
-    const result = this.transformScreeningResult(this.screening.result);
-
-    for (const axis of diagram['overview']['axis']) {
-      const value = Parser.evaluate(axis.rule, result)*100;
+    for (const record of this.data) {
       this.chartData[0]['series'].push({
-        name: axis.name,
-        value,
+        name: record.name,
+        value: record.positive / record.total,
       });
     }
   }
