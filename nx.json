@@ -24,9 +24,6 @@
     "api-config": {
       "tags": ["type:lib"]
     },
-    "util-core": {
-      "tags": ["type:lib"]
-    },
     "api-core": {
       "tags": ["type:lib"]
     },
@@ -66,6 +63,9 @@
       "tags": []
     },
     "api-interfaces": {
+      "tags": []
+    },
+    "api-util": {
       "tags": []
     }
   },

@@ -1,4 +1,4 @@
-import { ApiPathHelper } from '@cancerlog/util/core';
+import { ApiPathHelper } from '@cancerlog/api/util';
 import * as fs from 'fs';
 import { Command, Console, createSpinner } from 'nestjs-console';
 import * as path from 'path';

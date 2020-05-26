@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 
 import { IEnvironment } from '@cancerlog/api/config';
-import { ApiPathHelper } from '@cancerlog/util/core';
+import { ApiPathHelper } from '@cancerlog/api/util';
 import * as env from 'env-var';
 import * as path from 'path';
 import { IDENTITY_DB_CONNECTION } from '../app/constants/db.constants';

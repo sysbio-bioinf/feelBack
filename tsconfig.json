@@ -23,7 +23,6 @@
         "apps/feelback-web/src/environments/environment.ts"
       ],
       "@cancerlog/api/config": ["libs/api/config/src/index.ts"],
-      "@cancerlog/util/core": ["libs/util/core/src/index.ts"],
       "@cancerlog/api/core": ["libs/api/core/src/index.ts"],
       "@cancerlog/api/application": ["libs/api/application/src/index.ts"],
       "@cancerlog/api/authentication": ["libs/api/authentication/src/index.ts"],
@@ -31,7 +30,8 @@
       "@cancerlog/features/ui": ["libs/features/ui/src/index.ts"],
       "@cancerlog/shared/misc": ["libs/shared/misc/src/index.ts"],
       "@cancerlog/api/data": ["libs/api/data/src/index.ts"],
-      "@cancerlog/api/interfaces": ["libs/api/interfaces/src/index.ts"]
+      "@cancerlog/api/interfaces": ["libs/api/interfaces/src/index.ts"],
+      "@cancerlog/api/util": ["libs/api/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
