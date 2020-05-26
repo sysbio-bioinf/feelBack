@@ -5,7 +5,7 @@ import { IDENTITY_DB_CONNECTION_NAME } from '../constants/db.constants';
 
 dotenv.config();
 
-export const IDENTITY_DB_CONNECTION: TypeOrmModuleOptions = {
+export const identityDatabaseConnection: TypeOrmModuleOptions = {
   name: IDENTITY_DB_CONNECTION_NAME,
   type: env.get('ID_DB_TYPE').default('postgres').asString() as 'postgres',
   host: env.get('ID_DB_HOST').default('localhost').asString(),

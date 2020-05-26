@@ -4,7 +4,7 @@ import { IEnvironment } from '@cancerlog/api/config';
 import { ApiPathHelper } from '@cancerlog/api/util';
 import * as env from 'env-var';
 import * as path from 'path';
-import { FEELBACK_DB_CONNECTION, IDENTITY_DB_CONNECTION } from '@cancerlog/api/database';
+import { feelbackDatabaseConnection, identityDatabaseConnection } from '@cancerlog/api/database';
 
 dotenv.config();
 
@@ -62,8 +62,8 @@ export const environment: IEnvironment = {
   },
 
   dbConnections: {
-    feelback: FEELBACK_DB_CONNECTION,
-    identity: IDENTITY_DB_CONNECTION,
+    feelback: feelbackDatabaseConnection,
+    identity: identityDatabaseConnection,
   },
 
   platform: {

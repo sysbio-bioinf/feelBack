@@ -32,7 +32,7 @@ const identityEntities = [IdentityEntity];
   imports: [
     ConfigModule.forRoot(environment),
     TypeOrmModule.forRootAsync({
-      // name: FEELBACK_DB_CONNECTION,
+      // name: FEELBACK_DB_CONNECTION_NAME,
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({

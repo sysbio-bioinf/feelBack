@@ -4,7 +4,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 dotenv.config();
 
-export const FEELBACK_DB_CONNECTION: TypeOrmModuleOptions = {
+export const feelbackDatabaseConnection: TypeOrmModuleOptions = {
   // name: FEELBACK_DB_CONNECTION,
   type: env.get('FB_DB_TYPE').default('postgres').asString() as 'postgres',
   host: env.get('FB_DB_HOST').default('localhost').asString(),
