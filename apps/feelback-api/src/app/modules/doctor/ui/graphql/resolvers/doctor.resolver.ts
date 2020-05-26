@@ -1,9 +1,11 @@
+import {
+  DoctorObject,
+  OrganizationObject,
+  UpdateDoctorInput,
+} from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
-import { OrganizationObject } from '../../../../organization/ui/graphql/objects/organization.object';
 import { DoctorAssemblerService } from '../../../services/doctor/doctor-assembler.service';
-import { UpdateDoctorInput } from '@cancerlog/api/interfaces';
-import { DoctorObject } from '@cancerlog/api/interfaces';
 
 @Resolver((of) => DoctorObject)
 export class DoctorResolver extends CRUDResolver(DoctorObject, {
