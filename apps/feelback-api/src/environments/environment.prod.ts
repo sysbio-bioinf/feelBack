@@ -1,10 +1,12 @@
-import * as dotenv from 'dotenv';
-
 import { IEnvironment } from '@cancerlog/api/config';
+import {
+  feelbackDatabaseConnection,
+  identityDatabaseConnection,
+} from '@cancerlog/api/database';
 import { ApiPathHelper } from '@cancerlog/api/util';
+import * as dotenv from 'dotenv';
 import * as env from 'env-var';
 import * as path from 'path';
-import { feelbackDatabaseConnection, identityDatabaseConnection } from '@cancerlog/api/database';
 
 dotenv.config();
 
