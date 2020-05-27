@@ -28,6 +28,7 @@ RUN npm run gql-codegen
 # now we build the applications
 RUN npx ng build feelback-web --prod
 RUN npx ng build feelback-api --prod
+RUN npx ng build feelback-cli --prod
 
 # -----------------------------------------------
 # WEB SERVER Container
@@ -59,3 +60,11 @@ COPY ./.env ./.env
 EXPOSE 3000/tcp
 
 CMD ["node", "main"]
+
+# -----------------------------------------------
+# CLI Container
+# -----------------------------------------------
+
+# now copy the application
+COPY --from=build /app/dist/apps/feelback-cli/main.js ./cli.js
+COPY --from=build /app/dist/apps/feelback-cli/main.js.map ./cli.js.map
