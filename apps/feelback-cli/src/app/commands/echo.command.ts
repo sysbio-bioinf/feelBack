@@ -7,8 +7,6 @@ export class EchoCommand {
     description: 'outputs your input',
   })
   async echoOutput(text: string): Promise<void> {
-    console.log('talking back:');
-    console.log(text);
-    console.log('---');
+    console.log(`talking back: ${text}.`);
   }
 }

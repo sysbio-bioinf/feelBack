@@ -15,12 +15,13 @@ import {
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConsoleModule } from 'nestjs-console';
-import { DBSetupCommand } from './commands/db-setup.command';
+import { DBClearCommand } from './commands/database/db-clear.command';
+import { DBSetupCommand } from './commands/database/db-setup.command';
 import { EchoCommand } from './commands/echo.command';
 
-const registeredCommands = [EchoCommand, DBSetupCommand];
+const registeredCommands = [EchoCommand, DBSetupCommand, DBClearCommand];
 
-const feelbackEntities = [
+export const feelbackEntities = [
   DoctorEntity,
   FaqEntity,
   InstrumentEntity,
@@ -29,7 +30,7 @@ const feelbackEntities = [
   ScreeningEntity,
 ];
 
-const identityEntities = [IdentityEntity];
+export const identityEntities = [IdentityEntity];
 
 @Module({
   imports: [
