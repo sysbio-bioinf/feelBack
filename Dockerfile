@@ -62,9 +62,9 @@ EXPOSE 3000/tcp
 CMD ["node", "main"]
 
 # -----------------------------------------------
-# CLI Container
+# CLI
 # -----------------------------------------------
-
+# Add the CLI to the API container
 # now copy the application
 COPY --from=build /app/dist/apps/feelback-cli/main.js ./cli.js
 COPY --from=build /app/dist/apps/feelback-cli/main.js.map ./cli.js.map
