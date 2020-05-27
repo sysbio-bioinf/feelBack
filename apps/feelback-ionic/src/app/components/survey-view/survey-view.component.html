@@ -25,14 +25,15 @@
     slot="fixed"
     style="visibility: hidden;"
   >
-    <ion-fab-button
-      size="small"
+    <ion-button
+      shape="round"
       color="light"
       id="instrument-navigation-back"
       (click)="this.survey.prevPage()"
     >
-      <ion-icon name="arrow-back"></ion-icon>
-    </ion-fab-button>
+      <ion-icon slot="start" name="arrow-back"></ion-icon>
+      {{ this.survey.pagePrevText }}
+    </ion-button>
   </ion-fab>
 
   <ion-fab
@@ -41,14 +42,14 @@
     slot="fixed"
     style="visibility: hidden;"
   >
-    <ion-fab-button
-      size="small"
+    <ion-button
+      shape="round"
       color="danger"
       id="instrument-navigation-cancel"
       (click)="this.cancelSurvey()"
     >
       <ion-icon name="trash"></ion-icon>
-    </ion-fab-button>
+    </ion-button>
   </ion-fab>
 
   <ion-fab
@@ -57,14 +58,15 @@
     slot="fixed"
     style="visibility: hidden;"
   >
-    <ion-fab-button
-      size="small"
+    <ion-button
+      shape="round"
       color="light"
       id="instrument-navigation-next"
       (click)="this.survey.nextPage()"
     >
-      <ion-icon name="arrow-forward"></ion-icon>
-    </ion-fab-button>
+      <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      {{ this.survey.pageNextText }}
+    </ion-button>
   </ion-fab>
 
   <ion-fab
