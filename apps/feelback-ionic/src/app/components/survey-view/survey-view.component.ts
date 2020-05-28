@@ -102,7 +102,7 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     this.survey.showQuestionNumbers = 'off';
     this.survey.showCompletedPage = false;
     this.survey.showPageNumbers = false;
-    this.survey.showProgressBar = 'top';
+    this.survey.showProgressBar = 'off';
 
     this.survey.locale = this.selectedLanguage || this.survey.getUsedLocales[0];
 
