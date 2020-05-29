@@ -1,13 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PatientsPage } from './patients.page';
+import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
 
-describe('PatientPage', () => {
+describe('PatientsPage', () => {
   let component: PatientsPage;
   let fixture: ComponentFixture<PatientsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ComponentsModule],
       declarations: [ PatientsPage ]
     })
     .compileComponents();

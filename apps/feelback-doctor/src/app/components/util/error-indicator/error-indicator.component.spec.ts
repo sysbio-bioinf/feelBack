@@ -1,20 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorComponent } from './error-indicator.component';
+import { ErrorIndicatorComponent } from './error-indicator.component';
+import { MaterialModule } from '../../../material.module';
 
-describe('ErrorComponent', () => {
-  let component: ErrorComponent;
-  let fixture: ComponentFixture<ErrorComponent>;
+describe('ErrorIndicatorComponent', () => {
+  let component: ErrorIndicatorComponent;
+  let fixture: ComponentFixture<ErrorIndicatorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorComponent ]
+      imports: [MaterialModule],
+      declarations: [ ErrorIndicatorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorComponent);
+    fixture = TestBed.createComponent(ErrorIndicatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

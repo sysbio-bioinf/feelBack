@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DistressThermometerComponent } from './distress-thermometer.component';
+import { ComponentsModule } from '../../components.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DistressThermometerComponent', () => {
   let component: DistressThermometerComponent;
@@ -8,9 +10,9 @@ describe('DistressThermometerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DistressThermometerComponent ]
-    })
-    .compileComponents();
+      imports: [ComponentsModule, RouterTestingModule],
+      declarations: [],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

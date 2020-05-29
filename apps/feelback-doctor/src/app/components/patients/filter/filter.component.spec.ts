@@ -1,16 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterComponent } from './filter.component';
+import { MaterialModule } from '../../../material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('PatientFilterComponent', () => {
+describe('FilterComponent', () => {
   let component: FilterComponent;
   let fixture: ComponentFixture<FilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterComponent ]
-    })
-    .compileComponents();
+      imports: [MaterialModule, BrowserAnimationsModule],
+      declarations: [FilterComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
