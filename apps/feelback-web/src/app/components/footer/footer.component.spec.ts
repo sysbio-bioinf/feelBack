@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { GraphQLModule } from '../../modules/graphql.module';
+import { ComponentsModule } from '../../modules/components.module';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -8,7 +13,14 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent],
+      imports: [
+        RouterTestingModule,
+        GraphQLModule,
+        ComponentsModule,
+        TranslateTestingModule.withTranslations('en', {}),
+        HttpClientModule,
+      ],
+      declarations: [],
     }).compileComponents();
   }));
 

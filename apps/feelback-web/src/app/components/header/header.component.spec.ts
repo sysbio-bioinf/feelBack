@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { TranslateTestingModule } from 'ngx-translate-testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,6 +9,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [TranslateTestingModule.withTranslations('en', {})],
       declarations: [ HeaderComponent ]
     })
     .compileComponents();

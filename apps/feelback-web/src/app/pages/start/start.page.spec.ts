@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StartPage } from './start.page';
+import { ComponentsModule } from '../../modules/components.module';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { Apollo } from 'apollo-angular';
 
 describe('StartPage', () => {
   let component: StartPage;
@@ -8,9 +11,13 @@ describe('StartPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StartPage ]
-    })
-    .compileComponents();
+      imports: [
+        ComponentsModule,
+        TranslateTestingModule.withTranslations('en', {}),
+      ],
+      providers: [Apollo],
+      declarations: [StartPage],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
