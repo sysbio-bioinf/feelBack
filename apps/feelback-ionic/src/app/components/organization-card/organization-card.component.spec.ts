@@ -15,6 +15,7 @@ describe('OrganizationCardComponent', () => {
 
     fixture = TestBed.createComponent(OrganizationCardComponent);
     component = fixture.componentInstance;
+    component.organization = {id: '', name: '', type: '', address: '', description: '', email: '', logo: '', phone: '', url: ''};
     fixture.detectChanges();
   }));
 

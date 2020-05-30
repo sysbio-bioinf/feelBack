@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { ImprintPage } from './imprint.page';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ImprintPage', () => {
   let component: ImprintPage;
@@ -16,6 +17,7 @@ describe('ImprintPage', () => {
         IonicModule.forRoot(),
         RouterModule.forRoot([]),
         TranslateModule.forRoot(),
+        RouterTestingModule
       ],
       providers: [TranslatePipe],
     }).compileComponents();

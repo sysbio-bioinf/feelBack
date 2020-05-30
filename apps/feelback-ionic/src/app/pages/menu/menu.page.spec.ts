@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { MenuPage } from './menu.page';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('MenuPage', () => {
   let component: MenuPage;
@@ -16,6 +17,7 @@ describe('MenuPage', () => {
         IonicModule.forRoot(),
         RouterModule.forRoot([]),
         TranslateModule.forRoot(),
+        RouterTestingModule
       ],
       providers: [TranslatePipe],
     }).compileComponents();

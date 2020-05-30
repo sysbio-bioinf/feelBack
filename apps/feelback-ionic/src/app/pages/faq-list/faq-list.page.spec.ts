@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { FaqListPage } from './faq-list.page';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { Apollo } from 'apollo-angular';
 
 describe('FaqListPage', () => {
   let component: FaqListPage;
@@ -10,7 +13,8 @@ describe('FaqListPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FaqListPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), RouterTestingModule, TranslateTestingModule.withTranslations('en', {}),],
+      providers: [Apollo]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FaqListPage);

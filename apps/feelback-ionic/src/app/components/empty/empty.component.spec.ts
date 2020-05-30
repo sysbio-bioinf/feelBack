@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { EmptyComponent } from './empty.component';
+import { TranslateTestingModule } from 'ngx-translate-testing';
 
 describe('EmptyComponent', () => {
   let component: EmptyComponent;
@@ -10,7 +11,7 @@ describe('EmptyComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EmptyComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), TranslateTestingModule.withTranslations('en', {}),]
     }).compileComponents();
 
     fixture = TestBed.createComponent(EmptyComponent);

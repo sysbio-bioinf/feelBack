@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { Apollo } from 'apollo-angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -18,6 +19,7 @@ describe('HomePage', () => {
         IonicModule.forRoot(),
         RouterModule.forRoot([]),
         TranslateModule.forRoot(),
+        RouterTestingModule
       ],
       providers: [TranslatePipe, Apollo, HttpClient],
     }).compileComponents();
