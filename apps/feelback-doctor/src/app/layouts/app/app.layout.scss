@@ -1,7 +1,13 @@
 @import 'variables';
 
 main {
-  margin: 1.5em;
+  box-sizing: border-box;
+  position: absolute;
+  top: 64px;
+  overflow: auto;
+  height: calc(100% - 96px);
+  width: 100%;
+  padding: 25px;
 }
 
 nav {

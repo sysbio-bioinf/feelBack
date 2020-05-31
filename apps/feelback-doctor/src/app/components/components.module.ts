@@ -18,6 +18,7 @@ import { PatientInfoComponent } from './result/patient-info/patient-info.compone
 import { FilterComponent } from './patients/filter/filter.component';
 import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
 import { ActionBarComponent } from './util/action-bar/action-bar.component';
+import { FooterComponent } from './util/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ActionBarComponent } from './util/action-bar/action-bar.component';
     PatientInfoComponent,
     InstrumentInfoComponent,
     ActionBarComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -54,7 +56,8 @@ import { ActionBarComponent } from './util/action-bar/action-bar.component';
     ErrorIndicatorComponent,
     CircleImageComponent,
     InstrumentInfoComponent,
-    ActionBarComponent
+    ActionBarComponent,
+    FooterComponent
   ],
 })
 export class ComponentsModule {}
