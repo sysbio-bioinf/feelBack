@@ -4,6 +4,7 @@ import {ListComponent} from './list.component';
 import {MaterialModule} from "../../../material.module";
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -12,7 +13,8 @@ describe('ListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule, BrowserAnimationsModule],
-      declarations: [ListComponent]
+      declarations: [ListComponent],
+      providers: [DatePipe]
     })
       .compileComponents();
   }));

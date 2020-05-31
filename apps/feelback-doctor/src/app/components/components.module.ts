@@ -17,6 +17,7 @@ import { ConsultationComponent } from './result/consultation/consultation.compon
 import { PatientInfoComponent } from './result/patient-info/patient-info.component';
 import { FilterComponent } from './patients/filter/filter.component';
 import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
+import { ActionBarComponent } from './util/action-bar/action-bar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { InstrumentInfoComponent } from './result/instrument-info/instrument-inf
     ConsultationComponent,
     PatientInfoComponent,
     InstrumentInfoComponent,
+    ActionBarComponent,
   ],
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
   exports: [
@@ -51,7 +53,8 @@ import { InstrumentInfoComponent } from './result/instrument-info/instrument-inf
     DistressThermometerComponent,
     ErrorIndicatorComponent,
     CircleImageComponent,
-    InstrumentInfoComponent
+    InstrumentInfoComponent,
+    ActionBarComponent
   ],
 })
 export class ComponentsModule {}

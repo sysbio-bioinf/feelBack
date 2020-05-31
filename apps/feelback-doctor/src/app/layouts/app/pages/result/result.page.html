@@ -1,43 +1,44 @@
-<div class="header">
-  <div class="box">
-    <feelback-doctor-patient-info
-      *ngIf="patient$ | async as patient; else loadingPatient"
-      [patient]="patient"
-    ></feelback-doctor-patient-info>
-    <ng-template #loadingPatient>
-      <feelback-doctor-loading></feelback-doctor-loading>
-    </ng-template>
-  </div>
+<div *ngIf="patient$ | async as patient; else loading">
+  <div *ngIf="instrument$ | async as instrument; else loading">
+    <div *ngIf="screening$ | async as screening; else loading">
+      <feelback-doctor-action-bar
+        [screening]="screening"
+        (printEvent)="questionnaire.print()"
+      ></feelback-doctor-action-bar>
 
-  <div class="box">
-    <feelback-doctor-instrument-info
-      *ngIf="instrument$ | async as instrument; else loadingInstrument"
-      [instrument]="instrument"
-    ></feelback-doctor-instrument-info>
-    <ng-template #loadingInstrument>
-      <feelback-doctor-loading></feelback-doctor-loading>
-    </ng-template>
-  </div>
-</div>
+      <div class="header">
+        <div class="box">
+          <feelback-doctor-patient-info
+            [patient]="patient"
+          ></feelback-doctor-patient-info>
+        </div>
 
-<div *ngIf="instrument$ | async as instrument; else loading">
-  <div *ngIf="screening$ | async as screening; else loading">
-    <feelback-doctor-screening-consultation
-      [screening]="screening"
-    ></feelback-doctor-screening-consultation>
-
-    <div class="wrapper">
-      <div id="questionnaire">
-        <feelback-doctor-screening-questionnaire
-          [screening]="screening"
-          [payload]="instrument.payload"
-        ></feelback-doctor-screening-questionnaire>
+        <div class="box">
+          <feelback-doctor-instrument-info
+            [instrument]="instrument"
+            [image]="false"
+          ></feelback-doctor-instrument-info>
+        </div>
       </div>
-      <div id="overview">
-        <feelback-doctor-screening-overview
-          [screening]="screening"
-          [diagram]="instrument.diagram"
-        ></feelback-doctor-screening-overview>
+
+      <feelback-doctor-screening-consultation
+        [screening]="screening"
+      ></feelback-doctor-screening-consultation>
+
+      <div class="wrapper">
+        <div id="questionnaire">
+          <feelback-doctor-screening-questionnaire
+            #questionnaire
+            [screening]="screening"
+            [payload]="instrument.payload"
+          ></feelback-doctor-screening-questionnaire>
+        </div>
+        <div id="overview">
+          <feelback-doctor-screening-overview
+            [screening]="screening"
+            [diagram]="instrument.diagram"
+          ></feelback-doctor-screening-overview>
+        </div>
       </div>
     </div>
   </div>

@@ -1,10 +1,15 @@
-#overview {
+#screening-overview {
   margin-left: 2em;
+}
+
+.avatar {
+  display: inline-flex;
+  vertical-align: middle;
+  font-size: 40px;
 }
 
 .chart-wrapper {
   height: 300px;
-  width: 90%;
 }
 
 table{

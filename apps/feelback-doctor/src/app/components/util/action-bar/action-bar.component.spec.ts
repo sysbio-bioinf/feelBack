@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DistressThermometerComponent } from './distress-thermometer.component';
+import { ActionBarComponent } from './action-bar.component';
 import { ComponentsModule } from '../../components.module';
-import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
 
-describe('DistressThermometerComponent', () => {
-  let component: DistressThermometerComponent;
-  let fixture: ComponentFixture<DistressThermometerComponent>;
+describe('ActionBarComponent', () => {
+  let component: ActionBarComponent;
+  let fixture: ComponentFixture<ActionBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentsModule, RouterTestingModule],
+      imports: [ComponentsModule],
       declarations: [],
       providers: [DatePipe]
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DistressThermometerComponent);
+    fixture = TestBed.createComponent(ActionBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

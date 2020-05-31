@@ -6,6 +6,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CommonService } from '../../../services/common.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -14,7 +15,7 @@ describe('OverviewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, NgxChartsModule, RouterTestingModule, BrowserAnimationsModule],
-      providers: [CommonService],
+      providers: [CommonService, DatePipe],
       declarations: [OverviewComponent],
     }).compileComponents();
   }));

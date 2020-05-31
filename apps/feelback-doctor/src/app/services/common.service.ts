@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as shape from 'd3-shape';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
 
   public colors = { primary: '#00a3ff', accent: '#54b37b', warn: '#f44336' };
   public xAxisTicks: Array<Date> = [
@@ -32,8 +33,17 @@ export class CommonService {
     consultation: 'people',
     rating: 'star',
     instrument: 'event_note',
-    screening: 'collections',
+    screening: 'filter',
     check: 'done',
-    uncheck: 'close'
+    uncheck: 'close',
+    print: 'print',
+    action: 'play_circle_outline',
+    copy: 'file_copy',
+    download: 'save_alt',
+    result: 'image_search'
   };
+
+  public transformDate(date: Date) {
+    return this.datePipe.transform(date, 'dd.MM.yyyy');
+  }
 }

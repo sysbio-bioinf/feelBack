@@ -1,6 +1,7 @@
 <div *ngIf="screenings$ | async as screenings; else loading">
   <mat-card *ngIf="screenings.length > 0">
     <mat-card-header>
+      <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.screening}}</mat-icon>
       <mat-card-title>
         Distress Thermometer
       </mat-card-title>

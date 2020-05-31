@@ -1,28 +1,10 @@
 <mat-card id="screening">
   <mat-card-header>
+    <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.screening}}</mat-icon>
     <mat-card-title>Screening</mat-card-title>
     <mat-card-subtitle>{{
       screening.date | date: 'dd.MM.yyyy'
     }}</mat-card-subtitle>
-    <span class="spacer"></span>
-    <button
-      mat-icon-button
-      matTooltip="Print screening"
-      matTooltipPosition="above"
-      aria-label="Print screening"
-      (click)="printScreening()"
-    >
-      <mat-icon>print</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      matTooltip="Download screening"
-      matTooltipPosition="above"
-      aria-label="Download screening"
-      (click)="downloadScreening(screening)"
-    >
-      <mat-icon>save_alt</mat-icon>
-    </button>
   </mat-card-header>
   <mat-card-content>
     <div class="consultation-wrapper">

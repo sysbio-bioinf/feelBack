@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header class="header">
+    <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.action}}</mat-icon>
+    <mat-card-title>Action</mat-card-title>
+    <mat-card-subtitle>Bar</mat-card-subtitle>
+    <span class="spacer"></span>
+    <span>
+      <button
+        #printTooltip
+        mat-icon-button
+        matTooltip="Print screening"
+        matTooltipPosition="above"
+        aria-label="Print screening"
+        class="action"
+        (click)="printScreening(printTooltip)"
+      >
+        <mat-icon>{{commonService.icons.print}}</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matTooltip="Download screening"
+        matTooltipPosition="above"
+        aria-label="Download screening"
+        class="action"
+        (click)="downloadScreening(screening)"
+      >
+        <mat-icon>{{commonService.icons.download}}</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matTooltip="Copy URL to clipboard"
+        matTooltipPosition="above"
+        aria-label="Copy URL"
+        class="action"
+        (click)="copyURL()"
+      >
+        <mat-icon>{{commonService.icons.copy}}</mat-icon>
+      </button>
+    </span>
+  </mat-card-header>
+</mat-card>

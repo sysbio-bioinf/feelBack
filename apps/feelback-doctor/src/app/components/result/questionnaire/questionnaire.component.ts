@@ -19,7 +19,7 @@ export class QuestionnaireComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private commonService: CommonService,
+    public commonService: CommonService,
   ) {
     this.setSurveyTheme();
     this.route.queryParams.subscribe((params) => {
@@ -36,6 +36,15 @@ export class QuestionnaireComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.createSurveyWithDefaultValues();
     this.renderSurvey();
+  }
+
+  public print(){
+    this.survey.isSinglePage = true;
+    this.renderSurvey().then(() => {
+      window.print();
+      this.survey.isSinglePage = false;
+      this.renderSurvey();
+    });
   }
 
   public changeLocale(locale: string) {

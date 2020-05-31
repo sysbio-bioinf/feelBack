@@ -1,6 +1,14 @@
 @import 'scrollbar';
+@import 'print';
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.header-avatar {
+  display: inline-flex;
+  vertical-align: middle;
+  font-size: 40px;
+  color: #444444;
+}
 
 .spacer {
   flex: 1 1 auto;

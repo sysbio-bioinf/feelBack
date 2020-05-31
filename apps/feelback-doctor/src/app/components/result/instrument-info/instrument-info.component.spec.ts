@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InstrumentInfoComponent } from './instrument-info.component';
 import { MaterialModule } from '../../../material.module';
+import { DatePipe } from '@angular/common';
 
 describe('InstrumentInfoComponent', () => {
   let component: InstrumentInfoComponent;
@@ -10,7 +11,8 @@ describe('InstrumentInfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule],
-      declarations: [ InstrumentInfoComponent ]
+      declarations: [ InstrumentInfoComponent ],
+      providers: [DatePipe]
     })
     .compileComponents();
   }));

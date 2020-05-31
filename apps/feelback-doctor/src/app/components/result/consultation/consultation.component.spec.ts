@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsultationComponent } from './consultation.component';
 import { MaterialModule } from '../../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 describe('ConsultationComponent', () => {
   let component: ConsultationComponent;
@@ -11,7 +12,8 @@ describe('ConsultationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, BrowserAnimationsModule],
-      declarations: [ ConsultationComponent ]
+      declarations: [ ConsultationComponent ],
+      providers: [DatePipe]
     })
     .compileComponents();
   }));

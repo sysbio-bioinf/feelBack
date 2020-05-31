@@ -4,6 +4,7 @@ import { QuestionnaireComponent } from './questionnaire.component';
 import { MaterialModule } from '../../../material.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Screening } from '../../../models/Screening';
+import { DatePipe } from '@angular/common';
 
 describe('QuestionnaireComponent', () => {
   let component: QuestionnaireComponent;
@@ -12,7 +13,8 @@ describe('QuestionnaireComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
-      declarations: [ QuestionnaireComponent ]
+      declarations: [ QuestionnaireComponent ],
+      providers: [DatePipe]
     })
     .compileComponents();
   }));

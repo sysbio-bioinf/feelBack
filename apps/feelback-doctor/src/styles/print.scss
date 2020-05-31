@@ -1,0 +1,49 @@
+@media print {
+  .mat-app-background {
+    background-color: unset !important;
+  }
+
+  feelback-doctor-navbar,
+  nav,
+  feelback-doctor-action-bar,
+  mat-paginator {
+    display: none !important;
+  }
+
+  #instrument-info {
+    margin-bottom: 1em !important;
+  }
+
+  .header {
+    display: block !important;
+    margin: 0 !important;
+  }
+
+  #surveyContainer {
+    height: fit-content !important;
+  }
+
+  .wrapper {
+    flex-direction: column-reverse !important;
+  }
+
+  #screening-overview,
+  #screening {
+    margin: 0 !important;
+  }
+
+  #overview,
+  .box,
+  #questionnaire {
+    width: 100% !important;
+  }
+
+  mat-card {
+    box-shadow: none !important;
+  }
+
+  #surveyContainer {
+    position: relative !important;
+    top: -30px !important;
+  }
+}

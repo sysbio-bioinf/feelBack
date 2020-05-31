@@ -4,6 +4,7 @@ import { ResultPage } from './result.page';
 import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Apollo } from 'apollo-angular';
+import { DatePipe } from '@angular/common';
 
 describe('ResultPage', () => {
   let component: ResultPage;
@@ -12,7 +13,7 @@ describe('ResultPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule, RouterTestingModule],
-      providers: [Apollo],
+      providers: [Apollo, DatePipe],
       declarations: [ ResultPage ]
     })
     .compileComponents();
