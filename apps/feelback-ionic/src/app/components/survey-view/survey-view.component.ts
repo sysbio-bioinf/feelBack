@@ -12,7 +12,10 @@ import { PrinterService } from 'src/app/services/printer.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 import * as Survey from 'survey-angular';
+import * as widgets from 'surveyjs-widgets';
 import { uuid } from 'uuidv4';
+
+widgets.nouislider(Survey);
 
 @Component({
   selector: 'feelback-survey-view',
