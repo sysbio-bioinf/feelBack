@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Screening } from '../../../models/Screening';
 import { CommonService } from '../../../services/common.service';
+import { Parser } from 'expr-eval';
 
 @Component({
   selector: 'feelback-doctor-screening-consultation',
@@ -15,12 +16,11 @@ export class ConsultationComponent implements OnInit {
   ngOnInit(): void {}
 
   public getConsultation(screening: Screening) {
-    if (screening.result['DT02'] === 'true') {
-      return 'wanted';
-    } else if (screening.result['DT01'] >= 5) {
-      return 'necessary';
+    const evaluationResult = screening.evaluationResult[1];
+    if (Parser.evaluate(evaluationResult.condition, screening.payload)) {
+      return evaluationResult.then;
     } else {
-      return 'no';
+      return evaluationResult.else;
     }
   }
 }

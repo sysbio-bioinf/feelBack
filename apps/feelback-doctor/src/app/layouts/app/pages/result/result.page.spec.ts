@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultPage } from './result.page';
-import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
+import { ComponentsModule } from './../../../../components/components.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Apollo } from 'apollo-angular';
 import { DatePipe } from '@angular/common';

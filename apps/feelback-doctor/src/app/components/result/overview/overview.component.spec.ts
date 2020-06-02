@@ -24,11 +24,12 @@ describe('OverviewComponent', () => {
     fixture = TestBed.createComponent(OverviewComponent);
     component = fixture.componentInstance;
     component.screening = {
-      result: { DT01: 5, DT02: true },
+      payload: { DT01: 5, DT02: true },
       comment: '',
       date: new Date(),
       instrument: '',
       locale: '',
+      evaluationResult: []
     };
     component.diagram = {
       instance: {

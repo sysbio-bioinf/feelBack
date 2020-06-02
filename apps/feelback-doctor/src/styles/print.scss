@@ -3,10 +3,14 @@
     background-color: unset !important;
   }
 
+  main{
+    height: fit-content !important;
+  }
+
   feelback-doctor-navbar,
   nav,
   feelback-doctor-action-bar,
-  mat-paginator {
+  mat-paginator, feelback-doctor-footer {
     display: none !important;
   }
 

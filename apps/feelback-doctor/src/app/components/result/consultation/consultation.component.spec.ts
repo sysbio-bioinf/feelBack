@@ -21,7 +21,7 @@ describe('ConsultationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConsultationComponent);
     component = fixture.componentInstance;
-    component.screening = {result: {'DT01': 5, 'DT02': true}, comment: '', date: new Date(), instrument: '', locale: ''};
+    component.screening = {payload: {'DT01': 5, 'DT02': true}, comment: '', date: new Date(), instrument: '', locale: '', evaluationResult: [{result: true, name: '', then: '', else: '', condition: ''}]};
     fixture.detectChanges();
   });
 

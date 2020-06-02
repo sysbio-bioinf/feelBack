@@ -21,7 +21,7 @@ export class ResultPage implements OnInit {
     public commonService: CommonService,
     private patientService: PatientService,
     private instrumentService: InstrumentService,
-    private screeningService: ScreeningService,
+    private screeningService: ScreeningService
   ) {}
 
   public patient$: Observable<Patient>;

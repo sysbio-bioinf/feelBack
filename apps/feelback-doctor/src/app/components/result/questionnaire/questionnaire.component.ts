@@ -5,12 +5,13 @@ import {
   Input,
 } from '@angular/core';
 import * as Survey from 'survey-angular';
-import * as Widgets from 'surveyjs-widgets';
+import * as widgets from 'surveyjs-widgets';
+import '@webcomponents/custom-elements';
 import { Screening } from '../../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
 
-Widgets.nouislider(Survey);
+widgets.nouislider(Survey);
 
 @Component({
   selector: 'feelback-doctor-screening-questionnaire',

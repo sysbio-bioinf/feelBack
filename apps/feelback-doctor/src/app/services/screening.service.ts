@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ChartSeries } from '../models/ChartSeries';
 import { Screening } from '../models/Screening';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
+import { GetScreeningsForPersonAndInstrumentGQL } from '../graphql/generated/feelback.graphql';
+import { EvaluationResult } from '../models/EvaluationResult';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScreeningService {
-  constructor() {}
+  constructor(
+    private screeningService: GetScreeningsForPersonAndInstrumentGQL,
+  ) {}
 
   private screenings: ChartSeries[] = [
     {
@@ -267,13 +271,13 @@ export class ScreeningService {
     return of(this.screenings).pipe(delay(400));
   }
 
-  public getScreening(id: string): Observable<Screening> {
+  public getScreening(id: string): Observable<any> {
     const screening = {
       locale: 'de',
       instrument: 'Distress Thermometer',
       date: this.getDateForScreening(id),
-      result: {
-        DT01: 5,
+      payload: {
+        DT01: 6,
         DT02: 'false',
         PP01: 'true',
         PP02: 'true',
@@ -317,10 +321,20 @@ export class ScreeningService {
         KP23: 'false',
         other: 'test',
       },
+      evaluationResult: [],
       comment:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
     };
-    return of(screening).pipe(delay(50));
+
+    return this.screeningService.fetch().pipe(
+      map((data) => {
+        const evaluationResult = data.data.screeningsForPersonAndInstrument.edges[0].node.evaluationResult;
+        if(evaluationResult){
+          screening.evaluationResult = evaluationResult;
+        }
+        return screening;
+      }),
+    );
   }
 
   private getDateForScreening(id: string): Date {
@@ -339,5 +353,4 @@ export class ScreeningService {
     }
     return false;
   }
-
 }

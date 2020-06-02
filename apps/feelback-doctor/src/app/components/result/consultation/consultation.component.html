@@ -10,20 +10,19 @@
     <div class="consultation-wrapper">
       <div class="consultation">
         <mat-icon
-          *ngIf="getConsultation(screening) !== 'no'"
+          *ngIf="screening.evaluationResult[0].result"
           class="consultation-icon"
           color="accent"
-          >check</mat-icon
+          >{{commonService.icons.check}}</mat-icon
         >
         <mat-icon
-          *ngIf="getConsultation(screening) === 'no'"
+          *ngIf="!screening.evaluationResult[0].result"
           class="consultation-icon"
           color="warn"
-          >cancel</mat-icon
+          >{{commonService.icons.uncheck}}</mat-icon
         >
-        <span class="consultation-text">{{
-          getConsultation(screening)
-        }}</span>
+        <span *ngIf="screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].then}}</span>
+        <span *ngIf="!screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].then}}</span>
       </div>
       <mat-form-field appearance="fill">
         <mat-label>Comment</mat-label>

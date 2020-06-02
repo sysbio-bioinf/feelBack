@@ -33,7 +33,7 @@ export class OverviewComponent implements OnInit {
   public data = [];
 
   ngOnInit(): void {
-    const result = this.transformScreeningResult(this.screening.result);
+    const result = this.transformScreeningResult(this.screening.payload);
 
     for (const axis of this.diagram['instance']['overview']['axis']) {
       const ruleParts = axis.rule.split('/');

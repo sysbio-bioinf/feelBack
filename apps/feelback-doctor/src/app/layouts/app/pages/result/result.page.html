@@ -1,6 +1,7 @@
 <div *ngIf="patient$ | async as patient; else loading">
   <div *ngIf="instrument$ | async as instrument; else loading">
     <div *ngIf="screening$ | async as screening; else loading">
+
       <feelback-doctor-action-bar
         [screening]="screening"
         (printEvent)="questionnaire.print()"

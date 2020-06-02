@@ -4,6 +4,7 @@ import { DistressThermometerComponent } from './distress-thermometer.component';
 import { ComponentsModule } from '../../components.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
+import { Apollo } from 'apollo-angular';
 
 describe('DistressThermometerComponent', () => {
   let component: DistressThermometerComponent;
@@ -13,7 +14,7 @@ describe('DistressThermometerComponent', () => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule, RouterTestingModule],
       declarations: [],
-      providers: [DatePipe]
+      providers: [DatePipe, Apollo]
     }).compileComponents();
   }));
 
