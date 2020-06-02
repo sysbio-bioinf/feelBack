@@ -1,12 +1,9 @@
-import { async } from '@angular/core/testing/';
-import { ComponentFixture } from '@angular/core/testing/';
-import { TestBed } from '@angular/core/testing/';
-
-import { ErrorPage } from './error.page';
-import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
-import { RouterTestingModule } from '@angular/router/testing';
 import { APP_BASE_HREF } from '@angular/common';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing/';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentsModule } from './../../../../components/components.module';
+import { ErrorPage } from './error.page';
 
 describe('ErrorPage', () => {
   let component: ErrorPage;
@@ -38,8 +35,7 @@ class RouterStub {
   getCurrentNavigation() {
     return {
       extras: {
-        state: {
-        },
+        state: {},
       },
     };
   }

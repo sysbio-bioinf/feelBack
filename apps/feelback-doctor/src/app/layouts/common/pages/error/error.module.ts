@@ -1,9 +1,9 @@
-import { ErrorPage } from './error.page';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ComponentsModule } from './../../../../components/components.module';
+import { MaterialModule } from './../../../../material.module';
+import { ErrorPage } from './error.page';
 import { ErrorRouting } from './error.routing';
-import { MaterialModule } from 'apps/feelback-doctor/src/app/material.module';
-import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
 
 @NgModule({
   declarations: [ErrorPage],

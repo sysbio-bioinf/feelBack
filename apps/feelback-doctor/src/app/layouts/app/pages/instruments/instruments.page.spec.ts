@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { InstrumentsPage } from './instruments.page';
-import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
-import { Apollo } from 'apollo-angular';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Apollo } from 'apollo-angular';
+import { ComponentsModule } from './../../../../components/components.module';
+import { InstrumentsPage } from './instruments.page';
 
 describe('InstrumentsPage', () => {
   let component: InstrumentsPage;
@@ -13,9 +12,8 @@ describe('InstrumentsPage', () => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule, RouterTestingModule],
       providers: [Apollo],
-      declarations: [ InstrumentsPage ]
-    })
-    .compileComponents();
+      declarations: [InstrumentsPage],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

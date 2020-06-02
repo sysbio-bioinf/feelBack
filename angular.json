@@ -590,7 +590,11 @@
               "apps/feelback-admin/tsconfig.app.json",
               "apps/feelback-admin/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/feelback-admin/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "**/generated/**",
+              "!apps/feelback-admin/**"
+            ]
           }
         },
         "test": {
@@ -655,7 +659,8 @@
               "apps/feelback-doctor/src/favicon.ico",
               "apps/feelback-doctor/src/assets"
             ],
-            "styles": ["apps/feelback-doctor/src/styles/styles.scss", 
+            "styles": [
+              "apps/feelback-doctor/src/styles/styles.scss",
               "apps/feelback-doctor/src/styles/feelback-theme.scss",
               {
                 "input": "node_modules/survey-angular/modern.min.css"
@@ -665,10 +670,8 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/feelback-doctor/src/styles"
-              ]
-          },
+              "includePaths": ["apps/feelback-doctor/src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -726,7 +729,11 @@
               "apps/feelback-doctor/tsconfig.app.json",
               "apps/feelback-doctor/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/feelback-doctor/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "**/generated/**",
+              "!apps/feelback-doctor/**"
+            ]
           }
         },
         "test": {
