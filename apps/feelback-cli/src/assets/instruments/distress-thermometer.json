@@ -24,20 +24,35 @@
           }
         },
         {
-          "type": "rating",
+          "type": "nouislider",
           "name": "DT01",
-          "title": "Distress Thermometer",
-          "isRequired": true,
-          "rateMin": 0,
-          "rateMax": 10,
-          "minRateDescription": {
-            "de": "Gar nicht belastet",
-            "default": "Not stressed at all"
+          "title": {
+            "de": "Distress Thermometer",
+            "default": "Distress Thermometer"
           },
-          "maxRateDescription": {
-            "de": "Extrem belastet",
-            "default": "Extremely stressed"
-          }
+          "isRequired": true,
+          "orientation": "vertical",
+          "direction": "rtl",
+          "indent": 3,
+          "rangeMin": 0,
+          "rangeMax": 10,
+          "pipsValues": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+          "pipsText": [
+            {
+              "value": 0,
+              "text": {
+                "de": "Gar nicht belastet",
+                "default": "Not stressed"
+              }
+            },
+            {
+              "value": 10,
+              "text": {
+                "de": "Extrem belastet",
+                "default": "Extremely stressed"
+              }
+            }
+          ]
         },
         {
           "type": "radiogroup",
