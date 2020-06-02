@@ -73,6 +73,9 @@
     },
     "api-database": {
       "tags": []
+    },
+    "shared-style": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
