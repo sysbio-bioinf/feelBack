@@ -1,8 +1,8 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "directive-selector": [true, "attribute", "cancerlog", "camelCase"],
-    "component-selector": [true, "element", "cancerlog", "kebab-case"]
+    "directive-selector": [true, "attribute", "feelback-admin", "camelCase"],
+    "component-selector": [true, "element", "feelback-admin", "kebab-case"]
   },
   "linterOptions": {
     "exclude": ["!**/*"]
