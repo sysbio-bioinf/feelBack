@@ -656,7 +656,13 @@
               "apps/feelback-doctor/src/assets"
             ],
             "styles": ["apps/feelback-doctor/src/styles/styles.scss", 
-              "apps/feelback-doctor/src/styles/feelback-theme.scss"
+              "apps/feelback-doctor/src/styles/feelback-theme.scss",
+              {
+                "input": "node_modules/survey-angular/modern.min.css"
+              },
+              {
+                "input": "node_modules/nouislider/distribute/nouislider.min.css"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

@@ -5,9 +5,12 @@ import {
   Input,
 } from '@angular/core';
 import * as Survey from 'survey-angular';
+import * as Widgets from 'surveyjs-widgets';
 import { Screening } from '../../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
+
+Widgets.nouislider(Survey);
 
 @Component({
   selector: 'feelback-doctor-screening-questionnaire',
@@ -70,7 +73,7 @@ export class QuestionnaireComponent implements OnInit {
   private createSurveyWithDefaultValues() {
     this.survey = new Survey.Model(this.payload);
     this.survey.currentPageNo = this.page;
-    this.survey.data = this.screening.result;
+    this.survey.data = this.screening.payload;
     this.survey.mode = 'display';
     this.survey.showNavigationButtons = false;
     this.survey.showTitle = false;
