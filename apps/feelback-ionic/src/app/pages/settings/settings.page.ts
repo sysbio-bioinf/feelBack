@@ -3,7 +3,7 @@ import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'feelback-settings',
+  selector: 'feelback-ionic-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })

@@ -1,12 +1,12 @@
-<feelback-header
+<feelback-ionic-header
   *ngIf="this.instrument"
   [title]="this.instrument.name"
-></feelback-header>
+></feelback-ionic-header>
 
 <ion-content>
-  <feelback-survey-view
+  <feelback-ionic-survey-view
     *ngIf="this.instrument"
     [instrument]="this.instrument"
     [selectedLanguage]="this.selectedLanguage"
-  ></feelback-survey-view>
+  ></feelback-ionic-survey-view>
 </ion-content>

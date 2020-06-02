@@ -7,7 +7,7 @@ import { Organization } from 'src/app/models/organization.model';
 import { OrganizationService } from 'src/app/services/api/organization.service';
 
 @Component({
-  selector: 'feelback-organization-list',
+  selector: 'feelback-ionic-organization-list',
   templateUrl: './organization-list.page.html',
   styleUrls: ['./organization-list.page.scss'],
   providers: [TranslatePipe],

@@ -6,7 +6,7 @@ import { Instrument } from 'src/app/models/instrument.model';
 import * as Survey from 'survey-angular';
 
 @Component({
-  selector: 'feelback-instrument-card',
+  selector: 'feelback-ionic-instrument-card',
   templateUrl: './instrument-card.component.html',
   styleUrls: ['./instrument-card.component.scss'],
 })

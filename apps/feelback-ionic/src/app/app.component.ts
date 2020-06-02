@@ -7,7 +7,7 @@ import { StatusBar as NgxStatusBar } from '@ionic-native/status-bar/ngx';
 import { StorageService } from './services/storage.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'feelback-ionic-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })

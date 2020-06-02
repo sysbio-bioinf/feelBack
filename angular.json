@@ -453,7 +453,7 @@
               "apps/feelback-ionic/tsconfig.spec.json",
               "apps/feelback-ionic/e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "**/generated/**"]
           }
         },
         "ionic-cordova-build": {

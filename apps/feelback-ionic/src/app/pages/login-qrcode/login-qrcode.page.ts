@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 import { CardService } from 'src/app/services/card.service';
 
 @Component({
-  selector: 'feelback-login-qrcode',
+  selector: 'feelback-ionic-login-qrcode',
   templateUrl: './login-qrcode.page.html',
   styleUrls: ['./login-qrcode.page.scss'],
   providers: [TranslatePipe],

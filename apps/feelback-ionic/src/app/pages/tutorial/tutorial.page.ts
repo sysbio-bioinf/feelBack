@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TutorialSlideModel } from 'src/app/models/tutorial-slide.model';
 
 @Component({
-  selector: 'feelback-tutorial',
+  selector: 'feelback-ionic-tutorial',
   templateUrl: './tutorial.page.html',
   styleUrls: ['./tutorial.page.scss'],
 })

@@ -4,7 +4,7 @@ import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'feelback-imprint',
+  selector: 'feelback-ionic-imprint',
   templateUrl: './imprint.page.html',
   styleUrls: ['./imprint.page.scss'],
 })

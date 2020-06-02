@@ -5,7 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { AbstractComponent } from '../../core/components/abstract.component';
 
 @Component({
-  selector: 'feelback-start',
+  selector: 'feelback-ionic-start',
   templateUrl: './start.page.html',
   styleUrls: ['./start.page.scss'],
 })

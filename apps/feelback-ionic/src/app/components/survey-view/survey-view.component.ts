@@ -18,7 +18,7 @@ import { uuid } from 'uuidv4';
 widgets.nouislider(Survey);
 
 @Component({
-  selector: 'feelback-survey-view',
+  selector: 'feelback-ionic-survey-view',
   templateUrl: './survey-view.component.html',
   styleUrls: ['./survey-view.component.scss'],
 })

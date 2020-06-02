@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'feelback-header',
+  selector: 'feelback-ionic-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

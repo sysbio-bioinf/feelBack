@@ -1,7 +1,7 @@
-<feelback-header
+<feelback-ionic-header
   [title]="'app.pages.organization-list.title' | translate"
   [showNavButton]="true"
-></feelback-header>
+></feelback-ionic-header>
 
 <ion-content>
   <div
@@ -15,10 +15,10 @@
   </ng-template>
 
   <ng-template #contentTemplate>
-    <feelback-organization-card
+    <feelback-ionic-organization-card
       *ngFor="let organization of organizations"
       [organization]="organization"
       (click)="showDetails(organization.id)"
-    ></feelback-organization-card>
+    ></feelback-ionic-organization-card>
   </ng-template>
 </ion-content>

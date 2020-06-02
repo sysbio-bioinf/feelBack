@@ -8,7 +8,7 @@ import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { Identity } from 'src/app/graphql/generated/feelback.graphql';
 
 @Component({
-  selector: 'feelback-profile',
+  selector: 'feelback-ionic-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   providers: [TranslatePipe],
@@ -36,7 +36,7 @@ export class ProfilePage extends AbstractComponent implements OnInit {
 
   async ionViewWillEnter() {
     if (!this.userService.pseudonym) {
-      const toast = this.toastController
+      const t = this.toastController
         .create({
           message: this.translatePipe.transform(
             'app.pages.profile.toasts.notLoggedIn',
@@ -57,7 +57,7 @@ export class ProfilePage extends AbstractComponent implements OnInit {
     await this.loading.dismiss();
 
     if (!this.identity) {
-      const toast = this.toastController
+      const t = this.toastController
         .create({
           message: this.translatePipe.transform('app.errors.api.noData'),
           duration: 3000,

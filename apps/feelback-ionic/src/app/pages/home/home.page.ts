@@ -7,7 +7,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { InstrumentService } from 'src/app/services/api/instrument.service';
 
 @Component({
-  selector: 'feelback-home',
+  selector: 'feelback-ionic-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   providers: [TranslatePipe],

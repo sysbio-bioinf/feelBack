@@ -7,7 +7,7 @@ import { LoadingController } from '@ionic/angular';
 import { OrganizationService } from 'src/app/services/api/organization.service';
 
 @Component({
-  selector: 'feelback-organization-detail',
+  selector: 'feelback-ionic-organization-detail',
   templateUrl: './organization-detail.page.html',
   styleUrls: ['./organization-detail.page.scss'],
   providers: [TranslatePipe],

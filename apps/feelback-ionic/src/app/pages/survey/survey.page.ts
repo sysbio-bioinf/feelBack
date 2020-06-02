@@ -7,7 +7,7 @@ import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { Instrument } from 'src/app/models/instrument.model';
 
 @Component({
-  selector: 'feelback-survey',
+  selector: 'feelback-ionic-survey',
   templateUrl: './survey.page.html',
   styleUrls: ['./survey.page.scss'],
   providers: [TranslatePipe],

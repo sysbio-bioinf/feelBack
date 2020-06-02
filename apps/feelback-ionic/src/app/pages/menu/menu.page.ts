@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AbstractComponent } from 'src/app/core/components/abstract.component';
 
 @Component({
-  selector: 'feelback-menu',
+  selector: 'feelback-ionic-menu',
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
 })

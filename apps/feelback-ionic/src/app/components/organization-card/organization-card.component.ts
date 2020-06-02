@@ -3,7 +3,7 @@ import { AbstractComponent } from 'src/app/core/components/abstract.component';
 import { Organization } from 'src/app/models/organization.model';
 
 @Component({
-  selector: 'feelback-organization-card',
+  selector: 'feelback-ionic-organization-card',
   templateUrl: './organization-card.component.html',
   styleUrls: ['./organization-card.component.scss'],
 })
