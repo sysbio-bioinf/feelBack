@@ -37,7 +37,7 @@ import { ScreeningDatabaseService } from '../../../services/screening/screening-
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
-  read: { disabled: true },
+  read: { many: { disabled: true } },
   create: { many: { disabled: true }, CreateDTOClass: CreateScreeningInput },
   delete: { disabled: true },
   update: { disabled: true },

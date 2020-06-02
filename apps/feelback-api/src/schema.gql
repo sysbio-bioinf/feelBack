@@ -904,6 +904,7 @@ type Query {
     sorting: [PersonSort!] = []
   ): PersonConnection!
   personByPseudonym(pseudonym: String!): Person
+  screening(id: ID!): Screening
   screeningsForPersonAndInstrument(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
