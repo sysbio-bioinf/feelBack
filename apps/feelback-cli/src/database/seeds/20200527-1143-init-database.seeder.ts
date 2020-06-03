@@ -66,8 +66,8 @@ export class Seeder20200527 extends Seeder {
       changelog: 'initial version',
       diagram: {
         instance: {
-          value01: { type: 'card', value: { name: 'distress', rule: 'DT01' } },
-          value02: { type: 'card', value: { name: 'support', rule: 'DT02' } },
+          value01: { type: 'card', axis: [{ name: 'distress', rule: 'DT01' }] },
+          value02: { type: 'card', axis: [{ name: 'support', rule: 'DT02' }] },
           overview: {
             type: 'radar',
             axis: [
@@ -90,7 +90,7 @@ export class Seeder20200527 extends Seeder {
           },
         },
         collection: {
-          history: { type: 'line', axis: { name: 'distress', rule: 'DT01' } },
+          history: { type: 'line', axis: [{ name: 'distress', rule: 'DT01' }] },
         },
       },
     };
