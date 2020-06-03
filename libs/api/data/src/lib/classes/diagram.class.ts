@@ -1,20 +1,20 @@
 import { CoreClass } from '@cancerlog/api/core';
 
-export class DiagramPlotAxisData extends CoreClass {
+export class DiagramPlotAxisDataClass extends CoreClass {
   name!: string;
   rule!: string;
 }
 
-export class DiagramPlotData extends CoreClass {
+export class DiagramPlotDataClass extends CoreClass {
   type!: string;
-  axis!: [DiagramPlotAxisData];
+  axis!: [DiagramPlotAxisDataClass];
 }
 
-export class DiagramPlot extends CoreClass {
-  [k: string]: DiagramPlotData;
+export class DiagramPlotClass extends CoreClass {
+  [k: string]: DiagramPlotDataClass;
 }
 
-export class DiagramModel extends CoreClass {
-  collection!: DiagramPlot;
-  instance!: DiagramPlot;
+export class DiagramClass extends CoreClass {
+  collection!: DiagramPlotClass;
+  instance!: DiagramPlotClass;
 }

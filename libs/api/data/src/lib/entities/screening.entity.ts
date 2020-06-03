@@ -1,7 +1,7 @@
 import { VersionableEntity } from '@cancerlog/api/core';
 import { Entity, Column, ManyToOne, RelationId, Index } from 'typeorm';
 import { InstrumentEntity } from './instrument.entity';
-import { UserAgentEntity } from './user-agent.entity';
+import { UserAgentClass } from '../classes/user-agent.class';
 import { PersonEntity } from './person.entity';
 
 @Entity({ name: 'screenings' })
@@ -20,7 +20,7 @@ export class ScreeningEntity extends VersionableEntity {
   payload: object; // TODO better typings
 
   @Column({ type: 'json', nullable: true })
-  userAgent?: UserAgentEntity;
+  userAgent?: UserAgentClass;
 
   @Column({ type: 'boolean', nullable: true })
   isResolved: boolean;

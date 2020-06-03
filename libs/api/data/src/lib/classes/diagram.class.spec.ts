@@ -1,30 +1,30 @@
 import {
-  DiagramPlotAxisData,
-  DiagramPlotData,
-  DiagramPlot,
-  DiagramModel,
+  DiagramPlotAxisDataClass,
+  DiagramPlotDataClass,
+  DiagramPlotClass,
+  DiagramClass,
 } from './diagram.class';
 
-describe('DiagramPlotAxisData', () => {
+describe('DiagramPlotAxisDataClass', () => {
   it('should be defined', () => {
-    expect(new DiagramPlotAxisData()).toBeDefined();
+    expect(new DiagramPlotAxisDataClass()).toBeDefined();
   });
 });
 
-describe('DiagramPlotData', () => {
+describe('DiagramPlotDataClass', () => {
   it('should be defined', () => {
-    expect(new DiagramPlotData()).toBeDefined();
+    expect(new DiagramPlotDataClass()).toBeDefined();
   });
 });
 
-describe('DiagramPlot', () => {
+describe('DiagramPlotClass', () => {
   it('should be defined', () => {
-    expect(new DiagramPlot()).toBeDefined();
+    expect(new DiagramPlotClass()).toBeDefined();
   });
 });
 
-describe('DiagramModel', () => {
+describe('DiagramModelClass', () => {
   it('should be defined', () => {
-    expect(new DiagramModel()).toBeDefined();
+    expect(new DiagramClass()).toBeDefined();
   });
 });

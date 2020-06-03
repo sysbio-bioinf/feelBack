@@ -1,6 +1,6 @@
 import { CoreService, CoreException } from '@cancerlog/api/core';
 import {
-  EvaluationEntity,
+  EvaluationClass,
   InstrumentEntity,
   ScreeningEntity,
 } from '@cancerlog/api/data';
@@ -17,8 +17,8 @@ export class EvaluationService extends CoreService {
   evaluate(
     screening: ScreeningEntity,
     instrument: InstrumentEntity,
-  ): EvaluationEntity[] {
-    const evaluationResults: EvaluationEntity[] = [];
+  ): EvaluationClass[] {
+    const evaluationResults: EvaluationClass[] = [];
 
     if (!screening) {
       return evaluationResults;
@@ -37,12 +37,12 @@ export class EvaluationService extends CoreService {
         const parsedExpression = evaluationParser.parse(normalExpression);
         const expressionResult = parsedExpression.evaluate(data as any);
 
-        const result = deepmerge<EvaluationEntity>(rule, {
+        const result = deepmerge<EvaluationClass>(rule, {
           result: expressionResult,
         });
         evaluationResults.push(result);
       } catch (exception) {
-        const result = deepmerge<EvaluationEntity>(rule, {
+        const result = deepmerge<EvaluationClass>(rule, {
           result: null,
         });
         evaluationResults.push(result);

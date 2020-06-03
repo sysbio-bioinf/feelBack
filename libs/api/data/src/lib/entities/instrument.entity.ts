@@ -1,8 +1,8 @@
 import { VersionableEntity } from '@cancerlog/api/core';
 import { Column, Entity, OneToMany, RelationId } from 'typeorm';
 import { ScreeningEntity } from './screening.entity';
-import { RuleEntity } from './rule.entity';
-import { DiagramModel } from '../classes/diagram.class';
+import { RuleClass } from '../classes/rule.class';
+import { DiagramClass } from '../classes/diagram.class';
 
 @Entity({ name: 'instruments' })
 export class InstrumentEntity extends VersionableEntity {
@@ -22,10 +22,10 @@ export class InstrumentEntity extends VersionableEntity {
   payload: object; // TODO: can we better type this in order to use surveyjs models?
 
   @Column({ type: 'json', nullable: false, default: [] })
-  rules: RuleEntity[];
+  rules: RuleClass[];
 
   @Column({ type: 'json', nullable: false, default: {} })
-  diagram: DiagramModel; // TODO: maybe we can have a better typing for this?
+  diagram: DiagramClass;
 
   @Column({ type: 'text', nullable: false, default: '' })
   changelog: string;

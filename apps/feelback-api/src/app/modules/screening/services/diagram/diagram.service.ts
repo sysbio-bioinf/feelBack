@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { EvaluationService } from '../evaluation/evaluation.service';
 import {
-  DiagramPlot,
-  DiagramPlotData,
+  DiagramPlotClass,
+  DiagramPlotDataClass,
   ScreeningEntity,
-  DiagramPlotAxisData,
+  DiagramPlotAxisDataClass,
 } from '@cancerlog/api/data';
 import {
   DiagramDataPointObject,
@@ -17,7 +17,7 @@ export class DiagramService {
   constructor(private evaluationService: EvaluationService) {}
 
   createPlots(
-    plots: DiagramPlot,
+    plots: DiagramPlotClass,
     screenings: ScreeningEntity[],
   ): DiagramDataObject[] {
     const result: DiagramDataObject[] = [];
@@ -31,7 +31,7 @@ export class DiagramService {
 
   createPlot(
     name: string,
-    plotData: DiagramPlotData,
+    plotData: DiagramPlotDataClass,
     screenings: ScreeningEntity[],
   ): DiagramDataObject {
     const axisData = this.createAxis(plotData, screenings);
@@ -44,7 +44,7 @@ export class DiagramService {
   }
 
   createAxis(
-    plotData: DiagramPlotData,
+    plotData: DiagramPlotDataClass,
     screenings: ScreeningEntity[],
   ): DiagramAxisObject[] {
     const result: DiagramAxisObject[] = [];
@@ -64,7 +64,7 @@ export class DiagramService {
   }
 
   createAxisDataPoints(
-    plotAxisData: DiagramPlotAxisData,
+    plotAxisData: DiagramPlotAxisDataClass,
     screenings: ScreeningEntity[],
   ): DiagramDataPointObject[] {
     const result: DiagramDataPointObject[] = [];
@@ -77,7 +77,7 @@ export class DiagramService {
   }
 
   createAxisDataPoint(
-    plotAxisData: DiagramPlotAxisData,
+    plotAxisData: DiagramPlotAxisDataClass,
     screening: ScreeningEntity,
   ): DiagramDataPointObject {
     const evaluationResult = this.evaluationService.evaluateRule(

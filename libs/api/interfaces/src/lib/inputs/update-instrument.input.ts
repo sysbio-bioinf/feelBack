@@ -69,6 +69,7 @@ export class UpdateInstrumentInput extends CoreInput {
   @Field((type) => [RuleInput], { nullable: true })
   rules?: RuleInput[];
 
+  // TODO: better input validation
   @IsOptional()
   @IsObject()
   @Field((type) => JSONObject, {
