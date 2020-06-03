@@ -1,5 +1,7 @@
 export * from './data/dtos/core.dto';
 
+export * from './data/classes/core.class';
+
 export * from './data/entities/core.entity';
 export * from './data/entities/identifiable.entity';
 export * from './data/entities/versionable.entity';

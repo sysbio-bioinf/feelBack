@@ -1,3 +1,5 @@
+export * from './classes/diagram.class';
+
 export * from './entities/doctor.entity';
 export * from './entities/evaluation.entity';
 export * from './entities/faq.entity';
