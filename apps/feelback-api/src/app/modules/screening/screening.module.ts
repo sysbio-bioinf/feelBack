@@ -8,6 +8,7 @@ import { ScreeningAssembler } from './ui/graphql/assemblers/screening.assembler'
 import { ScreeningAssemblerService } from './services/screening/screening-assembler.service';
 import { InstrumentModule } from '../instrument/instrument.module';
 import { PersonModule } from '../person/person.module';
+import { DiagramService } from './services/diagram/diagram.service';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { PersonModule } from '../person/person.module';
     ScreeningDatabaseService,
     ScreeningAssemblerService,
     EvaluationService,
+    DiagramService,
   ],
 })
 export class ScreeningModule {}

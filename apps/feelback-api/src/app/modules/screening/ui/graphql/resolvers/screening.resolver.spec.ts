@@ -16,6 +16,7 @@ import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
 import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 import { PersonAssembler } from '../../../../person/ui/graphql/assemblers/person.assembler';
+import { DiagramService } from '../../../services/diagram/diagram.service';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -35,6 +36,7 @@ describe('ScreeningResolver', () => {
         ScreeningAssemblerService,
         ScreeningDatabaseService,
         EvaluationService,
+        DiagramService,
         InstrumentAssemblerService,
         InstrumentDatabaseService,
         InstrumentAssembler,

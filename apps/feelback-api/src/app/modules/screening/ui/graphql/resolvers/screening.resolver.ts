@@ -1,6 +1,6 @@
 import { startFSMFromState } from '@cancerlog/api/application';
 import { CoreException } from '@cancerlog/api/core';
-import { ScreeningEntity } from '@cancerlog/api/data';
+import { ScreeningEntity, DiagramModel } from '@cancerlog/api/data';
 import {
   CreateScreeningInput,
   EvaluationObject,
@@ -12,6 +12,7 @@ import {
   ScreeningObject,
   UploadScreeningInputType,
   UserAgentObject,
+  DiagramDataObject,
 } from '@cancerlog/api/interfaces';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
@@ -34,6 +35,7 @@ import { PersonDatabaseService } from '../../../../person/services/person/person
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
 import { ScreeningDatabaseService } from '../../../services/screening/screening-database.service';
+import { DiagramService } from '../../../services/diagram/diagram.service';
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -67,6 +69,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     readonly personService: PersonAssemblerService,
     readonly personDbService: PersonDatabaseService,
     private evaluationService: EvaluationService,
+    private diagramService: DiagramService,
   ) {
     super(service);
   }
@@ -130,6 +133,38 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       (q) => this.service.query(q),
       qa,
     );
+  }
+
+  @Query((returns) => [DiagramDataObject], {
+    name: 'screeningsDiagramCollections',
+  })
+  async getScreeningsDiagramCollections(
+    @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
+  ): Promise<DiagramDataObject[]> {
+    const instrument = await this.instrumentService.getById(query.instrumentId);
+
+    const diagram = instrument.diagram as DiagramModel;
+    const collectionDiagrams = diagram.collection;
+
+    const qa: QA<ScreeningObject> = {
+      sorting: query.sorting,
+      // FIXME: This really (!) needs to be fixed; as this is very (!) ugly :(
+      filter: {
+        ...query.filter,
+        ...{
+          'person.id': { eq: query.personId },
+          'instrument.id': { eq: query.instrumentId },
+        },
+      },
+    };
+
+    const entities = await this.screeningDatabaseService.query(qa);
+    const plotData = this.diagramService.createPlots(
+      collectionDiagrams,
+      entities,
+    );
+
+    return plotData;
   }
 
   @Mutation((returns) => ScreeningObject, { name: 'resolveScreeningIssues' })

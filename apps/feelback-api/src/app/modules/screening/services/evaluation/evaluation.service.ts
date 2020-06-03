@@ -1,4 +1,4 @@
-import { CoreService } from '@cancerlog/api/core';
+import { CoreService, CoreException } from '@cancerlog/api/core';
 import {
   EvaluationEntity,
   InstrumentEntity,
@@ -50,5 +50,17 @@ export class EvaluationService extends CoreService {
     }
 
     return evaluationResults;
+  }
+
+  evaluateRule(rule: string, data: object) {
+    try {
+      const evaluationParser = new expreval.Parser();
+      const parsedExpression = evaluationParser.parse(rule);
+      const evaluationResult = parsedExpression.evaluate(data as any);
+      return evaluationResult;
+    } catch (exception) {
+      console.log(`Error evaluating rule "${rule}" with "${data}".`);
+      return undefined;
+    }
   }
 }
