@@ -1,8 +1,9 @@
 import { startFSMFromState } from '@cancerlog/api/application';
 import { CoreException } from '@cancerlog/api/core';
-import { ScreeningEntity, DiagramModel } from '@cancerlog/api/data';
+import { ScreeningEntity } from '@cancerlog/api/data';
 import {
   CreateScreeningInput,
+  DiagramDataObject,
   EvaluationObject,
   GetScreeningsByPersonAndInstrumentArgsType,
   InstrumentObject,
@@ -12,7 +13,6 @@ import {
   ScreeningObject,
   UploadScreeningInputType,
   UserAgentObject,
-  DiagramDataObject,
 } from '@cancerlog/api/interfaces';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
@@ -28,14 +28,12 @@ import {
 import {
   instrumentMachine,
   INSTRUMENT_MACHINE_STATES,
-} from '../../../../instrument/machine/instrument.machine';
+} from '../../../../instrument/machines/instrument.machine';
 import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
-import { PersonDatabaseService } from '../../../../person/services/person/person-database.service';
+import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
-import { ScreeningDatabaseService } from '../../../services/screening/screening-database.service';
-import { DiagramService } from '../../../services/diagram/diagram.service';
 
 @Resolver((of) => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -64,10 +62,8 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
 }) {
   constructor(
     readonly service: ScreeningAssemblerService,
-    readonly screeningDatabaseService: ScreeningDatabaseService,
     readonly instrumentService: InstrumentAssemblerService,
     readonly personService: PersonAssemblerService,
-    readonly personDbService: PersonDatabaseService,
     private evaluationService: EvaluationService,
     private diagramService: DiagramService,
   ) {
@@ -141,10 +137,11 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   async getScreeningsDiagramCollections(
     @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
   ): Promise<DiagramDataObject[]> {
-    const instrument = await this.instrumentService.getById(query.instrumentId);
+    const instrument = await this.instrumentService.queryService.getById(
+      query.instrumentId,
+    );
 
-    const diagram = instrument.diagram as DiagramModel;
-    const collectionDiagrams = diagram.collection;
+    const collectionDiagrams = instrument.diagram.collection;
 
     const qa: QA<ScreeningObject> = {
       sorting: query.sorting,
@@ -158,7 +155,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       },
     };
 
-    const entities = await this.screeningDatabaseService.query(qa);
+    const entities = await this.service.queryService.query(qa);
     const plotData = this.diagramService.createPlots(
       collectionDiagrams,
       entities,

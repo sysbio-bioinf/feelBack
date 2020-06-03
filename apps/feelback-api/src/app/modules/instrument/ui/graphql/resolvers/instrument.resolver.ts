@@ -18,7 +18,7 @@ import {
   instrumentMachine,
   INSTRUMENT_MACHINE_EVENTS,
   INSTRUMENT_MACHINE_STATES,
-} from '../../../machine/instrument.machine';
+} from '../../../machines/instrument.machine';
 import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
 
 @Resolver((of) => InstrumentObject)
