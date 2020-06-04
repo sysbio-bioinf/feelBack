@@ -1,4 +1,3 @@
-import { startFSMFromState } from '@cancerlog/api/application';
 import { CoreException } from '@cancerlog/api/core';
 import {
   CopyOneInstrumentInputType,
@@ -9,16 +8,17 @@ import {
   ScreeningObject,
   UpdateOneInstrumentInputType,
 } from '@cancerlog/api/interfaces';
+import {
+  instrumentMachine,
+  INSTRUMENT_MACHINE_EVENTS,
+  INSTRUMENT_MACHINE_STATES,
+  startFSMFromState,
+} from '@cancerlog/api/state';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { HttpStatus } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { interpret } from 'xstate';
-import {
-  instrumentMachine,
-  INSTRUMENT_MACHINE_EVENTS,
-  INSTRUMENT_MACHINE_STATES,
-} from '../../../machines/instrument.machine';
 import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
 
 @Resolver((of) => InstrumentObject)

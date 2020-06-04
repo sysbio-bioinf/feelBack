@@ -76,6 +76,9 @@
     },
     "shared-style": {
       "tags": []
+    },
+    "api-state": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

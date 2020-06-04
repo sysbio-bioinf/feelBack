@@ -1,4 +1,3 @@
-import { startFSMFromState } from '@cancerlog/api/application';
 import { CoreException } from '@cancerlog/api/core';
 import { ScreeningEntity } from '@cancerlog/api/data';
 import {
@@ -14,6 +13,11 @@ import {
   UploadScreeningInputType,
   UserAgentObject,
 } from '@cancerlog/api/interfaces';
+import {
+  instrumentMachine,
+  INSTRUMENT_MACHINE_STATES,
+  startFSMFromState,
+} from '@cancerlog/api/state';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import { HttpStatus } from '@nestjs/common';
@@ -25,10 +29,6 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import {
-  instrumentMachine,
-  INSTRUMENT_MACHINE_STATES,
-} from '../../../../instrument/machines/instrument.machine';
 import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 import { DiagramService } from '../../../services/diagram/diagram.service';
