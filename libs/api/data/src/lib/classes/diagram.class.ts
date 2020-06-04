@@ -7,7 +7,7 @@ export class DiagramPlotAxisDataClass extends CoreClass {
 
 export class DiagramPlotDataClass extends CoreClass {
   type!: string;
-  axis!: [DiagramPlotAxisDataClass];
+  axis!: DiagramPlotAxisDataClass[];
 }
 
 export class DiagramPlotClass extends CoreClass {
