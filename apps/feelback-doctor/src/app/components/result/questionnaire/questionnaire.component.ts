@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
-import '@webcomponents/custom-elements';
 import { Screening } from '../../../models/Screening';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
