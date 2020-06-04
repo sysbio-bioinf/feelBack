@@ -7,6 +7,7 @@ import {
   IsUUID,
   ValidateNested,
   IsObject,
+  IsLocale,
 } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 import { CreateUserAgentInput } from './create-user-agent.input';
@@ -37,9 +38,10 @@ export class CreateScreeningInput extends CoreInput {
   payload: object;
 
   @IsString()
-  // TODO: add a @IsLocale() Validator once it is available
+  @IsLocale()
   @Field({
-    description: 'The language this screening was performed in',
+    description:
+      'The language this screening was performed in. Must be a valid locale.',
     nullable: false,
   })
   language: string;

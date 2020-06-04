@@ -151,7 +151,7 @@ input CreateScreeningInput {
   """the collected data"""
   payload: JSONObject!
 
-  """The language this screening was performed in"""
+  """The language this screening was performed in. Must be a valid locale."""
   language: String!
 
   """UserAgent Information of the device"""
