@@ -154,6 +154,8 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
       this.surveyCompleted = true;
 
       document.getElementById('fontSizeButtons').style.visibility = 'hidden';
+      document.getElementById('instrument-pagecount').style.visibility =
+        'hidden';
 
       document.getElementById('instrument-navigation-back').style.visibility =
         'hidden';

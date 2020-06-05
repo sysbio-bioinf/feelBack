@@ -11,7 +11,7 @@
         ></ion-icon>
       </ion-col>
       <ion-col size="6" style="text-align: center;"
-        ><ion-text color="primary"
+        ><ion-text color="primary" id="instrument-pagecount"
           ><p style="margin-top: 10px; margin-bottom: 10px;">
             <b
               >{{ this.survey.currentPageNo + 1 }} /
@@ -44,7 +44,7 @@
   <div
     id="surveyContainer"
     class="survey-container contentcontainer codecontainer"
-    style="margin-bottom: 50px;"
+    style="margin-bottom: 50px; margin-left: 10px; margin-right: 10px;"
   >
     <div id="surveyElement"></div>
   </div>
@@ -112,7 +112,7 @@
       </ion-button>
     </div>
 
-    <br /><br />
+    <div class="hr"></div>
 
     <div id="navigateHome">
       <ion-button
