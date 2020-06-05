@@ -14,3 +14,9 @@ ion-content {
 .boxed {
   padding: 50px;
 }
+
+.hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--ion-color-medium);
+}

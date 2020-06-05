@@ -4,44 +4,48 @@
 ></feelback-ionic-header>
 
 <ion-content>
-  <br /><br />
+  <ion-grid style="height: 100%;">
+    <ion-row
+      class="ion-justify-content-center ion-align-items-center"
+      style="height: 100%;"
+    >
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-button
+              size="large"
+              expand="block"
+              color="primary"
+              fill="outline"
+              (click)="this.openScanner()"
+              >{{ 'app.pages.login.scanner.button' | translate }}</ion-button
+            >
 
-  <ion-button
-    size="large"
-    expand="block"
-    color="primary"
-    fill="outline"
-    (click)="this.openScanner()"
-    >{{ 'app.pages.login.scanner.button' | translate }}</ion-button
-  >
+            <div class="hr"></div>
 
-  <br /><br />
-
-  <form #form="ngForm">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          {{'app.pages.login.form.title' | translate }}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-label>{{'app.pages.login.form.text' | translate }}</ion-label>
-        <ion-item>
-          <ion-label position="floating">
-            {{ 'app.pages.login.form.pseudonym' | translate }}
-          </ion-label>
-          <ion-input
-            id="login-form"
-            inputmode="text"
-            clearInput="true"
-            required="true"
-            name="pseudonym"
-            [(ngModel)]="this.pseudonym"
-          ></ion-input>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-  </form>
+            <form #form="ngForm">
+              <ion-label
+                >{{'app.pages.login.form.text' | translate }}</ion-label
+              >
+              <ion-item>
+                <ion-label position="floating">
+                  {{ 'app.pages.login.form.pseudonym' | translate }}
+                </ion-label>
+                <ion-input
+                  id="login-form"
+                  inputmode="text"
+                  clearInput="true"
+                  required="true"
+                  name="pseudonym"
+                  [(ngModel)]="this.pseudonym"
+                ></ion-input>
+              </ion-item>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-button

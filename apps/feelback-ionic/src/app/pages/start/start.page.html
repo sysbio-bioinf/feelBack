@@ -3,35 +3,48 @@
 ></feelback-ionic-header>
 
 <ion-content>
-  <br /><br />
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ 'app.pages.start.title' | translate }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button
-        size="large"
-        expand="block"
-        color="primary"
-        fill="outline"
-        (click)="this.navigateToLogin()"
-      >
-        {{ 'app.pages.start.login' | translate }}
-      </ion-button>
-      <br /><br />
-      <ion-button
-        id="LoginButtonAnonymous"
-        class="loginbutton"
-        size="large"
-        expand="block"
-        color="medium"
-        fill="outline"
-        (click)="this.loginAsAnonymous()"
-      >
-        {{ 'app.pages.start.anonymous' | translate }}
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid style="height: 100%;">
+    <ion-row
+      class="ion-justify-content-center ion-align-items-center"
+      style="height: 100%;"
+    >
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title
+              >{{ 'app.pages.start.title' | translate }}</ion-card-title
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button
+              size="large"
+              expand="block"
+              color="primary"
+              fill="outline"
+              (click)="this.navigateToLogin()"
+            >
+              {{ 'app.pages.start.login' | translate }}
+            </ion-button>
+
+            <div class="hr"></div>
+
+            <ion-button
+              class="ion-margin-top"
+              id="LoginButtonAnonymous"
+              class="loginbutton"
+              size="large"
+              expand="block"
+              color="medium"
+              fill="outline"
+              (click)="this.loginAsAnonymous()"
+            >
+              {{ 'app.pages.start.anonymous' | translate }}
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer>
