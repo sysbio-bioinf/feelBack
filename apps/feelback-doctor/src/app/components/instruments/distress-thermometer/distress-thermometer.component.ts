@@ -6,8 +6,8 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { ChartDataPoint } from '../../../models/ChartDataPoint';
-import { ChartSeries } from '../../../models/ChartSeries';
+import { ChartDataPoint } from '../../../models/chart-data-point';
+import { ChartSeries } from '../../../models/chart-series';
 import { ScreeningService } from '../../../services/screening.service';
 import { CommonService } from '../../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';

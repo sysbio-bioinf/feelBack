@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Screening } from '../../../models/Screening';
 import { CommonService } from '../../../services/common.service';
-import { Parser } from 'expr-eval';
+import { Screening } from '../../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-screening-consultation',

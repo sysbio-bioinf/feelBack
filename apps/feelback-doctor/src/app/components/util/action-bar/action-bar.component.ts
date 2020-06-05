@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as fileSaver from 'file-saver';
-import { Screening } from '../../../models/Screening';
 import { CommonService } from '../../../services/common.service';
 import { MatTooltip } from '@angular/material/tooltip';
+import { Screening } from '../../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-action-bar',
@@ -24,7 +24,7 @@ export class ActionBarComponent implements OnInit {
     });
     fileSaver.saveAs(
       blob,
-      'jsonExport_' + this.commonService.transformDate(screening.date) + '.json',
+      'jsonExport_' + this.commonService.transformDate(screening.createdAt) + '.json',
     );
   }
 

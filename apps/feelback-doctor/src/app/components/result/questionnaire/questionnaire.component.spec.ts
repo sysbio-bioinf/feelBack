@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { QuestionnaireComponent } from './questionnaire.component';
 import { MaterialModule } from '../../../material.module';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Screening } from '../../../models/Screening';
 import { DatePipe } from '@angular/common';
 
 describe('QuestionnaireComponent', () => {
@@ -22,7 +21,7 @@ describe('QuestionnaireComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionnaireComponent);
     component = fixture.componentInstance;
-    component.screening = new Screening();
+    component.screening = {createdAt: '', id: '', updatedAt: new Date(), version: 1, collectedAt: new Date(), instanceId: '', language: '', payload: {}, resolvedAt: new Date()}
     fixture.detectChanges();
   });
 

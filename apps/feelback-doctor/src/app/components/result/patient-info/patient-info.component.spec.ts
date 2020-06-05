@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PatientInfoComponent } from './patient-info.component';
 import { MaterialModule } from '../../../material.module';
-import { Patient } from '../../../models/Patient';
+import { Patient } from '../../../models/patient';
 import { DatePipe } from '@angular/common';
 
 describe('PatientInfoComponent', () => {
