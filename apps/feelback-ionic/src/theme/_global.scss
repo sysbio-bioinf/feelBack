@@ -1,5 +1,6 @@
 body {
-  background: url(/assets/images/bg.svg) repeat-y 20% 20%;
+  background: url('/assets/images/background.png') no-repeat;
+  background-size: cover;
 }
 
 ion-content {
