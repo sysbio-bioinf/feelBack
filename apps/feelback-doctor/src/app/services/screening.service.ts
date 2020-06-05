@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ChartSeries } from '../models/ChartSeries';
-import { Screening } from '../models/Screening';
 import { delay, map } from 'rxjs/operators';
-import { GetScreeningsForPersonAndInstrumentGQL } from '../graphql/generated/feelback.graphql';
-import { EvaluationResult } from '../models/EvaluationResult';
+import { GetScreeningGQL, Screening } from '../graphql/generated/feelback.graphql';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ScreeningService {
-  constructor(
-    private screeningService: GetScreeningsForPersonAndInstrumentGQL,
-  ) {}
+  constructor(private screeningService: GetScreeningGQL) {}
 
   private screenings: ChartSeries[] = [
     {
@@ -271,78 +267,16 @@ export class ScreeningService {
     return of(this.screenings).pipe(delay(400));
   }
 
-  public getScreening(id: string): Observable<any> {
-    const screening = {
-      locale: 'de',
-      instrument: 'Distress Thermometer',
-      date: this.getDateForScreening(id),
-      payload: {
-        DT01: 6,
-        DT02: 'false',
-        PP01: 'true',
-        PP02: 'true',
-        PP03: 'false',
-        PP04: 'false',
-        PP05: 'true',
-        PP06: 'false',
-        PP07: 'true',
-        FP01: 'true',
-        FP02: 'false',
-        EP01: 'true',
-        EP02: 'false',
-        EP03: 'true',
-        EP04: 'true',
-        EP05: 'true',
-        EP06: 'true',
-        SP01: 'true',
-        SP02: 'true',
-        KP01: 'true',
-        KP02: 'false',
-        KP03: 'true',
-        KP04: 'false',
-        KP05: 'true',
-        KP06: 'true',
-        KP07: 'false',
-        KP08: 'true',
-        KP09: 'false',
-        KP10: 'true',
-        KP11: 'false',
-        KP12: 'true',
-        KP13: 'true',
-        KP14: 'false',
-        KP15: 'false',
-        KP16: 'true',
-        KP17: 'false',
-        KP18: 'true',
-        KP19: 'true',
-        KP20: 'true',
-        KP21: 'false',
-        KP22: 'false',
-        KP23: 'false',
-        other: 'test',
-      },
-      evaluationResult: [],
-      comment:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
-    };
-
-    return this.screeningService.fetch().pipe(
-      map((data) => {
-        const evaluationResult = data.data.screeningsForPersonAndInstrument.edges[0].node.evaluationResult;
-        if(evaluationResult){
-          screening.evaluationResult = evaluationResult;
-        }
-        return screening;
-      }),
-    );
-  }
-
-  private getDateForScreening(id: string): Date {
-    for (const screening of this.screenings[0].series) {
-      if (screening.id === id) {
-        return screening.name;
-      }
-    }
+  public getScreening(id: string): Observable<Screening> {
+    return this.screeningService
+      .fetch({
+        id: id,
+      })
+      .pipe(
+        map((data) => {
+          return data.data.screening;
+        }),
+      );
   }
 
   public checkIfScreeningExists(id: string): boolean {

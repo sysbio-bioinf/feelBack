@@ -15,12 +15,4 @@ export class ConsultationComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public getConsultation(screening: Screening) {
-    const evaluationResult = screening.evaluationResult[1];
-    if (Parser.evaluate(evaluationResult.condition, screening.payload)) {
-      return evaluationResult.then;
-    } else {
-      return evaluationResult.else;
-    }
-  }
 }

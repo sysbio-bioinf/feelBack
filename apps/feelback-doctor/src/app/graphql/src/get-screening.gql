@@ -1,0 +1,15 @@
+query getScreening($id: ID!) {
+  screening(id: $id){
+    id
+    instanceId
+    createdAt
+    updatedAt
+    collectedAt
+    version
+    language
+    payload
+    isResolved
+    resolveComment
+    evaluationResult{name then else result}
+  }
+}

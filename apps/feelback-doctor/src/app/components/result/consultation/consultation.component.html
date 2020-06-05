@@ -22,7 +22,7 @@
           >{{commonService.icons.uncheck}}</mat-icon
         >
         <span *ngIf="screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].then}}</span>
-        <span *ngIf="!screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].then}}</span>
+        <span *ngIf="!screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].else}}</span>
       </div>
       <mat-form-field appearance="fill">
         <mat-label>Comment</mat-label>

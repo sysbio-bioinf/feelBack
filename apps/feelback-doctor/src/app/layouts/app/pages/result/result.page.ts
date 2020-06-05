@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Screening } from '../../../../models/Screening';
 import { Observable } from 'rxjs';
 import { ScreeningService } from '../../../../services/screening.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../../services/common.service';
 import { InstrumentService } from '../../../../services/instrument.service';
-import { Instrument } from '../../../../graphql/generated/feelback.graphql';
+import { Instrument, Screening } from '../../../../graphql/generated/feelback.graphql';
 import { Patient } from '../../../../models/Patient';
 import { PatientService } from '../../../../services/patient.service';
 
@@ -39,7 +38,7 @@ export class ResultPage implements OnInit {
       if (!this.screeningService.checkIfScreeningExists(screeningId)) {
         this.navigateToErrorPage();
       } else {
-        this.screening$ = this.screeningService.getScreening(screeningId);
+        this.screening$ = this.screeningService.getScreening('8475a985-2ba8-4b2c-b0b1-88560ff76eeb');
       }
     });
   }

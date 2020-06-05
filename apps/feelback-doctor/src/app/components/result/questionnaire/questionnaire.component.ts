@@ -6,9 +6,10 @@ import {
 } from '@angular/core';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
-import { Screening } from '../../../models/Screening';
+import '@webcomponents/custom-elements';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
+import { Screening } from '../../../graphql/generated/feelback.graphql';
 
 widgets.nouislider(Survey);
 
@@ -77,7 +78,7 @@ export class QuestionnaireComponent implements OnInit {
     this.survey.mode = 'display';
     this.survey.showNavigationButtons = false;
     this.survey.showTitle = false;
-    this.survey.locale = this.screening.locale;
+    this.survey.locale = this.screening.language;
   }
 
   private setSurveyTheme() {
