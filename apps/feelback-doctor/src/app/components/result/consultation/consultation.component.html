@@ -3,7 +3,7 @@
     <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.screening}}</mat-icon>
     <mat-card-title>Screening</mat-card-title>
     <mat-card-subtitle>{{
-      screening.date | date: 'dd.MM.yyyy'
+      screening.createdAt | date: 'dd.MM.yyyy'
     }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
@@ -29,7 +29,7 @@
         <textarea
           matInput
           rows="4"
-          [value]="screening.comment"
+          [value]="screening.resolveComment"
           disabled="true"
         ></textarea>
       </mat-form-field>
