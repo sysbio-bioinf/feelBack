@@ -53,11 +53,15 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
        id="rect887"
        style="opacity:0.993;fill:#f7931e;fill-opacity:1;stroke-width:0.529167"
        d="M 7.1503304,6.1372016 H 49.704519 L 7.1503304,280.32814 Z"
        sodipodi:nodetypes="cccc" />
     <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
        id="rect890"
        style="opacity:0.993;fill:#ce0857;fill-opacity:1;stroke-width:0.529167"
        d="M 7.1503304,6.1372016 H 159.18322 L 7.1503304,40.20774 Z"
