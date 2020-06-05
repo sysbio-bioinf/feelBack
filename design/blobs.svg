@@ -7,49 +7,49 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="blobs.svg"
-   inkscape:version="1.0 (1.0+r73+1)"
-   id="svg1051"
-   version="1.1"
-   viewBox="0 0 210 297"
+   width="210mm"
    height="297mm"
-   width="210mm">
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1051"
+   inkscape:version="1.0 (1.0+r73+1)"
+   sodipodi:docname="blobs.svg">
   <defs
      id="defs1045">
     <filter
-       height="1.0000024"
-       y="-1.2048878e-06"
-       width="1.0000024"
-       x="-1.1951517e-06"
-       id="filter1679"
+       inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
-       inkscape:collect="always">
+       id="filter1679"
+       x="-1.1951517e-06"
+       width="1.0000024"
+       y="-1.2048878e-06"
+       height="1.0000024">
       <feGaussianBlur
-         id="feGaussianBlur1681"
+         inkscape:collect="always"
          stdDeviation="6.4125627e-05"
-         inkscape:collect="always" />
+         id="feGaussianBlur1681" />
     </filter>
   </defs>
   <sodipodi:namedview
-     inkscape:window-maximized="1"
-     inkscape:window-y="0"
-     inkscape:window-x="0"
-     inkscape:window-height="1364"
-     inkscape:window-width="2560"
-     showborder="false"
-     showgrid="false"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="px"
-     inkscape:cy="-266.77867"
-     inkscape:cx="814.92617"
-     inkscape:zoom="0.11313708"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ffffff"
-     id="base" />
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.22627416"
+     inkscape:cx="-1094.5617"
+     inkscape:cy="-492.22528"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     showborder="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1364"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata1048">
     <rdf:RDF>
@@ -58,96 +58,96 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     style="opacity:1"
-     id="layer1"
+     inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     id="layer1"
+     style="opacity:1">
     <rect
-       style="fill:#fffde7;fill-opacity:1;stroke:none;stroke-width:0.529169"
-       id="rect1644-5"
-       width="990.42786"
-       height="990.42786"
-       x="-162.46416"
-       y="-604.64197"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <g
        inkscape:export-ydpi="300"
        inkscape:export-xdpi="300"
+       y="-604.64197"
+       x="-162.46416"
+       height="990.42786"
+       width="990.42786"
+       id="rect1644-5"
+       style="fill:#fffde7;fill-opacity:1;stroke:none;stroke-width:0.529169" />
+    <g
+       id="g1724"
        transform="translate(-947.42772,-584.3567)"
-       id="g1724">
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
       <rect
-         style="fill:#fffde7;fill-opacity:1;stroke:none;stroke-width:0.529166"
-         id="rect1644"
-         width="272.64996"
-         height="272.64996"
-         x="-158.40747"
-         y="1.3982668"
-         inkscape:export-xdpi="300"
-         inkscape:export-ydpi="300" />
-      <g
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
-         id="g1652"
+         y="1.3982668"
+         x="-158.40747"
+         height="272.64996"
+         width="272.64996"
+         id="rect1644"
+         style="fill:#fffde7;fill-opacity:1;stroke:none;stroke-width:0.529166" />
+      <g
+         style="stroke-width:1.00194"
          transform="matrix(0.99806293,0,0,0.99806293,0.39254709,-3.8797834)"
-         style="stroke-width:1.00194">
+         id="g1652"
+         inkscape:export-xdpi="300"
+         inkscape:export-ydpi="300">
         <path
-           inkscape:export-ydpi="300.07288"
-           inkscape:export-xdpi="300.07288"
-           inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
-           style="fill:#4a0d8f;fill-opacity:1;stroke:none;stroke-width:0.265097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           d="m -9.3163815,126.26532 c 13.1208668,13.73255 35.2321165,15.75557 44.6502545,27.24986 9.418139,11.49429 6.143165,32.45984 -5.892978,43.20327 -12.036144,10.74343 -32.8334568,11.26473 -46.929846,4.88258 -14.096389,-6.38215 -21.491853,-19.66775 -32.932665,-29.37073 -11.540715,-9.69855 -27.126778,-15.81448 -33.370191,-27.94996 -6.147939,-12.2398 -2.953229,-30.49915 7.50719,-45.176679 10.356089,-14.772996 27.977886,-25.964165 38.89955,-18.940828 10.821762,7.027764 14.947818,32.369937 28.0686855,46.102487 z"
-           id="blob1"
-           sodipodi:nodetypes="csssscc" />
-        <path
-           inkscape:export-ydpi="300.07288"
-           inkscape:export-xdpi="300.07288"
-           inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
            sodipodi:nodetypes="csssscc"
-           id="blob2"
+           id="blob1"
+           d="m -9.3163815,126.26532 c 13.1208668,13.73255 35.2321165,15.75557 44.6502545,27.24986 9.418139,11.49429 6.143165,32.45984 -5.892978,43.20327 -12.036144,10.74343 -32.8334568,11.26473 -46.929846,4.88258 -14.096389,-6.38215 -21.491853,-19.66775 -32.932665,-29.37073 -11.540715,-9.69855 -27.126778,-15.81448 -33.370191,-27.94996 -6.147939,-12.2398 -2.953229,-30.49915 7.50719,-45.176679 10.356089,-14.772996 27.977886,-25.964165 38.89955,-18.940828 10.821762,7.027764 14.947818,32.369937 28.0686855,46.102487 z"
+           style="fill:#ce0857;fill-opacity:1;stroke:none;stroke-width:0.265097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
+           inkscape:export-xdpi="300.07288"
+           inkscape:export-ydpi="300.07288" />
+        <path
+           style="fill:#f7931e;fill-opacity:1;stroke:none;stroke-width:0.265097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="m 20.850333,143.47883 c -13.7854896,14.35166 -28.4647292,15.92009 -37.118999,7.60723 -8.654269,-8.31286 -11.283571,-26.507 2.501918,-40.85866 13.85476355,-14.423781 44.193593,-25.077208 52.847864,-16.76435 8.65427,8.31286 -4.376022,35.592 -18.230783,50.01578 z"
-           style="fill:#fa2a8f;fill-opacity:1;stroke:none;stroke-width:0.265097px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+           id="blob2"
+           sodipodi:nodetypes="csssscc"
+           inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
+           inkscape:export-xdpi="300.07288"
+           inkscape:export-ydpi="300.07288" />
       </g>
     </g>
     <g
-       inkscape:export-ydpi="300"
-       inkscape:export-xdpi="300"
+       id="g1746"
        transform="translate(-83.429683,-178.59252)"
-       id="g1746">
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
       <path
-         inkscape:export-ydpi="300.07288"
-         inkscape:export-xdpi="300.07288"
-         inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
-         style="opacity:0.993;fill:#4a0d8f;fill-opacity:1;stroke:none;stroke-width:0.133706px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1679)"
-         d="m -9.3163815,126.26532 c 13.1208668,13.73255 35.2321165,15.75557 44.6502545,27.24986 9.418139,11.49429 6.143165,32.45984 -5.892978,43.20327 -12.036144,10.74343 -32.8334568,11.26473 -46.929846,4.88258 -14.096389,-6.38215 -21.491853,-19.66775 -32.932665,-29.37073 -11.540715,-9.69855 -27.126778,-15.81448 -33.370191,-27.94996 -6.147939,-12.2398 -2.953229,-30.49915 7.50719,-45.176679 10.356089,-14.772996 27.977886,-25.964165 38.89955,-18.940828 10.821762,7.027764 14.947818,32.369937 28.0686855,46.102487 z"
+         transform="matrix(1.9788377,0,0,1.9788377,460.74019,-261.6998)"
+         sodipodi:nodetypes="csssscc"
          id="blob1-6"
-         sodipodi:nodetypes="csssscc"
-         transform="matrix(1.9788377,0,0,1.9788377,460.74019,-261.6998)" />
-      <path
-         inkscape:export-ydpi="300.07288"
-         inkscape:export-xdpi="300.07288"
+         d="m -9.3163815,126.26532 c 13.1208668,13.73255 35.2321165,15.75557 44.6502545,27.24986 9.418139,11.49429 6.143165,32.45984 -5.892978,43.20327 -12.036144,10.74343 -32.8334568,11.26473 -46.929846,4.88258 -14.096389,-6.38215 -21.491853,-19.66775 -32.932665,-29.37073 -11.540715,-9.69855 -27.126778,-15.81448 -33.370191,-27.94996 -6.147939,-12.2398 -2.953229,-30.49915 7.50719,-45.176679 10.356089,-14.772996 27.977886,-25.964165 38.89955,-18.940828 10.821762,7.027764 14.947818,32.369937 28.0686855,46.102487 z"
+         style="opacity:0.993;fill:#ce0857;fill-opacity:1;stroke:none;stroke-width:0.133706px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1679)"
          inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
-         sodipodi:nodetypes="csssscc"
-         id="blob2-7"
+         inkscape:export-xdpi="300.07288"
+         inkscape:export-ydpi="300.07288" />
+      <path
+         transform="matrix(1.9788377,0,0,1.9788377,460.74019,-261.6998)"
+         style="opacity:0.993;fill:#f7931e;fill-opacity:1;stroke:none;stroke-width:0.133706px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1679)"
          d="m 20.850333,143.47883 c -13.7854896,14.35166 -28.4647292,15.92009 -37.118999,7.60723 -8.654269,-8.31286 -11.283571,-26.507 2.501918,-40.85866 13.85476355,-14.423781 44.193593,-25.077208 52.847864,-16.76435 8.65427,8.31286 -4.376022,35.592 -18.230783,50.01578 z"
-         style="opacity:0.993;fill:#fa2a8f;fill-opacity:1;stroke:none;stroke-width:0.133706px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1679)"
-         transform="matrix(1.9788377,0,0,1.9788377,460.74019,-261.6998)" />
+         id="blob2-7"
+         sodipodi:nodetypes="csssscc"
+         inkscape:export-filename="/home/johannes/projects/feelback/cancerlog/design/exported/logo.png"
+         inkscape:export-xdpi="300.07288"
+         inkscape:export-ydpi="300.07288" />
       <text
-         id="text1677"
-         y="244.94444"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:50.1952px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ce0857;fill-opacity:1;stroke:none;stroke-width:0.264582;"
          x="301.90448"
-         style="font-style:normal;font-weight:normal;font-size:50.1952px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#4a0d8f;fill-opacity:1;stroke:none;stroke-width:0.264582"
-         xml:space="preserve"><tspan
-           style="fill:#4a0d8f;fill-opacity:1;stroke-width:0.264582"
-           y="244.94444"
-           x="301.90448"
+         y="244.94444"
+         id="text1677"><tspan
+           sodipodi:role="line"
            id="tspan1675"
-           sodipodi:role="line">FeelBack</tspan></text>
+           x="301.90448"
+           y="244.94444"
+           style="fill:#ce0857;fill-opacity:1;stroke-width:0.264582;">FeelBack</tspan></text>
     </g>
   </g>
 </svg>
