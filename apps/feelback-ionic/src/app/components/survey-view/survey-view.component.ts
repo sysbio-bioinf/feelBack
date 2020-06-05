@@ -123,8 +123,6 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     feelbackColorScheme['$header-color'] = 'var(--ion-color-primary)';
     feelbackColorScheme['$border-color'] = 'var(--ion-color-primary)';
 
-    feelbackColorScheme['$progress-text-color'] = '#ffffff';
-
     Survey.StylesManager.applyTheme();
     // ------------------------------------------
 
