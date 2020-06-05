@@ -41,15 +41,15 @@
             {
               "value": 0,
               "text": {
-                "de": "Gar nicht belastet",
-                "default": "Not stressed"
+                "de": "0 Gar nicht belastet",
+                "default": "0 Not stressed"
               }
             },
             {
               "value": 10,
               "text": {
-                "de": "Extrem belastet",
-                "default": "Extremely stressed"
+                "de": "10 Extrem belastet",
+                "default": "10 Extremely stressed"
               }
             }
           ]
@@ -169,11 +169,15 @@
           "choices": [
             {
               "value": "true",
-              "text": "Yes"
+              "text": {
+                "de": "Ja"
+              }
             },
             {
               "value": "false",
-              "text": "No"
+              "text": {
+                "de": "Nein"
+              }
             }
           ],
           "colCount": 2
