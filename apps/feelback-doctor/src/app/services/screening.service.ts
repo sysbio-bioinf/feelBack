@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ChartSeries } from '../models/ChartSeries';
+import { ChartSeries } from '../models/chart-series';
 import { delay, map } from 'rxjs/operators';
 import { GetScreeningGQL, Screening } from '../graphql/generated/feelback.graphql';
 
