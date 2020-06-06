@@ -17,9 +17,8 @@
           yAxis="true"
           yScaleMin="0"
           yScaleMax="10"
-          [xAxisTicks]="commonService.xAxisTicks"
           [curve]="commonService.curveStepAfter"
-          [results]="screenings"
+          [results]="screenings[0].axis"
           (select)="selectScreening($event)"
         >
         </ngx-charts-line-chart>

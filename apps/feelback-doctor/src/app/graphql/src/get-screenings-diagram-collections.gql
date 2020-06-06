@@ -1,0 +1,20 @@
+query getScreeningsDiagramCollections(
+  $personId: String!
+  $instrumentId: String!
+) {
+  screeningsDiagramCollections(
+    personId: $personId
+    instrumentId: $instrumentId
+  ) {
+    name
+    type
+    axis {
+      name
+      data {
+        screeningId
+        x
+        y
+      }
+    }
+  }
+}
