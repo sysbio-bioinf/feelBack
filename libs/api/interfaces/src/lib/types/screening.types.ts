@@ -19,7 +19,7 @@ export class ResolveOneScreeningInputType extends UpdateOneInputType(
   @Field({
     description: 'id',
   })
-  id: string;
+  id!: string;
 }
 
 @InputType()
@@ -30,7 +30,7 @@ export class UploadScreeningInputType extends CreateOneInputType(
   @IsString()
   @IsUUID('4')
   @Field()
-  instrumentId: string;
+  instrumentId!: string;
 
   @IsOptional()
   @IsString()
@@ -46,12 +46,12 @@ export class GetScreeningsByPersonAndInstrumentArgsType extends QueryArgsType(
   @IsString()
   @IsUUID('4')
   @Field()
-  instrumentId: string;
+  instrumentId!: string;
 
   @IsString()
   @IsUUID('4')
   @Field()
-  personId: string;
+  personId!: string;
 }
 
 export const ScreeningConnection = ConnectionType(ScreeningObject);

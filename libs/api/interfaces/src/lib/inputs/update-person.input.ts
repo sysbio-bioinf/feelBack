@@ -11,5 +11,5 @@ export class UpdatePersonInput extends CoreInput {
     description: 'if the person has accepted the TOS',
     nullable: false,
   })
-  acceptedTOS: boolean;
+  acceptedTOS!: boolean;
 }

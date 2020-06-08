@@ -12,5 +12,5 @@ export class CreateIdentityInput extends CoreInput {
     description: 'The pseudonym of the identity',
     nullable: false,
   })
-  pseudonym: string;
+  pseudonym!: string;
 }

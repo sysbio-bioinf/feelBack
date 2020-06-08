@@ -23,7 +23,7 @@ export class CreateInstrumentInput extends CoreInput {
     description: 'The name of the instrument',
     nullable: false,
   })
-  name: string;
+  name!: string;
 
   @IsOptional()
   @IsString()
@@ -38,7 +38,7 @@ export class CreateInstrumentInput extends CoreInput {
   @Field({
     description: 'The type of the instrument',
   })
-  type: string;
+  type!: string;
 
   @IsOptional()
   @IsString()
@@ -80,5 +80,5 @@ export class CreateInstrumentInput extends CoreInput {
     description: 'what has changed so far',
     nullable: false,
   })
-  changelog: string;
+  changelog!: string;
 }

@@ -21,7 +21,7 @@ export class CreateDoctorInput extends CoreInput {
     description: 'Firstname of this doctor',
     nullable: false,
   })
-  firstname: string;
+  firstname!: string;
 
   @IsString()
   @MaxLength(190)
@@ -29,7 +29,7 @@ export class CreateDoctorInput extends CoreInput {
     description: 'Lastname of this doctor',
     nullable: false,
   })
-  lastname: string;
+  lastname!: string;
 
   @IsOptional()
   @IsString()

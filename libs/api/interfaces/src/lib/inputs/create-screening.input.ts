@@ -21,21 +21,21 @@ export class CreateScreeningInput extends CoreInput {
     description: 'The instance ID (uuid v4) defined by the client',
     nullable: false,
   })
-  instanceId: string;
+  instanceId!: string;
 
   @IsDate()
   @Field({
     description: 'DateTime when this screening was performed',
     nullable: false,
   })
-  collectedAt: Date;
+  collectedAt!: Date;
 
   @IsObject()
   @Field(() => JSONObject, {
     description: 'the collected data',
     nullable: false,
   })
-  payload: object;
+  payload!: object;
 
   @IsString()
   @IsLocale()
@@ -44,7 +44,7 @@ export class CreateScreeningInput extends CoreInput {
       'The language this screening was performed in. Must be a valid locale.',
     nullable: false,
   })
-  language: string;
+  language!: string;
 
   @IsOptional()
   @ValidateNested()
@@ -53,5 +53,5 @@ export class CreateScreeningInput extends CoreInput {
     description: 'UserAgent Information of the device',
     nullable: true,
   })
-  userAgent: object;
+  userAgent?: object;
 }

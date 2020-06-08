@@ -11,25 +11,25 @@ export class ScreeningObject extends VersionableObject {
     description: 'Instance ID (uuid v4) defined by the client',
     nullable: false,
   })
-  instanceId: string;
+  instanceId!: string;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when this screening was performed.',
     nullable: false,
   })
-  collectedAt: Date;
+  collectedAt!: Date;
 
   @FilterableField({
     description: 'The language this screening was performed in',
     nullable: false,
   })
-  language: string;
+  language!: string;
 
   @Field(() => JSONObject, {
     description: 'the screening data (filled in questionnaires)',
     nullable: false,
   })
-  payload: object;
+  payload!: object;
 
   @FilterableField({
     description: 'if the screening issues has been resolved',
@@ -39,13 +39,13 @@ export class ScreeningObject extends VersionableObject {
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when the screening issues has been resolved.',
-    nullable: false,
+    nullable: true,
   })
-  resolvedAt: Date;
+  resolvedAt?: Date;
 
   @Field({
     description: 'data about resolving the screening issues',
     nullable: true,
   })
-  resolveComment: string;
+  resolveComment?: string;
 }

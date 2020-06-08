@@ -9,12 +9,12 @@ export class ResolveScreeningInput extends CoreInput {
     description: 'comments for resolving this issue',
     nullable: false,
   })
-  resolveComment: string;
+  resolveComment!: string;
 
   @IsDate()
   @Field({
     description: 'Date this issue was resolved',
     nullable: false,
   })
-  resolvedAt: Date;
+  resolvedAt!: Date;
 }

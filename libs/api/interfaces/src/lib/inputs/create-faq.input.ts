@@ -9,19 +9,19 @@ export class CreateFaqInput extends CoreInput {
     description: 'the question for this entry',
     nullable: false,
   })
-  question: string;
+  question!: string;
 
   @IsString()
   @Field({
     description: 'the answer for this entry',
     nullable: false,
   })
-  answer: string;
+  answer!: string;
 
   @IsBoolean()
   @Field({
     description: 'if this entry shall be activated',
     nullable: false,
   })
-  isActive: boolean;
+  isActive!: boolean;
 }

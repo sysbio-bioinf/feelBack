@@ -82,5 +82,5 @@ export class UpdateDoctorInput extends CoreInput {
     description: 'custom settings as json object',
     nullable: false,
   })
-  settings: object;
+  settings?: object;
 }

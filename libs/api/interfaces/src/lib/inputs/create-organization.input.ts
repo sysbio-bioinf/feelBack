@@ -16,7 +16,7 @@ export class CreateOrganizationInput extends CoreInput {
     description: 'The name of the organization',
     nullable: false,
   })
-  name: string;
+  name!: string;
 
   @IsOptional()
   @IsString()
@@ -24,7 +24,7 @@ export class CreateOrganizationInput extends CoreInput {
     description: 'The description of the organization',
     nullable: false,
   })
-  description: string;
+  description?: string;
 
   @IsString()
   @MaxLength(190)
@@ -32,7 +32,7 @@ export class CreateOrganizationInput extends CoreInput {
     description: 'The type of the organization',
     nullable: false,
   })
-  type: string;
+  type!: string;
 
   @IsOptional()
   @IsString()

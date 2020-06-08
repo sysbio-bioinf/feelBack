@@ -11,7 +11,7 @@ export class InstrumentObject extends VersionableObject {
     description: 'The name of this instrument',
     nullable: false,
   })
-  name: string;
+  name!: string;
 
   @Field({
     description: 'A description for this instrument',
@@ -23,7 +23,7 @@ export class InstrumentObject extends VersionableObject {
     description: 'The type of this instrument',
     nullable: false,
   })
-  type: string;
+  type!: string;
 
   @Field({
     description: 'An image / icon URL for this instrument',
@@ -54,7 +54,7 @@ export class InstrumentObject extends VersionableObject {
       'the changelog of this instrument (i.e., what has been changed)',
     nullable: false,
   })
-  changelog: string;
+  changelog!: string;
 
-  xState: string;
+  xState!: string;
 }

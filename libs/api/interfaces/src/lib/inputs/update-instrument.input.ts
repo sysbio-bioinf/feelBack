@@ -83,5 +83,5 @@ export class UpdateInstrumentInput extends CoreInput {
     description: 'what has changed so far',
     nullable: false,
   })
-  changelog: string;
+  changelog!: string;
 }

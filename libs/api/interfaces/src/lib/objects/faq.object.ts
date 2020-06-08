@@ -10,17 +10,17 @@ export class FaqObject extends VersionableObject {
     description: 'the question of this FAQ entry',
     nullable: false,
   })
-  question: string;
+  question!: string;
 
   @Field({
     description: 'the answer to this question',
     nullable: false,
   })
-  answer: string;
+  answer!: string;
 
   @FilterableField({
     description: 'indicates if this FAQ entry is active an can be displayed',
     nullable: false,
   })
-  isActive: boolean;
+  isActive!: boolean;
 }

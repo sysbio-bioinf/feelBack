@@ -9,7 +9,7 @@ export class IdentityObject extends VersionableObject {
   @FilterableField({
     description: 'The pseudonym of an identity.',
   })
-  pseudonym: string;
+  pseudonym!: string;
 
   @Field({
     description: 'An academic title of this identity',

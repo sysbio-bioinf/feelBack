@@ -53,5 +53,5 @@ export class DoctorObject extends VersionableObject {
     description: 'Settings for this user',
     nullable: false,
   })
-  settings: JSONObject;
+  settings!: JSONObject;
 }

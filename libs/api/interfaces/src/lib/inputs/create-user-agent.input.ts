@@ -10,7 +10,7 @@ export class CreateUserAgentInput extends CoreInput {
     description: 'The device type used for this request',
     nullable: true,
   })
-  device: string;
+  device?: string;
 
   @IsOptional()
   @IsString()
@@ -18,7 +18,7 @@ export class CreateUserAgentInput extends CoreInput {
     description: 'The OS used for this request',
     nullable: true,
   })
-  os: string;
+  os?: string;
 
   @IsOptional()
   @IsString()
@@ -26,5 +26,5 @@ export class CreateUserAgentInput extends CoreInput {
     description: 'The application version used for this request',
     nullable: true,
   })
-  application: string;
+  application?: string;
 }

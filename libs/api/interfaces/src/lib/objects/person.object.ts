@@ -10,11 +10,11 @@ export class PersonObject extends VersionableObject {
     description: 'the pseudonym of the person',
     nullable: false,
   })
-  pseudonym: string;
+  pseudonym!: string;
 
   @Field({
     description: 'indicates if the TOS were accepted',
     nullable: false,
   })
-  acceptedTOS: boolean;
+  acceptedTOS!: boolean;
 }

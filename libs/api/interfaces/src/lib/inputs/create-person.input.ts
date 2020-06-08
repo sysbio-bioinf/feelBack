@@ -12,5 +12,5 @@ export class CreatePersonInput extends CoreInput {
     description: 'the pseudonym to be applied',
     nullable: false,
   })
-  pseudonym: string;
+  pseudonym!: string;
 }

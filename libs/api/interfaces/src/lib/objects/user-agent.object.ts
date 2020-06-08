@@ -7,17 +7,17 @@ export class UserAgentObject extends CoreObject {
     description: 'The device type used for this request',
     nullable: true,
   })
-  device: string;
+  device?: string;
 
   @Field({
     description: 'The OS used for this request',
     nullable: true,
   })
-  os: string;
+  os?: string;
 
   @Field({
     description: 'The application version used for this request',
     nullable: true,
   })
-  application: string;
+  application?: string;
 }
