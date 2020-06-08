@@ -12,17 +12,17 @@ export abstract class IdentifiableObject extends CoreObject {
     description: 'The ID of this resource.',
     nullable: false,
   })
-  id: string;
+  id!: string;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when this resource was created.',
     nullable: false,
   })
-  createdAt: Date;
+  createdAt!: Date;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when this resource was last updated.',
     nullable: false,
   })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

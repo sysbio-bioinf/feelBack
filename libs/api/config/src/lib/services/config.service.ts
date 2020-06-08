@@ -16,7 +16,7 @@ export class ConfigService {
     );
   }
 
-  get(key: string, defaultValue: string = null): any {
+  get(key: string, defaultValue?: any): any {
     return _.get(this.config, key, defaultValue);
   }
 

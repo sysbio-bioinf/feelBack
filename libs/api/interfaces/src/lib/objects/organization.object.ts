@@ -14,9 +14,9 @@ export class OrganizationObject extends VersionableObject {
 
   @Field({
     description: 'A description of this organization',
-    nullable: true,
+    nullable: false,
   })
-  description?: string;
+  description!: string;
 
   @FilterableField({
     description: 'Type (hospital, service center, ...) of the organization',

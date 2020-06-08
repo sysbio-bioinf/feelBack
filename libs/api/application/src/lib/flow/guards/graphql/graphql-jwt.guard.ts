@@ -14,6 +14,7 @@ import { REQUEST_FIELDS } from '../../../constants/request-fields.constants';
 
 const defaultOptions = {
   session: false,
+  // @ts-ignore
   callback: (err, user, info) => {
     if (err || !user) {
       // When Error occur, info is the error.
@@ -32,6 +33,7 @@ const defaultOptions = {
   },
 };
 
+// @ts-ignore
 const createPassportContext = (request, response) => (type, options) =>
   // TODO Add (minimal) typings for user
   new Promise<{ user: any; info: KeycloakJwtModel }>((resolve, reject) =>
@@ -66,6 +68,7 @@ export class GraphqlJwtGuard extends AuthGuard('jwt') implements CanActivate {
   }
 
   // TODO: better typings for params
+  // @ts-ignore
   handleRequest(err, user, info) {
     if (err || !user) {
       throw new CoreException(

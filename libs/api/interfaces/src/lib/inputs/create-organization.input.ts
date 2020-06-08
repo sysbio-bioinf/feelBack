@@ -18,13 +18,12 @@ export class CreateOrganizationInput extends CoreInput {
   })
   name!: string;
 
-  @IsOptional()
   @IsString()
   @Field({
     description: 'The description of the organization',
     nullable: false,
   })
-  description?: string;
+  description!: string;
 
   @IsString()
   @MaxLength(190)

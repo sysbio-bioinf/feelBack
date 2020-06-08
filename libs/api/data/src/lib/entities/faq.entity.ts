@@ -4,11 +4,11 @@ import { VersionableEntity } from '@cancerlog/api/core';
 @Entity('faqs', {})
 export class FaqEntity extends VersionableEntity {
   @Column({ type: 'text', nullable: false })
-  question: string;
+  question!: string;
 
   @Column({ type: 'text', nullable: false })
-  answer: string;
+  answer!: string;
 
   @Column({ type: 'boolean', nullable: false, default: false })
-  isActive: boolean;
+  isActive!: boolean;
 }

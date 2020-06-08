@@ -1080,7 +1080,7 @@ type Screening {
   isResolved: Boolean
 
   """DateTime when the screening issues has been resolved."""
-  resolvedAt: DateTime!
+  resolvedAt: DateTime
 
   """data about resolving the screening issues"""
   resolveComment: String

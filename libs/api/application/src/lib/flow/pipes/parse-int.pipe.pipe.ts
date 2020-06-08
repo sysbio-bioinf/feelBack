@@ -10,7 +10,16 @@ import { CoreException } from '@cancerlog/api/core';
 export class ParseIntPipe extends NestParseIntPipe {
   async transform(value: string, metadata: ArgumentMetadata): Promise<number> {
     if (value === undefined) {
-      return undefined;
+      throw new CoreException(
+        {
+          status: HttpStatus.PRECONDITION_FAILED,
+          detail: 'Validation failed: numeric input expected, got undefined',
+          source: {
+            pointer: `request.${metadata.type}.${metadata.data}`,
+          },
+        },
+        HttpStatus.PRECONDITION_FAILED,
+      );
     }
 
     try {

@@ -11,7 +11,7 @@ export class VersionableObject extends IdentifiableObject {
     description:
       'The version number of this resource (incremented each time this resource was updated).',
   })
-  version: number;
+  version!: number;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'Date this entry was deleted.',

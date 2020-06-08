@@ -3,7 +3,7 @@ import { VersionColumn, DeleteDateColumn } from 'typeorm';
 
 export abstract class VersionableEntity extends IdentifiableEntity {
   @VersionColumn({ default: 1 })
-  version: number;
+  version!: number;
 
   @DeleteDateColumn()
   deletedAt?: Date;

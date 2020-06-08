@@ -4,11 +4,12 @@ import * as _ from 'lodash';
 import { DECORATOR_METADATA } from '../../../constants/decorator.constants';
 import { REQUEST_FIELDS } from '../../../constants/request-fields.constants';
 import { CoreException } from '@cancerlog/api/core';
+import { Request } from 'express';
 
 export abstract class AbstractRoleGuard implements CanActivate {
   constructor(protected reflector: Reflector) {}
 
-  abstract getRequest(context: ExecutionContext);
+  abstract getRequest(context: ExecutionContext): any;
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     let endpointRoles = this.reflector.get<string[]>(

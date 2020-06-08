@@ -22,13 +22,14 @@ export class JSONObjectScalar implements CustomScalar<object, object> {
     const value = new Object(null);
     if (ast.kind === Kind.OBJECT) {
       ast.fields.forEach((field) => {
+        // @ts-ignore TODO
         value[field.name.value] = this.parseObject(field.value);
       });
     }
     return value;
   }
 
-  parseObject(ast) {
+  parseObject(ast: ValueNode): any {
     switch (ast.kind) {
       case Kind.STRING:
       case Kind.BOOLEAN:
@@ -50,7 +51,7 @@ export class JSONObjectScalar implements CustomScalar<object, object> {
     }
   }
 
-  ensureObject(value) {
+  ensureObject(value: object | null) {
     if (typeof value !== 'object' || value === null || Array.isArray(value)) {
       throw new TypeError(
         `JSONObject cannot represent non-object value: ${value}`,

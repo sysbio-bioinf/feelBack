@@ -5,27 +5,27 @@ import { DoctorEntity } from './doctor.entity';
 @Entity({ name: 'organizations' })
 export class OrganizationEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190, nullable: false })
-  name: string;
+  name!: string;
 
   @Column({ type: 'text', nullable: false })
-  description: string;
+  description!: string;
 
   @Column({ type: 'varchar', length: 190, nullable: false })
-  type: string;
+  type!: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   address?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   phone?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   email?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   url?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   logo?: string;
 
   @ManyToMany((type) => DoctorEntity, (member) => member.organizations, {
@@ -33,5 +33,5 @@ export class OrganizationEntity extends VersionableEntity {
     onDelete: 'CASCADE',
   })
   @JoinTable({ name: 'organization_members' })
-  members: DoctorEntity[];
+  members!: DoctorEntity[];
 }

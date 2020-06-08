@@ -8,5 +8,5 @@ export class SelectOneInputType {
     nullable: false,
     description: 'The ID of the record',
   })
-  id: string | number;
+  id!: string | number;
 }

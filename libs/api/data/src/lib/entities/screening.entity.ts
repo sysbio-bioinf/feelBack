@@ -8,28 +8,28 @@ import { PersonEntity } from './person.entity';
 export class ScreeningEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190, nullable: false, unique: true })
   @Index({ unique: true })
-  instanceId: string;
+  instanceId!: string;
 
   @Column({ type: 'timestamp with time zone', nullable: false })
-  collectedAt: Date;
+  collectedAt!: Date;
 
   @Column({ type: 'varchar', length: 10, nullable: false })
-  language: string;
+  language!: string;
 
   @Column({ type: 'json', nullable: false, default: {} })
-  payload: object; // TODO better typings
+  payload!: object; // TODO better typings
 
   @Column({ type: 'json', nullable: true })
   userAgent?: UserAgentClass;
 
-  @Column({ type: 'boolean', nullable: true })
-  isResolved: boolean;
+  @Column({ type: 'boolean', nullable: true, default: null })
+  isResolved?: boolean;
 
   @Column({ type: 'timestamp with time zone', nullable: true, default: null })
-  resolvedAt: Date;
+  resolvedAt?: Date;
 
-  @Column({ type: 'text', nullable: true })
-  resolveComment: string;
+  @Column({ type: 'text', nullable: true, default: null })
+  resolveComment?: string;
 
   // relationships
   @ManyToOne((type) => PersonEntity, (person) => person.screenings, {
@@ -37,7 +37,7 @@ export class ScreeningEntity extends VersionableEntity {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  person: PersonEntity;
+  person?: PersonEntity;
 
   @RelationId((screening: ScreeningEntity) => screening.person)
   _personId?: string;

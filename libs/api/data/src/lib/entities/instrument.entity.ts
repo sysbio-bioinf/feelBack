@@ -7,38 +7,38 @@ import { DiagramClass } from '../classes/diagram.class';
 @Entity({ name: 'instruments' })
 export class InstrumentEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190 })
-  name: string;
+  name!: string;
 
   @Column({ type: 'text', nullable: true, default: null })
-  description: string;
+  description?: string;
 
   @Column({ type: 'varchar', length: 190, nullable: false })
-  type: string;
+  type!: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
-  image: string;
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
+  image?: string;
 
   @Column({ type: 'json', nullable: false, default: {} })
-  payload: object; // TODO: can we better type this in order to use surveyjs models?
+  payload!: object; // TODO: can we better type this in order to use surveyjs models?
 
   @Column({ type: 'json', nullable: false, default: [] })
-  rules: RuleClass[];
+  rules!: RuleClass[];
 
   @Column({ type: 'json', nullable: false, default: {} })
-  diagram: DiagramClass;
+  diagram!: DiagramClass;
 
   @Column({ type: 'text', nullable: false, default: '' })
-  changelog: string;
+  changelog!: string;
 
-  @Column({ type: 'text', nullable: false, default: '' })
-  xState: string; // the serialized xState object
+  @Column({ type: 'text', nullable: true, default: null })
+  xState!: string; // the serialized xState object
 
   // relationships
   @OneToMany((type) => ScreeningEntity, (screening) => screening.instrument, {
     onDelete: 'SET NULL',
   })
-  screenings: ScreeningEntity[];
+  screenings!: ScreeningEntity[];
 
   @RelationId((instrument: InstrumentEntity) => instrument.screenings)
-  _screenings: string[];
+  _screenings!: string[];
 }

@@ -9,11 +9,11 @@ import {
 export abstract class IdentifiableEntity extends CoreEntity {
   @PrimaryGeneratedColumn('uuid')
   @Index({ unique: true })
-  id: string;
+  id!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

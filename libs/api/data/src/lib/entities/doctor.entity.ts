@@ -20,19 +20,23 @@ export class DoctorEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   lastname?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   phone?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   email?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   url?: string;
 
-  @Column({ type: 'varchar', length: 190, nullable: true })
+  @Column({ type: 'varchar', length: 190, nullable: true, default: null })
   picture?: string;
 
-  @Column({ type: 'timestamp with time zone', default: null, nullable: true })
+  @Column({
+    type: 'timestamp with time zone',
+    nullable: true,
+    default: null,
+  })
   lastLoginAt?: Date;
 
   @Column({ type: 'boolean', nullable: false, default: false })

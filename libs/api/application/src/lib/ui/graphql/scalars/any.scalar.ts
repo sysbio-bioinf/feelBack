@@ -27,6 +27,7 @@ export class AnythingScalar implements CustomScalar<any, any> {
       case Kind.OBJECT:
         const value = new Object(null);
         ast.fields.forEach((field) => {
+          // @ts-ignore TODO
           value[field.name.value] = this.parseLiteral(field.value);
         });
         return value;
