@@ -6,8 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
+
 export class HeaderComponent implements OnInit {
   constructor(readonly translateService: TranslateService) {}
+
+  avLanguages: string[] = ['en', 'de'];
 
   ngOnInit(): void {}
 
