@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, delay } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {
   GetScreeningGQL,
   Screening,
@@ -19,15 +19,21 @@ export class ScreeningService {
   public getScreenings(
     personId: string,
     instrumentId: string,
+    startDate: Date,
+    endDate: Date
   ): Observable<any> {
     return this.getScreeningsDiagramCollectionsService
       .fetch({
         personId,
         instrumentId,
+        startDate,
+        endDate
       })
       .pipe(
         map((data) => {
-          const lineChart = data.data.screeningsDiagramCollections[0].axis[0];
+          let screenings = {};
+          screenings = data.data.screeningsDiagramCollections[0];
+          const lineChart = screenings['axis'][0];
           const distress = [{ name: lineChart.name, series: [] }];
           for (const record of lineChart.data) {
             distress[0].series.push({
@@ -36,10 +42,9 @@ export class ScreeningService {
               value: record.y,
             });
           }
-          data.data.screeningsDiagramCollections[0].axis = distress;
+          screenings['axis'] = distress;
           return data.data.screeningsDiagramCollections;
         }),
-        delay(300)
       );
   }
 

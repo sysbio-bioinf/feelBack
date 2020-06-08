@@ -7,6 +7,9 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { DatePipe } from '@angular/common';
+import { MatNativeDateModule, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, AppDateFormats } from './date-format';
+import { Platform } from '@angular/cdk/platform';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,10 +19,20 @@ import { DatePipe } from '@angular/common';
     AppRouting,
     GraphQLModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    MatNativeDateModule
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    {
+      provide: DateAdapter,
+      useClass: AppDateAdapter,
+      deps: [MAT_DATE_LOCALE, Platform]
+    },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: AppDateFormats
+    }
   ],
   bootstrap: [AppComponent],
 })

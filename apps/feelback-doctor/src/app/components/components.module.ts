@@ -19,6 +19,8 @@ import { FilterComponent } from './patients/filter/filter.component';
 import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
 import { ActionBarComponent } from './util/action-bar/action-bar.component';
 import { FooterComponent } from './util/footer/footer.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { FooterComponent } from './util/footer/footer.component';
     ActionBarComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule],
+  imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule, ReactiveFormsModule],
   exports: [
     NavbarComponent,
     FilterComponent,

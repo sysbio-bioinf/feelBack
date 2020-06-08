@@ -1,3 +1,7 @@
+#distress{
+  min-height: 450px;
+}
+
 .chart-wrapper {
   margin: 0 auto;
   text-align: center;
@@ -6,4 +10,14 @@
 
 .ngx-charts .line-highlight {
   display: block !important;
+}
+
+mat-button-toggle-group{
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 2em;
+}
+
+mat-form-field {
+  margin-right: 1em;
 }

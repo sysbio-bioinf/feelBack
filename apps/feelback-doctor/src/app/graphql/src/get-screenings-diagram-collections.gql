@@ -1,10 +1,13 @@
 query getScreeningsDiagramCollections(
   $personId: String!
   $instrumentId: String!
+  $startDate: DateTime
+  $endDate: DateTime
 ) {
   screeningsDiagramCollections(
     personId: $personId
     instrumentId: $instrumentId
+    filter: { collectedAt: { gte: $startDate, lte: $endDate } }
   ) {
     name
     type

@@ -1,15 +1,107 @@
-<div *ngIf="screenings$ | async as screenings; else loading">
-  <mat-card *ngIf="screenings.length > 0">
-    <mat-card-header>
-      <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.screening}}</mat-icon>
-      <mat-card-title>
-        Distress Thermometer
-      </mat-card-title>
-      <mat-card-subtitle>
-        Screenings
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
+<mat-card id="distress">
+  <mat-card-header>
+    <mat-icon mat-card-avatar class="header-avatar">{{
+      commonService.icons.screening
+    }}</mat-icon>
+    <mat-card-title>
+      Distress Thermometer
+    </mat-card-title>
+    <mat-card-subtitle>
+      Screenings
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content *ngIf="screenings$ | async as screenings; else loading">
+    <div *ngIf="screenings[0].axis[0].series.length > 0">
+      <mat-button-toggle-group #daterange="matButtonToggleGroup">
+        <mat-button-toggle
+          [checked]="selectedDaterange === 'last-year'"
+          value="last-year"
+          aria-label="last-year"
+          (click)="selectDaterange(daterange.value)"
+        >
+          Last year
+        </mat-button-toggle>
+        <mat-button-toggle
+          [checked]="selectedDaterange === 'current-year'"
+          value="current-year"
+          aria-label="current-year"
+          (click)="selectDaterange(daterange.value)"
+        >
+          Current year
+        </mat-button-toggle>
+        <mat-button-toggle
+          [checked]="selectedDaterange === 'current-month'"
+          value="current-month"
+          aria-label="Current month"
+          (click)="selectDaterange(daterange.value)"
+        >
+          Current month
+        </mat-button-toggle>
+        <mat-button-toggle
+          [checked]="selectedDaterange === 'last-month'"
+          value="last-month"
+          aria-label="Last month"
+          (click)="selectDaterange(daterange.value)"
+        >
+          Last month
+        </mat-button-toggle>
+        <mat-button-toggle
+          value="custom"
+          aria-label="Custom"
+          [checked]="selectedDaterange === 'custom'"
+        >
+          Custom
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <span *ngIf="daterange.value === 'custom'">
+        <mat-form-field>
+          <mat-label>Choose a startdate</mat-label>
+          <input
+            matInput
+            [max]="today"
+            [formControl]="startDate"
+            [matDatepicker]="startpicker"
+            (focus)="startpicker.open()"
+            autocomplete="false"
+          />
+          <mat-datepicker-toggle
+            matPrefix
+            [for]="startpicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startpicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Choose a enddate</mat-label>
+          <input
+            matInput
+            [min]="startDate.value"
+            [max]="today"
+            [formControl]="endDate"
+            [matDatepicker]="endpicker"
+            (focus)="endpicker.open()"
+            autocomplete="false"
+          />
+          <mat-datepicker-toggle
+            matPrefix
+            [for]="endpicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endpicker></mat-datepicker>
+        </mat-form-field>
+        <button
+          mat-icon-button
+          aria-label="Change daterange"
+          [disabled]="
+            !startpicker.startAt ||
+            !endpicker.startAt ||
+            startpicker.startAt > endpicker.startAt
+          "
+          (click)="selectDaterange(daterange.value)"
+        >
+          <mat-icon>{{ commonService.icons.search }}</mat-icon>
+        </button>
+      </span>
+
       <div class="chart-wrapper">
         <ngx-charts-line-chart
           [scheme]="commonService.colorScheme"
@@ -23,14 +115,15 @@
         >
         </ngx-charts-line-chart>
       </div>
-    </mat-card-content>
-  </mat-card>
-  <div *ngIf="screenings.length === 0">
-    <feelback-doctor-empty-state
-      [entity]="'screening'"
-    ></feelback-doctor-empty-state>
-  </div>
-</div>
+    </div>
+
+    <div *ngIf="screenings[0].axis[0].series.length === 0">
+      <feelback-doctor-empty-state
+        [entity]="'screening'"
+      ></feelback-doctor-empty-state>
+    </div>
+  </mat-card-content>
+</mat-card>
 
 <ng-template #loading>
   <feelback-doctor-loading></feelback-doctor-loading>
