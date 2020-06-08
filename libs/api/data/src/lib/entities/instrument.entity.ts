@@ -10,13 +10,13 @@ export class InstrumentEntity extends VersionableEntity {
   name!: string;
 
   @Column({ type: 'text', nullable: true, default: null })
-  description?: string;
+  description!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: false })
   type!: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  image?: string;
+  image!: string | null;
 
   @Column({ type: 'json', nullable: false, default: {} })
   payload!: object; // TODO: can we better type this in order to use surveyjs models?
@@ -31,7 +31,7 @@ export class InstrumentEntity extends VersionableEntity {
   changelog!: string;
 
   @Column({ type: 'text', nullable: true, default: null })
-  xState!: string; // the serialized xState object
+  xState!: string | null; // the serialized xState object
 
   // relationships
   @OneToMany((type) => ScreeningEntity, (screening) => screening.instrument, {

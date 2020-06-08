@@ -8,11 +8,11 @@ export class IdentityEntity extends VersionableEntity {
   pseudonym!: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  title?: string;
+  title!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  firstname?: string;
+  firstname!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  lastname?: string;
+  lastname!: string | null;
 }

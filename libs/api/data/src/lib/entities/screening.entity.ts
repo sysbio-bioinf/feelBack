@@ -20,16 +20,16 @@ export class ScreeningEntity extends VersionableEntity {
   payload!: object; // TODO better typings
 
   @Column({ type: 'json', nullable: true })
-  userAgent?: UserAgentClass;
+  userAgent!: UserAgentClass | null;
 
   @Column({ type: 'boolean', nullable: true, default: null })
-  isResolved?: boolean;
+  isResolved!: boolean | null;
 
   @Column({ type: 'timestamp with time zone', nullable: true, default: null })
-  resolvedAt?: Date;
+  resolvedAt!: Date | null;
 
   @Column({ type: 'text', nullable: true, default: null })
-  resolveComment?: string;
+  resolveComment!: string | null;
 
   // relationships
   @ManyToOne((type) => PersonEntity, (person) => person.screenings, {
@@ -37,10 +37,10 @@ export class ScreeningEntity extends VersionableEntity {
     cascade: true,
     onDelete: 'SET NULL',
   })
-  person?: PersonEntity;
+  person!: PersonEntity | null;
 
   @RelationId((screening: ScreeningEntity) => screening.person)
-  _personId?: string;
+  _personId!: string | null;
 
   @ManyToOne(
     (type) => InstrumentEntity,
@@ -51,10 +51,10 @@ export class ScreeningEntity extends VersionableEntity {
       onDelete: 'SET NULL',
     },
   )
-  instrument?: InstrumentEntity;
+  instrument!: InstrumentEntity | null;
 
   @RelationId((screening: ScreeningEntity) => screening.instrument)
-  _instrumentId?: string;
+  _instrumentId!: string | null;
 
   // functions
   getScreeningData(): object {

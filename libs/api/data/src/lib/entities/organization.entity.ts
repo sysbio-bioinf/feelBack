@@ -14,19 +14,19 @@ export class OrganizationEntity extends VersionableEntity {
   type!: string;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  address?: string;
+  address!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  phone?: string;
+  phone!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  email?: string;
+  email!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  url?: string;
+  url!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  logo?: string;
+  logo!: string | null;
 
   @ManyToMany((type) => DoctorEntity, (member) => member.organizations, {
     cascade: true,

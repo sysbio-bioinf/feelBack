@@ -12,38 +12,38 @@ export class DoctorEntity extends VersionableEntity {
   isActive!: boolean;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  title?: string;
+  title!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  firstname?: string;
+  firstname!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  lastname?: string;
+  lastname!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  phone?: string;
+  phone!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  email?: string;
+  email!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  url?: string;
+  url!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: true, default: null })
-  picture?: string;
+  picture!: string | null;
 
   @Column({
     type: 'timestamp with time zone',
     nullable: true,
     default: null,
   })
-  lastLoginAt?: Date;
+  lastLoginAt!: Date | null;
 
   @Column({ type: 'boolean', nullable: false, default: false })
   acceptedTOS!: boolean;
 
-  @Column({ type: 'json', nullable: false, default: {} })
-  settings!: object;
+  @Column({ type: 'json', nullable: true, default: null })
+  settings!: object | null;
 
   @ManyToMany(
     (type) => OrganizationEntity,

@@ -19,7 +19,7 @@ export class PersonEntity extends VersionableEntity {
     nullable: true,
     default: null,
   })
-  acceptedTOSAt!: Date;
+  acceptedTOSAt!: Date | null;
 
   @OneToMany((type) => ScreeningEntity, (screening) => screening.person)
   screenings!: ScreeningEntity[];
