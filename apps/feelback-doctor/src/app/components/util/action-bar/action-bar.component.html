@@ -6,13 +6,10 @@
     <span class="spacer"></span>
     <span>
       <button
-        #printTooltip
         mat-icon-button
-        matTooltip="Print screening"
-        matTooltipPosition="above"
         aria-label="Print screening"
         class="action"
-        (click)="printScreening(printTooltip)"
+        (click)="printScreening()"
       >
         <mat-icon>{{commonService.icons.print}}</mat-icon>
       </button>

@@ -3,14 +3,15 @@
     background-color: unset !important;
   }
 
-  main{
+  main {
     height: fit-content !important;
   }
 
   feelback-doctor-navbar,
   nav,
   feelback-doctor-action-bar,
-  mat-paginator, feelback-doctor-footer {
+  mat-paginator,
+  feelback-doctor-footer {
     display: none !important;
   }
 
@@ -49,5 +50,27 @@
   #surveyContainer {
     position: relative !important;
     top: -30px !important;
+  }
+
+  #questionnaire {
+    margin-top: 5em !important;
+  }
+
+  .sv-panel,
+  .sv-row,
+  .sv-question {
+    flex: unset !important;
+    flex-wrap: unset !important;
+    display: block !important;
+  }
+
+  .sv-question, .sv-row__question {
+    -webkit-column-break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .sv-row:not(:last-child) {
+    padding-bottom: 0em;
   }
 }

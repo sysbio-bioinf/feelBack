@@ -28,9 +28,8 @@ export class ActionBarComponent implements OnInit {
     );
   }
 
-  public printScreening(printTooltip: MatTooltip) {
+  public printScreening() {
     this.printEvent.emit();
-    printTooltip.hide();
   }
   
 
