@@ -35,12 +35,9 @@ export class DBClearCommand {
       let currentConnection: Connection;
       if (feelbackTableNames.includes(tableToTruncate)) {
         currentConnection = feelbackConnection;
-      }
-      if (identityTableNames.includes(tableToTruncate)) {
+      } else if (identityTableNames.includes(tableToTruncate)) {
         currentConnection = identityConnection;
-      }
-
-      if (!currentConnection) {
+      } else {
         spinner.fail(`Could not find registered Table ${tableToTruncate}`);
         continue;
       }
