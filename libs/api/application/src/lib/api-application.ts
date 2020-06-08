@@ -1,5 +1,4 @@
 export * from './application-guard.module';
-export * from './commands/seeder.command';
 export * from './constants/decorator.constants';
 export * from './constants/request-fields.constants';
 export * from './decorators/api-realm.decorator';
