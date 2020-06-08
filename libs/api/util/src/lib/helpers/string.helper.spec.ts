@@ -41,11 +41,6 @@ describe('StringHelper', () => {
     expect(str).toHaveLength(50);
   });
 
-  it('should generate a cuid', () => {
-    expect(StringHelper.cuid()).toBeTruthy();
-    expect(typeof StringHelper.cuid()).toEqual('string');
-  });
-
   it('should generate a valid uuid4', () => {
     const uuid = StringHelper.uuid4();
     expect(uuid).toBeTruthy();
