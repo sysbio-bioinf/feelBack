@@ -45,6 +45,7 @@
                   {{ 'app.nav.download' | translate }}
                 </a>
               </li>
+              <!-- TODO (?) ngFor mit array in header.component.ts -->
               <li class="nav-item">
                 <div class="dropdown">
                   <button
@@ -62,12 +63,14 @@
                     aria-labelledby="dropdownMenuButton"
                   >
                     <a
+                      id="dropdownEnSelect"
                       class="dropdown-item"
                       (click)="this.switchLanguage('en')"
                     >
                       English</a
                     >
                     <a
+                      id="dropdownDeSelect"
                       class="dropdown-item"
                       (click)="this.switchLanguage('de')"
                     >

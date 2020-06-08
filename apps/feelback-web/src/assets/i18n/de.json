@@ -14,7 +14,43 @@
     "pages": {
       "start": {
         "title": "FeelBack",
-        "tagline": "A Short description about FeelBack here",
+        "tagline": "Hier eine kurze Beschreibung über FeelBack",
+        "highlights": {
+          "title": "Highlights",
+          "headline": "Features you love",
+          "highlights": {
+            "a": {
+              "icon": "fas fa-smile-wink",
+              "title": "Einfach zu Verwenden",
+              "text": "The mobile app is easy to use - especially for elderly."
+            },
+            "b": {
+              "icon": "fas fa-hand-holding-medical",
+              "title": "Individual Healthcare",
+              "text": "FeelBack provides an individual healthcare for patients."
+            },
+            "c": {
+              "icon": "fas fa-chart-line",
+              "title": "Analysis",
+              "text": "FeelBack provides analytics based on your screening values."
+            },
+            "d": {
+              "icon": "fas fa-question-circle",
+              "title": "FAQs",
+              "text": "FeelBack provides helpful tipps how to cope with your disease."
+            },
+            "e": {
+              "icon": "fas fa-file-alt",
+              "title": "Validated Instruments",
+              "text": "FeelBack uses validated instruments to collect data."
+            },
+            "f": {
+              "icon": "fas fa-key",
+              "title": "Secure",
+              "text": "FeelBack uses a secure infrastructure and state-of-the-art encryption."
+            }
+          }
+        },
         "features": {
           "title": "Funktionen",
           "headline": "Do more with our Application",

@@ -17,162 +17,58 @@
     <img
       class="client-logo img-fluid"
       src="./assets/images/logos/logo-uniklinik-ulm.png"
+      data-cy="uniklinik-logo"
     />
     <img
       class="client-logo img-fluid"
       src="./assets/images/logos/logo-uni-ulm.svg"
+      data-cy="uni-logo"
     />
     <img
       class="client-logo img-fluid"
       src="./assets/images/logos/logo-kbs-ulm.jpg"
+      data-cy="kbs-logo"
     />
     <img
       class="client-logo img-fluid"
       src="./assets/images/logos/logo-bawue.png"
+      data-cy="bawue-logo"
     />
     <img
       class="client-logo img-fluid"
       src="./assets/images/logos/logo-bawue-digital.png"
+      data-cy="bawue-digital-logo"
     />
   </div>
 </div>
 
 <div class="section light-bg" id="features">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title" data-cy="highlight-title">
       <small>{{ 'app.pages.start.highlights.title' | translate }}</small>
       <h3>{{ 'app.pages.start.highlights.headline' | translate }}</h3>
     </div>
 
-    <div class="row">
-      <div class="col-12 col-lg-4">
+    <div class="row" data-cy="highlights-row">
+      <div class="col-12 col-lg-4" *ngFor="let highlight of highligths">
         <div class="card features">
           <div class="card-body">
             <div class="media">
               <span
-                class="{{ 'app.pages.start.highlights.highlights.a.icon' | translate }} gradient-fill fa-3x mr-3"
+                class="{{ ('app.pages.start.highlights.highlights.')+(highlight)+('.icon') | translate }} gradient-fill fa-3x mr-3"
               ></span>
               <div class="media-body">
-                <h4 class="card-title">
-                  {{ 'app.pages.start.highlights.highlights.a.title' | translate
-                  }}
+                <h4 class="card-title" translate>
+                  {{('app.pages.start.highlights.highlights.')+(highlight)+('.title')}}
                 </h4>
-                <p class="card-text">
-                  {{ 'app.pages.start.highlights.highlights.a.text' | translate
-                  }}
+                <p class="card-text" translate>
+                  {{('app.pages.start.highlights.highlights.')+(highlight)+('.text')}}
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div class="card features">
-          <div class="card-body">
-            <div class="media">
-              <span
-                class="{{ 'app.pages.start.highlights.highlights.b.icon' | translate }} gradient-fill fa-3x mr-3"
-              ></span>
-              <div class="media-body">
-                <h4 class="card-title">
-                  {{ 'app.pages.start.highlights.highlights.b.title' | translate
-                  }}
-                </h4>
-                <p class="card-text">
-                  {{ 'app.pages.start.highlights.highlights.b.text' | translate
-                  }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div class="card features">
-          <div class="card-body">
-            <div class="media">
-              <span
-                class="{{ 'app.pages.start.highlights.highlights.c.icon' | translate }} gradient-fill fa-3x mr-3"
-              ></span>
-              <div class="media-body">
-                <h4 class="card-title">
-                  {{ 'app.pages.start.highlights.highlights.c.title' | translate
-                  }}
-                </h4>
-                <p class="card-text">
-                  {{ 'app.pages.start.highlights.highlights.c.text' | translate
-                  }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div class="col-12 col-lg-4">
-        <div class="card features">
-          <div class="card-body">
-            <div class="media">
-              <span
-                class="{{ 'app.pages.start.highlights.highlights.d.icon' | translate }} gradient-fill fa-3x mr-3"
-              ></span>
-              <div class="media-body">
-                <h4 class="card-title">
-                  {{ 'app.pages.start.highlights.highlights.d.title' | translate
-                  }}
-                </h4>
-                <p class="card-text">
-                  {{ 'app.pages.start.highlights.highlights.d.text' | translate
-                  }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div class="card features">
-          <div class="card-body">
-            <div class="media">
-              <span
-                class="{{ 'app.pages.start.highlights.highlights.e.icon' | translate }} gradient-fill fa-3x mr-3"
-              ></span>
-              <div class="media-body">
-                <h4 class="card-title">
-                  {{ 'app.pages.start.highlights.highlights.e.title' | translate
-                  }}
-                </h4>
-                <p class="card-text">
-                  {{ 'app.pages.start.highlights.highlights.e.text' | translate
-                  }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4">
-        <div class="card features">
-          <div class="card-body">
-            <div class="media">
-              <span
-                class="{{ 'app.pages.start.highlights.highlights.f.icon' | translate }} gradient-fill fa-3x mr-3"
-              ></span>
-              <div class="media-body">
-                <h4 class="card-title">
-                  {{ 'app.pages.start.highlights.highlights.f.title' | translate
-                  }}
-                </h4>
-                <p class="card-text">
-                  {{ 'app.pages.start.highlights.highlights.f.text' | translate
-                  }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <br />
       </div>
     </div>
   </div>
@@ -180,12 +76,13 @@
 <!-- // end .section -->
 <div class="section">
   <div class="container">
-    <div class="row">
+    <div class="row" data-cy="discover-app-row">
       <div class="col-lg-6 offset-lg-6">
         <div class="box-icon centered">
           <span class="fas fa-mobile-alt gradient-fill fa-3x"></span>
         </div>
         <h2>Discover our App</h2>
+        <!--TODO-Translation-->
         <p class="mb-4">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati
           vel exercitationem eveniet vero maxime ratione
@@ -193,7 +90,7 @@
         <a href="#" class="btn btn-primary">Read more</a>
       </div>
     </div>
-    <div class="perspective-phone">
+    <div class="perspective-phone" data-cy="discover-app-image">
       <img
         src="./assets/images/perspective.png"
         alt="perspective phone"
@@ -206,12 +103,12 @@
 
 <div class="section light-bg">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title" data-cy="features-title">
       <small>{{ 'app.pages.start.features.title' | translate }}</small>
       <h3>{{'app.pages.start.features.headline' | translate }}</h3>
     </div>
 
-    <ul class="nav nav-tabs nav-justified" role="tablist">
+    <ul class="nav nav-tabs nav-justified" role="tablist" data-cy="features-nav">
       <li class="nav-item" *ngFor="let feature of this.features; let i = index">
         <a
           class="nav-link"
@@ -224,7 +121,7 @@
       </li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content" data-cy="feature-tab-content">
       <div
         *ngFor="let feature of this.features; let i = index"
         class="tab-pane fade"
@@ -357,7 +254,7 @@
 
 <div class="section light-bg" id="gallery">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title" data-cy="gallery-title">
       <small>{{'app.pages.start.gallery.title' | translate}}</small>
       <h3>{{'app.pages.start.gallery.headline' | translate }}</h3>
     </div>
