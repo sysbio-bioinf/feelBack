@@ -8,10 +8,15 @@
           "type": "html",
           "name": "__intro1",
           "html": {
+            "default": "<p>Cancer is accompanied by a variety of stress factors that can affect both the individuals concerned and their relatives. These stressors can occur during every phase of the disease, affect every aspect of life, and can show different levels of severity.</p> <p> Stressors can arise as a result of the disease, the treatment (e.g. side-effects of the treatment and institutional problems such as lack of time or alternating doctors), and/or from problems related to family, finances, work or social life. The disease and the related stressors may lead to drastic restrictions in the quality of life as well as to a persistent impairment in coping processes.</p>",
             "de": "<p>Krebserkrankungen gehen bei Betroffenen als auch bei Angehörigen mit einer Vielzahl an Belastungen einher. Die Belastungen können in jeder Krankheitsphase auftreten, sämtliche Lebensbereiche durchdringen und unterschiedlich schwerwiegend ausfallen.</p><p>Belastungen können aus Krankheit und Behandlung (z. B. Nebenwirkungen der Behandlung; einrichtungsbedingten Problemen, wie Zeitmangel oder wechselnde Ärzte) resultieren und/oder durch familiäre, finanzielle, berufliche sowie soziale Probleme bedingt sein. Durch die Erkrankung selbst und den damit verbundenen Belastungen kann es zu einer drastischen Einschränkung in der Lebensqualität sowie einer anhaltenden Beeinträchtigung der Krankheitsverarbeitung kommen.</p>"
           }
         }
-      ]
+      ],
+      "title": {
+        "default": "Introduction",
+        "de": "Einleitung"
+      }
     },
     {
       "name": "page1",
@@ -20,6 +25,7 @@
           "type": "html",
           "name": "__DT00",
           "html": {
+            "default": "<p>Please select the number (0-10) that best describes how much distress you have been experiencing in the past week, including today.</p>",
             "de": "<p>Bitte geben Sie die Zahl an (0-10) die am besten beschreibt, wie belastet Sie sich in der letzten Woche einschließlich heute gefühlt haben.</p>"
           }
         },
@@ -27,8 +33,8 @@
           "type": "nouislider",
           "name": "DT01",
           "title": {
-            "de": "Distress Thermometer",
-            "default": "Distress Thermometer"
+            "default": "Distress Thermometer",
+            "de": "Distress Thermometer"
           },
           "isRequired": true,
           "orientation": "vertical",
@@ -41,15 +47,15 @@
             {
               "value": 0,
               "text": {
-                "de": "0 Gar nicht belastet",
-                "default": "0 Not stressed"
+                "default": "0 No Distress",
+                "de": "0 Gar nicht belastet"
               }
             },
             {
               "value": 10,
               "text": {
-                "de": "10 Extrem belastet",
-                "default": "10 Extremely stressed"
+                "default": "10 Extreme Distress",
+                "de": "10 Extrem belastet"
               }
             }
           ]
@@ -58,29 +64,33 @@
           "type": "radiogroup",
           "name": "DT02",
           "title": {
-            "de": "Möchten Sie die Möglichkeit einer psychosozialen Beratung nutzen?",
-            "default": "Would you like to take advantage of the possibility of psychosocial counseling?"
+            "default": "Would you be interested in receiving psychosocial counseling?",
+            "de": "Möchten Sie die Möglichkeit einer psychosozialen Beratung nutzen?"
           },
           "isRequired": true,
           "choices": [
             {
               "value": "true",
               "text": {
-                "de": "Ja",
-                "default": "Yes"
+                "default": "Yes",
+                "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
-                "de": "Nein",
-                "default": "No"
+                "default": "No",
+                "de": "Nein"
               }
             }
           ],
           "colCount": 2
         }
-      ]
+      ],
+      "title": {
+        "default": "Distress Thermometer",
+        "de": "Distress Thermometer"
+      }
     },
     {
       "name": "page2",
@@ -89,6 +99,7 @@
           "type": "html",
           "name": "__PP00",
           "html": {
+            "default": "<p>Please indicate if any of the following has been a problem for you in the past week including today. Be sure to check <b>YES</b> or <b>NO</b> for each.</p>",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
@@ -96,6 +107,7 @@
           "type": "radiogroup",
           "name": "PP01",
           "title": {
+            "default": "Housing",
             "de": "Wohnsituation"
           },
           "choices": [
@@ -109,8 +121,8 @@
             {
               "value": "false",
               "text": {
-                "de": "Nein",
-                "default": "No"
+                "default": "No",
+                "de": "Nein"
               }
             }
           ],
@@ -120,18 +132,21 @@
           "type": "radiogroup",
           "name": "PP02",
           "title": {
+            "default": "Insurance",
             "de": "Versicherung"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -142,18 +157,21 @@
           "type": "radiogroup",
           "name": "PP03",
           "title": {
+            "default": "Work/School",
             "de": "Arbeit/Schule"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -164,18 +182,21 @@
           "type": "radiogroup",
           "name": "PP04",
           "title": {
+            "default": "Transportation",
             "de": "Beförderung (Transport)"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -186,18 +207,21 @@
           "type": "radiogroup",
           "name": "PP05",
           "title": {
+            "default": "Child care",
             "de": "Kinderbetreuung"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -208,18 +232,21 @@
           "type": "radiogroup",
           "name": "PP06",
           "title": {
+            "default": "Money/financial",
             "de": "Finanzielle Sorgen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -230,18 +257,21 @@
           "type": "radiogroup",
           "name": "PP07",
           "title": {
+            "default": "Care of relatives",
             "de": "Betreuung / Pflege Angehöriger"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -250,6 +280,7 @@
         }
       ],
       "title": {
+        "default": "Practical problems",
         "de": "Praktische Probleme"
       }
     },
@@ -260,6 +291,7 @@
           "type": "html",
           "name": "__FP00",
           "html": {
+            "default": "<p>Please indicate if any of the following has been a problem for you in the past week including today. Be sure to check <b>YES</b> or <b>NO</b> for each.</p>",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
@@ -267,18 +299,21 @@
           "type": "radiogroup",
           "name": "FP01",
           "title": {
+            "default": "Dealing with partner",
             "de": "Im Umgang mit dem Partner"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -289,18 +324,21 @@
           "type": "radiogroup",
           "name": "FP02",
           "title": {
+            "default": "Dealing with children",
             "de": "Im Umgang mit den Kindern"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -309,6 +347,7 @@
         }
       ],
       "title": {
+        "default": "Family problems",
         "de": "Familiäre Probleme"
       }
     },
@@ -319,6 +358,7 @@
           "type": "html",
           "name": "__EP00",
           "html": {
+            "default": "<p>Please indicate if any of the following has been a problem for you in the past week including today. Be sure to check <b>YES</b> or <b>NO</b> for each.</p>",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
@@ -326,18 +366,21 @@
           "type": "radiogroup",
           "name": "EP01",
           "title": {
+            "default": "Worries",
             "de": "Sorgen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -348,18 +391,21 @@
           "type": "radiogroup",
           "name": "EP02",
           "title": {
+            "default": "Fears",
             "de": "Ängste"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -370,18 +416,21 @@
           "type": "radiogroup",
           "name": "EP03",
           "title": {
+            "default": "Sadness",
             "de": "Traurigkeit"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -392,18 +441,21 @@
           "type": "radiogroup",
           "name": "EP04",
           "title": {
+            "default": "Depression",
             "de": "Depression"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -414,18 +466,21 @@
           "type": "radiogroup",
           "name": "EP05",
           "title": {
+            "default": "Nervousness",
             "de": "Nervosität"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -436,18 +491,21 @@
           "type": "radiogroup",
           "name": "EP06",
           "title": {
+            "default": "Loss of interest in usual activities",
             "de": "Verlust des Interesses an alltäglichen Aktivitäten"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -456,6 +514,7 @@
         }
       ],
       "title": {
+        "default": "Emotional problems",
         "de": "Emotionale Probleme"
       }
     },
@@ -466,6 +525,7 @@
           "type": "html",
           "name": "__SP00",
           "html": {
+            "default": "<p>Please indicate if any of the following has been a problem for you in the past week including today. Be sure to check <b>YES</b> or <b>NO</b> for each.</p>",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
@@ -473,18 +533,21 @@
           "type": "radiogroup",
           "name": "SP01",
           "title": {
+            "default": "Relating to God",
             "de": "In Bezug auf Gott"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -495,18 +558,21 @@
           "type": "radiogroup",
           "name": "SP02",
           "title": {
+            "default": "Loss of faith",
             "de": "Verlust des Glaubens"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -515,6 +581,7 @@
         }
       ],
       "title": {
+        "default": "Spiritual / religious concerns",
         "de": "Spirituelle / religiöse Probleme"
       }
     },
@@ -525,6 +592,7 @@
           "type": "html",
           "name": "__KP00",
           "html": {
+            "default": "<p>Please indicate if any of the following has been a problem for you in the past week including today. Be sure to check <b>YES</b> or <b>NO</b> for each.</p>",
             "de": "<p>Bitte geben Sie an, ob Sie in einem der nachfolgenden Bereiche in der letzten Woche einschließlich heute Probleme hatten. Kreuzen Sie für jeden Bereich <b>JA</b> oder <b>NEIN</b> an.</p>"
           }
         },
@@ -532,18 +600,21 @@
           "type": "radiogroup",
           "name": "KP01",
           "title": {
+            "default": "Pain",
             "de": "Schmerzen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -554,18 +625,21 @@
           "type": "radiogroup",
           "name": "KP02",
           "title": {
+            "default": "Nausea",
             "de": "Übelkeit"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -576,18 +650,21 @@
           "type": "radiogroup",
           "name": "KP03",
           "title": {
+            "default": "Fatigue",
             "de": "Erschöpfung"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -598,18 +675,21 @@
           "type": "radiogroup",
           "name": "KP04",
           "title": {
+            "default": "Sleep",
             "de": "Schlaf"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -620,18 +700,21 @@
           "type": "radiogroup",
           "name": "KP05",
           "title": {
+            "default": "Getting around",
             "de": "Bewegung / Mobilität"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -642,18 +725,21 @@
           "type": "radiogroup",
           "name": "KP06",
           "title": {
+            "default": "Bathing/dressing",
             "de": "Waschen, Ankleiden"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -664,18 +750,21 @@
           "type": "radiogroup",
           "name": "KP07",
           "title": {
+            "default": "Appearance",
             "de": "Äußeres Erscheinungsbild"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -686,18 +775,21 @@
           "type": "radiogroup",
           "name": "KP08",
           "title": {
+            "default": "Breathing",
             "de": "Atmung"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -708,18 +800,21 @@
           "type": "radiogroup",
           "name": "KP09",
           "title": {
+            "default": "Mouth sores",
             "de": "Entzündungen im Mundbereich"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -730,18 +825,21 @@
           "type": "radiogroup",
           "name": "KP10",
           "title": {
+            "default": "Eating",
             "de": "Essen / Ernährung"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -752,18 +850,21 @@
           "type": "radiogroup",
           "name": "KP11",
           "title": {
+            "default": "Indigestion",
             "de": "Verdauungsstörungen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -774,18 +875,21 @@
           "type": "radiogroup",
           "name": "KP12",
           "title": {
+            "default": "Constipation",
             "de": "Verstopfung"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -796,18 +900,21 @@
           "type": "radiogroup",
           "name": "KP13",
           "title": {
+            "default": "Diarrhoea",
             "de": "Durchfall"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -818,18 +925,21 @@
           "type": "radiogroup",
           "name": "KP14",
           "title": {
+            "default": "Changes in urination",
             "de": "Veränderung beim Wasser lassen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -840,18 +950,21 @@
           "type": "radiogroup",
           "name": "KP15",
           "title": {
+            "default": "Fevers",
             "de": "Fieber"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -862,18 +975,21 @@
           "type": "radiogroup",
           "name": "KP16",
           "title": {
+            "default": "Dry/itchy skin",
             "de": "Trockene / juckende Haut"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -884,18 +1000,21 @@
           "type": "radiogroup",
           "name": "KP17",
           "title": {
+            "default": "Dry/congested nose",
             "de": "Trockene / verstopfte Nase"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -906,18 +1025,21 @@
           "type": "radiogroup",
           "name": "KP18",
           "title": {
+            "default": "Tingling in hands/feet",
             "de": "Kribbeln in den Händen / Füßen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -928,18 +1050,21 @@
           "type": "radiogroup",
           "name": "KP19",
           "title": {
+            "default": "Feeling swollen",
             "de": "Angeschwollen / aufgedunsen fühlen"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -950,18 +1075,21 @@
           "type": "radiogroup",
           "name": "KP20",
           "title": {
+            "default": "Hot flushes",
             "de": "Hitzewallungen / Schweißausbrüche"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -972,18 +1100,21 @@
           "type": "radiogroup",
           "name": "KP21",
           "title": {
+            "default": "Dizziness",
             "de": "Schwindel"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -994,18 +1125,21 @@
           "type": "radiogroup",
           "name": "KP22",
           "title": {
+            "default": "Memory/concentration",
             "de": "Gedächtnis / Konzentration"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -1016,18 +1150,21 @@
           "type": "radiogroup",
           "name": "KP23",
           "title": {
+            "default": "Sexual problems",
             "de": "Sexuelle Probleme"
           },
           "choices": [
             {
               "value": "true",
               "text": {
+                "default": "Yes",
                 "de": "Ja"
               }
             },
             {
               "value": "false",
               "text": {
+                "default": "No",
                 "de": "Nein"
               }
             }
@@ -1036,6 +1173,7 @@
         }
       ],
       "title": {
+        "default": "Physical problems",
         "de": "Körperliche Probleme"
       }
     },
@@ -1046,11 +1184,16 @@
           "type": "comment",
           "name": "other",
           "title": {
+            "default": "Other problems",
             "de": "Sonstige Probleme"
           },
           "rows": 5
         }
-      ]
+      ],
+      "title": {
+        "default": "Others",
+        "de": "Sonstiges"
+      }
     }
   ],
   "startSurveyText": {
