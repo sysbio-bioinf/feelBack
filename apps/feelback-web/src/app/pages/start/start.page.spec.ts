@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { StartPage } from './start.page';
-import { ComponentsModule } from '../../modules/components.module';
-import { TranslateTestingModule } from 'ngx-translate-testing';
 import { Apollo } from 'apollo-angular';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { ComponentsModule } from '../../modules/components.module';
+import { StartPage } from './start.page';
 
 describe('StartPage', () => {
   let component: StartPage;

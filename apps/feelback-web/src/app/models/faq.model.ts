@@ -1,5 +1,5 @@
-export interface Faq {
-  id: string;
-  question: string;
-  answer: string;
+export class FaqModel {
+  id!: string;
+  question!: string;
+  answer!: string;
 }

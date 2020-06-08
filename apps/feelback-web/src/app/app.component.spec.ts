@@ -1,10 +1,10 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { GraphQLModule } from './modules/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentsModule } from './modules/components.module';
+import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateTestingModule } from 'ngx-translate-testing';
+import { AppComponent } from './app.component';
+import { ComponentsModule } from './modules/components.module';
+import { GraphQLModule } from './modules/graphql.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

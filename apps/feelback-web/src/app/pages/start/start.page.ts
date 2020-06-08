@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Feature } from '../../models/feature.model';
-import { FaqService } from '../../services/api/faq.service';
 import { CursorPaging } from '../../graphql/generated/feelback.graphql';
-import { Faq } from '../../models/faq.model';
+import { FaqModel } from '../../models/faq.model';
+import { FeatureModel } from '../../models/feature.model';
+import { FaqService } from '../../services/api/faq.service';
 
 @Component({
   selector: 'feelback-web-start',
@@ -10,8 +10,8 @@ import { Faq } from '../../models/faq.model';
   styleUrls: ['./start.page.scss'],
 })
 export class StartPage implements OnInit {
-  features: Feature[] = [];
-  faqs: Faq[] = [];
+  features: FeatureModel[] = [];
+  faqs: FaqModel[] = [];
 
   constructor(readonly faqService: FaqService) {}
 
@@ -61,7 +61,7 @@ export class StartPage implements OnInit {
           id: entry.node.id,
           question: entry.node.question,
           answer: entry.node.answer,
-        } as Faq;
+        } as FaqModel;
       });
       this.faqs.push(...nodes);
 
