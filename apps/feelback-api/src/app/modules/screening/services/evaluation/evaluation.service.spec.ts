@@ -17,12 +17,6 @@ describe('EvaluationService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should return an empty result with null params', () => {
-    expect(service.evaluate(null, null)).toMatchObject([]);
-    expect(service.evaluate(null, new InstrumentEntity())).toMatchObject([]);
-    expect(service.evaluate(new ScreeningEntity(), null)).toMatchObject([]);
-  });
-
   it('should evaluate correctly', () => {
     const screening = new ScreeningEntity();
     screening.payload = {

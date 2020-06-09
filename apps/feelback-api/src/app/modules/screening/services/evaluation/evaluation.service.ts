@@ -20,13 +20,6 @@ export class EvaluationService extends CoreService {
   ): EvaluationClass[] {
     const evaluationResults: EvaluationClass[] = [];
 
-    if (!screening) {
-      return evaluationResults;
-    }
-    if (!instrument) {
-      return evaluationResults;
-    }
-
     const data = screening.getScreeningData();
     const evaluationParser = new expreval.Parser();
     const rules = instrument.rules;
