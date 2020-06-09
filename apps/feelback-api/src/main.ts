@@ -1,7 +1,11 @@
 import { ExceptionFilter } from '@cancerlog/api/application';
-import { CoreException } from '@cancerlog/api/core';
+import { EC_VALIDATION_FAILED, ExceptionModel } from '@cancerlog/api/errors';
 import { environment as env } from '@env-cancerlog-api/environment';
-import { HttpStatus, Logger, ValidationPipe } from '@nestjs/common';
+import {
+  Logger,
+  UnprocessableEntityException,
+  ValidationPipe,
+} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as compression from 'compression';
@@ -24,17 +28,13 @@ async function bootstrap() {
       skipMissingProperties: false,
       forbidUnknownValues: true,
       exceptionFactory: (errors) =>
-        new CoreException(
-          {
-            detail: 'Validation Error',
-            status: HttpStatus.PRECONDITION_FAILED,
-            debug: {
-              location: 'ValidationPipe',
-            },
-            error: errors,
-          },
-          HttpStatus.PRECONDITION_FAILED,
-        ),
+        new UnprocessableEntityException({
+          code: EC_VALIDATION_FAILED.code,
+          title: 'Validation Exception',
+          message: 'Validation failed',
+          error: errors,
+          source: 'ValidationPipe',
+        } as ExceptionModel),
     }),
   );
 

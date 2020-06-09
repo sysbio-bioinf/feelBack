@@ -1,4 +1,4 @@
-import { CoreException } from '@cancerlog/api/core';
+import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
 import {
   CreateOnePersonInputType,
   CreatePersonInput,
@@ -6,7 +6,10 @@ import {
   UpdatePersonInput,
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { HttpStatus } from '@nestjs/common';
+import {
+  ConflictException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
 import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
@@ -40,12 +43,11 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     });
 
     if (!identity) {
-      throw new CoreException(
-        {
-          detail: 'Failed to create a new Identity',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new InternalServerErrorException({
+        code: EC_GENERAL_ERROR.code,
+        title: 'Unauthorized',
+        message: 'Account not verified',
+      } as ExceptionMessageModel);
     }
 
     return this.service.createOne(input.input);
@@ -58,10 +60,11 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     });
 
     if (personEntity.isActive !== true) {
-      throw new CoreException(
-        { detail: 'Person is not active' },
-        HttpStatus.PRECONDITION_FAILED,
-      );
+      throw new ConflictException({
+        code: EC_GENERAL_ERROR.code,
+        title: 'Conflict',
+        message: 'The requested Person is not active',
+      } as ExceptionMessageModel);
     }
 
     return this.service.assembler.convertToDTO(personEntity);

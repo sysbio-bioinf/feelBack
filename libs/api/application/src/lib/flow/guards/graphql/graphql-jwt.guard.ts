@@ -1,10 +1,13 @@
 import { KeycloakJwtModel } from '@cancerlog/api/authentication';
-import { CoreException } from '@cancerlog/api/core';
+import {
+  EC_AUTH_MISSING_JWT,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
 import {
   CanActivate,
   ExecutionContext,
-  HttpStatus,
   Injectable,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
@@ -18,16 +21,13 @@ const defaultOptions = {
   callback: (err, user, info) => {
     if (err || !user) {
       // When Error occur, info is the error.
-      throw new CoreException(
-        {
-          status: HttpStatus.UNAUTHORIZED,
-          detail:
-            'Invalid or missing JWT Access Token. Maybe you are missing the BEARER type?',
-          source: { pointer: 'header.authorization' },
-          error: info,
-        },
-        HttpStatus.UNAUTHORIZED,
-      );
+      throw new UnauthorizedException({
+        code: EC_AUTH_MISSING_JWT.code,
+        title: 'Unauthorized',
+        message: EC_AUTH_MISSING_JWT.description,
+        error: info,
+        source: 'header.authorization',
+      } as ExceptionMessageModel);
     }
     return { user, info };
   },
@@ -71,17 +71,13 @@ export class GraphqlJwtGuard extends AuthGuard('jwt') implements CanActivate {
   // @ts-ignore
   handleRequest(err, user, info) {
     if (err || !user) {
-      throw new CoreException(
-        {
-          status: HttpStatus.UNAUTHORIZED,
-          detail:
-            'Invalid or missing JWT Access Token. Maybe you are missing the BEARER type?',
-          source: { pointer: 'header.authorization' },
-          debug: { location: 'GraphQlJwtGuard' },
-          error: info,
-        },
-        HttpStatus.UNAUTHORIZED,
-      );
+      throw new UnauthorizedException({
+        code: EC_AUTH_MISSING_JWT.code,
+        title: 'Unauthorized',
+        message: EC_AUTH_MISSING_JWT.description,
+        error: info,
+        source: 'header.authorization',
+      } as ExceptionMessageModel);
     }
     return user;
   }

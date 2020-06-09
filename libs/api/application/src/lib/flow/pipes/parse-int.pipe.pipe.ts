@@ -1,40 +1,23 @@
+import { EC_VALIDATION_FAILED, ExceptionMessageModel } from '@cancerlog/api/errors';
 import {
-  ParseIntPipe as NestParseIntPipe,
   ArgumentMetadata,
-  HttpStatus,
   Injectable,
+  ParseIntPipe as NestParseIntPipe,
+  UnprocessableEntityException,
 } from '@nestjs/common';
-import { CoreException } from '@cancerlog/api/core';
 
 @Injectable()
 export class ParseIntPipe extends NestParseIntPipe {
   async transform(value: string, metadata: ArgumentMetadata): Promise<number> {
-    if (value === undefined) {
-      throw new CoreException(
-        {
-          status: HttpStatus.PRECONDITION_FAILED,
-          detail: 'Validation failed: numeric input expected, got undefined',
-          source: {
-            pointer: `request.${metadata.type}.${metadata.data}`,
-          },
-        },
-        HttpStatus.PRECONDITION_FAILED,
-      );
-    }
-
     try {
       return super.transform(value, metadata);
     } catch (error) {
-      throw new CoreException(
-        {
-          status: HttpStatus.PRECONDITION_FAILED,
-          detail: 'Validation failed: numeric input expected',
-          source: {
-            pointer: `request.${metadata.type}.${metadata.data}`,
-          },
-        },
-        HttpStatus.PRECONDITION_FAILED,
-      );
+      throw new UnprocessableEntityException({
+        title: 'Validation Exception',
+        message: 'Validation failed: numeric input excepted',
+        code: EC_VALIDATION_FAILED.code,
+        source: `request.${metadata.type}.${metadata.data}`,
+      } as ExceptionMessageModel);
     }
   }
 }

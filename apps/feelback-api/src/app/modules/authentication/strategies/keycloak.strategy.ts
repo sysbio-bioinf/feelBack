@@ -1,11 +1,15 @@
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
-import { Injectable, HttpStatus } from '@nestjs/common';
-import { passportJwtSecret, SigningKeyNotFoundError } from 'jwks-rsa';
-import { AuthenticationService } from '../services/authentication.service';
-import { ConfigService } from '@cancerlog/api/config';
-import { CoreException } from '@cancerlog/api/core';
 import { KeycloakJwtModel } from '@cancerlog/api/authentication';
+import { ConfigService } from '@cancerlog/api/config';
+import {
+  EC_AUTH_NOT_VERIFIED,
+  EC_KEYCLOAK_INVALIDSIGNINGKEY,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { passportJwtSecret, SigningKeyNotFoundError } from 'jwks-rsa';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class KeycloakStrategy extends PassportStrategy(Strategy) {
@@ -22,13 +26,11 @@ export class KeycloakStrategy extends PassportStrategy(Strategy) {
       handleSigningKeyError: (err, cb) => {
         if (err instanceof SigningKeyNotFoundError) {
           return cb(
-            new CoreException(
-              {
-                status: HttpStatus.UNAUTHORIZED,
-                detail: 'Signing Key not found',
-              },
-              HttpStatus.UNAUTHORIZED,
-            ),
+            new UnauthorizedException({
+              code: EC_KEYCLOAK_INVALIDSIGNINGKEY.code,
+              title: 'Unauthorized',
+              message: 'Signing Key was not found',
+            } as ExceptionMessageModel),
           );
         }
         return cb(err);
@@ -58,12 +60,11 @@ export class KeycloakStrategy extends PassportStrategy(Strategy) {
     });
 
     if (mergedAccount.isVerified !== true) {
-      throw new CoreException(
-        {
-          detail: 'Account not verified',
-        },
-        HttpStatus.PRECONDITION_FAILED,
-      );
+      throw new UnauthorizedException({
+        code: EC_AUTH_NOT_VERIFIED.code,
+        title: 'Unauthorized',
+        message: 'Account not verified',
+      } as ExceptionMessageModel);
     }
 
     done(null, mergedAccount, { token });

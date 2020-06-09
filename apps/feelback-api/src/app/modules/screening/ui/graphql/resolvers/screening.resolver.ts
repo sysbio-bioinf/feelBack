@@ -1,5 +1,8 @@
-import { CoreException } from '@cancerlog/api/core';
 import { ScreeningEntity } from '@cancerlog/api/data';
+import {
+  EC_GENERAL_NOTFOUND,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
 import {
   CreateScreeningInput,
   DiagramDataObject,
@@ -20,7 +23,7 @@ import {
 } from '@cancerlog/api/state';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
-import { HttpStatus } from '@nestjs/common';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import {
   Args,
   Mutation,
@@ -74,7 +77,9 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   async uploadScreening(
     @Args('input') input: UploadScreeningInputType,
   ): Promise<ScreeningObject> {
-    const instrument = await this.instrumentService.getById(input.instrumentId);
+    const instrument = await this.instrumentService.queryService.getById(
+      input.instrumentId,
+    );
 
     const instrumentFSM = startFSMFromState(
       instrumentMachine,
@@ -82,13 +87,11 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     );
 
     if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.RELEASED)) {
-      throw new CoreException(
-        {
-          detail: 'Invalid Resource State',
-          status: HttpStatus.CONFLICT,
-        },
-        HttpStatus.CONFLICT,
-      );
+      throw new ConflictException({
+        code: EC_GENERAL_NOTFOUND.code,
+        title: 'Conflict',
+        message: 'Invalid Resource State',
+      } as ExceptionMessageModel);
     }
 
     const screening = await this.service.createOne(input.input);
@@ -201,7 +204,11 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     );
 
     if (!instrument) {
-      throw new CoreException({ detail: 'Instrument not found' }, 404);
+      throw new NotFoundException({
+        code: EC_GENERAL_NOTFOUND.code,
+        title: 'Not Found',
+        message: 'Instrument not found',
+      } as ExceptionMessageModel);
     }
 
     const screeningEntity = await this.service.queryService.getById(

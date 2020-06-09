@@ -1,14 +1,22 @@
-import { Injectable, HttpStatus, HttpService } from '@nestjs/common';
 import { ConfigService } from '@cancerlog/api/config';
-import { CoreException } from '@cancerlog/api/core';
-import { map } from 'rxjs/operators';
-import * as qs from 'qs';
+import {
+  EC_KEYCLOAK_REQUEST_TOKEN,
+  EC_KEYCLOAK_RESOLVE_USER,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
+import { KeycloakServiceConnection } from '@cancerlog/util/connection';
+import {
+  HttpService,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
+import * as qs from 'qs';
+import { map } from 'rxjs/operators';
 import { CredentialsDto } from '../data/dtos/credentials.dto';
 import { AuthTokenModel } from '../data/models/auth-token.model';
-import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
 import { KeycloakJwtModel } from '../data/models/keycloak-jwt.model';
-import { KeycloakServiceConnection } from '@cancerlog/util/connection';
+import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
 
 @Injectable()
 export class KeycloakService {
@@ -58,17 +66,14 @@ export class KeycloakService {
 
       return token;
     } catch (error) {
-      throw new CoreException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          detail: 'Error when trying to request an access token from KeyCloak',
-          debug: {
-            location: 'AuthService',
-          },
-          error: error,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new InternalServerErrorException({
+        code: EC_KEYCLOAK_REQUEST_TOKEN.code,
+        title: 'Keycloak Exception',
+        message:
+          'Error when trying to request an access token from the Keycloak Server',
+        error: error,
+        source: 'AuthService',
+      } as ExceptionMessageModel);
     }
   }
 
@@ -96,17 +101,13 @@ export class KeycloakService {
 
       return keycloakUserInfo;
     } catch (error) {
-      throw new CoreException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          detail: 'Error when trying to resolve user from KeyCloak',
-          debug: {
-            location: 'AuthService',
-          },
-          error: error,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new InternalServerErrorException({
+        code: EC_KEYCLOAK_RESOLVE_USER.code,
+        message: 'Error when trying to resolve the user from Keycloak',
+        title: 'Keycloak Exception',
+        error: error,
+        source: 'AuthService',
+      } as ExceptionMessageModel);
     }
   }
 

@@ -56,5 +56,5 @@ export class InstrumentObject extends VersionableObject {
   })
   changelog!: string;
 
-  xState!: object | null;
+  xState!: string | null;
 }

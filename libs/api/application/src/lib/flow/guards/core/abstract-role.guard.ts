@@ -1,10 +1,16 @@
-import { CanActivate, ExecutionContext, HttpStatus } from '@nestjs/common';
+import {
+  EC_AUTH_ROLE_BEFORE_JWT_GUARD,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
+import {
+  CanActivate,
+  ExecutionContext,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import * as _ from 'lodash';
 import { DECORATOR_METADATA } from '../../../constants/decorator.constants';
 import { REQUEST_FIELDS } from '../../../constants/request-fields.constants';
-import { CoreException } from '@cancerlog/api/core';
-import { Request } from 'express';
 
 export abstract class AbstractRoleGuard implements CanActivate {
   constructor(protected reflector: Reflector) {}
@@ -31,15 +37,12 @@ export abstract class AbstractRoleGuard implements CanActivate {
 
     // check the user
     if (!user) {
-      throw new CoreException(
-        {
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-          detail:
-            'Cannot resolve a user from JWT. Did you accidentally call the RoleGuard before the JwtGuard?',
-          debug: { location: 'RoleGuard' },
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new InternalServerErrorException({
+        code: EC_AUTH_ROLE_BEFORE_JWT_GUARD.code,
+        title: 'Authentication Exception',
+        message: EC_AUTH_ROLE_BEFORE_JWT_GUARD.description,
+        source: 'RoleGuard',
+      } as ExceptionMessageModel);
     }
 
     // ok, and now we need to check the roles of the user!

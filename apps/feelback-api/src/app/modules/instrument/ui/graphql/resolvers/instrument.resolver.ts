@@ -1,4 +1,7 @@
-import { CoreException } from '@cancerlog/api/core';
+import {
+  EC_GENERAL_CONFLICT,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
 import {
   CopyOneInstrumentInputType,
   CreateOneInstrumentInputType,
@@ -16,7 +19,7 @@ import {
 } from '@cancerlog/api/state';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { HttpStatus } from '@nestjs/common';
+import { ConflictException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { interpret } from 'xstate';
 import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
@@ -63,20 +66,18 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   async updateOneInstrument(
     @Args('input') input: UpdateOneInstrumentInputType,
   ): Promise<InstrumentObject> {
-    const instrument = await this.service.getById(input.id);
+    const instrument = await this.service.queryService.getById(input.id);
     const instrumentFSM = startFSMFromState(
       instrumentMachine,
       instrument.xState,
     );
 
     if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.DRAFT)) {
-      throw new CoreException(
-        {
-          detail: 'Invalid Resource State',
-          status: HttpStatus.CONFLICT,
-        },
-        HttpStatus.CONFLICT,
-      );
+      throw new ConflictException({
+        code: EC_GENERAL_CONFLICT.code,
+        title: 'Conflict',
+        message: 'Invalid Resource State',
+      } as ExceptionMessageModel);
     }
 
     const updatedInstrument = this.service.updateOne(
@@ -90,20 +91,18 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   async releaseInstrument(
     @Args('input') input: ReleaseOneInstrumentInputType,
   ): Promise<InstrumentObject> {
-    const instrument = await this.service.getById(input.id);
+    const instrument = await this.service.queryService.getById(input.id);
     const instrumentFSM = startFSMFromState(
       instrumentMachine,
       instrument.xState,
     );
 
     if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.DRAFT)) {
-      throw new CoreException(
-        {
-          detail: 'Invalid Resource State',
-          status: HttpStatus.CONFLICT,
-        },
-        HttpStatus.CONFLICT,
-      );
+      throw new ConflictException({
+        code: EC_GENERAL_CONFLICT.code,
+        title: 'Conflict',
+        message: 'Invalid Resource State',
+      } as ExceptionMessageModel);
     }
 
     instrumentFSM.send(INSTRUMENT_MACHINE_EVENTS.RELEASE);
@@ -119,20 +118,18 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   async retireInstrument(
     @Args('input') input: RetireOneInstrumentInputType,
   ): Promise<InstrumentObject> {
-    const instrument = await this.service.getById(input.id);
+    const instrument = await this.service.queryService.getById(input.id);
     const instrumentFSM = startFSMFromState(
       instrumentMachine,
       instrument.xState,
     );
 
     if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.RELEASED)) {
-      throw new CoreException(
-        {
-          detail: 'Invalid Resource State',
-          status: HttpStatus.CONFLICT,
-        },
-        HttpStatus.CONFLICT,
-      );
+      throw new ConflictException({
+        code: EC_GENERAL_CONFLICT.code,
+        title: 'Conflict',
+        message: 'Invalid Resource State',
+      } as ExceptionMessageModel);
     }
 
     instrumentFSM.send(INSTRUMENT_MACHINE_EVENTS.RETIRE);

@@ -1,7 +1,10 @@
 import { KeycloakService } from '@cancerlog/api/authentication';
-import { CoreException } from '@cancerlog/api/core';
+import {
+  EC_KEYCLOAK_REQUEST_TOKEN,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
 import { LoginInput, TokenObject } from '@cancerlog/api/interfaces';
-import { HttpStatus } from '@nestjs/common';
+import { InternalServerErrorException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 
 @Resolver(() => TokenObject)
@@ -19,13 +22,11 @@ export class AuthenticationResolver {
     });
 
     if (!token) {
-      throw new CoreException(
-        {
-          detail: 'Could not return token',
-          status: HttpStatus.INTERNAL_SERVER_ERROR,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      throw new InternalServerErrorException({
+        code: EC_KEYCLOAK_REQUEST_TOKEN.code,
+        title: 'JWT Token Exception',
+        message: 'Could not request a Token from the Keycloak Server',
+      } as ExceptionMessageModel);
     }
 
     const accessToken: TokenObject = {

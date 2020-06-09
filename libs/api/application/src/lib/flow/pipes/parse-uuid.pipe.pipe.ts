@@ -1,10 +1,10 @@
+import { EC_VALIDATION_FAILED, ExceptionMessageModel } from '@cancerlog/api/errors';
 import {
-  ParseUUIDPipe as NestUUIDPipe,
-  Injectable,
   ArgumentMetadata,
-  HttpStatus,
+  Injectable,
+  ParseUUIDPipe as NestUUIDPipe,
+  UnprocessableEntityException,
 } from '@nestjs/common';
-import { CoreException } from '@cancerlog/api/core';
 
 @Injectable()
 export class ParseUUIDPipe extends NestUUIDPipe {
@@ -16,16 +16,12 @@ export class ParseUUIDPipe extends NestUUIDPipe {
     try {
       return super.transform(value, metadata);
     } catch (error) {
-      throw new CoreException(
-        {
-          status: HttpStatus.PRECONDITION_FAILED,
-          detail: 'Validation failed! (UUID v4 expected)',
-          source: {
-            pointer: `request.${metadata.type}.${metadata.data}`,
-          },
-        },
-        HttpStatus.PRECONDITION_FAILED,
-      );
+      throw new UnprocessableEntityException({
+        title: 'Validation Exception',
+        message: 'Validation failed: UUID v4 expected',
+        code: EC_VALIDATION_FAILED.code,
+        source: `request.${metadata.type}.${metadata.data}`,
+      } as ExceptionMessageModel);
     }
   }
 }

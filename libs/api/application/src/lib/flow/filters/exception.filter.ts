@@ -36,6 +36,7 @@ export class ExceptionFilter implements NestExceptionFilter {
   }
 
   handleGraphQLException(exception: HttpException, host: ArgumentsHost) {
+    console.log(exception);
     return exception;
   }
 }
