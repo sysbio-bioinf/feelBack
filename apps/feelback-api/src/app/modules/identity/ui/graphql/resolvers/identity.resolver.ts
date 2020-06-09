@@ -8,7 +8,7 @@ import { Args, Query, Resolver } from '@nestjs/graphql';
 import { IdentityAssemblerService } from '../../../services/identity/identity-assembler.service';
 import { IdentityDatabaseService } from '../../../services/identity/identity-database.service';
 
-@Resolver((of) => IdentityObject)
+@Resolver(() => IdentityObject)
 export class IdentityResolver extends CRUDResolver(IdentityObject, {
   create: {
     many: { disabled: true },
@@ -28,10 +28,12 @@ export class IdentityResolver extends CRUDResolver(IdentityObject, {
   async identityByPseudonym(
     @Args('pseudonym') pseudonym: string,
   ): Promise<IdentityObject> {
-    const identity = await this.identityDatabaseService.repo.findOne({
-      where: { pseudonym: pseudonym },
-    });
+    const identityEntity = await this.identityDatabaseService.repo.findOneOrFail(
+      {
+        where: { pseudonym: pseudonym },
+      },
+    );
 
-    return this.service.assembler.convertToDTO(identity);
+    return this.service.assembler.convertToDTO(identityEntity);
   }
 }

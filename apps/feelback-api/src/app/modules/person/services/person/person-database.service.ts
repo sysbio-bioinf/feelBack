@@ -13,7 +13,7 @@ export class PersonDatabaseService extends TypeOrmQueryService<PersonEntity> {
   }
 
   async getPersonByPseudonym(pseudonym: string): Promise<PersonEntity> {
-    const person = await this.repo.findOne({
+    const person = await this.repo.findOneOrFail({
       where: {
         pseudonym: pseudonym,
       },

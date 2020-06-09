@@ -28,29 +28,29 @@ export class OrganizationObject extends VersionableObject {
     description: 'The address of this organization',
     nullable: true,
   })
-  address?: string;
+  address!: string | null;
 
   @Field({
     description: 'The phone number of this organization',
     nullable: true,
   })
-  phone?: string;
+  phone!: string | null;
 
   @Field({
     description: 'An email address of this organization',
     nullable: true,
   })
-  email?: string;
+  email!: string | null;
 
   @Field({
     description: 'The URL / website of this organization',
     nullable: true,
   })
-  url?: string;
+  url!: string | null;
 
   @Field({
     description: 'The URL for the logo of this organization',
     nullable: true,
   })
-  logo?: string;
+  logo!: string | null;
 }

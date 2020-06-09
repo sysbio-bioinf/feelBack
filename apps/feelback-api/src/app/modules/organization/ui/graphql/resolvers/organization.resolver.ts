@@ -8,7 +8,7 @@ import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { OrganizationAssemblerService } from '../../../services/organization/organization-assembler.service';
 
-@Resolver((of) => OrganizationObject)
+@Resolver(() => OrganizationObject)
 export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
   create: { many: { disabled: true }, CreateDTOClass: CreateOrganizationInput },
   delete: { disabled: true },

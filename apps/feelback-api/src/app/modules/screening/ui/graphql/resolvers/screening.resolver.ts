@@ -35,7 +35,7 @@ import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
 
-@Resolver((of) => ScreeningObject)
+@Resolver(() => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   read: { many: { disabled: true } },
   create: { many: { disabled: true }, CreateDTOClass: CreateScreeningInput },
@@ -91,17 +91,15 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       );
     }
 
-    // TODO: Maybe we can improve this,
-    let person = {
-      id: null,
-    };
-    if (input.personId) {
-      person = await this.personService.getById(input.personId);
-    }
-
     const screening = await this.service.createOne(input.input);
     await this.service.setRelation('instrument', screening.id, instrument.id);
-    await this.service.setRelation('person', screening.id, person.id);
+
+    if (input.personId) {
+      const person = await this.personService.findById(input.personId);
+      if (person) {
+        await this.service.setRelation('person', screening.id, person.id);
+      }
+    }
 
     return screening;
   }
@@ -155,10 +153,14 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       },
     };
 
-    const entities = await this.service.queryService.query(qa);
+    const screeningObjects = this.service.query(qa);
+    const screeningEntities = await this.service.assembler.convertAsyncToEntities(
+      screeningObjects,
+    );
+
     const plotData = this.diagramService.createPlots(
       collectionDiagrams,
-      entities,
+      screeningEntities,
     );
 
     return plotData;
@@ -199,13 +201,13 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     );
 
     if (!instrument) {
-      return null;
+      throw new CoreException({ detail: 'Instrument not found' }, 404);
     }
 
-    const screeningEntity = await this.service.queryService.findById(
+    const screeningEntity = await this.service.queryService.getById(
       screening.id,
     );
-    const instrumentEntity = await this.instrumentService.queryService.findById(
+    const instrumentEntity = await this.instrumentService.queryService.getById(
       instrument.id,
     );
 

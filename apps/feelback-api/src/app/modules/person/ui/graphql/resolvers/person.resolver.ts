@@ -12,7 +12,7 @@ import { IdentityDatabaseService } from '../../../../identity/services/identity/
 import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person/person-database.service';
 
-@Resolver((of) => PersonObject)
+@Resolver(() => PersonObject)
 export class PersonResolver extends CRUDResolver(PersonObject, {
   create: {
     many: { disabled: true },
@@ -51,20 +51,19 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     return this.service.createOne(input.input);
   }
 
-  @Query((returns) => PersonObject, { nullable: true })
+  @Query((returns) => PersonObject)
   async personByPseudonym(@Args('pseudonym') pseudonym: string) {
-    const person = await this.personDatabaseService.getPersonByPseudonym(
-      pseudonym,
-    );
+    const personEntity = await this.personDatabaseService.repo.findOneOrFail({
+      where: { pseudonym: pseudonym },
+    });
 
-    if (!person) {
-      return null;
+    if (personEntity.isActive !== true) {
+      throw new CoreException(
+        { detail: 'Person is not active' },
+        HttpStatus.PRECONDITION_FAILED,
+      );
     }
 
-    if (person.isActive !== true) {
-      return null;
-    }
-
-    return this.service.assembler.convertToDTO(person);
+    return this.service.assembler.convertToDTO(personEntity);
   }
 }

@@ -1,4 +1,4 @@
-import { CoreService, CoreException } from '@cancerlog/api/core';
+import { CoreService } from '@cancerlog/api/core';
 import {
   EvaluationClass,
   InstrumentEntity,

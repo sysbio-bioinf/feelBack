@@ -21,7 +21,7 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { interpret } from 'xstate';
 import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
 
-@Resolver((of) => InstrumentObject)
+@Resolver(() => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   create: { disabled: true },
   delete: { disabled: true },

@@ -18,6 +18,7 @@ export class KeycloakStrategy extends PassportStrategy(Strategy) {
       secretOrKeyProvider: passportJwtSecret(
         configService.get('auth.keycloak.config'),
       ),
+      // @ts-ignore TODO
       handleSigningKeyError: (err, cb) => {
         if (err instanceof SigningKeyNotFoundError) {
           return cb(

@@ -7,7 +7,7 @@ import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { DoctorAssemblerService } from '../../../services/doctor/doctor-assembler.service';
 
-@Resolver((of) => DoctorObject)
+@Resolver(() => DoctorObject)
 export class DoctorResolver extends CRUDResolver(DoctorObject, {
   create: { disabled: true },
   delete: { disabled: true },
