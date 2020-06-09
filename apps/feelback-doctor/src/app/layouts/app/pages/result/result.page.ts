@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../../services/common.service';
 import { InstrumentService } from '../../../../services/instrument.service';
 import { Instrument, Screening } from '../../../../graphql/generated/feelback.graphql';
-import { Patient } from '../../../../models/patient';
+import { Patient } from '../../../../models/patient.model';
 import { PatientService } from '../../../../services/patient.service';
 
 @Component({

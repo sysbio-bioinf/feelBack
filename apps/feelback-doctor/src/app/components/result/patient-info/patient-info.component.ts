@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Patient } from '../../../models/patient';
+import { Patient } from '../../../models/patient.model';
 import { CommonService } from '../../../services/common.service';
 
 @Component({

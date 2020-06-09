@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Error } from '../../../../models/error';
+import { Error } from '../../../../models/error.model';
 import { Location } from '@angular/common';
 
 @Component({

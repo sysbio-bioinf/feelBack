@@ -1,4 +1,4 @@
-import {ChartDataPoint} from "./chart-data-point";
+import {ChartDataPoint} from "./chart-data-point.model";
 
 export class ChartSeries {
   name: string;

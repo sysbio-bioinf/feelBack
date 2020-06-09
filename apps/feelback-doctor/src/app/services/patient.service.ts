@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Patient } from '../models/patient';
+import { Patient } from '../models/patient.model';
 import { delay } from 'rxjs/operators';
 
 @Injectable({

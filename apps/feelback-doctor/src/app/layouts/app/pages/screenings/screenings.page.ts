@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Patient } from '../../../../models/patient';
+import { Patient } from '../../../../models/patient.model';
 import { PatientService } from '../../../../services/patient.service';
 import { Instrument } from '../../../../graphql/generated/feelback.graphql';
 import { InstrumentService } from '../../../../services/instrument.service';

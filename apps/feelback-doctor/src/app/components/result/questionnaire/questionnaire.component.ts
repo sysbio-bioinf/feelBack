@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
-import '@webcomponents/custom-elements';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
 import { Screening } from '../../../graphql/generated/feelback.graphql';

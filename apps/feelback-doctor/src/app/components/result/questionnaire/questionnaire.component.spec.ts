@@ -13,7 +13,7 @@ describe('QuestionnaireComponent', () => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
       declarations: [ QuestionnaireComponent ],
-      providers: [DatePipe]
+      providers: [DatePipe],
     })
     .compileComponents();
   }));

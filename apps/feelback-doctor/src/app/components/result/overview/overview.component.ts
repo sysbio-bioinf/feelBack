@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonService } from '../../../services/common.service';
-import { ChartSeries } from '../../../models/chart-series';
+import { ChartSeries } from '../../../models/chart-series.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Parser } from 'expr-eval';
 import { Screening } from '../../../graphql/generated/feelback.graphql';
