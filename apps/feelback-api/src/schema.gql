@@ -60,7 +60,7 @@ input CreateInstrumentInput {
   name: String!
 
   """The description of the instrument"""
-  description: String
+  description: String!
 
   """The type of the instrument"""
   type: String!
@@ -260,7 +260,7 @@ type Doctor {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -322,7 +322,7 @@ input DoctorFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
@@ -375,7 +375,7 @@ type Faq {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -411,7 +411,7 @@ type FaqDeleteResponse {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float
+  version: Int
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -440,7 +440,7 @@ input FaqFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   isActive: BooleanFieldComparison
 }
@@ -474,7 +474,7 @@ type Identity {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -514,7 +514,7 @@ input IdentityFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   pseudonym: StringFieldComparison
   firstname: StringFieldComparison
@@ -569,7 +569,7 @@ type Instrument {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -587,13 +587,13 @@ type Instrument {
   image: String
 
   """The actual payload / content / structure of this instrument"""
-  payload: JSONObject
+  payload: JSONObject!
 
   """rules that are applied to calculate some kind of result"""
-  rules: [JSONObject!]
+  rules: [JSONObject!]!
 
   """Information on how to create diagrams for this instrument"""
-  diagram: JSONObject
+  diagram: JSONObject!
 
   """the changelog of this instrument (i.e., what has been changed)"""
   changelog: String!
@@ -631,7 +631,7 @@ input InstrumentFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
@@ -651,6 +651,26 @@ enum InstrumentSortFields {
   deletedAt
   name
   type
+}
+
+input IntFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: Int
+  neq: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  in: [Int!]
+  notIn: [Int!]
+  between: IntFieldComparisonBetween
+  notBetween: IntFieldComparisonBetween
+}
+
+input IntFieldComparisonBetween {
+  lower: Int!
+  upper: Int!
 }
 
 """
@@ -693,26 +713,6 @@ type Mutation {
   createOneFaq(input: CreateOneFaqInput!): Faq!
 }
 
-input NumberFieldComparison {
-  is: Boolean
-  isNot: Boolean
-  eq: Float
-  neq: Float
-  gt: Float
-  gte: Float
-  lt: Float
-  lte: Float
-  in: [Float!]
-  notIn: [Float!]
-  between: NumberFieldComparisonBetween
-  notBetween: NumberFieldComparisonBetween
-}
-
-input NumberFieldComparisonBetween {
-  lower: Float!
-  upper: Float!
-}
-
 """An Organization resource"""
 type Organization {
   """The ID of this resource."""
@@ -727,7 +727,7 @@ type Organization {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -789,7 +789,7 @@ input OrganizationFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
@@ -839,7 +839,7 @@ type Person {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -873,7 +873,7 @@ input PersonFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   pseudonym: StringFieldComparison
 }
@@ -1059,7 +1059,7 @@ type Screening {
   """
   The version number of this resource (incremented each time this resource was updated).
   """
-  version: Float!
+  version: Int!
 
   """Date this entry was deleted."""
   deletedAt: DateTime
@@ -1116,7 +1116,7 @@ input ScreeningFilter {
   id: IDFilterComparison
   createdAt: DateFieldComparison
   updatedAt: DateFieldComparison
-  version: NumberFieldComparison
+  version: IntFieldComparison
   deletedAt: DateFieldComparison
   instanceId: StringFieldComparison
   collectedAt: DateFieldComparison

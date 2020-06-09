@@ -3,39 +3,39 @@ import { CoreObject } from '@cancerlog/api/core';
 
 @ObjectType('AccessToken')
 export class TokenObject extends CoreObject {
-  @Field({
+  @Field(() => String, {
     description: 'the generated access token to work with the api',
     nullable: false,
   })
   accessToken!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'the type of this token (e.g., BEARER)',
     nullable: false,
   })
   tokenType!: string;
 
-  @Field({
+  @Field(() => Number, {
     description: 'indicates, how long this token is valid (value in seconds)',
     nullable: false,
   })
   accessTokenExpiresIn!: number;
 
-  @Field({
+  @Field(() => String, {
     description:
       'the generated refresh token that can be used to issue another access token',
     nullable: false,
   })
   refreshToken!: string;
 
-  @Field({
+  @Field(() => Number, {
     description:
       'indicates, how long this refresh token is valid (value in seconds)',
     nullable: false,
   })
   refreshTokenExpiresIn!: number;
 
-  @Field({
+  @Field(() => String, {
     description: 'the scopes used within this token',
     nullable: false,
   })

@@ -7,54 +7,54 @@ import { Field, ObjectType } from '@nestjs/graphql';
   description: 'An Instrument resource for a survey',
 })
 export class InstrumentObject extends VersionableObject {
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'The name of this instrument',
     nullable: false,
   })
   name!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'A description for this instrument',
     nullable: true,
   })
-  description?: string;
+  description!: string;
 
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'The type of this instrument',
     nullable: false,
   })
   type!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'An image / icon URL for this instrument',
     nullable: true,
   })
-  image?: string;
+  image!: string | null;
 
   @Field((type) => JSONObject, {
     description: 'The actual payload / content / structure of this instrument',
-    nullable: true,
+    nullable: false,
   })
-  payload?: object;
+  payload!: object;
 
   @Field((type) => [JSONObject], {
     description: 'rules that are applied to calculate some kind of result',
-    nullable: true,
+    nullable: false,
   })
-  rules?: object[];
+  rules!: object[];
 
   @Field((type) => JSONObject, {
     description: 'Information on how to create diagrams for this instrument',
-    nullable: true,
+    nullable: false,
   })
-  diagram?: object;
+  diagram!: object;
 
-  @Field({
+  @Field(() => String, {
     description:
       'the changelog of this instrument (i.e., what has been changed)',
     nullable: false,
   })
   changelog!: string;
 
-  xState!: string;
+  xState!: object | null;
 }

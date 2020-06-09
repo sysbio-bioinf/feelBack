@@ -22,7 +22,7 @@ export const environment: IEnvironment = {
   auth: {
     keycloak: {
       host: {
-        url: env.get('KEYCLOAK_URL').asUrlString(),
+        url: env.get('KEYCLOAK_URL').default('localhost').asUrlString(),
       },
       config: {
         cache: true,

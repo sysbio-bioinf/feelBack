@@ -6,26 +6,27 @@ import { FilterableField } from '@nestjs-query/query-graphql';
   description: 'Identity resource for an anonymized patient',
 })
 export class IdentityObject extends VersionableObject {
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'The pseudonym of an identity.',
+    nullable: false,
   })
   pseudonym!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'An academic title of this identity',
     nullable: true,
   })
-  title?: string;
+  title!: string | null;
 
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'The firstname of this identity',
     nullable: true,
   })
-  firstname?: string;
+  firstname!: string | null;
 
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'The lastname of this identity',
     nullable: true,
   })
-  lastname?: string;
+  lastname!: string | null;
 }

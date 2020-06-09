@@ -6,13 +6,13 @@ import { FilterableField } from '@nestjs-query/query-graphql';
   description: 'A person',
 })
 export class PersonObject extends VersionableObject {
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'the pseudonym of the person',
     nullable: false,
   })
   pseudonym!: string;
 
-  @Field({
+  @Field(() => Boolean, {
     description: 'indicates if the TOS were accepted',
     nullable: false,
   })

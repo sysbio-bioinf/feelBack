@@ -6,13 +6,13 @@ import { DiagramAxisObject } from './diagram-axis.object';
   description: 'Object that contain diagram data information',
 })
 export class DiagramDataObject extends CoreObject {
-  @Field({
+  @Field(() => String, {
     description: 'the name of the diagram',
     nullable: false,
   })
   name!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'the type of the diagram',
     nullable: false,
   })

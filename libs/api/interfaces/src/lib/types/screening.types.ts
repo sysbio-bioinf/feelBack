@@ -35,7 +35,7 @@ export class UploadScreeningInputType extends CreateOneInputType(
   @IsOptional()
   @IsString()
   @IsUUID('4')
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   personId!: string | null;
 }
 

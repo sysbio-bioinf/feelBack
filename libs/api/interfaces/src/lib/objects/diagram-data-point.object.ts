@@ -17,7 +17,7 @@ export class DiagramDataPointObject extends CoreObject {
   })
   x!: Date;
 
-  @Field({
+  @Field(() => Number, {
     description: 'calculated y axis value',
     nullable: false,
   })

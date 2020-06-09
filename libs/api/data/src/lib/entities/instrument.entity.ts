@@ -9,7 +9,7 @@ export class InstrumentEntity extends VersionableEntity {
   @Column({ type: 'varchar', length: 190 })
   name!: string;
 
-  @Column({ type: 'text', nullable: true, default: null })
+  @Column({ type: 'text', nullable: false })
   description!: string | null;
 
   @Column({ type: 'varchar', length: 190, nullable: false })

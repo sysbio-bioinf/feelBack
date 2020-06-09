@@ -25,13 +25,12 @@ export class CreateInstrumentInput extends CoreInput {
   })
   name!: string;
 
-  @IsOptional()
   @IsString()
   @Field({
     description: 'The description of the instrument',
-    nullable: true,
+    nullable: false,
   })
-  description?: string;
+  description!: string;
 
   @IsString()
   @MaxLength(190)

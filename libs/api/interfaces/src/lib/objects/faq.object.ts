@@ -6,19 +6,19 @@ import { FilterableField } from '@nestjs-query/query-graphql';
   description: 'A FAQ entry',
 })
 export class FaqObject extends VersionableObject {
-  @Field({
+  @Field(() => String, {
     description: 'the question of this FAQ entry',
     nullable: false,
   })
   question!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'the answer to this question',
     nullable: false,
   })
   answer!: string;
 
-  @FilterableField({
+  @FilterableField(() => Boolean, {
     description: 'indicates if this FAQ entry is active an can be displayed',
     nullable: false,
   })

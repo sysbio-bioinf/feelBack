@@ -6,7 +6,7 @@ import { DiagramDataPointObject } from './diagram-data-point.object';
   description: 'Object that contain diagram axis data',
 })
 export class DiagramAxisObject extends CoreObject {
-  @Field({
+  @Field(() => String, {
     description: 'the name of the axis',
     nullable: false,
   })

@@ -3,25 +3,25 @@ import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('Rule')
 export class RuleObject extends CoreObject {
-  @Field({
+  @Field(() => String, {
     description: 'the name of the rule',
     nullable: false,
   })
   name!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'the (boolean) expression of the rule',
     nullable: false,
   })
   condition!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'the text to be shown if the rule evaluates positive (true)',
     nullable: false,
   })
   then!: string;
 
-  @Field({
+  @Field(() => String, {
     description: 'the text to be shown if the rule evaluates negative (false)',
     nullable: false,
   })

@@ -7,7 +7,7 @@ import { JSONObject } from '@cancerlog/api/application';
   description: 'A processed screening',
 })
 export class ScreeningObject extends VersionableObject {
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'Instance ID (uuid v4) defined by the client',
     nullable: false,
   })
@@ -19,7 +19,7 @@ export class ScreeningObject extends VersionableObject {
   })
   collectedAt!: Date;
 
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'The language this screening was performed in',
     nullable: false,
   })
@@ -31,21 +31,21 @@ export class ScreeningObject extends VersionableObject {
   })
   payload!: object;
 
-  @FilterableField({
+  @FilterableField(() => Boolean, {
     description: 'if the screening issues has been resolved',
     nullable: true,
   })
-  isResolved?: boolean;
+  isResolved!: boolean | null;
 
   @FilterableField(() => GraphQLISODateTime, {
     description: 'DateTime when the screening issues has been resolved.',
     nullable: true,
   })
-  resolvedAt?: Date;
+  resolvedAt!: Date | null;
 
-  @Field({
+  @Field(() => String, {
     description: 'data about resolving the screening issues',
     nullable: true,
   })
-  resolveComment?: string;
+  resolveComment!: string | null;
 }

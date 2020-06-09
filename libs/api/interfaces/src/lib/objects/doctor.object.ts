@@ -7,51 +7,51 @@ import { JSONObject } from '@cancerlog/api/application';
   description: 'A Doctor, Psychologist or Caregiver',
 })
 export class DoctorObject extends VersionableObject {
-  @Field({
+  @Field(() => String, {
     description: '(Academic) title of this doctor',
     nullable: true,
   })
-  title?: string;
+  title!: string | null;
 
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'Firstname of this doctor',
     nullable: true,
   })
-  firstname?: string;
+  firstname!: string | null;
 
-  @FilterableField({
+  @FilterableField(() => String, {
     description: 'Lastname of this doctor',
     nullable: true,
   })
-  lastname?: string;
+  lastname!: string | null;
 
-  @Field({
+  @Field(() => String, {
     description: 'The phone number of this doctor',
     nullable: true,
   })
-  phone?: string;
+  phone!: string | null;
 
-  @Field({
+  @Field(() => String, {
     description: 'An email address of this doctor',
     nullable: true,
   })
-  email?: string;
+  email!: string | null;
 
-  @Field({
+  @Field(() => String, {
     description: 'The URL / website of this doctor',
     nullable: true,
   })
-  url?: string;
+  url!: string | null;
 
-  @Field({
+  @Field(() => String, {
     description: 'The URL for the picture of this doctor',
     nullable: true,
   })
-  picture?: string;
+  picture!: string | null;
 
-  @Field({
+  @Field(() => JSONObject, {
     description: 'Settings for this user',
     nullable: false,
   })
-  settings!: JSONObject;
+  settings!: object;
 }

@@ -1,5 +1,5 @@
 import { FilterableField } from '@nestjs-query/query-graphql';
-import { GraphQLISODateTime, ObjectType } from '@nestjs/graphql';
+import { GraphQLISODateTime, ObjectType, Int } from '@nestjs/graphql';
 import { IdentifiableObject } from './identifiable.object';
 
 @ObjectType({
@@ -7,7 +7,7 @@ import { IdentifiableObject } from './identifiable.object';
   description: 'Core Object with ID, timestamps and version',
 })
 export class VersionableObject extends IdentifiableObject {
-  @FilterableField({
+  @FilterableField(() => Int, {
     description:
       'The version number of this resource (incremented each time this resource was updated).',
   })
