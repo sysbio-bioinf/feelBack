@@ -126,13 +126,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/feelback-web-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/feelback-web-e2e/**"
-            ]
+            "tsConfig": ["apps/feelback-web-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/feelback-web-e2e/**"]
           }
         }
       }
@@ -150,9 +145,7 @@
             "outputPath": "dist/apps/feelback-api",
             "main": "apps/feelback-api/src/main.ts",
             "tsConfig": "apps/feelback-api/tsconfig.app.json",
-            "assets": [
-              "apps/feelback-api/src/assets"
-            ],
+            "assets": ["apps/feelback-api/src/assets"],
             "buildLibsFromSource": true
           },
           "configurations": {
@@ -183,10 +176,7 @@
               "apps/feelback-api/tsconfig.app.json",
               "apps/feelback-api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/feelback-api/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/feelback-api/**"]
           }
         },
         "test": {
@@ -212,10 +202,7 @@
               "libs/api/config/tsconfig.lib.json",
               "libs/api/config/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/config/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/config/**"]
           }
         },
         "test": {
@@ -241,10 +228,7 @@
               "libs/api/core/tsconfig.lib.json",
               "libs/api/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/core/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/core/**"]
           }
         },
         "test": {
@@ -270,10 +254,7 @@
               "libs/api/application/tsconfig.lib.json",
               "libs/api/application/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/application/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/application/**"]
           }
         },
         "test": {
@@ -299,10 +280,7 @@
               "libs/api/authentication/tsconfig.lib.json",
               "libs/api/authentication/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/authentication/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/authentication/**"]
           }
         },
         "test": {
@@ -328,10 +306,7 @@
               "libs/util/connection/tsconfig.lib.json",
               "libs/util/connection/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/util/connection/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/util/connection/**"]
           }
         },
         "test": {
@@ -478,10 +453,7 @@
               "apps/feelback-ionic/tsconfig.spec.json",
               "apps/feelback-ionic/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "**/generated/**"
-            ]
+            "exclude": ["**/node_modules/**", "**/generated/**"]
           }
         },
         "ionic-cordova-build": {
@@ -523,10 +495,7 @@
               "libs/features/ui/tsconfig.lib.json",
               "libs/features/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/ui/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/features/ui/**"]
           }
         },
         "test": {
@@ -563,9 +532,7 @@
               "apps/feelback-admin/src/favicon.ico",
               "apps/feelback-admin/src/assets"
             ],
-            "styles": [
-              "apps/feelback-admin/src/styles.scss"
-            ],
+            "styles": ["apps/feelback-admin/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -662,13 +629,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/feelback-admin-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/feelback-admin-e2e/**"
-            ]
+            "tsConfig": ["apps/feelback-admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/feelback-admin-e2e/**"]
           }
         }
       }
@@ -708,9 +670,7 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "apps/feelback-doctor/src/styles"
-              ]
+              "includePaths": ["apps/feelback-doctor/src/styles"]
             },
             "scripts": []
           },
@@ -808,13 +768,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/feelback-doctor-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/feelback-doctor-e2e/**"
-            ]
+            "tsConfig": ["apps/feelback-doctor-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/feelback-doctor-e2e/**"]
           }
         }
       }
@@ -832,10 +787,7 @@
               "libs/shared/misc/tsconfig.lib.json",
               "libs/shared/misc/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/misc/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/misc/**"]
           }
         },
         "test": {
@@ -861,10 +813,7 @@
               "libs/api/data/tsconfig.lib.json",
               "libs/api/data/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/data/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/data/**"]
           }
         },
         "test": {
@@ -890,10 +839,7 @@
               "libs/api/interfaces/tsconfig.lib.json",
               "libs/api/interfaces/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/interfaces/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/interfaces/**"]
           }
         },
         "test": {
@@ -919,10 +865,7 @@
               "libs/api/util/tsconfig.lib.json",
               "libs/api/util/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/util/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/util/**"]
           }
         },
         "test": {
@@ -948,9 +891,7 @@
             "outputPath": "dist/apps/feelback-cli",
             "main": "apps/feelback-cli/src/main.ts",
             "tsConfig": "apps/feelback-cli/tsconfig.app.json",
-            "assets": [
-              "apps/feelback-cli/src/assets"
-            ]
+            "assets": ["apps/feelback-cli/src/assets"]
           },
           "configurations": {
             "production": {
@@ -979,10 +920,7 @@
               "apps/feelback-cli/tsconfig.app.json",
               "apps/feelback-cli/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/feelback-cli/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/feelback-cli/**"]
           }
         },
         "test": {
@@ -1008,10 +946,7 @@
               "libs/api/database/tsconfig.lib.json",
               "libs/api/database/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/database/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/database/**"]
           }
         },
         "test": {
@@ -1037,10 +972,7 @@
               "libs/shared/style/tsconfig.lib.json",
               "libs/shared/style/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/style/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/style/**"]
           }
         },
         "test": {
@@ -1066,10 +998,7 @@
               "libs/api/state/tsconfig.lib.json",
               "libs/api/state/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api/state/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api/state/**"]
           }
         },
         "test": {
@@ -1084,7 +1013,7 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nstudio/xplat"
+    "defaultCollection": "@nrwl/angular"
   },
   "schematics": {
     "@nrwl/angular:application": {
