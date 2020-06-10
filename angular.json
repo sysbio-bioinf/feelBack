@@ -466,6 +466,9 @@
       }
     },
     "feelback-ionic-e2e": {
+      "root": "apps/feelback-ionic-e2e",
+      "sourceRoot": "apps/feelback-ionic-e2e/src",
+      "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
