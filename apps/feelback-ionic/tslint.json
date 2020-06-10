@@ -1,10 +1,12 @@
 {
   "extends": "../../tslint.json",
-  "rulesDirectory": ["codelyzer"],
   "rules": {
     "directive-selector": [true, "attribute", "feelback-ionic", "camelCase"],
     "component-selector": [true, "element", "feelback-ionic", "kebab-case"],
     "component-class-suffix": [true, "Page", "Component"],
     "directive-class-suffix": true
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
   }
 }

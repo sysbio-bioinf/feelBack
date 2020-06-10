@@ -1,4 +1,4 @@
-package com.johannesschobel.apps.feelback;
+package com.johannesschobel.feelback;
 
 import android.os.Bundle;
 

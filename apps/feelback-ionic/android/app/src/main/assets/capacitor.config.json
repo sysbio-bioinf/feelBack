@@ -1,6 +1,13 @@
 {
-  "appId": "com.johannesschobel.apps.feelback",
+  "appId": "com.johannesschobel.feelback",
   "appName": "FeelBack",
   "bundledWebRuntime": false,
-  "webDir": "www"
+  "npmClient": "npm",
+  "webDir": "./../../dist/apps/feelback-ionic",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
 }

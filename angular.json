@@ -363,7 +363,7 @@
                 "input": "apps/feelback-ionic/src/theme/variables.scss"
               },
               {
-                "input": "apps/feelback-ionic/src/global.scss"
+                "input": "apps/feelback-ionic/src/styles.scss"
               }
             ],
             "scripts": []
