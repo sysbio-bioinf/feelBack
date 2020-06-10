@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { Instrument } from 'src/app/models/instrument.model';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { Instrument } from '../../models/instrument.model';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
-import { InstrumentService } from 'src/app/services/api/instrument.service';
+import { InstrumentService } from '../../services/api/instrument.service';
 
 @Component({
   selector: 'feelback-ionic-home',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
+import { AbstractComponent } from '../../core/components/abstract.component';
 import { Router } from '@angular/router';
-import { TutorialSlideModel } from 'src/app/models/tutorial-slide.model';
+import { TutorialSlideModel } from '../../models/tutorial-slide.model';
 
 @Component({
   selector: 'feelback-ionic-tutorial',

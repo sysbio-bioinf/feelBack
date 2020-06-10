@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController, LoadingController } from '@ionic/angular';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../services/user.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { IdentityService } from 'src/app/services/api/identity.service';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { Identity } from 'src/app/graphql/generated/feelback.graphql';
+import { IdentityService } from '../../services/api/identity.service';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { Identity } from '../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-ionic-profile',

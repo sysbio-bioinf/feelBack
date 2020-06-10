@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
+import { AbstractComponent } from '../../core/components/abstract.component';
 
 @Component({
   selector: 'feelback-ionic-menu',

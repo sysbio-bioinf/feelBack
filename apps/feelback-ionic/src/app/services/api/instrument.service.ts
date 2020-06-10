@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   GetInstrumentByIdGQL,
   GetInstrumentsGQL,
-} from 'src/app/graphql/generated/feelback.graphql';
-import { Instrument } from 'src/app/models/instrument.model';
+} from '../../graphql/generated/feelback.graphql';
+import { Instrument } from '../../models/instrument.model';
 
 @Injectable({
   providedIn: 'root',

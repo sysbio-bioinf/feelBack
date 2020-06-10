@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { SharedModule } from 'src/app/modules/shared.module';
+import { SharedModule } from '../../modules/shared.module';
 import { LoginQrcodePageRoutingModule } from './login-qrcode-routing.module';
 import { LoginQrcodePage } from './login-qrcode.page';
 

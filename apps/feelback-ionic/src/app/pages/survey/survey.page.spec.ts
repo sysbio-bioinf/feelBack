@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SurveyPage } from './survey.page';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
-import { GraphQLModule } from 'src/app/modules/graphql.module';
+import { GraphQLModule } from '../../modules/graphql.module';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 

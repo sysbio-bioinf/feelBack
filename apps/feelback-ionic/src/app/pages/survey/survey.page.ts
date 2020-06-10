@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LoadingController } from '@ionic/angular';
-import { InstrumentService } from 'src/app/services/api/instrument.service';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { Instrument } from 'src/app/models/instrument.model';
+import { InstrumentService } from '../../services/api/instrument.service';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { Instrument } from '../../models/instrument.model';
 
 @Component({
   selector: 'feelback-ionic-survey',

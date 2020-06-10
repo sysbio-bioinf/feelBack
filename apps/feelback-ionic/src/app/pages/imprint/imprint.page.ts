@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TeamModel } from 'src/app/models/team.model';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
+import { TeamModel } from '../../models/team.model';
+import { AbstractComponent } from '../../core/components/abstract.component';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
+import { AbstractComponent } from '../../core/components/abstract.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

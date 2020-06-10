@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { FaqService } from 'src/app/services/api/faq.service';
-import { Faq } from 'src/app/models/faq.model';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { FaqService } from '../../services/api/faq.service';
+import { Faq } from '../../models/faq.model';
 
 @Component({
   selector: 'feelback-ionic-faq-detail',

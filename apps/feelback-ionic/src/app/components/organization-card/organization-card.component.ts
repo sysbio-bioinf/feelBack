@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { Organization } from 'src/app/models/organization.model';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { Organization } from '../../models/organization.model';
 
 @Component({
   selector: 'feelback-ionic-organization-card',

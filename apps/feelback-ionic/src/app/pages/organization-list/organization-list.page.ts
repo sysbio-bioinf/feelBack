@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
-import { Organization } from 'src/app/models/organization.model';
-import { OrganizationService } from 'src/app/services/api/organization.service';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { Organization } from '../../models/organization.model';
+import { OrganizationService } from '../../services/api/organization.service';
 
 @Component({
   selector: 'feelback-ionic-organization-list',

@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { SharedModule } from 'src/app/modules/shared.module';
+import { SharedModule } from '../../modules/shared.module';
 import { StartPageRoutingModule } from './start-routing.module';
 import { StartPage } from './start.page';
 

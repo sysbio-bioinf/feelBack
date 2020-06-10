@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   GetIdentityByPseudonymGQL,
   Identity,
-} from 'src/app/graphql/generated/feelback.graphql';
+} from '../../graphql/generated/feelback.graphql';
 
 @Injectable({
   providedIn: 'root',

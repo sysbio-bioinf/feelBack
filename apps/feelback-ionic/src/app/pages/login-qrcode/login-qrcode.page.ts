@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from 'src/app/core/components/abstract.component';
+import { AbstractComponent } from '../../core/components/abstract.component';
 import { Router } from '@angular/router';
 import {
   BarcodeScanner,
   BarcodeScannerOptions,
 } from '@ionic-native/barcode-scanner/ngx';
 import { TranslatePipe } from '@ngx-translate/core';
-import { UserService } from 'src/app/services/user.service';
-import { CardService } from 'src/app/services/card.service';
+import { UserService } from '../../services/user.service';
+import { CardService } from '../../services/card.service';
 
 @Component({
   selector: 'feelback-ionic-login-qrcode',

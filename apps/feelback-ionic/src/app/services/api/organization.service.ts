@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   GetOrganizationsGQL,
   GetOrganizationByIdGQL,
-} from 'src/app/graphql/generated/feelback.graphql';
-import { Organization } from 'src/app/models/organization.model';
+} from '../../graphql/generated/feelback.graphql';
+import { Organization } from '../../models/organization.model';
 
 @Injectable({
   providedIn: 'root',

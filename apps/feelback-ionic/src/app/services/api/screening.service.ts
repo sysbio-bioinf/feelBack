@@ -4,9 +4,9 @@ import {
   AttachPersonToScreeningGQL,
   CreateScreeningGQL,
   CreateScreeningInput,
-} from 'src/app/graphql/generated/feelback.graphql';
-import { Instrument } from 'src/app/models/instrument.model';
-import { Person } from 'src/app/models/person.model';
+} from '../../graphql/generated/feelback.graphql';
+import { Instrument } from '../../models/instrument.model';
+import { Person } from '../../models/person.model';
 
 @Injectable({
   providedIn: 'root',
