@@ -45,16 +45,20 @@
     "feelback-admin": {
       "tags": ["type:app"]
     },
+    "feelback-doctor": {
+      "tags": ["type:app"]
+    },
     "feelback-admin-e2e": {
       "tags": ["type:e2e"],
       "implicitDependencies": ["feelback-admin"]
     },
-    "feelback-doctor": {
-      "tags": ["type:app"]
-    },
     "feelback-doctor-e2e": {
       "tags": ["type:e2e"],
       "implicitDependencies": ["feelback-doctor"]
+    },
+    "feelback-ionic-e2e": {
+      "tags": [],
+      "implicitDependencies": ["feelback-ionic"]
     },
     "shared-misc": {
       "tags": []
