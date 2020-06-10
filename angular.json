@@ -320,25 +320,27 @@
       }
     },
     "feelback-ionic": {
-      "root": "apps/feelback-ionic/",
-      "sourceRoot": "apps/feelback-ionic/src",
       "projectType": "application",
-      "prefix": "feelback-ionic",
       "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       },
+      "root": "apps/feelback-ionic",
+      "sourceRoot": "apps/feelback-ionic/src",
+      "prefix": "feelback-ionic",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "apps/feelback-ionic/www",
+            "outputPath": "dist/apps/feelback-ionic",
             "index": "apps/feelback-ionic/src/index.html",
             "main": "apps/feelback-ionic/src/main.ts",
             "polyfills": "apps/feelback-ionic/src/polyfills.ts",
             "tsConfig": "apps/feelback-ionic/tsconfig.app.json",
+            "aot": true,
             "assets": [
+              "apps/feelback-ionic/src/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "apps/feelback-ionic/src/assets",
@@ -379,7 +381,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -388,11 +389,13 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
-            },
-            "ci": {
-              "progress": false
             }
           }
         },
@@ -404,9 +407,6 @@
           "configurations": {
             "production": {
               "browserTarget": "feelback-ionic:build:production"
-            },
-            "ci": {
-              "progress": false
             }
           }
         },
@@ -416,44 +416,27 @@
             "browserTarget": "feelback-ionic:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "apps/feelback-ionic/src/test.ts",
-            "polyfills": "apps/feelback-ionic/src/polyfills.ts",
-            "tsConfig": "apps/feelback-ionic/tsconfig.spec.json",
-            "karmaConfig": "apps/feelback-ionic/karma.conf.js",
-            "styles": [],
-            "scripts": [],
-            "assets": [
-              {
-                "glob": "favicon.ico",
-                "input": "apps/feelback-ionic/src/",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "apps/feelback-ionic/src/assets",
-                "output": "/assets"
-              }
-            ]
-          },
-          "configurations": {
-            "ci": {
-              "progress": false,
-              "watch": false
-            }
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "apps/feelback-ionic/tsconfig.app.json",
-              "apps/feelback-ionic/tsconfig.spec.json",
-              "apps/feelback-ionic/e2e/tsconfig.json"
+              "apps/feelback-ionic/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "**/generated/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "**/generated/**",
+              "!apps/feelback-ionic/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/feelback-ionic/jest.config.js",
+            "tsConfig": "apps/feelback-ionic/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/feelback-ionic/src/test-setup.ts"
           }
         },
         "ionic-cordova-build": {
@@ -478,6 +461,30 @@
               "cordovaBuildTarget": "feelback-ionic:ionic-cordova-build:production",
               "devServerTarget": "feelback-ionic:serve:production"
             }
+          }
+        }
+      }
+    },
+    "feelback-ionic-e2e": {
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/feelback-ionic-e2e/cypress.json",
+            "tsConfig": "apps/feelback-ionic-e2e/tsconfig.e2e.json",
+            "devServerTarget": "feelback-ionic:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "feelback-ionic:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/feelback-ionic-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/feelback-ionic-e2e/**"]
           }
         }
       }
