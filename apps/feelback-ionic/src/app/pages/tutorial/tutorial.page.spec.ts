@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { TutorialPage } from './tutorial.page';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TutorialPage', () => {
   let component: TutorialPage;
@@ -13,7 +14,7 @@ describe('TutorialPage', () => {
       declarations: [TutorialPage],
       imports: [
         IonicModule.forRoot(),
-        RouterModule.forRoot([]),
+        RouterTestingModule,
         TranslateModule.forRoot(),
       ],
       providers: [TranslatePipe],

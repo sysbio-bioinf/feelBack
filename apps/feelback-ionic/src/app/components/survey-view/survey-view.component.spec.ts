@@ -1,16 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-
-import { SurveyViewComponent } from './survey-view.component';
 import { RouterModule } from '@angular/router';
-import {
-  TranslatePipe,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
-import { StorageService } from '../../services/storage.service';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { Apollo } from 'apollo-angular';
 import { PrinterService } from '../../services/printer.service';
+import { StorageService } from '../../services/storage.service';
+import { SurveyViewComponent } from './survey-view.component';
 
 describe('SurveyViewComponent', () => {
   let component: SurveyViewComponent;
@@ -33,7 +28,9 @@ describe('SurveyViewComponent', () => {
         { provide: PrinterService, useValue: spy },
       ],
     }).compileComponents();
+  }));
 
+  it('should create', () => {
     fixture = TestBed.createComponent(SurveyViewComponent);
     component = fixture.componentInstance;
     component.instrument = {
@@ -47,10 +44,7 @@ describe('SurveyViewComponent', () => {
       rules: [],
     };
     component.selectedLanguage = '';
-    fixture.detectChanges();
-  }));
 
-  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

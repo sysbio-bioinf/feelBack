@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
+import { NgPipesModule } from 'ngx-pipes';
 import { OrganizationCardComponent } from './organization-card.component';
 
 describe('OrganizationCardComponent', () => {
@@ -9,17 +9,26 @@ describe('OrganizationCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganizationCardComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [OrganizationCardComponent],
+      imports: [IonicModule.forRoot(), NgPipesModule],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(OrganizationCardComponent);
-    component = fixture.componentInstance;
-    component.organization = {id: '', name: '', type: '', address: '', description: '', email: '', logo: '', phone: '', url: ''};
-    fixture.detectChanges();
   }));
 
   it('should create', () => {
+    fixture = TestBed.createComponent(OrganizationCardComponent);
+    component = fixture.componentInstance;
+    component.organization = {
+      id: '',
+      name: '',
+      type: '',
+      address: '',
+      description: '',
+      email: '',
+      logo: '',
+      phone: '',
+      url: '',
+    };
+
     expect(component).toBeTruthy();
   });
 });

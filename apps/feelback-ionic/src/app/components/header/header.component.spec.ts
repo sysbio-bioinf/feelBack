@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -9,16 +8,14 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [HeaderComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   it('should create', () => {
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
