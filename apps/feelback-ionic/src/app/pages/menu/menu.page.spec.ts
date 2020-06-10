@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-
-import { MenuPage } from './menu.page';
-import { RouterModule } from '@angular/router';
-import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { MenuPage } from './menu.page';
 
 describe('MenuPage', () => {
   let component: MenuPage;
@@ -15,9 +13,8 @@ describe('MenuPage', () => {
       declarations: [MenuPage],
       imports: [
         IonicModule.forRoot(),
-        RouterModule.forRoot([]),
         TranslateModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [TranslatePipe],
     }).compileComponents();

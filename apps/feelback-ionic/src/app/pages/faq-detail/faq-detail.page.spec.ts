@@ -1,10 +1,10 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-
-import { FaqDetailPage } from './faq-detail.page';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateTestingModule } from 'ngx-translate-testing';
+import { IonicModule } from '@ionic/angular';
 import { Apollo } from 'apollo-angular';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { FaqDetailPage } from './faq-detail.page';
 
 describe('FaqDetailPage', () => {
   let component: FaqDetailPage;
@@ -18,7 +18,8 @@ describe('FaqDetailPage', () => {
         RouterTestingModule,
         TranslateTestingModule.withTranslations('en', {}),
       ],
-      providers: [Apollo]
+      providers: [Apollo],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FaqDetailPage);

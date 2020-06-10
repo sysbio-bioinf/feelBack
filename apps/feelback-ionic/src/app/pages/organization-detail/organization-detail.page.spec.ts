@@ -1,12 +1,11 @@
+import { HttpClient } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
-
-import { OrganizationDetailPage } from './organization-detail.page';
-import { RouterModule, Router } from '@angular/router';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { Apollo } from 'apollo-angular';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import { OrganizationDetailPage } from './organization-detail.page';
 
 describe('OrganizationDetailPage', () => {
   let component: OrganizationDetailPage;
@@ -17,11 +16,11 @@ describe('OrganizationDetailPage', () => {
       declarations: [OrganizationDetailPage],
       imports: [
         IonicModule.forRoot(),
-        RouterModule.forRoot([]),
         TranslateModule.forRoot(),
-        RouterTestingModule
+        RouterTestingModule,
       ],
       providers: [TranslatePipe, Apollo, HttpClient],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OrganizationDetailPage);
