@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { PatientsModule } from './patients/patients.module';
-import { InstrumentsModule } from './instruments/instruments.module';
-import { ScreeningsModule } from './screenings/screenings.module';
-import { ResultModule } from './result/result.module';
 import { ImprintModule } from './imprint/imprint.module';
+import { WorkflowModule } from './workflow/workflow.module';
 
 @NgModule({
   declarations: [],
-  imports: [PatientsModule, InstrumentsModule, ScreeningsModule, ResultModule, ImprintModule],
+  imports: [ImprintModule, WorkflowModule],
 })
 export class AppPagesModule {}

@@ -1,32 +1,5 @@
 <feelback-doctor-navbar></feelback-doctor-navbar>
 <main>
-  <nav class="mat-elevation-z1">
-    <div *ngFor="let step of steps; let i = index" class="step">
-      <button
-        mat-button
-        class="button"
-        [routerLink]="step.path"
-        [disabled]="stepThreshold < i"
-      >
-        <button
-          mat-mini-fab
-          class="mat-elevation-z0 icon"
-          [class]="stepThreshold === i ? 'background-active' : 'background-default'"
-          [disabled]="stepThreshold < i"
-        >
-          <mat-icon>{{step.icon}}</mat-icon>
-        </button>
-        <br />
-        <span [class]="stepThreshold === i ? 'mat-body-strong' : 'mat-body'"
-          >{{step.label}}</span
-        >
-      </button>
-      <div class="step-bar-left"></div>
-      <div class="step-bar-right"></div>
-    </div>
-  </nav>
-  <div [@routeAnimations]="prepareRoute(outlet)" >
-    <router-outlet #outlet="outlet"></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </main>
 <feelback-doctor-footer></feelback-doctor-footer>

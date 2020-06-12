@@ -1,5 +1,3 @@
-@import 'variables';
-
 main {
   box-sizing: border-box;
   position: absolute;
@@ -8,57 +6,4 @@ main {
   height: calc(100% - 96px);
   width: 100%;
   padding: 25px;
-}
-
-nav {
-  display: flex;
-  border-radius: 4px;
-  margin-bottom: 2em;
-  background-color: white;
-}
-
-.button {
-  padding: 10px 10px 0 10px;
-  width: 100%;
-}
-
-.icon {
-  margin-right: 5px;
-}
-
-.background-default{
-  background-color: grey;
-}
-
-.background-active{
-  background-color: $primary;
-}
-
-.step {
-  position:relative;
-  flex: 0 0 25%;
-  text-align: center;
-}
-
-.step:first-child .step-bar-left,
-.step:last-child .step-bar-right {
-	display:none;
-}
-
-.step-bar-left,
-.step-bar-right {
-	position:absolute;
-	top:30px;
-	height:1px;
-	border-top:1px solid #DDDDDD;
-}
-.step-bar-right {
-	right:0;
-	left:50%;
-	margin-left:20px;
-}
-.step-bar-left {
-	left:0;
-	right:50%;
-	margin-right:25px;
 }

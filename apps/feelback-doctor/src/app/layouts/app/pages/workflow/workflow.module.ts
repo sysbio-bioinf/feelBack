@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../../../components/components.module';
 import { MaterialModule } from '../../../../material.module';
-import { InstrumentsPage } from './instruments.page';
-import { InstrumentsRouting } from './instruments.routing';
+import { WorkflowPage } from './workflow.page';
+import { WorkflowRouting } from './workflow.routing';
 
 @NgModule({
-  declarations: [InstrumentsPage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, InstrumentsRouting],
+  declarations: [WorkflowPage],
+  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, WorkflowRouting],
 })
-export class InstrumentsModule {}
+export class WorkflowModule {}
