@@ -12,10 +12,9 @@ describe('ConsultationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, BrowserAnimationsModule],
-      declarations: [ ConsultationComponent ],
-      providers: [DatePipe]
-    })
-    .compileComponents();
+      declarations: [ConsultationComponent],
+      providers: [DatePipe],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -30,9 +29,22 @@ describe('ConsultationComponent', () => {
       createdAt: new Date(),
       updatedAt: new Date(),
       collectedAt: new Date(),
-      instrument: {id: '', name: '', changelog: '', type: '', updatedAt: new Date(), createdAt: new Date(), version: 1},
+      instrument: {
+        id: '',
+        name: '',
+        changelog: '',
+        type: '',
+        updatedAt: new Date(),
+        createdAt: new Date(),
+        version: 1,
+        diagram: {},
+        rules: [],
+        payload: {},
+      },
       language: '',
-      evaluationResult: [{result: true, name: '', then: '', else: '', condition: ''}]
+      evaluationResult: [
+        { result: true, name: '', then: '', else: '', condition: '' },
+      ],
     };
     fixture.detectChanges();
   });

@@ -14,7 +14,12 @@ describe('OverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, NgxChartsModule, RouterTestingModule, BrowserAnimationsModule],
+      imports: [
+        MaterialModule,
+        NgxChartsModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+      ],
       providers: [CommonService, DatePipe],
       declarations: [OverviewComponent],
     }).compileComponents();
@@ -32,9 +37,20 @@ describe('OverviewComponent', () => {
       createdAt: new Date(),
       updatedAt: new Date(),
       collectedAt: new Date(),
-      instrument: {id: '', name: '', changelog: '', type: '', updatedAt: new Date(), createdAt: new Date(), version: 1},
+      instrument: {
+        id: '',
+        name: '',
+        changelog: '',
+        type: '',
+        updatedAt: new Date(),
+        createdAt: new Date(),
+        version: 1,
+        payload: {},
+        rules: [],
+        diagram: {},
+      },
       language: '',
-      evaluationResult: []
+      evaluationResult: [],
     };
     component.diagram = {
       instance: {

@@ -11,16 +11,26 @@ describe('InstrumentInfoComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule],
-      declarations: [ InstrumentInfoComponent ],
-      providers: [DatePipe]
-    })
-    .compileComponents();
+      declarations: [InstrumentInfoComponent],
+      providers: [DatePipe],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InstrumentInfoComponent);
     component = fixture.componentInstance;
-    component.instrument = {id: 'id', name:'name', createdAt: new Date(), updatedAt: new Date(), changelog: '', type: '', version: 1};
+    component.instrument = {
+      id: 'id',
+      name: 'name',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      changelog: '',
+      type: '',
+      version: 1,
+      payload: {},
+      rules: [],
+      diagram: {},
+    };
     fixture.detectChanges();
   });
 

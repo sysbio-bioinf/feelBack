@@ -12,7 +12,7 @@ import {
 export class InstrumentService {
   constructor(private instrumentService: GetInstrumentsGQL) {}
 
-  private instruments = [
+  private instruments: Instrument[] = [
     {
       id: '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
       createdAt: new Date(2020, 2, 14),
@@ -25,6 +25,9 @@ export class InstrumentService {
         'Das NCCN Distress-Thermometer ist ein vom National Comprehensive Cancer Network (NCCN) entwickeltes Screeninginstrument zur Erfassung psychosozialer Belastungen bei onkologischen Patienten.',
       image:
         'https://www.gvec.org/wp-content/uploads/2019/10/Breast-Cancer-Awareness-Month-2019-1080x675.jpg',
+      payload: {},
+      rules: [],
+      diagram: {},
     },
     {
       id: '35b24590-cf4a-4bff-9ee4-828dba3cc9e4',
@@ -36,8 +39,10 @@ export class InstrumentService {
       name: 'Instrument A',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
-      image:
-        'https://img.icons8.com/office/64/000000/caduceus.png',
+      image: 'https://img.icons8.com/office/64/000000/caduceus.png',
+      payload: {},
+      rules: [],
+      diagram: {},
     },
     {
       id: 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958',
@@ -49,8 +54,10 @@ export class InstrumentService {
       name: 'Instrument B',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
-      image:
-        'https://img.icons8.com/plasticine/100/000000/hospital-room.png',
+      image: 'https://img.icons8.com/plasticine/100/000000/hospital-room.png',
+      payload: {},
+      rules: [],
+      diagram: {},
     },
     {
       id: 'eab19dff-d4c3-46ae-99df-59db5d8e3842',
@@ -62,8 +69,10 @@ export class InstrumentService {
       name: 'Instrument C',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
-      image:
-        'https://img.icons8.com/doodle/48/000000/treatment-list.png',
+      image: 'https://img.icons8.com/doodle/48/000000/treatment-list.png',
+      payload: {},
+      rules: [],
+      diagram: {},
     },
   ];
 
