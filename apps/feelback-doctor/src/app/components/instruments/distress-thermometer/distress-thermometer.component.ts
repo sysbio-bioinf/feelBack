@@ -39,30 +39,35 @@ export class DistressThermometerComponent implements OnInit {
     switch (daterange) {
       case 'last-year': {
         startDate = new Date(currentYear-1, 0, 1);
-        endDate = new Date(currentYear-1, 11, 31);
+        endDate = new Date(currentYear-1, 12, 0, 23, 59, 59);
         break;
       }
       case 'current-year': {
         startDate = new Date(currentYear, 0, 1);
-        endDate = new Date(currentYear, 11, 31);
+        endDate = new Date(currentYear, 12, 0, 23, 59, 59);
         break;
       }
       case 'current-month': {
         startDate = new Date(currentYear, currentMonth, 1);
-        endDate = new Date(currentYear, currentMonth, 31);
+        endDate = new Date(currentYear, currentMonth+1, 0, 23, 59, 59);
         break;
       }
       case 'last-month': {
         startDate = new Date(currentYear, currentMonth - 1, 1);
-        endDate = new Date(currentYear, currentMonth - 1, 31);
+        endDate = new Date(currentYear, currentMonth, 0, 23, 59, 59);
         break;
       }
       case 'custom': {
         startDate = this.startDate.value;
         endDate = this.endDate.value;
+        endDate.setHours(23);
+        endDate.setMinutes(59);
+        endDate.setSeconds(59);
         break;
       }
     }
+    console.log("startDate: " + startDate);
+    console.log("endDate: " + endDate);
     this.screenings$ = this.screeningService.getScreenings(
       '2b3f4524-773d-4a2a-a576-ace6cfc4d7f3',
       '53f2a7c3-9c37-4a52-9194-8a3186af6f57',

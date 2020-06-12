@@ -19,15 +19,15 @@ export class ScreeningService {
   public getScreenings(
     personId: string,
     instrumentId: string,
-    startDate: Date,
-    endDate: Date
+    from: Date,
+    end: Date
   ): Observable<any> {
     return this.getScreeningsDiagramCollectionsService
       .fetch({
         personId,
         instrumentId,
-        startDate,
-        endDate
+        from,
+        end
       })
       .pipe(
         map((data) => {
