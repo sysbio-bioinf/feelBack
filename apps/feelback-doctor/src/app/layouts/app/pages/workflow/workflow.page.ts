@@ -58,12 +58,12 @@ export class WorkflowPage implements OnInit {
   }
 
   private setPaths(splittedUrl: Array<string>) {
-    this.steps[1].path = '/app/patients/' + splittedUrl[3] + '/instruments';
+    this.steps[1].path = '/app/patients/' + splittedUrl[4] + '/instruments';
     this.steps[2].path =
       '/app/patients/' +
-      splittedUrl[3] +
+      splittedUrl[4] +
       '/instruments/' +
-      splittedUrl[5] +
+      splittedUrl[6] +
       '/screenings';
   }
 
