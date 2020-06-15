@@ -48,8 +48,3 @@ Thumbs.db
 # other stuff
 /todo
 *.nx-tmp
-
-# certificates
-*.pem
-*.key
-/docker/certbot
