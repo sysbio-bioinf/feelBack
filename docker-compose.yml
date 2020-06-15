@@ -65,7 +65,7 @@ services:
     depends_on:
       - keycloak-db
     volumes:
-      - .deployment/keycloak/feelback.realm-export.json:/opt/jboss/keycloak/imports/feelback.realm-export.json
+      - .docker/keycloak/feelback.realm-export.json:/opt/jboss/keycloak/imports/feelback.realm-export.json
     command:
       - '-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/feelback.realm-export.json'
     ports:
