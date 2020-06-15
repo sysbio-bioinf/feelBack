@@ -41,7 +41,7 @@ RUN gzip /usr/share/nginx/html/*.js
 
 # copy configuration for server
 RUN rm /etc/nginx/conf.d/default.conf
-COPY docker/nginx/web.conf /etc/nginx/nginx.conf
+COPY docker/nginx/web.prod.conf /etc/nginx/nginx.conf
 
 EXPOSE 80/tcp
 

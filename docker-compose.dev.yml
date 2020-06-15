@@ -6,7 +6,7 @@ services:
     volumes:
       - ./dist/apps/feelback-web:/usr/share/nginx/html
       - ./dist/apps/feelback-web:/var/www/html
-      - ./docker/nginx/web.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/web.dev.conf:/etc/nginx/nginx.conf
     working_dir: /usr/share/nginx/html
 
   feelback-api:
