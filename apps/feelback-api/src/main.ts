@@ -1,5 +1,8 @@
 import { ExceptionFilter } from '@cancerlog/api/application';
-import { EC_VALIDATION_FAILED, ExceptionModel } from '@cancerlog/api/errors';
+import {
+  EC_VALIDATION_FAILED,
+  ExceptionMessageModel,
+} from '@cancerlog/api/errors';
 import { environment as env } from '@env-cancerlog-api/environment';
 import {
   Logger,
@@ -34,7 +37,7 @@ async function bootstrap() {
           message: 'Validation failed',
           error: errors,
           source: 'ValidationPipe',
-        } as ExceptionModel),
+        } as ExceptionMessageModel),
     }),
   );
 
