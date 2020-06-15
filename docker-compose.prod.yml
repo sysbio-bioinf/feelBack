@@ -17,6 +17,9 @@ services:
       context: .
       dockerfile: Dockerfile
       target: feelback-web
+    volumes:
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
 
   feelback-api:
     restart: always

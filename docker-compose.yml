@@ -4,12 +4,21 @@ networks:
   feelback:
 
 services:
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
+    networks:
+      - feelback
+
   feelback-web:
     container_name: feelback-web
     networks:
       - feelback
     ports:
       - '80:80'
+      - '443:443'
 
   feelback-api:
     container_name: 'feelback-api'
