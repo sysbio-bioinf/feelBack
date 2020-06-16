@@ -65,9 +65,8 @@ services:
     depends_on:
       - keycloak-db
     volumes:
-      - .docker/keycloak/feelback.realm-export.json:/opt/jboss/keycloak/imports/feelback.realm-export.json
-    command:
-      - '-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/feelback.realm-export.json'
+      - ./docker/keycloak/realms:/opt/jboss/keycloak/imports
+    command: -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/opt/jboss/keycloak/imports/feelback.realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING
     ports:
       - ${KEYCLOAK_PORT:-8080}:8080
     networks:

@@ -51,3 +51,4 @@ services:
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD:-keycloak}
       KEYCLOAK_LOGLEVEL: INFO
       PROXY_ADDRESS_FORWARDING: 'true'
+      JDBC_PARAMS: 'ssl=false'
