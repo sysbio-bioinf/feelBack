@@ -75,3 +75,5 @@ echo
 
 echo "### Reloading nginx ..."
 npm run docker:prod -- exec feelback-web nginx -s reload
+
+chown -R 1000:1000 $data_path
