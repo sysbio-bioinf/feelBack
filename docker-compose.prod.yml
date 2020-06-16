@@ -4,17 +4,34 @@ volumes:
   data-db-feelback:
   data-db-identity:
   data-db-keycloak:
+  proxy-conf:
+  proxy-vhost:
+  proxy-html:
+  proxy-certs:
 
 services:
+  feelback-gateway:
+    volumes:
+      - proxy-conf:/etc/nginx/conf.d
+      - proxy-vhost:/etc/nginx/vhost.d
+      - proxy-html:/usr/share/nginx/html
+      - proxy-certs:/etc/nginx/certs
+    restart: always
+
+  # feelback-letsencrypt:
+  #   volumes:
+  #     - proxy-conf:/etc/nginx/conf.d
+  #     - proxy-vhost:/etc/nginx/vhost.d
+  #     - proxy-html:/usr/share/nginx/html
+  #     - proxy-certs:/etc/nginx/certs
+  #   restart: always
+
   feelback-web:
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
       target: feelback-web
-    volumes:
-      - ./docker/certbot/conf:/etc/letsencrypt
-      - ./docker/certbot/www:/var/www/certbot
 
   feelback-api:
     restart: always
