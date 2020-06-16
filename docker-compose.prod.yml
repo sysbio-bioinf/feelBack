@@ -2,13 +2,8 @@ version: '3.7'
 
 volumes:
   data-db-feelback:
-    driver: local
-
   data-db-identity:
-    driver: local
-
   data-db-keycloak:
-    driver: local
 
 services:
   feelback-web:

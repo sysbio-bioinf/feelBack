@@ -4,11 +4,14 @@ networks:
   feelback:
 
 services:
-  certbot:
-    image: certbot/certbot
+  feelback-proxy:
+    image: jwilder/nginx-proxy:alpine
+    container_name: feelback-proxy
+    ports:
+      - '80:80'
+      - '443:443'
     volumes:
-      - ./docker/certbot/conf:/etc/letsencrypt
-      - ./docker/certbot/www:/var/www/certbot
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - feelback
 
@@ -16,19 +19,22 @@ services:
     container_name: feelback-web
     networks:
       - feelback
-    ports:
-      - '80:80'
-      - '443:443'
+    environment:
+      VIRTUAL_HOST: ${URI_ROOT},${URI_WWW}
+      VIRTUAL_PORT: 80
 
   feelback-api:
     container_name: 'feelback-api'
     depends_on:
       - feelback-db
       - identity-db
-    networks:
-      - feelback
+    environment:
+      VIRTUAL_HOST: ${URI_API}
+      VIRTUAL_PORT: ${FB_API_PORT}
     ports:
       - ${FB_API_PORT}:${FB_API_PORT}
+    networks:
+      - feelback
 
   pgadmin:
     image: dpage/pgadmin4
@@ -69,5 +75,9 @@ services:
     command: -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/opt/jboss/keycloak/imports/feelback.realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING
     ports:
       - ${KEYCLOAK_PORT:-8080}:8080
+    environment:
+      PROXY_ADDRESS_FORWARDING: 'true'
+      VIRTUAL_HOST: ${URI_AUTH}
+      VIRTUAL_PORT: 8080
     networks:
       - feelback
