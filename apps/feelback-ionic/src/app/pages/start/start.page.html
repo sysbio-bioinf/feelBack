@@ -22,9 +22,8 @@
               color="primary"
               fill="outline"
               (click)="this.navigateToLogin()"
+              >{{ 'app.pages.start.login' | translate }}</ion-button
             >
-              {{ 'app.pages.start.login' | translate }}
-            </ion-button>
 
             <div class="hr"></div>
 
@@ -37,9 +36,8 @@
               color="medium"
               fill="outline"
               (click)="this.loginAsAnonymous()"
+              >{{ 'app.pages.start.anonymous' | translate }}</ion-button
             >
-              {{ 'app.pages.start.anonymous' | translate }}
-            </ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -49,11 +47,11 @@
 
 <ion-footer>
   <ion-button
+    data-cy="tutorial-button"
     fill="clear"
     size="normal"
     expand="block"
     (click)="this.navigateToTutorial()"
+    >{{ 'app.pages.start.tutorial' | translate }}</ion-button
   >
-    {{ 'app.pages.start.tutorial' | translate }}
-  </ion-button>
 </ion-footer>
