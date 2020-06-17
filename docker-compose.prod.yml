@@ -11,20 +11,26 @@ volumes:
 
 services:
   feelback-gateway:
+    restart: always
+
+  # the letsencrypt container should only (!) be used within the production environment!
+  feelback-letsencrypt:
+    container_name: feelback-letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
     volumes:
       - proxy-conf:/etc/nginx/conf.d
       - proxy-vhost:/etc/nginx/vhost.d
       - proxy-html:/usr/share/nginx/html
       - proxy-certs:/etc/nginx/certs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      NGINX_PROXY_CONTAINER: feelback-gateway
+      DEFAULT_EMAIL: ${ADMIN_MAIL}
+    depends_on:
+      - feelback-gateway
+    networks:
+      - feelback
     restart: always
-
-  # feelback-letsencrypt:
-  #   volumes:
-  #     - proxy-conf:/etc/nginx/conf.d
-  #     - proxy-vhost:/etc/nginx/vhost.d
-  #     - proxy-html:/usr/share/nginx/html
-  #     - proxy-certs:/etc/nginx/certs
-  #   restart: always
 
   feelback-web:
     restart: always
@@ -32,6 +38,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: feelback-web
+    environment:
+      LETSENCRYPT_HOST: ${URI_ROOT},${URI_WWW}
 
   feelback-api:
     restart: always
@@ -39,6 +47,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: feelback-api
+    environment:
+      LETSENCRYPT_HOST: ${URI_API}
 
   pgadmin:
     restart: always
@@ -98,6 +108,8 @@ services:
       DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
       KEYCLOAK_USER: ${KEYCLOAK_USER}
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      # letsencrypt
+      LETSENCRYPT_HOST: ${URI_AUTH}
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://keycloak:8080/auth']
       interval: 30s
