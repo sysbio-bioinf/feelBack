@@ -193,7 +193,7 @@
     "@types/supertest": "^2.0.9",
     "codelyzer": "~5.2.2",
     "commitizen": "^4.1.2",
-    "cypress": "^4.8.0",
+    "cypress": "4.7.0",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "6.8.0",
     "eslint-plugin-cypress": "^2.11.1",
