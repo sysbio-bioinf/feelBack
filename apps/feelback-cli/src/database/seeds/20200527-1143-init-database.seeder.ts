@@ -1,14 +1,10 @@
 import { InstrumentEntity, OrganizationEntity } from '@cancerlog/api/data';
 import { Seeder } from '@cancerlog/api/database';
-import { getConnection } from 'typeorm';
+import { InstrumentStatesEnum } from '@cancerlog/api/state';
+import { ApiPathHelper } from '@cancerlog/api/util';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ApiPathHelper } from '@cancerlog/api/util';
-import { interpret } from 'xstate';
-import {
-  instrumentMachine,
-  INSTRUMENT_MACHINE_EVENTS,
-} from '@cancerlog/api/state';
+import { getConnection } from 'typeorm';
 
 export class Seeder20200527 extends Seeder {
   async seed() {
@@ -41,11 +37,6 @@ export class Seeder20200527 extends Seeder {
 
   private async seedInstruments() {
     const feelbackConnection = getConnection();
-
-    const instrumentFSM = interpret(instrumentMachine).start();
-    const draftState = instrumentFSM.state;
-    instrumentFSM.send(INSTRUMENT_MACHINE_EVENTS.RELEASE);
-    const releasedState = instrumentFSM.state;
 
     const distressInstrument: Partial<InstrumentEntity> = {
       name: 'Distress Thermometer',
@@ -103,7 +94,7 @@ export class Seeder20200527 extends Seeder {
           history: { type: 'line', axis: [{ name: 'distress', rule: 'DT01' }] },
         },
       },
-      xState: JSON.stringify(releasedState),
+      state: InstrumentStatesEnum.DRAFT,
     };
 
     await feelbackConnection
