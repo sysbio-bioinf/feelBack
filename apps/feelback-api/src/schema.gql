@@ -597,6 +597,9 @@ type Instrument {
 
   """the changelog of this instrument (i.e., what has been changed)"""
   changelog: String!
+
+  """the current state of the instrument"""
+  state: InstrumentStatesEnum!
   screenings(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -635,6 +638,7 @@ input InstrumentFilter {
   deletedAt: DateFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
+  state: InstrumentStatesEnumFilterComparison
 }
 
 input InstrumentSort {
@@ -651,6 +655,30 @@ enum InstrumentSortFields {
   deletedAt
   name
   type
+  state
+}
+
+enum InstrumentStatesEnum {
+  DRAFT
+  RELEASED
+  RETIRED
+}
+
+input InstrumentStatesEnumFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: InstrumentStatesEnum
+  neq: InstrumentStatesEnum
+  gt: InstrumentStatesEnum
+  gte: InstrumentStatesEnum
+  lt: InstrumentStatesEnum
+  lte: InstrumentStatesEnum
+  like: InstrumentStatesEnum
+  notLike: InstrumentStatesEnum
+  iLike: InstrumentStatesEnum
+  notILike: InstrumentStatesEnum
+  in: [InstrumentStatesEnum!]
+  notIn: [InstrumentStatesEnum!]
 }
 
 input IntFieldComparison {
