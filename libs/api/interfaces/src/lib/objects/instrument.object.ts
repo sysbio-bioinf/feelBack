@@ -1,5 +1,6 @@
 import { JSONObject } from '@cancerlog/api/application';
 import { VersionableObject } from '@cancerlog/api/core';
+import { InstrumentStatesEnum } from '@cancerlog/api/state';
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { Field, ObjectType } from '@nestjs/graphql';
 
@@ -56,5 +57,9 @@ export class InstrumentObject extends VersionableObject {
   })
   changelog!: string;
 
-  xState!: string | null;
+  @FilterableField(() => InstrumentStatesEnum, {
+    description: 'the current state of the instrument',
+    nullable: false,
+  })
+  state!: InstrumentStatesEnum;
 }

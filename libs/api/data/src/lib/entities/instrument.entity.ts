@@ -1,8 +1,9 @@
 import { VersionableEntity } from '@cancerlog/api/core';
+import { InstrumentStatesEnum } from '@cancerlog/api/state';
 import { Column, Entity, OneToMany, RelationId } from 'typeorm';
-import { ScreeningEntity } from './screening.entity';
-import { RuleClass } from '../classes/rule.class';
 import { DiagramClass } from '../classes/diagram.class';
+import { RuleClass } from '../classes/rule.class';
+import { ScreeningEntity } from './screening.entity';
 
 @Entity({ name: 'instruments' })
 export class InstrumentEntity extends VersionableEntity {
@@ -30,8 +31,13 @@ export class InstrumentEntity extends VersionableEntity {
   @Column({ type: 'text', nullable: false, default: '' })
   changelog!: string;
 
-  @Column({ type: 'text', nullable: true, default: null })
-  xState!: string | null; // the serialized xState object
+  @Column({
+    type: 'varchar',
+    length: 190,
+    nullable: false,
+    default: InstrumentStatesEnum.DRAFT,
+  })
+  state!: InstrumentStatesEnum;
 
   // relationships
   @OneToMany((type) => ScreeningEntity, (screening) => screening.instrument, {
