@@ -16,11 +16,6 @@ import {
   UploadScreeningInputType,
   UserAgentObject,
 } from '@cancerlog/api/interfaces';
-import {
-  instrumentMachine,
-  INSTRUMENT_MACHINE_STATES,
-  startFSMFromState,
-} from '@cancerlog/api/state';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException, NotFoundException } from '@nestjs/common';
@@ -37,6 +32,7 @@ import { PersonAssemblerService } from '../../../../person/services/person/perso
 import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
+import { InstrumentStatesEnum } from '@cancerlog/api/state';
 
 @Resolver(() => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -81,12 +77,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       input.instrumentId,
     );
 
-    const instrumentFSM = startFSMFromState(
-      instrumentMachine,
-      instrument.xState,
-    );
-
-    if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.RELEASED)) {
+    if (instrument.state !== InstrumentStatesEnum.RELEASED) {
       throw new ConflictException({
         code: EC_GENERAL_NOTFOUND.code,
         title: 'Conflict',

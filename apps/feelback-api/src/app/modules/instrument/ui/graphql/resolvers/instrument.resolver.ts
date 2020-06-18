@@ -11,17 +11,11 @@ import {
   ScreeningObject,
   UpdateOneInstrumentInputType,
 } from '@cancerlog/api/interfaces';
-import {
-  instrumentMachine,
-  INSTRUMENT_MACHINE_EVENTS,
-  INSTRUMENT_MACHINE_STATES,
-  startFSMFromState,
-} from '@cancerlog/api/state';
+import { InstrumentStatesEnum } from '@cancerlog/api/state';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { interpret } from 'xstate';
 import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
 
 @Resolver(() => InstrumentObject)
@@ -49,12 +43,9 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   async createOneInstrument(
     @Args('input') input: CreateOneInstrumentInputType,
   ): Promise<InstrumentObject> {
-    const instrumentFSM = interpret(instrumentMachine).start();
-    const newState = instrumentFSM.state;
-
     const dto: DeepPartial<InstrumentObject> = {
       ...input.input,
-      xState: JSON.stringify(newState),
+      state: InstrumentStatesEnum.DRAFT,
     };
 
     const instrument = this.service.createOne(dto);
@@ -67,12 +58,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     @Args('input') input: UpdateOneInstrumentInputType,
   ): Promise<InstrumentObject> {
     const instrument = await this.service.queryService.getById(input.id);
-    const instrumentFSM = startFSMFromState(
-      instrumentMachine,
-      instrument.xState,
-    );
 
-    if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.DRAFT)) {
+    if (instrument.state !== InstrumentStatesEnum.DRAFT) {
       throw new ConflictException({
         code: EC_GENERAL_CONFLICT.code,
         title: 'Conflict',
@@ -92,12 +79,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     @Args('input') input: ReleaseOneInstrumentInputType,
   ): Promise<InstrumentObject> {
     const instrument = await this.service.queryService.getById(input.id);
-    const instrumentFSM = startFSMFromState(
-      instrumentMachine,
-      instrument.xState,
-    );
 
-    if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.DRAFT)) {
+    if (instrument.state !== InstrumentStatesEnum.DRAFT) {
       throw new ConflictException({
         code: EC_GENERAL_CONFLICT.code,
         title: 'Conflict',
@@ -105,10 +88,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
       } as ExceptionMessageModel);
     }
 
-    instrumentFSM.send(INSTRUMENT_MACHINE_EVENTS.RELEASE);
-
     const updatedInstrument = this.service.updateOne(instrument.id, {
-      xState: JSON.stringify(instrumentFSM.state),
+      state: InstrumentStatesEnum.RELEASED,
     });
 
     return updatedInstrument;
@@ -119,12 +100,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     @Args('input') input: RetireOneInstrumentInputType,
   ): Promise<InstrumentObject> {
     const instrument = await this.service.queryService.getById(input.id);
-    const instrumentFSM = startFSMFromState(
-      instrumentMachine,
-      instrument.xState,
-    );
 
-    if (!instrumentFSM.state.matches(INSTRUMENT_MACHINE_STATES.RELEASED)) {
+    if (instrument.state !== InstrumentStatesEnum.RELEASED) {
       throw new ConflictException({
         code: EC_GENERAL_CONFLICT.code,
         title: 'Conflict',
@@ -132,10 +109,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
       } as ExceptionMessageModel);
     }
 
-    instrumentFSM.send(INSTRUMENT_MACHINE_EVENTS.RETIRE);
-
     const updatedInstrument = this.service.updateOne(instrument.id, {
-      xState: JSON.stringify(instrumentFSM.state),
+      state: InstrumentStatesEnum.RETIRED,
     });
 
     return updatedInstrument;
@@ -147,9 +122,6 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   ): Promise<InstrumentObject> {
     const instrument = await this.service.getById(input.id);
 
-    const instrumentFSM = interpret(instrumentMachine).start();
-    const newState = instrumentFSM.state;
-
     const newInstrumentDTO: DeepPartial<InstrumentObject> = {
       changelog: `initial version - copied from instrument ${instrument.name} (${instrument.id})`,
       name: `${instrument.name} (copy)`,
@@ -159,7 +131,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
       payload: instrument.payload,
       rules: instrument.rules,
       diagram: instrument.diagram,
-      xState: JSON.stringify(newState),
+      state: InstrumentStatesEnum.DRAFT,
     };
 
     return this.service.createOne(newInstrumentDTO);
