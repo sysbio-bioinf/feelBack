@@ -13,6 +13,10 @@ RUN npm install -g node-gyp
 
 COPY ./package.json .
 COPY ./package-lock.json .
+
+# add the decorate cli because it is required by the post-install script!
+COPY ./decorate-angular-cli.js .
+
 # --unsafe-perm is required to run ngcc in the postinstall
 RUN npm ci --unsafe-perm
 
