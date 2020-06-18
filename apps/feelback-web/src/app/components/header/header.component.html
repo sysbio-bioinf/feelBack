@@ -1,9 +1,12 @@
-<div class="nav-menu fixed-top">
+<div class="nav-menu fixed-top" data-cy="header-nav-menu">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-dark navbar-expand-lg">
-          <a class="navbar-brand" href="#top">
+        <nav
+          class="navbar navbar-dark navbar-expand-lg"
+          data-cy="header-navbar"
+        >
+          <a class="navbar-brand" href="#top" data-cy="header-title">
             {{ 'app.nav.title' | translate }}
           </a>
           <button
@@ -14,39 +17,39 @@
             aria-controls="navbar"
             aria-expanded="false"
             aria-label="Toggle Navigation"
+            data-cy="header-navbar-toggler"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
+            <ul class="navbar-nav ml-auto" data-cy="header-navbar-nav">
+              <li class="nav-item" data-cy="header-navbar-home">
                 <a class="nav-link active" href="#home">
                   {{ 'app.nav.home' | translate }}
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" data-cy="header-navbar-features">
                 <a class="nav-link" href="#features">{{
                   'app.nav.features' | translate
                 }}</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" data-cy="header-navbar-gallery">
                 <a class="nav-link" href="#gallery">{{
                   'app.nav.gallery' | translate
                 }}</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">{{
-                  'app.nav.contact' | translate
-                }}</a>
-              </li>
-              <li class="nav-item">
+              <li class="nav-item" data-cy="header-navbar-download">
                 <a href="#download" class="nav-link">
                   {{ 'app.nav.download' | translate }}
                 </a>
               </li>
-              <!-- TODO (?) ngFor mit array in header.component.ts -->
-              <li class="nav-item">
+              <li class="nav-item" data-cy="header-navbar-contact">
+                <a class="nav-link" href="#contact">{{
+                  'app.nav.contact' | translate
+                }}</a>
+              </li>
+              <li class="nav-item" data-cy="header-navbar-language">
                 <div class="dropdown">
                   <button
                     class="btn btn-outline-light dropdown-toggle"
@@ -55,27 +58,26 @@
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
+                    data-cy="header-navbar-language-button"
                   >
                     <i class="fas fa-language fa-2x"></i>
                   </button>
                   <div
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton"
+                    data-cy="header-navbar-dropdown-menu"
                   >
-                    <a
-                      id="dropdownEnSelect"
-                      class="dropdown-item"
-                      (click)="this.switchLanguage('en')"
+                    <ng-container
+                      *ngFor="let option of languageDropdownSelection"
                     >
-                      English</a
-                    >
-                    <a
-                      id="dropdownDeSelect"
-                      class="dropdown-item"
-                      (click)="this.switchLanguage('de')"
-                    >
-                      Deutsch</a
-                    >
+                      <a
+                        id="{{ option.short }}DropdownSelect"
+                        class="dropdown-item"
+                        (click)="this.switchLanguage(option.short)"
+                      >
+                        {{ option.full }}</a
+                      >
+                    </ng-container>
                   </div>
                 </div>
               </li>

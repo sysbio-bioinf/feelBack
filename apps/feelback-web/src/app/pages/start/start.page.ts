@@ -13,8 +13,8 @@ export class StartPage implements OnInit {
   features: FeatureModel[] = [];
   faqs: FaqModel[] = [];
 
-  highligths = ['a', 'b', 'c', 'd', 'e', 'f'];
-  highlightHelper = [1, 2, 3]
+  highlights = ['a', 'b', 'c', 'd', 'e', 'f'];
+  highlightHelper = [0, 1, 2];
 
   constructor(readonly faqService: FaqService) {}
 

@@ -4,7 +4,6 @@ import { StartPage } from './start.page';
 import { FaqService } from '../../services/api/faq.service';
 import { ComponentsModule } from '../../modules/components.module';
 import { TranslateTestingModule } from 'ngx-translate-testing';
-// import { Apollo } from 'apollo-angular';
 
 describe('StartPage', () => {
   let component: StartPage;
@@ -15,7 +14,7 @@ describe('StartPage', () => {
       hasNextPage: false,
       hasPreviousPage: false,
       startCursor: null,
-      endCursor: null
+      endCursor: null,
     },
     edges: [
       {
@@ -33,7 +32,7 @@ describe('StartPage', () => {
       hasNextPage: true,
       hasPreviousPage: false,
       startCursor: null,
-      endCursor: null
+      endCursor: null,
     },
     edges: [
       {
@@ -47,14 +46,18 @@ describe('StartPage', () => {
   };
 
   const faqServiceMock = {
-    getFaqs: jest.fn(
-      (paging: any) =>
+    getFaqs: jest
+      .fn(
+        (paging: any) =>
+          new Promise((resolve) => {
+            resolve(mockFaqReturnMock);
+          }),
+      )
+      .mockReturnValueOnce(
         new Promise((resolve) => {
-          resolve(mockFaqReturnMock);
+          resolve(mockFaqReturnMockOnce);
         }),
-    ).mockReturnValueOnce(new Promise((resolve) => {
-      resolve(mockFaqReturnMockOnce);
-    })),
+      ),
   };
 
   beforeEach(async(() => {
@@ -63,7 +66,6 @@ describe('StartPage', () => {
         ComponentsModule,
         TranslateTestingModule.withTranslations('en', {}),
       ],
-      // providers: [Apollo],
       providers: [{ provide: FaqService, useValue: faqServiceMock }],
       declarations: [StartPage],
     }).compileComponents();
@@ -87,6 +89,4 @@ describe('StartPage', () => {
   it('has four features', () => {
     expect(component.features.length).toBe(4);
   });
-
-
 });
