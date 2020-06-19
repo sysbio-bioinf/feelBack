@@ -11,6 +11,11 @@ volumes:
 
 services:
   feelback-gateway:
+    volumes:
+      - proxy-conf:/etc/nginx/conf.d
+      - proxy-vhost:/etc/nginx/vhost.d
+      - proxy-html:/usr/share/nginx/html
+      - proxy-certs:/etc/nginx/certs
     restart: always
 
   # the letsencrypt container should only (!) be used within the production environment!
