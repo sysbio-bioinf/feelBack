@@ -22,21 +22,20 @@
       "@env-cancerlog-web/environment": [
         "apps/feelback-web/src/environments/environment.ts"
       ],
+      "@cancerlog/api/auth": ["libs/api/auth/src/index.ts"],
+      "@cancerlog/api/authentication": ["libs/api/authentication/src/index.ts"],
       "@cancerlog/api/config": ["libs/api/config/src/index.ts"],
       "@cancerlog/api/core": ["libs/api/core/src/index.ts"],
-      "@cancerlog/api/application": ["libs/api/application/src/index.ts"],
-      "@cancerlog/api/authentication": ["libs/api/authentication/src/index.ts"],
-      "@cancerlog/util/connection": ["libs/util/connection/src/index.ts"],
+      "@cancerlog/api/data": ["libs/api/data/src/index.ts"],
+      "@cancerlog/api/database": ["libs/api/database/src/index.ts"],
+      "@cancerlog/api/errors": ["libs/api/errors/src/index.ts"],
+      "@cancerlog/api/interfaces": ["libs/api/interfaces/src/index.ts"],
+      "@cancerlog/api/state": ["libs/api/state/src/index.ts"],
+      "@cancerlog/api/util": ["libs/api/util/src/index.ts"],
       "@cancerlog/features/ui": ["libs/features/ui/src/index.ts"],
       "@cancerlog/shared/misc": ["libs/shared/misc/src/index.ts"],
-      "@cancerlog/api/data": ["libs/api/data/src/index.ts"],
-      "@cancerlog/api/interfaces": ["libs/api/interfaces/src/index.ts"],
-      "@cancerlog/api/util": ["libs/api/util/src/index.ts"],
-      "@cancerlog/api/database": ["libs/api/database/src/index.ts"],
       "@cancerlog/shared/style": ["libs/shared/style/src/index.ts"],
-      "@cancerlog/api/state": ["libs/api/state/src/index.ts"],
-      "@cancerlog/api/errors": ["libs/api/errors/src/index.ts"],
-      "@cancerlog/api/auth": ["libs/api/auth/src/index.ts"]
+      "@cancerlog/util/connection": ["libs/util/connection/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

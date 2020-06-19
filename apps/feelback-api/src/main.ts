@@ -1,6 +1,6 @@
-import { ExceptionFilter } from '@cancerlog/api/application';
 import {
   EC_VALIDATION_FAILED,
+  ExceptionFilter,
   ExceptionMessageModel,
 } from '@cancerlog/api/errors';
 import { environment as env } from '@env-cancerlog-api/environment';

@@ -11,7 +11,7 @@ import {
 } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 import { CreateUserAgentInput } from './create-user-agent.input';
-import { JSONObject } from '@cancerlog/api/application';
+import { JSONObject } from '@cancerlog/api/util';
 
 @InputType()
 export class CreateScreeningInput extends CoreInput {

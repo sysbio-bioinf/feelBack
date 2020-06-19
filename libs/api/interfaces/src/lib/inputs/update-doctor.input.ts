@@ -7,7 +7,7 @@ import {
   IsUrl,
   IsObject,
 } from 'class-validator';
-import { JSONObject } from '@cancerlog/api/application';
+import { JSONObject } from '@cancerlog/api/util';
 
 @InputType()
 export class UpdateDoctorInput extends CoreInput {

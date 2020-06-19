@@ -1,7 +1,7 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { VersionableObject } from '@cancerlog/api/core';
 import { FilterableField } from '@nestjs-query/query-graphql';
-import { JSONObject } from '@cancerlog/api/application';
+import { JSONObject } from '@cancerlog/api/util';
 
 @ObjectType('Doctor', {
   description: 'A Doctor, Psychologist or Caregiver',

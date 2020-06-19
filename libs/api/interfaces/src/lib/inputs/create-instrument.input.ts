@@ -9,7 +9,7 @@ import {
   ValidateNested,
   IsUrl,
 } from 'class-validator';
-import { JSONObject } from '@cancerlog/api/application';
+import { JSONObject } from '@cancerlog/api/util';
 import { RuleInput } from './rule.input';
 import { Type } from 'class-transformer';
 
