@@ -30,6 +30,7 @@ export * from './objects/rule.object';
 export * from './objects/screening.object';
 export * from './objects/token.object';
 export * from './objects/user-agent.object';
+export * from './objects/user.object';
 export * from './types/instrument.types';
 export * from './types/person.types';
 export * from './types/screening.types';

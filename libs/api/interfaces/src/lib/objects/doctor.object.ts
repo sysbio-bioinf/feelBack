@@ -48,10 +48,4 @@ export class DoctorObject extends VersionableObject {
     nullable: true,
   })
   picture!: string | null;
-
-  @Field(() => JSONObject, {
-    description: 'Settings for this user',
-    nullable: false,
-  })
-  settings!: object;
 }
