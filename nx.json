@@ -86,6 +86,9 @@
     },
     "api-errors": {
       "tags": []
+    },
+    "api-auth": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
