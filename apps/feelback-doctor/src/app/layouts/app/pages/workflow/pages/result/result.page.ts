@@ -6,7 +6,10 @@ import { PatientService } from 'apps/feelback-doctor/src/app/services/patient.se
 import { InstrumentService } from 'apps/feelback-doctor/src/app/services/instrument.service';
 import { ScreeningService } from 'apps/feelback-doctor/src/app/services/screening.service';
 import { Patient } from 'apps/feelback-doctor/src/app/models/patient.model';
-import { Instrument, Screening } from 'apps/feelback-doctor/src/app/graphql/generated/feelback.graphql';
+import {
+  Instrument,
+  Screening,
+} from 'apps/feelback-doctor/src/app/graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-result',
@@ -20,7 +23,7 @@ export class ResultPage implements OnInit {
     public commonService: CommonService,
     private patientService: PatientService,
     private instrumentService: InstrumentService,
-    private screeningService: ScreeningService
+    private screeningService: ScreeningService,
   ) {}
 
   public patient$: Observable<Patient>;
@@ -38,7 +41,12 @@ export class ResultPage implements OnInit {
       if (!this.screeningService.checkIfScreeningExists(screeningId)) {
         this.navigateToErrorPage();
       } else {
-        this.screening$ = this.screeningService.getScreening('8475a985-2ba8-4b2c-b0b1-88560ff76eeb');
+        // TODO replace hard coded IDs
+        this.screening$ = this.screeningService.getScreening(
+          '2b3f4524-773d-4a2a-a576-ace6cfc4d7f3',
+          '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
+          screeningId,
+        );
       }
     });
   }

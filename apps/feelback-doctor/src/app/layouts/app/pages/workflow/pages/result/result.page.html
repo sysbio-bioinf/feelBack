@@ -4,6 +4,8 @@
 
       <feelback-doctor-action-bar
         [screening]="screening"
+        [patientId]="patient.id"
+        [instrumentId]="instrument.id"
         (printEvent)="questionnaire.print()"
       ></feelback-doctor-action-bar>
 

@@ -9,6 +9,7 @@ import * as widgets from 'surveyjs-widgets';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
 import { Screening } from '../../../graphql/generated/feelback.graphql';
+import { PageEvent } from '@angular/material/paginator';
 
 widgets.nouislider(Survey);
 
@@ -55,7 +56,7 @@ export class QuestionnaireComponent implements OnInit {
     this.renderSurvey();
   }
 
-  public changePage($event) {
+  public changePage($event: PageEvent) {
     this.survey.currentPageNo = $event.pageIndex;
     this.router.navigate([], {
       relativeTo: this.route,

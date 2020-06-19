@@ -4,6 +4,7 @@ import { ChartSeries } from '../../../models/chart-series.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Parser } from 'expr-eval';
 import { Screening } from '../../../graphql/generated/feelback.graphql';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'feelback-doctor-screening-overview',
@@ -72,7 +73,7 @@ export class OverviewComponent implements OnInit {
     return JSON.parse(resultString);
   }
 
-  public changePage($event) {
+  public changePage($event: PageEvent) {
     this.currentView = this.currentViewMapping['fromIndex'][$event.pageIndex];
     this.router.navigate([], {
       relativeTo: this.route,

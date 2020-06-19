@@ -66,11 +66,13 @@ export class DistressThermometerComponent implements OnInit {
         break;
       }
     }
+    // TODO replace hard coded
     this.screenings$ = this.screeningService.getScreenings(
       '2b3f4524-773d-4a2a-a576-ace6cfc4d7f3',
       '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
       startDate,
       endDate,
+      daterange
     );
   }
 

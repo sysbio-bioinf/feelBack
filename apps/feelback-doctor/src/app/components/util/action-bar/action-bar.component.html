@@ -1,6 +1,8 @@
 <mat-card>
   <mat-card-header class="header">
-    <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.action}}</mat-icon>
+    <mat-icon mat-card-avatar class="header-avatar">{{
+      commonService.icons.action
+    }}</mat-icon>
     <mat-card-title>Action</mat-card-title>
     <mat-card-subtitle>Bar</mat-card-subtitle>
     <span class="spacer"></span>
@@ -11,7 +13,7 @@
         class="action"
         (click)="printScreening()"
       >
-        <mat-icon>{{commonService.icons.print}}</mat-icon>
+        <mat-icon>{{ commonService.icons.print }}</mat-icon>
       </button>
       <button
         mat-icon-button
@@ -21,7 +23,7 @@
         class="action"
         (click)="downloadScreening(screening)"
       >
-        <mat-icon>{{commonService.icons.download}}</mat-icon>
+        <mat-icon>{{ commonService.icons.download }}</mat-icon>
       </button>
       <button
         mat-icon-button
@@ -31,8 +33,19 @@
         class="action"
         (click)="copyURL()"
       >
-        <mat-icon>{{commonService.icons.copy}}</mat-icon>
+        <mat-icon>{{ commonService.icons.copy }}</mat-icon>
       </button>
     </span>
+    <span class="mat-caption mat-paginator screenings-label">
+      Browse screenings of {{ screeningService.timerange }}
+    </span>
+    <mat-paginator
+      [length]="screeningService.screenings.length"
+      pageSize="1"
+      showFirstLastButtons
+      [pageIndex]="screeningService.index"
+      hidePageSize="true"
+      (page)="changePage($event)"
+    ></mat-paginator>
   </mat-card-header>
 </mat-card>
