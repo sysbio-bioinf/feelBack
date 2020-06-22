@@ -285,9 +285,6 @@ type Doctor {
 
   """The URL for the picture of this doctor"""
   picture: String
-
-  """Settings for this user"""
-  settings: JSONObject!
   organizations(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -933,6 +930,18 @@ type Query {
     """Specify to sort results."""
     sorting: [DoctorSort!] = []
   ): DoctorConnection!
+  user(id: ID!): User
+  users(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: UserFilter = {}
+
+    """Specify to sort results."""
+    sorting: [UserSort!] = []
+  ): UserConnection!
+  getMyProfile: String
   identity(id: ID!): Identity
   identities(
     """Limit or page results."""
@@ -1362,6 +1371,63 @@ input UploadScreeningInputType {
   personId: String
 }
 
+"""A User (i.e, Doctor with additional information)"""
+type User {
+  """The ID of this resource."""
+  id: ID!
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime!
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime!
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Int!
+
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
+  """(Academic) title of this doctor"""
+  title: String
+
+  """Firstname of this doctor"""
+  firstname: String
+
+  """Lastname of this doctor"""
+  lastname: String
+
+  """The phone number of this doctor"""
+  phone: String
+
+  """An email address of this doctor"""
+  email: String
+
+  """The URL / website of this doctor"""
+  url: String
+
+  """The URL for the picture of this doctor"""
+  picture: String
+  organizations(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: OrganizationFilter = {}
+
+    """Specify to sort results."""
+    sorting: [OrganizationSort!] = []
+  ): OrganizationConnection
+
+  """The Keycloak ID of this User"""
+  keycloakId: String
+
+  """Settings for this user"""
+  settings: JSONObject!
+}
+
 type UserAgent {
   """The device type used for this request"""
   device: String
@@ -1371,4 +1437,48 @@ type UserAgent {
 
   """The application version used for this request"""
   application: String
+}
+
+type UserConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [UserEdge!]!
+}
+
+type UserEdge {
+  """The node containing the User"""
+  node: User!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+input UserFilter {
+  and: [UserFilter!]
+  or: [UserFilter!]
+  id: IDFilterComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  version: IntFieldComparison
+  deletedAt: DateFieldComparison
+  firstname: StringFieldComparison
+  lastname: StringFieldComparison
+}
+
+input UserSort {
+  field: UserSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum UserSortFields {
+  id
+  createdAt
+  updatedAt
+  version
+  deletedAt
+  firstname
+  lastname
 }

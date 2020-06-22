@@ -1,4 +1,3 @@
-import { ApplicationGuardModule } from '@cancerlog/api/application';
 import { ConfigModule, ConfigService } from '@cancerlog/api/config';
 import {
   DoctorEntity,
@@ -58,7 +57,6 @@ const identityEntities = [IdentityEntity];
       }),
     }),
     ScalarModule,
-    ApplicationGuardModule,
     ApiModule,
   ],
   controllers: [],

@@ -7,9 +7,11 @@ import { OrganizationModule } from './organization/organization.module';
 import { PersonModule } from './person/person.module';
 import { ScreeningModule } from './screening/screening.module';
 import { FaqModule } from './faq/faq.module';
+import { AuthModule } from '@cancerlog/api/auth';
 
 @Module({
   imports: [
+    AuthModule,
     AuthenticationModule,
     DoctorModule,
     IdentityModule,
