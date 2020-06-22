@@ -941,7 +941,7 @@ type Query {
     """Specify to sort results."""
     sorting: [UserSort!] = []
   ): UserConnection!
-  keycloakInfo: JSONObject
+  keycloakUserInfo: JSONObject
   identity(id: ID!): Identity
   identities(
     """Limit or page results."""

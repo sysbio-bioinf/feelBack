@@ -23,10 +23,10 @@ export class UserResolver extends CRUDResolver(UserObject, {
     super(service);
   }
 
-  @Query((returns) => JSONObject, { name: 'keycloakInfo', nullable: true })
+  @Query((returns) => JSONObject, { name: 'keycloakUserInfo', nullable: true })
   @Roles(RolesEnum.USER)
   @UseGuards(GqlMasterGuard)
-  keycloakInfo(@CurrentUser() user: User) {
+  keycloakUserInfo(@CurrentUser() user: User) {
     return user;
   }
 }
