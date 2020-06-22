@@ -9,7 +9,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
   constructor(protected router: Router, protected keycloakAngular: KeycloakService) {
     super(router, keycloakAngular);
   }
- 
+
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (!this.authenticated) {
@@ -17,9 +17,9 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
           .catch(e => console.error(e));
         return reject(false);
       }
- 
+
       const requiredRoles: string[] = route.data.roles;
-      console.log(requiredRoles);
+
       if (!requiredRoles || requiredRoles.length === 0) {
         return resolve(true);
       } else {
