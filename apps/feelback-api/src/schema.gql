@@ -713,9 +713,10 @@ input LoginInput {
 }
 
 type Mutation {
+  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
+
   """login via username / password"""
   login(input: LoginInput!): AccessToken!
-  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
   updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
   createOneIdentity(input: CreateOneIdentityInput!): Identity!
   createOneInstrument(input: CreateOneInstrumentInputType!): Instrument!

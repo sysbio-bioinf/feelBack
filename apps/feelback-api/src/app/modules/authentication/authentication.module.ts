@@ -1,12 +1,10 @@
-import { Module } from '@nestjs/common';
-import { AuthenticationService } from './services/authentication.service';
-import { AuthenticationResolver } from './ui/graphql/resolvers/authentication.resolver';
-import { AuthModule } from '@cancerlog/api/authentication';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorEntity } from '@cancerlog/api/data';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthenticationService } from './services/authentication.service';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([DoctorEntity])],
-  providers: [AuthenticationService, AuthenticationResolver],
+  imports: [TypeOrmModule.forFeature([DoctorEntity])],
+  providers: [AuthenticationService],
 })
 export class AuthenticationModule {}

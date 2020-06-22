@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { User } from '../classes/user.class';
+import { User } from '../data/classes/user.class';
 import { DECORATOR_METADATA } from '../constants/decorator.constants';
 import {
   EC_AUTH_ROLE_BEFORE_JWT_GUARD,

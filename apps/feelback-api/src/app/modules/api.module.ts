@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AuthenticationModule } from './authentication/authentication.module';
 import { DoctorModule } from './doctor/doctor.module';
 import { IdentityModule } from './identity/identity.module';
 import { InstrumentModule } from './instrument/instrument.module';
@@ -12,7 +11,6 @@ import { AuthModule } from '@cancerlog/api/auth';
 @Module({
   imports: [
     AuthModule,
-    AuthenticationModule,
     DoctorModule,
     IdentityModule,
     InstrumentModule,

@@ -23,7 +23,6 @@
         "apps/feelback-web/src/environments/environment.ts"
       ],
       "@cancerlog/api/auth": ["libs/api/auth/src/index.ts"],
-      "@cancerlog/api/authentication": ["libs/api/authentication/src/index.ts"],
       "@cancerlog/api/config": ["libs/api/config/src/index.ts"],
       "@cancerlog/api/core": ["libs/api/core/src/index.ts"],
       "@cancerlog/api/data": ["libs/api/data/src/index.ts"],

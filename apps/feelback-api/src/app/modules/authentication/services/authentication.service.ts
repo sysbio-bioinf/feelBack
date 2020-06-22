@@ -1,4 +1,4 @@
-import { KeycloakJwtModel } from '@cancerlog/api/authentication';
+import { KeycloakJwtModel } from '@cancerlog/api/auth';
 import { QueryService } from '@nestjs-query/core';
 import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';

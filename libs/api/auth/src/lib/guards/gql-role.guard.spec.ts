@@ -2,7 +2,7 @@ import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
 import { Test, TestingModule } from '@nestjs/testing';
-import { User } from '../classes/user.class';
+import { User } from '../data/classes/user.class';
 import { GqlRoleGuard } from './gql-role.guard';
 
 class ReflectorMock {

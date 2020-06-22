@@ -27,9 +27,6 @@
     "api-core": {
       "tags": ["type:lib"]
     },
-    "api-authentication": {
-      "tags": ["type:lib"]
-    },
     "util-connection": {
       "tags": ["type:lib"]
     },

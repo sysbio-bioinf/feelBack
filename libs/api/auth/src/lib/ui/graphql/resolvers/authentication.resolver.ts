@@ -1,4 +1,3 @@
-import { KeycloakService } from '@cancerlog/api/authentication';
 import {
   EC_KEYCLOAK_REQUEST_TOKEN,
   ExceptionMessageModel,
@@ -6,6 +5,7 @@ import {
 import { LoginInput, TokenObject } from '@cancerlog/api/interfaces';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { KeycloakService } from '../../../services/keycloak.service';
 
 @Resolver(() => TokenObject)
 export class AuthenticationResolver {
@@ -37,7 +37,6 @@ export class AuthenticationResolver {
       refreshTokenExpiresIn: token.refreshTokenExpiresIn,
       scope: token.scope,
     };
-
     return accessToken;
   }
 }
