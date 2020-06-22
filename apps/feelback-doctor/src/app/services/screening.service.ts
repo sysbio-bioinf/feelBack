@@ -65,8 +65,8 @@ export class ScreeningService {
       return this.getScreenings(
         personId,
         instrumentId,
-        new Date(currentYear, 0, 1),
-        new Date(currentYear, 11, 31, 23, 59, 59),
+        this.createUtcDate(new Date(currentYear, 0, 1)),
+        this.createUtcDate(new Date(currentYear, 11, 31, 23, 59, 59)),
         'current-year',
       ).pipe(
         concatMap((data) => {
@@ -95,6 +95,12 @@ export class ScreeningService {
           return data.data.screening;
         }),
       );
+  }
+
+  private createUtcDate(date: Date): Date{
+    const utc_date =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+    date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+    return new Date(utc_date);
   }
 
   public paginateScreenings(index: number): string {
