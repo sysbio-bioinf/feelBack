@@ -10,4 +10,5 @@ export * from './enums/roles.enum';
 export * from './guards/gql-auth.guard';
 export * from './guards/gql-master.guard';
 export * from './guards/gql-role.guard';
+export * from './services/keycloak.service';
 export * from './strategies/keycloak-bearer.strategy';

@@ -11,19 +11,37 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
+import KeycloakAdminClient from 'keycloak-admin';
 import * as qs from 'qs';
 import { map } from 'rxjs/operators';
 import { CredentialsDto } from '../data/dtos/credentials.dto';
 import { AuthTokenModel } from '../data/models/auth-token.model';
 import { KeycloakJwtModel } from '../data/models/keycloak-jwt.model';
 import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
+import { RolesEnum } from '../enums/roles.enum';
 
 @Injectable()
 export class KeycloakService {
+  private adminClient: KeycloakAdminClient;
+  private realmName: string;
+
   constructor(
     private readonly configService: ConfigService,
     private readonly http: HttpService,
-  ) {}
+  ) {
+    this.adminClient = new KeycloakAdminClient({
+      baseUrl: `${new KeycloakServiceConnection().getAddress()}/auth`,
+    });
+
+    this.realmName = this.configService.get('auth.keycloak.clients[0].realm');
+
+    this.adminClient.auth({
+      username: this.configService.get('auth.keycloak.host.username'),
+      password: this.configService.get('auth.keycloak.host.password'),
+      clientId: 'admin-cli',
+      grantType: 'password',
+    });
+  }
 
   /**
    * Requests an Access Token from KeyCloak
@@ -114,5 +132,39 @@ export class KeycloakService {
 
   decodeToken(accessToken: AuthTokenModel) {
     return jwt.decode(accessToken.accessToken) as KeycloakJwtModel;
+  }
+
+  async registerDoctor(credentials: CredentialsDto): Promise<string> {
+    const keycloakId = await this.adminClient.users.create({
+      realm: this.realmName,
+      emailVerified: true,
+      enabled: true,
+      email: credentials.username,
+      username: credentials.username,
+      credentials: [
+        {
+          type: 'password',
+          value: credentials.password,
+        },
+      ],
+    });
+
+    const managerRole = await this.adminClient.roles.findOneByName({
+      name: RolesEnum.MANAGER,
+      realm: this.realmName,
+    });
+
+    await this.adminClient.users.addRealmRoleMappings({
+      id: keycloakId.id,
+      roles: [
+        {
+          id: managerRole.id || '',
+          name: managerRole.name || '',
+        },
+      ],
+      realm: this.realmName,
+    });
+
+    return keycloakId.id;
   }
 }

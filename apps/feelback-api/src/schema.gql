@@ -716,6 +716,7 @@ type Mutation {
   """login via username / password"""
   login(input: LoginInput!): AccessToken!
   updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
+  registerDoctor(input: RegisterInput!): User!
   updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
   createOneIdentity(input: CreateOneIdentityInput!): Identity!
   createOneInstrument(input: CreateOneInstrumentInputType!): Instrument!
@@ -1024,6 +1025,15 @@ type Query {
     """Specify to sort results."""
     sorting: [FaqSort!] = []
   ): FaqConnection!
+}
+
+"""Credentials to be registered"""
+input RegisterInput {
+  """The email to login with"""
+  email: String!
+
+  """The password to login with"""
+  password: String!
 }
 
 input RelationInput {

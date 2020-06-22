@@ -23,6 +23,8 @@ export const environment: IEnvironment = {
     keycloak: {
       host: {
         url: env.get('KEYCLOAK_URL').default('localhost').asUrlString(),
+        username: env.get('KEYCLOAK_USER').default('admin').asString(),
+        password: env.get('KEYCLOAK_PASSWORD').default('password').asString(),
       },
       config: {
         cache: true,

@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { Observable } from 'rxjs';
 import { GqlAuthGuard } from './gql-auth.guard';
 import { GqlRoleGuard } from './gql-role.guard';
 

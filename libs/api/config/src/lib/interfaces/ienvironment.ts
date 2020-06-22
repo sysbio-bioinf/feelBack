@@ -24,6 +24,8 @@ export interface IEnvironment {
     keycloak?: {
       host: {
         url: string;
+        username: string;
+        password: string;
       };
       config: ExpressJwtOptions;
       clients: {
