@@ -1,10 +1,16 @@
+import {
+  CurrentUser,
+  GqlMasterGuard,
+  Roles,
+  RolesEnum,
+  User,
+} from '@cancerlog/api/auth';
 import { UserObject } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
+import { UseGuards } from '@nestjs/common';
 import { Query, Resolver } from '@nestjs/graphql';
 import { UserAssemblerService } from '../../../services/user/user-assembler.service';
-import { AuthGuard } from '@nestjs/passport';
-import { UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from '@cancerlog/api/auth';
+import { JSONObject } from '@cancerlog/api/util';
 
 @Resolver(() => UserResolver)
 export class UserResolver extends CRUDResolver(UserObject, {
@@ -17,9 +23,10 @@ export class UserResolver extends CRUDResolver(UserObject, {
     super(service);
   }
 
-  @Query((returns) => String, { name: 'getMyProfile', nullable: true })
-  @UseGuards(GqlAuthGuard)
-  getMyProfile() {
-    return 'hallo';
+  @Query((returns) => JSONObject, { name: 'keycloakInfo', nullable: true })
+  @Roles(RolesEnum.USER)
+  @UseGuards(GqlMasterGuard)
+  keycloakInfo(@CurrentUser() user: User) {
+    return user;
   }
 }

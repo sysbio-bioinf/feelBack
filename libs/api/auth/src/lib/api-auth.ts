@@ -6,6 +6,8 @@ export * from './data/models/keycloak-jwt.model';
 export * from './data/models/keycloak-userinfo.model';
 export * from './decorators/roles.decorator';
 export * from './decorators/user.decorator';
+export * from './enums/roles.enum';
 export * from './guards/gql-auth.guard';
+export * from './guards/gql-master.guard';
 export * from './guards/gql-role.guard';
 export * from './strategies/keycloak-bearer.strategy';

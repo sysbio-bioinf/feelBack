@@ -43,7 +43,7 @@ export const EC_AUTH_MISSING_JWT = {
 export const EC_AUTH_ROLE_BEFORE_JWT_GUARD = {
   code: 'auth.jwt.002',
   description:
-    'Cannot resolve a user from JWT. Did you accidentally call the RoleGuard before the JwtGuard?',
+    'Cannot resolve a user from JWT. Did you accidentally call the RoleGuard before the AuthGuard?',
 };
 
 export const EC_AUTH_NOT_VERIFIED = {
