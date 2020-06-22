@@ -20,11 +20,11 @@ const guards = [GqlMasterGuard, GqlAuthGuard, GqlRoleGuard];
     HttpModule,
   ],
   providers: [
+    ...guards,
     KeycloakStrategy,
     KeycloakService,
     AuthenticationResolver,
-    ...guards,
   ],
-  exports: [...guards],
+  exports: [...guards, KeycloakService, KeycloakStrategy],
 })
 export class AuthModule {}
