@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, DoBootstrap, ApplicationRef } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouting } from './app.routing';
@@ -10,6 +10,9 @@ import { DatePipe } from '@angular/common';
 import { MatNativeDateModule, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, AppDateFormats } from './date-format';
 import { Platform } from '@angular/cdk/platform';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+
+const keycloakService = new KeycloakService();
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +23,8 @@ import { Platform } from '@angular/cdk/platform';
     GraphQLModule,
     HttpClientModule,
     MaterialModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    KeycloakAngularModule
   ],
   providers: [
     DatePipe,
@@ -32,8 +36,36 @@ import { Platform } from '@angular/cdk/platform';
     {
       provide: MAT_DATE_FORMATS,
       useValue: AppDateFormats
-    }
+    },
+    {
+      provide: KeycloakService,
+      useValue: keycloakService,
+    },
   ],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule implements DoBootstrap {
+  ngDoBootstrap(appRef: ApplicationRef) {
+    keycloakService
+      .init({
+        config: {
+          url: 'https://auth.feelback-app.com/auth',
+          realm: 'feelback',
+          clientId: 'client-id',
+        },
+        initOptions: {
+          onLoad: 'login-required',
+          checkLoginIframe: false,
+        },
+        enableBearerInterceptor: true,
+        bearerExcludedUrls: [],
+      })
+      .then(() => {
+        console.log('[ngDoBootstrap] bootstrap app');
+ 
+        appRef.bootstrap(AppComponent);
+      })
+      .catch((error) =>
+        console.error('[ngDoBootstrap] init Keycloak failed', error)
+      );
+  }
+}
