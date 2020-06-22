@@ -50,7 +50,7 @@ export class AppModule implements DoBootstrap {
         config: {
           url: 'https://auth.feelback-app.com/auth',
           realm: 'feelback',
-          clientId: 'client-id',
+          clientId: 'feelback-api-client',
         },
         initOptions: {
           onLoad: 'login-required',
@@ -60,8 +60,6 @@ export class AppModule implements DoBootstrap {
         bearerExcludedUrls: [],
       })
       .then(() => {
-        console.log('[ngDoBootstrap] bootstrap app');
- 
         appRef.bootstrap(AppComponent);
       })
       .catch((error) =>
