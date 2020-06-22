@@ -35,9 +35,19 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     const result = this.transformScreeningResult(this.screening.payload);
+    this.evaluateResults(result);
+    this.transformDataForChart();
+  }
 
+  private evaluateResults(result: {}): void{
     for (const axis of this.diagram['instance']['overview']['axis']) {
       const ruleParts = axis.rule.split('/');
+      const fields = ruleParts[0].slice(1, -1).split(' + ');
+      for(const field of fields){
+        if(!result[field]){
+          result[field] = '0';
+        }
+      }
       const positive = Parser.evaluate(ruleParts[0], result);
       this.data.push({
         name: axis.name,
@@ -45,11 +55,9 @@ export class OverviewComponent implements OnInit {
         total: ruleParts[1]
       });
     }
-
-    this.transformDataForChart();
   }
 
-  private transformDataForChart() {
+  private transformDataForChart(): void {
     this.chartData = [
       {
         name: 'Category',
@@ -60,7 +68,7 @@ export class OverviewComponent implements OnInit {
     for (const record of this.data) {
       this.chartData[0]['series'].push({
         name: record.name,
-        value: record.positive / record.total,
+        value: record.positive / record.total * 100,
       });
     }
   }
