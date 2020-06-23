@@ -7,6 +7,7 @@ import { PersonModule } from './person/person.module';
 import { ScreeningModule } from './screening/screening.module';
 import { FaqModule } from './faq/faq.module';
 import { AuthModule } from '@cancerlog/api/auth';
+import { UserModule } from '@cancerlog/api/user';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthModule } from '@cancerlog/api/auth';
     PersonModule,
     ScreeningModule,
     FaqModule,
+    UserModule,
   ],
 })
 export class ApiModule {}
