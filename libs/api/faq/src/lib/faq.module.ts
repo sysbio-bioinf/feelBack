@@ -1,8 +1,8 @@
+import { FaqEntity } from '@cancerlog/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FaqEntity } from '@cancerlog/api/data';
-import { FaqAssemblerService } from './services/faq/faq-assembler.service';
-import { FaqDatabaseService } from './services/faq/faq-database.service';
+import { FaqAssemblerService } from './services/faq-assembler.service';
+import { FaqDatabaseService } from './services/faq-database.service';
 import { FaqAssembler } from './ui/graphql/assemblers/faq.assembler';
 import { FaqResolver } from './ui/graphql/resolvers/faq.resolver';
 

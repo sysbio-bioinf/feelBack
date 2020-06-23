@@ -1,10 +1,9 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { FaqResolver } from './faq.resolver';
-import { FaqAssemblerService } from '../../../services/faq/faq-assembler.service';
-import { FaqDatabaseService } from '../../../services/faq/faq-database.service';
-import { FaqAssembler } from '../assemblers/faq.assembler';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { FaqEntity } from '@cancerlog/api/data';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { FaqAssembler } from '../ui/graphql/assemblers/faq.assembler';
+import { FaqAssemblerService } from './faq-assembler.service';
+import { FaqDatabaseService } from './faq-database.service';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -13,16 +12,15 @@ const mockRepository = jest.fn(() => ({
   },
 }));
 
-describe('FaqResolver', () => {
-  let resolver: FaqResolver;
+describe('FaqAssemblerService', () => {
+  let service: FaqAssemblerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        FaqResolver,
         FaqAssemblerService,
-        FaqDatabaseService,
         FaqAssembler,
+        FaqDatabaseService,
         {
           provide: getRepositoryToken(FaqEntity),
           useClass: mockRepository,
@@ -30,10 +28,10 @@ describe('FaqResolver', () => {
       ],
     }).compile();
 
-    resolver = module.get<FaqResolver>(FaqResolver);
+    service = module.get<FaqAssemblerService>(FaqAssemblerService);
   });
 
   it('should be defined', () => {
-    expect(resolver).toBeDefined();
+    expect(service).toBeDefined();
   });
 });

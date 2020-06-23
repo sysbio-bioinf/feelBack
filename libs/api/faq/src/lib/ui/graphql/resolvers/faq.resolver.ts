@@ -5,7 +5,7 @@ import {
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
-import { FaqAssemblerService } from '../../../services/faq/faq-assembler.service';
+import { FaqAssemblerService } from '../../../services/faq-assembler.service';
 
 @Resolver(() => FaqObject)
 export class FaqResolver extends CRUDResolver(FaqObject, {
