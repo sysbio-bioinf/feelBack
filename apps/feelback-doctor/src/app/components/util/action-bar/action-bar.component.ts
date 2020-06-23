@@ -6,6 +6,7 @@ import { Screening } from '../../../graphql/generated/feelback.graphql';
 import { ScreeningService } from '../../../services/screening.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DateHelper } from '@cancerlog/util/helper';
 
 @Component({
   selector: 'feelback-doctor-action-bar',
@@ -35,7 +36,7 @@ export class ActionBarComponent implements OnInit {
     fileSaver.saveAs(
       blob,
       'jsonExport_' +
-        this.commonService.transformDate(screening.collectedAt) +
+        DateHelper.formatDate(screening.collectedAt, 'de') +
         '.json',
     );
   }
