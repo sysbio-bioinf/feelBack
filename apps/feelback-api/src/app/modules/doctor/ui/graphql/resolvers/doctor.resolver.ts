@@ -32,6 +32,7 @@ export class DoctorResolver extends CRUDResolver(DoctorObject, {
       },
     },
   },
+  enableTotalCount: true,
 }) {
   constructor(
     readonly service: DoctorAssemblerService,

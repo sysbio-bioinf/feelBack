@@ -294,7 +294,7 @@ type Doctor {
 
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
-  ): OrganizationConnection
+  ): DoctorOrganizationsConnection
 }
 
 type DoctorConnection {
@@ -303,6 +303,9 @@ type DoctorConnection {
 
   """Array of edges."""
   edges: [DoctorEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type DoctorEdge {
@@ -323,6 +326,17 @@ input DoctorFilter {
   deletedAt: DateFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
+}
+
+type DoctorOrganizationsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [OrganizationEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 input DoctorSort {
@@ -393,6 +407,9 @@ type FaqConnection {
 
   """Array of edges."""
   edges: [FaqEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type FaqDeleteResponse {
@@ -606,7 +623,7 @@ type Instrument {
 
     """Specify to sort results."""
     sorting: [ScreeningSort!] = []
-  ): ScreeningConnection
+  ): InstrumentScreeningsConnection
 }
 
 type InstrumentConnection {
@@ -615,6 +632,9 @@ type InstrumentConnection {
 
   """Array of edges."""
   edges: [InstrumentEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type InstrumentEdge {
@@ -636,6 +656,17 @@ input InstrumentFilter {
   name: StringFieldComparison
   type: StringFieldComparison
   state: InstrumentStatesEnumFilterComparison
+}
+
+type InstrumentScreeningsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ScreeningEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 input InstrumentSort {
@@ -791,7 +822,7 @@ type Organization {
 
     """Specify to sort results."""
     sorting: [DoctorSort!] = []
-  ): DoctorConnection
+  ): OrganizationMembersConnection
   persons(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -801,7 +832,7 @@ type Organization {
 
     """Specify to sort results."""
     sorting: [PersonSort!] = []
-  ): PersonConnection
+  ): OrganizationPersonsConnection
 }
 
 type OrganizationConnection {
@@ -810,6 +841,9 @@ type OrganizationConnection {
 
   """Array of edges."""
   edges: [OrganizationEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type OrganizationEdge {
@@ -830,6 +864,28 @@ input OrganizationFilter {
   deletedAt: DateFieldComparison
   name: StringFieldComparison
   type: StringFieldComparison
+}
+
+type OrganizationMembersConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [DoctorEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type OrganizationPersonsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [PersonEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 input OrganizationSort {
@@ -894,6 +950,9 @@ type PersonConnection {
 
   """Array of edges."""
   edges: [PersonEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type PersonEdge {
@@ -1441,7 +1500,7 @@ type User {
 
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
-  ): OrganizationConnection
+  ): UserOrganizationsConnection
 
   """The Keycloak ID of this User"""
   keycloakId: String
@@ -1467,6 +1526,9 @@ type UserConnection {
 
   """Array of edges."""
   edges: [UserEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type UserEdge {
@@ -1487,6 +1549,17 @@ input UserFilter {
   deletedAt: DateFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
+}
+
+type UserOrganizationsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [OrganizationEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 input UserSort {

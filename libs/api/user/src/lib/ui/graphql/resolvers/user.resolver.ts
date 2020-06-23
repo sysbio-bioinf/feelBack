@@ -30,6 +30,7 @@ export class UserResolver extends CRUDResolver(UserObject, {
       },
     },
   },
+  enableTotalCount: true,
 }) {
   constructor(
     readonly service: UserAssemblerService,

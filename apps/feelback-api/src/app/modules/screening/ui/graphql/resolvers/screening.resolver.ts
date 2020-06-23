@@ -58,6 +58,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       },
     },
   },
+  enableTotalCount: true,
 }) {
   constructor(
     readonly service: ScreeningAssemblerService,

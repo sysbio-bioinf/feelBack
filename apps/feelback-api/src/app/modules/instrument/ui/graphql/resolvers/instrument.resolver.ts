@@ -34,6 +34,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
       },
     },
   },
+  enableTotalCount: true,
 }) {
   constructor(readonly service: InstrumentAssemblerService) {
     super(service);

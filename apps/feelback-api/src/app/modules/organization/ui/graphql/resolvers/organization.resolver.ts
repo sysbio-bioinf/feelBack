@@ -32,6 +32,7 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
       },
     },
   },
+  enableTotalCount: true,
 }) {
   constructor(readonly service: OrganizationAssemblerService) {
     super(service);

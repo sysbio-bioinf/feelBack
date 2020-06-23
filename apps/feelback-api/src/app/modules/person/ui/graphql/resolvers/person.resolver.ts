@@ -25,6 +25,7 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   },
   delete: { disabled: true },
   update: { many: { disabled: true }, UpdateDTOClass: UpdatePersonInput },
+  enableTotalCount: true,
 }) {
   constructor(
     readonly service: PersonAssemblerService,
