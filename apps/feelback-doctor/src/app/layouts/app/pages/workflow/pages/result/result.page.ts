@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'apps/feelback-doctor/src/app/services/common.service';
 import { PatientService } from 'apps/feelback-doctor/src/app/services/patient.service';
@@ -10,6 +10,7 @@ import {
   Instrument,
   Screening,
 } from 'apps/feelback-doctor/src/app/graphql/generated/feelback.graphql';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'feelback-doctor-result',
@@ -28,7 +29,7 @@ export class ResultPage implements OnInit {
 
   public patient$: Observable<Patient>;
   public instrument$: Observable<Instrument>;
-  public screening$: Observable<Screening>;
+  public screening$: Observable<Screening> | Observable<{}>;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -36,18 +37,19 @@ export class ResultPage implements OnInit {
       this.instrument$ = this.instrumentService.getInstrumentById(
         params.get('instrument'),
       );
-
-      const screeningId = params.get('screening');
-      if (!this.screeningService.checkIfScreeningExists(screeningId)) {
-        this.navigateToErrorPage();
-      } else {
-        // TODO replace hard coded IDs
-        this.screening$ = this.screeningService.getScreening(
+      // TODO replace hard coded IDs
+      this.screening$ = this.screeningService
+        .getScreening(
           '2b3f4524-773d-4a2a-a576-ace6cfc4d7f3',
           '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
-          screeningId,
+          params.get('screening'),
+        )
+        .pipe(
+          catchError(() => {
+            this.navigateToErrorPage();
+            return of({});
+          }),
         );
-      }
     });
   }
 

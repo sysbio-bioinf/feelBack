@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, concatMap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { map, concatMap, catchError } from 'rxjs/operators';
 import {
   GetScreeningGQL,
   Screening,
@@ -97,24 +97,20 @@ export class ScreeningService {
       );
   }
 
-  private createUtcDate(date: Date): Date{
-    const utc_date =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
-    date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+  private createUtcDate(date: Date): Date {
+    const utc_date = Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+    );
     return new Date(utc_date);
   }
 
   public paginateScreenings(index: number): string {
     this.index = index;
     return this.screenings[this.index].screeningId;
-  }
-
-  public checkIfScreeningExists(id: string): boolean {
-    // TODO
-    // for (const screening of this.screenings[0].series) {
-    //   if (screening.id === id) {
-    //     return true;
-    //   }
-    // }
-    return true;
   }
 }
