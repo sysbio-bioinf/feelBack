@@ -35,7 +35,7 @@ export class ActionBarComponent implements OnInit {
     fileSaver.saveAs(
       blob,
       'jsonExport_' +
-        this.commonService.transformDate(screening.createdAt) +
+        this.commonService.transformDate(screening.collectedAt) +
         '.json',
     );
   }

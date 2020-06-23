@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PatientService } from 'apps/feelback-doctor/src/app/services/patient.service';
-import { InstrumentService } from 'apps/feelback-doctor/src/app/services/instrument.service';
-import { Patient } from 'apps/feelback-doctor/src/app/models/patient.model';
-import { Instrument } from 'apps/feelback-doctor/src/app/graphql/generated/feelback.graphql';
+import { PatientService } from '../../../../../../services/patient.service';
+import { InstrumentService } from '../../../../../..//services/instrument.service';
+import { Patient } from '../../../../../..//models/patient.model';
+import { Instrument } from '../../../../../../graphql/generated/feelback.graphql';
+
 
 @Component({
   selector: 'feelback-doctor-instruments',

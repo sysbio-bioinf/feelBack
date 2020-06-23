@@ -29,7 +29,7 @@ export class CommonService {
     search: 'search'
   };
 
-  public transformDate(date: Date) {
+  public transformDate(date: Date): string {
     return this.datePipe.transform(date, 'dd.MM.yyyy');
   }
 }

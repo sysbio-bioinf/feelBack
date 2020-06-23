@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Instrument } from '../../../graphql/generated/feelback.graphql';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import {DateHelper} from "@cancerlog/util/helper";
 
 @Component({
   selector: 'feelback-doctor-distress-thermometer',
@@ -38,32 +39,32 @@ export class DistressThermometerComponent implements OnInit {
     const currentYear = this.today.getFullYear();
     switch (daterange) {
       case 'last-year': {
-        startDate = this.createUtcDate( new Date(currentYear-1, 0, 1));
-        endDate = this.createUtcDate(new Date(currentYear-1, 12, 0, 23, 59, 59));
+        startDate = DateHelper.createUtcDate( new Date(currentYear-1, 0, 1));
+        endDate = DateHelper.createUtcDate(new Date(currentYear-1, 12, 0, 23, 59, 59));
         break;
       }
       case 'current-year': {
-        startDate = this.createUtcDate(new Date(currentYear, 0, 1));
-        endDate = this.createUtcDate(new Date(currentYear, 12, 0, 23, 59, 59));
+        startDate = DateHelper.createUtcDate(new Date(currentYear, 0, 1));
+        endDate = DateHelper.createUtcDate(new Date(currentYear, 12, 0, 23, 59, 59));
         break;
       }
       case 'current-month': {
-        startDate = this.createUtcDate(new Date(currentYear, currentMonth, 1));
-        endDate = this.createUtcDate(new Date(currentYear, currentMonth+1, 0, 23, 59, 59));
+        startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 1));
+        endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth+1, 0, 23, 59, 59));
         break;
       }
       case 'last-month': {
-        startDate = this.createUtcDate(new Date(currentYear, currentMonth - 1, 1));
-        endDate = this.createUtcDate(new Date(currentYear, currentMonth, 0, 23, 59, 59));
+        startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth - 1, 1));
+        endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 0, 23, 59, 59));
         break;
       }
       case 'custom': {
-        startDate = this.createUtcDate(this.startDate.value);
+        startDate = DateHelper.createUtcDate(this.startDate.value);
         endDate = this.endDate.value;
         endDate.setHours(23);
         endDate.setMinutes(59);
         endDate.setSeconds(59);
-        endDate = this.createUtcDate(endDate);
+        endDate = DateHelper.createUtcDate(endDate);
         break;
       }
     }
@@ -83,9 +84,5 @@ export class DistressThermometerComponent implements OnInit {
     });
   }
 
-  private createUtcDate(date: Date): Date{
-    const utc_date =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
-    date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-    return new Date(utc_date);
-  }
+  
 }

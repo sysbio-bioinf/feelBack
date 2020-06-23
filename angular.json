@@ -1268,6 +1268,32 @@
           }
         }
       }
+    },
+    "util-helper": {
+      "root": "libs/util/helper",
+      "sourceRoot": "libs/util/helper/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/util/helper/tsconfig.lib.json",
+              "libs/util/helper/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/util/helper/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/util/helper/jest.config.js",
+            "tsConfig": "libs/util/helper/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
