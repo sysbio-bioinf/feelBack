@@ -8,6 +8,7 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../services/user.service';
 import { CardService } from '../../services/card.service';
+import { Platform, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'feelback-ionic-login-qrcode',
@@ -21,10 +22,12 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private toastController: ToastController,
     private scanner: BarcodeScanner,
     private cardService: CardService,
     private translatePipe: TranslatePipe,
     private userService: UserService,
+    private platform: Platform,
   ) {
     super();
   }
@@ -32,24 +35,34 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
   ngOnInit() {}
 
   openScanner() {
-    const barcodeScannerOptions: BarcodeScannerOptions = {
-      prompt: this.translatePipe.transform('app.pages.login.scanner.text'),
-      resultDisplayDuration: 0,
-      showFlipCameraButton: false,
-      showTorchButton: false,
-      torchOn: false,
-    };
+    if (this.platform.is('capacitor')) {
+      const barcodeScannerOptions: BarcodeScannerOptions = {
+        prompt: this.translatePipe.transform('app.pages.login.scanner.text'),
+        resultDisplayDuration: 0,
+        showFlipCameraButton: false,
+        showTorchButton: false,
+        torchOn: false,
+      };
 
-    this.scanner
-      .scan(barcodeScannerOptions)
-      .then(async (scannedData) => {
-        const card = this.cardService.readCard(scannedData.text);
-        this.pseudonym = card.pseudonym;
-      })
-      .catch((err) => {
-        console.log(err);
-        throw new Error(err);
-      });
+      this.scanner
+        .scan(barcodeScannerOptions)
+        .then(async (scannedData) => {
+          const card = this.cardService.readCard(scannedData.text);
+          this.pseudonym = card.pseudonym;
+        })
+        .catch((err) => {
+          console.log(err);
+          throw new Error(err);
+        });
+    } else {
+      this.toastController
+        .create({
+          message:
+            'Cannot use BarcodeScanner, because we are in a web environment!',
+          duration: 3000,
+        })
+        .then((toast) => toast.present());
+    }
   }
 
   login() {

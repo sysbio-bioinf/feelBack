@@ -12,8 +12,8 @@ describe('LoginQrcodePage', () => {
   let component: LoginQrcodePage;
   let fixture: ComponentFixture<LoginQrcodePage>;
 
-  let barcodeScannerSpy;
-  let translateServiceSpy;
+  const barcodeScannerSpy = undefined;
+  const translateServiceSpy = undefined;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,7 +28,7 @@ describe('LoginQrcodePage', () => {
         { provide: BarcodeScanner, useValue: barcodeScannerSpy },
         { provide: TranslateService, useValue: translateServiceSpy },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 

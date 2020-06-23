@@ -12,9 +12,9 @@ describe('SurveyViewComponent', () => {
   let component: SurveyViewComponent;
   let fixture: ComponentFixture<SurveyViewComponent>;
 
-  let storageServiceSpy;
-  let printerServiceSpy;
-  let translatePipeSpy;
+  const storageServiceSpy = undefined;
+  const printerServiceSpy = undefined;
+  const translatePipeSpy = undefined;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
