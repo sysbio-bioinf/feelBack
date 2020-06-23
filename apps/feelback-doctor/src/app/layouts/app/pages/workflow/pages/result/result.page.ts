@@ -47,7 +47,7 @@ export class ResultPage implements OnInit {
         .pipe(
           catchError(() => {
             this.navigateToErrorPage();
-            return of({});
+            return of();
           }),
         );
     });

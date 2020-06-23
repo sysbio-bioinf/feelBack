@@ -39,12 +39,12 @@ export class OverviewComponent implements OnInit {
     this.transformDataForChart();
   }
 
-  private evaluateResults(result: {}): void{
+  private evaluateResults(result: {}): void {
     for (const axis of this.diagram['instance']['overview']['axis']) {
       const ruleParts = axis.rule.split('/');
       const fields = ruleParts[0].slice(1, -1).split(' + ');
-      for(const field of fields){
-        if(!result[field]){
+      for (const field of fields) {
+        if (!result[field]) {
           result[field] = '0';
         }
       }
@@ -52,7 +52,7 @@ export class OverviewComponent implements OnInit {
       this.data.push({
         name: axis.name,
         positive: positive,
-        total: ruleParts[1]
+        total: ruleParts[1],
       });
     }
   }
@@ -68,7 +68,7 @@ export class OverviewComponent implements OnInit {
     for (const record of this.data) {
       this.chartData[0]['series'].push({
         name: record.name,
-        value: record.positive / record.total * 100,
+        value: (record.positive / record.total) * 100,
       });
     }
   }
