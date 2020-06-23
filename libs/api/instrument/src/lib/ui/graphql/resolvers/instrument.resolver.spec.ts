@@ -1,5 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { InstrumentDatabaseService } from './instrument-database.service';
+import { InstrumentResolver } from './instrument.resolver';
+import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
+import { InstrumentAssembler } from '../assemblers/instrument.assembler';
+import { InstrumentDatabaseService } from '../../../services/instrument-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { InstrumentEntity } from '@cancerlog/api/data';
 
@@ -10,12 +13,15 @@ const mockRepository = jest.fn(() => ({
   },
 }));
 
-describe('InstrumentDatabaseService', () => {
-  let service: InstrumentDatabaseService;
+describe('InstrumentResolver', () => {
+  let resolver: InstrumentResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
+        InstrumentResolver,
+        InstrumentAssemblerService,
+        InstrumentAssembler,
         InstrumentDatabaseService,
         {
           provide: getRepositoryToken(InstrumentEntity),
@@ -24,10 +30,10 @@ describe('InstrumentDatabaseService', () => {
       ],
     }).compile();
 
-    service = module.get<InstrumentDatabaseService>(InstrumentDatabaseService);
+    resolver = module.get<InstrumentResolver>(InstrumentResolver);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(resolver).toBeDefined();
   });
 });

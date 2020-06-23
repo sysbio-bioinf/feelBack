@@ -3,20 +3,22 @@ import {
   PersonEntity,
   ScreeningEntity,
 } from '@cancerlog/api/data';
+import {
+  InstrumentAssembler,
+  InstrumentAssemblerService,
+  InstrumentDatabaseService,
+} from '@cancerlog/api/instrument';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
-import { InstrumentDatabaseService } from '../../../../instrument/services/instrument/instrument-database.service';
-import { InstrumentAssembler } from '../../../../instrument/ui/graphql/assemblers/instrument.assembler';
+import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 import { PersonDatabaseService } from '../../../../person/services/person/person-database.service';
+import { PersonAssembler } from '../../../../person/ui/graphql/assemblers/person.assembler';
+import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
 import { ScreeningDatabaseService } from '../../../services/screening/screening-database.service';
 import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
-import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
-import { PersonAssembler } from '../../../../person/ui/graphql/assemblers/person.assembler';
-import { DiagramService } from '../../../services/diagram/diagram.service';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

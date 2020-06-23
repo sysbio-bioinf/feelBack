@@ -75,9 +75,6 @@
     "shared-style": {
       "tags": []
     },
-    "api-state": {
-      "tags": []
-    },
     "api-errors": {
       "tags": []
     },
@@ -91,6 +88,12 @@
       "tags": []
     },
     "api-organization": {
+      "tags": []
+    },
+    "api-instrument": {
+      "tags": []
+    },
+    "api-person": {
       "tags": []
     }
   },

@@ -1,8 +1,9 @@
-import { ScreeningEntity } from '@cancerlog/api/data';
+import { InstrumentStatesEnum, ScreeningEntity } from '@cancerlog/api/data';
 import {
   EC_GENERAL_NOTFOUND,
   ExceptionMessageModel,
 } from '@cancerlog/api/errors';
+import { InstrumentAssemblerService } from '@cancerlog/api/instrument';
 import {
   CreateScreeningInput,
   DiagramDataObject,
@@ -27,12 +28,10 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { InstrumentAssemblerService } from '../../../../instrument/services/instrument/instrument-assembler.service';
 import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
-import { InstrumentStatesEnum } from '@cancerlog/api/state';
 
 @Resolver(() => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {

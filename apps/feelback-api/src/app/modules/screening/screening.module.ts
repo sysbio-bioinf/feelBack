@@ -6,7 +6,7 @@ import { ScreeningEntity } from '@cancerlog/api/data';
 import { EvaluationService } from './services/evaluation/evaluation.service';
 import { ScreeningAssembler } from './ui/graphql/assemblers/screening.assembler';
 import { ScreeningAssemblerService } from './services/screening/screening-assembler.service';
-import { InstrumentModule } from '../instrument/instrument.module';
+import { InstrumentModule } from '@cancerlog/api/instrument';
 import { PersonModule } from '../person/person.module';
 import { DiagramService } from './services/diagram/diagram.service';
 

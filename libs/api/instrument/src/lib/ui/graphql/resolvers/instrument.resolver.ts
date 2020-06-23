@@ -11,12 +11,12 @@ import {
   ScreeningObject,
   UpdateOneInstrumentInputType,
 } from '@cancerlog/api/interfaces';
-import { InstrumentStatesEnum } from '@cancerlog/api/state';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { InstrumentAssemblerService } from '../../../services/instrument/instrument-assembler.service';
+import { InstrumentStatesEnum } from '@cancerlog/api/data';
+import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
 
 @Resolver(() => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {

@@ -1,6 +1,9 @@
-import { InstrumentEntity, OrganizationEntity } from '@cancerlog/api/data';
+import {
+  InstrumentEntity,
+  InstrumentStatesEnum,
+  OrganizationEntity,
+} from '@cancerlog/api/data';
 import { Seeder } from '@cancerlog/api/database';
-import { InstrumentStatesEnum } from '@cancerlog/api/state';
 import { ApiPathHelper } from '@cancerlog/api/util';
 import * as fs from 'fs';
 import * as path from 'path';

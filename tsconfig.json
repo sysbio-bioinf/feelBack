@@ -29,7 +29,6 @@
       "@cancerlog/api/database": ["libs/api/database/src/index.ts"],
       "@cancerlog/api/errors": ["libs/api/errors/src/index.ts"],
       "@cancerlog/api/interfaces": ["libs/api/interfaces/src/index.ts"],
-      "@cancerlog/api/state": ["libs/api/state/src/index.ts"],
       "@cancerlog/api/util": ["libs/api/util/src/index.ts"],
       "@cancerlog/features/ui": ["libs/features/ui/src/index.ts"],
       "@cancerlog/shared/misc": ["libs/shared/misc/src/index.ts"],
@@ -37,7 +36,9 @@
       "@cancerlog/util/connection": ["libs/util/connection/src/index.ts"],
       "@cancerlog/api/user": ["libs/api/user/src/index.ts"],
       "@cancerlog/api/faq": ["libs/api/faq/src/index.ts"],
-      "@cancerlog/api/organization": ["libs/api/organization/src/index.ts"]
+      "@cancerlog/api/organization": ["libs/api/organization/src/index.ts"],
+      "@cancerlog/api/instrument": ["libs/api/instrument/src/index.ts"],
+      "@cancerlog/api/person": ["libs/api/person/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

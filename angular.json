@@ -943,32 +943,6 @@
         }
       }
     },
-    "api-state": {
-      "root": "libs/api/state",
-      "sourceRoot": "libs/api/state/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/api/state/tsconfig.lib.json",
-              "libs/api/state/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/api/state/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/api/state/jest.config.js",
-            "tsConfig": "libs/api/state/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "api-errors": {
       "root": "libs/api/errors",
       "sourceRoot": "libs/api/errors/src",
@@ -1094,6 +1068,58 @@
           "options": {
             "jestConfig": "libs/api/organization/jest.config.js",
             "tsConfig": "libs/api/organization/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-instrument": {
+      "root": "libs/api/instrument",
+      "sourceRoot": "libs/api/instrument/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api/instrument/tsconfig.lib.json",
+              "libs/api/instrument/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api/instrument/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/instrument/jest.config.js",
+            "tsConfig": "libs/api/instrument/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-person": {
+      "root": "libs/api/person",
+      "sourceRoot": "libs/api/person/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api/person/tsconfig.lib.json",
+              "libs/api/person/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api/person/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/person/jest.config.js",
+            "tsConfig": "libs/api/person/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }

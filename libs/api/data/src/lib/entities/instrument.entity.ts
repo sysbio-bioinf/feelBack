@@ -1,9 +1,9 @@
 import { VersionableEntity } from '@cancerlog/api/core';
-import { InstrumentStatesEnum } from '@cancerlog/api/state';
 import { Column, Entity, OneToMany, RelationId } from 'typeorm';
 import { DiagramClass } from '../classes/diagram.class';
 import { RuleClass } from '../classes/rule.class';
 import { ScreeningEntity } from './screening.entity';
+import { InstrumentStatesEnum } from '../states/instrument.states';
 
 @Entity({ name: 'instruments' })
 export class InstrumentEntity extends VersionableEntity {

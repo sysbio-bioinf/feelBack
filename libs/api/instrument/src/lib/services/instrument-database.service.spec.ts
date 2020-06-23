@@ -1,9 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { InstrumentAssemblerService } from './instrument-assembler.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { InstrumentEntity } from '@cancerlog/api/data';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { InstrumentDatabaseService } from './instrument-database.service';
-import { InstrumentAssembler } from '../../ui/graphql/assemblers/instrument.assembler';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -12,15 +10,13 @@ const mockRepository = jest.fn(() => ({
   },
 }));
 
-describe('InstrumentAssemblerService', () => {
-  let service: InstrumentAssemblerService;
+describe('InstrumentDatabaseService', () => {
+  let service: InstrumentDatabaseService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        InstrumentAssemblerService,
         InstrumentDatabaseService,
-        InstrumentAssembler,
         {
           provide: getRepositoryToken(InstrumentEntity),
           useClass: mockRepository,
@@ -28,9 +24,7 @@ describe('InstrumentAssemblerService', () => {
       ],
     }).compile();
 
-    service = module.get<InstrumentAssemblerService>(
-      InstrumentAssemblerService,
-    );
+    service = module.get<InstrumentDatabaseService>(InstrumentDatabaseService);
   });
 
   it('should be defined', () => {

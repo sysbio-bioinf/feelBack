@@ -1,6 +1,6 @@
-import { JSONObject } from '@cancerlog/api/util';
 import { VersionableObject } from '@cancerlog/api/core';
-import { InstrumentStatesEnum } from '@cancerlog/api/state';
+import { InstrumentStatesEnum } from '@cancerlog/api/data';
+import { JSONObject } from '@cancerlog/api/util';
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { Field, ObjectType } from '@nestjs/graphql';
 

@@ -9,3 +9,4 @@ export * from './entities/instrument.entity';
 export * from './entities/organization.entity';
 export * from './entities/person.entity';
 export * from './entities/screening.entity';
+export * from './states/instrument.states';
