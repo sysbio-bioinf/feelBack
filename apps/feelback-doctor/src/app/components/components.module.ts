@@ -4,7 +4,7 @@ import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { ListComponent } from './patients/list/list.component';
-import { DistressThermometerComponent } from './instruments/distress-thermometer/distress-thermometer.component';
+import { InstrumentComponent } from './instruments/instrument/instrument.component';
 import { SampleInstrumentComponent } from './instruments/sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { QuestionnaireComponent } from './result/questionnaire/questionnaire.component';
@@ -19,7 +19,6 @@ import { FilterComponent } from './patients/filter/filter.component';
 import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
 import { ActionBarComponent } from './util/action-bar/action-bar.component';
 import { FooterComponent } from './util/footer/footer.component';
-import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -27,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     FilterComponent,
     ListComponent,
-    DistressThermometerComponent,
+    InstrumentComponent,
     SampleInstrumentComponent,
     QuestionnaireComponent,
     LoadingComponent,
@@ -54,7 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     QuestionnaireComponent,
     OverviewComponent,
     PatientInfoComponent,
-    DistressThermometerComponent,
+    InstrumentComponent,
     ErrorIndicatorComponent,
     CircleImageComponent,
     InstrumentInfoComponent,

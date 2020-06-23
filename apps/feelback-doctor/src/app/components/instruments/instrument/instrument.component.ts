@@ -8,12 +8,12 @@ import { FormControl } from '@angular/forms';
 import {DateHelper} from "@cancerlog/util/helper";
 
 @Component({
-  selector: 'feelback-doctor-distress-thermometer',
-  templateUrl: './distress-thermometer.component.html',
-  styleUrls: ['./distress-thermometer.component.scss'],
+  selector: 'feelback-doctor-instrument',
+  templateUrl: './instrument.component.html',
+  styleUrls: ['./instrument.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DistressThermometerComponent implements OnInit {
+export class InstrumentComponent implements OnInit {
   constructor(
     private screeningService: ScreeningService,
     public commonService: CommonService,

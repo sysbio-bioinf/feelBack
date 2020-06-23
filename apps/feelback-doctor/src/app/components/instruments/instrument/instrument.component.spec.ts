@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DistressThermometerComponent } from './distress-thermometer.component';
+import { InstrumentComponent } from './instrument.component';
 import { ComponentsModule } from '../../components.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
 import { Apollo } from 'apollo-angular';
 
-describe('DistressThermometerComponent', () => {
-  let component: DistressThermometerComponent;
-  let fixture: ComponentFixture<DistressThermometerComponent>;
+describe('InstrumentComponent', () => {
+  let component: InstrumentComponent;
+  let fixture: ComponentFixture<InstrumentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('DistressThermometerComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DistressThermometerComponent);
+    fixture = TestBed.createComponent(InstrumentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
