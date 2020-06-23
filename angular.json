@@ -1124,6 +1124,32 @@
           }
         }
       }
+    },
+    "api-identity": {
+      "root": "libs/api/identity",
+      "sourceRoot": "libs/api/identity/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api/identity/tsconfig.lib.json",
+              "libs/api/identity/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api/identity/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/identity/jest.config.js",
+            "tsConfig": "libs/api/identity/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

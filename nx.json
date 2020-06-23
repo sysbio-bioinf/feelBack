@@ -95,6 +95,9 @@
     },
     "api-person": {
       "tags": []
+    },
+    "api-identity": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

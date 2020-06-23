@@ -38,7 +38,8 @@
       "@cancerlog/api/faq": ["libs/api/faq/src/index.ts"],
       "@cancerlog/api/organization": ["libs/api/organization/src/index.ts"],
       "@cancerlog/api/instrument": ["libs/api/instrument/src/index.ts"],
-      "@cancerlog/api/person": ["libs/api/person/src/index.ts"]
+      "@cancerlog/api/person": ["libs/api/person/src/index.ts"],
+      "@cancerlog/api/identity": ["libs/api/identity/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

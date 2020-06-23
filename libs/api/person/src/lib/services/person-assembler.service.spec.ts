@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PersonAssemblerService } from './person-assembler.service';
 import { PersonEntity } from '@cancerlog/api/data';
+import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { PersonAssembler } from '../../ui/graphql/assemblers/person.assembler';
+import { PersonAssembler } from '../ui/graphql/assemblers/person.assembler';
+import { PersonAssemblerService } from './person-assembler.service';
 import { PersonDatabaseService } from './person-database.service';
 
 const mockRepository = jest.fn(() => ({

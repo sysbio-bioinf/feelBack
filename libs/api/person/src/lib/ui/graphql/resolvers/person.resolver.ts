@@ -1,4 +1,5 @@
 import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
+import { IdentityDatabaseService } from '@cancerlog/api/identity';
 import {
   CreateOnePersonInputType,
   CreatePersonInput,
@@ -11,9 +12,8 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
-import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
-import { PersonDatabaseService } from '../../../services/person/person-database.service';
+import { PersonAssemblerService } from '../../../services/person-assembler.service';
+import { PersonDatabaseService } from '../../../services/person-database.service';
 
 @Resolver(() => PersonObject)
 export class PersonResolver extends CRUDResolver(PersonObject, {

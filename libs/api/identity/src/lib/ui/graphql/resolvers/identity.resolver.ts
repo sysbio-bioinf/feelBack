@@ -5,8 +5,8 @@ import {
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Args, Query, Resolver } from '@nestjs/graphql';
-import { IdentityAssemblerService } from '../../../services/identity/identity-assembler.service';
-import { IdentityDatabaseService } from '../../../services/identity/identity-database.service';
+import { IdentityAssemblerService } from '../../../services/identity-assembler.service';
+import { IdentityDatabaseService } from '../../../services/identity-database.service';
 
 @Resolver(() => IdentityObject)
 export class IdentityResolver extends CRUDResolver(IdentityObject, {

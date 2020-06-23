@@ -2,7 +2,7 @@ import { IdentityEntity } from '@cancerlog/api/data';
 import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { IdentityAssembler } from '../../ui/graphql/assemblers/identity.assembler';
+import { IdentityAssembler } from '../ui/graphql/assemblers/identity.assembler';
 import { IdentityAssemblerService } from './identity-assembler.service';
 import { IdentityDatabaseService } from './identity-database.service';
 

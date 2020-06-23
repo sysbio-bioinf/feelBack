@@ -3,16 +3,21 @@ import {
   PersonEntity,
   ScreeningEntity,
 } from '@cancerlog/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
+import { IdentityModule } from '@cancerlog/api/identity';
 import {
   InstrumentAssembler,
   InstrumentAssemblerService,
   InstrumentDatabaseService,
 } from '@cancerlog/api/instrument';
+import {
+  PersonAssembler,
+  PersonAssemblerService,
+  PersonDatabaseService,
+  PersonModule,
+} from '@cancerlog/api/person';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
-import { PersonDatabaseService } from '../../../../person/services/person/person-database.service';
-import { PersonAssembler } from '../../../../person/ui/graphql/assemblers/person.assembler';
 import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';

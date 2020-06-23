@@ -1,10 +1,10 @@
 import { IdentityEntity, PersonEntity } from '@cancerlog/api/data';
 import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
+import { IdentityDatabaseService } from '@cancerlog/api/identity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { IdentityDatabaseService } from '../../../../identity/services/identity/identity-database.service';
-import { PersonAssemblerService } from '../../../services/person/person-assembler.service';
-import { PersonDatabaseService } from '../../../services/person/person-database.service';
+import { PersonAssemblerService } from '../../../services/person-assembler.service';
+import { PersonDatabaseService } from '../../../services/person-database.service';
 import { PersonAssembler } from '../assemblers/person.assembler';
 import { PersonResolver } from './person.resolver';
 

@@ -17,6 +17,7 @@ import {
   UploadScreeningInputType,
   UserAgentObject,
 } from '@cancerlog/api/interfaces';
+import { PersonAssemblerService } from '@cancerlog/api/person';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException, NotFoundException } from '@nestjs/common';
@@ -28,7 +29,6 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { PersonAssemblerService } from '../../../../person/services/person/person-assembler.service';
 import { DiagramService } from '../../../services/diagram/diagram.service';
 import { EvaluationService } from '../../../services/evaluation/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
