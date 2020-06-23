@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PatientService } from 'apps/feelback-doctor/src/app/services/patient.service';
-import { Patient } from 'apps/feelback-doctor/src/app/models/patient.model';
+import { PatientService } from '../../../../../../services/patient.service';
+import { Patient } from '../../../../../../models/patient.model';
 
 @Component({
   selector: 'feelback-doctor-patients-page',

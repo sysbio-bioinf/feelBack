@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { map, concatMap, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, concatMap } from 'rxjs/operators';
 import {
   GetScreeningGQL,
   Screening,

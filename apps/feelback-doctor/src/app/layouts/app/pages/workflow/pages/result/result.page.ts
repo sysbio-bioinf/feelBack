@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from 'apps/feelback-doctor/src/app/services/common.service';
-import { PatientService } from 'apps/feelback-doctor/src/app/services/patient.service';
-import { InstrumentService } from 'apps/feelback-doctor/src/app/services/instrument.service';
-import { ScreeningService } from 'apps/feelback-doctor/src/app/services/screening.service';
-import { Patient } from 'apps/feelback-doctor/src/app/models/patient.model';
+import { CommonService } from '../../../../../../services/common.service';
+import { PatientService } from '../../../../../../services/patient.service';
+import { InstrumentService } from '../../../../../../services/instrument.service';
+import { ScreeningService } from '../../../../../../services/screening.service';
+import { Patient } from '../../../../../../models/patient.model';
 import {
   Instrument,
   Screening,
-} from 'apps/feelback-doctor/src/app/graphql/generated/feelback.graphql';
+} from '../../../../../../graphql/generated/feelback.graphql';
 import { catchError } from 'rxjs/operators';
 
 @Component({

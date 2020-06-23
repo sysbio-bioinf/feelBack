@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { CommonService } from 'apps/feelback-doctor/src/app/services/common.service';
+import { CommonService } from '../../../../services/common.service';
 import { filter } from 'rxjs/operators';
 import { slideInAnimation } from './workflow.layout.animation';
 

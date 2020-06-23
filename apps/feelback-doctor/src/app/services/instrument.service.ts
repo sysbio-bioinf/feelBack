@@ -45,7 +45,7 @@ export class InstrumentService {
       payload: {},
       rules: [],
       diagram: {},
-      state: InstrumentStatesEnum.Released
+      state: InstrumentStatesEnum.Draft
     },
     {
       id: 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958',
@@ -61,7 +61,7 @@ export class InstrumentService {
       payload: {},
       rules: [],
       diagram: {},
-      state: InstrumentStatesEnum.Released
+      state: InstrumentStatesEnum.Draft
     },
     {
       id: 'eab19dff-d4c3-46ae-99df-59db5d8e3842',
