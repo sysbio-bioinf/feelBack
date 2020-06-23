@@ -5,9 +5,10 @@ import { FaqAssemblerService } from './services/faq-assembler.service';
 import { FaqDatabaseService } from './services/faq-database.service';
 import { FaqAssembler } from './ui/graphql/assemblers/faq.assembler';
 import { FaqResolver } from './ui/graphql/resolvers/faq.resolver';
+import { AuthModule } from '@cancerlog/api/auth';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([FaqEntity])],
+  imports: [AuthModule, TypeOrmModule.forFeature([FaqEntity])],
   providers: [
     FaqDatabaseService,
     FaqAssemblerService,
