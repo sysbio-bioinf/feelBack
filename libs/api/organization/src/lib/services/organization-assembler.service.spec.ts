@@ -1,10 +1,9 @@
 import { OrganizationEntity } from '@cancerlog/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { OrganizationAssemblerService } from '../../../services/organization/organization-assembler.service';
-import { OrganizationDatabaseService } from '../../../services/organization/organization-database.service';
-import { OrganizationAssembler } from '../assemblers/organization.assembler';
-import { OrganizationResolver } from './organization.resolver';
+import { OrganizationAssembler } from '../ui/graphql/assemblers/organization.assembler';
+import { OrganizationAssemblerService } from './organization-assembler.service';
+import { OrganizationDatabaseService } from './organization-database.service';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -13,13 +12,12 @@ const mockRepository = jest.fn(() => ({
   },
 }));
 
-describe('OrganizationResolver', () => {
-  let resolver: OrganizationResolver;
+describe('OrganizationAssemblerService', () => {
+  let service: OrganizationAssemblerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        OrganizationResolver,
         OrganizationAssemblerService,
         OrganizationAssembler,
         OrganizationDatabaseService,
@@ -30,10 +28,12 @@ describe('OrganizationResolver', () => {
       ],
     }).compile();
 
-    resolver = module.get<OrganizationResolver>(OrganizationResolver);
+    service = module.get<OrganizationAssemblerService>(
+      OrganizationAssemblerService,
+    );
   });
 
   it('should be defined', () => {
-    expect(resolver).toBeDefined();
+    expect(service).toBeDefined();
   });
 });

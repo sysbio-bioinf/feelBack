@@ -75,12 +75,4 @@ export class UpdateDoctorInput extends CoreInput {
     nullable: true,
   })
   picture?: string;
-
-  @IsOptional()
-  @IsObject()
-  @Field((type) => JSONObject, {
-    description: 'custom settings as json object',
-    nullable: false,
-  })
-  settings?: object;
 }

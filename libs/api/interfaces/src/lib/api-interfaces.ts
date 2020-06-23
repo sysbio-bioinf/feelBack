@@ -16,6 +16,7 @@ export * from './inputs/update-identity.input';
 export * from './inputs/update-instrument.input';
 export * from './inputs/update-organization.input';
 export * from './inputs/update-person.input';
+export * from './inputs/update-user.input';
 export * from './objects/diagram-axis.object';
 export * from './objects/diagram-data-point.object';
 export * from './objects/diagram-data.object';

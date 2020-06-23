@@ -1,24 +1,44 @@
 import {
   CurrentUser,
   GqlMasterGuard,
+  KeycloakService,
   Roles,
   RolesEnum,
   User,
 } from '@cancerlog/api/auth';
-import { UserObject, OrganizationObject } from '@cancerlog/api/interfaces';
+import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
+import {
+  OrganizationObject,
+  RegisterInput,
+  UpdateUserInput,
+  UserObject,
+} from '@cancerlog/api/interfaces';
 import { JSONObject } from '@cancerlog/api/util';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { UseGuards } from '@nestjs/common';
-import { Query, Resolver } from '@nestjs/graphql';
+import { InternalServerErrorException, UseGuards } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserAssemblerService } from '../../../services/user-assembler.service';
 import { UserDatabaseService } from '../../../services/user-database.service';
+import { DeepPartial } from 'typeorm';
 
 @Resolver(() => UserObject)
 export class UserResolver extends CRUDResolver(UserObject, {
-  create: { disabled: true },
-  delete: { disabled: true },
-  update: { disabled: true }, // TODO: we need an update profile route
   read: { disabled: false },
+  create: {
+    many: { disabled: true },
+    decorators: [Roles(RolesEnum.ADMIN)],
+    guards: [GqlMasterGuard],
+  },
+  update: {
+    many: { disabled: true },
+    decorators: [Roles(RolesEnum.ADMIN)],
+    guards: [GqlMasterGuard],
+  },
+  delete: {
+    many: { disabled: true },
+    decorators: [Roles(RolesEnum.ADMIN)],
+    guards: [GqlMasterGuard],
+  },
   relations: {
     many: {
       organizations: {
@@ -34,15 +54,18 @@ export class UserResolver extends CRUDResolver(UserObject, {
 }) {
   constructor(
     readonly service: UserAssemblerService,
-    private userDatabaseService: UserDatabaseService,
+    private keycloakService: KeycloakService,
   ) {
     super(service);
   }
 
-  @Query((returns) => JSONObject, { name: 'keycloakUserInfo', nullable: true })
+  @Query((returns) => JSONObject, {
+    name: 'getKeycloakUserInfo',
+    nullable: true,
+  })
   @Roles(RolesEnum.USER)
   @UseGuards(GqlMasterGuard)
-  async keycloakUserInfo(@CurrentUser() user: User) {
+  async getKeycloakUserInfo(@CurrentUser() user: User) {
     return user;
   }
 
@@ -50,10 +73,45 @@ export class UserResolver extends CRUDResolver(UserObject, {
   @Roles(RolesEnum.MANAGER)
   @UseGuards(GqlMasterGuard)
   async myself(@CurrentUser() user: User): Promise<UserObject> {
-    const doctorEntity = await this.userDatabaseService.getUserByKeycloakId(
-      user.id,
-    );
+    return this.service.getUserByKeycloakId(user.id);
+  }
 
-    return this.service.getById(doctorEntity.id);
+  @Mutation(() => UserObject, { name: 'updateMyself' })
+  @Roles(RolesEnum.MANAGER)
+  @UseGuards(GqlMasterGuard)
+  async updateMyself(
+    @CurrentUser() user: User,
+    @Args('input') input: UpdateUserInput,
+  ) {
+    const currentUser = await this.service.getUserByKeycloakId(user.id);
+    return this.service.updateOne(currentUser.id, input);
+  }
+
+  @Mutation(() => UserObject, { name: 'registerUser' })
+  @Roles(RolesEnum.ADMIN)
+  @UseGuards(GqlMasterGuard)
+  async registerUser(@Args('input') input: RegisterInput) {
+    let keycloakId;
+
+    try {
+      keycloakId = await this.keycloakService.registerDoctor({
+        username: input.email,
+        password: input.password,
+      });
+    } catch (exception) {
+      throw new InternalServerErrorException({
+        message:
+          'Error when trying to create a new User with KeyCloak. This user already exists.',
+        code: EC_GENERAL_ERROR.code,
+      } as ExceptionMessageModel);
+    }
+
+    const doctorEntity = this.service.queryService.createOne({
+      keycloakId: keycloakId,
+      acceptedTOS: true,
+      isActive: true,
+    });
+
+    return this.service.assembler.convertAsyncToDTO(doctorEntity);
   }
 }

@@ -9,7 +9,15 @@ export class UserAssemblerService extends AssemblerQueryService<
   UserObject,
   DoctorEntity
 > {
-  constructor(assembler: UserAssembler, service: UserDatabaseService) {
+  constructor(
+    public assembler: UserAssembler,
+    public service: UserDatabaseService,
+  ) {
     super(assembler, service);
+  }
+
+  async getUserByKeycloakId(keycloakId: string): Promise<UserObject> {
+    const entity = this.service.getUserByKeycloakId(keycloakId);
+    return this.assembler.convertAsyncToDTO(entity);
   }
 }
