@@ -34,7 +34,8 @@
       "@cancerlog/features/ui": ["libs/features/ui/src/index.ts"],
       "@cancerlog/shared/misc": ["libs/shared/misc/src/index.ts"],
       "@cancerlog/shared/style": ["libs/shared/style/src/index.ts"],
-      "@cancerlog/util/connection": ["libs/util/connection/src/index.ts"]
+      "@cancerlog/util/connection": ["libs/util/connection/src/index.ts"],
+      "@cancerlog/api/user": ["libs/api/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

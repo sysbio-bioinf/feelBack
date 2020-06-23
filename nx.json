@@ -83,6 +83,9 @@
     },
     "api-auth": {
       "tags": []
+    },
+    "api-user": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
