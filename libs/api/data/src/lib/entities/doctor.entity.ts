@@ -42,8 +42,8 @@ export class DoctorEntity extends VersionableEntity {
   @Column({ type: 'boolean', nullable: false, default: false })
   acceptedTOS!: boolean;
 
-  @Column({ type: 'json', nullable: true, default: null })
-  settings!: object | null;
+  @Column({ type: 'json', nullable: false, default: {} })
+  settings!: object;
 
   @ManyToMany(
     (type) => OrganizationEntity,

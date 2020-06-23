@@ -5,7 +5,7 @@ import {
   RolesEnum,
   User,
 } from '@cancerlog/api/auth';
-import { DoctorObject, UserObject } from '@cancerlog/api/interfaces';
+import { UserObject, OrganizationObject } from '@cancerlog/api/interfaces';
 import { JSONObject } from '@cancerlog/api/util';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { UseGuards } from '@nestjs/common';
@@ -13,12 +13,23 @@ import { Query, Resolver } from '@nestjs/graphql';
 import { UserAssemblerService } from '../../../services/user-assembler.service';
 import { UserDatabaseService } from '../../../services/user-database.service';
 
-@Resolver(() => UserResolver)
+@Resolver(() => UserObject)
 export class UserResolver extends CRUDResolver(UserObject, {
   create: { disabled: true },
   delete: { disabled: true },
   update: { disabled: true }, // TODO: we need an update profile route
   read: { disabled: false },
+  relations: {
+    many: {
+      organizations: {
+        DTO: OrganizationObject,
+        relationName: 'organizations',
+        nullable: true,
+        disableRemove: true,
+        disableUpdate: true,
+      },
+    },
+  },
 }) {
   constructor(
     readonly service: UserAssemblerService,
@@ -34,12 +45,14 @@ export class UserResolver extends CRUDResolver(UserObject, {
     return user;
   }
 
-  @Query((returns) => DoctorObject, { name: 'myself' })
+  @Query((returns) => UserObject, { name: 'myself' })
   @Roles(RolesEnum.MANAGER)
   @UseGuards(GqlMasterGuard)
-  async myself(@CurrentUser() user: User) {
-    const doctorEntity = this.userDatabaseService.getUserByKeycloakId(user.id);
+  async myself(@CurrentUser() user: User): Promise<UserObject> {
+    const doctorEntity = await this.userDatabaseService.getUserByKeycloakId(
+      user.id,
+    );
 
-    return this.service.assembler.convertAsyncToDTO(doctorEntity);
+    return this.service.getById(doctorEntity.id);
   }
 }

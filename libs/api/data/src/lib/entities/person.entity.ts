@@ -1,6 +1,14 @@
 import { VersionableEntity } from '@cancerlog/api/core';
-import { Entity, Column, Index, OneToMany, RelationId } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  ManyToMany,
+  OneToMany,
+  RelationId,
+} from 'typeorm';
 import { ScreeningEntity } from './screening.entity';
+import { OrganizationEntity } from './organization.entity';
 
 @Entity('persons', {})
 export class PersonEntity extends VersionableEntity {
@@ -26,4 +34,10 @@ export class PersonEntity extends VersionableEntity {
 
   @RelationId((person: PersonEntity) => person.screenings)
   _screenings!: string[];
+
+  @ManyToMany(
+    (type) => OrganizationEntity,
+    (organization) => organization.persons,
+  )
+  organizations!: OrganizationEntity[];
 }

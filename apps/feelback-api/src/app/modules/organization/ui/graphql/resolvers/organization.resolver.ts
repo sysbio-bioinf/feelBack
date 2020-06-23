@@ -3,6 +3,7 @@ import {
   DoctorObject,
   OrganizationObject,
   UpdateOrganizationInput,
+  PersonObject,
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
@@ -18,6 +19,13 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
       members: {
         DTO: DoctorObject,
         relationName: 'members',
+        nullable: true,
+        disableRemove: true,
+        disableUpdate: false,
+      },
+      persons: {
+        DTO: PersonObject,
+        relationName: 'persons',
         nullable: true,
         disableRemove: true,
         disableUpdate: false,

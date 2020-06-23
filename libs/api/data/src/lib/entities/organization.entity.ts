@@ -1,6 +1,7 @@
 import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
 import { VersionableEntity } from '@cancerlog/api/core';
 import { DoctorEntity } from './doctor.entity';
+import { PersonEntity } from './person.entity';
 
 @Entity({ name: 'organizations' })
 export class OrganizationEntity extends VersionableEntity {
@@ -34,4 +35,11 @@ export class OrganizationEntity extends VersionableEntity {
   })
   @JoinTable({ name: 'organization_members' })
   members!: DoctorEntity[];
+
+  @ManyToMany((type) => PersonEntity, (person) => person.organizations, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinTable({ name: 'organization_persons' })
+  persons!: PersonEntity[];
 }
