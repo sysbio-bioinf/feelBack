@@ -59,7 +59,7 @@
         <input
           matInput
           [max]="today"
-          [formControl]="startDate"
+          [formControl]="startDateForm"
           [matDatepicker]="startpicker"
           (focus)="startpicker.open()"
           autocomplete="false"
@@ -74,9 +74,9 @@
         <mat-label>Choose a enddate</mat-label>
         <input
           matInput
-          [min]="startDate.value"
+          [min]="startDateForm.value"
           [max]="today"
-          [formControl]="endDate"
+          [formControl]="endDateForm"
           [matDatepicker]="endpicker"
           (focus)="endpicker.open()"
           autocomplete="false"
@@ -101,6 +101,11 @@
       </button>
     </span>
 
+    <span *ngIf="screenings[0].axis[0].series.length > 0" class="screeningNumber">
+      <mat-icon class="screeningIcon">{{commonService.icons.screening}}</mat-icon>
+      {{screenings[0].axis[0].series.length}} screenings found
+    </span>
+
     <div *ngIf="screenings[0].axis[0].series.length > 0">
       <div class="chart-wrapper">
         <ngx-charts-line-chart
@@ -110,6 +115,8 @@
           yScaleMin="0"
           yScaleMax="10"
           timeline="true"
+          [xScaleMin]="startDate"
+          [xScaleMax]="endDate"
           [curve]="commonService.curveStepAfter"
           [results]="screenings[0].axis"
           (select)="selectScreening($event)"

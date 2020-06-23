@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ScreeningService } from '../../../services/screening.service';
 import { CommonService } from '../../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Instrument } from '../../../graphql/generated/feelback.graphql';
+import { Instrument, Screening } from '../../../graphql/generated/feelback.graphql';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import {DateHelper} from "@cancerlog/util/helper";
@@ -24,9 +24,11 @@ export class InstrumentComponent implements OnInit {
   @Input() instrument: Instrument;
   public screenings$: Observable<any>;
   public selectedDaterange = 'current-year';
-  public startDate = new FormControl();
-  public endDate = new FormControl();
+  public startDateForm = new FormControl();
+  public endDateForm = new FormControl();
   public today = new Date();
+  public startDate: Date;
+  public endDate: Date;
 
   ngOnInit(): void {
     setTimeout(() => this.selectDaterange(this.selectedDaterange), 250);
@@ -34,37 +36,36 @@ export class InstrumentComponent implements OnInit {
 
   public selectDaterange(daterange: string) {
     this.selectedDaterange = daterange;
-    let startDate: Date, endDate: Date;
     const currentMonth = this.today.getMonth();
     const currentYear = this.today.getFullYear();
     switch (daterange) {
       case 'last-year': {
-        startDate = DateHelper.createUtcDate( new Date(currentYear-1, 0, 1));
-        endDate = DateHelper.createUtcDate(new Date(currentYear-1, 12, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate( new Date(currentYear-1, 0, 1));
+        this.endDate = DateHelper.createUtcDate(new Date(currentYear-1, 12, 0, 23, 59, 59));
         break;
       }
       case 'current-year': {
-        startDate = DateHelper.createUtcDate(new Date(currentYear, 0, 1));
-        endDate = DateHelper.createUtcDate(new Date(currentYear, 12, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate(new Date(currentYear, 0, 1));
+        this.endDate = DateHelper.createUtcDate(new Date(currentYear, 12, 0, 23, 59, 59));
         break;
       }
       case 'current-month': {
-        startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 1));
-        endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth+1, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 1));
+        this.endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth+1, 0, 23, 59, 59));
         break;
       }
       case 'last-month': {
-        startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth - 1, 1));
-        endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth - 1, 1));
+        this.endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 0, 23, 59, 59));
         break;
       }
       case 'custom': {
-        startDate = DateHelper.createUtcDate(this.startDate.value);
-        endDate = this.endDate.value;
-        endDate.setHours(23);
-        endDate.setMinutes(59);
-        endDate.setSeconds(59);
-        endDate = DateHelper.createUtcDate(endDate);
+        this.startDate = DateHelper.createUtcDate(this.startDateForm.value);
+        this.endDate = this.endDateForm.value;
+        this.endDate.setHours(23);
+        this.endDate.setMinutes(59);
+        this.endDate.setSeconds(59);
+        this.endDate = DateHelper.createUtcDate(this.endDate);
         break;
       }
     }
@@ -72,8 +73,8 @@ export class InstrumentComponent implements OnInit {
     this.screenings$ = this.screeningService.getScreenings(
       '2b3f4524-773d-4a2a-a576-ace6cfc4d7f3',
       '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
-      startDate,
-      endDate,
+      this.startDate,
+      this.endDate,
       daterange
     );
   }
@@ -84,5 +85,4 @@ export class InstrumentComponent implements OnInit {
     });
   }
 
-  
 }
