@@ -1,7 +1,9 @@
 import { RolesEnum } from '@cancerlog/api/auth';
+import { DoctorEntity } from '@cancerlog/api/data';
 import { Seeder } from '@cancerlog/api/database';
 import { KeycloakServiceConnection } from '@cancerlog/util/connection';
 import KeycloakAdminClient from 'keycloak-admin';
+import { getConnection } from 'typeorm';
 import { environment } from '../../environments/environment';
 
 export class AddKeycloakAdminUserSeeder extends Seeder {
@@ -49,7 +51,19 @@ export class AddKeycloakAdminUserSeeder extends Seeder {
         ],
         realm: realmName,
       });
+
+      const feelbackConnection = getConnection();
+
+      const adminUser: Partial<DoctorEntity> = {
+        acceptedTOS: true,
+        isActive: true,
+        email: environment.auth.keycloak.realm.username,
+        keycloakId: keycloakId.id,
+      };
+
+      await feelbackConnection.getRepository(DoctorEntity).save([adminUser]);
     } catch (exception) {
+      console.log(exception);
       throw new Error(exception);
     }
   }

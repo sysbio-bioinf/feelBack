@@ -66,7 +66,7 @@ const identityEntities = [IdentityEntity];
   providers: [
     {
       provide: APP_GUARD,
-      useValue: GqlMasterGuard,
+      useClass: GqlMasterGuard,
     },
   ],
 })

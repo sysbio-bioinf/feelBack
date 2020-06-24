@@ -14,11 +14,9 @@ import {
 } from '@cancerlog/api/interfaces';
 import { JSONObject } from '@cancerlog/api/util';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { InternalServerErrorException, UseGuards } from '@nestjs/common';
+import { InternalServerErrorException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserAssemblerService } from '../../../services/user-assembler.service';
-import { UserDatabaseService } from '../../../services/user-database.service';
-import { DeepPartial } from 'typeorm';
 
 @Resolver(() => UserObject)
 export class UserResolver extends CRUDResolver(UserObject, {
