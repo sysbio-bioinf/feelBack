@@ -9,7 +9,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { getConnection } from 'typeorm';
 
-export class Seeder20200527 extends Seeder {
+export class InitDatabaseSeeder extends Seeder {
   async seed() {
     await this.seedOrganizations();
     await this.seedInstruments();
