@@ -1,9 +1,4 @@
-import {
-  GqlMasterGuard,
-  Roles,
-  RolesEnum,
-  Unprotected,
-} from '@cancerlog/api/auth';
+import { Roles, RolesEnum, Unprotected } from '@cancerlog/api/auth';
 import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
 import { IdentityDatabaseService } from '@cancerlog/api/identity';
 import {
@@ -27,11 +22,9 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
   read: {
     many: {
       decorators: [Roles(RolesEnum.ADMIN)],
-      guards: [GqlMasterGuard],
     },
     one: {
       decorators: [Unprotected()],
-      guards: [GqlMasterGuard],
     },
   },
   create: {
@@ -44,7 +37,6 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     many: { disabled: true },
     UpdateDTOClass: UpdatePersonInput,
     decorators: [Roles(RolesEnum.ADMIN)],
-    guards: [GqlMasterGuard],
   },
   delete: { disabled: true },
   enableTotalCount: true,
@@ -59,7 +51,6 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
 
   @Mutation(() => PersonObject, { name: 'createOnePerson' })
   @Roles(RolesEnum.ADMIN)
-  @UseGuards(GqlMasterGuard)
   async createOnePerson(
     @Args('input') input: CreateOnePersonInputType,
   ): Promise<PersonObject> {
@@ -80,7 +71,6 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
 
   @Query((returns) => PersonObject)
   @Unprotected()
-  @UseGuards(GqlMasterGuard)
   async personByPseudonym(@Args('pseudonym') pseudonym: string) {
     const personEntity = await this.personDatabaseService.repo.findOneOrFail({
       where: { pseudonym: pseudonym },

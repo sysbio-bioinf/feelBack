@@ -1,3 +1,4 @@
+import { Roles, RolesEnum, Unprotected } from '@cancerlog/api/auth';
 import { InstrumentStatesEnum, ScreeningEntity } from '@cancerlog/api/data';
 import {
   EC_GENERAL_NOTFOUND,
@@ -36,12 +37,6 @@ import {
 import { DiagramService } from '../../../services/diagram.service';
 import { EvaluationService } from '../../../services/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening-assembler.service';
-import {
-  Unprotected,
-  GqlMasterGuard,
-  Roles,
-  RolesEnum,
-} from '@cancerlog/api/auth';
 
 @Resolver(() => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
@@ -49,14 +44,12 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     many: { disabled: true },
     one: {
       decorators: [Unprotected()],
-      guards: [GqlMasterGuard],
     },
   },
   create: {
     many: { disabled: true },
     one: {
       decorators: [Unprotected()],
-      guards: [GqlMasterGuard],
     },
     CreateDTOClass: CreateScreeningInput,
   },
@@ -96,7 +89,6 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
 
   @Mutation((returns) => ScreeningObject, { name: 'uploadScreening' })
   @Unprotected()
-  @UseGuards(GqlMasterGuard)
   async uploadScreening(
     @Args('input') input: UploadScreeningInputType,
   ): Promise<ScreeningObject> {

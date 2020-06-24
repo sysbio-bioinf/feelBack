@@ -5,7 +5,7 @@ import { GqlRoleGuard } from './gql-role.guard';
 import { GqlUnprotectedGuard } from './gql-unprotected.guard';
 
 /**
- * Master guard for GraphQL requests.
+ * Master guard for all GraphQL requests.
  */
 @Injectable()
 export class GqlMasterGuard implements CanActivate {

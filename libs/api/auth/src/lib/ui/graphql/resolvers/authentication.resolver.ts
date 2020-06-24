@@ -3,11 +3,10 @@ import {
   ExceptionMessageModel,
 } from '@cancerlog/api/errors';
 import { LoginInput, TokenObject } from '@cancerlog/api/interfaces';
-import { InternalServerErrorException, UseGuards } from '@nestjs/common';
+import { InternalServerErrorException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { KeycloakService } from '../../../services/keycloak.service';
 import { Unprotected } from '../../../decorators/unprotected.decorator';
-import { GqlMasterGuard } from '../../../guards/gql-master.guard';
+import { KeycloakService } from '../../../services/keycloak.service';
 
 @Resolver(() => TokenObject)
 export class AuthenticationResolver {
@@ -18,7 +17,6 @@ export class AuthenticationResolver {
     nullable: false,
   })
   @Unprotected()
-  @UseGuards(GqlMasterGuard)
   async login(@Args('input') input: LoginInput) {
     const token = await this.keycloakService.requestTokenForCredentials({
       username: input.email,
