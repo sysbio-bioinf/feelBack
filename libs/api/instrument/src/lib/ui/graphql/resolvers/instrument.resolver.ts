@@ -13,16 +13,26 @@ import {
 } from '@cancerlog/api/interfaces';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { InstrumentStatesEnum } from '@cancerlog/api/data';
 import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
+import {
+  Unprotected,
+  GqlMasterGuard,
+  Roles,
+  RolesEnum,
+} from '@cancerlog/api/auth';
 
 @Resolver(() => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
+  read: {
+    decorators: [Unprotected()],
+    guards: [GqlMasterGuard],
+  },
   create: { disabled: true },
-  delete: { disabled: true },
   update: { disabled: true },
+  delete: { disabled: true },
   relations: {
     many: {
       screenings: {
@@ -31,6 +41,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
         nullable: true,
         disableRemove: true,
         disableUpdate: true,
+        decorators: [Roles(RolesEnum.MANAGER)],
+        guards: [GqlMasterGuard],
       },
     },
   },
@@ -41,6 +53,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   }
 
   @Mutation((returns) => InstrumentObject, { name: 'createOneInstrument' })
+  @Roles(RolesEnum.ADMIN)
+  @UseGuards(GqlMasterGuard)
   async createOneInstrument(
     @Args('input') input: CreateOneInstrumentInputType,
   ): Promise<InstrumentObject> {
@@ -55,6 +69,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   }
 
   @Mutation((returns) => InstrumentObject, { name: 'updateOneInstrument' })
+  @Roles(RolesEnum.ADMIN)
+  @UseGuards(GqlMasterGuard)
   async updateOneInstrument(
     @Args('input') input: UpdateOneInstrumentInputType,
   ): Promise<InstrumentObject> {
@@ -76,6 +92,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   }
 
   @Mutation((returns) => InstrumentObject, { name: 'releaseInstrument' })
+  @Roles(RolesEnum.ADMIN)
+  @UseGuards(GqlMasterGuard)
   async releaseInstrument(
     @Args('input') input: ReleaseOneInstrumentInputType,
   ): Promise<InstrumentObject> {
@@ -97,6 +115,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   }
 
   @Mutation((returns) => InstrumentObject, { name: 'retireInstrument' })
+  @Roles(RolesEnum.ADMIN)
+  @UseGuards(GqlMasterGuard)
   async retireInstrument(
     @Args('input') input: RetireOneInstrumentInputType,
   ): Promise<InstrumentObject> {
@@ -118,6 +138,8 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   }
 
   @Mutation((returns) => InstrumentObject, { name: 'copyInstrument' })
+  @Roles(RolesEnum.ADMIN)
+  @UseGuards(GqlMasterGuard)
   async copyInstrument(
     @Args('input') input: CopyOneInstrumentInputType,
   ): Promise<InstrumentObject> {

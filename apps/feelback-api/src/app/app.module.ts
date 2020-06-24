@@ -1,3 +1,4 @@
+import { GuardsModule } from '@cancerlog/api/auth';
 import { ConfigModule, ConfigService } from '@cancerlog/api/config';
 import {
   DoctorEntity,
@@ -56,6 +57,7 @@ const identityEntities = [IdentityEntity];
         context: ({ req }) => ({ req }),
       }),
     }),
+    GuardsModule,
     ScalarModule,
     ApiModule,
   ],

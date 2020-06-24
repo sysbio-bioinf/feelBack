@@ -8,13 +8,13 @@ import { FaqResolver } from './ui/graphql/resolvers/faq.resolver';
 import { AuthModule } from '@cancerlog/api/auth';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([FaqEntity])],
+  imports: [TypeOrmModule.forFeature([FaqEntity])],
   providers: [
     FaqDatabaseService,
     FaqAssemblerService,
     FaqResolver,
     FaqAssembler,
   ],
-  exports: [FaqDatabaseService, FaqAssemblerService],
+  exports: [FaqDatabaseService, FaqAssemblerService, FaqAssembler],
 })
 export class FaqModule {}

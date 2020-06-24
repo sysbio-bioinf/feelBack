@@ -1,10 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { InstrumentResolver } from './instrument.resolver';
-import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
-import { InstrumentAssembler } from '../assemblers/instrument.assembler';
-import { InstrumentDatabaseService } from '../../../services/instrument-database.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
+import { GuardsModule } from '@cancerlog/api/auth';
 import { InstrumentEntity } from '@cancerlog/api/data';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
+import { InstrumentDatabaseService } from '../../../services/instrument-database.service';
+import { InstrumentAssembler } from '../assemblers/instrument.assembler';
+import { InstrumentResolver } from './instrument.resolver';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -18,6 +19,7 @@ describe('InstrumentResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [GuardsModule],
       providers: [
         InstrumentResolver,
         InstrumentAssemblerService,

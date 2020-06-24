@@ -6,6 +6,7 @@ import { IdentityAssemblerService } from '../../../services/identity-assembler.s
 import { IdentityDatabaseService } from '../../../services/identity-database.service';
 import { IdentityAssembler } from '../assemblers/identity.assembler';
 import { IdentityResolver } from './identity.resolver';
+import { GuardsModule } from '@cancerlog/api/auth';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -19,6 +20,7 @@ describe('IdentityResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [GuardsModule],
       providers: [
         IdentityResolver,
         IdentityAssemblerService,

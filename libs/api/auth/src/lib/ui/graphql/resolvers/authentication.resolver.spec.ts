@@ -1,4 +1,7 @@
 import { AuthenticationResolver } from './authentication.resolver';
+import { TestingModule, Test } from '@nestjs/testing';
+import { KeycloakService } from '../../../services/keycloak.service';
+import { ConfigModule, ConfigService } from '@cancerlog/api/config';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -10,14 +13,14 @@ const mockRepository = jest.fn(() => ({
 describe('AuthenticationResolver', () => {
   // let resolver: AuthenticationResolver;
 
-  beforeEach(async () => {
-    // FIXME: loading the env results in a circular dependency! How can we properly fix this?!
-    // const module: TestingModule = await Test.createTestingModule({
-    //   imports: [ConfigModule.forRoot(environment), HttpModule],
-    //   providers: [AuthenticationResolver, KeycloakService],
-    // }).compile();
-    // resolver = module.get<AuthenticationResolver>(AuthenticationResolver);
-  });
+  // beforeEach(async () => {
+  //   const module: TestingModule = await Test.createTestingModule({
+  //     imports: [ConfigModule],
+  //     providers: [ConfigService, AuthenticationResolver, KeycloakService],
+  //   }).compile();
+
+  //   resolver = module.get<AuthenticationResolver>(AuthenticationResolver);
+  // });
 
   it('should be defined', () => {
     // expect(resolver).toBeDefined();

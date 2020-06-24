@@ -359,6 +359,46 @@ type DoctorConnection {
   totalCount: Int!
 }
 
+type DoctorDeleteResponse {
+  """The ID of this resource."""
+  id: ID
+
+  """DateTime when this resource was created."""
+  createdAt: DateTime
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Int
+
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
+  """(Academic) title of this doctor"""
+  title: String
+
+  """Firstname of this doctor"""
+  firstname: String
+
+  """Lastname of this doctor"""
+  lastname: String
+
+  """The phone number of this doctor"""
+  phone: String
+
+  """An email address of this doctor"""
+  email: String
+
+  """The URL / website of this doctor"""
+  url: String
+
+  """The URL for the picture of this doctor"""
+  picture: String
+}
+
 type DoctorEdge {
   """The node containing the Doctor"""
   node: Doctor!
@@ -557,12 +597,35 @@ type Identity {
   lastname: String
 }
 
-type IdentityConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
+type IdentityDeleteResponse {
+  """The ID of this resource."""
+  id: ID
 
-  """Array of edges."""
-  edges: [IdentityEdge!]!
+  """DateTime when this resource was created."""
+  createdAt: DateTime
+
+  """DateTime when this resource was last updated."""
+  updatedAt: DateTime
+
+  """
+  The version number of this resource (incremented each time this resource was updated).
+  """
+  version: Int
+
+  """Date this entry was deleted."""
+  deletedAt: DateTime
+
+  """The pseudonym of an identity."""
+  pseudonym: String
+
+  """An academic title of this identity"""
+  title: String
+
+  """The firstname of this identity"""
+  firstname: String
+
+  """The lastname of this identity"""
+  lastname: String
 }
 
 type IdentityEdge {
@@ -571,36 +634,6 @@ type IdentityEdge {
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
-}
-
-input IdentityFilter {
-  and: [IdentityFilter!]
-  or: [IdentityFilter!]
-  id: IDFilterComparison
-  createdAt: DateFieldComparison
-  updatedAt: DateFieldComparison
-  version: IntFieldComparison
-  deletedAt: DateFieldComparison
-  pseudonym: StringFieldComparison
-  firstname: StringFieldComparison
-  lastname: StringFieldComparison
-}
-
-input IdentitySort {
-  field: IdentitySortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum IdentitySortFields {
-  id
-  createdAt
-  updatedAt
-  version
-  deletedAt
-  pseudonym
-  firstname
-  lastname
 }
 
 input IDFilterComparison {
@@ -797,9 +830,14 @@ input LoginInput {
 type Mutation {
   """login via username / password"""
   login(input: LoginInput!): AccessToken!
+  deleteOneDoctor(input: DeleteOneInput!): DoctorDeleteResponse!
+  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
   deleteOneFaq(input: DeleteOneInput!): FaqDeleteResponse!
   updateOneFaq(input: UpdateOneFaqInput!): Faq!
   createOneFaq(input: CreateOneFaqInput!): Faq!
+  deleteOneIdentity(input: DeleteOneInput!): IdentityDeleteResponse!
+  updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
+  createOneIdentity(input: CreateOneIdentityInput!): Identity!
   createOneInstrument(input: CreateOneInstrumentInputType!): Instrument!
   updateOneInstrument(input: UpdateOneInstrumentInputType!): Instrument!
   releaseInstrument(input: ReleaseOneInstrumentInputType!): Instrument!
@@ -810,14 +848,6 @@ type Mutation {
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
   addPersonsToOrganization(input: RelationsInput!): Organization!
-  deleteOneUser(input: DeleteOneInput!): UserDeleteResponse!
-  updateOneUser(input: UpdateOneUserInput!): User!
-  createOneUser(input: CreateOneUserInput!): User!
-  updateMyself(input: UpdateUserInput!): User!
-  registerUser(input: RegisterInput!): User!
-  updateOneDoctor(input: UpdateOneDoctorInput!): Doctor!
-  updateOneIdentity(input: UpdateOneIdentityInput!): Identity!
-  createOneIdentity(input: CreateOneIdentityInput!): Identity!
   updateOnePerson(input: UpdateOnePersonInput!): Person!
   createOnePerson(input: CreateOnePersonInputType!): Person!
   createOneScreening(input: CreateOneScreeningInput!): Screening!
@@ -825,6 +855,11 @@ type Mutation {
   setPersonOnScreening(input: RelationInput!): Screening!
   uploadScreening(input: UploadScreeningInputType!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
+  deleteOneUser(input: DeleteOneInput!): UserDeleteResponse!
+  updateOneUser(input: UpdateOneUserInput!): User!
+  createOneUser(input: CreateOneUserInput!): User!
+  updateMyself(input: UpdateUserInput!): User!
+  registerUser(input: RegisterInput!): User!
 }
 
 """An Organization resource"""
@@ -1089,6 +1124,17 @@ enum PersonSortFields {
 }
 
 type Query {
+  doctor(id: ID!): Doctor
+  doctors(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DoctorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [DoctorSort!] = []
+  ): DoctorConnection!
   faq(id: ID!): Faq
   faqs(
     """Limit or page results."""
@@ -1100,6 +1146,8 @@ type Query {
     """Specify to sort results."""
     sorting: [FaqSort!] = []
   ): FaqConnection!
+  identity(id: ID!): Identity
+  identityByPseudonym(pseudonym: String!): Identity
   instrument(id: ID!): Instrument
   instruments(
     """Limit or page results."""
@@ -1122,42 +1170,6 @@ type Query {
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
   ): OrganizationConnection!
-  user(id: ID!): User
-  users(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: UserFilter = {}
-
-    """Specify to sort results."""
-    sorting: [UserSort!] = []
-  ): UserConnection!
-  getKeycloakUserInfo: JSONObject
-  myself: User!
-  doctor(id: ID!): Doctor
-  doctors(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: DoctorFilter = {}
-
-    """Specify to sort results."""
-    sorting: [DoctorSort!] = []
-  ): DoctorConnection!
-  identity(id: ID!): Identity
-  identities(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: IdentityFilter = {}
-
-    """Specify to sort results."""
-    sorting: [IdentitySort!] = []
-  ): IdentityConnection!
-  identityByPseudonym(pseudonym: String!): Identity
   person(id: ID!): Person
   people(
     """Limit or page results."""
@@ -1195,6 +1207,19 @@ type Query {
     instrumentId: String!
     personId: String!
   ): [DiagramDataObject!]!
+  user(id: ID!): User
+  users(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: UserFilter = {}
+
+    """Specify to sort results."""
+    sorting: [UserSort!] = []
+  ): UserConnection!
+  getKeycloakUserInfo: JSONObject
+  myself: User!
 }
 
 """Credentials to be registered"""

@@ -6,10 +6,19 @@ import {
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { DoctorAssemblerService } from '../../../services/doctor-assembler.service';
-import { Roles, RolesEnum, GqlMasterGuard } from '@cancerlog/api/auth';
+import {
+  Roles,
+  RolesEnum,
+  GqlMasterGuard,
+  Unprotected,
+} from '@cancerlog/api/auth';
 
 @Resolver(() => DoctorObject)
 export class DoctorResolver extends CRUDResolver(DoctorObject, {
+  read: {
+    decorators: [Unprotected()],
+    guards: [GqlMasterGuard],
+  },
   create: { disabled: true },
   update: {
     many: { disabled: true },

@@ -1,9 +1,4 @@
-import { AuthModule } from '@cancerlog/api/auth';
-import {
-  ConfigModule,
-  ConfigService,
-  IEnvironment,
-} from '@cancerlog/api/config';
+import { GuardsModule } from '@cancerlog/api/auth';
 import { DoctorEntity } from '@cancerlog/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -20,28 +15,27 @@ const mockRepository = jest.fn(() => ({
 }));
 
 describe('DoctorResolver', () => {
-  // let resolver: DoctorResolver;
+  let resolver: DoctorResolver;
 
-  // beforeEach(async () => {
-  //   const module: TestingModule = await Test.createTestingModule({
-  //     imports: [],
-  //     providers: [
-  //       ConfigService,
-  //       DoctorResolver,
-  //       DoctorAssemblerService,
-  //       DoctorDatabaseService,
-  //       DoctorAssembler,
-  //       {
-  //         provide: getRepositoryToken(DoctorEntity),
-  //         useClass: mockRepository,
-  //       },
-  //     ],
-  //   }).compile();
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [GuardsModule],
+      providers: [
+        DoctorResolver,
+        DoctorAssemblerService,
+        DoctorDatabaseService,
+        DoctorAssembler,
+        {
+          provide: getRepositoryToken(DoctorEntity),
+          useClass: mockRepository,
+        },
+      ],
+    }).compile();
 
-  //   resolver = module.get<DoctorResolver>(DoctorResolver);
-  // });
+    resolver = module.get<DoctorResolver>(DoctorResolver);
+  });
 
   it('should be defined', () => {
-    // expect(resolver).toBeDefined();
+    expect(resolver).toBeDefined();
   });
 });

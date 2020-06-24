@@ -1,3 +1,4 @@
+import { GuardsModule } from '@cancerlog/api/auth';
 import { FaqEntity } from '@cancerlog/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -18,6 +19,7 @@ describe('FaqResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [GuardsModule],
       providers: [
         FaqResolver,
         FaqAssemblerService,

@@ -1,4 +1,3 @@
-import { AuthModule } from '@cancerlog/api/auth';
 import { DoctorEntity } from '@cancerlog/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,7 +7,7 @@ import { DoctorAssembler } from './ui/graphql/assemblers/doctor.assembler';
 import { DoctorResolver } from './ui/graphql/resolvers/doctor.resolver';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([DoctorEntity])],
+  imports: [TypeOrmModule.forFeature([DoctorEntity])],
   providers: [
     DoctorResolver,
     DoctorAssembler,
