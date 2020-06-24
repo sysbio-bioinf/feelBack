@@ -1,10 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DoctorResolver } from './doctor.resolver';
-import { DoctorAssemblerService } from '../../../services/doctor/doctor-assembler.service';
-import { DoctorDatabaseService } from '../../../services/doctor/doctor-database.service';
-import { DoctorAssembler } from '../assemblers/doctor.assembler';
-import { DoctorEntity } from '@cancerlog/api/data';
+import { DoctorAssemblerService } from './doctor-assembler.service';
+import { DoctorAssembler } from '../ui/graphql/assemblers/doctor.assembler';
+import { DoctorDatabaseService } from './doctor-database.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { DoctorEntity } from '@cancerlog/api/data';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -13,16 +12,15 @@ const mockRepository = jest.fn(() => ({
   },
 }));
 
-describe('DoctorResolver', () => {
-  let resolver: DoctorResolver;
+describe('DoctorAssemblerService', () => {
+  let service: DoctorAssemblerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        DoctorResolver,
         DoctorAssemblerService,
-        DoctorDatabaseService,
         DoctorAssembler,
+        DoctorDatabaseService,
         {
           provide: getRepositoryToken(DoctorEntity),
           useClass: mockRepository,
@@ -30,10 +28,10 @@ describe('DoctorResolver', () => {
       ],
     }).compile();
 
-    resolver = module.get<DoctorResolver>(DoctorResolver);
+    service = module.get<DoctorAssemblerService>(DoctorAssemblerService);
   });
 
   it('should be defined', () => {
-    expect(resolver).toBeDefined();
+    expect(service).toBeDefined();
   });
 });

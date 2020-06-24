@@ -5,13 +5,23 @@ import {
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
-import { DoctorAssemblerService } from '../../../services/doctor/doctor-assembler.service';
+import { DoctorAssemblerService } from '../../../services/doctor-assembler.service';
+import { Roles, RolesEnum, GqlMasterGuard } from '@cancerlog/api/auth';
 
 @Resolver(() => DoctorObject)
 export class DoctorResolver extends CRUDResolver(DoctorObject, {
   create: { disabled: true },
-  delete: { disabled: true },
-  update: { many: { disabled: true }, UpdateDTOClass: UpdateDoctorInput },
+  update: {
+    many: { disabled: true },
+    UpdateDTOClass: UpdateDoctorInput,
+    decorators: [Roles(RolesEnum.ADMIN)],
+    guards: [GqlMasterGuard],
+  },
+  delete: {
+    many: { disabled: true },
+    decorators: [Roles(RolesEnum.ADMIN)],
+    guards: [GqlMasterGuard],
+  },
   relations: {
     many: {
       organizations: {

@@ -98,6 +98,12 @@
     },
     "api-identity": {
       "tags": []
+    },
+    "api-doctor": {
+      "tags": []
+    },
+    "api-screening": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

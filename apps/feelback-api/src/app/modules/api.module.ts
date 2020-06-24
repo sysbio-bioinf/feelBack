@@ -6,7 +6,7 @@ import { OrganizationModule } from '@cancerlog/api/organization';
 import { PersonModule } from '@cancerlog/api/person';
 import { UserModule } from '@cancerlog/api/user';
 import { Module } from '@nestjs/common';
-import { DoctorModule } from './doctor/doctor.module';
+import { DoctorModule } from '@cancerlog/api/doctor';
 import { ScreeningModule } from './screening/screening.module';
 
 @Module({
