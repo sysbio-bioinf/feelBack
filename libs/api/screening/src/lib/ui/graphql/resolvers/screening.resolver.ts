@@ -29,9 +29,9 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { DiagramService } from '../../../services/diagram/diagram.service';
-import { EvaluationService } from '../../../services/evaluation/evaluation.service';
-import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
+import { DiagramService } from '../../../services/diagram.service';
+import { EvaluationService } from '../../../services/evaluation.service';
+import { ScreeningAssemblerService } from '../../../services/screening-assembler.service';
 
 @Resolver(() => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {

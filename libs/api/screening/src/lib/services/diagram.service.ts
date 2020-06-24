@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EvaluationService } from '../evaluation/evaluation.service';
+import { EvaluationService } from './evaluation.service';
 import {
   DiagramPlotClass,
   DiagramPlotDataClass,

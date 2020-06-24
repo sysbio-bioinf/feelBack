@@ -1,7 +1,7 @@
-import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
 import { ScreeningEntity } from '@cancerlog/api/data';
-import { ScreeningAssembler } from '../../ui/graphql/assemblers/screening.assembler';
 import { ScreeningObject } from '@cancerlog/api/interfaces';
+import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
+import { ScreeningAssembler } from '../ui/graphql/assemblers/screening.assembler';
 import { ScreeningDatabaseService } from './screening-database.service';
 
 @QueryService(ScreeningObject)

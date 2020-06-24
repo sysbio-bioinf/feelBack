@@ -3,8 +3,6 @@ import {
   PersonEntity,
   ScreeningEntity,
 } from '@cancerlog/api/data';
-import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
-import { IdentityModule } from '@cancerlog/api/identity';
 import {
   InstrumentAssembler,
   InstrumentAssemblerService,
@@ -14,14 +12,13 @@ import {
   PersonAssembler,
   PersonAssemblerService,
   PersonDatabaseService,
-  PersonModule,
 } from '@cancerlog/api/person';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { DiagramService } from '../../../services/diagram/diagram.service';
-import { EvaluationService } from '../../../services/evaluation/evaluation.service';
-import { ScreeningAssemblerService } from '../../../services/screening/screening-assembler.service';
-import { ScreeningDatabaseService } from '../../../services/screening/screening-database.service';
+import { DiagramService } from '../../../services/diagram.service';
+import { EvaluationService } from '../../../services/evaluation.service';
+import { ScreeningAssemblerService } from '../../../services/screening-assembler.service';
+import { ScreeningDatabaseService } from '../../../services/screening-database.service';
 import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
 
