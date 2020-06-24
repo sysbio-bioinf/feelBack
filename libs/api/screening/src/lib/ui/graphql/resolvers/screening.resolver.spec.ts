@@ -21,6 +21,7 @@ import { ScreeningAssemblerService } from '../../../services/screening-assembler
 import { ScreeningDatabaseService } from '../../../services/screening-database.service';
 import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
+import { GuardsModule } from '@cancerlog/api/auth';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -34,6 +35,7 @@ describe('ScreeningResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [GuardsModule],
       providers: [
         ScreeningResolver,
         ScreeningAssembler,

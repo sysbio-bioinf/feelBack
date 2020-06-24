@@ -5,6 +5,7 @@ import { OrganizationAssemblerService } from '../../../services/organization-ass
 import { OrganizationDatabaseService } from '../../../services/organization-database.service';
 import { OrganizationAssembler } from '../assemblers/organization.assembler';
 import { OrganizationResolver } from './organization.resolver';
+import { GuardsModule } from '@cancerlog/api/auth';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -18,6 +19,7 @@ describe('OrganizationResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [GuardsModule],
       providers: [
         OrganizationResolver,
         OrganizationAssemblerService,

@@ -13,7 +13,6 @@ import { ScreeningResolver } from './ui/graphql/resolvers/screening.resolver';
 
 @Module({
   imports: [
-    AuthModule,
     TypeOrmModule.forFeature([ScreeningEntity]),
     InstrumentModule,
     PersonModule,
@@ -26,6 +25,12 @@ import { ScreeningResolver } from './ui/graphql/resolvers/screening.resolver';
     EvaluationService,
     DiagramService,
   ],
-  exports: [],
+  exports: [
+    ScreeningAssembler,
+    ScreeningAssemblerService,
+    ScreeningDatabaseService,
+    EvaluationService,
+    DiagramService,
+  ],
 })
 export class ScreeningModule {}

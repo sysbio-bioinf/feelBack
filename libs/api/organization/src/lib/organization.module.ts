@@ -1,4 +1,3 @@
-import { AuthModule } from '@cancerlog/api/auth';
 import { OrganizationEntity } from '@cancerlog/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,13 +7,17 @@ import { OrganizationAssembler } from './ui/graphql/assemblers/organization.asse
 import { OrganizationResolver } from './ui/graphql/resolvers/organization.resolver';
 
 @Module({
-  imports: [AuthModule, TypeOrmModule.forFeature([OrganizationEntity])],
+  imports: [TypeOrmModule.forFeature([OrganizationEntity])],
   providers: [
     OrganizationResolver,
     OrganizationAssembler,
     OrganizationDatabaseService,
     OrganizationAssemblerService,
   ],
-  exports: [OrganizationDatabaseService, OrganizationAssemblerService],
+  exports: [
+    OrganizationDatabaseService,
+    OrganizationAssemblerService,
+    OrganizationAssembler,
+  ],
 })
 export class OrganizationModule {}

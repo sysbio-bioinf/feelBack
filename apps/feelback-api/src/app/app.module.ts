@@ -1,4 +1,4 @@
-import { GuardsModule } from '@cancerlog/api/auth';
+import { GuardsModule, GqlMasterGuard } from '@cancerlog/api/auth';
 import { ConfigModule, ConfigService } from '@cancerlog/api/config';
 import {
   DoctorEntity,
@@ -16,6 +16,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ApiModule } from './modules/api.module';
 import { ScalarModule } from './modules/scalar.module';
+import { APP_GUARD } from '@nestjs/core';
 
 const feelbackEntities = [
   DoctorEntity,
@@ -62,6 +63,11 @@ const identityEntities = [IdentityEntity];
     ApiModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useValue: GqlMasterGuard,
+    },
+  ],
 })
 export class AppModule {}

@@ -7,6 +7,7 @@ import { PersonAssemblerService } from '../../../services/person-assembler.servi
 import { PersonDatabaseService } from '../../../services/person-database.service';
 import { PersonAssembler } from '../assemblers/person.assembler';
 import { PersonResolver } from './person.resolver';
+import { GuardsModule } from '@cancerlog/api/auth';
 
 const mockRepository = jest.fn(() => ({
   metadata: {
@@ -20,7 +21,7 @@ describe('PersonResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [],
+      imports: [GuardsModule],
       providers: [
         PersonResolver,
         PersonAssembler,

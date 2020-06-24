@@ -8,10 +8,19 @@ import {
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { OrganizationAssemblerService } from '../../../services/organization-assembler.service';
-import { Roles, RolesEnum, GqlMasterGuard } from '@cancerlog/api/auth';
+import {
+  Roles,
+  RolesEnum,
+  GqlMasterGuard,
+  Unprotected,
+} from '@cancerlog/api/auth';
 
 @Resolver(() => OrganizationObject)
 export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
+  read: {
+    decorators: [Unprotected()],
+    guards: [GqlMasterGuard],
+  },
   create: {
     many: { disabled: true },
     CreateDTOClass: CreateOrganizationInput,
@@ -38,6 +47,7 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
         disableRemove: true,
         disableUpdate: false,
       },
+      // FIXME: this should only be accessible with a certain role
       persons: {
         DTO: PersonObject,
         relationName: 'persons',

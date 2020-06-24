@@ -20,7 +20,11 @@ import {
 import { PersonAssemblerService } from '@cancerlog/api/person';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
-import { ConflictException, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  NotFoundException,
+  UseGuards,
+} from '@nestjs/common';
 import {
   Args,
   Mutation,
@@ -32,15 +36,35 @@ import {
 import { DiagramService } from '../../../services/diagram.service';
 import { EvaluationService } from '../../../services/evaluation.service';
 import { ScreeningAssemblerService } from '../../../services/screening-assembler.service';
+import {
+  Unprotected,
+  GqlMasterGuard,
+  Roles,
+  RolesEnum,
+} from '@cancerlog/api/auth';
 
 @Resolver(() => ScreeningObject)
 export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
-  read: { many: { disabled: true } },
-  create: { many: { disabled: true }, CreateDTOClass: CreateScreeningInput },
+  read: {
+    many: { disabled: true },
+    one: {
+      decorators: [Unprotected()],
+      guards: [GqlMasterGuard],
+    },
+  },
+  create: {
+    many: { disabled: true },
+    one: {
+      decorators: [Unprotected()],
+      guards: [GqlMasterGuard],
+    },
+    CreateDTOClass: CreateScreeningInput,
+  },
   delete: { disabled: true },
   update: { disabled: true },
   relations: {
     one: {
+      // FIXME: This should only be accessible with a certain role
       instrument: {
         relationName: 'instrument',
         DTO: InstrumentObject,
@@ -48,6 +72,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
         disableRemove: true,
         disableUpdate: false,
       },
+      // FIXME: this should only be accessible with a certain role
       person: {
         relationName: 'person',
         DTO: PersonObject,
@@ -70,6 +95,8 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   }
 
   @Mutation((returns) => ScreeningObject, { name: 'uploadScreening' })
+  @Unprotected()
+  @UseGuards(GqlMasterGuard)
   async uploadScreening(
     @Args('input') input: UploadScreeningInputType,
   ): Promise<ScreeningObject> {
@@ -101,6 +128,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   @Query((returns) => ScreeningConnection, {
     name: 'screeningsForPersonAndInstrument',
   })
+  @Unprotected()
   async getScreeningsForPersonAndInstrument(
     @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
   ): Promise<ConnectionType<ScreeningObject>> {
@@ -126,6 +154,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   @Query((returns) => [DiagramDataObject], {
     name: 'screeningsDiagramCollections',
   })
+  @Unprotected()
   async getScreeningsDiagramCollections(
     @Args() query: GetScreeningsByPersonAndInstrumentArgsType,
   ): Promise<DiagramDataObject[]> {
@@ -161,6 +190,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   }
 
   @Mutation((returns) => ScreeningObject, { name: 'resolveScreeningIssues' })
+  @Roles(RolesEnum.MANAGER)
   async resolveScreeningIssues(
     @Args('input') input: ResolveOneScreeningInputType,
   ): Promise<ScreeningObject> {
@@ -185,6 +215,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     description: 'Evaluation Results for this screening',
     nullable: true,
   })
+  @Roles(RolesEnum.MANAGER)
   async resolveEvaluationResult(
     @Parent() screening: ScreeningObject,
   ): Promise<EvaluationObject[]> {

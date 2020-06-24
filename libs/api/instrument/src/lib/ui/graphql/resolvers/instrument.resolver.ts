@@ -35,6 +35,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   delete: { disabled: true },
   relations: {
     many: {
+      // FIXME: this should only be accessible with a certain role!
       screenings: {
         relationName: 'screenings',
         DTO: ScreeningObject,
