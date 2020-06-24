@@ -7,8 +7,14 @@ import { GqlRoleGuard } from './guards/gql-role.guard';
 import { KeycloakService } from './services/keycloak.service';
 import { KeycloakStrategy } from './strategies/keycloak-bearer.strategy';
 import { AuthenticationResolver } from './ui/graphql/resolvers/authentication.resolver';
+import { GqlUnprotectedGuard } from './guards/gql-unprotected.guard';
 
-const guards = [GqlMasterGuard, GqlAuthGuard, GqlRoleGuard];
+const guards = [
+  GqlMasterGuard,
+  GqlAuthGuard,
+  GqlRoleGuard,
+  GqlUnprotectedGuard,
+];
 
 /**
  * Provides authentication guards and decorators for use in the API project.

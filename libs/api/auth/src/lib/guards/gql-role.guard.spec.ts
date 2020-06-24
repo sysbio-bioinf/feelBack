@@ -4,6 +4,7 @@ import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-hos
 import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../data/classes/user.class';
 import { GqlRoleGuard } from './gql-role.guard';
+import { RolesEnum } from '../enums/roles.enum';
 
 class ReflectorMock {
   handlerRoles: string | string[] | undefined;
@@ -14,7 +15,7 @@ class ReflectorMock {
   });
 }
 
-describe('Guards', () => {
+describe('RoleGuard', () => {
   let gqlRoleGuard: GqlRoleGuard;
   let context: ExecutionContext;
   let reflector: ReflectorMock;
@@ -47,7 +48,7 @@ describe('Guards', () => {
   });
 
   it('should allow access if user has roles and there are no required roles', async () => {
-    request = { user: new User('id', ['practitioner']) };
+    request = { user: new User('id', [RolesEnum.MANAGER]) };
 
     const accessAllowed = gqlRoleGuard.canActivate(context);
     expect(accessAllowed).toBe(true);
@@ -55,50 +56,50 @@ describe('Guards', () => {
 
   it('should deny access if user has no roles but there are required roles', async () => {
     request = { user: new User('id') };
-    reflector.handlerRoles = ['patient'];
+    reflector.handlerRoles = [RolesEnum.USER];
 
     const accessAllowed = gqlRoleGuard.canActivate(context);
     expect(accessAllowed).toBe(false);
   });
 
   it('should deny access if user has no proper role', async () => {
-    request = { user: new User('id', ['practitioner', 'support']) };
-    reflector.handlerRoles = ['patient', 'admin'];
+    request = { user: new User('id', [RolesEnum.USER]) };
+    reflector.handlerRoles = [RolesEnum.MANAGER, RolesEnum.ADMIN];
 
     const accessAllowed = gqlRoleGuard.canActivate(context);
     expect(accessAllowed).toBe(false);
   });
 
   it('should allow access if user has at least one proper role', async () => {
-    request = { user: new User('id', ['admin', 'practitioner']) };
-    reflector.handlerRoles = ['practitioner', 'support'];
+    request = { user: new User('id', [RolesEnum.ADMIN, RolesEnum.MANAGER]) };
+    reflector.handlerRoles = [RolesEnum.MANAGER, RolesEnum.USER];
 
     const accessAllowed = gqlRoleGuard.canActivate(context);
     expect(accessAllowed).toBe(true);
   });
 
   it('should allow access if user has role defined on class level and there are no roles defined on handler level', async () => {
-    request = { user: new User('id', ['practitioner']) };
+    request = { user: new User('id', [RolesEnum.MANAGER]) };
     reflector.handlerRoles = undefined;
-    reflector.classRoles = ['practitioner'];
+    reflector.classRoles = [RolesEnum.MANAGER];
 
     const accessAllowed = gqlRoleGuard.canActivate(context);
     expect(accessAllowed).toBe(true);
   });
 
   it('should deny access if user has role defined on class level but there are different roles defined on handler level', async () => {
-    request = { user: new User('id', ['practitioner']) };
-    reflector.handlerRoles = ['patient'];
-    reflector.classRoles = ['practitioner'];
+    request = { user: new User('id', [RolesEnum.MANAGER]) };
+    reflector.handlerRoles = [RolesEnum.USER];
+    reflector.classRoles = [RolesEnum.MANAGER];
     const accessAllowed = gqlRoleGuard.canActivate(context);
 
     expect(accessAllowed).toBe(false);
   });
 
   it('should allow access if user has role defined on handler level and there are different roles defined on class level', async () => {
-    request = { user: new User('id', ['practitioner']) };
-    reflector.handlerRoles = ['practitioner'];
-    reflector.classRoles = ['patient'];
+    request = { user: new User('id', [RolesEnum.MANAGER]) };
+    reflector.handlerRoles = [RolesEnum.MANAGER];
+    reflector.classRoles = [RolesEnum.USER];
 
     const accessAllowed = gqlRoleGuard.canActivate(context);
     expect(accessAllowed).toBe(true);
