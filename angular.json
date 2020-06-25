@@ -23,7 +23,16 @@
             "aot": false,
             "assets": [
               "apps/feelback-web/src/favicon.ico",
-              "apps/feelback-web/src/assets"
+              {
+                "glob": "**/*",
+                "input": "apps/feelback-web/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/shared/content/src/assets",
+                "output": "assets"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
@@ -292,6 +301,11 @@
               {
                 "glob": "**/*",
                 "input": "apps/feelback-ionic/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/shared/content/src/assets",
                 "output": "assets"
               },
               {
