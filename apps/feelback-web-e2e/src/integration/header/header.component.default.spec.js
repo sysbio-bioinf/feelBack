@@ -10,7 +10,7 @@ describe('Testing the header component of the FeelBack-web application.', () => 
     cy.get('[data-cy=header-title]').should('be.visible');
     cy.get('[data-cy=header-nav-menu]').contains('Download');
     cy.get('[data-cy=header-navbar]').should('be.visible');
-    cy.get('[data-cy=header-navbar-nav]').children().should('have.length', 6);
+    cy.get('[data-cy=header-navbar-nav]').children().should('have.length', 7);
     cy.get('[data-cy=header-navbar-toggler]').should('not.be.visible');
   });
 
@@ -33,14 +33,14 @@ describe('Testing the header component of the FeelBack-web application.', () => 
       .should('have.attr', 'href')
       .and('include', 'features');
     cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
+      .eq(5)
       .should('have.attr', 'href')
       .and('include', 'contact');
     cy.get('[data-cy=header-navbar-nav] li a')
       .eq(1)
       .should('have.text', 'Features');
     cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
+      .eq(5)
       .should('have.text', 'Contact');
     cy.get('[data-cy=header-navbar-language-button]').click();
     cy.get('#deDropdownSelect').click();
@@ -48,19 +48,19 @@ describe('Testing the header component of the FeelBack-web application.', () => 
       .eq(1)
       .should('have.text', 'Funktionen');
     cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
+      .eq(5)
       .should('have.text', 'Kontakt');
     cy.get('[data-cy=header-navbar-language-button]').click();
     cy.get('#enDropdownSelect').click();
     cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
+      .eq(5)
       .should('have.text', 'Contact');
     cy.get('[data-cy=header-navbar-nav] li a')
       .eq(1)
       .should('have.text', 'Features');
   });
 
-  it.only('should activate the nav-items', () => {
+  it('should activate the nav-items', () => {
     cy.get('[data-cy=header-navbar-nav]')
       .find('.active')
       .should('have.length', 1);
@@ -90,46 +90,5 @@ describe('Testing the header component of the FeelBack-web application.', () => 
       'active',
     );
     cy.get('[data-cy=header-navbar-contact] a').should('have.class', 'active');
-  });
-
-  it('should adapt the menu for small screens', () => {
-    cy.viewport('iphone-x');
-    cy.get('[data-cy=header-navbar-toggler]').should('be.visible');
-    cy.get('[data-cy=header-navbar-nav]').should('not.be.visible');
-    cy.get('[data-cy=header-navbar-toggler]').click();
-    cy.wait(350);
-    cy.get('[data-cy=header-navbar-nav]').should('be.visible');
-
-    cy.get('[data-cy=header-navbar-home] a').should('have.class', 'active');
-    cy.get('[data-cy=header-navbar-download] a').click();
-    cy.wait(350);
-    cy.get('[data-cy=header-navbar-home] a').should('not.have.class', 'active');
-    cy.get('[data-cy=header-navbar-download] a').should('have.class', 'active');
-
-    cy.get('[data-cy=header-navbar-nav]').should('not.be.visible');
-    cy.get('[data-cy=header-navbar-toggler]').click();
-    cy.wait(350);
-
-    cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
-      .should('have.text', 'Contact');
-    cy.get('[data-cy=header-navbar-language-button]').click();
-    cy.get('#deDropdownSelect').click();
-    cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(1)
-      .should('have.text', 'Funktionen');
-    cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
-      .should('have.text', 'Kontakt');
-
-    cy.get('[data-cy=header-navbar-nav]').should('be.visible');
-
-    cy.get('[data-cy=header-navbar-language-button]').click();
-    cy.get('#enDropdownSelect').click();
-    cy.get('[data-cy=header-navbar-nav] li a')
-      .eq(4)
-      .should('have.text', 'Contact');
-    cy.get('[data-cy=header-navbar-toggler]').click();
-    cy.wait(350);
   });
 });

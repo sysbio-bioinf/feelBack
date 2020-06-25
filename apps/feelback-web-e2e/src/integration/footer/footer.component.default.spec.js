@@ -1,5 +1,3 @@
-const { eq } = require('lodash');
-
 describe('Testing the footer component of the FeelBack-web application', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -42,11 +40,11 @@ describe('Testing the footer component of the FeelBack-web application', () => {
     cy.get('[data-cy=footer-links] a')
       .eq(2)
       .should('have.attr', 'href')
-      .and('include', '#');
+      .and('include', 'privacy');
     cy.get('[data-cy=footer-links] a').eq(3).should('have.text', 'Imprint');
     cy.get('[data-cy=footer-links] a')
       .eq(3)
       .should('have.attr', 'href')
-      .and('include', '#');
+      .and('include', 'imprint');
   });
 });

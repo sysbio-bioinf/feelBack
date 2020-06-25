@@ -152,7 +152,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       'have.text',
       'What our Customers say',
     );
-    cy.wait(150);
+    cy.wait(200);
     cy.get(
       '[data-cy=testimonials-carousel] > .owl-stage-outer > .owl-stage > .owl-item.active blockquote',
     )
