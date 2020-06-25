@@ -7,6 +7,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/start/start.module').then((m) => m.StartModule),
   },
+  {
+    path: 'imprint',
+    loadChildren: () =>
+      import('./pages/imprint/imprint.module').then((m) => m.ImprintModule),
+  },
+  {
+    path: 'privacy',
+    loadChildren: () =>
+      import('./pages/privacy/privacy.module').then((m) => m.PrivacyModule),
+  },
 ];
 
 @NgModule({

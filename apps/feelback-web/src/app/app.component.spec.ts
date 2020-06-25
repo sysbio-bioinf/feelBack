@@ -35,10 +35,9 @@ describe('AppComponent', () => {
 
   it('should create the current year', () => {
     expect(app.year).toBe(new Date().getFullYear());
-  })
+  });
 
   it('should have title', () => {
     expect(app.title).toBe('feelback-web');
-  })
-
+  });
 });

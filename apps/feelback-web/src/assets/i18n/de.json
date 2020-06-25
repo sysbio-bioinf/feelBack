@@ -6,6 +6,7 @@
       "title": "FeelBack",
       "home": "Start",
       "features": "Funktionen",
+      "get-started": "Erste Schritte",
       "gallery": "Gallerie",
       "contact": "Kontakt",
       "download": "Download"
@@ -103,6 +104,28 @@
           "email": "info@feelback-app.com",
           "phone": "+49 / (0) 731 / 50 245 00"
         }
+      },
+      "imprint": {
+        "title": "Impressum",
+        "contact": {
+          "title": "Herausgeber",
+          "organization": "Universität Ulm",
+          "institute": "Institut für Medizinische Systembiologie",
+          "address1": "Albert-Einstein-Allee 11",
+          "address2": "89081 Ulm, Germany",
+          "phone": "+49 / (0)731 / 50 24500",
+          "fax": "+49 / (0)731 / 50 24502",
+          "email": "hans.kestler@uni-ulm.de"
+        },
+        "team": {
+          "title": "Team"
+        }
+      },
+      "privacy": {
+        "title": "Datenschutzerklärung",
+        "tagline": "Wenn Sie unseren Dienst nutzen, vertrauen Sie uns Ihre Daten an. Wir sind uns bewusst, dass dies eine große Verantwortung ist und setzen alles daran, Ihre Daten zu schützen und zu gewährleisten, dass Sie die Kontrolle darüber behalten. - copied from google!!!",
+        "note": "In dieser Datenschutzerklärung erfahren Sie, welche Daten von uns erhoben werden, welche Zwecke wir damit verfolgen und wie Sie Ihre Daten aktualisieren, verwalten, exportieren und löschen können.",
+        "data": "Wirksam ab dem xx.xx.2020"
       }
     },
 

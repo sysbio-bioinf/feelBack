@@ -1,0 +1,66 @@
+<feelback-web-header></feelback-web-header>
+
+<header class="bg-gradient" id="imprint-header"></header>
+
+<div class="section-medium" id="imprint" data-cy="imprint-section">
+  <div class="container">
+    <div class="row" data-cy="imprint-row">
+      <div class="col-lg-12">
+        <h2>{{ 'app.pages.privacy.title' | translate }}</h2>
+        <hr />
+        <br />
+        <h4 style="margin-bottom: 1.5rem;">
+          {{ 'app.pages.privacy.tagline' | translate }}
+        </h4>
+        <h6 style="margin-bottom: 1.5rem;">
+          {{ 'app.pages.privacy.note' | translate }}
+        </h6>
+        <p class="mb-2">{{ 'app.pages.privacy.date' |translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <markdown [src]="getMarkdownFile('privacy')"
+      >{{getMarkdownFile('privacy')}}</markdown
+    >
+  </div>
+</div>
+
+<div
+  class="section-small bg-gradient"
+  id="imprint-splitter"
+  data-cy="imprint-splitter"
+></div>
+
+<div class="client-logos my-5">
+  <div class="container text-center" data-cy="logos-container">
+    <img
+      class="client-logo img-fluid"
+      src="./assets/images/logos/logo-uniklinik-ulm.png"
+      data-cy="uniklinik-logo"
+    />
+    <img
+      class="client-logo img-fluid"
+      src="./assets/images/logos/logo-uni-ulm.svg"
+      data-cy="uni-logo"
+    />
+    <img
+      class="client-logo img-fluid"
+      src="./assets/images/logos/logo-kbs-ulm.jpg"
+      data-cy="kbs-logo"
+    />
+    <img
+      class="client-logo img-fluid"
+      src="./assets/images/logos/logo-bawue.png"
+      data-cy="bawue-logo"
+    />
+    <img
+      class="client-logo img-fluid"
+      src="./assets/images/logos/logo-bawue-digital.png"
+      data-cy="bawue-digital-logo"
+    />
+  </div>
+</div>

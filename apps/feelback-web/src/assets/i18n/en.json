@@ -6,6 +6,7 @@
       "title": "FeelBack",
       "home": "Start",
       "features": "Features",
+      "get-started": "Get Started",
       "gallery": "Gallery",
       "contact": "Contact",
       "download": "Download"
@@ -103,6 +104,28 @@
           "email": "info@feelback-app.com",
           "phone": "+49 / (0) 731 / 50 245 00"
         }
+      },
+      "imprint": {
+        "title": "Imprint",
+        "contact": {
+          "title": "Publisher",
+          "organization": "Ulm University",
+          "institute": "Institute of Medical Systems Biology",
+          "address1": "Albert-Einstein-Allee 11",
+          "address2": "89081 Ulm, Germany",
+          "phone": "+49 / (0)731 / 50 24500",
+          "fax": "+49 / (0)731 / 50 24502",
+          "email": "hans.kestler@uni-ulm.de"
+        },
+        "team": {
+          "title": "Team"
+        }
+      },
+      "privacy": {
+        "title": "Privacy Policy",
+        "tagline": "When you use our services, you’re trusting us with your information. We understand this is a big responsibility and work hard to protect your information and put you in control. - copied from google!!!",
+        "note": "This Privacy Policy is meant to help you understand what information we collect, why we collect it, and how you can update, manage, export, and delete your information.",
+        "date": "Effective abcd xx,2020"
       }
     },
 

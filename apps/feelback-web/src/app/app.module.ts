@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core.module';
 import { GraphQLModule } from './modules/graphql.module';
 import { SharedModule } from './modules/shared.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { SharedModule } from './modules/shared.module';
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
+    MarkdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
