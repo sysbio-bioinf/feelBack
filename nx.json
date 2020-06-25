@@ -107,6 +107,9 @@
     },
     "util-testing": {
       "tags": []
+    },
+    "shared-content": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
