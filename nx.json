@@ -104,6 +104,9 @@
     },
     "api-screening": {
       "tags": []
+    },
+    "util-testing": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

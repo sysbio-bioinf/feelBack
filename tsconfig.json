@@ -41,7 +41,8 @@
       "@cancerlog/api/person": ["libs/api/person/src/index.ts"],
       "@cancerlog/api/identity": ["libs/api/identity/src/index.ts"],
       "@cancerlog/api/doctor": ["libs/api/doctor/src/index.ts"],
-      "@cancerlog/api/screening": ["libs/api/screening/src/index.ts"]
+      "@cancerlog/api/screening": ["libs/api/screening/src/index.ts"],
+      "@cancerlog/util/testing": ["libs/util/testing/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
