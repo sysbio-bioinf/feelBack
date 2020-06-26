@@ -4,6 +4,7 @@ import { map, delay } from 'rxjs/operators';
 import {
   GetInstrumentsGQL,
   Instrument,
+  InstrumentStatesEnum,
 } from '../graphql/generated/feelback.graphql';
 
 @Injectable({
@@ -28,6 +29,7 @@ export class InstrumentService {
       payload: {},
       rules: [],
       diagram: {},
+      state: InstrumentStatesEnum.Released
     },
     {
       id: '35b24590-cf4a-4bff-9ee4-828dba3cc9e4',
@@ -43,6 +45,7 @@ export class InstrumentService {
       payload: {},
       rules: [],
       diagram: {},
+      state: InstrumentStatesEnum.Released
     },
     {
       id: 'f9fe3be8-9749-4c19-b03e-2be4c3e7f958',
@@ -58,6 +61,7 @@ export class InstrumentService {
       payload: {},
       rules: [],
       diagram: {},
+      state: InstrumentStatesEnum.Released
     },
     {
       id: 'eab19dff-d4c3-46ae-99df-59db5d8e3842',
@@ -73,6 +77,7 @@ export class InstrumentService {
       payload: {},
       rules: [],
       diagram: {},
+      state: InstrumentStatesEnum.Released
     },
   ];
 
