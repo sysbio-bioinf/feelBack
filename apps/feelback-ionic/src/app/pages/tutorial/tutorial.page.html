@@ -2,6 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="end">
       <ion-button
+        data-cy="button-tutorial-back"
         color="primary"
         (click)="this.navigateToStart()"
         [hidden]="!showSkip"
@@ -13,11 +14,15 @@
 
 <ion-content fullscreen>
   <ion-slides
+    data-cy="tutorial-slide-container"
     #slides
     (ionSlideWillChange)="onSlideChangeStart($event)"
     pager="true"
   >
-    <ion-slide *ngFor="let slide of this.tutorialSlides; let i = index">
+    <ion-slide
+      data-cy="tutorial-slide"
+      *ngFor="let slide of this.tutorialSlides; let i = index"
+    >
       <img src="{{ slide.image }}" class="slide-image" />
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
 
