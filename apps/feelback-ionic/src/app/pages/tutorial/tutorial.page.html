@@ -38,6 +38,7 @@
 
       <ng-template #button>
         <ion-button
+          data-cy="button-tutorial-action"
           *ngIf="i === (this.tutorialSlides.length-1)"
           fill="clear"
           (click)="navigateToStart()"

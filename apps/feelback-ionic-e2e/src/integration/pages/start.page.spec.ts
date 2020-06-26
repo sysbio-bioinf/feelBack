@@ -10,7 +10,7 @@ describe('Start Page', () => {
   beforeEach(() => {
     cy.viewport(testingDevice.width, testingDevice.height);
 
-    cy.visit('/');
+    cy.visitMobile('/');
   });
 
   it('should show the login page', () => {

@@ -1,5 +1,4 @@
 import { LargeMobileDevice } from '@cancerlog/util/testing';
-import { watchFile } from 'fs';
 
 describe('Tutorial Page', () => {
   let testingDevice: LargeMobileDevice;
@@ -33,31 +32,48 @@ describe('Tutorial Page', () => {
   });
 
   it('should allow sliding through pages', () => {
-    cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
-    cy.wait(300);
-    cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
-    cy.wait(300);
-    cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
-    cy.wait(300);
+    const slideCount = Cypress.$('[data-cy=tutorial-slide]').length;
+
+    for (let currentSlide = 0; currentSlide < slideCount - 1; currentSlide++) {
+      cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
+      cy.wait(300);
+    }
   });
 
   it('should display the BACK button correctly', () => {
-    // slide 1
-    cy.get('[data-cy=button-tutorial-back').should('be.visible');
-    cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
-    cy.wait(300);
+    const slideCount = Cypress.$('[data-cy=tutorial-slide]').length;
 
-    // slide 2
-    cy.get('[data-cy=button-tutorial-back').should('be.visible');
-    cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
-    cy.wait(300);
+    // slide n-1 times so we are at the last slide
+    for (let currentSlide = 0; currentSlide < slideCount - 1; currentSlide++) {
+      cy.get('[data-cy=button-tutorial-back').should('be.visible');
+      cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
+      cy.wait(300);
+    }
 
-    // slide 3
-    cy.get('[data-cy=button-tutorial-back').should('be.visible');
-    cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
-    cy.wait(300);
-
-    // slide 4
+    // we are not on the last slide!
     cy.get('[data-cy=button-tutorial-back').should('not.be.visible');
+  });
+
+  it('should return to login screen on BACK button click', () => {
+    cy.get('[data-cy=button-tutorial-back]').click();
+    cy.wait(300);
+
+    cy.url().should('not.contain', '/tutorial');
+    cy.url().should('contain', '/start');
+  });
+
+  it('should return to login screen on ACTION button click', () => {
+    const slideCount = Cypress.$('[data-cy=tutorial-slide]').length;
+
+    for (let currentSlide = 0; currentSlide < slideCount - 1; currentSlide++) {
+      cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
+      cy.wait(300);
+    }
+
+    cy.get('[data-cy=button-tutorial-action]').click();
+    cy.wait(300);
+
+    cy.url().should('not.contain', '/tutorial');
+    cy.url().should('contain', '/start');
   });
 });
