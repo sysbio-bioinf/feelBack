@@ -1,4 +1,8 @@
-import { LargeMobileDevice } from '@cancerlog/util/testing';
+import {
+  BrowserLanguageEN,
+  LargeMobileDevice,
+  BrowserLanguageDE,
+} from '@cancerlog/util/testing';
 
 describe('Tutorial Page', () => {
   let testingDevice: LargeMobileDevice;
@@ -10,7 +14,7 @@ describe('Tutorial Page', () => {
   beforeEach(() => {
     cy.viewport(testingDevice.width, testingDevice.height);
 
-    cy.visitMobile('/');
+    cy.visitMobile('/', BrowserLanguageEN);
     cy.get('[data-cy=button-tutorial]').click();
     cy.wait(300);
   });
@@ -75,5 +79,19 @@ describe('Tutorial Page', () => {
 
     cy.url().should('not.contain', '/tutorial');
     cy.url().should('contain', '/start');
+  });
+
+  describe('Content DE', () => {
+    beforeEach(() => {
+      cy.viewport(testingDevice.width, testingDevice.height);
+
+      cy.visitMobile('/', BrowserLanguageDE);
+      cy.get('[data-cy=button-tutorial]').click();
+      cy.wait(300);
+    });
+
+    it('should check some important labels', () => {
+      cy.get('[data-cy=button-tutorial-back]').should('contain', 'Zurück');
+    });
   });
 });

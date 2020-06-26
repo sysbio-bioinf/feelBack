@@ -1,4 +1,8 @@
-import { LargeMobileDevice } from '@cancerlog/util/testing';
+import {
+  LargeMobileDevice,
+  BrowserLanguageDE,
+  BrowserLanguageEN,
+} from '@cancerlog/util/testing';
 
 describe('Start Page', () => {
   let testingDevice: LargeMobileDevice;
@@ -10,7 +14,7 @@ describe('Start Page', () => {
   beforeEach(() => {
     cy.viewport(testingDevice.width, testingDevice.height);
 
-    cy.visitMobile('/');
+    cy.visitMobile('/', BrowserLanguageEN);
   });
 
   it('should show the login page', () => {
@@ -48,5 +52,17 @@ describe('Start Page', () => {
     cy.url().should('contain', '/auth/login');
 
     cy.get('[data-cy=header-title]').should('contain', 'Login');
+  });
+
+  describe('Content DE', () => {
+    beforeEach(() => {
+      cy.viewport(testingDevice.width, testingDevice.height);
+
+      cy.visitMobile('/', BrowserLanguageDE);
+    });
+
+    it('should check some important labels', () => {
+      cy.get('[data-cy=button-tutorial]').should('contain', 'Tutorial öffnen');
+    });
   });
 });

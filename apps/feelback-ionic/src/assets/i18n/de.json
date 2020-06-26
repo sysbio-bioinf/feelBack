@@ -1,7 +1,12 @@
 {
   "app": {
-    "navigation": {
-      "back": "Zurück"
+    "general": {
+      "back": "Zurück",
+      "loading": "Lade Daten...",
+      "yes": "Ja",
+      "no": "Nein",
+      "cancel": "Abbrechen",
+      "ok": "Ok"
     },
 
     "menu": {

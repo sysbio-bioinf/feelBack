@@ -1,6 +1,6 @@
-import { LargeMobileDevice } from '@cancerlog/util/testing';
+import { LargeMobileDevice, BrowserLanguageEN } from '@cancerlog/util/testing';
 
-describe('Start Page', () => {
+describe('Login with QR Code Page', () => {
   let testingDevice: LargeMobileDevice;
 
   before(() => {
@@ -10,7 +10,7 @@ describe('Start Page', () => {
   beforeEach(() => {
     cy.viewport(testingDevice.width, testingDevice.height);
 
-    cy.visitMobile('/');
+    cy.visitMobile('/', BrowserLanguageEN);
     cy.get('[data-cy=button-login-code]').click();
     cy.wait(300);
   });

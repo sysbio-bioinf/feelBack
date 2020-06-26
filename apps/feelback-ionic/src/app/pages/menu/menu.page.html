@@ -1,5 +1,5 @@
 <ion-split-pane contentId="content" when="false">
-  <ion-menu contentId="content" type="overlay">
+  <ion-menu data-cy="menu-pane" contentId="content" type="overlay">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>{{ 'app.menu.title' | translate }}</ion-title>
@@ -46,5 +46,5 @@
     </ion-footer>
   </ion-menu>
 
-  <ion-router-outlet id="content"></ion-router-outlet>
+  <ion-router-outlet data-cy="content-pane" id="content"></ion-router-outlet>
 </ion-split-pane>
