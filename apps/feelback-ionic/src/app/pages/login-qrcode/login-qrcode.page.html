@@ -32,6 +32,7 @@
                   {{ 'app.pages.login.form.pseudonym' | translate }}
                 </ion-label>
                 <ion-input
+                  data-cy="input-pseudonym"
                   id="login-form"
                   inputmode="text"
                   clearInput="true"
@@ -49,6 +50,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-button
+      data-cy="button-login"
       shape="round"
       color="primary"
       [disabled]="!this.pseudonym"

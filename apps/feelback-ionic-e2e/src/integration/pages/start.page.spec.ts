@@ -29,4 +29,24 @@ describe('Start Page', () => {
     cy.get('[data-cy=button-tutorial]').should('exist');
     cy.get('[data-cy=button-tutorial]').should('contain.text', 'Open Tutorial');
   });
+
+  it('should redirect to the home page on anonymous login', () => {
+    cy.get('[data-cy=button-login-anonymous]').click();
+    cy.wait(300);
+
+    cy.url().should('not.contain', '/start');
+    cy.url().should('contain', '/home');
+
+    cy.get('[data-cy=header-title]').should('contain', 'FeelBack');
+  });
+
+  it('should redirect to the code page on code login', () => {
+    cy.get('[data-cy=button-login-code]').click();
+    cy.wait(300);
+
+    cy.url().should('not.contain', '/start');
+    cy.url().should('contain', '/auth/login');
+
+    cy.get('[data-cy=header-title]').should('contain', 'Login');
+  });
 });
