@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
+import { KeycloakService } from 'keycloak-angular';
 
 describe('AppLayout', () => {
   let component: AppLayout;
@@ -15,7 +16,7 @@ describe('AppLayout', () => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule, MaterialModule, RouterTestingModule, BrowserAnimationsModule],
       declarations: [ AppLayout ],
-      providers: [DatePipe]
+      providers: [DatePipe, KeycloakService]
     })
     .compileComponents();
   }));

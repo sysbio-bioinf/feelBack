@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InstrumentInfoComponent } from './instrument-info.component';
 import { MaterialModule } from '../../../material.module';
 import { DatePipe } from '@angular/common';
+import { InstrumentStatesEnum } from '../../../graphql/generated/feelback.graphql';
 
 describe('InstrumentInfoComponent', () => {
   let component: InstrumentInfoComponent;
@@ -30,6 +31,7 @@ describe('InstrumentInfoComponent', () => {
       payload: {},
       rules: [],
       diagram: {},
+      state: InstrumentStatesEnum.Released
     };
     fixture.detectChanges();
   });

@@ -4,6 +4,7 @@ import { ConsultationComponent } from './consultation.component';
 import { MaterialModule } from '../../../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
+import { InstrumentStatesEnum } from '../../../graphql/generated/feelback.graphql';
 
 describe('ConsultationComponent', () => {
   let component: ConsultationComponent;
@@ -40,6 +41,7 @@ describe('ConsultationComponent', () => {
         diagram: {},
         rules: [],
         payload: {},
+        state: InstrumentStatesEnum.Released
       },
       language: '',
       evaluationResult: [
