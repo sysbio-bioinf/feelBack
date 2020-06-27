@@ -3,12 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppLayout } from './layouts/app/app.layout';
 import { CommonLayout } from './layouts/common/common.layout';
 import { ErrorPage } from './layouts/common/pages/error/error.page';
+import { AuthGuard } from './auth.guard';
+import { RolesEnum } from '@cancerlog/api/auth';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
   {
     path: 'app',
     component: AppLayout,
+    canActivate: [AuthGuard],
+    data: { roles: RolesEnum.MANAGER },
     loadChildren: () =>
       import(`./layouts/app/app.layout.module`).then((m) => m.AppLayoutModule),
   },
@@ -16,7 +20,9 @@ const routes: Routes = [
     path: '',
     component: CommonLayout,
     loadChildren: () =>
-      import(`./layouts/common/common.layout.module`).then((m) => m.CommonLayoutModule),
+      import(`./layouts/common/common.layout.module`).then(
+        (m) => m.CommonLayoutModule,
+      ),
   },
   {
     path: '**',
