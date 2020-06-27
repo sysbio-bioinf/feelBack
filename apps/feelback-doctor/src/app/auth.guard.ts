@@ -11,23 +11,30 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
   }
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       if (!this.authenticated) {
-        this.keycloakAngular.login()
-          .catch(e => console.error(e));
-        return reject(false);
+        this.keycloakAngular.login();
+        return;
       }
-
-      const requiredRoles: string[] = route.data.roles;
-
+      const requiredRoles = route.data.roles;
+      let granted = false;
       if (!requiredRoles || requiredRoles.length === 0) {
-        return resolve(true);
+        granted = true;
       } else {
-        if (!this.roles || this.roles.length === 0) {
-          resolve(false);
+        for (const requiredRole of requiredRoles) {
+          if (this.roles.indexOf(requiredRole) > -1) {
+            granted = true;
+            break;
+          }
         }
-        resolve(requiredRoles.every(role => this.roles.indexOf(role) > -1));
       }
+
+      if(granted === false) {
+        this.router.navigate(['/login']);
+      }
+      resolve(granted);
+
     });
   }
+
 }

@@ -12,7 +12,8 @@ const routes: Routes = [
     path: 'app',
     component: AppLayout,
     canActivate: [AuthGuard],
-    data: { roles: RolesEnum.MANAGER },
+    // FIXME: change to RolesEnum
+    data: { roles: ['USER'] },
     loadChildren: () =>
       import(`./layouts/app/app.layout.module`).then((m) => m.AppLayoutModule),
   },
