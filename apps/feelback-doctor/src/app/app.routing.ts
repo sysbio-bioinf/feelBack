@@ -4,6 +4,7 @@ import { AppLayout } from './layouts/app/app.layout';
 import { CommonLayout } from './layouts/common/common.layout';
 import { ErrorPage } from './layouts/common/pages/error/error.page';
 import { AuthGuard } from './auth.guard';
+import { RolesEnum } from '@feelback-app/api/shared';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
@@ -11,8 +12,7 @@ const routes: Routes = [
     path: 'app',
     component: AppLayout,
     canActivate: [AuthGuard],
-    // FIXME: change to RolesEnum
-    data: { roles: ['USER'] },
+    data: { roles: [RolesEnum.MANAGER] },
     loadChildren: () =>
       import(`./layouts/app/app.layout.module`).then((m) => m.AppLayoutModule),
   },
