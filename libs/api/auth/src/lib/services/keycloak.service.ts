@@ -22,20 +22,22 @@ import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
 
 @Injectable()
 export class KeycloakService {
-  private adminClient: KeycloakAdminClient;
-  private realmName: string;
+  private adminClient!: KeycloakAdminClient;
+  private realmName!: string;
 
   constructor(
     private readonly configService: ConfigService,
     private readonly http: HttpService,
-  ) {
+  ) {}
+
+  private async setupKeycloakConnection() {
     this.adminClient = new KeycloakAdminClient({
       baseUrl: `${new KeycloakServiceConnection().getAddress()}/auth`,
     });
 
     this.realmName = this.configService.get('auth.keycloak.clients[0].realm');
 
-    this.adminClient.auth({
+    await this.adminClient.auth({
       username: this.configService.get('auth.keycloak.host.username'),
       password: this.configService.get('auth.keycloak.host.password'),
       clientId: 'admin-cli',
@@ -135,6 +137,8 @@ export class KeycloakService {
   }
 
   async registerDoctor(credentials: CredentialsDto): Promise<string> {
+    await this.setupKeycloakConnection();
+
     const keycloakId = await this.adminClient.users.create({
       realm: this.realmName,
       emailVerified: true,
