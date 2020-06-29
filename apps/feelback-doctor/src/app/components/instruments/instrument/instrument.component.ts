@@ -4,11 +4,11 @@ import { CommonService } from '../../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   Instrument,
-  Screening,
 } from '../../../graphql/generated/feelback.graphql';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { DateHelper } from '@feelback-app/util/helper';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -29,7 +29,7 @@ export class InstrumentComponent implements OnInit {
   public selectedDaterange = 'current-year';
   public startDateForm = new FormControl();
   public endDateForm = new FormControl();
-  public today = new Date();
+  public today = dayjs();
   public startDate: Date;
   public endDate: Date;
 
@@ -39,50 +39,46 @@ export class InstrumentComponent implements OnInit {
 
   public selectDaterange(daterange: string) {
     this.selectedDaterange = daterange;
-    const currentMonth = this.today.getMonth();
-    const currentYear = this.today.getFullYear();
     switch (daterange) {
       case 'last-year': {
-        this.startDate = DateHelper.createUtcDate(
-          new Date(currentYear - 1, 0, 1),
-        );
+        this.startDate = DateHelper.createUtcDate(this.today.subtract(1, 'year').startOf('year').toDate());
         this.endDate = DateHelper.createUtcDate(
-          new Date(currentYear - 1, 12, 0, 23, 59, 59),
+          this.today.subtract(1, 'year').endOf('year').toDate()
         );
         break;
       }
       case 'current-year': {
-        this.startDate = DateHelper.createUtcDate(new Date(currentYear, 0, 1));
+        this.startDate = DateHelper.createUtcDate(
+          this.today.startOf('year').toDate()
+        );
         this.endDate = DateHelper.createUtcDate(
-          new Date(currentYear, 12, 0, 23, 59, 59),
+          this.today.endOf('year').toDate()
         );
         break;
       }
       case 'current-month': {
         this.startDate = DateHelper.createUtcDate(
-          new Date(currentYear, currentMonth, 1),
+          this.today.startOf('month').toDate()
         );
         this.endDate = DateHelper.createUtcDate(
-          new Date(currentYear, currentMonth + 1, 0, 23, 59, 59),
+          this.today.endOf('month').toDate()
         );
         break;
       }
       case 'last-month': {
         this.startDate = DateHelper.createUtcDate(
-          new Date(currentYear, currentMonth - 1, 1),
+          this.today.subtract(1, 'month').startOf('month').toDate()
         );
         this.endDate = DateHelper.createUtcDate(
-          new Date(currentYear, currentMonth, 0, 23, 59, 59),
+          this.today.subtract(1, 'month').endOf('month').toDate()
         );
         break;
       }
       case 'custom': {
         this.startDate = DateHelper.createUtcDate(this.startDateForm.value);
-        this.endDate = this.endDateForm.value;
-        this.endDate.setHours(23);
-        this.endDate.setMinutes(59);
-        this.endDate.setSeconds(59);
-        this.endDate = DateHelper.createUtcDate(this.endDate);
+        console.log(this.endDateForm.value);
+        const endDate = dayjs(this.endDateForm.value).endOf('day');
+        this.endDate = DateHelper.createUtcDate(endDate.toDate());
         break;
       }
     }
