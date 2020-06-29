@@ -4,7 +4,6 @@ import { AppLayout } from './layouts/app/app.layout';
 import { CommonLayout } from './layouts/common/common.layout';
 import { ErrorPage } from './layouts/common/pages/error/error.page';
 import { AuthGuard } from './auth.guard';
-import { RolesEnum } from '@cancerlog/api/auth';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
