@@ -1,3 +1,5 @@
+import { Roles, Unprotected } from '@cancerlog/api/auth';
+import { InstrumentStatesEnum } from '@cancerlog/api/data';
 import {
   EC_GENERAL_CONFLICT,
   ExceptionMessageModel,
@@ -8,16 +10,15 @@ import {
   InstrumentObject,
   ReleaseOneInstrumentInputType,
   RetireOneInstrumentInputType,
+  RolesEnum,
   ScreeningObject,
   UpdateOneInstrumentInputType,
 } from '@cancerlog/api/interfaces';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { ConflictException, UseGuards } from '@nestjs/common';
+import { ConflictException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { InstrumentStatesEnum } from '@cancerlog/api/data';
 import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
-import { Unprotected, Roles, RolesEnum } from '@cancerlog/api/auth';
 
 @Resolver(() => InstrumentObject)
 export class InstrumentResolver extends CRUDResolver(InstrumentObject, {

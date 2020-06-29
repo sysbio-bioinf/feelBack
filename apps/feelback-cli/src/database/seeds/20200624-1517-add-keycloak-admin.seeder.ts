@@ -1,6 +1,6 @@
-import { RolesEnum } from '@cancerlog/api/auth';
 import { DoctorEntity } from '@cancerlog/api/data';
 import { Seeder } from '@cancerlog/api/database';
+import { RolesEnum } from '@cancerlog/api/interfaces';
 import { KeycloakServiceConnection } from '@cancerlog/util/connection';
 import KeycloakAdminClient from 'keycloak-admin';
 import { getConnection } from 'typeorm';

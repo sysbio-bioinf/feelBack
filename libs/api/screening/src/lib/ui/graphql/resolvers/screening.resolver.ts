@@ -1,4 +1,4 @@
-import { Roles, RolesEnum, Unprotected } from '@cancerlog/api/auth';
+import { Roles, Unprotected } from '@cancerlog/api/auth';
 import { InstrumentStatesEnum, ScreeningEntity } from '@cancerlog/api/data';
 import {
   EC_GENERAL_NOTFOUND,
@@ -13,6 +13,7 @@ import {
   InstrumentObject,
   PersonObject,
   ResolveOneScreeningInputType,
+  RolesEnum,
   ScreeningConnection,
   ScreeningObject,
   UploadScreeningInputType,
@@ -21,11 +22,7 @@ import {
 import { PersonAssemblerService } from '@cancerlog/api/person';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
-import {
-  ConflictException,
-  NotFoundException,
-  UseGuards,
-} from '@nestjs/common';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import {
   Args,
   Mutation,

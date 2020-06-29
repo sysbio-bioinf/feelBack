@@ -1,7 +1,8 @@
-import { Roles, RolesEnum, Unprotected } from '@cancerlog/api/auth';
+import { Roles, Unprotected } from '@cancerlog/api/auth';
 import {
   CreateIdentityInput,
   IdentityObject,
+  RolesEnum,
   UpdateIdentityInput,
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';

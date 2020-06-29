@@ -1,14 +1,15 @@
+import { Roles, Unprotected } from '@cancerlog/api/auth';
 import {
   CreateOrganizationInput,
   DoctorObject,
   OrganizationObject,
   PersonObject,
+  RolesEnum,
   UpdateOrganizationInput,
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { OrganizationAssemblerService } from '../../../services/organization-assembler.service';
-import { Roles, RolesEnum, Unprotected } from '@cancerlog/api/auth';
 
 @Resolver(() => OrganizationObject)
 export class OrganizationResolver extends CRUDResolver(OrganizationObject, {

@@ -1,14 +1,9 @@
-import {
-  CurrentUser,
-  KeycloakService,
-  Roles,
-  RolesEnum,
-  User,
-} from '@cancerlog/api/auth';
+import { CurrentUser, KeycloakService, Roles, User } from '@cancerlog/api/auth';
 import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
 import {
   OrganizationObject,
   RegisterInput,
+  RolesEnum,
   UpdateUserInput,
   UserObject,
 } from '@cancerlog/api/interfaces';

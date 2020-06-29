@@ -1,17 +1,17 @@
-import { Roles, RolesEnum, Unprotected } from '@cancerlog/api/auth';
+import { Roles, Unprotected } from '@cancerlog/api/auth';
 import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
 import { IdentityDatabaseService } from '@cancerlog/api/identity';
 import {
   CreateOnePersonInputType,
   CreatePersonInput,
   PersonObject,
+  RolesEnum,
   UpdatePersonInput,
 } from '@cancerlog/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import {
   ConflictException,
   InternalServerErrorException,
-  UseGuards,
 } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PersonAssemblerService } from '../../../services/person-assembler.service';
