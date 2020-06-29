@@ -22,28 +22,10 @@ import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
 
 @Injectable()
 export class KeycloakService {
-  private adminClient!: KeycloakAdminClient;
-  private realmName!: string;
-
   constructor(
     private readonly configService: ConfigService,
     private readonly http: HttpService,
   ) {}
-
-  private async setupKeycloakConnection() {
-    this.adminClient = new KeycloakAdminClient({
-      baseUrl: `${new KeycloakServiceConnection().getAddress()}/auth`,
-    });
-
-    this.realmName = this.configService.get('auth.keycloak.clients[0].realm');
-
-    await this.adminClient.auth({
-      username: this.configService.get('auth.keycloak.host.username'),
-      password: this.configService.get('auth.keycloak.host.password'),
-      clientId: 'admin-cli',
-      grantType: 'password',
-    });
-  }
 
   /**
    * Requests an Access Token from KeyCloak
@@ -137,10 +119,28 @@ export class KeycloakService {
   }
 
   async registerDoctor(credentials: CredentialsDto): Promise<string> {
-    await this.setupKeycloakConnection();
+    const adminClient = new KeycloakAdminClient({
+      baseUrl: `${new KeycloakServiceConnection().getAddress()}/auth`,
+    });
 
-    const keycloakId = await this.adminClient.users.create({
-      realm: this.realmName,
+    const realmName = this.configService.get('auth.keycloak.clients[0].realm');
+
+    await adminClient.auth({
+      username: this.configService.get('auth.keycloak.host.username'),
+      password: this.configService.get('auth.keycloak.host.password'),
+      clientId: 'admin-cli',
+      grantType: 'password',
+    });
+
+    if (!adminClient) {
+      throw new InternalServerErrorException({
+        code: EC_KEYCLOAK_REQUEST_TOKEN.code,
+        message: 'Cannot connect to Keycloak',
+      } as ExceptionMessageModel);
+    }
+
+    const keycloakId = await adminClient.users.create({
+      realm: realmName,
       emailVerified: true,
       enabled: true,
       email: credentials.username,
@@ -153,12 +153,12 @@ export class KeycloakService {
       ],
     });
 
-    const managerRole = await this.adminClient.roles.findOneByName({
+    const managerRole = await adminClient.roles.findOneByName({
       name: RolesEnum.MANAGER,
-      realm: this.realmName,
+      realm: realmName,
     });
 
-    await this.adminClient.users.addRealmRoleMappings({
+    await adminClient.users.addRealmRoleMappings({
       id: keycloakId.id,
       roles: [
         {
@@ -166,7 +166,7 @@ export class KeycloakService {
           name: managerRole.name || '',
         },
       ],
-      realm: this.realmName,
+      realm: realmName,
     });
 
     return keycloakId.id;
