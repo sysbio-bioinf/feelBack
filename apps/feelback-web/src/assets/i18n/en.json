@@ -106,7 +106,7 @@
         }
       },
       "imprint": {
-        "title": "Imprint",
+        "title": "Legal Notice",
         "contact": {
           "title": "Publisher",
           "organization": "Ulm University",
@@ -134,7 +134,7 @@
       "link": "Ulm University",
       "press": "Press",
       "terms": "Terms",
-      "imprint": "Imprint",
+      "imprint": "Legal Notice",
       "privacy": "Privacy"
     }
   }
