@@ -11,14 +11,26 @@ import { KeycloakService } from 'keycloak-angular';
 describe('AppLayout', () => {
   let component: AppLayout;
   let fixture: ComponentFixture<AppLayout>;
+  const keycloakServiceStub: Partial<KeycloakService> = {
+    getUsername() {
+      return 'user';
+    },
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentsModule, MaterialModule, RouterTestingModule, BrowserAnimationsModule],
-      declarations: [ AppLayout ],
-      providers: [DatePipe, KeycloakService]
-    })
-    .compileComponents();
+      imports: [
+        ComponentsModule,
+        MaterialModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+      ],
+      declarations: [AppLayout],
+      providers: [
+        DatePipe,
+        { provide: KeycloakService, useValue: keycloakServiceStub },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

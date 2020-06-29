@@ -8,12 +8,17 @@ import { KeycloakService } from 'keycloak-angular';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
+  const keycloakServiceStub: Partial<KeycloakService> = {
+    getUsername() {
+      return 'user';
+    },
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
       declarations: [ NavbarComponent ],
-      providers: [KeycloakService]
+      providers: [{provide: KeycloakService, useValue: keycloakServiceStub}]
     })
     .compileComponents();
   }));
