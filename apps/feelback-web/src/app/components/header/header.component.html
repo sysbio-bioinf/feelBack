@@ -1,4 +1,4 @@
-<div class="nav-menu fixed-top" data-cy="header-nav-menu">
+<div class="nav-menu fixed-top" [class]="menuClass" data-cy="header-nav-menu">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -6,7 +6,7 @@
           class="navbar navbar-dark navbar-expand-lg"
           data-cy="header-navbar"
         >
-          <a class="navbar-brand" href="#home" data-cy="header-title">
+          <a class="navbar-brand" routerLink="" data-cy="header-title">
             {{ 'app.nav.title' | translate }}
           </a>
           <button
@@ -18,38 +18,63 @@
             aria-expanded="false"
             aria-label="Toggle Navigation"
             data-cy="header-navbar-toggler"
+            (click)="toggleClass()"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav ml-auto" data-cy="header-navbar-nav">
-              <li class="nav-item" data-cy="header-navbar-home">
+              <li
+                *ngIf="!hideMenuItems"
+                class="nav-item"
+                data-cy="header-navbar-home"
+              >
                 <a class="nav-link" href="#home">
                   {{ 'app.nav.home' | translate }}
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item" data-cy="header-navbar-features">
+              <li
+                *ngIf="!hideMenuItems"
+                class="nav-item"
+                data-cy="header-navbar-features"
+              >
                 <a class="nav-link" href="#features">{{
                   'app.nav.features' | translate
                 }}</a>
               </li>
-              <li class="nav-item" data-cy="header-navbar-get-started">
+              <li
+                *ngIf="!hideMenuItems"
+                class="nav-item"
+                data-cy="header-navbar-get-started"
+              >
                 <a class="nav-link" href="#get-started">{{
                   'app.nav.get-started' | translate
                 }}</a>
               </li>
-              <li class="nav-item" data-cy="header-navbar-gallery">
+              <li
+                *ngIf="!hideMenuItems"
+                class="nav-item"
+                data-cy="header-navbar-gallery"
+              >
                 <a class="nav-link" href="#gallery">{{
                   'app.nav.gallery' | translate
                 }}</a>
               </li>
-              <li class="nav-item" data-cy="header-navbar-download">
+              <li
+                *ngIf="!hideMenuItems"
+                class="nav-item"
+                data-cy="header-navbar-download"
+              >
                 <a href="#download" class="nav-link">
                   {{ 'app.nav.download' | translate }}
                 </a>
               </li>
-              <li class="nav-item" data-cy="header-navbar-contact">
+              <li
+                *ngIf="!hideMenuItems"
+                class="nav-item"
+                data-cy="header-navbar-contact"
+              >
                 <a class="nav-link" href="#contact">{{
                   'app.nav.contact' | translate
                 }}</a>

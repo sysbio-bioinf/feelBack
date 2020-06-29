@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { availableLanguages } from '../../constants/languages.constants';
 
@@ -8,9 +8,12 @@ import { availableLanguages } from '../../constants/languages.constants';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() hideMenuItems?: boolean;
+
   constructor(readonly translateService: TranslateService) {}
 
   avLanguages = availableLanguages;
+  menuClass = '';
 
   languageDropdownSelection: { short: string; full: string }[] = [
     { short: 'en', full: 'English' },
@@ -21,5 +24,13 @@ export class HeaderComponent implements OnInit {
 
   switchLanguage(lang: string) {
     this.translateService.use(lang);
+  }
+
+  toggleClass() {
+    if (this.menuClass === '') {
+      this.menuClass = 'menu-is-open';
+    } else {
+      this.menuClass = '';
+    }
   }
 }
