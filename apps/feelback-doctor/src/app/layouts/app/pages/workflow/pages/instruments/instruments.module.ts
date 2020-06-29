@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InstrumentsPage } from './instruments.page';
 import { InstrumentsRouting } from './instruments.routing';
-import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
-import { MaterialModule } from 'apps/feelback-doctor/src/app/material.module';
+import { ComponentsModule } from '../../../../../../components/components.module';
+import { MaterialModule } from '../../../../../../material.module';
 
 @NgModule({
   declarations: [InstrumentsPage],

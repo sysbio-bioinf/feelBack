@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResultPage } from './result.page';
 import { ResultRouting } from './result.routing';
-import { ComponentsModule } from 'apps/feelback-doctor/src/app/components/components.module';
+import { ComponentsModule } from '../../../../../../components/components.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
