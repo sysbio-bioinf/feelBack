@@ -4,6 +4,7 @@ import {
   EC_KEYCLOAK_RESOLVE_USER,
   ExceptionMessageModel,
 } from '@cancerlog/api/errors';
+import { RolesEnum } from '@cancerlog/api/interfaces';
 import { KeycloakServiceConnection } from '@cancerlog/util/connection';
 import {
   HttpService,
@@ -18,7 +19,6 @@ import { CredentialsDto } from '../data/dtos/credentials.dto';
 import { AuthTokenModel } from '../data/models/auth-token.model';
 import { KeycloakJwtModel } from '../data/models/keycloak-jwt.model';
 import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
-import { RolesEnum } from '../enums/roles.enum';
 
 @Injectable()
 export class KeycloakService {

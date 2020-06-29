@@ -1,10 +1,10 @@
+import { RolesEnum } from '@cancerlog/api/interfaces';
 import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
 import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../data/classes/user.class';
 import { GqlRoleGuard } from './gql-role.guard';
-import { RolesEnum } from '../enums/roles.enum';
 
 class ReflectorMock {
   handlerRoles: string | string[] | undefined;
