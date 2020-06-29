@@ -9,7 +9,7 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public router: Router, private keycloakService: KeycloakService) {}
+  constructor(public router: Router, public keycloakService: KeycloakService) {}
 
   ngOnInit(): void {}
 

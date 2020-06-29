@@ -1,9 +1,14 @@
 <mat-toolbar id="navbar" color="primary">
   <mat-toolbar-row>
-    <img class="feelback-logo" [routerLink]="'/'" src="./assets/img/feelback-logo.png">
+    <img
+      class="feelback-logo"
+      [routerLink]="'/'"
+      src="./assets/img/feelback-logo.png"
+    />
     <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>person</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menu" aria-label="Feelback menu">
+      <mat-icon class="user-icon">person</mat-icon>
+      <span>{{ keycloakService.getUsername() }}</span>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item [routerLink]="'./'">
