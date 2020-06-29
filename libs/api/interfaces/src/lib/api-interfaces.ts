@@ -1,4 +1,3 @@
-export * from './enums/roles.enum';
 export * from './inputs/create-doctor.input';
 export * from './inputs/create-faq.input';
 export * from './inputs/create-identity.input';

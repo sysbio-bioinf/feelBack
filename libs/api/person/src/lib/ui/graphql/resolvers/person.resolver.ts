@@ -8,9 +8,9 @@ import {
   CreateOnePersonInputType,
   CreatePersonInput,
   PersonObject,
-  RolesEnum,
   UpdatePersonInput,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import {
   ConflictException,

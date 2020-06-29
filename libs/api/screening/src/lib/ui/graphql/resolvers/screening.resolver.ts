@@ -13,12 +13,12 @@ import {
   InstrumentObject,
   PersonObject,
   ResolveOneScreeningInputType,
-  RolesEnum,
   ScreeningConnection,
   ScreeningObject,
   UploadScreeningInputType,
   UserAgentObject,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { PersonAssemblerService } from '@feelback-app/api/person';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';

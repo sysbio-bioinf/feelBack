@@ -11,10 +11,10 @@ import {
 import {
   OrganizationObject,
   RegisterInput,
-  RolesEnum,
   UpdateUserInput,
   UserObject,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { JSONObject } from '@feelback-app/api/util';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { InternalServerErrorException } from '@nestjs/common';

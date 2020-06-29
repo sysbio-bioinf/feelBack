@@ -44,7 +44,8 @@
       "@feelback-app/api/doctor": ["libs/api/doctor/src/index.ts"],
       "@feelback-app/api/screening": ["libs/api/screening/src/index.ts"],
       "@feelback-app/util/testing": ["libs/util/testing/src/index.ts"],
-      "@feelback-app/shared/content": ["libs/shared/content/src/index.ts"]
+      "@feelback-app/shared/content": ["libs/shared/content/src/index.ts"],
+      "@feelback-app/api/shared": ["libs/api/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

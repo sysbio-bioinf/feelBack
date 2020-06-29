@@ -1,4 +1,4 @@
-import { RolesEnum } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';

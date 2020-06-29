@@ -4,9 +4,9 @@ import {
   DoctorObject,
   OrganizationObject,
   PersonObject,
-  RolesEnum,
   UpdateOrganizationInput,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { OrganizationAssemblerService } from '../../../services/organization-assembler.service';

@@ -4,7 +4,7 @@ import {
   EC_KEYCLOAK_RESOLVE_USER,
   ExceptionMessageModel,
 } from '@feelback-app/api/errors';
-import { RolesEnum } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { KeycloakServiceConnection } from '@feelback-app/util/connection';
 import {
   HttpService,

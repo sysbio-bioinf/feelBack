@@ -2,9 +2,9 @@ import { Roles, Unprotected } from '@feelback-app/api/auth';
 import {
   CreateIdentityInput,
   IdentityObject,
-  RolesEnum,
   UpdateIdentityInput,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { IdentityAssemblerService } from '../../../services/identity-assembler.service';

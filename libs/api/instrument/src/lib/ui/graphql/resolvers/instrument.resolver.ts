@@ -10,10 +10,10 @@ import {
   InstrumentObject,
   ReleaseOneInstrumentInputType,
   RetireOneInstrumentInputType,
-  RolesEnum,
   ScreeningObject,
   UpdateOneInstrumentInputType,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException } from '@nestjs/common';

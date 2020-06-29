@@ -1,6 +1,6 @@
 import { DoctorEntity } from '@feelback-app/api/data';
 import { Seeder } from '@feelback-app/api/database';
-import { RolesEnum } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { KeycloakServiceConnection } from '@feelback-app/util/connection';
 import KeycloakAdminClient from 'keycloak-admin';
 import { getConnection } from 'typeorm';

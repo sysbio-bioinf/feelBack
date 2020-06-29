@@ -2,9 +2,9 @@ import { Roles, Unprotected } from '@feelback-app/api/auth';
 import {
   DoctorObject,
   OrganizationObject,
-  RolesEnum,
   UpdateDoctorInput,
 } from '@feelback-app/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { DoctorAssemblerService } from '../../../services/doctor-assembler.service';
