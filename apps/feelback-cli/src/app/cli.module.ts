@@ -6,12 +6,12 @@ import {
   OrganizationEntity,
   PersonEntity,
   ScreeningEntity,
-} from '@cancerlog/api/data';
+} from '@feelback-app/api/data';
 import {
   feelbackDatabaseConnection,
   identityDatabaseConnection,
   IDENTITY_DB_CONNECTION_NAME,
-} from '@cancerlog/api/database';
+} from '@feelback-app/api/database';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConsoleModule } from 'nestjs-console';

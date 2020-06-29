@@ -1,6 +1,6 @@
 import { Command, Console, createSpinner } from 'nestjs-console';
 import { getConnection, Connection } from 'typeorm';
-import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
+import { IDENTITY_DB_CONNECTION_NAME } from '@feelback-app/api/database';
 
 @Console()
 export class DBClearCommand {

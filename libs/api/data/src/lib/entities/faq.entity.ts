@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { VersionableEntity } from '@cancerlog/api/core';
+import { VersionableEntity } from '@feelback-app/api/core';
 
 @Entity('faqs', {})
 export class FaqEntity extends VersionableEntity {

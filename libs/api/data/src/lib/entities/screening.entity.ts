@@ -1,4 +1,4 @@
-import { VersionableEntity } from '@cancerlog/api/core';
+import { VersionableEntity } from '@feelback-app/api/core';
 import { Entity, Column, ManyToOne, RelationId, Index } from 'typeorm';
 import { InstrumentEntity } from './instrument.entity';
 import { UserAgentClass } from '../classes/user-agent.class';

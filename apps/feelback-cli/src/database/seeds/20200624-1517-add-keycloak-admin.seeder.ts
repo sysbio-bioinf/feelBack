@@ -1,7 +1,7 @@
-import { DoctorEntity } from '@cancerlog/api/data';
-import { Seeder } from '@cancerlog/api/database';
-import { RolesEnum } from '@cancerlog/api/interfaces';
-import { KeycloakServiceConnection } from '@cancerlog/util/connection';
+import { DoctorEntity } from '@feelback-app/api/data';
+import { Seeder } from '@feelback-app/api/database';
+import { RolesEnum } from '@feelback-app/api/interfaces';
+import { KeycloakServiceConnection } from '@feelback-app/util/connection';
 import KeycloakAdminClient from 'keycloak-admin';
 import { getConnection } from 'typeorm';
 import { environment } from '../../environments/environment';

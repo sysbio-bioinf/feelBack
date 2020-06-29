@@ -1,10 +1,10 @@
-import { Roles, Unprotected } from '@cancerlog/api/auth';
+import { Roles, Unprotected } from '@feelback-app/api/auth';
 import {
   CreateIdentityInput,
   IdentityObject,
   RolesEnum,
   UpdateIdentityInput,
-} from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { IdentityAssemblerService } from '../../../services/identity-assembler.service';

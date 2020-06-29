@@ -1,9 +1,9 @@
-import { CoreService } from '@cancerlog/api/core';
+import { CoreService } from '@feelback-app/api/core';
 import {
   EvaluationClass,
   InstrumentEntity,
   ScreeningEntity,
-} from '@cancerlog/api/data';
+} from '@feelback-app/api/data';
 import { Injectable } from '@nestjs/common';
 import * as deepmerge from 'deepmerge';
 import * as expreval from 'expr-eval';

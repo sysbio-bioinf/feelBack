@@ -1,4 +1,4 @@
-import { CoreObject } from '@cancerlog/api/core';
+import { CoreObject } from '@feelback-app/api/core';
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType('Rule')

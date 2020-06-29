@@ -2,7 +2,7 @@ import {
   LargeMobileDevice,
   BrowserLanguageDE,
   BrowserLanguageEN,
-} from '@cancerlog/util/testing';
+} from '@feelback-app/util/testing';
 
 describe('Start Page', () => {
   let testingDevice: LargeMobileDevice;

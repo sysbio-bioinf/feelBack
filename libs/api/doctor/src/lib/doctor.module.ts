@@ -1,4 +1,4 @@
-import { DoctorEntity } from '@cancerlog/api/data';
+import { DoctorEntity } from '@feelback-app/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorAssemblerService } from './services/doctor-assembler.service';

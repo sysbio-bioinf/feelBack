@@ -1,13 +1,21 @@
-import { CurrentUser, KeycloakService, Roles, User } from '@cancerlog/api/auth';
-import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
+import {
+  CurrentUser,
+  KeycloakService,
+  Roles,
+  User,
+} from '@feelback-app/api/auth';
+import {
+  EC_GENERAL_ERROR,
+  ExceptionMessageModel,
+} from '@feelback-app/api/errors';
 import {
   OrganizationObject,
   RegisterInput,
   RolesEnum,
   UpdateUserInput,
   UserObject,
-} from '@cancerlog/api/interfaces';
-import { JSONObject } from '@cancerlog/api/util';
+} from '@feelback-app/api/interfaces';
+import { JSONObject } from '@feelback-app/api/util';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';

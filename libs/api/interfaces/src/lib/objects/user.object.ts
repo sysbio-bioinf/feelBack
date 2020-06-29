@@ -1,4 +1,4 @@
-import { JSONObject } from '@cancerlog/api/util';
+import { JSONObject } from '@feelback-app/api/util';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { DoctorObject } from './doctor.object';
 

@@ -1,4 +1,4 @@
-import { VersionableObject } from '@cancerlog/api/core';
+import { VersionableObject } from '@feelback-app/api/core';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { FilterableField } from '@nestjs-query/query-graphql';
 

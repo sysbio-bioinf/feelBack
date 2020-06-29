@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { JSONObjectScalar } from '@cancerlog/api/util';
+import { JSONObjectScalar } from '@feelback-app/api/util';
 
 const scalars = [JSONObjectScalar];
 

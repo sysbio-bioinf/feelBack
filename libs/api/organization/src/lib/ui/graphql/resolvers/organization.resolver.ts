@@ -1,4 +1,4 @@
-import { Roles, Unprotected } from '@cancerlog/api/auth';
+import { Roles, Unprotected } from '@feelback-app/api/auth';
 import {
   CreateOrganizationInput,
   DoctorObject,
@@ -6,7 +6,7 @@ import {
   PersonObject,
   RolesEnum,
   UpdateOrganizationInput,
-} from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { OrganizationAssemblerService } from '../../../services/organization-assembler.service';

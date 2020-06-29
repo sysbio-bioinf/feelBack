@@ -1,4 +1,4 @@
-import { CoreModel } from '@cancerlog/api/core';
+import { CoreModel } from '@feelback-app/api/core';
 
 export interface AuthTokenModel extends CoreModel {
   tokenType: string;

@@ -1,4 +1,4 @@
-import { PersonEntity } from '@cancerlog/api/data';
+import { PersonEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { PersonAssembler } from '../ui/graphql/assemblers/person.assembler';

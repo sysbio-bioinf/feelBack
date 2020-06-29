@@ -1,5 +1,5 @@
-import { IdentityEntity } from '@cancerlog/api/data';
-import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
+import { IdentityEntity } from '@feelback-app/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@feelback-app/api/database';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { IdentityDatabaseService } from './identity-database.service';

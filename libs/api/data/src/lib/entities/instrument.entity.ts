@@ -1,4 +1,4 @@
-import { VersionableEntity } from '@cancerlog/api/core';
+import { VersionableEntity } from '@feelback-app/api/core';
 import { Column, Entity, OneToMany, RelationId } from 'typeorm';
 import { DiagramClass } from '../classes/diagram.class';
 import { RuleClass } from '../classes/rule.class';

@@ -5,12 +5,12 @@ import {
   DiagramPlotDataClass,
   ScreeningEntity,
   DiagramPlotAxisDataClass,
-} from '@cancerlog/api/data';
+} from '@feelback-app/api/data';
 import {
   DiagramDataPointObject,
   DiagramAxisObject,
   DiagramDataObject,
-} from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/interfaces';
 
 @Injectable()
 export class DiagramService {

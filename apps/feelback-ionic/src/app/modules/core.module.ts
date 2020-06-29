@@ -6,7 +6,7 @@ import {
   createTranslateLoader,
   platformLanguageFactory,
   PlatformLanguageToken,
-} from '@cancerlog/shared/misc';
+} from '@feelback-app/shared/misc';
 import { IonicRouteStrategy } from '@ionic/angular';
 import {
   TranslateLoader,

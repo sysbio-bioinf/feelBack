@@ -1,5 +1,5 @@
-import { GuardsModule, GqlMasterGuard } from '@cancerlog/api/auth';
-import { ConfigModule, ConfigService } from '@cancerlog/api/config';
+import { GuardsModule, GqlMasterGuard } from '@feelback-app/api/auth';
+import { ConfigModule, ConfigService } from '@feelback-app/api/config';
 import {
   DoctorEntity,
   FaqEntity,
@@ -8,9 +8,9 @@ import {
   OrganizationEntity,
   PersonEntity,
   ScreeningEntity,
-} from '@cancerlog/api/data';
-import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
-import { environment } from '@env-cancerlog-api/environment';
+} from '@feelback-app/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@feelback-app/api/database';
+import { environment } from '@env-feelback-app-api/environment';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';

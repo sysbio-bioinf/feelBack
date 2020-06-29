@@ -2,9 +2,9 @@ import {
   InstrumentEntity,
   InstrumentStatesEnum,
   OrganizationEntity,
-} from '@cancerlog/api/data';
-import { Seeder } from '@cancerlog/api/database';
-import { ApiPathHelper } from '@cancerlog/api/util';
+} from '@feelback-app/api/data';
+import { Seeder } from '@feelback-app/api/database';
+import { ApiPathHelper } from '@feelback-app/api/util';
 import * as fs from 'fs';
 import * as path from 'path';
 import { getConnection } from 'typeorm';

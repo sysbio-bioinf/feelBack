@@ -1,5 +1,5 @@
 {
-  "npmScope": "cancerlog",
+  "npmScope": "feelback-app",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {

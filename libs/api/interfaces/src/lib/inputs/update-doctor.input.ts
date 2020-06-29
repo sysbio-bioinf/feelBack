@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 import {
   IsOptional,
   IsString,
@@ -7,7 +7,7 @@ import {
   IsUrl,
   IsObject,
 } from 'class-validator';
-import { JSONObject } from '@cancerlog/api/util';
+import { JSONObject } from '@feelback-app/api/util';
 
 @InputType()
 export class UpdateDoctorInput extends CoreInput {

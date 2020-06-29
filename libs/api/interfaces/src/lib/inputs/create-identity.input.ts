@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 import { IsString, MaxLength } from 'class-validator';
 
 @InputType({

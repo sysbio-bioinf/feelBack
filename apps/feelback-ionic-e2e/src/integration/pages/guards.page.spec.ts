@@ -1,4 +1,4 @@
-import { LargeMobileDevice } from '@cancerlog/util/testing';
+import { LargeMobileDevice } from '@feelback-app/util/testing';
 
 describe('Guards', () => {
   let testingDevice: LargeMobileDevice;

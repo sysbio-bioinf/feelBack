@@ -6,7 +6,7 @@ import { Screening } from '../../../graphql/generated/feelback.graphql';
 import { ScreeningService } from '../../../services/screening.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DateHelper } from '@cancerlog/util/helper';
+import { DateHelper } from '@feelback-app/util/helper';
 
 @Component({
   selector: 'feelback-doctor-action-bar',
@@ -19,7 +19,7 @@ export class ActionBarComponent implements OnInit {
     public commonService: CommonService,
     public screeningService: ScreeningService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   @Input() screening: Screening;
@@ -61,7 +61,9 @@ export class ActionBarComponent implements OnInit {
   }
 
   public changePage($event: PageEvent) {
-    const screeningId = this.screeningService.paginateScreenings($event.pageIndex);
+    const screeningId = this.screeningService.paginateScreenings(
+      $event.pageIndex,
+    );
     this.router.navigate(['../' + screeningId], {
       relativeTo: this.route,
     });

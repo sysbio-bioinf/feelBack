@@ -1,5 +1,5 @@
-import { OrganizationEntity } from '@cancerlog/api/data';
-import { OrganizationObject } from '@cancerlog/api/interfaces';
+import { OrganizationEntity } from '@feelback-app/api/data';
+import { OrganizationObject } from '@feelback-app/api/interfaces';
 import { Assembler, ClassTransformerAssembler } from '@nestjs-query/core';
 
 @Assembler(OrganizationObject, OrganizationEntity)

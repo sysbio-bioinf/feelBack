@@ -1,4 +1,4 @@
-import { SelectOneInputType } from '@cancerlog/api/core';
+import { SelectOneInputType } from '@feelback-app/api/core';
 import {
   CreateOneInputType,
   UpdateOneInputType,

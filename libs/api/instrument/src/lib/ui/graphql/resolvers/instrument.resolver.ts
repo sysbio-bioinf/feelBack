@@ -1,9 +1,9 @@
-import { Roles, Unprotected } from '@cancerlog/api/auth';
-import { InstrumentStatesEnum } from '@cancerlog/api/data';
+import { Roles, Unprotected } from '@feelback-app/api/auth';
+import { InstrumentStatesEnum } from '@feelback-app/api/data';
 import {
   EC_GENERAL_CONFLICT,
   ExceptionMessageModel,
-} from '@cancerlog/api/errors';
+} from '@feelback-app/api/errors';
 import {
   CopyOneInstrumentInputType,
   CreateOneInstrumentInputType,
@@ -13,7 +13,7 @@ import {
   RolesEnum,
   ScreeningObject,
   UpdateOneInstrumentInputType,
-} from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/interfaces';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException } from '@nestjs/common';

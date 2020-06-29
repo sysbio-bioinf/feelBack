@@ -1,5 +1,5 @@
 import { OrganizationEntity } from './organization.entity';
-import { VersionableEntity } from '@cancerlog/api/core';
+import { VersionableEntity } from '@feelback-app/api/core';
 import { Column, Entity, Index, ManyToMany } from 'typeorm';
 
 @Entity('doctors', {})

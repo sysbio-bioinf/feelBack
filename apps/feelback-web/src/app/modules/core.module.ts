@@ -4,7 +4,7 @@ import {
   createTranslateLoader,
   platformLanguageFactory,
   PlatformLanguageToken,
-} from '@cancerlog/shared/misc';
+} from '@feelback-app/shared/misc';
 import {
   TranslateLoader,
   TranslateModule,

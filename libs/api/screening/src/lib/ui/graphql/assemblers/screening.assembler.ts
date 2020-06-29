@@ -1,5 +1,5 @@
-import { ScreeningEntity } from '@cancerlog/api/data';
-import { ScreeningObject } from '@cancerlog/api/interfaces';
+import { ScreeningEntity } from '@feelback-app/api/data';
+import { ScreeningObject } from '@feelback-app/api/interfaces';
 import { Assembler, ClassTransformerAssembler } from '@nestjs-query/core';
 
 @Assembler(ScreeningObject, ScreeningEntity)

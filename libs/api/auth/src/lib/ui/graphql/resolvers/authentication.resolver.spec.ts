@@ -1,7 +1,7 @@
 import { AuthenticationResolver } from './authentication.resolver';
 import { TestingModule, Test } from '@nestjs/testing';
 import { KeycloakService } from '../../../services/keycloak.service';
-import { ConfigModule, ConfigService } from '@cancerlog/api/config';
+import { ConfigModule, ConfigService } from '@feelback-app/api/config';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

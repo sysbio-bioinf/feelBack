@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { environment } from '@env-cancerlog-web/environment';
+import { environment } from '@env-feelback-app-web/environment';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';

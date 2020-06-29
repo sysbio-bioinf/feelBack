@@ -1,5 +1,5 @@
-import { GuardsModule } from '@cancerlog/api/auth';
-import { InstrumentEntity } from '@cancerlog/api/data';
+import { GuardsModule } from '@feelback-app/api/auth';
+import { InstrumentEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';

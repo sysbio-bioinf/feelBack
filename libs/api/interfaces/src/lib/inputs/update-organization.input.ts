@@ -6,7 +6,7 @@ import {
   IsUrl,
 } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 
 @InputType()
 export class UpdateOrganizationInput extends CoreInput {

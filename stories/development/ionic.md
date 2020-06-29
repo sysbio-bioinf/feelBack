@@ -18,7 +18,7 @@ If you, for example, would need to import a class from the package `@foo/x/y`, t
     "baseUrl": "./",
     "paths": {
       "@angular/*": ["../../node_modules/@angular/*"],
-      "@cancerlog/shared/misc": ["../../libs/shared/misc/src/index.ts"]
+      "@feelback-app/shared/misc": ["../../libs/shared/misc/src/index.ts"]
     }
   }
 }

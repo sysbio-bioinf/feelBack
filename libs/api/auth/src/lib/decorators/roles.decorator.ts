@@ -1,4 +1,4 @@
-import { RolesEnum } from '@cancerlog/api/interfaces';
+import { RolesEnum } from '@feelback-app/api/interfaces';
 import { SetMetadata } from '@nestjs/common';
 import { DECORATOR_METADATA } from '../constants/decorator.constants';
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { createTranslateLoader } from '@cancerlog/shared/misc';
+import { createTranslateLoader } from '@feelback-app/shared/misc';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from './components.module';
 import { UIModule } from './ui.module';

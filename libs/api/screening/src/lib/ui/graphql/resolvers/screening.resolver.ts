@@ -1,10 +1,10 @@
-import { Roles, Unprotected } from '@cancerlog/api/auth';
-import { InstrumentStatesEnum, ScreeningEntity } from '@cancerlog/api/data';
+import { Roles, Unprotected } from '@feelback-app/api/auth';
+import { InstrumentStatesEnum, ScreeningEntity } from '@feelback-app/api/data';
 import {
   EC_GENERAL_NOTFOUND,
   ExceptionMessageModel,
-} from '@cancerlog/api/errors';
-import { InstrumentAssemblerService } from '@cancerlog/api/instrument';
+} from '@feelback-app/api/errors';
+import { InstrumentAssemblerService } from '@feelback-app/api/instrument';
 import {
   CreateScreeningInput,
   DiagramDataObject,
@@ -18,8 +18,8 @@ import {
   ScreeningObject,
   UploadScreeningInputType,
   UserAgentObject,
-} from '@cancerlog/api/interfaces';
-import { PersonAssemblerService } from '@cancerlog/api/person';
+} from '@feelback-app/api/interfaces';
+import { PersonAssemblerService } from '@feelback-app/api/person';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
 import { ConflictException, NotFoundException } from '@nestjs/common';

@@ -1,4 +1,4 @@
-import { FaqEntity } from '@cancerlog/api/data';
+import { FaqEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { FaqAssembler } from '../ui/graphql/assemblers/faq.assembler';

@@ -1,7 +1,7 @@
 import {
   EC_VALIDATION_FAILED,
   ExceptionMessageModel,
-} from '@cancerlog/api/errors';
+} from '@feelback-app/api/errors';
 import {
   ArgumentMetadata,
   Injectable,

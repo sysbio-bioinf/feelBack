@@ -1,4 +1,4 @@
-import { InstrumentEntity, ScreeningEntity } from '@cancerlog/api/data';
+import { InstrumentEntity, ScreeningEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EvaluationService } from './evaluation.service';
 

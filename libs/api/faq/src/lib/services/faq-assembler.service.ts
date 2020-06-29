@@ -1,5 +1,5 @@
-import { FaqEntity } from '@cancerlog/api/data';
-import { FaqObject } from '@cancerlog/api/interfaces';
+import { FaqEntity } from '@feelback-app/api/data';
+import { FaqObject } from '@feelback-app/api/interfaces';
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
 import { FaqAssembler } from '../ui/graphql/assemblers/faq.assembler';
 import { FaqDatabaseService } from './faq-database.service';

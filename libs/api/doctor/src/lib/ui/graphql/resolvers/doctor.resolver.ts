@@ -1,10 +1,10 @@
-import { Roles, Unprotected } from '@cancerlog/api/auth';
+import { Roles, Unprotected } from '@feelback-app/api/auth';
 import {
   DoctorObject,
   OrganizationObject,
   RolesEnum,
   UpdateDoctorInput,
-} from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
 import { DoctorAssemblerService } from '../../../services/doctor-assembler.service';

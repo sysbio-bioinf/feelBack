@@ -1,5 +1,5 @@
-import { DoctorEntity } from '@cancerlog/api/data';
-import { UserObject } from '@cancerlog/api/interfaces';
+import { DoctorEntity } from '@feelback-app/api/data';
+import { UserObject } from '@feelback-app/api/interfaces';
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
 import { UserDatabaseService } from './user-database.service';
 import { UserAssembler } from '../ui/graphql/assemblers/user.assembler';

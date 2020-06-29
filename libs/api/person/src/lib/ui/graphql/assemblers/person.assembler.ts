@@ -1,5 +1,5 @@
-import { PersonEntity } from '@cancerlog/api/data';
-import { PersonObject } from '@cancerlog/api/interfaces';
+import { PersonEntity } from '@feelback-app/api/data';
+import { PersonObject } from '@feelback-app/api/interfaces';
 import { Assembler, ClassTransformerAssembler } from '@nestjs-query/core';
 
 @Assembler(PersonObject, PersonEntity)

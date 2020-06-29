@@ -11,7 +11,7 @@ import { DECORATOR_METADATA } from '../constants/decorator.constants';
 import {
   EC_AUTH_ROLE_BEFORE_JWT_GUARD,
   ExceptionMessageModel,
-} from '@cancerlog/api/errors';
+} from '@feelback-app/api/errors';
 
 @Injectable()
 export class GqlRoleGuard implements CanActivate {

@@ -1,4 +1,4 @@
-import { InstrumentEntity } from '@cancerlog/api/data';
+import { InstrumentEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { InstrumentAssembler } from '../ui/graphql/assemblers/instrument.assembler';

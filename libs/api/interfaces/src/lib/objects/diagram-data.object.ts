@@ -1,4 +1,4 @@
-import { CoreObject } from '@cancerlog/api/core';
+import { CoreObject } from '@feelback-app/api/core';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { DiagramAxisObject } from './diagram-axis.object';
 

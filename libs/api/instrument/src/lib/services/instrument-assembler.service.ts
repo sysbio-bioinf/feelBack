@@ -1,5 +1,5 @@
-import { InstrumentEntity } from '@cancerlog/api/data';
-import { InstrumentObject } from '@cancerlog/api/interfaces';
+import { InstrumentEntity } from '@feelback-app/api/data';
+import { InstrumentObject } from '@feelback-app/api/interfaces';
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
 import { InstrumentAssembler } from '../ui/graphql/assemblers/instrument.assembler';
 import { InstrumentDatabaseService } from './instrument-database.service';

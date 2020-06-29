@@ -1,5 +1,5 @@
-import { IdentityEntity } from '@cancerlog/api/data';
-import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
+import { IdentityEntity } from '@feelback-app/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@feelback-app/api/database';
 import { QueryService } from '@nestjs-query/core';
 import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';

@@ -1,7 +1,7 @@
 import { AssemblerQueryService, QueryService } from '@nestjs-query/core';
-import { DoctorEntity } from '@cancerlog/api/data';
+import { DoctorEntity } from '@feelback-app/api/data';
 import { DoctorAssembler } from '../ui/graphql/assemblers/doctor.assembler';
-import { DoctorObject } from '@cancerlog/api/interfaces';
+import { DoctorObject } from '@feelback-app/api/interfaces';
 import { DoctorDatabaseService } from './doctor-database.service';
 
 @QueryService(DoctorObject)

@@ -2,10 +2,13 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ScreeningService } from '../../../services/screening.service';
 import { CommonService } from '../../../services/common.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Instrument, Screening } from '../../../graphql/generated/feelback.graphql';
+import {
+  Instrument,
+  Screening,
+} from '../../../graphql/generated/feelback.graphql';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import {DateHelper} from "@cancerlog/util/helper";
+import { DateHelper } from '@feelback-app/util/helper';
 
 @Component({
   selector: 'feelback-doctor-instrument',
@@ -40,23 +43,37 @@ export class InstrumentComponent implements OnInit {
     const currentYear = this.today.getFullYear();
     switch (daterange) {
       case 'last-year': {
-        this.startDate = DateHelper.createUtcDate( new Date(currentYear-1, 0, 1));
-        this.endDate = DateHelper.createUtcDate(new Date(currentYear-1, 12, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate(
+          new Date(currentYear - 1, 0, 1),
+        );
+        this.endDate = DateHelper.createUtcDate(
+          new Date(currentYear - 1, 12, 0, 23, 59, 59),
+        );
         break;
       }
       case 'current-year': {
         this.startDate = DateHelper.createUtcDate(new Date(currentYear, 0, 1));
-        this.endDate = DateHelper.createUtcDate(new Date(currentYear, 12, 0, 23, 59, 59));
+        this.endDate = DateHelper.createUtcDate(
+          new Date(currentYear, 12, 0, 23, 59, 59),
+        );
         break;
       }
       case 'current-month': {
-        this.startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 1));
-        this.endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth+1, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate(
+          new Date(currentYear, currentMonth, 1),
+        );
+        this.endDate = DateHelper.createUtcDate(
+          new Date(currentYear, currentMonth + 1, 0, 23, 59, 59),
+        );
         break;
       }
       case 'last-month': {
-        this.startDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth - 1, 1));
-        this.endDate = DateHelper.createUtcDate(new Date(currentYear, currentMonth, 0, 23, 59, 59));
+        this.startDate = DateHelper.createUtcDate(
+          new Date(currentYear, currentMonth - 1, 1),
+        );
+        this.endDate = DateHelper.createUtcDate(
+          new Date(currentYear, currentMonth, 0, 23, 59, 59),
+        );
         break;
       }
       case 'custom': {
@@ -75,7 +92,7 @@ export class InstrumentComponent implements OnInit {
       '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
       this.startDate,
       this.endDate,
-      daterange
+      daterange,
     );
   }
 
@@ -84,5 +101,4 @@ export class InstrumentComponent implements OnInit {
       relativeTo: this.route,
     });
   }
-
 }

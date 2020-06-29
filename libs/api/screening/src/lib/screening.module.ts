@@ -1,7 +1,7 @@
-import { AuthModule } from '@cancerlog/api/auth';
-import { ScreeningEntity } from '@cancerlog/api/data';
-import { InstrumentModule } from '@cancerlog/api/instrument';
-import { PersonModule } from '@cancerlog/api/person';
+import { AuthModule } from '@feelback-app/api/auth';
+import { ScreeningEntity } from '@feelback-app/api/data';
+import { InstrumentModule } from '@feelback-app/api/instrument';
+import { PersonModule } from '@feelback-app/api/person';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DiagramService } from './services/diagram.service';

@@ -1,4 +1,4 @@
-import { OrganizationEntity } from '@cancerlog/api/data';
+import { OrganizationEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { OrganizationAssembler } from '../ui/graphql/assemblers/organization.assembler';

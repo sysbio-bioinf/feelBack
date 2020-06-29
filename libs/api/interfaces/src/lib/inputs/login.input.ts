@@ -1,6 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 
 @InputType({ description: 'Credentials to login' })
 export class LoginInput extends CoreInput {

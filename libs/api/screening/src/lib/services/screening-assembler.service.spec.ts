@@ -1,4 +1,4 @@
-import { ScreeningEntity } from '@cancerlog/api/data';
+import { ScreeningEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { ScreeningAssembler } from '../ui/graphql/assemblers/screening.assembler';

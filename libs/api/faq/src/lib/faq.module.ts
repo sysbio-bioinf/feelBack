@@ -1,11 +1,11 @@
-import { FaqEntity } from '@cancerlog/api/data';
+import { FaqEntity } from '@feelback-app/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FaqAssemblerService } from './services/faq-assembler.service';
 import { FaqDatabaseService } from './services/faq-database.service';
 import { FaqAssembler } from './ui/graphql/assemblers/faq.assembler';
 import { FaqResolver } from './ui/graphql/resolvers/faq.resolver';
-import { AuthModule } from '@cancerlog/api/auth';
+import { AuthModule } from '@feelback-app/api/auth';
 
 @Module({
   imports: [TypeOrmModule.forFeature([FaqEntity])],

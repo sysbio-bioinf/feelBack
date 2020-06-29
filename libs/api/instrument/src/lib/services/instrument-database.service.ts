@@ -1,4 +1,4 @@
-import { InstrumentEntity } from '@cancerlog/api/data';
+import { InstrumentEntity } from '@feelback-app/api/data';
 import { QueryService } from '@nestjs-query/core';
 import { TypeOrmQueryService } from '@nestjs-query/query-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';

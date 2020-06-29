@@ -1,6 +1,6 @@
 import { Command, Console, createSpinner } from 'nestjs-console';
 import { availableSeeders } from '../../../database/seeds/seeders';
-import { Seeder } from '@cancerlog/api/database';
+import { Seeder } from '@feelback-app/api/database';
 
 @Console()
 export class DBSeedCommand {

@@ -1,8 +1,8 @@
 import {
   EC_KEYCLOAK_REQUEST_TOKEN,
   ExceptionMessageModel,
-} from '@cancerlog/api/errors';
-import { LoginInput, TokenObject } from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/errors';
+import { LoginInput, TokenObject } from '@feelback-app/api/interfaces';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Unprotected } from '../../../decorators/unprotected.decorator';

@@ -2,17 +2,17 @@ import {
   InstrumentEntity,
   PersonEntity,
   ScreeningEntity,
-} from '@cancerlog/api/data';
+} from '@feelback-app/api/data';
 import {
   InstrumentAssembler,
   InstrumentAssemblerService,
   InstrumentDatabaseService,
-} from '@cancerlog/api/instrument';
+} from '@feelback-app/api/instrument';
 import {
   PersonAssembler,
   PersonAssemblerService,
   PersonDatabaseService,
-} from '@cancerlog/api/person';
+} from '@feelback-app/api/person';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { DiagramService } from '../../../services/diagram.service';
@@ -21,7 +21,7 @@ import { ScreeningAssemblerService } from '../../../services/screening-assembler
 import { ScreeningDatabaseService } from '../../../services/screening-database.service';
 import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
-import { GuardsModule } from '@cancerlog/api/auth';
+import { GuardsModule } from '@feelback-app/api/auth';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

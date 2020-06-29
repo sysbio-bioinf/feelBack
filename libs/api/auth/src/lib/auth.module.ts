@@ -1,4 +1,4 @@
-import { ConfigModule } from '@cancerlog/api/config';
+import { ConfigModule } from '@feelback-app/api/config';
 import { HttpModule, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { KeycloakService } from './services/keycloak.service';

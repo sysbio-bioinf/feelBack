@@ -1,4 +1,4 @@
-import { JSONObject } from '@cancerlog/api/util';
+import { JSONObject } from '@feelback-app/api/util';
 import { Field, InputType } from '@nestjs/graphql';
 import { IsObject, IsOptional } from 'class-validator';
 import { UpdateDoctorInput } from './update-doctor.input';

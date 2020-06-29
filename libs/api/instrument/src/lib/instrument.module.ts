@@ -1,4 +1,4 @@
-import { InstrumentEntity } from '@cancerlog/api/data';
+import { InstrumentEntity } from '@feelback-app/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InstrumentAssemblerService } from './services/instrument-assembler.service';

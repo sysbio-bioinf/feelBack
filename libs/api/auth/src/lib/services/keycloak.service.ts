@@ -1,11 +1,11 @@
-import { ConfigService } from '@cancerlog/api/config';
+import { ConfigService } from '@feelback-app/api/config';
 import {
   EC_KEYCLOAK_REQUEST_TOKEN,
   EC_KEYCLOAK_RESOLVE_USER,
   ExceptionMessageModel,
-} from '@cancerlog/api/errors';
-import { RolesEnum } from '@cancerlog/api/interfaces';
-import { KeycloakServiceConnection } from '@cancerlog/util/connection';
+} from '@feelback-app/api/errors';
+import { RolesEnum } from '@feelback-app/api/interfaces';
+import { KeycloakServiceConnection } from '@feelback-app/util/connection';
 import {
   HttpService,
   Injectable,

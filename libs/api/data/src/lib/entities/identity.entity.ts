@@ -1,4 +1,4 @@
-import { VersionableEntity } from '@cancerlog/api/core';
+import { VersionableEntity } from '@feelback-app/api/core';
 import { Entity, Column, Index } from 'typeorm';
 
 @Entity({ name: 'identities' })

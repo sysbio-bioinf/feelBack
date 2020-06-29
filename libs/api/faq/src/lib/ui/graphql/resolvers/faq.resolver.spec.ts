@@ -1,5 +1,5 @@
-import { GuardsModule } from '@cancerlog/api/auth';
-import { FaqEntity } from '@cancerlog/api/data';
+import { GuardsModule } from '@feelback-app/api/auth';
+import { FaqEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { FaqAssemblerService } from '../../../services/faq-assembler.service';

@@ -1,5 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { CoreObject } from '@cancerlog/api/core';
+import { CoreObject } from '@feelback-app/api/core';
 
 @ObjectType('AccessToken')
 export class TokenObject extends CoreObject {

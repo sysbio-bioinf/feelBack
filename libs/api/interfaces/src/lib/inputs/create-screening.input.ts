@@ -1,4 +1,4 @@
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 import { Type } from 'class-transformer';
 import {
   IsDate,
@@ -11,7 +11,7 @@ import {
 } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 import { CreateUserAgentInput } from './create-user-agent.input';
-import { JSONObject } from '@cancerlog/api/util';
+import { JSONObject } from '@feelback-app/api/util';
 
 @InputType()
 export class CreateScreeningInput extends CoreInput {

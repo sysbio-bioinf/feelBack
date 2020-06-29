@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 import { IsOptional, IsString, MaxLength, IsUrl } from 'class-validator';
 
 // TODO: Discuss if this class is really needed

@@ -1,9 +1,9 @@
-import { IEnvironment } from '@cancerlog/api/config';
+import { IEnvironment } from '@feelback-app/api/config';
 import {
   feelbackDatabaseConnection,
   identityDatabaseConnection,
-} from '@cancerlog/api/database';
-import { ApiPathHelper } from '@cancerlog/api/util';
+} from '@feelback-app/api/database';
+import { ApiPathHelper } from '@feelback-app/api/util';
 import * as dotenv from 'dotenv';
 import * as env from 'env-var';
 import * as path from 'path';

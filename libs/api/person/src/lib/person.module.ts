@@ -1,5 +1,5 @@
-import { PersonEntity } from '@cancerlog/api/data';
-import { IdentityModule } from '@cancerlog/api/identity';
+import { PersonEntity } from '@feelback-app/api/data';
+import { IdentityModule } from '@feelback-app/api/identity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonAssemblerService } from './services/person-assembler.service';

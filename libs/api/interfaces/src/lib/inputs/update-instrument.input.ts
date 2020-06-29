@@ -1,4 +1,4 @@
-import { JSONObject } from '@cancerlog/api/util';
+import { JSONObject } from '@feelback-app/api/util';
 import {
   IsObject,
   IsOptional,
@@ -9,7 +9,7 @@ import {
   IsUrl,
 } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
-import { CoreInput } from '@cancerlog/api/core';
+import { CoreInput } from '@feelback-app/api/core';
 import { RuleInput } from './rule.input';
 import { Type } from 'class-transformer';
 

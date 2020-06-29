@@ -63,8 +63,8 @@
         ]
       }
     ],
-    "directive-selector": [true, "attribute", "cancerlog", "camelCase"],
-    "component-selector": [true, "element", "cancerlog", "kebab-case"],
+    "directive-selector": [true, "attribute", "feelback-app", "camelCase"],
+    "component-selector": [true, "element", "feelback-app", "kebab-case"],
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,

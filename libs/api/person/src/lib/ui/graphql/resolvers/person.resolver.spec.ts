@@ -1,13 +1,13 @@
-import { IdentityEntity, PersonEntity } from '@cancerlog/api/data';
-import { IDENTITY_DB_CONNECTION_NAME } from '@cancerlog/api/database';
-import { IdentityDatabaseService } from '@cancerlog/api/identity';
+import { IdentityEntity, PersonEntity } from '@feelback-app/api/data';
+import { IDENTITY_DB_CONNECTION_NAME } from '@feelback-app/api/database';
+import { IdentityDatabaseService } from '@feelback-app/api/identity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { PersonAssemblerService } from '../../../services/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person-database.service';
 import { PersonAssembler } from '../assemblers/person.assembler';
 import { PersonResolver } from './person.resolver';
-import { GuardsModule } from '@cancerlog/api/auth';
+import { GuardsModule } from '@feelback-app/api/auth';
 
 const mockRepository = jest.fn(() => ({
   metadata: {

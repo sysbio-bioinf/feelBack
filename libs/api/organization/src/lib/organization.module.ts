@@ -1,4 +1,4 @@
-import { OrganizationEntity } from '@cancerlog/api/data';
+import { OrganizationEntity } from '@feelback-app/api/data';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrganizationAssemblerService } from './services/organization-assembler.service';

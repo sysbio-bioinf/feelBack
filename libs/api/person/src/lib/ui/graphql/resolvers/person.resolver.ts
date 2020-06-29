@@ -1,13 +1,16 @@
-import { Roles, Unprotected } from '@cancerlog/api/auth';
-import { EC_GENERAL_ERROR, ExceptionMessageModel } from '@cancerlog/api/errors';
-import { IdentityDatabaseService } from '@cancerlog/api/identity';
+import { Roles, Unprotected } from '@feelback-app/api/auth';
+import {
+  EC_GENERAL_ERROR,
+  ExceptionMessageModel,
+} from '@feelback-app/api/errors';
+import { IdentityDatabaseService } from '@feelback-app/api/identity';
 import {
   CreateOnePersonInputType,
   CreatePersonInput,
   PersonObject,
   RolesEnum,
   UpdatePersonInput,
-} from '@cancerlog/api/interfaces';
+} from '@feelback-app/api/interfaces';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import {
   ConflictException,

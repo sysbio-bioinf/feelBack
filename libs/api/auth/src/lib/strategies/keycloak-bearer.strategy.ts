@@ -1,7 +1,10 @@
-import { ConfigService } from '@cancerlog/api/config';
+import { ConfigService } from '@feelback-app/api/config';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExceptionMessageModel, EC_GENERAL_ERROR } from '@cancerlog/api/errors';
+import {
+  ExceptionMessageModel,
+  EC_GENERAL_ERROR,
+} from '@feelback-app/api/errors';
 import { User } from '../data/classes/user.class';
 
 const KeycloakBearerStrategy = require('passport-keycloak-bearer');

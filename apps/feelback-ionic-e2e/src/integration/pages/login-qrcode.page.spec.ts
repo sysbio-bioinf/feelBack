@@ -1,4 +1,7 @@
-import { LargeMobileDevice, BrowserLanguageEN } from '@cancerlog/util/testing';
+import {
+  LargeMobileDevice,
+  BrowserLanguageEN,
+} from '@feelback-app/util/testing';
 
 describe('Login with QR Code Page', () => {
   let testingDevice: LargeMobileDevice;

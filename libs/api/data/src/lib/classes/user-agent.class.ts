@@ -1,4 +1,4 @@
-import { CoreClass } from '@cancerlog/api/core';
+import { CoreClass } from '@feelback-app/api/core';
 
 export class UserAgentClass extends CoreClass {
   device?: string;

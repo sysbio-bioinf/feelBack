@@ -1,4 +1,7 @@
-import { BrowserLanguageEN, LargeMobileDevice } from '@cancerlog/util/testing';
+import {
+  BrowserLanguageEN,
+  LargeMobileDevice,
+} from '@feelback-app/util/testing';
 
 describe('Home Page', () => {
   let testingDevice: LargeMobileDevice;
