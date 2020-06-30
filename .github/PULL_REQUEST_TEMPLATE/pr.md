@@ -1,3 +1,10 @@
+---
+name: Pull Request
+about: A regular Pull Request.
+labels: ''
+assignees: ''
+---
+
 # Pull Request
 
 ## Description
