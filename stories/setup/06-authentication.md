@@ -61,7 +61,7 @@ There is already a pre-configured `Realm` available. When creating a new `Realm`
 In order to issue a token, one need to send an `HTTP POST` request to the following URL:
 
 ```
-POST KEYCLOAK_URL/auth/realms/KEYCLOAK_REALM/protocol/openid-connect/token
+POST KEYCLOAK_HOST/auth/realms/KEYCLOAK_REALM/protocol/openid-connect/token
 ```
 
 Within this `POST` request, send the following data as

@@ -6,7 +6,7 @@ This library was generated with [Nx](https://nx.dev).
 
 This is a rather basic `Config` Module for NestJS applications. It offers an `IEnvironment` interface, which specifies respective format of the environment files. Note that the `environment.ts` and `environment.prod.ts` located within the `./apps/api/environments` folder implement this specific interface.
 
-If you want to add more configuration parameters that are required for your application, please specificy them in **this package** and then add them to the respective `environment` files within the api.
+If you want to add more configuration parameters that are required for your application, please specify them in **this package** and then add them to the respective `environment` files within the api.
 
 The `ConfigModule` is described as a `Global` module. This means, in turn, it should only be imported once. This should be done in some kind of `CoreModule` within the api application. The `ConfigModule` itself exposes a `ConfigService` that has access to the underlying `environment` file.
 

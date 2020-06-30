@@ -5,11 +5,6 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
-export interface IEnv {
-  LOG_LEVEL: LogLevel;
-  [k: string]: string;
-}
-
 export interface IEnvironment {
   /**
    * the environment the app is running
@@ -17,44 +12,25 @@ export interface IEnvironment {
   env: {
     name: string;
     production: boolean;
-    meta?: IEnv;
+    logLevel: LogLevel;
+    meta?: object;
   };
 
   auth: {
     keycloak?: {
-      host: {
-        url: string;
+      server: {
+        host: string;
         username: string;
         password: string;
       };
       config: ExpressJwtOptions;
       clients: {
-        realm: string;
-        client: string;
-        scope: string;
-      }[];
-    };
-    jwt?: {
-      /**
-       * the JWT secret
-       */
-      secret: string;
-
-      /**
-       * the APP UUID that is used to sign the tokens
-       */
-      issuer: string;
-
-      /**
-       * the url that is used to generate the token
-       */
-      audience: string;
-
-      /**
-       * Custom options for the JWT module
-       * @see https://github.com/auth0/node-jsonwebtoken#jwtsignpayload-secretorprivatekey-options-callback
-       */
-      options: object;
+        [k: string]: {
+          realm: string;
+          client: string;
+          scope: string;
+        };
+      };
     };
   };
 

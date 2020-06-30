@@ -12,8 +12,8 @@ describe('ConfigService', () => {
           env: {
             name: 'TESTING',
             production: false,
+            logLevel: 'debug',
             meta: {
-              LOG_LEVEL: 'debug',
               foo: 'bar',
             },
           },
@@ -67,7 +67,6 @@ describe('ConfigService', () => {
 
     it('should be able to call methods', () => {
       expect(configService.isProduction()).toBeFalsy();
-      expect(configService.getKeyCloakUriForRealm('foo')).toBeTruthy();
     });
   });
 });

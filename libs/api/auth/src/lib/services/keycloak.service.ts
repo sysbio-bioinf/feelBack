@@ -41,7 +41,7 @@ export class KeycloakService {
   ): Promise<AuthTokenModel> {
     try {
       const keycloakTokenAddress = new KeycloakServiceConnection().getTokenAddress(
-        this.configService.get('auth.keycloak.clients[0].realm'),
+        this.configService.get('auth.keycloak.clients.feelback.realm'),
       );
 
       const tokenResponse = await this.http
@@ -88,7 +88,7 @@ export class KeycloakService {
   async getUserInfoForToken(accessToken: AuthTokenModel) {
     try {
       const keycloakUserInfoAddress = new KeycloakServiceConnection().getUserInfoAddress(
-        this.configService.get('auth.keycloak.clients[0].realm'),
+        this.configService.get('auth.keycloak.clients.feelback.realm'),
       );
 
       const userResponse = await this.http
@@ -123,11 +123,13 @@ export class KeycloakService {
       baseUrl: `${new KeycloakServiceConnection().getAddress()}/auth`,
     });
 
-    const realmName = this.configService.get('auth.keycloak.clients[0].realm');
+    const realmName = this.configService.get(
+      'auth.keycloak.clients.feelback.realm',
+    );
 
     await adminClient.auth({
-      username: this.configService.get('auth.keycloak.host.username'),
-      password: this.configService.get('auth.keycloak.host.password'),
+      username: this.configService.get('auth.keycloak.server.username'),
+      password: this.configService.get('auth.keycloak.server.password'),
       clientId: 'admin-cli',
       grantType: 'password',
     });

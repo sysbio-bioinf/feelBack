@@ -15,8 +15,8 @@ export class AddKeycloakAdminUserSeeder extends Seeder {
     const realmName = environment.auth.keycloak.realm.name;
 
     await adminClient.auth({
-      username: environment.auth.keycloak.username,
-      password: environment.auth.keycloak.password,
+      username: environment.auth.keycloak.server.username,
+      password: environment.auth.keycloak.server.password,
       clientId: 'admin-cli',
       grantType: 'password',
     });

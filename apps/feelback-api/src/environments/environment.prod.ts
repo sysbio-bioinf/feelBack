@@ -14,15 +14,13 @@ export const environment: IEnvironment = {
   env: {
     name: 'production',
     production: true,
-    meta: {
-      LOG_LEVEL: 'error',
-    },
+    logLevel: 'error',
   },
 
   auth: {
     keycloak: {
-      host: {
-        url: env.get('KEYCLOAK_URL').default('localhost').asUrlString(),
+      server: {
+        host: env.get('KEYCLOAK_HOST').default('localhost').asUrlString(),
         username: env.get('KEYCLOAK_USER').default('admin').asString(),
         password: env.get('KEYCLOAK_PASSWORD').default('password').asString(),
       },
@@ -32,16 +30,16 @@ export const environment: IEnvironment = {
         jwksRequestsPerMinute: 5,
         strictSsl: false,
         jwksUri: `${env
-          .get('KEYCLOAK_URL')
+          .get('KEYCLOAK_HOST')
           .asUrlString()}auth/realms/feelback/protocol/openid-connect/certs`,
       },
-      clients: [
-        {
+      clients: {
+        feelback: {
           realm: 'feelback',
           client: 'feelback-api-client',
           scope: 'feelback-api',
         },
-      ],
+      },
     },
   },
 

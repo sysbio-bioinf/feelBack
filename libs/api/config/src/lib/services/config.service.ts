@@ -23,8 +23,4 @@ export class ConfigService {
   isProduction(): boolean {
     return this.config.env.production;
   }
-
-  getKeyCloakUriForRealm(realm: string): string {
-    return `${this.get('auth.keycloak.host.url')}auth/realms/${realm}/`;
-  }
 }

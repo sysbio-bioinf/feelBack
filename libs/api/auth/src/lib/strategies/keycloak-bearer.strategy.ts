@@ -6,6 +6,7 @@ import {
   EC_GENERAL_ERROR,
 } from '@feelback-app/api/errors';
 import { User } from '../data/classes/user.class';
+import { KeycloakServiceConnection } from '@feelback-app/util/connection';
 
 const KeycloakBearerStrategy = require('passport-keycloak-bearer');
 
@@ -16,8 +17,8 @@ export class KeycloakStrategy extends PassportStrategy(
 ) {
   constructor(private configService: ConfigService) {
     super({
-      realm: configService.get('auth.keycloak.clients[0].realm'),
-      url: 'http://keycloak:8080/auth',
+      realm: configService.get('auth.keycloak.clients.feelback.realm'),
+      url: `${new KeycloakServiceConnection().getAddress()}/auth`,
     });
   }
 
