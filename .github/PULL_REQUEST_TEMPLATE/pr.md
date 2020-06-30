@@ -4,6 +4,20 @@
 
 <!-- add a description for your PR -->
 
+### Changes
+
+Here is a list of changes that were introduces by this PR:
+
+- x
+- y
+- z
+
+### Breaking Changes
+
+- [ ] This PR contains **BREAKING CHANGES!**
+
+<!-- describe the breaking changes here -->
+
 ### References Issues
 
 This PR addresses the following issues:
