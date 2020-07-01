@@ -1,3 +1,4 @@
+import { GuardsModule } from '@feelback-app/api/auth';
 import {
   InstrumentEntity,
   PersonEntity,
@@ -13,6 +14,7 @@ import {
   PersonAssemblerService,
   PersonDatabaseService,
 } from '@feelback-app/api/person';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { DiagramService } from '../../../services/diagram.service';
@@ -21,14 +23,6 @@ import { ScreeningAssemblerService } from '../../../services/screening-assembler
 import { ScreeningDatabaseService } from '../../../services/screening-database.service';
 import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
-import { GuardsModule } from '@feelback-app/api/auth';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('ScreeningResolver', () => {
   let resolver: ScreeningResolver;

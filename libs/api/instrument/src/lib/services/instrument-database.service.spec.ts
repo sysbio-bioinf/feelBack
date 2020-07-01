@@ -1,14 +1,8 @@
 import { InstrumentEntity } from '@feelback-app/api/data';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { InstrumentDatabaseService } from './instrument-database.service';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('InstrumentDatabaseService', () => {
   let service: InstrumentDatabaseService;

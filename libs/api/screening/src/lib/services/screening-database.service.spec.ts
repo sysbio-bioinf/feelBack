@@ -1,14 +1,8 @@
 import { ScreeningEntity } from '@feelback-app/api/data';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { ScreeningDatabaseService } from './screening-database.service';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('ScreeningDatabaseService', () => {
   let service: ScreeningDatabaseService;

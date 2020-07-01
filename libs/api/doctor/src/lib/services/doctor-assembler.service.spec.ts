@@ -1,16 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { DoctorAssemblerService } from './doctor-assembler.service';
-import { DoctorAssembler } from '../ui/graphql/assemblers/doctor.assembler';
-import { DoctorDatabaseService } from './doctor-database.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { DoctorEntity } from '@feelback-app/api/data';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
+import { mockRepository } from '@feelback-app/api/testing';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { DoctorAssembler } from '../ui/graphql/assemblers/doctor.assembler';
+import { DoctorAssemblerService } from './doctor-assembler.service';
+import { DoctorDatabaseService } from './doctor-database.service';
 
 describe('DoctorAssemblerService', () => {
   let service: DoctorAssemblerService;

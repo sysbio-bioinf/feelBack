@@ -1,18 +1,12 @@
 import { GuardsModule } from '@feelback-app/api/auth';
 import { FaqEntity } from '@feelback-app/api/data';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { FaqAssemblerService } from '../../../services/faq-assembler.service';
 import { FaqDatabaseService } from '../../../services/faq-database.service';
 import { FaqAssembler } from '../assemblers/faq.assembler';
 import { FaqResolver } from './faq.resolver';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('FaqResolver', () => {
   let resolver: FaqResolver;

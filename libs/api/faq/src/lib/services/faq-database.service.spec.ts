@@ -1,14 +1,8 @@
+import { FaqEntity } from '@feelback-app/api/data';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { FaqEntity } from '@feelback-app/api/data';
 import { FaqDatabaseService } from './faq-database.service';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('FaqDatabaseService', () => {
   let service: FaqDatabaseService;

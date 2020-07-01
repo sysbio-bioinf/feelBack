@@ -1,14 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PersonDatabaseService } from './person-database.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { PersonEntity } from '@feelback-app/api/data';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
+import { mockRepository } from '@feelback-app/api/testing';
+import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { PersonDatabaseService } from './person-database.service';
 
 describe('PersonDatabaseService', () => {
   let service: PersonDatabaseService;

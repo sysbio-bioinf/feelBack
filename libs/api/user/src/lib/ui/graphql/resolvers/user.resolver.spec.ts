@@ -11,13 +11,7 @@ import {
   ConfigService,
   IEnvironment,
 } from '@feelback-app/api/config';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
+import { mockRepository } from '@feelback-app/api/testing';
 
 describe('UserResolver', () => {
   // let resolver: UserResolver;

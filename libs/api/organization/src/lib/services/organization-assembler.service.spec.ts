@@ -1,16 +1,10 @@
 import { OrganizationEntity } from '@feelback-app/api/data';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { OrganizationAssembler } from '../ui/graphql/assemblers/organization.assembler';
 import { OrganizationAssemblerService } from './organization-assembler.service';
 import { OrganizationDatabaseService } from './organization-database.service';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('OrganizationAssemblerService', () => {
   let service: OrganizationAssemblerService;

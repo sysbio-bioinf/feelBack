@@ -3,13 +3,6 @@ import { TestingModule, Test } from '@nestjs/testing';
 import { KeycloakService } from '../../../services/keycloak.service';
 import { ConfigModule, ConfigService } from '@feelback-app/api/config';
 
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
-
 describe('AuthenticationResolver', () => {
   // let resolver: AuthenticationResolver;
 

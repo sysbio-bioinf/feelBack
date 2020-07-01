@@ -1,16 +1,10 @@
 import { PersonEntity } from '@feelback-app/api/data';
+import { mockRepository } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { PersonAssembler } from '../ui/graphql/assemblers/person.assembler';
 import { PersonAssemblerService } from './person-assembler.service';
 import { PersonDatabaseService } from './person-database.service';
-
-const mockRepository = jest.fn(() => ({
-  metadata: {
-    columns: [],
-    relations: [],
-  },
-}));
 
 describe('PersonAssemblerService', () => {
   let service: PersonAssemblerService;
