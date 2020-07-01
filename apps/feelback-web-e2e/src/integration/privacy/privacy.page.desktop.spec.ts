@@ -1,4 +1,4 @@
-import { DesktopDevice } from '@cancerlog/util/testing';
+import { DesktopDevice } from '@feelback-app/util/testing';
 
 const device = new DesktopDevice();
 

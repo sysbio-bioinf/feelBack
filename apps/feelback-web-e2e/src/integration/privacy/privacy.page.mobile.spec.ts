@@ -1,4 +1,7 @@
-import { LargeMobileDevice, SmallMobileDevice } from '@cancerlog/util/testing';
+import {
+  LargeMobileDevice,
+  SmallMobileDevice,
+} from '@feelback-app/util/testing';
 
 const largeDevice = new LargeMobileDevice();
 const smallDevice = new SmallMobileDevice();

@@ -2,7 +2,7 @@ import {
   DesktopDevice,
   LargeMobileDevice,
   SmallMobileDevice,
-} from '@cancerlog/util/testing';
+} from '@feelback-app/util/testing';
 
 const desktopDevice = new DesktopDevice();
 const largeDevice = new LargeMobileDevice();
