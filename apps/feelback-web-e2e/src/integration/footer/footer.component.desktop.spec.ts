@@ -1,5 +1,10 @@
+import { DesktopDevice } from '@cancerlog/util/testing';
+
+const device = new DesktopDevice();
+
 describe('Testing the footer component of the FeelBack-web application', () => {
   beforeEach(() => {
+    cy.viewport(device.width, device.height);
     cy.visit('/');
     cy.scrollTo('bottom');
   });
@@ -29,22 +34,24 @@ describe('Testing the footer component of the FeelBack-web application', () => {
     cy.get('[data-cy=footer-links] a').eq(0).should('have.text', 'Press');
     cy.get('[data-cy=footer-links] a')
       .eq(0)
-      .should('have.attr', 'href')
-      .and('include', '#');
+      .should('have.attr', 'routerLink')
+      .and('include', '');
     cy.get('[data-cy=footer-links] a').eq(1).should('have.text', 'Terms');
     cy.get('[data-cy=footer-links] a')
       .eq(1)
-      .should('have.attr', 'href')
-      .and('include', '#');
+      .should('have.attr', 'routerLink')
+      .and('include', '');
     cy.get('[data-cy=footer-links] a').eq(2).should('have.text', 'Privacy');
     cy.get('[data-cy=footer-links] a')
       .eq(2)
-      .should('have.attr', 'href')
+      .should('have.attr', 'routerLink')
       .and('include', 'privacy');
-    cy.get('[data-cy=footer-links] a').eq(3).should('have.text', 'Imprint');
     cy.get('[data-cy=footer-links] a')
       .eq(3)
-      .should('have.attr', 'href')
+      .should('have.text', 'Legal Notice');
+    cy.get('[data-cy=footer-links] a')
+      .eq(3)
+      .should('have.attr', 'routerLink')
       .and('include', 'imprint');
   });
 });

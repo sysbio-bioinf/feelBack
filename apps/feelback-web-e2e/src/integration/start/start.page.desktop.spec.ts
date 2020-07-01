@@ -1,5 +1,10 @@
+import { DesktopDevice } from '@cancerlog/util/testing';
+
+const device = new DesktopDevice();
+
 describe('Testing the startpage of the FeelBack-web application', () => {
   beforeEach(() => {
+    cy.viewport(device.width, device.height);
     cy.visit('/');
   });
 

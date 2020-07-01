@@ -1,5 +1,10 @@
+import { DesktopDevice } from '@cancerlog/util/testing';
+
+const device = new DesktopDevice();
+
 describe('Testing the header component of the FeelBack-web application.', () => {
   beforeEach(() => {
+    cy.viewport(device.width, device.height);
     cy.visit('/');
   });
 
@@ -79,16 +84,32 @@ describe('Testing the header component of the FeelBack-web application.', () => 
     );
     cy.get('[data-cy=header-navbar-gallery] a').should('have.class', 'active');
     cy.get('[data-cy=header-navbar-download] a').click();
-    cy.get('[data-cy=header-navbar-gallery] a').should(
-      'not.have.class',
-      'active',
-    );
-    cy.get('[data-cy=header-navbar-download] a').should('have.class', 'active');
+    // cy.get('[data-cy=header-navbar-gallery] a').should(
+    //   'not.have.class',
+    //   'active',
+    // );
+    // cy.get('[data-cy=header-navbar-download] a').should('have.class', 'active');
     cy.get('[data-cy=header-navbar-contact] a').click();
     cy.get('[data-cy=header-navbar-download] a').should(
       'not.have.class',
       'active',
     );
     cy.get('[data-cy=header-navbar-contact] a').should('have.class', 'active');
+  });
+
+  it('should navigate back to start page from all other pages', () => {
+    cy.get('[data-cy=FeelBack-title]').should('exist');
+    cy.visit('/privacy');
+    cy.get('[data-cy=FeelBack-title]').should('not.exist');
+    cy.get('[data-cy=header-title]').click();
+    cy.get('[data-cy=FeelBack-title]')
+      .should('have.text', 'FeelBack')
+      .and('be.visible');
+    cy.visit('/imprint');
+    cy.get('[data-cy=FeelBack-title]').should('not.exist');
+    cy.get('[data-cy=header-title]').click();
+    cy.get('[data-cy=FeelBack-title]')
+      .should('have.text', 'FeelBack')
+      .and('be.visible');
   });
 });
