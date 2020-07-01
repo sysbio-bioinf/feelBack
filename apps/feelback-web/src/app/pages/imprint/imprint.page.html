@@ -1,4 +1,7 @@
-<feelback-web-header></feelback-web-header>
+<feelback-web-header
+  [hideMenuItems]="true"
+  data-cy="imprint-navbar"
+></feelback-web-header>
 
 <header class="bg-gradient" id="imprint-header"></header>
 
@@ -6,33 +9,37 @@
   <div class="container">
     <div class="row" data-cy="imprint-row">
       <div class="col-lg-12">
-        <h2>{{ 'app.pages.imprint.title' | translate }}</h2>
+        <h2 data-cy="imprint-title">
+          {{ 'app.pages.imprint.title' | translate }}
+        </h2>
         <hr />
         <br />
-        <h4>{{ 'app.pages.imprint.contact.title' | translate }}:</h4>
+        <h4 data-cy="imprint-publisher-headline">
+          {{ 'app.pages.imprint.contact.title' | translate }}:
+        </h4>
         <br />
-        <p class="mb-2">
+        <p class="mb-2" data-cy="imprint-organization">
           {{ 'app.pages.imprint.contact.organization' | translate }}
         </p>
-        <p class="mb-2">
+        <p class="mb-2" data-cy="imprint-institute">
           {{ 'app.pages.imprint.contact.institute' | translate }}
         </p>
-        <p class="mb-2">
+        <p class="mb-2" data-cy="imprint-address1">
           {{ 'app.pages.imprint.contact.address1' | translate }}
         </p>
-        <p class="mb-2">
+        <p class="mb-2" data-cy="imprint-address2">
           {{ 'app.pages.imprint.contact.address2' | translate }}
         </p>
         <br />
-        <p class="mb-2">
+        <p class="mb-2" data-cy="imprint-phone">
           <span class="fas fa-phone-alt mr-2"></span>{{
           'app.pages.imprint.contact.phone' | translate }}
         </p>
-        <p class="mb-2">
+        <p class="mb-2" data-cy="imprint-fax">
           <span class="fas fa-fax mr-2"></span>{{
           'app.pages.imprint.contact.fax' | translate }}
         </p>
-        <p class="mb-2" data-cy="contact-mail">
+        <p class="mb-2" data-cy="imprint-mail">
           <span class="fas fa-envelope mr-2"></span>
           <a
             class="mr-4"
@@ -46,38 +53,15 @@
   </div>
 </div>
 
-<div
-  class="section-small bg-gradient"
-  id="imprint-splitter"
-  data-cy="imprint-splitter"
-></div>
-
-<div class="client-logos my-5">
-  <div class="container text-center" data-cy="logos-container">
-    <img
-      class="client-logo img-fluid"
-      src="./assets/images/logos/logo-uniklinik-ulm.png"
-      data-cy="uniklinik-logo"
-    />
-    <img
-      class="client-logo img-fluid"
-      src="./assets/images/logos/logo-uni-ulm.svg"
-      data-cy="uni-logo"
-    />
-    <img
-      class="client-logo img-fluid"
-      src="./assets/images/logos/logo-kbs-ulm.jpg"
-      data-cy="kbs-logo"
-    />
-    <img
-      class="client-logo img-fluid"
-      src="./assets/images/logos/logo-bawue.png"
-      data-cy="bawue-logo"
-    />
-    <img
-      class="client-logo img-fluid"
-      src="./assets/images/logos/logo-bawue-digital.png"
-      data-cy="bawue-digital-logo"
-    />
+<div class="section" data-cy="imprint-markdown-section">
+  <div class="container">
+    <markdown
+      [src]="getMarkdownFile('imprint')"
+      data-cy="imprint-markdown-template"
+      >{{getMarkdownFile('imprint')}}</markdown
+    >
   </div>
 </div>
+
+<feelback-web-divider></feelback-web-divider>
+<feelback-web-logo></feelback-web-logo>

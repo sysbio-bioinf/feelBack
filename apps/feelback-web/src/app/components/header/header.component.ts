@@ -25,12 +25,4 @@ export class HeaderComponent implements OnInit {
   switchLanguage(lang: string) {
     this.translateService.use(lang);
   }
-
-  toggleClass() {
-    if (this.menuClass === '') {
-      this.menuClass = 'menu-is-open';
-    } else {
-      this.menuClass = '';
-    }
-  }
 }

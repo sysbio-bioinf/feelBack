@@ -5,8 +5,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { FooterComponent } from '../components/footer/footer.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { DividerComponent } from '../components/divider/divider.component';
+import { LogoComponent } from '../components/logo/logo.component';
+import { RouterModule } from '@angular/router';
 
-const components = [FooterComponent, HeaderComponent];
+const components = [
+  FooterComponent,
+  HeaderComponent,
+  DividerComponent,
+  LogoComponent,
+];
 
 @NgModule({
   declarations: [...components],
@@ -16,6 +24,7 @@ const components = [FooterComponent, HeaderComponent];
     ReactiveFormsModule,
     TranslateModule,
     NgPipesModule,
+    RouterModule,
   ],
   exports: [...components],
 })

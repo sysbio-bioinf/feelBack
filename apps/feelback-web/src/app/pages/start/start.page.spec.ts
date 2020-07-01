@@ -4,6 +4,7 @@ import { StartPage } from './start.page';
 import { FaqService } from '../../services/api/faq.service';
 import { ComponentsModule } from '../../modules/components.module';
 import { TranslateTestingModule } from 'ngx-translate-testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('StartPage', () => {
   let component: StartPage;
@@ -65,6 +66,7 @@ describe('StartPage', () => {
       imports: [
         ComponentsModule,
         TranslateTestingModule.withTranslations('en', {}),
+        RouterTestingModule,
       ],
       providers: [{ provide: FaqService, useValue: faqServiceMock }],
       declarations: [StartPage],
