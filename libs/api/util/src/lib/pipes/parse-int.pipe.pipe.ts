@@ -1,12 +1,9 @@
-import {
-  EC_VALIDATION_FAILED,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { ApiException } from '@feelback-app/api/errors';
 import {
   ArgumentMetadata,
+  HttpStatus,
   Injectable,
   ParseIntPipe as NestParseIntPipe,
-  UnprocessableEntityException,
 } from '@nestjs/common';
 
 @Injectable()
@@ -15,12 +12,13 @@ export class ParseIntPipe extends NestParseIntPipe {
     try {
       return super.transform(value, metadata);
     } catch (error) {
-      throw new UnprocessableEntityException({
-        title: 'Validation Exception',
-        message: 'Validation failed: numeric input excepted',
-        code: EC_VALIDATION_FAILED.code,
-        source: `request.${metadata.type}.${metadata.data}`,
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Validation Exception',
+          message: 'Validation failed: Numeric input excepted.',
+        },
+        HttpStatus.PRECONDITION_FAILED,
+      );
     }
   }
 }

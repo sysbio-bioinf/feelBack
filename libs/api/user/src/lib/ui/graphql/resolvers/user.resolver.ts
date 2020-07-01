@@ -4,10 +4,7 @@ import {
   Roles,
   User,
 } from '@feelback-app/api/auth';
-import {
-  EC_GENERAL_ERROR,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { ApiException } from '@feelback-app/api/errors';
 import {
   OrganizationObject,
   RegisterInput,
@@ -17,7 +14,7 @@ import {
 import { RolesEnum } from '@feelback-app/api/shared';
 import { JSONObject } from '@feelback-app/api/util';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { InternalServerErrorException } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserAssemblerService } from '../../../services/user-assembler.service';
 
@@ -92,11 +89,14 @@ export class UserResolver extends CRUDResolver(UserObject, {
         password: input.password,
       });
     } catch (exception) {
-      throw new InternalServerErrorException({
-        message:
-          'Error when trying to create a new User with KeyCloak. This user already exists.',
-        code: EC_GENERAL_ERROR.code,
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Create Exception',
+          message:
+            'Error when trying to create a new User within KeyCloak. Maybe this user already exists?',
+        },
+        HttpStatus.CONFLICT,
+      );
     }
 
     const doctorEntity = this.service.queryService.createOne({

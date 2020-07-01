@@ -1,8 +1,5 @@
 import { Roles, Unprotected } from '@feelback-app/api/auth';
-import {
-  EC_GENERAL_ERROR,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { ApiException } from '@feelback-app/api/errors';
 import { IdentityDatabaseService } from '@feelback-app/api/identity';
 import {
   CreateOnePersonInputType,
@@ -12,10 +9,7 @@ import {
 } from '@feelback-app/api/interfaces';
 import { RolesEnum } from '@feelback-app/api/shared';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import {
-  ConflictException,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PersonAssemblerService } from '../../../services/person-assembler.service';
 import { PersonDatabaseService } from '../../../services/person-database.service';
@@ -62,11 +56,13 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     });
 
     if (!identity) {
-      throw new InternalServerErrorException({
-        code: EC_GENERAL_ERROR.code,
-        title: 'Unauthorized',
-        message: 'Account not verified',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Conflict',
+          message: 'Account not (yet) verified',
+        },
+        HttpStatus.CONFLICT,
+      );
     }
 
     return this.service.createOne(input.input);
@@ -80,11 +76,13 @@ export class PersonResolver extends CRUDResolver(PersonObject, {
     });
 
     if (personEntity.isActive !== true) {
-      throw new ConflictException({
-        code: EC_GENERAL_ERROR.code,
-        title: 'Conflict',
-        message: 'The requested Person is not active',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Conflict',
+          message: 'This User is not active.',
+        },
+        HttpStatus.CONFLICT,
+      );
     }
 
     return this.service.assembler.convertToDTO(personEntity);

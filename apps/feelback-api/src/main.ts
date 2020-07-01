@@ -1,14 +1,6 @@
-import {
-  EC_VALIDATION_FAILED,
-  ExceptionFilter,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
 import { environment as env } from '@env-feelback-app-api/environment';
-import {
-  Logger,
-  UnprocessableEntityException,
-  ValidationPipe,
-} from '@nestjs/common';
+import { ApiException, ExceptionFilter } from '@feelback-app/api/errors';
+import { HttpStatus, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as compression from 'compression';
@@ -31,13 +23,14 @@ async function bootstrap() {
       skipMissingProperties: false,
       forbidUnknownValues: true,
       exceptionFactory: (errors) =>
-        new UnprocessableEntityException({
-          code: EC_VALIDATION_FAILED.code,
-          title: 'Validation Exception',
-          message: 'Validation failed',
-          error: errors,
-          source: 'ValidationPipe',
-        } as ExceptionMessageModel),
+        new ApiException(
+          {
+            title: 'Validation Exception',
+            message: 'Validation failed',
+            error: errors,
+          },
+          HttpStatus.PRECONDITION_FAILED,
+        ),
     }),
   );
 

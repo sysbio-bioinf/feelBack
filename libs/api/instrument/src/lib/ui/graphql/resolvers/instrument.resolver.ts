@@ -1,9 +1,6 @@
 import { Roles, Unprotected } from '@feelback-app/api/auth';
 import { InstrumentStatesEnum } from '@feelback-app/api/data';
-import {
-  EC_GENERAL_CONFLICT,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { InvalidStateApiException } from '@feelback-app/api/errors';
 import {
   CopyOneInstrumentInputType,
   CreateOneInstrumentInputType,
@@ -16,7 +13,6 @@ import {
 import { RolesEnum } from '@feelback-app/api/shared';
 import { DeepPartial } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
-import { ConflictException } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { InstrumentAssemblerService } from '../../../services/instrument-assembler.service';
 
@@ -70,11 +66,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     const instrument = await this.service.queryService.getById(input.id);
 
     if (instrument.state !== InstrumentStatesEnum.DRAFT) {
-      throw new ConflictException({
-        code: EC_GENERAL_CONFLICT.code,
-        title: 'Conflict',
-        message: 'Invalid Resource State',
-      } as ExceptionMessageModel);
+      throw new InvalidStateApiException();
     }
 
     const updatedInstrument = this.service.updateOne(
@@ -92,11 +84,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     const instrument = await this.service.queryService.getById(input.id);
 
     if (instrument.state !== InstrumentStatesEnum.DRAFT) {
-      throw new ConflictException({
-        code: EC_GENERAL_CONFLICT.code,
-        title: 'Conflict',
-        message: 'Invalid Resource State',
-      } as ExceptionMessageModel);
+      throw new InvalidStateApiException();
     }
 
     const updatedInstrument = this.service.updateOne(instrument.id, {
@@ -114,11 +102,7 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
     const instrument = await this.service.queryService.getById(input.id);
 
     if (instrument.state !== InstrumentStatesEnum.RELEASED) {
-      throw new ConflictException({
-        code: EC_GENERAL_CONFLICT.code,
-        title: 'Conflict',
-        message: 'Invalid Resource State',
-      } as ExceptionMessageModel);
+      throw new InvalidStateApiException();
     }
 
     const updatedInstrument = this.service.updateOne(instrument.id, {

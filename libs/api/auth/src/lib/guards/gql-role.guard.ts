@@ -1,17 +1,14 @@
+import { ApiException } from '@feelback-app/api/errors';
 import {
   CanActivate,
   ExecutionContext,
+  HttpStatus,
   Injectable,
-  InternalServerErrorException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { User } from '../data/classes/user.class';
 import { DECORATOR_METADATA } from '../constants/decorator.constants';
-import {
-  EC_AUTH_ROLE_BEFORE_JWT_GUARD,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { User } from '../data/classes/user.class';
 
 @Injectable()
 export class GqlRoleGuard implements CanActivate {
@@ -46,12 +43,14 @@ export class GqlRoleGuard implements CanActivate {
     const user: User = request.user;
 
     if (!user) {
-      throw new InternalServerErrorException({
-        code: EC_AUTH_ROLE_BEFORE_JWT_GUARD.code,
-        title: 'Authentication Exception',
-        message: EC_AUTH_ROLE_BEFORE_JWT_GUARD.description,
-        source: 'RoleGuard',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Authentication Exception',
+          message:
+            'Cannot resolve a user from the JWT. Did you accidentally call the RoleGuard before the AuthGuard?',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
 
     const hasRole = () =>

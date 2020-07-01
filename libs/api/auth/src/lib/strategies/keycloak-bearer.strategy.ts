@@ -1,12 +1,9 @@
 import { ConfigService } from '@feelback-app/api/config';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import {
-  ExceptionMessageModel,
-  EC_GENERAL_ERROR,
-} from '@feelback-app/api/errors';
-import { User } from '../data/classes/user.class';
+import { ApiException } from '@feelback-app/api/errors';
 import { KeycloakServiceConnection } from '@feelback-app/util/connection';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { User } from '../data/classes/user.class';
 
 const KeycloakBearerStrategy = require('passport-keycloak-bearer');
 
@@ -25,10 +22,13 @@ export class KeycloakStrategy extends PassportStrategy(
   async validate(jwtPayload: any, done: CallableFunction): Promise<any> {
     if (!jwtPayload) {
       return done(
-        new InternalServerErrorException({
-          message: 'Something went wrong... No payload found.',
-          code: EC_GENERAL_ERROR.code,
-        } as ExceptionMessageModel),
+        new ApiException(
+          {
+            title: 'JWT Validation Exception',
+            message: 'Something went wrong. Maybe no payload was submitted?',
+          },
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        ),
       );
     } else if (!jwtPayload.sub) {
       return done(null, false, 'No user id found.');

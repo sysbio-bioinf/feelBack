@@ -1,8 +1,8 @@
 import { Roles, Unprotected } from '@feelback-app/api/auth';
 import { InstrumentStatesEnum, ScreeningEntity } from '@feelback-app/api/data';
 import {
-  EC_GENERAL_NOTFOUND,
-  ExceptionMessageModel,
+  InvalidStateApiException,
+  NotFoundApiException,
 } from '@feelback-app/api/errors';
 import { InstrumentAssemblerService } from '@feelback-app/api/instrument';
 import {
@@ -18,11 +18,10 @@ import {
   UploadScreeningInputType,
   UserAgentObject,
 } from '@feelback-app/api/interfaces';
-import { RolesEnum } from '@feelback-app/api/shared';
 import { PersonAssemblerService } from '@feelback-app/api/person';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { DeepPartial, Query as QA } from '@nestjs-query/core';
 import { ConnectionType, CRUDResolver } from '@nestjs-query/query-graphql';
-import { ConflictException, NotFoundException } from '@nestjs/common';
 import {
   Args,
   Mutation,
@@ -94,11 +93,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     );
 
     if (instrument.state !== InstrumentStatesEnum.RELEASED) {
-      throw new ConflictException({
-        code: EC_GENERAL_NOTFOUND.code,
-        title: 'Conflict',
-        message: 'Invalid Resource State',
-      } as ExceptionMessageModel);
+      throw new InvalidStateApiException();
     }
 
     const screening = await this.service.createOne(input.input);
@@ -215,11 +210,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
     );
 
     if (!instrument) {
-      throw new NotFoundException({
-        code: EC_GENERAL_NOTFOUND.code,
-        title: 'Not Found',
-        message: 'Instrument not found',
-      } as ExceptionMessageModel);
+      throw new NotFoundApiException();
     }
 
     const screeningEntity = await this.service.queryService.getById(

@@ -1,16 +1,8 @@
 import { ConfigService } from '@feelback-app/api/config';
-import {
-  EC_KEYCLOAK_REQUEST_TOKEN,
-  EC_KEYCLOAK_RESOLVE_USER,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { ApiException } from '@feelback-app/api/errors';
 import { RolesEnum } from '@feelback-app/api/shared';
 import { KeycloakServiceConnection } from '@feelback-app/util/connection';
-import {
-  HttpService,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { HttpService, HttpStatus, Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import KeycloakAdminClient from 'keycloak-admin';
 import * as qs from 'qs';
@@ -69,14 +61,14 @@ export class KeycloakService {
 
       return token;
     } catch (error) {
-      throw new InternalServerErrorException({
-        code: EC_KEYCLOAK_REQUEST_TOKEN.code,
-        title: 'Keycloak Exception',
-        message:
-          'Error when trying to request an access token from the Keycloak Server',
-        error: error,
-        source: 'AuthService',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Keycloak Exception',
+          message: 'Cannot request a token from the KeyCloak Server.',
+          error: error,
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -104,13 +96,15 @@ export class KeycloakService {
 
       return keycloakUserInfo;
     } catch (error) {
-      throw new InternalServerErrorException({
-        code: EC_KEYCLOAK_RESOLVE_USER.code,
-        message: 'Error when trying to resolve the user from Keycloak',
-        title: 'Keycloak Exception',
-        error: error,
-        source: 'AuthService',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'KeyCloak Exception',
+          message: 'Error when trying to resolve the User from KeyCloak',
+          error: error,
+          source: 'AuthService',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -135,10 +129,13 @@ export class KeycloakService {
     });
 
     if (!adminClient) {
-      throw new InternalServerErrorException({
-        code: EC_KEYCLOAK_REQUEST_TOKEN.code,
-        message: 'Cannot connect to Keycloak',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'Connection Error',
+          message: 'Cannot connect to KeyCloak',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
 
     const keycloakId = await adminClient.users.create({

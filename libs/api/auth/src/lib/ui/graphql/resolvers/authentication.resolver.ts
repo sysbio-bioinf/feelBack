@@ -1,9 +1,6 @@
-import {
-  EC_KEYCLOAK_REQUEST_TOKEN,
-  ExceptionMessageModel,
-} from '@feelback-app/api/errors';
+import { ApiException } from '@feelback-app/api/errors';
 import { LoginInput, TokenObject } from '@feelback-app/api/interfaces';
-import { InternalServerErrorException } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Unprotected } from '../../../decorators/unprotected.decorator';
 import { KeycloakService } from '../../../services/keycloak.service';
@@ -24,11 +21,13 @@ export class AuthenticationResolver {
     });
 
     if (!token) {
-      throw new InternalServerErrorException({
-        code: EC_KEYCLOAK_REQUEST_TOKEN.code,
-        title: 'JWT Token Exception',
-        message: 'Could not request a Token from the Keycloak Server',
-      } as ExceptionMessageModel);
+      throw new ApiException(
+        {
+          title: 'JWT Exception',
+          message: 'Could not request a Token from the KeyCloak Server',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
 
     const accessToken: TokenObject = {
