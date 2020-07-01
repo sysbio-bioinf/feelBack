@@ -42,7 +42,9 @@ $(function () {
     $(this).parents('.nav-menu').addClass('menu-is-open');
   });
   siteNav.on('hide.bs.collapse', function (e) {
-    $(this).parents('.nav-menu').removeClass('menu-is-open');
+    setTimeout(() => {
+      $(this).parents('.nav-menu').removeClass('menu-is-open');
+    }, 300);
   });
 
   /*-----------------------------------
