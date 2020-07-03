@@ -34,6 +34,10 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: '**',
+    redirectTo: 'start',
+  },
 ];
 
 @NgModule({
