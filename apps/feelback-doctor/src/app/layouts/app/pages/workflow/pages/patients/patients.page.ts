@@ -14,6 +14,6 @@ export class PatientsPage implements OnInit {
   public patients$: Observable<Patient[]>;
 
   ngOnInit(): void {
-    this.patients$ = this.patientService.getPatients();
+    this.patients$ = this.patientService.getPatientsFromServer();
   }
 }

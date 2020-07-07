@@ -1,0 +1,23 @@
+query getPatients{
+  myself {
+    id
+    email
+    organizations {
+      edges {
+        node {
+          id
+          name
+          members {
+            edges {
+              node {
+                id
+                firstname
+                lastname
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

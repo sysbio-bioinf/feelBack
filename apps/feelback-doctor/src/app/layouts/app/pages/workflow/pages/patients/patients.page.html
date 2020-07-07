@@ -1,5 +1,7 @@
 <div *ngIf="(patients$ | async) as patients; else loading">
-  
+
+  <pre>{{patients | json}}</pre>
+
   <div *ngIf="patients.length > 0">
     <feelback-doctor-patient-filter></feelback-doctor-patient-filter>
     <feelback-doctor-patient-list

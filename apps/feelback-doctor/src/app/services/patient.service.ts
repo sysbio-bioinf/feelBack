@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Patient } from '../models/patient.model';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
+import {
+  GetPatientsGQL,
+} from '../graphql/generated/feelback.graphql';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientService {
-  constructor() {}
+  constructor(private patientService: GetPatientsGQL,) {}
 
   private patients = [
     {
@@ -103,5 +106,13 @@ export class PatientService {
       }
     }
     return false;
+  }
+
+  public getPatientsFromServer(): Observable<any>{
+    return this.patientService.fetch().pipe(
+      map((data) => {
+        return data.data.myself;
+      }),
+    );
   }
 }
