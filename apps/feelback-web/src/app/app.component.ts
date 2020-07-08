@@ -12,4 +12,8 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  onActivate(event: any) {
+    window.scroll(0, 0);
+  }
 }
