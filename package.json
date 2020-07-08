@@ -133,6 +133,7 @@
     "nest-keycloak-connect": "1.2.1",
     "nestjs-console": "3.0.6",
     "ngx-markdown": "9.1.1",
+    "ngx-owl-carousel-o": "^3.0.1",
     "ngx-pipes": "2.7.5",
     "nouislider": "14.6.0",
     "passport": "0.4.1",

@@ -203,44 +203,7 @@
       <h3>What our Customers say</h3>
     </div>
 
-    <div class="testimonials owl-carousel" data-cy="testimonials-carousel">
-      <div class="testimonials-single" data-cy="testimonials-review-one">
-        <img src="./assets/images/client.png" alt="client" class="client-img" />
-        <blockquote class="blockquote">
-          Review 1: <br />
-          Uniquely streamline highly efficient scenarios and 24/7 initiatives.
-          Conveniently embrace multifunctional ideas through proactive customer
-          service. Distinctively conceptualize 2.0 intellectual capital via
-          user-centric partnerships.
-        </blockquote>
-        <h5 class="mt-4 mb-2">Crystal Gordon</h5>
-        <p class="text-primary">United States</p>
-      </div>
-      <div class="testimonials-single" data-cy="testimonials-review-two">
-        <img src="./assets/images/client.png" alt="client" class="client-img" />
-        <blockquote class="blockquote">
-          Review 2: <br />
-          Uniquely streamline highly efficient scenarios and 24/7 initiatives.
-          Conveniently embrace multifunctional ideas through proactive customer
-          service. Distinctively conceptualize 2.0 intellectual capital via
-          user-centric partnerships.
-        </blockquote>
-        <h5 class="mt-4 mb-2">Monika Musterfrau</h5>
-        <p class="text-primary">Germany</p>
-      </div>
-      <div class="testimonials-single" data-cy="testimonials-review-three">
-        <img src="./assets/images/client.png" alt="client" class="client-img" />
-        <blockquote class="blockquote">
-          Review 3: <br />
-          Uniquely streamline highly efficient scenarios and 24/7 initiatives.
-          Conveniently embrace multifunctional ideas through proactive customer
-          service. Distinctively conceptualize 2.0 intellectual capital via
-          user-centric partnerships.
-        </blockquote>
-        <h5 class="mt-4 mb-2">Alice Bob</h5>
-        <p class="text-primary">United States</p>
-      </div>
-    </div>
+    <feelback-web-carousel [select]="testimonialsOwl"></feelback-web-carousel>
   </div>
 </div>
 <!-- // end .section -->
@@ -252,15 +215,7 @@
       <h3>{{'app.pages.start.gallery.headline' | translate }}</h3>
     </div>
 
-    <div
-      class="img-gallery owl-carousel owl-theme"
-      data-cy="gallery-owl-carousel"
-    >
-      <img src="./assets/images/screens/screen-01.png" alt="image" />
-      <img src="./assets/images/screens/screen-02.png" alt="image" />
-      <img src="./assets/images/screens/screen-03.png" alt="image" />
-      <img src="./assets/images/screens/screen-04.png" alt="image" />
-    </div>
+    <feelback-web-carousel [select]="galleryOwl"></feelback-web-carousel>
   </div>
 </div>
 <!-- // end .section -->

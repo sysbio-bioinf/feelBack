@@ -8,12 +8,15 @@ import { HeaderComponent } from '../components/header/header.component';
 import { DividerComponent } from '../components/divider/divider.component';
 import { LogoComponent } from '../components/logo/logo.component';
 import { RouterModule } from '@angular/router';
+import { CarouselComponent } from '../components/carousel/carousel.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const components = [
   FooterComponent,
   HeaderComponent,
   DividerComponent,
   LogoComponent,
+  CarouselComponent,
 ];
 
 @NgModule({
@@ -25,6 +28,7 @@ const components = [
     TranslateModule,
     NgPipesModule,
     RouterModule,
+    CarouselModule,
   ],
   exports: [...components],
 })

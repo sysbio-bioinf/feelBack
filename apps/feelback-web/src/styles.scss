@@ -11,3 +11,6 @@ body {
 
 @import './theme/variables.scss';
 @import './theme/template.scss';
+
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';

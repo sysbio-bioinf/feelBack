@@ -1,0 +1,28 @@
+<owl-carousel-o [options]="customOptions">
+  <ng-container *ngIf="select === 'testimonials'">
+    <ng-container *ngFor="let slide of testimonialsSlidesStore">
+      <ng-template carouselSlide [id]="slide.id">
+        <div class="testimonials-single">
+          <img
+            [src]="slide.src"
+            [alt]="slide.alt"
+            [title]="slide.title"
+            class="client-img"
+          />
+          <blockquote class="blockquote">
+            {{ slide.review }}
+          </blockquote>
+          <h5 class="mt-4 mb-2">{{ slide.name }}</h5>
+          <p class="text-primary">{{ slide.location }}</p>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="select === 'gallery'">
+    <ng-container *ngFor="let slide of gallerySlidesStore">
+      <ng-template carouselSlide [id]="slide.id">
+        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</owl-carousel-o>

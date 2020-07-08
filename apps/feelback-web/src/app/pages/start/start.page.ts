@@ -16,6 +16,9 @@ export class StartPage implements OnInit {
   highlights = ['a', 'b', 'c', 'd', 'e', 'f'];
   highlightHelper = [0, 1, 2];
 
+  galleryOwl = 'gallery';
+  testimonialsOwl = 'testimonials';
+
   constructor(readonly faqService: FaqService) {}
 
   ngOnInit(): void {
