@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PatientService } from '../../../../../../services/patient.service';
-import { Patient } from '../../../../../../models/patient.model';
+import { Organization } from '../../../../../../graphql/generated/feelback.graphql';
 
 @Component({
   selector: 'feelback-doctor-patients-page',
@@ -11,9 +11,9 @@ import { Patient } from '../../../../../../models/patient.model';
 export class PatientsPage implements OnInit {
   constructor(private patientService: PatientService) {}
 
-  public patients$: Observable<Patient[]>;
+  public organizations$: Observable<Organization[]>;
 
   ngOnInit(): void {
-    this.patients$ = this.patientService.getPatientsFromServer();
+    this.organizations$ = this.patientService.getOrganizations();
   }
 }

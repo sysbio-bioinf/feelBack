@@ -1,0 +1,9 @@
+query getPerson($id: ID!) {
+  person(id: $id) {
+    id
+    createdAt
+    updatedAt
+    version
+    pseudonym
+  }
+}

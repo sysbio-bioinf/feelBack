@@ -1,4 +1,4 @@
-query getPatients{
+query getPatients {
   myself {
     id
     email
@@ -7,12 +7,11 @@ query getPatients{
         node {
           id
           name
-          members {
+          persons {
             edges {
               node {
                 id
-                firstname
-                lastname
+                pseudonym
               }
             }
           }

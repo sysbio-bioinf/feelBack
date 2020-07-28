@@ -29,14 +29,14 @@
         (click)="selectPatient(patient)"
       ></tr>
 
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="pseudonym">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           <mat-icon class="header-icon">{{
             commonService.icons.patient
           }}</mat-icon>
-          Patient
+          Pseudonym
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.pseudonym }}</td>
       </ng-container>
 
       <ng-container matColumnDef="organization">
@@ -51,7 +51,7 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="consultation">
+      <!-- <ng-container matColumnDef="consultation">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           <mat-icon class="header-icon">{{
             commonService.icons.consultation
@@ -103,7 +103,7 @@
           >Screenings
         </th>
         <td mat-cell *matCellDef="let element">{{ element.screenings }}</td>
-      </ng-container>
+      </ng-container> -->
     </table>
   </mat-card-content>
 </mat-card>

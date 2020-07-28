@@ -37,11 +37,10 @@ export class ResultPage implements OnInit {
       this.instrument$ = this.instrumentService.getInstrumentById(
         params.get('instrument'),
       );
-      // TODO replace hard coded IDs
       this.screening$ = this.screeningService
         .getScreening(
-          '2b3f4524-773d-4a2a-a576-ace6cfc4d7f3',
-          '53f2a7c3-9c37-4a52-9194-8a3186af6f57',
+          params.get('patient'),
+          params.get('instrument'),
           params.get('screening'),
         )
         .pipe(
