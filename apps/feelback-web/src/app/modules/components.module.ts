@@ -10,6 +10,7 @@ import { LogoComponent } from '../components/logo/logo.component';
 import { RouterModule } from '@angular/router';
 import { CarouselComponent } from '../components/carousel/carousel.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MatMenuModule } from '@angular/material/menu';
 
 const components = [
   FooterComponent,
@@ -29,6 +30,7 @@ const components = [
     NgPipesModule,
     RouterModule,
     CarouselModule,
+    MatMenuModule,
   ],
   exports: [...components],
 })

@@ -1,6 +1,6 @@
-<feelback-web-header></feelback-web-header>
+<feelback-web-header [activeNavItem]="currentActive"></feelback-web-header>
 
-<header class="bg-gradient" id="home">
+<header #home class="bg-gradient" id="home">
   <div class="container mt-5">
     <h1 data-cy="FeelBack-title">{{'app.pages.start.title' | translate}}</h1>
     <p class="tagline" data-cy="FeelBack-description">
@@ -82,7 +82,12 @@
 </div>
 <!-- // end .section -->
 
-<div class="section light-bg" id="features" data-cy="features-section">
+<div
+  #features
+  class="section light-bg"
+  id="features"
+  data-cy="features-section"
+>
   <div class="container">
     <div class="section-title" data-cy="features-title">
       <small>{{ 'app.pages.start.features.title' | translate }}</small>
@@ -94,24 +99,27 @@
       role="tablist"
       data-cy="features-nav"
     >
-      <li class="nav-item" *ngFor="let feature of this.features; let i = index">
-        <a
+      <li
+        class="nav-item"
+        *ngFor="let feature of this.featuresArray; let i = index"
+      >
+        <span
           class="nav-link"
           data-toggle="tab"
-          href="#feature-{{ feature.id }}"
-          [ngClass]="{'active': i === 0}"
+          [ngClass]="{'active': i === selectedFeature}"
           [attr.data-cy]="'feature-link-' + feature.id"
+          (click)="selectFeature(i)"
         >
           {{ feature.title | translate }}
-        </a>
+        </span>
       </li>
     </ul>
 
     <div class="tab-content" data-cy="feature-tab-content">
       <div
-        *ngFor="let feature of this.features; let i = index"
+        *ngFor="let feature of this.featuresArray; let i = index"
         class="tab-pane fade"
-        [ngClass]="{'show active': i === 0}"
+        [ngClass]="{'show active': i === selectedFeature}"
         id="feature-{{ feature.id }}"
         [attr.data-cy]="'feature-card-' + feature.id"
       >
@@ -148,7 +156,12 @@
 </div>
 <!-- // end .section -->
 
-<div class="section light-bg" id="get-started" data-cy="get-started-section">
+<div
+  #getStarted
+  class="section light-bg"
+  id="get-started"
+  data-cy="get-started-section"
+>
   <div class="container">
     <div class="row">
       <div class="col-md-8 d-flex align-items-center">
@@ -208,7 +221,7 @@
 </div>
 <!-- // end .section -->
 
-<div class="section light-bg" id="gallery" data-cy="gallery-section">
+<div #gallery class="section light-bg" id="gallery" data-cy="gallery-section">
   <div class="container">
     <div class="section-title" data-cy="gallery-title">
       <small>{{'app.pages.start.gallery.title' | translate}}</small>
@@ -244,7 +257,12 @@
 </div>
 <!-- // end .section -->
 
-<div class="section bg-gradient" id="download" data-cy="download-section">
+<div
+  #download
+  class="section bg-gradient"
+  id="download"
+  data-cy="download-section"
+>
   <div class="container">
     <div class="call-to-action" data-cy="download-title">
       <div class="box-icon centered">
@@ -276,7 +294,7 @@
 </div>
 <!-- // end .section -->
 
-<div class="light-bg py-5" id="contact" data-cy="contact-section">
+<div #contact class="light-bg py-5" id="contact" data-cy="contact-section">
   <div class="container">
     <div class="row">
       <div

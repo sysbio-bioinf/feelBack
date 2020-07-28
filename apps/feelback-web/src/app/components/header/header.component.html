@@ -6,29 +6,40 @@
           class="navbar navbar-dark navbar-expand-lg"
           data-cy="header-navbar"
         >
-          <a class="navbar-brand" routerLink="" data-cy="header-title">
+          <a
+            class="navbar-brand"
+            routerLink=""
+            data-cy="header-title"
+            (click)="scrollTop()"
+          >
             {{ 'app.nav.title' | translate }}
           </a>
           <button
+            *ngIf="smallScreen"
             class="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbar"
-            aria-controls="navbar"
-            aria-expanded="false"
-            aria-label="Toggle Navigation"
             data-cy="header-navbar-toggler"
+            (click)="toggleMenu()"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbar">
+          <div
+            *ngIf="!smallScreen || menuOpen"
+            class="navbar-collapse"
+            id="navbar"
+          >
             <ul class="navbar-nav ml-auto" data-cy="header-navbar-nav">
               <li
                 *ngIf="!hideMenuItems"
                 class="nav-item"
                 data-cy="header-navbar-home"
+                (click)="toggleMenu()"
               >
-                <a class="nav-link" href="#home">
+                <a
+                  class="nav-link"
+                  href="#home"
+                  [ngClass]="{ active: currentActive === 'home' }"
+                >
                   {{ 'app.nav.home' | translate }}
                   <span class="sr-only">(current)</span>
                 </a>
@@ -37,35 +48,52 @@
                 *ngIf="!hideMenuItems"
                 class="nav-item"
                 data-cy="header-navbar-features"
+                (click)="toggleMenu()"
               >
-                <a class="nav-link" href="#features">{{
-                  'app.nav.features' | translate
-                }}</a>
+                <a
+                  class="nav-link"
+                  href="#features"
+                  [ngClass]="{ active: currentActive === 'features' }"
+                  >{{ 'app.nav.features' | translate }}</a
+                >
               </li>
               <li
                 *ngIf="!hideMenuItems"
                 class="nav-item"
                 data-cy="header-navbar-get-started"
+                (click)="toggleMenu()"
               >
-                <a class="nav-link" href="#get-started">{{
-                  'app.nav.get-started' | translate
-                }}</a>
+                <a
+                  class="nav-link"
+                  href="#get-started"
+                  [ngClass]="{ active: currentActive === 'getStarted' }"
+                  >{{ 'app.nav.get-started' | translate }}</a
+                >
               </li>
               <li
                 *ngIf="!hideMenuItems"
                 class="nav-item"
                 data-cy="header-navbar-gallery"
+                (click)="toggleMenu()"
               >
-                <a class="nav-link" href="#gallery">{{
-                  'app.nav.gallery' | translate
-                }}</a>
+                <a
+                  class="nav-link"
+                  href="#gallery"
+                  [ngClass]="{ active: currentActive === 'gallery' }"
+                  >{{ 'app.nav.gallery' | translate }}</a
+                >
               </li>
               <li
                 *ngIf="!hideMenuItems"
                 class="nav-item"
                 data-cy="header-navbar-download"
+                (click)="toggleMenu()"
               >
-                <a href="#download" class="nav-link">
+                <a
+                  href="#download"
+                  class="nav-link"
+                  [ngClass]="{ active: currentActive === 'download' }"
+                >
                   {{ 'app.nav.download' | translate }}
                 </a>
               </li>
@@ -73,10 +101,14 @@
                 *ngIf="!hideMenuItems"
                 class="nav-item"
                 data-cy="header-navbar-contact"
+                (click)="toggleMenu()"
               >
-                <a class="nav-link" href="#contact">{{
-                  'app.nav.contact' | translate
-                }}</a>
+                <a
+                  class="nav-link"
+                  href="#contact"
+                  [ngClass]="{ active: currentActive === 'contact' }"
+                  >{{ 'app.nav.contact' | translate }}</a
+                >
               </li>
               <li class="nav-item" data-cy="header-navbar-language">
                 <div class="dropdown">
@@ -84,30 +116,27 @@
                     class="btn btn-outline-light dropdown-toggle"
                     type="button"
                     id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    mat-button
+                    [matMenuTriggerFor]="menu"
                     data-cy="header-navbar-language-button"
                   >
                     <i class="fas fa-language fa-2x"></i>
                   </button>
-                  <div
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
+                  <mat-menu
+                    #menu="matMenu"
+                    yPosition="above"
                     data-cy="header-navbar-dropdown-menu"
                   >
-                    <ng-container
+                    <a
                       *ngFor="let option of languageDropdownSelection"
+                      mat-menu-item
+                      id="{{ option.short }}DropdownSelect"
+                      class="dropdown-item"
+                      (click)="this.switchLanguage(option.short)"
                     >
-                      <a
-                        id="{{ option.short }}DropdownSelect"
-                        class="dropdown-item"
-                        (click)="this.switchLanguage(option.short)"
-                      >
-                        {{ option.full }}</a
-                      >
-                    </ng-container>
-                  </div>
+                      {{ option.full }}
+                    </a>
+                  </mat-menu>
                 </div>
               </li>
             </ul>

@@ -9,6 +9,10 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+.cdk-overlay-container {
+  z-index: 9999;
+}
+
 @import './theme/variables.scss';
 @import './theme/template.scss';
 

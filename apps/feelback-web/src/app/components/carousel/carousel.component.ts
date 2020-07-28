@@ -11,11 +11,13 @@ export class CarouselComponent implements OnInit {
 
   customOptions: OwlOptions = {
     loop: true,
+    lazyLoad: true,
     autoplay: true,
     autoplayTimeout: 3000,
     autoplaySpeed: 1000,
     autoplayHoverPause: true,
     margin: 30,
+    center: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -30,7 +32,7 @@ export class CarouselComponent implements OnInit {
         items: 1,
       },
       400: {
-        items: 1,
+        items: 2,
       },
       740: {
         items: 2,
@@ -78,7 +80,7 @@ export class CarouselComponent implements OnInit {
       name: 'Crystal Gordon',
       location: 'United States',
       review:
-        'Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
+        'Review 1: Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
     },
     {
       id: 1,
@@ -88,7 +90,7 @@ export class CarouselComponent implements OnInit {
       name: 'Monika Musterfrau',
       location: 'Germany',
       review:
-        'Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
+        'Review 2: Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
     },
     {
       id: 2,
@@ -98,7 +100,7 @@ export class CarouselComponent implements OnInit {
       name: 'Alice Bob',
       location: 'United States',
       review:
-        'Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
+        'Review 3: Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
     },
   ];
 
@@ -108,15 +110,6 @@ export class CarouselComponent implements OnInit {
     if (this.select === 'testimonials') {
       this.customOptions.responsive = {
         0: {
-          items: 1,
-        },
-        400: {
-          items: 1,
-        },
-        740: {
-          items: 1,
-        },
-        940: {
           items: 1,
         },
       };
