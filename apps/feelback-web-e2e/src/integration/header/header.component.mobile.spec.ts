@@ -35,14 +35,11 @@ for (const device of deviceList) {
           cy.get('[data-cy=header-title]').should('be.visible');
           cy.get('[data-cy=header-nav-menu]').should('be.visible');
           cy.get('[data-cy=header-navbar]').should('be.visible');
-          cy.get('[data-cy=header-navbar-nav]').should('not.be.visible');
-          cy.get('[data-cy=header-navbar-nav]')
-            .children()
-            .should('have.length', 7);
+          cy.get('[data-cy=header-navbar-nav]').should('not.exist');
           cy.get('[data-cy=header-navbar-toggler]').should('be.visible');
         });
 
-        it('should contain two languages', () => {
+        it("should contain 'English' and 'Deutsch'", () => {
           cy.get('[data-cy=header-navbar-dropdown-menu]').should(
             'not.be.visible',
           );
@@ -51,9 +48,6 @@ for (const device of deviceList) {
           cy.get('[data-cy=header-navbar-language-button]').should(
             'not.be.visible',
           );
-          cy.get('[data-cy=header-navbar-dropdown-menu]')
-            .children()
-            .should('have.length', 2);
           cy.get('[data-cy=header-navbar-toggler]').click();
           cy.wait(300);
           cy.get('[data-cy=header-navbar-language-button]').should(
@@ -62,7 +56,9 @@ for (const device of deviceList) {
           cy.get('[data-cy=header-navbar-language-button]').click();
           cy.get('#enDropdownSelect').contains('English').and('be.visible');
           cy.get('#deDropdownSelect').contains('Deutsch').and('be.visible');
-          cy.get('[data-cy=header-navbar-language-button]').click();
+          cy.get('[data-cy=header-navbar-language-button]').click({
+            force: true,
+          });
           cy.get('#deDropdownSelect').should('not.be.visible');
         });
 
@@ -154,17 +150,6 @@ for (const device of deviceList) {
             'active',
           );
           cy.get('[data-cy=header-navbar-contact] a').click();
-          cy.wait(300);
-          cy.get('[data-cy=header-navbar-toggler]').click();
-          cy.wait(300);
-          cy.get('[data-cy=header-navbar-download] a').should(
-            'not.have.class',
-            'active',
-          );
-          cy.get('[data-cy=header-navbar-contact] a').should(
-            'have.class',
-            'active',
-          );
         });
 
         it('should navigate back to start page from all other pages', () => {

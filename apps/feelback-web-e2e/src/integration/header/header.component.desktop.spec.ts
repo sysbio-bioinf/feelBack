@@ -22,13 +22,10 @@ describe('Testing the header component of the FeelBack-web application.', () => 
   it('should contain two languages', () => {
     cy.get('#deDropdownSelect').should('not.be.visible');
     cy.get('#enDropdownSelect').should('not.be.visible');
-    cy.get('[data-cy=header-navbar-dropdown-menu]')
-      .children()
-      .should('have.length', 2);
     cy.get('[data-cy=header-navbar-language-button]').click();
     cy.get('#enDropdownSelect').contains('English').and('be.visible');
     cy.get('#deDropdownSelect').contains('Deutsch').and('be.visible');
-    cy.get('[data-cy=header-navbar-language-button]').click();
+    cy.get('[data-cy=header-navbar-language-button]').click({ force: true });
     cy.get('#deDropdownSelect').should('not.be.visible');
   });
 
@@ -77,24 +74,28 @@ describe('Testing the header component of the FeelBack-web application.', () => 
     cy.get('[data-cy=header-navbar-features] a').click();
     cy.get('[data-cy=header-navbar-home] a').should('not.have.class', 'active');
     cy.get('[data-cy=header-navbar-features] a').should('have.class', 'active');
-    cy.get('[data-cy=header-navbar-gallery] a').click();
+    cy.get('[data-cy=header-navbar-get-started] a').click();
     cy.get('[data-cy=header-navbar-features] a').should(
+      'not.have.class',
+      'active',
+    );
+    cy.get('[data-cy=header-navbar-get-started] a').should(
+      'have.class',
+      'active',
+    );
+    cy.get('[data-cy=header-navbar-gallery] a').click();
+    cy.get('[data-cy=header-navbar-get-started] a').should(
       'not.have.class',
       'active',
     );
     cy.get('[data-cy=header-navbar-gallery] a').should('have.class', 'active');
     cy.get('[data-cy=header-navbar-download] a').click();
-    // cy.get('[data-cy=header-navbar-gallery] a').should(
-    //   'not.have.class',
-    //   'active',
-    // );
-    // cy.get('[data-cy=header-navbar-download] a').should('have.class', 'active');
-    cy.get('[data-cy=header-navbar-contact] a').click();
-    cy.get('[data-cy=header-navbar-download] a').should(
+    cy.get('[data-cy=header-navbar-gallery] a').should(
       'not.have.class',
       'active',
     );
-    cy.get('[data-cy=header-navbar-contact] a').should('have.class', 'active');
+    cy.get('[data-cy=header-navbar-download] a').should('have.class', 'active');
+    cy.get('[data-cy=header-navbar-contact] a').click();
   });
 
   it('should navigate back to start page from all other pages', () => {

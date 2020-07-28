@@ -54,7 +54,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     );
     cy.get('[data-cy=highlights-title] h3').should(
       'have.text',
-      'Features you love',
+      'Highlights you love',
     );
     cy.get('[data-cy=highlights-row]').children().should('have.length', 6);
   });
@@ -145,7 +145,6 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       'Enjoy your life',
     );
   });
-  //test Create account etc.
 
   it('shows the testimonials', () => {
     cy.get('[data-cy=testimonials-section]').should('be.visible');
@@ -158,9 +157,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       'What our Customers say',
     );
     cy.wait(200);
-    cy.get(
-      '[data-cy=testimonials-carousel] > .owl-stage-outer > .owl-stage > .owl-item.active blockquote',
-    )
+    cy.get('[data-cy=testimonial-0] > .blockquote')
       .invoke('text')
       .should('contain', 'Review 1:');
     // drag and drop test
@@ -172,27 +169,23 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     //   })
     //   .trigger('mouseup');
     cy.get(
-      '[data-cy=testimonials-carousel] > .owl-nav > .owl-next > .fas',
+      '[data-cy=testimonials-section] > .container > feelback-web-carousel > [data-cy=owl-carousel] > .owl-carousel > .owl-nav > .owl-next > .fas',
     ).click();
-    cy.get(
-      '[data-cy=testimonials-carousel] > .owl-stage-outer > .owl-stage > .owl-item.active blockquote',
-    )
+    cy.get('[data-cy=testimonial-1] > .blockquote')
       .invoke('text')
       .should('contain', 'Review 2:');
     cy.get(
-      '[data-cy=testimonials-carousel] > .owl-nav > .owl-next > .fas',
+      '[data-cy=testimonials-section] > .container > feelback-web-carousel > [data-cy=owl-carousel] > .owl-carousel > .owl-nav > .owl-next > .fas',
     ).click();
-    cy.get(
-      '[data-cy=testimonials-carousel] > .owl-stage-outer > .owl-stage > .owl-item.active blockquote',
-    )
+    cy.get('[data-cy=testimonial-2] > .blockquote')
       .invoke('text')
       .should('contain', 'Review 3:');
-    cy.get('[data-cy=testimonials-review-one]').should('not.be.visible');
-    cy.get('[data-cy=testimonials-review-two]').should('not.be.visible');
+    cy.get('[data-cy=testimonial-2]').should('not.be.visible');
+    cy.get('[data-cy=testimonial-1]').should('not.be.visible');
     cy.get(
-      '[data-cy=testimonials-carousel] > .owl-nav > .owl-prev > .fas',
+      '[data-cy=testimonials-section] > .container > feelback-web-carousel > [data-cy=owl-carousel] > .owl-carousel > .owl-nav > .owl-prev',
     ).click();
-    cy.get('[data-cy=testimonials-review-two] h5').should(
+    cy.get('[data-cy=testimonial-1] h5').should(
       'have.text',
       'Monika Musterfrau',
     );
@@ -205,54 +198,21 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       'have.text',
       'FeelBack App Screenshots',
     );
-    cy.get('[data-cy=gallery-owl-carousel]')
-      .children()
-      .should('have.length', 4);
-    cy.get('[data-cy=gallery-owl-carousel]')
-      .children()
-      .first()
+    cy.get('[data-cy=gallery-img-0]')
       .should('have.attr', 'src')
-      .should('include', 'screen1.jpg');
-    cy.get('[data-cy=gallery-owl-carousel]')
-      .children()
-      .first()
-      .next()
+      .should('include', 'screen-01.png');
+    cy.wait(3000);
+    cy.get('[data-cy=gallery-img-1]')
       .should('have.attr', 'src')
-      .should('include', 'screen2.jpg');
-    cy.get('[data-cy=gallery-owl-carousel]')
-      .children()
-      .first()
-      .next()
-      .next()
+      .should('include', 'screen-02.png');
+    cy.get('[data-cy=gallery-img-2]').should('not.exist');
+    cy.wait(3000);
+    cy.get('[data-cy=gallery-img-2]')
       .should('have.attr', 'src')
-      .should('include', 'screen3.jpg');
-    cy.get('[data-cy=gallery-owl-carousel]')
-      .children()
-      .first()
-      .next()
-      .next()
-      .next()
+      .should('include', 'screen-03.png');
+    cy.get('[data-cy=gallery-img-3]')
       .should('have.attr', 'src')
-      .should('include', 'screen1.jpg');
-    //wait for animation
-    cy.wait(150);
-    cy.get('[data-cy=gallery-owl-carousel]').within(($carousel) => {
-      cy.get('.active.center')
-        .children()
-        .then(($img) => {
-          cy.wrap($img)
-            .should('have.attr', 'src')
-            .and('include', 'screen1.jpg');
-        });
-      cy.wait(5000);
-      cy.get('.active.center')
-        .children()
-        .then(($img) => {
-          cy.wrap($img)
-            .should('have.attr', 'src')
-            .and('not.include', 'screen1.jpg');
-        });
-    });
+      .should('include', 'screen-04.png');
   });
 
   it('should display FAQs', () => {
