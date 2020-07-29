@@ -16,5 +16,11 @@ body {
 @import './theme/variables.scss';
 @import './theme/template.scss';
 
+$color-base: #ff487e !default;
+$color-white: #fff !default;
+$color-gray: #e7d9eb !default;
+
+$dot-width: 35px !default;
+$dot-height: 8px !default;
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';

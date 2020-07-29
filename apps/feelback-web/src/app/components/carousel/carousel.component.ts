@@ -21,7 +21,7 @@ export class CarouselComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: [
       '<span class="fas fa-arrow-left"></span>',
@@ -41,7 +41,7 @@ export class CarouselComponent implements OnInit {
         items: 3,
       },
     },
-    nav: true,
+    nav: false,
   };
 
   gallerySlidesStore = [
@@ -115,7 +115,8 @@ export class CarouselComponent implements OnInit {
       };
       this.customOptions.autoplay = false;
       this.customOptions.loop = false;
-      this.customOptions.dots = true;
+      this.customOptions.dots = false;
+      this.customOptions.nav = true;
     }
   }
 }

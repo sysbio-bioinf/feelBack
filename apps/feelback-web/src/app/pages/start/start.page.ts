@@ -3,7 +3,6 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  AfterViewInit,
   HostListener,
   AfterViewChecked,
 } from '@angular/core';
@@ -17,7 +16,7 @@ import { FaqService } from '../../services/api/faq.service';
   templateUrl: './start.page.html',
   styleUrls: ['./start.page.scss'],
 })
-export class StartPage implements OnInit, AfterViewInit, AfterViewChecked {
+export class StartPage implements OnInit, AfterViewChecked {
   featuresArray: FeatureModel[] = [];
   faqs: FaqModel[] = [];
 
@@ -95,21 +94,6 @@ export class StartPage implements OnInit, AfterViewInit, AfterViewChecked {
     );
 
     this.loadFaqs({ first: 10 });
-  }
-
-  ngAfterViewInit() {
-    this.homeOffset = this.homeElement.nativeElement.offsetTop;
-    console.log(this.homeElement.nativeElement, this.homeOffset);
-    this.featuresOffset = this.featuresElement.nativeElement.offsetTop;
-    console.log(this.featuresElement.nativeElement, this.featuresOffset);
-    this.getStartedOffset = this.getStartedElement.nativeElement.offsetTop;
-    console.log(this.getStartedElement.nativeElement, this.getStartedOffset);
-    this.galleryOffset = this.galleryElement.nativeElement.offsetTop;
-    console.log(this.galleryElement.nativeElement, this.galleryOffset);
-    this.downloadOffset = this.downloadElement.nativeElement.offsetTop;
-    console.log(this.downloadElement.nativeElement, this.downloadOffset);
-    this.contactOffset = this.contactElement.nativeElement.offsetTop;
-    console.log(this.contactElement.nativeElement, this.contactOffset);
   }
 
   ngAfterViewChecked() {
