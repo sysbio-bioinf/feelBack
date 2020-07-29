@@ -5,6 +5,7 @@ import { FaqService } from '../../services/api/faq.service';
 import { ComponentsModule } from '../../modules/components.module';
 import { TranslateTestingModule } from 'ngx-translate-testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('StartPage', () => {
   let component: StartPage;
@@ -61,10 +62,17 @@ describe('StartPage', () => {
       ),
   };
 
+  const getPageYOffsetMock = jest
+    .fn()
+    .mockRejectedValueOnce(0)
+    .mockRejectedValueOnce(50)
+    .mockRejectedValueOnce(100);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         ComponentsModule,
+        BrowserAnimationsModule,
         TranslateTestingModule.withTranslations('en', {}),
         RouterTestingModule,
       ],
@@ -84,11 +92,49 @@ describe('StartPage', () => {
   });
 
   it('should check if everything is set', () => {
-    expect(component.features.length).toBeGreaterThan(1);
+    expect(component.featuresArray.length).toBeGreaterThan(1);
     expect(component.faqs.length).toBe(1);
   });
 
   it('has four features', () => {
-    expect(component.features.length).toBe(4);
+    expect(component.featuresArray.length).toBe(4);
+  });
+
+  it('should handle scroll-events', () => {
+    component.homeOffset = 0;
+    component.featuresOffset = 500;
+    component.getStartedOffset = 1000;
+    component.galleryOffset = 1500;
+    component.downloadOffset = 2000;
+    component.contactOffset = 2500;
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/home/);
+    window = Object.assign(window, { pageYOffset: 600 });
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/features/);
+    window = Object.assign(window, { pageYOffset: 1100 });
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/getStarted/);
+    window = Object.assign(window, { pageYOffset: 1600 });
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/gallery/);
+    window = Object.assign(window, { pageYOffset: 2100 });
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/download/);
+    window = Object.assign(window, { pageYOffset: 2600 });
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/contact/);
+    component.homeOffset = 100;
+    window = Object.assign(window, { pageYOffset: 0 });
+    component.handleScroll();
+    expect(component.currentActive).toMatch(/home/);
+  });
+
+  it('should set the feature id', () => {
+    expect(component.selectedFeature).toBe(0);
+    component.featuresArray.forEach((value, index) => {
+      component.selectFeature(index);
+      expect(component.selectedFeature).toBe(index);
+    });
   });
 });
