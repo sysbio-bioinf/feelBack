@@ -12,11 +12,17 @@ export class IdentityService {
     private getIdentityByPseudonymService: GetIdentityByPseudonymGQL,
   ) {}
 
-  async getIdentityByPseudonym(pseudonym: string): Promise<Partial<Identity>> {
-    const response = await this.getIdentityByPseudonymService
-      .fetch({ pseudonym: pseudonym })
-      .toPromise();
-
-    return response.data.identityByPseudonym;
+  async getIdentityByPseudonym(
+    pseudonym: string,
+  ): Promise<Partial<Identity>> | null {
+    try {
+      const response = await this.getIdentityByPseudonymService
+        .fetch({ pseudonym: pseudonym })
+        .toPromise();
+      return response.data.identityByPseudonym;
+    } catch (exception) {
+      // pseudonym was not found
+      return null;
+    }
   }
 }

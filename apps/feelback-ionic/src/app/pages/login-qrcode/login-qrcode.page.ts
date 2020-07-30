@@ -58,7 +58,7 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
       this.toastController
         .create({
           message:
-            'Cannot use BarcodeScanner, because we are in a web environment!',
+            'Cannot access BarcodeScanner. Is the application running on a smart mobile device?!',
           duration: 3000,
         })
         .then((toast) => toast.present());
