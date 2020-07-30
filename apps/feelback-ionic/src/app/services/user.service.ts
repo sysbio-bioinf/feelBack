@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { GetPersonByPseudonymGQL } from '../graphql/generated/feelback.graphql';
 import { Person } from '../models/person.model';
 
 @Injectable({
@@ -9,10 +10,19 @@ export class UserService {
   loggedIn = false;
   person: Person;
 
-  constructor() {}
+  constructor(
+    private readonly getPersonByPseudonymService: GetPersonByPseudonymGQL,
+  ) {}
 
-  loginWithPseudonym(pseudonym: string) {
-    // TODO make GraphQL request to service
+  async loginWithPseudonym(pseudonym: string) {
+    try {
+      const person = await this.getPersonByPseudonymService
+        .fetch({ pseudonym: pseudonym })
+        .toPromise();
+      this.person = person.data.personByPseudonym;
+    } catch (exception) {
+      throw new Error(exception);
+    }
 
     this.loggedIn = true;
     this.pseudonym = pseudonym;

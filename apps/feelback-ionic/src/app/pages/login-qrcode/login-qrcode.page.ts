@@ -65,15 +65,23 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
     }
   }
 
-  login() {
+  async login() {
     this.pseudonym = this.pseudonym.trim();
 
     if (!this.pseudonym || this.pseudonym.length === 0) {
       console.log('error');
     }
 
-    this.userService.loginWithPseudonym(this.pseudonym);
-
-    this.router.navigate(['main', 'home'], { replaceUrl: true });
+    try {
+      await this.userService.loginWithPseudonym(this.pseudonym);
+      this.router.navigate(['main', 'home'], { replaceUrl: true });
+    } catch (exception) {
+      this.toastController
+        .create({
+          message: 'Pseudonym not found. Does it really exist?',
+          duration: 3000,
+        })
+        .then((toast) => toast.present());
+    }
   }
 }

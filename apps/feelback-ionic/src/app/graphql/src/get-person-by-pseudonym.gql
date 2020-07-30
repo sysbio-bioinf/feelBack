@@ -1,0 +1,7 @@
+query getPersonByPseudonym($pseudonym: String!) {
+  personByPseudonym(pseudonym: $pseudonym) {
+    id
+    pseudonym
+    acceptedTOS
+  }
+}
