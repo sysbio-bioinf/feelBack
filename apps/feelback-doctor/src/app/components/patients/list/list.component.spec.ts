@@ -22,6 +22,7 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
+    component.organizations = [];
     fixture.detectChanges();
   });
 
