@@ -34,7 +34,7 @@ export class ResultPage implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.patient$ = this.patientService.getPatientById(params.get('patient'));
-      this.instrument$ = this.instrumentService.getInstrumentById(
+      this.instrument$ = this.instrumentService.getInstrument(
         params.get('instrument'),
       );
       this.screening$ = this.screeningService

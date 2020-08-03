@@ -1,0 +1,13 @@
+query getInstrument($id: ID!) {
+  instrument(id: $id) {
+    id
+    version
+    name
+    description
+    type
+    image
+    payload
+    rules
+    diagram
+  }
+}

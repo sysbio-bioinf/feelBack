@@ -4,9 +4,9 @@
       <div class="choose-instrument">
         <feelback-doctor-instrument-info
           *ngFor="let instrument of instruments"
-          (click)="selectInstrument(instrument.id)"
+          (click)="selectInstrument(instrument['node']['id'])"
           class="choose-instrument-card"
-          [instrument]="instrument"
+          [instrument]="instrument['node']"
           [hoverable]="true"
         ></feelback-doctor-instrument-info>
       </div>

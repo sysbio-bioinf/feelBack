@@ -13,10 +13,6 @@ query getInstruments($paging:CursorPaging={first: 5}) {
         description
         type
         image
-        payload
-        rules
-        changelog
-        diagram
         createdAt
         updatedAt
         version

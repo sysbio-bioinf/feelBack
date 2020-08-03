@@ -28,7 +28,7 @@ export class ScreeningsPage implements OnInit {
       if (!this.instrumentService.checkIfInstrumentExists(this.instrumentId)) {
         this.navigateToInstrumentErrorPage();
       } else {
-        this.instrument$ = this.instrumentService.getInstrumentById(
+        this.instrument$ = this.instrumentService.getInstrument(
           this.instrumentId,
         );
       }

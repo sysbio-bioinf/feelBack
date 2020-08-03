@@ -18,7 +18,7 @@
 
         <div class="box">
           <feelback-doctor-instrument-info
-            [instrument]="instrument"
+            [instrument]="instrument['instrument']"
             [image]="false"
           ></feelback-doctor-instrument-info>
         </div>
@@ -33,13 +33,14 @@
           <feelback-doctor-screening-questionnaire
             #questionnaire
             [screening]="screening"
-            [payload]="instrument.payload"
+            [payload]="instrument['instrument']['payload']"
           ></feelback-doctor-screening-questionnaire>
         </div>
         <div id="overview">
           <feelback-doctor-screening-overview
             [screening]="screening"
-            [diagram]="instrument.diagram"
+            [diagram]="instrument['instrument']['diagram']"
+
           ></feelback-doctor-screening-overview>
         </div>
       </div>
