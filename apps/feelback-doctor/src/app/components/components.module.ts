@@ -4,8 +4,6 @@ import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { ListComponent } from './patients/list/list.component';
-import { InstrumentComponent } from './instruments/instrument/instrument.component';
-import { SampleInstrumentComponent } from './instruments/sample-instrument/sample-instrument.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { QuestionnaireComponent } from './result/questionnaire/questionnaire.component';
 import { LoadingComponent } from './util/loading/loading.component';
@@ -26,8 +24,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     FilterComponent,
     ListComponent,
-    InstrumentComponent,
-    SampleInstrumentComponent,
     QuestionnaireComponent,
     LoadingComponent,
     ErrorIndicatorComponent,
@@ -45,7 +41,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     FilterComponent,
     ListComponent,
-    SampleInstrumentComponent,
     LoadingComponent,
     EmptyStateComponent,
     CircleImageComponent,
@@ -53,7 +48,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     QuestionnaireComponent,
     OverviewComponent,
     PatientInfoComponent,
-    InstrumentComponent,
     ErrorIndicatorComponent,
     CircleImageComponent,
     InstrumentInfoComponent,
