@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { PatientService } from '../../../../../../services/patient.service';
 import { InstrumentService } from '../../../../../..//services/instrument.service';
 import { Patient } from '../../../../../..//models/patient.model';
 import { Instrument } from '../../../../../../graphql/generated/feelback.graphql';
+import { catchError } from 'rxjs/operators';
 
 
 @Component({
@@ -28,11 +29,13 @@ export class InstrumentsPage implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.patientId = params.get('patient');
-      if (!this.patientService.checkIfPatientExists(this.patientId)) {
-        this.navigateToPatientErrorPage();
-      } else {
-        this.patient$ = this.patientService.getPatientById(this.patientId);
-      }
+      this.patient$ = this.patientService.getPatientById(params.get('patient'))
+        .pipe(
+          catchError(() => {
+            this.navigateToErrorPage();
+            return of();
+          }),
+        );
     });
     this.instruments$ = this.instrumentService.getInstruments();
   }
@@ -41,7 +44,7 @@ export class InstrumentsPage implements OnInit {
     this.router.navigate([id], { relativeTo: this.route });
   }
 
-  private navigateToPatientErrorPage() {
+  private navigateToErrorPage() {
     this.router.navigate(['error'], {
       queryParams: {},
       queryParamsHandling: 'merge',

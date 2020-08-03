@@ -1,20 +1,22 @@
-<div *ngIf="instruments$ | async as instruments; else loading">
-  <div *ngIf="instruments.length > 0">
-    <div class="choose-instrument">
-      <feelback-doctor-instrument-info
-        *ngFor="let instrument of instruments"
-        (click)="selectInstrument(instrument.id)"
-        class="choose-instrument-card"
-        [instrument]="instrument"
-        [hoverable]="true"
-      ></feelback-doctor-instrument-info>
+<div *ngIf="patient$ | async as patient; else loading">
+  <div *ngIf="instruments$ | async as instruments; else loading">
+    <div *ngIf="instruments.length > 0">
+      <div class="choose-instrument">
+        <feelback-doctor-instrument-info
+          *ngFor="let instrument of instruments"
+          (click)="selectInstrument(instrument.id)"
+          class="choose-instrument-card"
+          [instrument]="instrument"
+          [hoverable]="true"
+        ></feelback-doctor-instrument-info>
+      </div>
     </div>
-  </div>
 
-  <div *ngIf="instruments.length === 0">
-    <feelback-doctor-empty-state
-      [entity]="'instrument'"
-    ></feelback-doctor-empty-state>
+    <div *ngIf="instruments.length === 0">
+      <feelback-doctor-empty-state
+        [entity]="'instrument'"
+      ></feelback-doctor-empty-state>
+    </div>
   </div>
 </div>
 

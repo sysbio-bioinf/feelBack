@@ -20,11 +20,6 @@ export class PatientService {
     )
   }
 
-  public checkIfPatientExists(id: string): boolean {
-    // TODO: implement this
-        return true;
-  }
-
   public getOrganizations(): Observable<any>{
     return this.patientService.fetch().pipe(
       map((data) => {
