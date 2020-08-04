@@ -10,6 +10,6 @@ query getScreening($id: ID!) {
     payload
     isResolved
     resolveComment
-    evaluationResult{name then else result}
+    evaluationResult{name then else result condition}
   }
 }

@@ -633,7 +633,19 @@
             "stylePreprocessorOptions": {
               "includePaths": ["apps/feelback-doctor/src/styles"]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "dayjs/locale/de",
+              "file-saver",
+              "keycloak-js",
+              "graphql-tag",
+              "js-sha256",
+              "zen-observable",
+              "surveyjs-widgets",
+              "inputmask",
+              "bootstrap-slider",
+              "nouislider"
+            ]
           },
           "configurations": {
             "production": {
