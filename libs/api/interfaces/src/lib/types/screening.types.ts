@@ -15,8 +15,9 @@ import { ScreeningObject } from '../objects/screening.object';
 export class ResolveOneScreeningInputType extends UpdateOneInputType(
   ResolveScreeningInput,
 ) {
+  @IsString()
   @IsUUID('4')
-  @Field({
+  @Field(() => ID, {
     description: 'id',
   })
   id!: string;
@@ -45,12 +46,12 @@ export class GetScreeningsByPersonAndInstrumentArgsType extends QueryArgsType(
 ) {
   @IsString()
   @IsUUID('4')
-  @Field()
+  @Field(() => ID)
   instrumentId!: string;
 
   @IsString()
   @IsUUID('4')
-  @Field()
+  @Field(() => ID)
   personId!: string;
 }
 

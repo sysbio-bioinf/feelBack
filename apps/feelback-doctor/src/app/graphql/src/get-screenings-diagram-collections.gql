@@ -1,14 +1,14 @@
 query getScreeningsDiagramCollections(
-  $personId: String!
-  $instrumentId: String!
+  $personId: ID!
+  $instrumentId: ID!
   $from: DateTime!
   $end: DateTime!
 ) {
   screeningsDiagramCollections(
     personId: $personId
     instrumentId: $instrumentId
-    sorting: {field: collectedAt, direction:ASC},
-    filter: {collectedAt: {between: {lower:$from, upper:$end}}}
+    sorting: { field: collectedAt, direction: ASC }
+    filter: { collectedAt: { between: { lower: $from, upper: $end } } }
   ) {
     name
     type

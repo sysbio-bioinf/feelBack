@@ -1192,8 +1192,8 @@ type Query {
 
     """Specify to sort results."""
     sorting: [ScreeningSort!] = []
-    instrumentId: String!
-    personId: String!
+    instrumentId: ID!
+    personId: ID!
   ): ScreeningConnection!
   screeningsDiagramCollections(
     """Limit or page results."""
@@ -1204,8 +1204,8 @@ type Query {
 
     """Specify to sort results."""
     sorting: [ScreeningSort!] = []
-    instrumentId: String!
-    personId: String!
+    instrumentId: ID!
+    personId: ID!
   ): [DiagramDataObject!]!
   user(id: ID!): User
   users(
@@ -1254,7 +1254,7 @@ input ReleaseOneInstrumentInputType {
 
 input ResolveOneScreeningInputType {
   """id"""
-  id: String!
+  id: ID!
 
   """The update to apply."""
   update: ResolveScreeningInput!
