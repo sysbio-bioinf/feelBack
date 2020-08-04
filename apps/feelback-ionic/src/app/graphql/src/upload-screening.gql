@@ -1,0 +1,19 @@
+mutation uploadScreening(
+  $screening: CreateScreeningInput!
+  $instrumentId: ID!
+  $personId: ID
+) {
+  uploadScreening(
+    input: {
+      screening: $screening
+      instrumentId: $instrumentId
+      personId: $personId
+    }
+  ) {
+    id
+    instanceId
+    collectedAt
+    language
+    payload
+  }
+}

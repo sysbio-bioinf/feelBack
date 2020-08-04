@@ -4,6 +4,7 @@ import {
   AttachPersonToScreeningGQL,
   CreateScreeningGQL,
   CreateScreeningInput,
+  UploadScreeningGQL,
 } from '../../graphql/generated/feelback.graphql';
 import { Instrument } from '../../models/instrument.model';
 import { Person } from '../../models/person.model';
@@ -16,12 +17,13 @@ export class ScreeningService {
     readonly createScreeningService: CreateScreeningGQL,
     readonly attachInstrumentService: AttachInstrumentToScreeningGQL,
     readonly attachPersonService: AttachPersonToScreeningGQL,
+    readonly uploadScreeningService: UploadScreeningGQL,
   ) {}
 
   async uploadScreening(
     screening: CreateScreeningInput,
-    person: Person,
     instrument: Instrument,
+    person?: Person,
   ): Promise<boolean> {
     const dto: CreateScreeningInput = {
       collectedAt: screening.collectedAt.toISOString(),
@@ -31,31 +33,21 @@ export class ScreeningService {
       userAgent: screening.userAgent,
     };
 
-    const screeningResponse = await this.createScreeningService
-      .mutate({ data: dto })
-      .toPromise();
-    if (screeningResponse.errors) {
-      throw new Error('Screening konnte nicht hochgeladen werden');
-    }
-
-    const screeningId = screeningResponse.data.createOneScreening.id;
-
-    if (instrument) {
-      const attachInstrumentResponse = await this.attachInstrumentService
-        .mutate({
-          screeningId,
-          instrumentId: instrument.id,
-        })
-        .toPromise();
-    }
-
+    let personId = null;
     if (person) {
-      const attachPersonResponse = await this.attachPersonService
-        .mutate({
-          screeningId,
-          personId: person.id,
-        })
-        .toPromise();
+      personId = person.id;
+    }
+
+    const screeningResponse = await this.uploadScreeningService
+      .mutate({
+        screening: dto,
+        instrumentId: instrument.id,
+        personId: personId,
+      })
+      .toPromise();
+
+    if (screeningResponse.errors) {
+      throw new Error('Could not upload screening');
     }
 
     return true;

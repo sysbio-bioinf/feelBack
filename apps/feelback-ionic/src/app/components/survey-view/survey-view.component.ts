@@ -231,12 +231,13 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
         payload: survey.data,
         // TODO: userAgent ??
       };
+
       const person = this.userService.person;
 
       const result = await this.screeningService.uploadScreening(
         screeningInput,
-        person,
         this.instrument,
+        person,
       );
     });
 
