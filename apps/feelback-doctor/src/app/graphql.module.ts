@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 })
 export class GraphQLModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
-    const apiUri = environment.connections.feelback;
+    const apiUri = environment.connections.api;
 
     const defaultOptions: DefaultOptions = {
       query: {

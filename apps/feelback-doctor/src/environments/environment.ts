@@ -6,8 +6,10 @@ export const environment = {
   production: false,
 
   connections: {
-    feelback: 'https://api.feelback-app.com/graphql',
+    api: 'https://api.feelback-app.com/graphql',
+    keycloak: 'https://auth.feelback-app.com/auth'
   },
+
 };
 
 /*

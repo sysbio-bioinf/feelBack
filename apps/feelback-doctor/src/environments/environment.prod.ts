@@ -2,6 +2,7 @@ export const environment = {
   production: true,
 
   connections: {
-    feelback: 'https://api.feelback-app.com/graphql',
+    api: 'https://api.feelback-app.com/graphql',
+    keycloak: 'https://auth.feelback-app.com/auth'
   },
 };

@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, DoBootstrap, ApplicationRef } from '@angular/core';
+import {
+  NgModule,
+  APP_INITIALIZER,
+} from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouting } from './app.routing';
@@ -7,12 +10,16 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { DatePipe } from '@angular/common';
-import { MatNativeDateModule, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import {
+  MatNativeDateModule,
+  DateAdapter,
+  MAT_DATE_LOCALE,
+  MAT_DATE_FORMATS,
+} from '@angular/material/core';
 import { AppDateAdapter, AppDateFormats } from './date-format';
 import { Platform } from '@angular/cdk/platform';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-
-const keycloakService = new KeycloakService();
+import { initializer } from '../initializer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,46 +31,26 @@ const keycloakService = new KeycloakService();
     HttpClientModule,
     MaterialModule,
     MatNativeDateModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
   ],
+  bootstrap: [AppComponent],
   providers: [
     DatePipe,
     {
       provide: DateAdapter,
       useClass: AppDateAdapter,
-      deps: [MAT_DATE_LOCALE, Platform]
+      deps: [MAT_DATE_LOCALE, Platform],
     },
     {
       provide: MAT_DATE_FORMATS,
-      useValue: AppDateFormats
+      useValue: AppDateFormats,
     },
     {
-      provide: KeycloakService,
-      useValue: keycloakService,
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      multi: true,
+      deps: [KeycloakService],
     },
   ],
 })
-export class AppModule implements DoBootstrap {
-  ngDoBootstrap(appRef: ApplicationRef) {
-    keycloakService
-      .init({
-        config: {
-          url: 'https://auth.feelback-app.com/auth',
-          realm: 'feelback',
-          clientId: 'feelback-api-client',
-        },
-        initOptions: {
-          onLoad: 'login-required',
-          checkLoginIframe: false,
-        },
-        enableBearerInterceptor: true,
-        bearerExcludedUrls: [],
-      })
-      .then(() => {
-        appRef.bootstrap(AppComponent);
-      })
-      .catch((error) =>
-        console.error('[ngDoBootstrap] init Keycloak failed', error)
-      );
-  }
-}
+export class AppModule {}
