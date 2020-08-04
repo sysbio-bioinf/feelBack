@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { InstrumentService } from '../../../../../../services/instrument.service';
 import { Patient } from '../../../../../../models/patient.model';
 import { Instrument } from '../../../../../../graphql/generated/feelback.graphql';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import * as dayjs from 'dayjs';
 import { DateHelper } from '@feelback-app/util/helper';
 import { ScreeningService } from '../../../../../../services/screening.service';
@@ -31,8 +31,10 @@ export class ScreeningsPage implements OnInit {
   public instrument$: Observable<Instrument>;
   public screenings$: Observable<any>;
   public selectedDaterange = 'current-year';
-  public startDateForm = new FormControl();
-  public endDateForm = new FormControl();
+  public range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
   public today = dayjs();
   public startDate: Date;
   public endDate: Date;
@@ -104,9 +106,8 @@ export class ScreeningsPage implements OnInit {
         break;
       }
       case 'custom': {
-        this.startDate = DateHelper.createUtcDate(this.startDateForm.value);
-        console.log(this.endDateForm.value);
-        const endDate = dayjs(this.endDateForm.value).endOf('day');
+        this.startDate = DateHelper.createUtcDate(this.range.value.start);
+        const endDate = dayjs(this.range.value.end).endOf('day');
         this.endDate = DateHelper.createUtcDate(endDate.toDate());
         break;
       }

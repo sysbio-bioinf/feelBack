@@ -55,47 +55,19 @@
       </mat-button-toggle-group>
   
       <span *ngIf="daterange.value === 'custom'">
-        <mat-form-field>
-          <mat-label>Choose a startdate</mat-label>
-          <input
-            matInput
-            [max]="today"
-            [formControl]="startDateForm"
-            [matDatepicker]="startpicker"
-            (focus)="startpicker.open()"
-            autocomplete="false"
-          />
-          <mat-datepicker-toggle
-            matPrefix
-            [for]="startpicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #startpicker></mat-datepicker>
+        <mat-form-field id="rangepicker" appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
-        <mat-form-field>
-          <mat-label>Choose a enddate</mat-label>
-          <input
-            matInput
-            [min]="startDateForm.value"
-            [max]="today"
-            [formControl]="endDateForm"
-            [matDatepicker]="endpicker"
-            (focus)="endpicker.open()"
-            autocomplete="false"
-          />
-          <mat-datepicker-toggle
-            matPrefix
-            [for]="endpicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #endpicker></mat-datepicker>
-        </mat-form-field>
+
         <button
           mat-icon-button
           aria-label="Change daterange"
-          [disabled]="
-            !startpicker.startAt ||
-            !endpicker.startAt ||
-            startpicker.startAt > endpicker.startAt
-          "
           (click)="selectDaterange(daterange.value)"
         >
           <mat-icon>{{ commonService.icons.search }}</mat-icon>
