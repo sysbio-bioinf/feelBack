@@ -1649,8 +1649,8 @@ input UpdateUserInput {
 input UploadScreeningInputType {
   """The record to create"""
   screening: CreateScreeningInput!
-  instrumentId: String!
-  personId: String
+  instrumentId: ID!
+  personId: ID
 }
 
 """A User (i.e, Doctor with additional information)"""
