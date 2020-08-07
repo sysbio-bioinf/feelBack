@@ -1,9 +1,9 @@
 <div *ngIf="instrument$ | async as instrument; else loading">
   <mat-card id="screenings">
     <mat-card-header>
-      <mat-icon mat-card-avatar class="header-avatar">{{
-        commonService.icons.screening
-      }}</mat-icon>
+      <mat-icon mat-card-avatar class="header-avatar"
+        >{{ commonService.icons.screening }}</mat-icon
+      >
       <mat-card-title>
         Distress Thermometer
       </mat-card-title>
@@ -53,15 +53,22 @@
           Custom
         </mat-button-toggle>
       </mat-button-toggle-group>
-  
+
       <span *ngIf="daterange.value === 'custom'">
         <mat-form-field id="rangepicker" appearance="fill">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-            <input matStartDate formControlName="start" placeholder="Start date">
-            <input matEndDate formControlName="end" placeholder="End date">
+            <input
+              matStartDate
+              formControlName="start"
+              placeholder="Start date"
+            />
+            <input matEndDate formControlName="end" placeholder="End date" />
           </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
@@ -73,12 +80,17 @@
           <mat-icon>{{ commonService.icons.search }}</mat-icon>
         </button>
       </span>
-  
-      <span *ngIf="screenings[0].axis[0].series.length > 0" class="screeningNumber">
-        <mat-icon class="screeningIcon">{{commonService.icons.screening}}</mat-icon>
+
+      <span
+        *ngIf="screenings[0].axis[0].series.length > 0"
+        class="screeningNumber"
+      >
+        <mat-icon class="screeningIcon"
+          >{{commonService.icons.screening}}</mat-icon
+        >
         {{screenings[0].axis[0].series.length}} screenings found
       </span>
-  
+
       <div *ngIf="screenings[0].axis[0].series.length > 0">
         <div class="chart-wrapper">
           <ngx-charts-line-chart
@@ -97,7 +109,7 @@
           </ngx-charts-line-chart>
         </div>
       </div>
-  
+
       <div *ngIf="screenings[0].axis[0].series.length === 0">
         <feelback-doctor-empty-state
           [entity]="'screening'"
@@ -105,7 +117,6 @@
       </div>
     </mat-card-content>
   </mat-card>
-  
 </div>
 
 <ng-template #loading>
