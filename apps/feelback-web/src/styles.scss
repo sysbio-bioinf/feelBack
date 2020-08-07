@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
+html {
+  scroll-behavior: smooth;
+}
+
+/**
+ * Disable smooth scrolling when users have prefers-reduced-motion enabled
+ */
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -9,17 +22,25 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+// set z-index for .cdk-overlay-container (Language selection)
 .cdk-overlay-container {
   z-index: 9999;
 }
 
+//import Font Awesome (5.13.0) CSS
+@import './assets/css/all.min.css';
+// import Bootstrap (v4.0.0-beta.2) CSS
+@import './assets/css/bootstrap.min.css';
+
 @import './theme/variables.scss';
 @import './theme/template.scss';
 
+// override variables for color theme (owl carousel)
 $color-base: #ff487e !default;
 $color-white: #fff !default;
 $color-gray: #e7d9eb !default;
 
+// set/override width and height of the dots in owl carousel
 $dot-width: 35px !default;
 $dot-height: 8px !default;
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
