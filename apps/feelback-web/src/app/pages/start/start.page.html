@@ -216,7 +216,11 @@
       <h3>What our Customers say</h3>
     </div>
 
-    <feelback-web-carousel [select]="testimonialsOwl"></feelback-web-carousel>
+    <feelback-web-carousel
+      [select]="testimonialsOwl"
+      [slideStore]="testimonialsSlidesStore"
+      [customOptions]="testimonialsCustomOptions"
+    ></feelback-web-carousel>
   </div>
 </div>
 <!-- // end .section -->
@@ -228,7 +232,10 @@
       <h3>{{'app.pages.start.gallery.headline' | translate }}</h3>
     </div>
 
-    <feelback-web-carousel [select]="galleryOwl"></feelback-web-carousel>
+    <feelback-web-carousel
+      [select]="galleryOwl"
+      [slideStore]="gallerySlidesStore"
+    ></feelback-web-carousel>
   </div>
 </div>
 <!-- // end .section -->

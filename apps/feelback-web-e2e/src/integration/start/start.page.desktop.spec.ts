@@ -101,7 +101,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-card-title-c] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-d] > h2').should('not.be.visible');
 
-    cy.get('[data-cy=feature-link-b]').click();
+    cy.get('[data-cy=feature-link-b]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-b] > h2')
       .should('have.text', 'blabla b')
@@ -110,7 +110,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-card-title-c] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-d] > h2').should('not.be.visible');
 
-    cy.get('[data-cy=feature-link-c]').click();
+    cy.get('[data-cy=feature-link-c]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-c] > h2')
       .should('have.text', 'blabla c')
@@ -119,7 +119,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-card-title-b] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-d] > h2').should('not.be.visible');
 
-    cy.get('[data-cy=feature-link-d]').click();
+    cy.get('[data-cy=feature-link-d]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-d] > h2')
       .should('have.text', 'blabla d')
@@ -144,75 +144,6 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       'have.text',
       'Enjoy your life',
     );
-  });
-
-  it('shows the testimonials', () => {
-    cy.get('[data-cy=testimonials-section]').should('be.visible');
-    cy.get('[data-cy=testimonials-title] small').should(
-      'have.text',
-      'TESTIMONIALS',
-    );
-    cy.get('[data-cy=testimonials-title] h3').should(
-      'have.text',
-      'What our Customers say',
-    );
-    cy.wait(200);
-    cy.get('[data-cy=testimonial-0] > .blockquote')
-      .invoke('text')
-      .should('contain', 'Review 1:');
-    // drag and drop test
-    // cy.get('[data-cy=testimonials-review-two] > .blockquote')
-    //   .trigger('mousedown', { button: 0 })
-    //   .trigger('mousemove', {
-    //     clientX: -400,
-    //     clientY: 0,
-    //   })
-    //   .trigger('mouseup');
-    cy.get(
-      '[data-cy=testimonials-section] > .container > feelback-web-carousel > [data-cy=owl-carousel] > .owl-carousel > .owl-nav > .owl-next > .fas',
-    ).click();
-    cy.get('[data-cy=testimonial-1] > .blockquote')
-      .invoke('text')
-      .should('contain', 'Review 2:');
-    cy.get(
-      '[data-cy=testimonials-section] > .container > feelback-web-carousel > [data-cy=owl-carousel] > .owl-carousel > .owl-nav > .owl-next > .fas',
-    ).click();
-    cy.get('[data-cy=testimonial-2] > .blockquote')
-      .invoke('text')
-      .should('contain', 'Review 3:');
-    cy.get('[data-cy=testimonial-2]').should('not.be.visible');
-    cy.get('[data-cy=testimonial-1]').should('not.be.visible');
-    cy.get(
-      '[data-cy=testimonials-section] > .container > feelback-web-carousel > [data-cy=owl-carousel] > .owl-carousel > .owl-nav > .owl-prev',
-    ).click();
-    cy.get('[data-cy=testimonial-1] h5').should(
-      'have.text',
-      'Monika Musterfrau',
-    );
-  });
-
-  it('shows the gallery', () => {
-    cy.get('#gallery').should('be.visible');
-    cy.get('[data-cy=gallery-title] small').should('have.text', 'Gallery');
-    cy.get('[data-cy=gallery-title] h3').should(
-      'have.text',
-      'FeelBack App Screenshots',
-    );
-    cy.get('[data-cy=gallery-img-0]')
-      .should('have.attr', 'src')
-      .should('include', 'screen-01.png');
-    cy.wait(3000);
-    cy.get('[data-cy=gallery-img-1]')
-      .should('have.attr', 'src')
-      .should('include', 'screen-02.png');
-    cy.get('[data-cy=gallery-img-2]').should('not.exist');
-    cy.wait(3000);
-    cy.get('[data-cy=gallery-img-2]')
-      .should('have.attr', 'src')
-      .should('include', 'screen-03.png');
-    cy.get('[data-cy=gallery-img-3]')
-      .should('have.attr', 'src')
-      .should('include', 'screen-04.png');
   });
 
   it('should display FAQs', () => {

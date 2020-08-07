@@ -10,6 +10,7 @@ import { CursorPaging } from '../../graphql/generated/feelback.graphql';
 import { FaqModel } from '../../models/faq.model';
 import { FeatureModel } from '../../models/feature.model';
 import { FaqService } from '../../services/api/faq.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'feelback-web-start',
@@ -26,7 +27,7 @@ export class StartPage implements OnInit, AfterViewChecked {
   selectedFeature = 0;
 
   galleryOwl = 'gallery';
-  testimonialsOwl = 'testimonials';
+  testimonialsOwl = 'testimonial';
 
   public homeOffset: Number = 0;
   public featuresOffset: Number = 0;
@@ -54,6 +55,80 @@ export class StartPage implements OnInit, AfterViewChecked {
 
   @ViewChild('contact')
   contactElement!: ElementRef;
+
+  // owl carousel (gallery)
+  gallerySlidesStore = [
+    {
+      id: 0,
+      src: './assets/images/screens/screen-01.png',
+      alt: 'image',
+      title: '',
+    },
+    {
+      id: 1,
+      src: './assets/images/screens/screen-02.png',
+      alt: 'image',
+      title: '',
+    },
+    {
+      id: 2,
+      src: './assets/images/screens/screen-03.png',
+      alt: 'image',
+      title: '',
+    },
+    {
+      id: 3,
+      src: './assets/images/screens/screen-04.png',
+      alt: 'image',
+      title: '',
+    },
+  ];
+  // owl carousel (testimonials)
+  testimonialsSlidesStore = [
+    {
+      id: 0,
+      src: './assets/images/client.png',
+      alt: 'client',
+      title: '',
+      name: 'Crystal Gordon',
+      location: 'United States',
+      review:
+        'Review 1: Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
+    },
+    {
+      id: 1,
+      src: './assets/images/client.png',
+      alt: 'client',
+      title: '',
+      name: 'Monika Musterfrau',
+      location: 'Germany',
+      review:
+        'Review 2: Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
+    },
+    {
+      id: 2,
+      src: './assets/images/client.png',
+      alt: 'client',
+      title: '',
+      name: 'Alice Bob',
+      location: 'United States',
+      review:
+        'Review 3: Uniquely streamline highly efficient scenarios and 24/7 initiatives.Cnveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.',
+    },
+  ];
+
+  // customOptions for testimonials
+  testimonialsCustomOptions: Partial<OwlOptions> = {
+    responsive: {
+      0: {
+        items: 1,
+      },
+    },
+    autoplay: false,
+    loop: false,
+    dots: false,
+    nav: true,
+  };
 
   constructor(readonly faqService: FaqService) {}
 
@@ -93,7 +168,8 @@ export class StartPage implements OnInit, AfterViewChecked {
       },
     );
 
-    this.loadFaqs({ first: 10 });
+    // uncomment this before building!
+    // this.loadFaqs({ first: 10 });
   }
 
   ngAfterViewChecked() {

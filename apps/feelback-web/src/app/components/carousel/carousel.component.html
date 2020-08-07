@@ -1,6 +1,7 @@
 <owl-carousel-o [options]="customOptions" data-cy="owl-carousel">
-  <ng-container *ngIf="select === 'testimonials'">
-    <ng-container *ngFor="let slide of testimonialsSlidesStore">
+  <!-- testimonials -->
+  <ng-container *ngIf="select === 'testimonial'">
+    <ng-container *ngFor="let slide of slideStore">
       <ng-template carouselSlide [id]="slide.id">
         <div
           class="testimonials-single"
@@ -21,14 +22,15 @@
       </ng-template>
     </ng-container>
   </ng-container>
-  <ng-container *ngIf="select === 'gallery'">
-    <ng-container *ngFor="let slide of gallerySlidesStore">
+  <!-- gallery/default -->
+  <ng-container *ngIf="select !== 'testimonial'">
+    <ng-container *ngFor="let slide of slideStore">
       <ng-template carouselSlide [id]="slide.id">
         <img
           [src]="slide.src"
           [alt]="slide.alt"
           [title]="slide.title"
-          [attr.data-cy]="'gallery-img-' + slide.id"
+          [attr.data-cy]="select + '-img-' + slide.id"
         />
       </ng-template>
     </ng-container>
