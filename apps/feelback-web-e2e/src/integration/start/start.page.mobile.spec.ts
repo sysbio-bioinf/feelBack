@@ -99,7 +99,8 @@ for (const device of deviceList) {
           cy.get('[data-cy=discover-app-row] a')
             .invoke('text')
             .should('equal', 'Read more');
-          cy.get('[data-cy=discover-app-row] a').click();
+          // click({force: true}) because the navbar is above the element (no problem when using the website manually)
+          cy.get('[data-cy=discover-app-row] a').click({ force: true });
           cy.url().should('include', '#');
           cy.get('[data-cy=discover-app-image] img')
             .should('have.attr', 'src')
@@ -118,7 +119,8 @@ for (const device of deviceList) {
           cy.get('[data-cy=features-nav]').children().should('have.length', 4);
           // clicking all of the feature tabs
           // waiting time because the content is not shown instantly
-          cy.get('[data-cy=feature-link-a]').click();
+          // click({force: true}) because the navbar is above the element (no problem when using the website manually)
+          cy.get('[data-cy=feature-link-a]').click({ force: true });
           cy.wait(150);
           cy.get('[data-cy=feature-card-title-a] > h2')
             .should('have.text', 'Instruments')
@@ -133,7 +135,7 @@ for (const device of deviceList) {
             'not.be.visible',
           );
 
-          cy.get('[data-cy=feature-link-b]').click();
+          cy.get('[data-cy=feature-link-b]').click({ force: true });
           cy.wait(150);
           cy.get('[data-cy=feature-card-title-b] > h2')
             .should('have.text', 'blabla b')
@@ -148,7 +150,7 @@ for (const device of deviceList) {
             'not.be.visible',
           );
 
-          cy.get('[data-cy=feature-link-c]').click();
+          cy.get('[data-cy=feature-link-c]').click({ force: true });
           cy.wait(150);
           cy.get('[data-cy=feature-card-title-c] > h2')
             .should('have.text', 'blabla c')
@@ -163,7 +165,7 @@ for (const device of deviceList) {
             'not.be.visible',
           );
 
-          cy.get('[data-cy=feature-link-d]').click();
+          cy.get('[data-cy=feature-link-d]').click({ force: true });
           cy.wait(150);
           cy.get('[data-cy=feature-card-title-d] > h2')
             .should('have.text', 'blabla d')

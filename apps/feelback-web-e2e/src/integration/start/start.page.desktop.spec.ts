@@ -76,7 +76,8 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=discover-app-row] a')
       .invoke('text')
       .should('equal', 'Read more');
-    cy.get('[data-cy=discover-app-row] a').click();
+    // click({force: true}) because the navbar is above the element (no problem when using the website manually)
+    cy.get('[data-cy=discover-app-row] a').click({ force: true });
     cy.url().should('include', '#');
     cy.get('[data-cy=discover-app-image] img')
       .should('have.attr', 'src')
@@ -92,7 +93,8 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=features-nav]').children().should('have.length', 4);
     // clicking all of the feature tabs
     // waiting time because the content is not shown instantly
-    cy.get('[data-cy=feature-link-a]').click();
+    // click({force: true}) because the navbar is above the element (no problem when using the website manually)
+    cy.get('[data-cy=feature-link-a]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-a] > h2')
       .should('have.text', 'Instruments')
