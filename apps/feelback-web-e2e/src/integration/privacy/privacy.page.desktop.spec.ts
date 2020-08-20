@@ -43,7 +43,7 @@ describe('Testing the Privacy Policy Page of the FeelBack-web application', () =
 
   it('should display the markdown section', () => {
     cy.get('[data-cy=privacy-markdown-section]').should('be.visible');
-    cy.get('[data-cy=privacy-markdown-template]').should('be.visible');
+    cy.get('[data-cy=privacy-markdown-template]').should('exist');
     cy.get('[data-cy=privacy-markdown-template]')
       .children()
       .should('have.length.gte', 1);

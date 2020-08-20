@@ -64,7 +64,7 @@ for (const device of deviceList) {
 
         it('should display the markdown section', () => {
           cy.get('[data-cy=imprint-markdown-section]').should('be.visible');
-          cy.get('[data-cy=imprint-markdown-template]').should('be.visible');
+          cy.get('[data-cy=imprint-markdown-template]').should('exist');
           cy.get('[data-cy=imprint-markdown-template]')
             .children()
             .should('have.length.gte', 1);

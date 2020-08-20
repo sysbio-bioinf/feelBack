@@ -56,7 +56,7 @@ describe('Testing the Legal Notice Page of the FeelBack-web application', () => 
 
   it('should display the markdown section', () => {
     cy.get('[data-cy=imprint-markdown-section]').should('be.visible');
-    cy.get('[data-cy=imprint-markdown-template]').should('be.visible');
+    cy.get('[data-cy=imprint-markdown-template]').should('exist');
     cy.get('[data-cy=imprint-markdown-template]')
       .children()
       .should('have.length.gte', 1);
