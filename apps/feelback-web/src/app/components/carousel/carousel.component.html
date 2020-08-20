@@ -1,4 +1,7 @@
-<owl-carousel-o [options]="customOptions" data-cy="owl-carousel">
+<owl-carousel-o
+  [options]="customOptions"
+  [attr.data-cy]="'owl-carousel-' + select"
+>
   <!-- testimonials -->
   <ng-container *ngIf="select === 'testimonial'">
     <ng-container *ngFor="let slide of slideStore">

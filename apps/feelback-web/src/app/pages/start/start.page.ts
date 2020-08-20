@@ -168,8 +168,7 @@ export class StartPage implements OnInit, AfterViewChecked {
       },
     );
 
-    // uncomment this before building!
-    // this.loadFaqs({ first: 10 });
+    this.loadFaqs({ first: 10 });
   }
 
   ngAfterViewChecked() {
