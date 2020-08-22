@@ -12,7 +12,6 @@ import { EmptyStateComponent } from './util/empty-state/empty-state.component';
 import { ErrorIndicatorComponent } from './util/error-indicator/error-indicator.component';
 import { CircleImageComponent } from './util/circle-image/circle-image.component';
 import { ConsultationComponent } from './result/consultation/consultation.component';
-import { FilterComponent } from './patients/filter/filter.component';
 import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
 import { ActionBarComponent } from './util/action-bar/action-bar.component';
 import { FooterComponent } from './util/footer/footer.component';
@@ -21,7 +20,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     NavbarComponent,
-    FilterComponent,
     ListComponent,
     QuestionnaireComponent,
     LoadingComponent,
@@ -37,7 +35,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule, ReactiveFormsModule],
   exports: [
     NavbarComponent,
-    FilterComponent,
     ListComponent,
     LoadingComponent,
     EmptyStateComponent,

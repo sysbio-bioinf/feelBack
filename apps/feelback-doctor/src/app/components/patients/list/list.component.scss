@@ -4,21 +4,17 @@ mat-card{
   margin-top: 1em;
 }
 
-mat-form-field{
-  min-width: 200px;
-  width: 33%;
-  margin-left: 1em;
-}
-
-.action{
+.wrapper{
   display: flex;
+  flex-wrap: wrap;
 }
 
-table {
-  width: 100%;
+.patient-box{
+  min-width: 200px;
+  margin-right: 2em;
 }
 
-tr.mat-row:hover{
+.patient-box:hover{
   background: $hover;
   cursor: pointer;
 }

@@ -1,12 +1,10 @@
 <div *ngIf="(organizations$ | async) as organizations else loading">
 
   <div *ngIf="organizations.length > 0">
-    <feelback-doctor-patient-filter></feelback-doctor-patient-filter>
     <feelback-doctor-patient-list
       [organizations]="organizations"
     ></feelback-doctor-patient-list>
   </div>
-
   <div *ngIf="organizations.length === 0">
     <feelback-doctor-empty-state [entity]="'patient'"></feelback-doctor-empty-state>
   </div>
