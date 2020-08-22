@@ -9,5 +9,7 @@ query getInstrument($id: ID!) {
     payload
     rules
     diagram
+    updatedAt
+    createdAt
   }
 }
