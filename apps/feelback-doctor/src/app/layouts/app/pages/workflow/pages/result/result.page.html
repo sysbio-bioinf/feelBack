@@ -1,19 +1,15 @@
 <div *ngIf="patient$ | async as patient; else loading">
   <div *ngIf="instrument$ | async as instrument; else loading">
     <div *ngIf="screening$ | async as screening; else loading">
-
-      <feelback-doctor-action-bar
-        [screening]="screening"
-        [patientId]="patient.id"
-        [instrumentId]="instrument.id"
-        (printEvent)="questionnaire.print()"
-      ></feelback-doctor-action-bar>
-
       <div class="header">
         <div class="box">
-          <feelback-doctor-patient-info
+          <feelback-doctor-action-bar
             [patient]="patient"
-          ></feelback-doctor-patient-info>
+            [screening]="screening"
+            [patientId]="patient.id"
+            [instrumentId]="instrument.id"
+            (printEvent)="questionnaire.print()"
+          ></feelback-doctor-action-bar>
         </div>
 
         <div class="box">
@@ -22,11 +18,13 @@
             [image]="false"
           ></feelback-doctor-instrument-info>
         </div>
-      </div>
 
-      <feelback-doctor-screening-consultation
-        [screening]="screening"
-      ></feelback-doctor-screening-consultation>
+        <div class="box">
+          <feelback-doctor-screening-consultation
+            [screening]="screening"
+          ></feelback-doctor-screening-consultation>
+        </div>
+      </div>
 
       <div class="wrapper">
         <div id="questionnaire">
@@ -40,7 +38,6 @@
           <feelback-doctor-screening-overview
             [screening]="screening"
             [diagram]="instrument['instrument']['diagram']"
-
           ></feelback-doctor-screening-overview>
         </div>
       </div>

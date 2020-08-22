@@ -7,6 +7,7 @@ import { ScreeningService } from '../../../services/screening.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DateHelper } from '@feelback-app/util/helper';
+import { Patient } from '../../../models/patient.model';
 
 @Component({
   selector: 'feelback-doctor-action-bar',
@@ -22,6 +23,7 @@ export class ActionBarComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
+  @Input() patient: Patient;
   @Input() screening: Screening;
   @Input() patientId: string;
   @Input() instrumentId: string;

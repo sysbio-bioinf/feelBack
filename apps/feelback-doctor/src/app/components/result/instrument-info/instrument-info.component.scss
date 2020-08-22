@@ -1,5 +1,9 @@
 @import 'variables';
 
+#instrument-info{
+  height: 160px;
+}
+
 .hoverable:hover {
   background: $hover;
 }

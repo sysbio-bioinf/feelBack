@@ -12,7 +12,6 @@ import { EmptyStateComponent } from './util/empty-state/empty-state.component';
 import { ErrorIndicatorComponent } from './util/error-indicator/error-indicator.component';
 import { CircleImageComponent } from './util/circle-image/circle-image.component';
 import { ConsultationComponent } from './result/consultation/consultation.component';
-import { PatientInfoComponent } from './result/patient-info/patient-info.component';
 import { FilterComponent } from './patients/filter/filter.component';
 import { InstrumentInfoComponent } from './result/instrument-info/instrument-info.component';
 import { ActionBarComponent } from './util/action-bar/action-bar.component';
@@ -31,7 +30,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     EmptyStateComponent,
     CircleImageComponent,
     ConsultationComponent,
-    PatientInfoComponent,
     InstrumentInfoComponent,
     ActionBarComponent,
     FooterComponent,
@@ -47,7 +45,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ConsultationComponent,
     QuestionnaireComponent,
     OverviewComponent,
-    PatientInfoComponent,
     ErrorIndicatorComponent,
     CircleImageComponent,
     InstrumentInfoComponent,

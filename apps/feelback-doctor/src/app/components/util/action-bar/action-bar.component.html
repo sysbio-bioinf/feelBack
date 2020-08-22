@@ -1,10 +1,10 @@
-<mat-card>
+<mat-card id="action-bar">
   <mat-card-header class="header">
     <mat-icon mat-card-avatar class="header-avatar">{{
-      commonService.icons.action
+      commonService.icons.patient
     }}</mat-icon>
-    <mat-card-title>Action</mat-card-title>
-    <mat-card-subtitle>Bar</mat-card-subtitle>
+    <mat-card-title>{{patient.pseudonym}}</mat-card-title>
+    <mat-card-subtitle>Patient</mat-card-subtitle>
     <span class="spacer"></span>
     <span>
       <button
