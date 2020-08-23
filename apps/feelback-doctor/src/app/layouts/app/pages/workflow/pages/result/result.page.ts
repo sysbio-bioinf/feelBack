@@ -7,10 +7,10 @@ import { InstrumentService } from '../../../../../../services/instrument.service
 import { ScreeningService } from '../../../../../../services/screening.service';
 import { Patient } from '../../../../../../models/patient.model';
 import {
-  Instrument,
   Screening,
 } from '../../../../../../graphql/generated/feelback.graphql';
 import { catchError } from 'rxjs/operators';
+import {Instrument} from '../../../../../../models/instrument.model';
 
 @Component({
   selector: 'feelback-doctor-result',

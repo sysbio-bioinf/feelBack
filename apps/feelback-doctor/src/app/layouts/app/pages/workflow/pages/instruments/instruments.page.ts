@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { PatientService } from '../../../../../../services/patient.service';
 import { InstrumentService } from '../../../../../..//services/instrument.service';
 import { Patient } from '../../../../../..//models/patient.model';
-import { Instrument } from '../../../../../../graphql/generated/feelback.graphql';
+import { Instrument } from '../../../../../..//models/instrument.model';
 import { catchError } from 'rxjs/operators';
 
 
@@ -22,7 +22,7 @@ export class InstrumentsPage implements OnInit {
   ) {}
 
   public patientId: string;
-  public patient$: Observable<Patient | {}>;
+  public patient$: Observable<Patient>;
   public instruments$: Observable<Instrument[]>;
   public instruments: Instrument[];
 
@@ -33,18 +33,18 @@ export class InstrumentsPage implements OnInit {
         .pipe(
           catchError(() => {
             this.navigateToErrorPage();
-            return of();
+            return of(new Patient());
           }),
         );
     });
     this.instruments$ = this.instrumentService.getInstruments();
   }
 
-  public selectInstrument(id: string) {
+  public selectInstrument(id: string): void {
     this.router.navigate([id], { relativeTo: this.route });
   }
 
-  private navigateToErrorPage() {
+  private navigateToErrorPage(): void {
     this.router.navigate(['error'], {
       queryParams: {},
       queryParamsHandling: 'merge',

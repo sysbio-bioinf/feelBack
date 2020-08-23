@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InstrumentService } from '../../../../../../services/instrument.service';
 import { Patient } from '../../../../../../models/patient.model';
-import { Instrument } from '../../../../../../graphql/generated/feelback.graphql';
 import { FormControl, FormGroup } from '@angular/forms';
 import * as dayjs from 'dayjs';
 import { DateHelper } from '@feelback-app/util/helper';
 import { ScreeningService } from '../../../../../../services/screening.service';
 import { CommonService } from '../../../../../../services/common.service';
+import { catchError } from 'rxjs/operators';
+import {Instrument} from '../../../../../../models/instrument.model'
 
 @Component({
   selector: 'feelback-doctor-screenings',
@@ -33,7 +34,7 @@ export class ScreeningsPage implements OnInit {
   public selectedDaterange = 'current-year';
   public range = new FormGroup({
     start: new FormControl(),
-    end: new FormControl()
+    end: new FormControl(),
   });
   public today = dayjs();
   public startDate: Date;
@@ -43,14 +44,16 @@ export class ScreeningsPage implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.patientId = params.get('patient');
       this.instrumentId = params.get('instrument');
-      if (!this.instrumentService.checkIfInstrumentExists(this.instrumentId)) {
-        this.navigateToInstrumentErrorPage();
-      } else {
-        this.instrument$ = this.instrumentService.getInstrument(
-          this.instrumentId,
+      this.instrument$ = this.instrumentService
+        .getInstrument(this.instrumentId)
+        .pipe(
+          catchError(() => {
+            this.navigateToInstrumentErrorPage();
+            return of(new Instrument());
+          }),
         );
-      }
     });
+
     setTimeout(() => this.selectDaterange(this.selectedDaterange), 300);
   }
 

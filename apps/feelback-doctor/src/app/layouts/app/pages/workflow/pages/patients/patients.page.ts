@@ -25,7 +25,7 @@ export class PatientsPage implements OnInit {
     this.organizations$ = this.patientService.getOrganizations();
   }
 
-  public selectPatient(patient: Patient) {
+  public selectPatient(patient: Patient): void {
     this.router.navigate([patient.id], { relativeTo: this.route });
   }
 }
