@@ -28,7 +28,7 @@ describe('ActionBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ActionBarComponent);
     component = fixture.componentInstance;
-    component.patient = { id: "id", pseudonym: "test", screenings: 1, organization: "org"};
+    component.patient = { id: "id", pseudonym: "test"};
     fixture.detectChanges();
   });
 
