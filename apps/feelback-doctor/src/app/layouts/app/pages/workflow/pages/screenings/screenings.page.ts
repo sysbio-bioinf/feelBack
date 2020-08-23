@@ -10,6 +10,8 @@ import { ScreeningService } from '../../../../../../services/screening.service';
 import { CommonService } from '../../../../../../services/common.service';
 import { catchError } from 'rxjs/operators';
 import {Instrument} from '../../../../../../models/instrument.model'
+import { ScreeningChart } from '../../../../../../../../src/app/models/screening-chart.model';
+import { ChartDataPoint } from '../../../../../../../../src/app/models/chart-data-point.model';
 
 @Component({
   selector: 'feelback-doctor-screenings',
@@ -30,7 +32,7 @@ export class ScreeningsPage implements OnInit {
   public patient$: Observable<Patient>;
   private instrumentId: string;
   public instrument$: Observable<Instrument>;
-  public screenings$: Observable<any>;
+  public screenings$: Observable<ScreeningChart>;
   public selectedDaterange = 'current-year';
   public range = new FormGroup({
     start: new FormControl(),
@@ -57,7 +59,7 @@ export class ScreeningsPage implements OnInit {
     setTimeout(() => this.selectDaterange(this.selectedDaterange), 300);
   }
 
-  private navigateToInstrumentErrorPage() {
+  private navigateToInstrumentErrorPage(): void {
     this.router.navigate(['error'], {
       queryParams: {},
       queryParamsHandling: 'merge',
@@ -69,7 +71,7 @@ export class ScreeningsPage implements OnInit {
     });
   }
 
-  public selectDaterange(daterange: string) {
+  public selectDaterange(daterange: string): void {
     this.selectedDaterange = daterange;
     switch (daterange) {
       case 'last-year': {
@@ -115,7 +117,7 @@ export class ScreeningsPage implements OnInit {
         break;
       }
     }
-    this.screenings$ = this.screeningService.getScreenings(
+    this.screenings$ = this.screeningService.getScreeningChart(
       this.patientId,
       this.instrumentId,
       this.startDate,
@@ -124,13 +126,13 @@ export class ScreeningsPage implements OnInit {
     );
   }
 
-  public selectScreening(screening): void {
+  public selectScreening(screening: ChartDataPoint): void {
     this.router.navigate([screening.screeningId], {
       relativeTo: this.route,
     });
   }
 
-  private buildCallbackUrl() {
+  private buildCallbackUrl(): string {
     const url = this.router.url;
     const url_mod = url.substring(0, url.lastIndexOf('/'));
     return url_mod.substring(0, url_mod.lastIndexOf('/'));

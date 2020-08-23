@@ -1,5 +1,9 @@
 export class ChartDataPoint {
-  name: any;
+
+  constructor(){}
+
+  screeningId?: string;
+  name: Date;
   value: number;
-  id?: string;
+
 }

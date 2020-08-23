@@ -6,6 +6,8 @@ import {
   Screening,
   GetScreeningsDiagramCollectionsGQL,
 } from '../graphql/generated/feelback.graphql';
+import {ScreeningChart} from '../models/screening-chart.model';
+import { ChartDataPoint } from '../models/chart-data-point.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +18,17 @@ export class ScreeningService {
     private getScreeningsDiagramCollectionsService: GetScreeningsDiagramCollectionsGQL,
   ) {}
 
-  public screenings;
+  public screenings: ChartDataPoint[];
   public index: number;
   public timerange: string;
 
-  public getScreenings(
+  public getScreeningChart(
     personId: string,
     instrumentId: string,
     from: Date,
     end: Date,
     literal: string,
-  ): Observable<any> {
+  ): Observable<ScreeningChart> {
     this.timerange = literal;
     return this.getScreeningsDiagramCollectionsService
       .fetch({
@@ -50,7 +52,11 @@ export class ScreeningService {
           }
           this.screenings = distress[0].series;
           screenings['axis'] = distress;
-          return data.data.screeningsDiagramCollections;
+          return {
+            name: data.data.screeningsDiagramCollections[0].name,
+            type: data.data.screeningsDiagramCollections[0].type,
+            axis: screenings['axis']
+          }
         }),
       );
   }
@@ -62,7 +68,7 @@ export class ScreeningService {
   ): Observable<Screening> {
     if (!this.screenings) {
       const currentYear = new Date().getFullYear();
-      return this.getScreenings(
+      return this.getScreeningChart(
         personId,
         instrumentId,
         this.createUtcDate(new Date(currentYear, 0, 1)),

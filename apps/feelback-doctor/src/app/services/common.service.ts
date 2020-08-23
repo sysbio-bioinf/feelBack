@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as shape from 'd3-shape';
-import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
-  constructor(private datePipe: DatePipe) {}
+  constructor() {}
 
   public colors = { primary: '#00a3ff', accent: '#54b37b', warn: '#f44336' };
   public colorScheme: {} = { domain: [this.colors.primary] };

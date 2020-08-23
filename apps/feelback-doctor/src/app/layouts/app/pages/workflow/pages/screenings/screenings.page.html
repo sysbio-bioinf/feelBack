@@ -4,12 +4,8 @@
       <mat-icon mat-card-avatar class="header-avatar"
         >{{ commonService.icons.screening }}</mat-icon
       >
-      <mat-card-title>
-        Distress Thermometer
-      </mat-card-title>
-      <mat-card-subtitle>
-        Screenings
-      </mat-card-subtitle>
+      <mat-card-title>Distress Thermometer</mat-card-title>
+      <mat-card-subtitle>Screenings</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content *ngIf="screenings$ | async as screenings; else loading">
       <mat-button-toggle-group #daterange="matButtonToggleGroup">
@@ -82,16 +78,16 @@
       </span>
 
       <span
-        *ngIf="screenings[0].axis[0].series.length > 0"
+        *ngIf="screenings.axis[0].series.length > 0"
         class="screeningNumber"
       >
         <mat-icon class="screeningIcon"
           >{{commonService.icons.screening}}</mat-icon
         >
-        {{screenings[0].axis[0].series.length}} screenings found
+        {{screenings.axis[0].series.length}} screenings found
       </span>
 
-      <div *ngIf="screenings[0].axis[0].series.length > 0">
+      <div *ngIf="screenings.axis[0].series.length > 0">
         <div class="chart-wrapper">
           <ngx-charts-line-chart
             [scheme]="commonService.colorScheme"
@@ -103,14 +99,14 @@
             [xScaleMin]="startDate"
             [xScaleMax]="endDate"
             [curve]="commonService.curveStepAfter"
-            [results]="screenings[0].axis"
+            [results]="screenings.axis"
             (select)="selectScreening($event)"
           >
           </ngx-charts-line-chart>
         </div>
       </div>
 
-      <div *ngIf="screenings[0].axis[0].series.length === 0">
+      <div *ngIf="screenings.axis[0].series.length === 0">
         <feelback-doctor-empty-state
           [entity]="'screening'"
         ></feelback-doctor-empty-state>
