@@ -4,7 +4,7 @@ import { CommonLayout } from './common.layout';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'error',
     component: CommonLayout,
     loadChildren: () => import(`./pages/common.pages.module`).then(m => m.CommonPagesModule)
   },
