@@ -3,33 +3,33 @@
     <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.screening}}</mat-icon>
     <mat-card-title>Screening</mat-card-title>
     <mat-card-subtitle>{{
-      screening.createdAt | date: 'dd.MM.yyyy'
+      createdAt | date: 'dd.MM.yyyy'
     }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="consultation-wrapper">
       <div class="consultation">
         <mat-icon
-          *ngIf="screening.evaluationResult[0].result"
+          *ngIf="evaluationResult.result"
           class="consultation-icon"
           color="accent"
           >{{commonService.icons.check}}</mat-icon
         >
         <mat-icon
-          *ngIf="!screening.evaluationResult[0].result"
+          *ngIf="!evaluationResult.result"
           class="consultation-icon"
           color="warn"
           >{{commonService.icons.uncheck}}</mat-icon
         >
-        <span *ngIf="screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].then}}</span>
-        <span *ngIf="!screening.evaluationResult[0].result" class="consultation-text">{{screening.evaluationResult[0].else}}</span>
+        <span *ngIf="evaluationResult.result" class="consultation-text">{{evaluationResult.then}}</span>
+        <span *ngIf="!evaluationResult.result" class="consultation-text">{{evaluationResult.else}}</span>
       </div>
       <mat-form-field appearance="fill">
         <mat-label>Comment</mat-label>
         <textarea
           matInput
           rows="4"
-          [value]="screening.resolveComment"
+          [value]="resolveComment"
           disabled="true"
         ></textarea>
       </mat-form-field>

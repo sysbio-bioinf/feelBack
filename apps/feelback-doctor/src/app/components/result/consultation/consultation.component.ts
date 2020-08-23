@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonService } from '../../../services/common.service';
-import { Screening } from '../../../graphql/generated/feelback.graphql';
+import { EvaluationResult } from '../../../models/evaluation-result.model';
 
 @Component({
   selector: 'feelback-doctor-screening-consultation',
@@ -10,8 +10,9 @@ import { Screening } from '../../../graphql/generated/feelback.graphql';
 export class ConsultationComponent implements OnInit {
   constructor(public commonService: CommonService) {}
 
-  @Input() screening: Screening;
+  @Input() createdAt: Date;
+  @Input() resolveComment: string;
+  @Input() evaluationResult: EvaluationResult;
 
   ngOnInit(): void {}
-
 }
