@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Parser } from 'expr-eval';
 import { Screening } from '../../../graphql/generated/feelback.graphql';
 import { PageEvent } from '@angular/material/paginator';
+import { Diagram } from '../../../models/diagram.model';
 
 @Component({
   selector: 'feelback-doctor-screening-overview',
@@ -18,12 +19,12 @@ export class OverviewComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
     this.route.queryParams.subscribe((params) => {
-      this.currentView = params['overview'] ? params['overview'] : 'Radar';
+      this.currentView = params.overview ? params.overview : 'Radar';
     });
   }
 
   @Input() screening: Screening;
-  @Input() diagram;
+  @Input() diagram: Diagram;
   public chartData: ChartSeries[];
   public currentViewMapping: {} = {
     fromIndex: { 0: 'Radar', 1: 'Progress', 2: 'Table' },
@@ -40,7 +41,7 @@ export class OverviewComponent implements OnInit {
   }
 
   private evaluateResults(result: {}): void {
-    for (const axis of this.diagram['instance']['overview']['axis']) {
+    for (const axis of this.diagram.instance.overview.axis) {
       const ruleParts = axis.rule.split('/');
       const fields = ruleParts[0].slice(1, -1).split(' + ');
       for (const field of fields) {
@@ -66,14 +67,14 @@ export class OverviewComponent implements OnInit {
     ];
 
     for (const record of this.data) {
-      this.chartData[0]['series'].push({
+      this.chartData[0].series.push({
         name: record.name,
         value: (record.positive / record.total) * 100,
       });
     }
   }
 
-  private transformScreeningResult(result) {
+  private transformScreeningResult(result: {}): string {
     let resultString = JSON.stringify(result);
     resultString = resultString
       .replace(new RegExp('true', 'g'), '1')
@@ -81,7 +82,7 @@ export class OverviewComponent implements OnInit {
     return JSON.parse(resultString);
   }
 
-  public changePage($event: PageEvent) {
+  public changePage($event: PageEvent): void {
     this.currentView = this.currentViewMapping['fromIndex'][$event.pageIndex];
     this.router.navigate([], {
       relativeTo: this.route,
