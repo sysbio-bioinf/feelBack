@@ -6,6 +6,7 @@ import { InstrumentService } from '../../../../../..//services/instrument.servic
 import { Patient } from '../../../../../..//models/patient.model';
 import { Instrument } from '../../../../../..//models/instrument.model';
 import { catchError } from 'rxjs/operators';
+import { ErrorEntity } from 'apps/feelback-doctor/src/app/models/error-entity.enum';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class InstrumentsPage implements OnInit {
       queryParamsHandling: 'merge',
       state: {
         code: 404,
-        entity: 'patient',
+        entity: ErrorEntity.PATIENT,
         callbackUrl: '/app/patients',
       },
     });

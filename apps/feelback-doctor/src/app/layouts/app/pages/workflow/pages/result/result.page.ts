@@ -9,6 +9,7 @@ import { Patient } from '../../../../../../models/patient.model';
 import { catchError } from 'rxjs/operators';
 import {Instrument} from '../../../../../../models/instrument.model';
 import {Screening} from '../../../../../../models/screening.model';
+import { ErrorEntity } from 'apps/feelback-doctor/src/app/models/error-entity.enum';
 @Component({
   selector: 'feelback-doctor-result',
   templateUrl: './result.page.html',
@@ -55,7 +56,7 @@ export class ResultPage implements OnInit {
       queryParamsHandling: 'merge',
       state: {
         code: 404,
-        entity: 'screening',
+        entity: ErrorEntity.SCREENING,
         callbackUrl: this.buildCallbackUrl(),
       },
     });

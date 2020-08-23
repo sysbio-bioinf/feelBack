@@ -1,3 +1,5 @@
+import {ErrorEntity} from './error-entity.enum'
+
 export class Error {
   constructor(values: { [k: string]: any }) {
     this.code = values.code;
@@ -6,6 +8,6 @@ export class Error {
   }
   
   code: number;
-  entity: string;
+  entity: ErrorEntity;
   callbackUrl: string;
 }

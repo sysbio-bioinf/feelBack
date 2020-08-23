@@ -12,6 +12,7 @@ import { catchError } from 'rxjs/operators';
 import {Instrument} from '../../../../../../models/instrument.model'
 import { ScreeningChart } from '../../../../../../../../src/app/models/screening-chart.model';
 import { ChartDataPoint } from '../../../../../../../../src/app/models/chart-data-point.model';
+import { ErrorEntity } from 'apps/feelback-doctor/src/app/models/error-entity.enum';
 
 @Component({
   selector: 'feelback-doctor-screenings',
@@ -65,7 +66,7 @@ export class ScreeningsPage implements OnInit {
       queryParamsHandling: 'merge',
       state: {
         code: 404,
-        entity: 'instrument',
+        entity: ErrorEntity.INSTRUMENT,
         callbackUrl: this.buildCallbackUrl(),
       },
     });
