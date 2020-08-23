@@ -21,33 +21,9 @@ describe('ConsultationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConsultationComponent);
     component = fixture.componentInstance;
-    component.screening = {
-      id: 'id',
-      instanceId: '',
-      version: 1,
-      payload: { DT01: 5, DT02: true },
-      resolveComment: '',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      collectedAt: new Date(),
-      instrument: {
-        id: '',
-        name: '',
-        changelog: '',
-        type: '',
-        updatedAt: new Date(),
-        createdAt: new Date(),
-        version: 1,
-        diagram: {},
-        rules: [],
-        payload: {},
-        state: InstrumentStatesEnum.Released
-      },
-      language: '',
-      evaluationResult: [
-        { result: true, name: '', then: '', else: '', condition: '' },
-      ],
-    };
+    component.evaluationResult = { result: true, name: '', then: '', else: '', condition: '' };
+    component.resolveComment = 'comment'
+    component.createdAt = new Date();
     fixture.detectChanges();
   });
 
