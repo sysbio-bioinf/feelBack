@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PatientsPage } from './patients.page';
 import { ComponentsModule } from '../../../../../../components/components.module';
 import { Apollo } from 'apollo-angular';
+import { MaterialModule } from '../../../../../../../../src/app/material.module';
 
 describe('PatientsPage', () => {
   let component: PatientsPage;
@@ -9,7 +10,7 @@ describe('PatientsPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentsModule],
+      imports: [ComponentsModule, MaterialModule],
       providers: [Apollo],
       declarations: [PatientsPage],
     }).compileComponents();

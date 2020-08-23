@@ -1,1 +1,21 @@
+@import "variables";
 
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.patient-box{
+  min-width: 200px;
+  margin-right: 2em;
+  margin-top: 1em;
+}
+
+.patient-box:hover{
+  background: $hover;
+  cursor: pointer;
+}
+
+.header-icon{
+  margin-right: 0.25em;
+}

@@ -22,7 +22,7 @@ export class InstrumentsPage implements OnInit {
   ) {}
 
   public patientId: string;
-  public patient$: Observable<Patient>;
+  public patient$: Observable<Patient | {}>;
   public instruments$: Observable<Instrument[]>;
   public instruments: Instrument[];
 

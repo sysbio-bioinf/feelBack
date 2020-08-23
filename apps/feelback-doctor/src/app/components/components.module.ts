@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './util/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
-import { ListComponent } from './patients/list/list.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { QuestionnaireComponent } from './result/questionnaire/questionnaire.component';
 import { LoadingComponent } from './util/loading/loading.component';
@@ -20,7 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     NavbarComponent,
-    ListComponent,
     QuestionnaireComponent,
     LoadingComponent,
     ErrorIndicatorComponent,
@@ -32,10 +30,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActionBarComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, RouterModule, MaterialModule, NgxChartsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule,
+    NgxChartsModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     NavbarComponent,
-    ListComponent,
     LoadingComponent,
     EmptyStateComponent,
     CircleImageComponent,
@@ -46,7 +49,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CircleImageComponent,
     InstrumentInfoComponent,
     ActionBarComponent,
-    FooterComponent
+    FooterComponent,
   ],
 })
 export class ComponentsModule {}

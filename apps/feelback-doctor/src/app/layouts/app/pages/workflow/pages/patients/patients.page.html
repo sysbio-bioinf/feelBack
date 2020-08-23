@@ -1,14 +1,31 @@
 <div *ngIf="(organizations$ | async) as organizations else loading">
-
   <div *ngIf="organizations.length > 0">
-    <feelback-doctor-patient-list
-      [organizations]="organizations"
-    ></feelback-doctor-patient-list>
+    <div *ngFor="let organization of organizations">
+      <mat-card>
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="header-avatar"
+            >{{ commonService.icons.organization }}</mat-icon
+          >
+          <mat-card-title>{{ organization.name }}</mat-card-title>
+          <mat-card-subtitle>Organization</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <div class="wrapper">
+        <span *ngFor="let patient of organization.patients" class="patients">
+          <mat-card class="patient-box" (click)="selectPatient(patient)">
+            <mat-card-content>
+              {{ patient.pseudonym }}
+            </mat-card-content>
+          </mat-card>
+        </span>
+      </div>
+    </div>
   </div>
   <div *ngIf="organizations.length === 0">
-    <feelback-doctor-empty-state [entity]="'patient'"></feelback-doctor-empty-state>
+    <feelback-doctor-empty-state
+      [entity]="'patient'"
+    ></feelback-doctor-empty-state>
   </div>
-
 </div>
 
 <ng-template #loading>
