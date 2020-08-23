@@ -6,12 +6,9 @@ import { PatientService } from '../../../../../../services/patient.service';
 import { InstrumentService } from '../../../../../../services/instrument.service';
 import { ScreeningService } from '../../../../../../services/screening.service';
 import { Patient } from '../../../../../../models/patient.model';
-import {
-  Screening,
-} from '../../../../../../graphql/generated/feelback.graphql';
 import { catchError } from 'rxjs/operators';
 import {Instrument} from '../../../../../../models/instrument.model';
-
+import {Screening} from '../../../../../../models/screening.model';
 @Component({
   selector: 'feelback-doctor-result',
   templateUrl: './result.page.html',
@@ -29,7 +26,7 @@ export class ResultPage implements OnInit {
 
   public patient$: Observable<Patient>;
   public instrument$: Observable<Instrument>;
-  public screening$: Observable<Screening> | Observable<{}>;
+  public screening$: Observable<Screening>;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -46,13 +43,13 @@ export class ResultPage implements OnInit {
         .pipe(
           catchError(() => {
             this.navigateToErrorPage();
-            return of();
+            return of(new Screening());
           }),
         );
     });
   }
 
-  private navigateToErrorPage() {
+  private navigateToErrorPage(): void {
     this.router.navigate(['error'], {
       queryParams: {},
       queryParamsHandling: 'merge',
@@ -64,7 +61,7 @@ export class ResultPage implements OnInit {
     });
   }
 
-  private buildCallbackUrl() {
+  private buildCallbackUrl(): string {
     const url = this.router.url;
     return url.substring(0, url.lastIndexOf('/'));
   }
