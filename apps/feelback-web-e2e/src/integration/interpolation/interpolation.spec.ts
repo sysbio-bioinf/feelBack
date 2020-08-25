@@ -113,5 +113,3 @@ for (const device of deviceList) {
     );
   }
 }
-
-//TODO: Sprache Auswählen Unterschiedlich bauen (Handheld muss über den Menu Button erfolgen...)
