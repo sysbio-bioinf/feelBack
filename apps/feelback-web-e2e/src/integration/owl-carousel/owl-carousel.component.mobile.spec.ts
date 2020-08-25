@@ -90,6 +90,7 @@ for (const device of deviceList) {
         });
 
         it('should support swipe gestures within the testimonials section', () => {
+          // FIXME The 'Cypress Mobile Commands' Plugin seems to not work correct within firefox. In Firefox "Touch" is not defined. Works in chromium browsers.
           if (browserFamily !== 'chromium') {
             cy.log('Swipe gesture tests require chromium browsers.');
           } else {
@@ -180,7 +181,7 @@ for (const device of deviceList) {
         });
 
         it('should support swipe gestures within the gallery section', () => {
-          console.log(browserFamily);
+          // FIXME The 'Cypress Mobile Commands' Plugin seems to not work correct within firefox. In Firefox "Touch" is not defined. Works in chromium browsers.
           if (browserFamily !== 'chromium') {
             cy.log('Swipe gesture tests require chromium browsers.');
           } else {

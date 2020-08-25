@@ -27,7 +27,7 @@ for (const device of deviceList) {
           } else {
             cy.viewport(device.height, device.width);
           }
-          cy.visit('/');
+          cy.visitMobile('/');
         });
 
         it('should display the header bar', () => {
@@ -101,10 +101,11 @@ for (const device of deviceList) {
             .should('have.text', 'Features');
         });
 
-        it('should activate the nav-items', () => {
+        it.only('should activate the nav-items', () => {
+          // FIXME In chromium browsers the viewport does not scroll correctly after clicking on a menu item. This does only appear within cypress
           if (browserFamily === 'chromium') {
             cy.log(
-              'In chromium browsers the window does not scroll correctly after clicking on a menu item. This does only appear within cypress. Chomium browsers act correct when testing it manually without cypress!',
+              'In chromium browsers the viewport does not scroll correctly after clicking on a menu item. This does only appear within cypress. Chomium browsers act correct when testing it manually without cypress!',
             );
           } else {
             cy.get('[data-cy=header-navbar-toggler]').click();

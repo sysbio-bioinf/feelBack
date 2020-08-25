@@ -70,7 +70,7 @@ describe('Testing the testimonials owl-carousel on the startpage of the FeelBack
   });
 
   it('should support swipe gestures within the testimonials section', () => {
-    console.log(browserFamily);
+    // FIXME The 'Cypress Mobile Commands' Plugin seems to not work correct within firefox. In Firefox "Touch" is not defined. Works in chromium browsers.
     if (browserFamily !== 'chromium') {
       cy.log('Swipe gesture tests require chromium browsers.');
     } else {
@@ -141,7 +141,7 @@ describe('Testing the gallery owl-carousel on the startpage of the FeelBack-web 
   });
 
   it('should support swipe gestures within the gallery section', () => {
-    console.log(browserFamily);
+    // FIXME The 'Cypress Mobile Commands' Plugin seems to not work correct within firefox. In Firefox "Touch" is not defined. Works in chromium browsers.
     if (browserFamily !== 'chromium') {
       cy.log('Swipe gesture tests require chromium browsers.');
     } else {
