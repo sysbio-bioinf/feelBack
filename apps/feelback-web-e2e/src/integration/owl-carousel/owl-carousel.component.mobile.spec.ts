@@ -47,7 +47,7 @@ for (const device of deviceList) {
           cy.wait(200);
           cy.get('[data-cy=testimonial-0] > .blockquote')
             .invoke('text')
-            .should('contain', 'Review 1:');
+            .should('have.length.greaterThan', 0);
           cy.get(
             '[data-cy=owl-carousel-testimonial] > .owl-carousel > .owl-nav > .owl-prev',
           ).should('have.class', 'disabled');
@@ -59,7 +59,7 @@ for (const device of deviceList) {
           ).click({ force: true });
           cy.get('[data-cy=testimonial-1] > .blockquote')
             .invoke('text')
-            .should('contain', 'Review 2:');
+            .should('have.length.greaterThan', 0);
           cy.get(
             '[data-cy=owl-carousel-testimonial] > .owl-carousel > .owl-nav > .owl-prev',
           ).should('not.have.class', 'disabled');
@@ -77,16 +77,15 @@ for (const device of deviceList) {
           ).should('have.class', 'disabled');
           cy.get('[data-cy=testimonial-2] > .blockquote')
             .invoke('text')
-            .should('contain', 'Review 3:');
+            .should('have.length.greaterThan', 0);
           cy.get('[data-cy=testimonial-2]').should('not.be.visible');
           cy.get('[data-cy=testimonial-1]').should('not.be.visible');
           cy.get(
             '[data-cy=owl-carousel-testimonial] > .owl-carousel > .owl-nav > .owl-prev',
           ).click({ force: true });
-          cy.get('[data-cy=testimonial-1] h5').should(
-            'have.text',
-            'Monika Musterfrau',
-          );
+          cy.get('[data-cy=testimonial-1] h5')
+            .invoke('text')
+            .should('have.length.greaterThan', 0);
         });
 
         it('should support swipe gestures within the testimonials section', () => {
@@ -162,22 +161,22 @@ for (const device of deviceList) {
           );
         });
 
-        it('should display the correct images', () => {
+        it('should display the images', () => {
           cy.get('[data-cy=gallery-img-0]')
             .should('have.attr', 'src')
-            .should('include', 'screen-01.png');
+            .and('include', 'assets/images/screens/');
           cy.wait(3000);
           cy.get('[data-cy=gallery-img-1]')
             .should('have.attr', 'src')
-            .should('include', 'screen-02.png');
+            .and('include', 'assets/images/screens/');
           cy.get('[data-cy=gallery-img-2]').should('not.exist');
           cy.wait(3000);
           cy.get('[data-cy=gallery-img-2]')
             .should('have.attr', 'src')
-            .should('include', 'screen-03.png');
+            .and('include', 'assets/images/screens/');
           cy.get('[data-cy=gallery-img-3]')
             .should('have.attr', 'src')
-            .should('include', 'screen-04.png');
+            .and('include', 'assets/images/screens/');
         });
 
         it('should support swipe gestures within the gallery section', () => {

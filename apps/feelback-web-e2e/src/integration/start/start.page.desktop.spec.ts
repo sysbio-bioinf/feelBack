@@ -15,11 +15,11 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=FeelBack-description]')
       .first()
       .invoke('text')
-      .should('include', 'description about FeelBack');
+      .should('have.have.length.gt', 0);
 
     cy.get('[data-cy=title-image]')
       .should('have.attr', 'src')
-      .and('include', 'iphonex.png');
+      .and('include', 'assets/images/');
   });
 
   it('show five logos', () => {
@@ -52,10 +52,9 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       'have.text',
       'Highlights',
     );
-    cy.get('[data-cy=highlights-title] h3').should(
-      'have.text',
-      'Highlights you love',
-    );
+    cy.get('[data-cy=highlights-title] h3')
+      .invoke('text')
+      .should('have.length.gt', 0);
     cy.get('[data-cy=highlights-row]').children().should('have.length', 6);
   });
 
@@ -71,17 +70,18 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     );
     cy.get('[data-cy=discover-app-row] p')
       .invoke('text')
-      .should('include', 'Lorem ipsum');
-    cy.url().should('not.include', '#');
+      .should('have.length.gt', 0);
+    // cy.url().should('not.include', '#');
     cy.get('[data-cy=discover-app-row] a')
       .invoke('text')
       .should('equal', 'Read more');
+    // TODO add test for 'Read more' Button as soon as the Button has a function
     // click({force: true}) because the navbar is above the element (no problem when using the website manually)
-    cy.get('[data-cy=discover-app-row] a').click({ force: true });
-    cy.url().should('include', '#');
+    // cy.get('[data-cy=discover-app-row] a').click({ force: true });
+    // cy.url().should('include', '#');
     cy.get('[data-cy=discover-app-image] img')
       .should('have.attr', 'src')
-      .and('include', 'perspective.png');
+      .and('include', 'assets/images/');
   });
 
   it('shows the features of the application', () => {
@@ -89,7 +89,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=features-title] small').should('have.text', 'Features');
     cy.get('[data-cy=features-title] h3')
       .invoke('text')
-      .should('include', 'Do more');
+      .should('have.length.gt', 0);
     cy.get('[data-cy=features-nav]').children().should('have.length', 4);
     // clicking all of the feature tabs
     // waiting time because the content is not shown instantly
@@ -97,8 +97,9 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-link-a]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-a] > h2')
-      .should('have.text', 'Instruments')
-      .and('be.visible');
+      .should('be.visible')
+      .invoke('text')
+      .should('have.length.gt', 0);
     cy.get('[data-cy=feature-card-title-b] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-c] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-d] > h2').should('not.be.visible');
@@ -106,8 +107,9 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-link-b]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-b] > h2')
-      .should('have.text', 'blabla b')
-      .and('be.visible');
+      .should('be.visible')
+      .invoke('text')
+      .should('have.length.gt', 0);
     cy.get('[data-cy=feature-card-title-a] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-c] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-d] > h2').should('not.be.visible');
@@ -115,8 +117,9 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-link-c]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-c] > h2')
-      .should('have.text', 'blabla c')
-      .and('be.visible');
+      .should('be.visible')
+      .invoke('text')
+      .should('have.length.gt', 0);
     cy.get('[data-cy=feature-card-title-a] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-b] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-d] > h2').should('not.be.visible');
@@ -124,8 +127,9 @@ describe('Testing the startpage of the FeelBack-web application', () => {
     cy.get('[data-cy=feature-link-d]').click({ force: true });
     cy.wait(150);
     cy.get('[data-cy=feature-card-title-d] > h2')
-      .should('have.text', 'blabla d')
-      .and('be.visible');
+      .should('be.visible')
+      .invoke('text')
+      .should('have.length.gt', 0);
     cy.get('[data-cy=feature-card-title-a] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-b] > h2').should('not.be.visible');
     cy.get('[data-cy=feature-card-title-c] > h2').should('not.be.visible');
@@ -134,18 +138,15 @@ describe('Testing the startpage of the FeelBack-web application', () => {
   it('shows how to get started', () => {
     cy.get('[data-cy=get-started-section]').should('be.visible');
     cy.get('[data-cy=get-started-steps]').children().should('have.length', 3);
-    cy.get('[data-cy=get-started-create-account] h5').should(
-      'have.text',
-      'Create an Account',
-    );
-    cy.get('[data-cy=get-started-sharing] h5').should(
-      'have.text',
-      'Share with friends',
-    );
-    cy.get('[data-cy=get-started-enjoy] h5').should(
-      'have.text',
-      'Enjoy your life',
-    );
+    cy.get('[data-cy=get-started-create-account] h5')
+      .invoke('text')
+      .should('have.length.gt', 0);
+    cy.get('[data-cy=get-started-sharing] h5')
+      .invoke('text')
+      .should('have.length.gt', 0);
+    cy.get('[data-cy=get-started-enjoy] h5')
+      .invoke('text')
+      .should('have.length.gt', 0);
   });
 
   it('should display FAQs', () => {
@@ -168,9 +169,7 @@ describe('Testing the startpage of the FeelBack-web application', () => {
         .should('have.class', 'fas')
         .and('have.class', 'fa-mobile-alt');
       cy.get('h2').should('have.text', 'Download');
-      cy.get('.tagline')
-        .invoke('text')
-        .should('contain', 'FeelBack application is available for all');
+      cy.get('.tagline').invoke('text').should('have.length.greaterThan', 0);
     });
     cy.get('[data-cy=download-links] a')
       .invoke('text')
@@ -216,16 +215,18 @@ describe('Testing the startpage of the FeelBack-web application', () => {
       .and('include', 'tel:');
     cy.get('[data-cy=contact-social-networks] a')
       .eq(0)
-      .should('have.attr', 'href')
-      .and('include', '#');
+      .should('have.attr', 'href');
+    // TODO Update this test when there is a facebook link
+    // .and('include', '#');
     cy.get('[data-cy=contact-social-networks] a span')
       .eq(0)
       .should('have.class', 'fab')
       .and('have.class', 'fa-facebook');
     cy.get('[data-cy=contact-social-networks] a')
       .eq(1)
-      .should('have.attr', 'href')
-      .and('include', '#');
+      .should('have.attr', 'href');
+    // TODO Update this test when there is a facebook link
+    // .and('include', '#');
     cy.get('[data-cy=contact-social-networks] a span')
       .eq(1)
       .should('have.class', 'fab')
