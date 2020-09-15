@@ -11,7 +11,7 @@
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
           <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
-            <ion-label>
+            <ion-label [attr.data-cy]="'menu-item-' + (p.title | translate)">
               {{ p.title | translate }}
             </ion-label>
           </ion-item>
@@ -24,7 +24,7 @@
         <ion-menu-toggle auto-hide="false" *ngFor="let p of contentPages">
           <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
-            <ion-label>
+            <ion-label [attr.data-cy]="'menu-item-' + (p.title | translate)">
               {{ p.title | translate }}
             </ion-label>
           </ion-item>
