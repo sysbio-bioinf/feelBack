@@ -16,10 +16,18 @@
       <ion-back-button defaultHref="''"></ion-back-button>
     </ion-buttons>
 
+    <ion-icon
+      *ngIf="this.showSwitchLanguageButton === true"
+      slot="end"
+      name="language-outline"
+    ></ion-icon>
     <ion-select
       *ngIf="this.showSwitchLanguageButton === true"
       slot="end"
       value="{{ this.currentLanguage }}"
+      [interfaceOptions]="{
+        header: 'app.pages.start.switchLanguage' | translate
+      }"
       cancelText="{{ 'app.general.cancel' | translate }}"
       (ionChange)="this.switchLanguage($event)"
     >
