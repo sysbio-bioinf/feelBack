@@ -8,10 +8,13 @@
     *ngIf="(this.loaded && this.organizations.length === 0); 
         then emptyTemplate 
         else contentTemplate"
+    data-cy="organization-list-wrapper"
   ></div>
 
   <ng-template #emptyTemplate>
-    <feelback-ionic-empty></feelback-ionic-empty>
+    <feelback-ionic-empty
+      data-cy="organization-empty-template"
+    ></feelback-ionic-empty>
   </ng-template>
 
   <ng-template #contentTemplate>
@@ -19,6 +22,7 @@
       *ngFor="let organization of organizations"
       [organization]="organization"
       (click)="showDetails(organization.id)"
+      data-cy="organization-card"
     ></feelback-ionic-organization-card>
   </ng-template>
 </ion-content>

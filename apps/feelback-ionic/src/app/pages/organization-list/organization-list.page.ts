@@ -26,7 +26,7 @@ export class OrganizationListPage extends AbstractComponent {
     super();
   }
 
-  showDetails(id: string) {
+  async showDetails(id: string) {
     this.router.navigate(['main', 'organizations', id]);
   }
 

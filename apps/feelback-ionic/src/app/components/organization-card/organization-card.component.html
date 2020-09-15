@@ -1,18 +1,21 @@
-<ion-card>
+<ion-card data-cy="organization-card-component">
   <div style="padding: 10px;" *ngIf="organization.logo">
-    <ion-img [src]="organization.logo"></ion-img>
+    <ion-img [src]="organization.logo" data-cy="organization-logo"></ion-img>
   </div>
   <ion-card-header>
-    <ion-card-subtitle color="medium">
+    <ion-card-subtitle color="medium" data-cy="organization-type">
       {{ organization.type }}
     </ion-card-subtitle>
-    <ion-card-title color="primary">
+    <ion-card-title color="primary" data-cy="organization-name">
       {{ organization.name }}
     </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-text *ngIf="organization.description">
-      {{ organization.description | stripTags | shorten: 300:'...' }}
+    <ion-text
+      *ngIf="organization.description"
+      data-cy="organization-description"
+    >
+      {{ organization.description | stripTags | shorten: 200:'...' }}
     </ion-text>
   </ion-card-content>
 </ion-card>
