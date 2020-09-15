@@ -13,6 +13,8 @@ import { GraphQLModule } from './modules/graphql.module';
 import { SharedModule } from './modules/shared.module';
 import { Printer } from '@ionic-native/printer/ngx';
 
+import { NgIdleModule } from '@ng-idle/core';
+
 @NgModule({
   imports: [
     IonicModule.forRoot(),
@@ -21,6 +23,7 @@ import { Printer } from '@ionic-native/printer/ngx';
     AppRoutingModule,
     MarkdownModule.forRoot({ loader: HttpClient }),
     GraphQLModule,
+    NgIdleModule.forRoot(),
   ],
   providers: [StatusBar, SplashScreen, File, BarcodeScanner, Printer],
   declarations: [AppComponent],
