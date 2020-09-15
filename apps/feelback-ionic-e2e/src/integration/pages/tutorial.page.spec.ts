@@ -44,22 +44,17 @@ describe('Tutorial Page', () => {
     }
   });
 
-  it('should display the BACK button correctly', () => {
+  it('should display the BACK button on every slide', () => {
     const slideCount = Cypress.$('[data-cy=tutorial-slide]').length;
-
-    // slide n-1 times so we are at the last slide
     for (let currentSlide = 0; currentSlide < slideCount - 1; currentSlide++) {
-      cy.get('[data-cy=button-tutorial-back').should('be.visible');
+      cy.get('[data-cy=header-back').should('be.visible');
       cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
       cy.wait(300);
     }
-
-    // we are not on the last slide!
-    cy.get('[data-cy=button-tutorial-back').should('not.be.visible');
   });
 
   it('should return to login screen on BACK button click', () => {
-    cy.get('[data-cy=button-tutorial-back]').click();
+    cy.get('[data-cy=header-back').click();
     cy.wait(300);
 
     cy.url().should('not.contain', '/tutorial');
@@ -90,8 +85,20 @@ describe('Tutorial Page', () => {
       cy.wait(300);
     });
 
-    it('should check some important labels', () => {
-      cy.get('[data-cy=button-tutorial-back]').should('contain', 'Zurück');
+    it.only('should check some important labels', () => {
+      const slideCount = Cypress.$('[data-cy=tutorial-slide]').length;
+
+      for (
+        let currentSlide = 0;
+        currentSlide < slideCount - 1;
+        currentSlide++
+      ) {
+        cy.get('[data-cy=tutorial-slide-container]').swipe('right', 'left');
+        cy.wait(300);
+      }
+      cy.get('[data-cy=button-tutorial-action]')
+        .invoke('text')
+        .should('contain', 'FeelBack starten');
     });
   });
 });

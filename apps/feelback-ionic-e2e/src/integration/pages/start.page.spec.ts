@@ -31,7 +31,7 @@ describe('Start Page', () => {
 
   it('should check, if the tutorial button exists', () => {
     cy.get('[data-cy=button-tutorial]').should('exist');
-    cy.get('[data-cy=button-tutorial]').should('contain.text', 'Open Tutorial');
+    cy.get('[data-cy=button-tutorial]').should('contain.text', 'Introduction');
   });
 
   it('should redirect to the home page on anonymous login', () => {
@@ -62,7 +62,7 @@ describe('Start Page', () => {
     });
 
     it('should check some important labels', () => {
-      cy.get('[data-cy=button-tutorial]').should('contain', 'Tutorial öffnen');
+      cy.get('[data-cy=button-tutorial]').should('contain', 'Einführung');
     });
   });
 });
