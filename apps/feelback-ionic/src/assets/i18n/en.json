@@ -20,10 +20,12 @@
       }
     },
 
-    "errors": {
-      "api": {
-        "noData": "No Data found"
-      }
+    "idle": {
+      "header": "Inactive",
+      "subheader": "You will soon be automatically logged out due to inactivity.",
+      "message": "Time until automatic logout: ",
+      "cancel": "Cancel",
+      "logout": "Logout"
     },
 
     "menu": {
@@ -35,6 +37,12 @@
       "faq": "FAQs",
       "contact": "Contact",
       "logout": "Logout"
+    },
+
+    "errors": {
+      "api": {
+        "noData": "No Data found"
+      }
     },
 
     "components": {
@@ -49,6 +57,15 @@
     },
 
     "pages": {
+      "start": {
+        "title": "FeelBack",
+        "login": "Login with your ID",
+        "qrcode": "Scan FeelBack Card",
+        "form": "Enter Pseudonym",
+        "anonymous": "Private Mode",
+        "tutorial": "Introduction",
+        "switchLanguage": "Select Language"
+      },
       "login": {
         "title": "Login",
         "scanner": {
@@ -67,18 +84,10 @@
         "back": "Back to Home",
         "print": "Print Results"
       },
-      "start": {
-        "title": "FeelBack",
-        "login": "Login with your ID",
-        "qrcode": "Scan FeelBack Card",
-        "form": "Enter Pseudonym",
-        "anonymous": "Private Mode",
-        "tutorial": "Open Tutorial"
-      },
       "settings": {
         "title": "Settings",
         "form": {
-          "switchLanguage": "Switch Language"
+          "switchLanguage": "Select Language"
         }
       },
       "home": {
@@ -107,22 +116,6 @@
           "title": "Team"
         }
       },
-      "organization-list": {
-        "title": "Organizations"
-      },
-      "organization-detail": {
-        "title": "Detail"
-      },
-      "instrument-list": {
-        "title": "Instruments"
-      },
-      "faq-list": {
-        "title": "FAQs"
-      },
-      "faq-detail": {
-        "title": "Detail",
-        "type": "FAQ"
-      },
       "tutorial": {
         "slide1": {
           "image": "assets/images/tutorial/tutorial-01.png",
@@ -144,6 +137,23 @@
           "title": "Let's Go!",
           "text": "Start FeelBack"
         }
+      },
+      "organization-list": {
+        "title": "Organizations",
+        "details": "More details"
+      },
+      "organization-detail": {
+        "title": "Detail"
+      },
+      "instrument-list": {
+        "title": "Instruments"
+      },
+      "faq-list": {
+        "title": "FAQs"
+      },
+      "faq-detail": {
+        "title": "Detail",
+        "type": "FAQ"
       }
     }
   }

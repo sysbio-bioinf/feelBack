@@ -20,34 +20,100 @@
       }
     },
 
+    "idle": {
+      "header": "Inaktiv",
+      "subheader": "Aufgrund von Inaktivität werden Sie bald automatisch abgemeldet.",
+      "message": "Zeit bis zur automatischen Abmeldung: ",
+      "cancel": "Angemeldet bleiben",
+      "logout": "Abmelden"
+    },
+
     "menu": {
       "title": "Menü",
       "start": "Start",
       "profile": "Profil",
-      "organizations": "Kliniken",
+      "organizations": "Einrichtungen",
       "settings": "Einstellungen",
       "faq": "Hilfe",
       "contact": "Kontakt",
       "logout": "Abmelden"
     },
 
+    "errors": {
+      "api": {
+        "noData": "Keine Daten gefunden"
+      }
+    },
+
+    "components": {
+      "empty": {
+        "title": "Inhalt nicht vorhanden",
+        "text": "Es existiert kein Inhalt, der angezeigt werden kann."
+      },
+      "instrument-card": {
+        "selectLanguage": "Sprache auswählen",
+        "start": "Start"
+      }
+    },
+
     "pages": {
       "start": {
         "title": "FeelBack",
-        "login": "Einloggen",
+        "login": "Mit ID einloggen",
         "qrcode": "FeelBack Karte scannen",
         "form": "Pseudonym eingeben",
         "anonymous": "Anonym bleiben",
-        "tutorial": "Tutorial öffnen"
+        "tutorial": "Einführung",
+        "switchLanguage": "Sprache auswählen"
+      },
+      "login": {
+        "title": "Login",
+        "scanner": {
+          "title": "Scannen Sie ihre FeelBack Karte",
+          "text": "Scannen Sie ihre FeelBack Karte",
+          "button": "Karte scannen"
+        },
+        "form": {
+          "title": "Geben Sie ihr Pseudonym ein",
+          "text": "Sie können hier ihr Pseudonym eintippen.",
+          "pseudonym": "Pseudonym"
+        },
+        "submit": "Login"
+      },
+      "survey": {
+        "back": "Zurück zum Hauptmenü",
+        "print": "Ergebnisse drucken"
       },
       "settings": {
-        "title": "Einstellungen"
+        "title": "Einstellungen",
+        "form": {
+          "switchLanguage": "Sprache auswählen"
+        }
+      },
+      "home": {
+        "title": "FeelBack"
       },
       "profile": {
         "title": "Mein Profil",
         "pseudonym": "Pseudonym",
         "toasts": {
           "notLoggedIn": "Loggen Sie sich ein, um ihr Profil anzeigen zu können."
+        }
+      },
+      "imprint": {
+        "title": "Impressum",
+        "contact": {
+          "title": "Kontakt",
+          "organization": "Universität Ulm",
+          "institute": "Institut für Medizinische Systembiologie",
+          "address1": "Albert-Einstein-Allee 11",
+          "address2": "89081 Ulm, Germany",
+          "phone": "+49 / (0)731 / 50 24500",
+          "fax": "+49 / (0)731 / 50 24502",
+          "email": "hans.kestler@uni-ulm.de"
+        },
+        "team": {
+          "title": "Team"
         }
       },
       "tutorial": {
@@ -73,7 +139,21 @@
         }
       },
       "organization-list": {
-        "title": "Kliniken"
+        "title": "Einrichtungen",
+        "details": "Details anzeigen"
+      },
+      "organization-detail": {
+        "title": "Details"
+      },
+      "instrument-list": {
+        "title": "Instrumente"
+      },
+      "faq-list": {
+        "title": "FAQs"
+      },
+      "faq-detail": {
+        "title": "Detail",
+        "type": "FAQ"
       }
     }
   }
