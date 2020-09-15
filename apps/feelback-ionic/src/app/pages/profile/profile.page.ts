@@ -32,6 +32,10 @@ export class ProfilePage extends AbstractComponent implements OnInit {
     this.router.navigate(['main', 'home'], { replaceUrl: true });
   }
 
+  navigateToLogin() {
+    this.router.navigate(['auth', 'login'], { replaceUrl: true });
+  }
+
   ngOnInit() {}
 
   async ionViewWillEnter() {
@@ -41,7 +45,21 @@ export class ProfilePage extends AbstractComponent implements OnInit {
           message: this.translatePipe.transform(
             'app.pages.profile.toasts.notLoggedIn',
           ),
-          duration: 2000,
+          buttons: [
+            {
+              side: 'end',
+              text: this.translatePipe.transform('app.general.cancel'),
+              role: 'cancel',
+            },
+            {
+              side: 'end',
+              text: 'Login',
+              handler: () => {
+                this.navigateToLogin();
+              },
+            },
+          ],
+          duration: 5000,
         })
         .then((toast) => {
           toast.present();
