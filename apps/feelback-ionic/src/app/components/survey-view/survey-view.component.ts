@@ -45,19 +45,24 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
   async ngOnInit() {
     await this.setupInstrumentPage();
+    this.translateService.use(
+      this.selectedLanguage || this.survey.getUsedLocales[0],
+    );
   }
 
   changeFontSize(delta: number) {
     let newValue = this.currentFontSize + delta;
     newValue = +newValue.toFixed(2);
 
-    this.currentFontSize = newValue;
+    if (newValue >= 0.5 && newValue <= 1.5) {
+      this.currentFontSize = newValue;
 
-    const surveyHtmlRoot: HTMLElement = document.getElementsByClassName(
-      'sv_main',
-    )[0] as HTMLElement;
-    if (surveyHtmlRoot != null) {
-      surveyHtmlRoot.style.fontSize = newValue + 'em';
+      const surveyHtmlRoot: HTMLElement = document.getElementsByClassName(
+        'sv_main',
+      )[0] as HTMLElement;
+      if (surveyHtmlRoot != null) {
+        surveyHtmlRoot.style.fontSize = newValue + 'em';
+      }
     }
   }
 
