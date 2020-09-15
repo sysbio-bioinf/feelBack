@@ -1,12 +1,31 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start" *ngIf="this.showNavButton === true">
+    <ion-buttons
+      slot="start"
+      *ngIf="this.showNavButton === true"
+      data-cy="header-menu"
+    >
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-buttons slot="start" *ngIf="this.showBackButton === true">
-      <ion-back-button [defaultHref]="''"></ion-back-button>
+    <ion-buttons
+      slot="start"
+      *ngIf="this.showBackButton === true"
+      data-cy="header-back"
+    >
+      <ion-back-button defaultHref="''"></ion-back-button>
     </ion-buttons>
+
+    <ion-select
+      *ngIf="this.showSwitchLanguageButton === true"
+      slot="end"
+      value="{{ this.currentLanguage }}"
+      cancelText="{{ 'app.general.cancel' | translate }}"
+      (ionChange)="this.switchLanguage($event)"
+    >
+      <ion-select-option value="de">German</ion-select-option>
+      <ion-select-option value="en">English</ion-select-option>
+    </ion-select>
 
     <ion-title data-cy="header-title">{{ title }}</ion-title>
   </ion-toolbar>
