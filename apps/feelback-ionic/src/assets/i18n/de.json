@@ -9,10 +9,21 @@
       "ok": "Ok"
     },
 
+    "dialogs": {
+      "exitApplication": {
+        "title": "Anwendung beenden",
+        "text": "Sind Sie sicher, dass Sie die Anwendung beenden möchten?"
+      },
+      "cancelQuestionnaire": {
+        "title": "Abbrechen",
+        "text": "Sind Sie sicher, dass Sie die Beantwortung des Fragebogens beenden und zur Übersicht der Fragebögen zurückkehren möchten?"
+      }
+    },
+
     "menu": {
       "title": "Menü",
       "start": "Start",
-      "profile": "Profile",
+      "profile": "Profil",
       "organizations": "Kliniken",
       "settings": "Einstellungen",
       "faq": "Hilfe",
@@ -23,6 +34,7 @@
     "pages": {
       "start": {
         "title": "FeelBack",
+        "login": "Einloggen",
         "qrcode": "FeelBack Karte scannen",
         "form": "Pseudonym eingeben",
         "anonymous": "Anonym bleiben",
@@ -30,6 +42,38 @@
       },
       "settings": {
         "title": "Einstellungen"
+      },
+      "profile": {
+        "title": "Mein Profil",
+        "pseudonym": "Pseudonym",
+        "toasts": {
+          "notLoggedIn": "Loggen Sie sich ein, um ihr Profil anzeigen zu können."
+        }
+      },
+      "tutorial": {
+        "slide1": {
+          "image": "assets/images/tutorial/tutorial-01.png",
+          "title": "Willkommen bei <b>FeelBack</b>",
+          "text": "<b>FeelBack</b> soll helfen, Tumorpatientinnen und -patienten eine bedarfsgerechte psychoonkologische Versorgung zu ermöglichen."
+        },
+        "slide2": {
+          "image": "assets/images/tutorial/tutorial-02.png",
+          "title": "Was macht <b>FeelBack</b>?",
+          "text": "Bei <b>FeelBack</b> werden die Screeningdaten digital erfasst und in Form eines standardisierten Datensatzes sicher an eine zentrale Datenbank übertragen."
+        },
+        "slide3": {
+          "image": "assets/images/tutorial/tutorial-03.png",
+          "title": "Was ist das Ziel von <b>FeelBack</b>?",
+          "text": "<b>FeelBack</b> ermöglicht die Identifikation psychosozial belasteter Patientinnen und Patienten, ebenso wie die Dokumentation des Screenings und des Therapieverlaufs."
+        },
+        "slide4": {
+          "image": "assets/images/tutorial/tutorial-04.png",
+          "title": "Los Gehts!",
+          "text": "FeelBack starten"
+        }
+      },
+      "organization-list": {
+        "title": "Kliniken"
       }
     }
   }

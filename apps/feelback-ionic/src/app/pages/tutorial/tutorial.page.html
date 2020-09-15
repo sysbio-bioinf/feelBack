@@ -1,49 +1,45 @@
-<ion-header no-border>
-  <ion-toolbar>
-    <ion-buttons slot="end">
-      <ion-button
-        data-cy="button-tutorial-back"
-        color="primary"
-        (click)="this.navigateToStart()"
-        [hidden]="!showSkip"
-        >{{ 'app.general.back' | translate }}</ion-button
-      >
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<feelback-ionic-header
+  [showBackButton]="true"
+  [title]="'app.pages.home.title' | translate"
+>
+</feelback-ionic-header>
 
 <ion-content fullscreen>
-  <ion-slides
-    data-cy="tutorial-slide-container"
-    #slides
-    (ionSlideWillChange)="onSlideChangeStart($event)"
-    pager="true"
-  >
+  <ion-slides data-cy="tutorial-slide-container" #slides pager="true">
     <ion-slide
       data-cy="tutorial-slide"
-      *ngFor="let slide of this.tutorialSlides; let i = index"
+      *ngFor="let slideID of this.slideNumberArray let i = index"
     >
-      <img src="{{ slide.image }}" class="slide-image" />
-      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <img
+        src="{{ ('app.pages.tutorial.slide') + slideID + ('.image') |
+      translate}}"
+        class="slide-image"
+      />
+      <h2
+        class="slide-title"
+        [innerHTML]="'app.pages.tutorial.slide' + slideID + '.title' | translate"
+      ></h2>
 
       <div
-        *ngIf="i !== (this.tutorialSlides.length - 1);
+        *ngIf="i !== (this.slideNumberArray.length - 1);
         then description 
         else button"
       ></div>
 
       <ng-template #description>
-        <p [innerHTML]="slide.text"></p>
+        <p
+          [innerHTML]="'app.pages.tutorial.slide' + slideID + '.text' | translate"
+        ></p>
       </ng-template>
 
       <ng-template #button>
         <ion-button
           data-cy="button-tutorial-action"
-          *ngIf="i === (this.tutorialSlides.length-1)"
+          *ngIf="i === (this.slideNumberArray.length-1)"
           fill="clear"
           (click)="navigateToStart()"
-          >{{ slide.text }}</ion-button
-        >
+          [innerHTML]="'app.pages.tutorial.slide' + slideID + '.text' | translate"
+        ></ion-button>
       </ng-template>
     </ion-slide>
   </ion-slides>
