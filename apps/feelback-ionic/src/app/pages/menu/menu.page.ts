@@ -42,6 +42,11 @@ export class MenuPage extends AbstractComponent {
       url: '/main/imprint',
       icon: 'mail-outline',
     },
+    {
+      title: 'app.menu.privacy',
+      url: '/main/privacy',
+      icon: 'lock-closed-outline',
+    },
   ];
 
   constructor(private router: Router) {
