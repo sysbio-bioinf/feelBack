@@ -6,7 +6,7 @@ import { InstrumentService } from '../../../../../..//services/instrument.servic
 import { Patient } from '../../../../../..//models/patient.model';
 import { Instrument } from '../../../../../..//models/instrument.model';
 import { catchError } from 'rxjs/operators';
-import { ErrorEntity } from 'apps/feelback-doctor/src/app/models/error-entity.enum';
+import { ErrorEntity } from '../../../../../../../app/models/error-entity.enum';
 
 
 @Component({
