@@ -5,7 +5,7 @@ import { ImprintPage } from './imprint.page';
 const routes: Routes = [
   {
     path: 'imprint',
-    component: ImprintPage
+    component: ImprintPage,
   },
 ];
 

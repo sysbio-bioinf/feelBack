@@ -10,9 +10,8 @@ describe('LoadingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule],
-      declarations: [ LoadingComponent ]
-    })
-    .compileComponents();
+      declarations: [LoadingComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

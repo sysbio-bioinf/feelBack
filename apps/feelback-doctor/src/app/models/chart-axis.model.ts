@@ -1,10 +1,8 @@
 import { ChartDataPoint } from './chart-data-point.model';
 
-export class ChartAxis{
+export class ChartAxis {
+  constructor() {}
 
-  constructor(){}
-
-    name: string;
-    series: ChartDataPoint[];
-
+  name: string;
+  series: ChartDataPoint[];
 }

@@ -25,7 +25,6 @@ export class CommonService {
     copy: 'file_copy',
     download: 'save_alt',
     result: 'image_search',
-    search: 'search'
+    search: 'search',
   };
-
 }

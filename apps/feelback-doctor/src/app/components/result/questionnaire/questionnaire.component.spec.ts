@@ -12,16 +12,25 @@ describe('QuestionnaireComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
-      declarations: [ QuestionnaireComponent ],
+      declarations: [QuestionnaireComponent],
       providers: [DatePipe],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionnaireComponent);
     component = fixture.componentInstance;
-    component.screening = {createdAt: '', id: '', updatedAt: new Date(), version: 1, collectedAt: new Date(), instanceId: '', language: '', payload: {}, resolvedAt: new Date()}
+    component.screening = {
+      createdAt: '',
+      id: '',
+      updatedAt: new Date(),
+      version: 1,
+      collectedAt: new Date(),
+      instanceId: '',
+      language: '',
+      payload: {},
+      resolvedAt: new Date(),
+    };
     fixture.detectChanges();
   });
 

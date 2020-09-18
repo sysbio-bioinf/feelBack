@@ -17,10 +17,9 @@ describe('NavbarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
-      declarations: [ NavbarComponent ],
-      providers: [{provide: KeycloakService, useValue: keycloakServiceStub}]
-    })
-    .compileComponents();
+      declarations: [NavbarComponent],
+      providers: [{ provide: KeycloakService, useValue: keycloakServiceStub }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

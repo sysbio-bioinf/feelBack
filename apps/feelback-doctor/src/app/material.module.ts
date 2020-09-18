@@ -24,7 +24,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -53,7 +53,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatStepperModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   exports: [
     MatCardModule,
@@ -81,7 +81,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatStepperModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
 })
 export class MaterialModule {}

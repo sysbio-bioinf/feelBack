@@ -49,7 +49,7 @@ describe('OverviewComponent', () => {
         payload: {},
         rules: [],
         diagram: {},
-        state: InstrumentStatesEnum.Released
+        state: InstrumentStatesEnum.Released,
       },
       language: '',
       evaluationResult: [],

@@ -14,9 +14,8 @@ describe('ResultPage', () => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule, RouterTestingModule],
       providers: [Apollo, DatePipe],
-      declarations: [ ResultPage ]
-    })
-    .compileComponents();
+      declarations: [ResultPage],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

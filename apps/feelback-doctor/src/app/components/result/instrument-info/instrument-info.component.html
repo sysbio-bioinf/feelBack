@@ -1,7 +1,9 @@
 <mat-card id="instrument-info" [class]="hoverable ? 'hoverable' : ''">
   <mat-card-header>
     <img *ngIf="image" mat-card-avatar [src]="instrument.image" />
-    <mat-icon *ngIf="!image" mat-card-avatar class="header-avatar">{{commonService.icons.instrument}}</mat-icon>
+    <mat-icon *ngIf="!image" mat-card-avatar class="header-avatar">{{
+      commonService.icons.instrument
+    }}</mat-icon>
     <mat-card-title>{{ instrument.name }}</mat-card-title>
     <mat-card-subtitle>{{ instrument.type }}</mat-card-subtitle>
   </mat-card-header>

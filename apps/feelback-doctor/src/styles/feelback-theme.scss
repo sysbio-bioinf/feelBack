@@ -4,9 +4,9 @@
 @include mat-core();
 
 $feelback-theme: mat-light-theme(
-    $feelback-theme-primary,
-    $feelback-theme-accent,
-    $feelback-theme-warn
+  $feelback-theme-primary,
+  $feelback-theme-accent,
+  $feelback-theme-warn
 );
 
 @include angular-material-theme($feelback-theme);

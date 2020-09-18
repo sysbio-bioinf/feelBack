@@ -1,6 +1,5 @@
-export class Screening{
-
-  constructor(){}
+export class Screening {
+  constructor() {}
 
   id: string;
   createdAt: Date;
@@ -11,4 +10,5 @@ export class Screening{
   isResolved?: boolean;
   resolvedAt?: Date;
   resolveComment?: String;
+  evaluationResult?: {};
 }

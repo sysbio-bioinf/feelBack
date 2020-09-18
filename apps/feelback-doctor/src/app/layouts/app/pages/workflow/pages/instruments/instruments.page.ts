@@ -8,7 +8,6 @@ import { Instrument } from '../../../../../..//models/instrument.model';
 import { catchError } from 'rxjs/operators';
 import { ErrorEntity } from '../../../../../../../app/models/error-entity.enum';
 
-
 @Component({
   selector: 'feelback-doctor-instruments',
   templateUrl: './instruments.page.html',
@@ -30,7 +29,8 @@ export class InstrumentsPage implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.patientId = params.get('patient');
-      this.patient$ = this.patientService.getPatientById(params.get('patient'))
+      this.patient$ = this.patientService
+        .getPatientById(params.get('patient'))
         .pipe(
           catchError(() => {
             this.navigateToErrorPage();

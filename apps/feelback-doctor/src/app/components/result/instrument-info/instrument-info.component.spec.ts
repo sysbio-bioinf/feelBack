@@ -31,7 +31,7 @@ describe('InstrumentInfoComponent', () => {
       payload: {},
       rules: [],
       diagram: {},
-      state: InstrumentStatesEnum.Released
+      state: InstrumentStatesEnum.Released,
     };
     fixture.detectChanges();
   });

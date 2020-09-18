@@ -14,7 +14,13 @@ describe('ScreeningsPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentsModule, RouterTestingModule, MaterialModule, NgxChartsModule, ReactiveFormsModule],
+      imports: [
+        ComponentsModule,
+        RouterTestingModule,
+        MaterialModule,
+        NgxChartsModule,
+        ReactiveFormsModule,
+      ],
       providers: [Apollo, DatePipe],
       declarations: [ScreeningsPage],
     }).compileComponents();

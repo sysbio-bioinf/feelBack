@@ -10,16 +10,15 @@ describe('EmptyStateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule],
-      declarations: [ ]
-    })
-    .compileComponents();
+      declarations: [],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmptyStateComponent);
     component = fixture.componentInstance;
     component.entity = 'test';
-    fixture.detectChanges();    
+    fixture.detectChanges();
   });
 
   it('should create', () => {

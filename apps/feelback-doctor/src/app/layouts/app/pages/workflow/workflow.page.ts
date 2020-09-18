@@ -11,7 +11,6 @@ import { slideInAnimation } from './workflow.layout.animation';
   animations: [slideInAnimation],
 })
 export class WorkflowPage implements OnInit {
-
   constructor(private router: Router, private commonService: CommonService) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -78,5 +77,4 @@ export class WorkflowPage implements OnInit {
       this.stepThreshold = 3;
     }
   }
-
 }

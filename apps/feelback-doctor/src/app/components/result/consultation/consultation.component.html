@@ -1,10 +1,10 @@
 <mat-card id="screening">
   <mat-card-header>
-    <mat-icon mat-card-avatar class="header-avatar">{{commonService.icons.screening}}</mat-icon>
+    <mat-icon mat-card-avatar class="header-avatar">{{
+      commonService.icons.screening
+    }}</mat-icon>
     <mat-card-title>Screening</mat-card-title>
-    <mat-card-subtitle>{{
-      createdAt | date: 'dd.MM.yyyy'
-    }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ createdAt | date: 'dd.MM.yyyy' }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="consultation-wrapper">
@@ -13,16 +13,20 @@
           *ngIf="evaluationResult.result"
           class="consultation-icon"
           color="accent"
-          >{{commonService.icons.check}}</mat-icon
+          >{{ commonService.icons.check }}</mat-icon
         >
         <mat-icon
           *ngIf="!evaluationResult.result"
           class="consultation-icon"
           color="warn"
-          >{{commonService.icons.uncheck}}</mat-icon
+          >{{ commonService.icons.uncheck }}</mat-icon
         >
-        <span *ngIf="evaluationResult.result" class="consultation-text">{{evaluationResult.then}}</span>
-        <span *ngIf="!evaluationResult.result" class="consultation-text">{{evaluationResult.else}}</span>
+        <span *ngIf="evaluationResult.result" class="consultation-text">{{
+          evaluationResult.then
+        }}</span>
+        <span *ngIf="!evaluationResult.result" class="consultation-text">{{
+          evaluationResult.else
+        }}</span>
       </div>
       <mat-form-field appearance="fill">
         <mat-label>Comment</mat-label>

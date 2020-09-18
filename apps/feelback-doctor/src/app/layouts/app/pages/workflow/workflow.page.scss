@@ -1,7 +1,5 @@
 @import 'variables';
 
-
-
 nav {
   display: flex;
   border-radius: 4px;
@@ -18,39 +16,39 @@ nav {
   margin-right: 5px;
 }
 
-.background-default{
+.background-default {
   background-color: grey;
 }
 
-.background-active{
+.background-active {
   background-color: $primary;
 }
 
 .step {
-  position:relative;
+  position: relative;
   flex: 0 0 25%;
   text-align: center;
 }
 
 .step:first-child .step-bar-left,
 .step:last-child .step-bar-right {
-	display:none;
+  display: none;
 }
 
 .step-bar-left,
 .step-bar-right {
-	position:absolute;
-	top:30px;
-	height:1px;
-	border-top:1px solid #DDDDDD;
+  position: absolute;
+  top: 30px;
+  height: 1px;
+  border-top: 1px solid #dddddd;
 }
 .step-bar-right {
-	right:0;
-	left:50%;
-	margin-left:20px;
+  right: 0;
+  left: 50%;
+  margin-left: 20px;
 }
 .step-bar-left {
-	left:0;
-	right:50%;
-	margin-right:25px;
+  left: 0;
+  right: 50%;
+  margin-right: 25px;
 }

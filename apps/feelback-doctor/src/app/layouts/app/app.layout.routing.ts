@@ -6,7 +6,8 @@ const routes: Routes = [
   {
     path: 'app',
     component: AppLayout,
-    loadChildren: () => import(`./pages/app.pages.module`).then(m => m.AppPagesModule)
+    loadChildren: () =>
+      import(`./pages/app.pages.module`).then((m) => m.AppPagesModule),
   },
 ];
 

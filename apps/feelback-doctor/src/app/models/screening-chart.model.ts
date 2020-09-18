@@ -1,11 +1,9 @@
-import {ChartAxis} from '../models/chart-axis.model'
+import { ChartAxis } from '../models/chart-axis.model';
 
 export class ScreeningChart {
-
-  constructor(){}
+  constructor() {}
 
   name: string;
   type: string;
   axis: ChartAxis[];
-
 }

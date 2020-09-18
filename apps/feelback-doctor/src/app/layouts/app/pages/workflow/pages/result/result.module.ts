@@ -9,5 +9,4 @@ import { ComponentsModule } from '../../../../../../components/components.module
   declarations: [ResultPage],
   imports: [CommonModule, ComponentsModule, ResultRouting],
 })
-
 export class ResultModule {}

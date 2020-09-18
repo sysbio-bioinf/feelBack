@@ -10,6 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ScreeningsPage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, ScreeningsRouting,  NgxChartsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ComponentsModule,
+    MaterialModule,
+    ScreeningsRouting,
+    NgxChartsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ScreeningsModule {}

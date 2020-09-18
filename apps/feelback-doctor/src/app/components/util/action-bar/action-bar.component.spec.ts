@@ -14,21 +14,25 @@ describe('ActionBarComponent', () => {
 
   screeningServiceStub = {
     screenings: [],
-    index: 0
+    index: 0,
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ComponentsModule, RouterTestingModule],
       declarations: [],
-      providers: [DatePipe, Apollo, { provide: ScreeningService, useValue: screeningServiceStub }],
+      providers: [
+        DatePipe,
+        Apollo,
+        { provide: ScreeningService, useValue: screeningServiceStub },
+      ],
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ActionBarComponent);
     component = fixture.componentInstance;
-    component.patient = { id: "id", pseudonym: "test"};
+    component.patient = { id: 'id', pseudonym: 'test' };
     fixture.detectChanges();
   });
 

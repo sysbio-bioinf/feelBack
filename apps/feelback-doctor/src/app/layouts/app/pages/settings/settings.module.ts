@@ -8,6 +8,12 @@ import { SettingsPage } from './settings.page';
 
 @NgModule({
   declarations: [SettingsPage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, SettingsRouting],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ComponentsModule,
+    MaterialModule,
+    SettingsRouting,
+  ],
 })
 export class SettingsModule {}

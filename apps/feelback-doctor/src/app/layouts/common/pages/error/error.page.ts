@@ -26,7 +26,7 @@ export class ErrorPage implements OnInit {
 
   ngOnInit(): void {}
 
-  public navigateToCallbackUrl():void {
+  public navigateToCallbackUrl(): void {
     if (this.error.callbackUrl) {
       this.router.navigateByUrl(this.error.callbackUrl);
     } else {

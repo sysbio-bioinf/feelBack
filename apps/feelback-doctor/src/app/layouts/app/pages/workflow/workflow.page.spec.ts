@@ -13,11 +13,15 @@ describe('WorkflowPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WorkflowPage ],
-      imports: [ComponentsModule, MaterialModule, RouterTestingModule, BrowserAnimationsModule],
-      providers: [DatePipe]
-    })
-    .compileComponents();
+      declarations: [WorkflowPage],
+      imports: [
+        ComponentsModule,
+        MaterialModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+      ],
+      providers: [DatePipe],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

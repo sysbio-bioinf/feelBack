@@ -8,6 +8,12 @@ import { ImprintRouting } from './imprint.routing';
 
 @NgModule({
   declarations: [ImprintPage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, ImprintRouting],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ComponentsModule,
+    MaterialModule,
+    ImprintRouting,
+  ],
 })
 export class ImprintModule {}

@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -42,7 +37,7 @@ export class QuestionnaireComponent implements OnInit {
     this.renderSurvey();
   }
 
-  public print(){
+  public print() {
     this.survey.isSinglePage = true;
     this.renderSurvey().then(() => {
       window.print();

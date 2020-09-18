@@ -8,6 +8,12 @@ import { ProfileRouting } from './profile.routing';
 
 @NgModule({
   declarations: [ProfilePage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, ProfileRouting],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ComponentsModule,
+    MaterialModule,
+    ProfileRouting,
+  ],
 })
 export class ProfileModule {}

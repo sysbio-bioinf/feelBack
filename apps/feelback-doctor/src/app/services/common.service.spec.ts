@@ -8,7 +8,7 @@ describe('CommonService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DatePipe]
+      providers: [DatePipe],
     });
     service = TestBed.inject(CommonService);
   });

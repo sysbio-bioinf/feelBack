@@ -6,7 +6,7 @@ import {
   Screening,
   GetScreeningsDiagramCollectionsGQL,
 } from '../graphql/generated/feelback.graphql';
-import {ScreeningChart} from '../models/screening-chart.model';
+import { ScreeningChart } from '../models/screening-chart.model';
 import { ChartDataPoint } from '../models/chart-data-point.model';
 
 @Injectable({
@@ -55,8 +55,8 @@ export class ScreeningService {
           return {
             name: data.data.screeningsDiagramCollections[0].name,
             type: data.data.screeningsDiagramCollections[0].type,
-            axis: screenings['axis']
-          }
+            axis: screenings['axis'],
+          };
         }),
       );
   }

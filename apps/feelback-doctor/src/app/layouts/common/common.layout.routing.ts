@@ -6,7 +6,8 @@ const routes: Routes = [
   {
     path: 'error',
     component: CommonLayout,
-    loadChildren: () => import(`./pages/common.pages.module`).then(m => m.CommonPagesModule)
+    loadChildren: () =>
+      import(`./pages/common.pages.module`).then((m) => m.CommonPagesModule),
   },
 ];
 

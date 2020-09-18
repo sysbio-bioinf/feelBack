@@ -10,9 +10,8 @@ describe('ErrorIndicatorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule],
-      declarations: [ ErrorIndicatorComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorIndicatorComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,12 +5,15 @@ import { WorkflowPage } from './workflow.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'workflow'
+    redirectTo: 'workflow',
   },
   {
     path: 'workflow',
     component: WorkflowPage,
-    loadChildren: () => import(`./pages/workflow.pages.module`).then(m => m.WorkflowPagesModule)
+    loadChildren: () =>
+      import(`./pages/workflow.pages.module`).then(
+        (m) => m.WorkflowPagesModule,
+      ),
   },
 ];
 

@@ -11,9 +11,8 @@ describe('CommonLayout', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, RouterTestingModule],
-      declarations: [ CommonLayout ]
-    })
-    .compileComponents();
+      declarations: [CommonLayout],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

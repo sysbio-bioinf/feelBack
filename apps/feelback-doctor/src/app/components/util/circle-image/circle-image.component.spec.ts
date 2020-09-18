@@ -8,9 +8,8 @@ describe('CircleImageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CircleImageComponent ]
-    })
-    .compileComponents();
+      declarations: [CircleImageComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

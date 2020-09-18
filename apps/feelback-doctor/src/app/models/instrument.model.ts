@@ -1,6 +1,5 @@
 export class Instrument {
-
-  constructor(){}
+  constructor() {}
 
   id: string;
   name: string;

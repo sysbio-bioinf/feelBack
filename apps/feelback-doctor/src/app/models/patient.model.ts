@@ -1,6 +1,5 @@
 export class Patient {
-
-  constructor(){}
+  constructor() {}
 
   id: string;
   pseudonym: string;

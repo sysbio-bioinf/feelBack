@@ -7,6 +7,11 @@ import { MaterialModule } from '../../material.module';
 
 @NgModule({
   declarations: [CommonLayout],
-  imports: [MaterialModule, CommonModule, CommonPagesModule, CommonLayoutRouting],
+  imports: [
+    MaterialModule,
+    CommonModule,
+    CommonPagesModule,
+    CommonLayoutRouting,
+  ],
 })
 export class CommonLayoutModule {}

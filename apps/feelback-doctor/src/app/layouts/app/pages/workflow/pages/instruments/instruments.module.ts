@@ -8,6 +8,12 @@ import { MaterialModule } from '../../../../../../material.module';
 
 @NgModule({
   declarations: [InstrumentsPage],
-  imports: [CommonModule, RouterModule, ComponentsModule, MaterialModule, InstrumentsRouting],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ComponentsModule,
+    MaterialModule,
+    InstrumentsRouting,
+  ],
 })
 export class InstrumentsModule {}

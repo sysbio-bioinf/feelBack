@@ -7,8 +7,8 @@ import { InstrumentService } from '../../../../../../services/instrument.service
 import { ScreeningService } from '../../../../../../services/screening.service';
 import { Patient } from '../../../../../../models/patient.model';
 import { catchError } from 'rxjs/operators';
-import {Instrument} from '../../../../../../models/instrument.model';
-import {Screening} from '../../../../../../models/screening.model';
+import { Instrument } from '../../../../../../models/instrument.model';
+import { Screening } from '../../../../../../models/screening.model';
 import { ErrorEntity } from '../../../../../../../../src/app/models/error-entity.enum';
 @Component({
   selector: 'feelback-doctor-result',

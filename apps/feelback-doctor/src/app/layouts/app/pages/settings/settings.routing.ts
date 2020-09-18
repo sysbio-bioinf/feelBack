@@ -5,7 +5,7 @@ import { SettingsPage } from './settings.page';
 const routes: Routes = [
   {
     path: 'settings',
-    component: SettingsPage
+    component: SettingsPage,
   },
 ];
 

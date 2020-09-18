@@ -4,11 +4,9 @@ import { Component, OnInit } from '@angular/core';
   selector: 'feelback-doctor-app-layout',
   templateUrl: './app.layout.html',
   styleUrls: ['./app.layout.scss'],
-  
 })
 export class AppLayout implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

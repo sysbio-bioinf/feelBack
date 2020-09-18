@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { PatientService } from '../../../../../../services/patient.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../../../../../../../app/services/common.service';
-import {Organization} from '../../../../../../models/organization.model';
+import { Organization } from '../../../../../../models/organization.model';
 import { Patient } from '../../../../../../../../src/app/models/patient.model';
 
 @Component({
