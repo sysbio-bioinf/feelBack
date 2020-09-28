@@ -10,16 +10,14 @@
           color="light"
         ></ion-icon>
       </ion-col>
-      <ion-col size="6" style="text-align: center;"
-        ><ion-text color="primary" id="instrument-pagecount"
-          ><p style="margin-top: 10px; margin-bottom: 10px;">
-            <b
-              >{{ this.survey.currentPageNo + 1 }} /
-              {{ this.survey.pageCount }}</b
-            >
-          </p></ion-text
-        ></ion-col
-      >
+      <ion-col size="6" style="text-align: center;">
+        <ion-chip outline color="dark">
+          <ion-label
+            >{{ this.survey.currentPageNo + 1 }} /
+            {{ this.survey.pageCount }}</ion-label
+          >
+        </ion-chip>
+      </ion-col>
       <ion-col size="3">
         <div
           id="fontSizeButtons"
