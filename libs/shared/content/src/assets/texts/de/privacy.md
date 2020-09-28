@@ -1,3 +1,5 @@
-# DE Markdown File from Lib
+#### Datenschutzerklärung
 
-Das ist ein Beispiel Text
+Das ist ein Markdown-Dummy für die DE **Datenschutzerklärung**.
+
+**Source origin: libs**
