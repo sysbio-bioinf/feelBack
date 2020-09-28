@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrintOptions } from '@ionic-native/printer/ngx';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonContent } from '@ionic/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import * as dayjs from 'dayjs';
 import { AbstractComponent } from '../../core/components/abstract.component';
@@ -25,6 +25,9 @@ widgets.nouislider(Survey);
 export class SurveyViewComponent extends AbstractComponent implements OnInit {
   @Input() instrument: Instrument;
   @Input() selectedLanguage: string;
+
+  @ViewChild('surveyIonContent') ionContentRef: IonContent;
+
   survey: Survey.Survey;
   printData: string;
   surveyCompleted = false;
@@ -64,6 +67,16 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
         surveyHtmlRoot.style.fontSize = newValue + 'em';
       }
     }
+  }
+
+  nextPageScrollTop() {
+    this.survey.nextPage();
+    this.ionContentRef.scrollToTop(700);
+  }
+
+  prevPageScrollTop() {
+    this.survey.prevPage();
+    this.ionContentRef.scrollToTop(700);
   }
 
   navigateHome() {
