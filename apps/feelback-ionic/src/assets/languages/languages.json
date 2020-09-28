@@ -1,0 +1,14 @@
+{
+  "availableLanguages": [
+    {
+      "englishName": "German",
+      "localName": "Deutsch",
+      "code": "de"
+    },
+    {
+      "englishName": "English",
+      "localName": "English",
+      "code": "en"
+    }
+  ]
+}

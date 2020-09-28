@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from '../../core/components/abstract.component';
 import { TranslateService } from '@ngx-translate/core';
+import * as languagesJson from '../../../assets/languages/languages.json';
+import { ApplicationLanguageModel } from '../../models/applicationLanguage.model';
 
 @Component({
   selector: 'feelback-ionic-settings',
@@ -10,12 +12,15 @@ import { TranslateService } from '@ngx-translate/core';
 export class SettingsPage extends AbstractComponent implements OnInit {
   currentLanguage: string;
 
+  availableLanguages: ApplicationLanguageModel[];
+
   constructor(private translateService: TranslateService) {
     super();
   }
 
   ngOnInit() {
     this.currentLanguage = this.translateService.currentLang;
+    this.availableLanguages = languagesJson.availableLanguages;
   }
 
   switchLanguage(event: CustomEvent) {

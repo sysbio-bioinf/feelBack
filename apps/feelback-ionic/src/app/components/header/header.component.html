@@ -16,25 +16,35 @@
       <ion-back-button defaultHref="''"></ion-back-button>
     </ion-buttons>
 
-    <ion-icon
-      *ngIf="this.showSwitchLanguageButton === true"
-      slot="end"
-      name="language-outline"
-    ></ion-icon>
-    <ion-select
-      *ngIf="this.showSwitchLanguageButton === true"
-      slot="end"
-      value="{{ this.currentLanguage }}"
-      [interfaceOptions]="{
-        header: 'app.pages.start.switchLanguage' | translate
-      }"
-      cancelText="{{ 'app.general.cancel' | translate }}"
-      (ionChange)="this.switchLanguage($event)"
-    >
-      <ion-select-option value="de">German</ion-select-option>
-      <ion-select-option value="en">English</ion-select-option>
-    </ion-select>
-
+    <ion-buttons slot="end" data-cy="header-language-button">
+      <ion-button
+        (click)="displayLanguageDialog()"
+        *ngIf="this.showSwitchLanguageButton === true"
+        slot="end"
+      >
+        <ion-icon name="language-outline"></ion-icon>
+        <!-- <ion-icon name="chevron-down-outline"></ion-icon> -->
+      </ion-button>
+    </ion-buttons>
+    <ion-item [hidden]="true">
+      <ion-select
+        *ngIf="this.showSwitchLanguageButton === true"
+        slot="end"
+        value="{{ this.currentLanguage }}"
+        [interfaceOptions]="{
+          header: 'app.pages.start.switchLanguage' | translate
+        }"
+        cancelText="{{ 'app.general.cancel' | translate }}"
+        (ionChange)="this.switchLanguage($event)"
+        #languageSelect
+      >
+        <ion-select-option
+          *ngFor="let language of availableLanguages"
+          value="{{ language.code }}"
+          >{{ language.localName }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
     <ion-title data-cy="header-title">{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
