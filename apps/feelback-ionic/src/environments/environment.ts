@@ -8,6 +8,10 @@ export const environment = {
   connections: {
     feelback: 'http://api.feelback.localhost/graphql',
   },
+  idleConfig: {
+    idleTime: 60 * 5,
+    timeout: 60 * 1,
+  },
 };
 
 /*

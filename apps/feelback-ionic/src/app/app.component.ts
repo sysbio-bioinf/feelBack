@@ -8,6 +8,10 @@ import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from './services/storage.service';
 
+import { environment } from '../environments/environment';
+const idleTime = environment.idleConfig.idleTime;
+const timeout = environment.idleConfig.timeout;
+
 @Component({
   selector: 'feelback-ionic-root',
   templateUrl: 'app.component.html',
@@ -37,8 +41,8 @@ export class AppComponent {
     this.initializeApp();
 
     // Set idle and timeout time
-    idle.setIdle(60 * 5);
-    idle.setTimeout(60);
+    idle.setIdle(idleTime);
+    idle.setTimeout(timeout);
 
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
     idle.onIdleEnd.subscribe(() => (this.idleState = 'No longer idle.'));
