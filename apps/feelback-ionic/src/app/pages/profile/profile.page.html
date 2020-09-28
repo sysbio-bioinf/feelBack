@@ -14,23 +14,25 @@
       <ion-card-subtitle
         >{{ 'app.pages.profile.pseudonym' | translate }}</ion-card-subtitle
       >
-      <ion-card-title>{{ this.identity.pseudonym }}</ion-card-title>
+      <ion-card-title data-cy="profile-pseudonym"
+        >{{ this.identity.pseudonym }}</ion-card-title
+      >
     </ion-card-header>
     <ion-card-content>
       <ion-list lines="full">
         <ion-item *ngIf="this.identity.title">
           <ion-label>
-            <p>{{ identity.title }}</p>
+            <p data-cy="profile-title">{{ identity.title }}</p>
           </ion-label>
         </ion-item>
         <ion-item *ngIf="this.identity.firstname">
           <ion-label>
-            <p>{{ identity.firstname }}</p>
+            <p data-cy="profile-firstname">{{ identity.firstname }}</p>
           </ion-label>
         </ion-item>
         <ion-item *ngIf="this.identity.lastname">
           <ion-label>
-            <p>{{ identity.lastname }}</p>
+            <p data-cy="profile-lastname">{{ identity.lastname }}</p>
           </ion-label>
         </ion-item>
       </ion-list>
