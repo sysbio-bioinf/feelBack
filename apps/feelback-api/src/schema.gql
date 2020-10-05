@@ -348,6 +348,10 @@ type Doctor {
   ): DoctorOrganizationsConnection
 }
 
+type DoctorAvgAggregate {
+  version: Float
+}
+
 type DoctorConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -357,6 +361,16 @@ type DoctorConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type DoctorCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  firstname: Int
+  lastname: Int
 }
 
 type DoctorDeleteResponse {
@@ -419,6 +433,26 @@ input DoctorFilter {
   lastname: StringFieldComparison
 }
 
+type DoctorMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  firstname: String
+  lastname: String
+}
+
+type DoctorMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  firstname: String
+  lastname: String
+}
+
 type DoctorOrganizationsConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -444,6 +478,10 @@ enum DoctorSortFields {
   deletedAt
   firstname
   lastname
+}
+
+type DoctorSumAggregate {
+  version: Float
 }
 
 type Evaluation {
@@ -492,6 +530,10 @@ type Faq {
   isActive: Boolean!
 }
 
+type FaqAvgAggregate {
+  version: Float
+}
+
 type FaqConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -501,6 +543,15 @@ type FaqConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type FaqCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  isActive: Int
 }
 
 type FaqDeleteResponse {
@@ -550,6 +601,22 @@ input FaqFilter {
   isActive: BooleanFieldComparison
 }
 
+type FaqMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+}
+
+type FaqMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+}
+
 input FaqSort {
   field: FaqSortFields!
   direction: SortDirection!
@@ -563,6 +630,10 @@ enum FaqSortFields {
   version
   deletedAt
   isActive
+}
+
+type FaqSumAggregate {
+  version: Float
 }
 
 """Identity resource for an anonymized patient"""
@@ -595,6 +666,21 @@ type Identity {
 
   """The lastname of this identity"""
   lastname: String
+}
+
+type IdentityAvgAggregate {
+  version: Float
+}
+
+type IdentityCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  pseudonym: Int
+  firstname: Int
+  lastname: Int
 }
 
 type IdentityDeleteResponse {
@@ -634,6 +720,32 @@ type IdentityEdge {
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
+}
+
+type IdentityMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  pseudonym: String
+  firstname: String
+  lastname: String
+}
+
+type IdentityMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  pseudonym: String
+  firstname: String
+  lastname: String
+}
+
+type IdentitySumAggregate {
+  version: Float
 }
 
 input IDFilterComparison {
@@ -710,6 +822,10 @@ type Instrument {
   ): InstrumentScreeningsConnection
 }
 
+type InstrumentAvgAggregate {
+  version: Float
+}
+
 type InstrumentConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -719,6 +835,17 @@ type InstrumentConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type InstrumentCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  name: Int
+  type: Int
+  state: Int
 }
 
 type InstrumentEdge {
@@ -740,6 +867,28 @@ input InstrumentFilter {
   name: StringFieldComparison
   type: StringFieldComparison
   state: InstrumentStatesEnumFilterComparison
+}
+
+type InstrumentMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  name: String
+  type: String
+  state: InstrumentStatesEnum
+}
+
+type InstrumentMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  name: String
+  type: String
+  state: InstrumentStatesEnum
 }
 
 type InstrumentScreeningsConnection {
@@ -791,6 +940,10 @@ input InstrumentStatesEnumFilterComparison {
   notILike: InstrumentStatesEnum
   in: [InstrumentStatesEnum!]
   notIn: [InstrumentStatesEnum!]
+}
+
+type InstrumentSumAggregate {
+  version: Float
 }
 
 input IntFieldComparison {
@@ -846,13 +999,13 @@ type Mutation {
   deleteOneOrganization(input: DeleteOneInput!): OrganizationDeleteResponse!
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
-  addMembersToOrganization(input: RelationsInput!): Organization!
   addPersonsToOrganization(input: RelationsInput!): Organization!
+  addMembersToOrganization(input: RelationsInput!): Organization!
   updateOnePerson(input: UpdateOnePersonInput!): Person!
   createOnePerson(input: CreateOnePersonInputType!): Person!
   createOneScreening(input: CreateOneScreeningInput!): Screening!
-  setInstrumentOnScreening(input: RelationInput!): Screening!
-  setPersonOnScreening(input: RelationInput!): Screening!
+  addPeopleToScreening(input: RelationsInput!): Screening!
+  addInstrumentsToScreening(input: RelationsInput!): Screening!
   uploadScreening(input: UploadScreeningInputType!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
   deleteOneUser(input: DeleteOneInput!): UserDeleteResponse!
@@ -904,16 +1057,6 @@ type Organization {
 
   """The URL for the logo of this organization"""
   logo: String
-  members(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: DoctorFilter = {}
-
-    """Specify to sort results."""
-    sorting: [DoctorSort!] = []
-  ): OrganizationMembersConnection
   persons(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -924,6 +1067,20 @@ type Organization {
     """Specify to sort results."""
     sorting: [PersonSort!] = []
   ): OrganizationPersonsConnection
+  members(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DoctorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [DoctorSort!] = []
+  ): OrganizationMembersConnection
+}
+
+type OrganizationAvgAggregate {
+  version: Float
 }
 
 type OrganizationConnection {
@@ -935,6 +1092,16 @@ type OrganizationConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type OrganizationCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  name: Int
+  type: Int
 }
 
 type OrganizationDeleteResponse {
@@ -1000,6 +1167,16 @@ input OrganizationFilter {
   type: StringFieldComparison
 }
 
+type OrganizationMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  name: String
+  type: String
+}
+
 type OrganizationMembersConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -1009,6 +1186,16 @@ type OrganizationMembersConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type OrganizationMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  name: String
+  type: String
 }
 
 type OrganizationPersonsConnection {
@@ -1036,6 +1223,10 @@ enum OrganizationSortFields {
   deletedAt
   name
   type
+}
+
+type OrganizationSumAggregate {
+  version: Float
 }
 
 type PageInfo {
@@ -1078,6 +1269,10 @@ type Person {
   acceptedTOS: Boolean!
 }
 
+type PersonAvgAggregate {
+  version: Float
+}
+
 type PersonConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -1087,6 +1282,15 @@ type PersonConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type PersonCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  pseudonym: Int
 }
 
 type PersonEdge {
@@ -1108,6 +1312,24 @@ input PersonFilter {
   pseudonym: StringFieldComparison
 }
 
+type PersonMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  pseudonym: String
+}
+
+type PersonMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  pseudonym: String
+}
+
 input PersonSort {
   field: PersonSortFields!
   direction: SortDirection!
@@ -1123,8 +1345,15 @@ enum PersonSortFields {
   pseudonym
 }
 
+type PersonSumAggregate {
+  version: Float
+}
+
 type Query {
-  doctor(id: ID!): Doctor
+  doctor(
+    """The id of the record to find."""
+    id: ID!
+  ): Doctor
   doctors(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1135,7 +1364,10 @@ type Query {
     """Specify to sort results."""
     sorting: [DoctorSort!] = []
   ): DoctorConnection!
-  faq(id: ID!): Faq
+  faq(
+    """The id of the record to find."""
+    id: ID!
+  ): Faq
   faqs(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1146,9 +1378,15 @@ type Query {
     """Specify to sort results."""
     sorting: [FaqSort!] = []
   ): FaqConnection!
-  identity(id: ID!): Identity
+  identity(
+    """The id of the record to find."""
+    id: ID!
+  ): Identity
   identityByPseudonym(pseudonym: String!): Identity
-  instrument(id: ID!): Instrument
+  instrument(
+    """The id of the record to find."""
+    id: ID!
+  ): Instrument
   instruments(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1159,7 +1397,10 @@ type Query {
     """Specify to sort results."""
     sorting: [InstrumentSort!] = []
   ): InstrumentConnection!
-  organization(id: ID!): Organization
+  organization(
+    """The id of the record to find."""
+    id: ID!
+  ): Organization
   organizations(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1170,7 +1411,10 @@ type Query {
     """Specify to sort results."""
     sorting: [OrganizationSort!] = []
   ): OrganizationConnection!
-  person(id: ID!): Person
+  person(
+    """The id of the record to find."""
+    id: ID!
+  ): Person
   people(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1182,7 +1426,10 @@ type Query {
     sorting: [PersonSort!] = []
   ): PersonConnection!
   personByPseudonym(pseudonym: String!): Person!
-  screening(id: ID!): Screening
+  screening(
+    """The id of the record to find."""
+    id: ID!
+  ): Screening
   screeningsForPersonAndInstrument(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1207,7 +1454,10 @@ type Query {
     instrumentId: ID!
     personId: ID!
   ): [DiagramDataObject!]!
-  user(id: ID!): User
+  user(
+    """The id of the record to find."""
+    id: ID!
+  ): User
   users(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1229,14 +1479,6 @@ input RegisterInput {
 
   """The password to login with"""
   password: String!
-}
-
-input RelationInput {
-  """The id of the record."""
-  id: ID!
-
-  """The id of relation."""
-  relationId: ID!
 }
 
 input RelationsInput {
@@ -1326,8 +1568,26 @@ type Screening {
 
   """data about resolving the screening issues"""
   resolveComment: String
-  instrument: Instrument
-  person: Person
+  people(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: PersonFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PersonSort!] = []
+  ): ScreeningPeopleConnection
+  instruments(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: InstrumentFilter = {}
+
+    """Specify to sort results."""
+    sorting: [InstrumentSort!] = []
+  ): ScreeningInstrumentsConnection
 
   """UserAgent information"""
   userAgent: UserAgent
@@ -1336,12 +1596,29 @@ type Screening {
   evaluationResult: [Evaluation!]
 }
 
+type ScreeningAvgAggregate {
+  version: Float
+}
+
 type ScreeningConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
   edges: [ScreeningEdge!]!
+}
+
+type ScreeningCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  instanceId: Int
+  collectedAt: Int
+  language: Int
+  isResolved: Int
+  resolvedAt: Int
 }
 
 type ScreeningEdge {
@@ -1367,6 +1644,54 @@ input ScreeningFilter {
   resolvedAt: DateFieldComparison
 }
 
+type ScreeningInstrumentsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [InstrumentEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ScreeningMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  instanceId: String
+  collectedAt: DateTime
+  language: String
+  isResolved: Boolean
+  resolvedAt: DateTime
+}
+
+type ScreeningMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  instanceId: String
+  collectedAt: DateTime
+  language: String
+  isResolved: Boolean
+  resolvedAt: DateTime
+}
+
+type ScreeningPeopleConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [PersonEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
 input ScreeningSort {
   field: ScreeningSortFields!
   direction: SortDirection!
@@ -1384,6 +1709,10 @@ enum ScreeningSortFields {
   language
   isResolved
   resolvedAt
+}
+
+type ScreeningSumAggregate {
+  version: Float
 }
 
 """Sort Directions"""
@@ -1721,6 +2050,10 @@ type UserAgent {
   application: String
 }
 
+type UserAvgAggregate {
+  version: Float
+}
+
 type UserConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -1730,6 +2063,16 @@ type UserConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type UserCountAggregate {
+  id: Int
+  createdAt: Int
+  updatedAt: Int
+  version: Int
+  deletedAt: Int
+  firstname: Int
+  lastname: Int
 }
 
 type UserDeleteResponse {
@@ -1798,6 +2141,26 @@ input UserFilter {
   lastname: StringFieldComparison
 }
 
+type UserMaxAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  firstname: String
+  lastname: String
+}
+
+type UserMinAggregate {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  version: Int
+  deletedAt: DateTime
+  firstname: String
+  lastname: String
+}
+
 type UserOrganizationsConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -1823,4 +2186,8 @@ enum UserSortFields {
   deletedAt
   firstname
   lastname
+}
+
+type UserSumAggregate {
+  version: Float
 }

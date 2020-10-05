@@ -24,19 +24,6 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
   create: { disabled: true },
   update: { disabled: true },
   delete: { disabled: true },
-  relations: {
-    many: {
-      // FIXME: this should only be accessible with a certain role!
-      screenings: {
-        relationName: 'screenings',
-        DTO: ScreeningObject,
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: true,
-        decorators: [Roles(RolesEnum.MANAGER)],
-      },
-    },
-  },
   enableTotalCount: true,
 }) {
   constructor(readonly service: InstrumentAssemblerService) {

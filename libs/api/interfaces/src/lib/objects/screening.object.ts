@@ -1,10 +1,26 @@
 import { VersionableObject } from '@feelback-app/api/core';
 import { ObjectType, GraphQLISODateTime, Field } from '@nestjs/graphql';
-import { FilterableField } from '@nestjs-query/query-graphql';
+import {
+  Connection,
+  FilterableField,
+  Relation,
+} from '@nestjs-query/query-graphql';
 import { JSONObject } from '@feelback-app/api/util';
+import { InstrumentObject } from './instrument.object';
+import { PersonObject } from './person.object';
 
 @ObjectType('Screening', {
   description: 'A processed screening',
+})
+@Connection('instrument', () => InstrumentObject, {
+  nullable: true,
+  disableRemove: true,
+  disableUpdate: false,
+})
+@Connection('person', () => PersonObject, {
+  nullable: true,
+  disableRemove: true,
+  disableUpdate: false,
 })
 export class ScreeningObject extends VersionableObject {
   @FilterableField(() => String, {

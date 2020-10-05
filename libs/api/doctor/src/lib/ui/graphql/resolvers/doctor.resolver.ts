@@ -1,9 +1,5 @@
 import { Roles, Unprotected } from '@feelback-app/api/auth';
-import {
-  DoctorObject,
-  OrganizationObject,
-  UpdateDoctorInput,
-} from '@feelback-app/api/interfaces';
+import { DoctorObject, UpdateDoctorInput } from '@feelback-app/api/interfaces';
 import { RolesEnum } from '@feelback-app/api/shared';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { Resolver } from '@nestjs/graphql';
@@ -23,17 +19,6 @@ export class DoctorResolver extends CRUDResolver(DoctorObject, {
   delete: {
     many: { disabled: true },
     decorators: [Roles(RolesEnum.ADMIN)],
-  },
-  relations: {
-    many: {
-      organizations: {
-        DTO: OrganizationObject,
-        relationName: 'organizations',
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: true,
-      },
-    },
   },
   enableTotalCount: true,
 }) {

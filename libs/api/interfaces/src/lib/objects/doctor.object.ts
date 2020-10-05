@@ -1,9 +1,15 @@
 import { VersionableObject } from '@feelback-app/api/core';
-import { FilterableField } from '@nestjs-query/query-graphql';
+import { Connection, FilterableField } from '@nestjs-query/query-graphql';
 import { Field, ObjectType } from '@nestjs/graphql';
+import { OrganizationObject } from './organization.object';
 
 @ObjectType('Doctor', {
   description: 'A Doctor, Psychologist or Caregiver',
+})
+@Connection('organizations', () => OrganizationObject, {
+  nullable: true,
+  disableRemove: true,
+  disableUpdate: true,
 })
 export class DoctorObject extends VersionableObject {
   @Field(() => String, {

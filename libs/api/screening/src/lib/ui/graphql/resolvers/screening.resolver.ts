@@ -51,26 +51,6 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
   },
   delete: { disabled: true },
   update: { disabled: true },
-  relations: {
-    one: {
-      // FIXME: This should only be accessible with a certain role
-      instrument: {
-        relationName: 'instrument',
-        DTO: InstrumentObject,
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: false,
-      },
-      // FIXME: this should only be accessible with a certain role
-      person: {
-        relationName: 'person',
-        DTO: PersonObject,
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: false,
-      },
-    },
-  },
   enableTotalCount: true,
 }) {
   constructor(

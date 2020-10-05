@@ -1,11 +1,18 @@
 import { VersionableObject } from '@feelback-app/api/core';
 import { InstrumentStatesEnum } from '@feelback-app/api/data';
 import { JSONObject } from '@feelback-app/api/util';
-import { FilterableField } from '@nestjs-query/query-graphql';
+import { Connection, FilterableField } from '@nestjs-query/query-graphql';
 import { Field, ObjectType } from '@nestjs/graphql';
+import { ScreeningObject } from './screening.object';
 
 @ObjectType('Instrument', {
   description: 'An Instrument resource for a survey',
+})
+//FIXME: This should only be called with MANAGER Role
+@Connection('screenings', () => ScreeningObject, {
+  nullable: true,
+  disableRemove: true,
+  disableUpdate: true,
 })
 export class InstrumentObject extends VersionableObject {
   @FilterableField(() => String, {

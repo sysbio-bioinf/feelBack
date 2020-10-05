@@ -30,25 +30,6 @@ export class OrganizationResolver extends CRUDResolver(OrganizationObject, {
     many: { disabled: true },
     decorators: [Roles(RolesEnum.ADMIN)],
   },
-  relations: {
-    many: {
-      members: {
-        DTO: DoctorObject,
-        relationName: 'members',
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: false,
-      },
-      // FIXME: this should only be accessible with a certain role
-      persons: {
-        DTO: PersonObject,
-        relationName: 'persons',
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: false,
-      },
-    },
-  },
   enableTotalCount: true,
 }) {
   constructor(readonly service: OrganizationAssemblerService) {

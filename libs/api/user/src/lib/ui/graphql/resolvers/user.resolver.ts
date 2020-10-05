@@ -6,7 +6,6 @@ import {
 } from '@feelback-app/api/auth';
 import { ApiException } from '@feelback-app/api/errors';
 import {
-  OrganizationObject,
   RegisterInput,
   UpdateUserInput,
   UserObject,
@@ -32,17 +31,6 @@ export class UserResolver extends CRUDResolver(UserObject, {
   delete: {
     many: { disabled: true },
     decorators: [Roles(RolesEnum.ADMIN)],
-  },
-  relations: {
-    many: {
-      organizations: {
-        DTO: OrganizationObject,
-        relationName: 'organizations',
-        nullable: true,
-        disableRemove: true,
-        disableUpdate: true,
-      },
-    },
   },
   enableTotalCount: true,
 }) {
