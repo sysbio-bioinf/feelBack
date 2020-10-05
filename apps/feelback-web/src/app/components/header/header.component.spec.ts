@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
 import { TranslateTestingModule } from 'ngx-translate-testing';
 import { HeaderComponent } from './header.component';
-import { MatMenuModule } from '@angular/material/menu';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -10,18 +10,20 @@ describe('HeaderComponent', () => {
   const ENGLISH_LANGUAGE = 'en';
   const GERMAN_LANGUAGE = 'de';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        TranslateTestingModule.withTranslations({
-          [ENGLISH_LANGUAGE]: {},
-          [GERMAN_LANGUAGE]: {},
-        }).withDefaultLanguage(ENGLISH_LANGUAGE),
-        MatMenuModule,
-      ],
-      declarations: [HeaderComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          TranslateTestingModule.withTranslations({
+            [ENGLISH_LANGUAGE]: {},
+            [GERMAN_LANGUAGE]: {},
+          }).withDefaultLanguage(ENGLISH_LANGUAGE),
+          MatMenuModule,
+        ],
+        declarations: [HeaderComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     window = Object.assign(window, { innerWidth: 990 });

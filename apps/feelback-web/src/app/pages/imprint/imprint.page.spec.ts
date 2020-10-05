@@ -1,11 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ImprintPage } from './imprint.page';
-import { ComponentsModule } from '../../modules/components.module';
-import { TranslateTestingModule } from 'ngx-translate-testing';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { MarkdownModule } from 'ngx-markdown';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MarkdownModule } from 'ngx-markdown';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { ComponentsModule } from '../../modules/components.module';
+import { ImprintPage } from './imprint.page';
 
 describe('ImprintPage', () => {
   let component: ImprintPage;
@@ -14,21 +13,23 @@ describe('ImprintPage', () => {
   const ENGLISH_LANGUAGE = 'en';
   const GERMAN_LANGUAGE = 'de';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ComponentsModule,
-        HttpClientModule,
-        TranslateTestingModule.withTranslations({
-          [ENGLISH_LANGUAGE]: {},
-          [GERMAN_LANGUAGE]: {},
-        }).withDefaultLanguage(ENGLISH_LANGUAGE),
-        RouterTestingModule,
-        MarkdownModule.forRoot({ loader: HttpClient }),
-      ],
-      declarations: [ImprintPage],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          ComponentsModule,
+          HttpClientModule,
+          TranslateTestingModule.withTranslations({
+            [ENGLISH_LANGUAGE]: {},
+            [GERMAN_LANGUAGE]: {},
+          }).withDefaultLanguage(ENGLISH_LANGUAGE),
+          RouterTestingModule,
+          MarkdownModule.forRoot({ loader: HttpClient }),
+        ],
+        declarations: [ImprintPage],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImprintPage);

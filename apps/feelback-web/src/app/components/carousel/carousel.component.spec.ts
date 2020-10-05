@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselComponent } from './carousel.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -7,12 +7,14 @@ describe('CarouselComponent', () => {
   let component: CarouselComponent;
   let fixture: ComponentFixture<CarouselComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CarouselModule],
-      declarations: [CarouselComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [CarouselModule],
+        declarations: [CarouselComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CarouselComponent);

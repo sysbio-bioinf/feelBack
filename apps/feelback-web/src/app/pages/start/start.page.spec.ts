@@ -1,11 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { StartPage } from './start.page';
-import { FaqService } from '../../services/api/faq.service';
-import { ComponentsModule } from '../../modules/components.module';
-import { TranslateTestingModule } from 'ngx-translate-testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { ComponentsModule } from '../../modules/components.module';
+import { FaqService } from '../../services/api/faq.service';
+import { StartPage } from './start.page';
 
 describe('StartPage', () => {
   let component: StartPage;
@@ -68,18 +67,20 @@ describe('StartPage', () => {
     .mockRejectedValueOnce(50)
     .mockRejectedValueOnce(100);
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ComponentsModule,
-        BrowserAnimationsModule,
-        TranslateTestingModule.withTranslations('en', {}),
-        RouterTestingModule,
-      ],
-      providers: [{ provide: FaqService, useValue: faqServiceMock }],
-      declarations: [StartPage],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          ComponentsModule,
+          BrowserAnimationsModule,
+          TranslateTestingModule.withTranslations('en', {}),
+          RouterTestingModule,
+        ],
+        providers: [{ provide: FaqService, useValue: faqServiceMock }],
+        declarations: [StartPage],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StartPage);

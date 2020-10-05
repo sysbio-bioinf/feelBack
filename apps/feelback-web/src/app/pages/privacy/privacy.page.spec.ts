@@ -1,12 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PrivacyPage } from './privacy.page';
-import { ComponentsModule } from '../../modules/components.module';
-import { TranslateTestingModule } from 'ngx-translate-testing';
-import { MarkdownModule } from 'ngx-markdown';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MarkdownModule } from 'ngx-markdown';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { ComponentsModule } from '../../modules/components.module';
+import { PrivacyPage } from './privacy.page';
 
 describe('PrivacyPage', () => {
   let component: PrivacyPage;
@@ -15,21 +13,23 @@ describe('PrivacyPage', () => {
   const ENGLISH_LANGUAGE = 'en';
   const GERMAN_LANGUAGE = 'de';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        ComponentsModule,
-        HttpClientModule,
-        TranslateTestingModule.withTranslations({
-          [ENGLISH_LANGUAGE]: {},
-          [GERMAN_LANGUAGE]: {},
-        }).withDefaultLanguage(ENGLISH_LANGUAGE),
-        RouterTestingModule,
-        MarkdownModule.forRoot({ loader: HttpClient }),
-      ],
-      declarations: [PrivacyPage],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          ComponentsModule,
+          HttpClientModule,
+          TranslateTestingModule.withTranslations({
+            [ENGLISH_LANGUAGE]: {},
+            [GERMAN_LANGUAGE]: {},
+          }).withDefaultLanguage(ENGLISH_LANGUAGE),
+          RouterTestingModule,
+          MarkdownModule.forRoot({ loader: HttpClient }),
+        ],
+        declarations: [PrivacyPage],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PrivacyPage);

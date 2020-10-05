@@ -1,4 +1,4 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateTestingModule } from 'ngx-translate-testing';
@@ -10,18 +10,20 @@ describe('AppComponent', () => {
   let app: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        GraphQLModule,
-        HttpClientModule,
-        ComponentsModule,
-        TranslateTestingModule.withTranslations('en', {}),
-      ],
-      declarations: [AppComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          GraphQLModule,
+          HttpClientModule,
+          ComponentsModule,
+          TranslateTestingModule.withTranslations('en', {}),
+        ],
+        declarations: [AppComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
