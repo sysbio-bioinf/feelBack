@@ -1,6 +1,5 @@
 module.exports = {
-  name: 'feelback-ionic',
-  preset: '../../jest.config.js',
+  preset: '../../jest.preset.js',
   coverageDirectory: '../../coverage/apps/feelback-ionic',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
@@ -18,4 +17,5 @@ module.exports = {
       ],
     },
   },
+  displayName: 'feelback-ionic',
 };

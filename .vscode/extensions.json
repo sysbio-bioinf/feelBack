@@ -6,6 +6,7 @@
     "esbenp.prettier-vscode",
     "wayou.vscode-todo-highlight",
     "yzhang.markdown-all-in-one",
-    "kumar-harsh.graphql-for-vscode"
+    "kumar-harsh.graphql-for-vscode",
+    "firsttris.vscode-jest-runner"
   ]
 }
