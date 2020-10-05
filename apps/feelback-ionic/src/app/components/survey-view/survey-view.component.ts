@@ -13,7 +13,7 @@ import { StorageService } from '../../services/storage.service';
 import { UserService } from '../../services/user.service';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 widgets.nouislider(Survey);
 
@@ -230,7 +230,7 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
       // now we upload the data to our server
       const screeningInput: CreateScreeningInput = {
-        instanceId: uuid(),
+        instanceId: uuidv4(),
         collectedAt: new Date(),
         language: this.translateService.currentLang,
         payload: survey.data,

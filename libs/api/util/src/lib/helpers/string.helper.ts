@@ -1,8 +1,8 @@
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 export class StringHelper {
   static uuid4() {
-    return uuid();
+    return uuidv4();
   }
 
   static randomString(

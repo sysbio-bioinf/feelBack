@@ -1,5 +1,5 @@
 import { StringHelper } from './string.helper';
-import { isUuid } from 'uuidv4';
+import { validate } from 'uuid';
 
 describe('StringHelper', () => {
   it('should generate strings of the proper length', () => {
@@ -45,6 +45,6 @@ describe('StringHelper', () => {
     const uuid = StringHelper.uuid4();
     expect(uuid).toBeTruthy();
     expect(typeof uuid).toEqual('string');
-    expect(isUuid(uuid)).toBeTruthy();
+    expect(validate(uuid)).toBeTruthy();
   });
 });
