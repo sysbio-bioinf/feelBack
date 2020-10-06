@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   connections: {
-    feelback: 'https://api.feelback-app.com/graphql',
+    feelback: 'http://api.feelback.localhost/graphql',
   },
 };
 
