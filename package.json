@@ -15,6 +15,7 @@
     "prebuild": "npm run clean:dist && npm run gql-codegen",
     "build": "ng build",
     "build.feelback.ionic": "nx build feelback-ionic",
+    "build.feelback.ionic:prod": "nx build feelback-ionic --prod",
     "clean": "npx rimraf -- hooks node_modules package-lock.json && npm i",
     "clean.feelback.ionic": "cd apps/feelback-ionic && npx rimraf -- hooks node_modules platforms www plugins ios android package-lock.json && npm i && rimraf -- package-lock.json",
     "clean:dist": "rimraf dist",
