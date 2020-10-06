@@ -18,7 +18,7 @@
     "@capacitor/core": "2.4.2",
     "@capacitor/ios": "2.4.2",
     "cordova-plugin-file": "6.0.2",
-    "cordova-plugin-printer": "0.8.0",
+    "cordova-plugin-printer": "ImTung/cordova-plugin-printer",
     "phonegap-plugin-barcodescanner": "8.1.0"
   },
   "devDependencies": {
