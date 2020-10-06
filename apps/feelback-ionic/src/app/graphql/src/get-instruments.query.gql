@@ -1,5 +1,5 @@
 query getInstruments($pagination: CursorPaging = { first: 10 }) {
-  instruments(paging: $pagination) {
+  instruments(paging: $pagination, filter: { state: { eq: RELEASED } }) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -15,6 +15,7 @@ query getInstruments($pagination: CursorPaging = { first: 10 }) {
         image
         payload
         changelog
+        state
       }
     }
   }
