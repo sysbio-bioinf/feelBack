@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { IonSelect } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
-import * as languagesJson from '../../../assets/languages/languages.json';
 import { ApplicationLanguageModel } from '../../models/applicationLanguage.model';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'feelback-ionic-header',
@@ -21,16 +20,16 @@ export class HeaderComponent implements OnInit {
 
   availableLanguages: ApplicationLanguageModel[];
 
-  constructor(private translateService: TranslateService) {}
+  constructor(private languageService: LanguageService) {}
 
   ngOnInit() {
-    this.currentLanguage = this.translateService.currentLang;
-    this.availableLanguages = languagesJson.availableLanguages;
+    this.currentLanguage = this.languageService.getCurrentLanguage();
+    this.availableLanguages = this.languageService.getAvailableLanguages();
   }
 
   switchLanguage(event: CustomEvent) {
-    this.translateService.use(event.detail.value);
-    this.currentLanguage = this.translateService.currentLang;
+    this.languageService.switchLanguage(event.detail.value);
+    this.currentLanguage = this.languageService.getCurrentLanguage();
   }
 
   displayLanguageDialog() {
