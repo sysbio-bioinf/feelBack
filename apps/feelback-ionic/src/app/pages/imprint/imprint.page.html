@@ -6,43 +6,73 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title
+      <ion-card-title data-cy="contact-title"
         >{{ 'app.pages.imprint.contact.title' | translate }}</ion-card-title
       >
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list lines="full">
+      <ion-list lines="full" data-cy="contact-list">
         <ion-item>
-          <ion-icon name="map-outline" slot="start"></ion-icon>
+          <ion-icon
+            name="map-outline"
+            slot="start"
+            data-cy="contact-address-icon"
+          ></ion-icon>
           <ion-label>
-            <p>{{ 'app.pages.imprint.contact.organization' | translate }}</p>
-            <p>{{ 'app.pages.imprint.contact.institute' | translate }}</p>
-            <p>{{ 'app.pages.imprint.contact.address1' | translate }}</p>
-            <p>{{ 'app.pages.imprint.contact.address2' | translate }}</p>
+            <p data-cy="contact-address-organization">
+              {{ 'app.pages.imprint.contact.organization' | translate }}
+            </p>
+            <p data-cy="contact-address-institute">
+              {{ 'app.pages.imprint.contact.institute' | translate }}
+            </p>
+            <p data-cy="contact-address-address1">
+              {{ 'app.pages.imprint.contact.address1' | translate }}
+            </p>
+            <p data-cy="contact-address-address2">
+              {{ 'app.pages.imprint.contact.address2' | translate }}
+            </p>
           </ion-label>
         </ion-item>
 
         <ion-item>
-          <ion-icon name="call-outline" slot="start"></ion-icon>
+          <ion-icon
+            name="call-outline"
+            slot="start"
+            data-cy="contact-phone-icon"
+          ></ion-icon>
           <ion-label>
-            <p>{{ 'app.pages.imprint.contact.phone' | translate }}</p>
+            <p data-cy="contact-phone">
+              {{ 'app.pages.imprint.contact.phone' | translate }}
+            </p>
           </ion-label>
         </ion-item>
 
         <ion-item>
-          <ion-icon name="document-outline" slot="start"></ion-icon>
+          <ion-icon
+            name="print-outline"
+            slot="start"
+            data-cy="contact-fax-icon"
+          ></ion-icon>
           <ion-label>
-            <p>{{ 'app.pages.imprint.contact.fax' | translate }}</p>
+            <p data-cy="contact-fax">
+              {{ 'app.pages.imprint.contact.fax' | translate }}
+            </p>
           </ion-label>
         </ion-item>
 
         <ion-item
           href="mailto:{{ 'app.pages.imprint.contact.email' | translate }}"
         >
-          <ion-icon name="mail-open-outline" slot="start"></ion-icon>
+          <ion-icon
+            name="mail-open-outline"
+            slot="start"
+            data-cy="contact-email-icon"
+          ></ion-icon>
           <ion-label>
-            <p>{{ 'app.pages.imprint.contact.email' | translate }}</p>
+            <p data-cy="contact-email">
+              {{ 'app.pages.imprint.contact.email' | translate }}
+            </p>
           </ion-label>
         </ion-item>
       </ion-list>
@@ -51,12 +81,12 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title
+      <ion-card-title data-cy="team-title"
         >{{ 'app.pages.imprint.team.title' | translate }}</ion-card-title
       >
     </ion-card-header>
     <ion-card-content>
-      <ion-list lines="full">
+      <ion-list lines="full" data-cy="team-list">
         <ion-item *ngFor="let member of this.teamMembers">
           <ion-label><p>{{ member.name }}</p></ion-label>
         </ion-item>
