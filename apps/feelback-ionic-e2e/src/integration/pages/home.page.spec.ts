@@ -23,12 +23,26 @@ describe('Home Page', () => {
     cy.get('[data-cy=header-title]').should('contain', 'FeelBack');
   });
 
-  it.only('should open the menu', () => {
+  it('should open the menu via swipe gesture and clicking', () => {
     cy.get('[data-cy=menu-pane]').should('not.be.visible');
 
-    cy.get('[data-cy=content-pane').swipe('left', 'right');
+    cy.get('[data-cy=content-pane]').swipe('left', 'right');
     cy.wait(300);
 
     cy.get('[data-cy=menu-pane]').should('be.visible');
+    cy.get('[data-cy=content-pane]').swipe('right', 'left');
+    cy.wait(300);
+    cy.get('[data-cy=menu-pane]').should('not.be.visible');
+
+    cy.get('[data-cy=header-menu]').click();
+    cy.get('[data-cy=menu-pane]').should('be.visible');
+  });
+
+  it('should display at least one instrument', () => {
+    cy.get('[data-cy=home-instrument-card]')
+      .should('exist')
+      .within(() => {
+        cy.get('ion-card').should('have.length.gte', 1).and('be.visible');
+      });
   });
 });
