@@ -1,12 +1,15 @@
 <feelback-ionic-header
-  [title]="'app.pages.imprint.title' | translate"
+  [title]="'app.pages.privacy.title' | translate"
   [showNavButton]="true"
 ></feelback-ionic-header>
 
 <ion-content>
   <ion-card>
-    <ion-card-content>
-      <markdown [src]="this.getMarkdownFile('privacy')"></markdown>
+    <ion-card-content data-cy="privacy-card-content">
+      <markdown
+        [src]="this.getMarkdownFile('privacy')"
+        data-cy="privacy-md-content"
+      ></markdown>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -111,6 +111,9 @@
           "title": "Team"
         }
       },
+      "privacy": {
+        "title": "Privacy"
+      },
       "tutorial": {
         "slide1": {
           "image": "assets/images/tutorial/tutorial-01.svg",
