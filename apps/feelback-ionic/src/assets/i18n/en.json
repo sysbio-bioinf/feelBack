@@ -113,22 +113,22 @@
       },
       "tutorial": {
         "slide1": {
-          "image": "assets/images/tutorial/tutorial-01.png",
+          "image": "assets/images/tutorial/tutorial-01.svg",
           "title": "Welcome to <b>FeelBack</b>",
           "text": "TODO English translation<br/><b>FeelBack</b> soll helfen, Tumorpatientinnen und -patienten eine bedarfsgerechte psychoonkologische Versorgung zu ermöglichen."
         },
         "slide2": {
-          "image": "assets/images/tutorial/tutorial-02.png",
+          "image": "assets/images/tutorial/tutorial-02.svg",
           "title": "What is <b>FeelBack</b>?",
           "text": "TODO English translation<br/>Bei <b>FeelBack</b> werden die Screeningdaten digital erfasst und in Form eines standardisierten Datensatzes sicher an eine zentrale Datenbank übertragen."
         },
         "slide3": {
-          "image": "assets/images/tutorial/tutorial-03.png",
+          "image": "assets/images/tutorial/tutorial-03.svg",
           "title": "What is the goal of <b>FeelBack</b>?",
           "text": "TODO English translation<br/><b>FeelBack</b> ermöglicht die Identifikation psychosozial belasteter Patientinnen und Patienten, ebenso wie die Dokumentation des Screenings und des Therapieverlaufs."
         },
         "slide4": {
-          "image": "assets/images/tutorial/tutorial-04.png",
+          "image": "assets/images/tutorial/tutorial-04.svg",
           "title": "Let's Go!",
           "text": "Start FeelBack"
         }
