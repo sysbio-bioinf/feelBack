@@ -5,15 +5,20 @@
 </feelback-ionic-header>
 
 <ion-content>
-  <ion-item>
-    <ion-icon slot="start" name="language-outline"></ion-icon>
-    <ion-label>
+  <ion-item data-cy="settings-language-item">
+    <ion-icon
+      slot="start"
+      name="language-outline"
+      data-cy="settings-language-icon"
+    ></ion-icon>
+    <ion-label data-cy="settings-language-label">
       {{ 'app.pages.settings.form.switchLanguage' | translate }}
     </ion-label>
     <ion-select
       value="{{ this.currentLanguage }}"
       cancelText="{{ 'app.general.cancel' | translate }}"
       (ionChange)="this.switchLanguage($event)"
+      data-cy="settings-language-select"
     >
       <ion-select-option
         *ngFor="let language of availableLanguages"
