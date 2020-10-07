@@ -1,11 +1,15 @@
-<ion-img [src]="'assets/images/empty/empty.svg'" class="boxed"></ion-img>
-<ion-text color="primary">
+<ion-img
+  [src]="'assets/images/empty/empty.svg'"
+  class="boxed"
+  data-cy="empty-content-image"
+></ion-img>
+<ion-text color="primary" data-cy="empty-content-title">
   <h2 class="centered">
     {{ 'app.components.empty.title' | translate }}
   </h2>
 </ion-text>
 
-<ion-text>
+<ion-text data-cy="empty-content-text">
   <p class="centered">
     {{ 'app.components.empty.text' | translate }}
   </p>

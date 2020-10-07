@@ -11,11 +11,11 @@
   ></div>
 
   <ng-template #emptyTemplate>
-    <feelback-ionic-empty></feelback-ionic-empty>
+    <feelback-ionic-empty data-cy="faq-list-empty"></feelback-ionic-empty>
   </ng-template>
 
   <ng-template #contentTemplate>
-    <ion-list>
+    <ion-list data-cy="faq-list">
       <ion-item
         *ngFor="let faq of this.faqs"
         detail

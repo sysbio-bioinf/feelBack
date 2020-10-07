@@ -4,7 +4,7 @@ import {
   BrowserLanguageDE,
 } from '@feelback-app/util/testing';
 
-describe('Organization Page (list-page, card-component, detail-page)', () => {
+describe('Settings Page', () => {
   const testingDevice = new LargeMobileDevice();
 
   before(() => {
@@ -21,7 +21,7 @@ describe('Organization Page (list-page, card-component, detail-page)', () => {
     cy.viewport(testingDevice.width, testingDevice.height);
   });
 
-  it('Should display the correct header-title and url', () => {
+  it('should display the correct header-title and url', () => {
     cy.get('[data-cy=header-title]')
       .invoke('text')
       .should('contain', 'Settings');
