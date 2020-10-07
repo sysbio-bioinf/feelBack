@@ -25,7 +25,7 @@ describe('Start Page', () => {
   });
 
   it('should check, if the login buttons exists', () => {
-    cy.get('[data-cy=button-login-code]').should('exist');
+    cy.get('[data-cy=button-login-pseudonym]').should('exist');
     cy.get('[data-cy=button-login-anonymous]').should('exist');
   });
 
@@ -45,7 +45,7 @@ describe('Start Page', () => {
   });
 
   it('should redirect to the code page on code login', () => {
-    cy.get('[data-cy=button-login-code]').click();
+    cy.get('[data-cy=button-login-pseudonym]').click();
     cy.wait(300);
 
     cy.url().should('not.contain', '/start');

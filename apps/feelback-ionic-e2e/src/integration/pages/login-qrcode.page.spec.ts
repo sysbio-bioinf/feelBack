@@ -14,7 +14,7 @@ describe('Login with QR Code Page', () => {
     cy.viewport(testingDevice.width, testingDevice.height);
 
     cy.visitMobile('/', BrowserLanguageEN);
-    cy.get('[data-cy=button-login-code]').click();
+    cy.get('[data-cy=button-login-pseudonym]').click();
     cy.wait(300);
   });
 
