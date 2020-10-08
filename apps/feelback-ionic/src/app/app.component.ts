@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Platform } from '@ionic/angular';
-import { StorageService } from './services/storage.service';
-
-import { Router } from '@angular/router';
-import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
+import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from './services/storage.service';
 
 @Component({
   selector: 'feelback-ionic-root',
@@ -33,6 +32,7 @@ export class AppComponent {
     private alertController: AlertController,
     private idle: Idle,
     private translate: TranslateService,
+    private screenOrientation: ScreenOrientation,
   ) {
     this.initializeApp();
 
@@ -75,13 +75,14 @@ export class AppComponent {
     });
 
     this.reset();
-    console.log(this.idleState);
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
       this.storageService
         .createFeelbackDirectories()
