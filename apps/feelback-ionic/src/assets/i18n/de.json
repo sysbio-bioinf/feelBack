@@ -8,7 +8,6 @@
       "cancel": "Abbrechen",
       "ok": "Ok"
     },
-
     "dialogs": {
       "exitApplication": {
         "title": "Anwendung beenden",
@@ -19,7 +18,6 @@
         "text": "Sind Sie sicher, dass Sie die Beantwortung des Fragebogens beenden und zur Übersicht der Fragebögen zurückkehren möchten?"
       }
     },
-
     "idle": {
       "header": "Inaktiv",
       "subheader": "Aufgrund von Inaktivität werden Sie bald automatisch abgemeldet.",
@@ -27,7 +25,6 @@
       "cancel": "Angemeldet bleiben",
       "logout": "Abmelden"
     },
-
     "menu": {
       "title": "Menü",
       "start": "Start",
@@ -39,13 +36,11 @@
       "privacy": "Datenschutzerklärung",
       "logout": "Abmelden"
     },
-
     "errors": {
       "api": {
         "noData": "Keine Daten gefunden"
       }
     },
-
     "components": {
       "empty": {
         "title": "Inhalt nicht vorhanden",
@@ -56,7 +51,6 @@
         "start": "Start"
       }
     },
-
     "pages": {
       "start": {
         "title": "FeelBack",
