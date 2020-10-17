@@ -117,22 +117,32 @@
       "tutorial": {
         "slide1": {
           "image": "assets/images/tutorial/tutorial-01.svg",
-          "title": "Willkommen bei <b>FeelBack</b>",
-          "text": "<b>FeelBack</b> soll helfen, Tumorpatientinnen und -patienten eine bedarfsgerechte psychoonkologische Versorgung zu ermöglichen."
+          "title": "<b>FeelBack</b>",
+          "text": "Das Forschungsprojekt <b>FeelBack</b> soll helfen, Tumorpatientinnen und -patienten eine bedarfsgerechte psychoonkologische Versorgung zu ermöglichen."
         },
         "slide2": {
           "image": "assets/images/tutorial/tutorial-02.svg",
-          "title": "Was macht <b>FeelBack</b>?",
-          "text": "Bei <b>FeelBack</b> werden die Screeningdaten digital erfasst und in Form eines standardisierten Datensatzes sicher an eine zentrale Datenbank übertragen."
+          "title": "Standardisierte Instrumente",
+          "text": "Dazu werden bei <b>FeelBack</b> Screening Instrumente digital aufbereitet, umgesetzt und präsentiert. Daten werden über mobile Endgeräte digital erfasst und als standardisierter Datensatz zentral gespeichert. "
         },
         "slide3": {
           "image": "assets/images/tutorial/tutorial-03.svg",
-          "title": "Was ist das Ziel von <b>FeelBack</b>?",
-          "text": "<b>FeelBack</b> ermöglicht die Identifikation psychosozial belasteter Patientinnen und Patienten, ebenso wie die Dokumentation des Screenings und des Therapieverlaufs."
+          "title": "Bedarfsgerechte Betreuung",
+          "text": "Durch eine kontinuierliche Anwendung können so psychosozial belastende Patientinnen und Patienten schneller identifiziert und bedarfsgerecht betreut werden."
         },
         "slide4": {
           "image": "assets/images/tutorial/tutorial-04.svg",
-          "title": "Los Geht's!",
+          "title": "Visuelle Analyse",
+          "text": "Der Therapieverlauf wird dem medizinischen Fachpersonal visuell dargestellt, um Entscheidungen bestmöglich zu unterstützen."
+        },
+        "slide5": {
+          "image": "assets/images/tutorial/tutorial-05.svg",
+          "title": "Digitale Dokumentation",
+          "text": "Darüber hinaus dokumentiert das medizinische Fachpersonal bei <b>FeelBack</b> den Therapieverlauf online und stellt diese Daten anderen Behandlern zur Verfügung."
+        },
+        "slide6": {
+          "image": "assets/images/tutorial/tutorial-06.svg",
+          "title": "Los geht's!",
           "text": "FeelBack starten"
         }
       },

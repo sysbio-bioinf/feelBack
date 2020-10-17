@@ -9,7 +9,7 @@ import { TutorialSlideModel } from '../../models/tutorial-slide.model';
   styleUrls: ['./tutorial.page.scss'],
 })
 export class TutorialPage extends AbstractComponent {
-  numberOfSlides = 4;
+  numberOfSlides = 6;
   slideNumberArray = Array.from(Array(this.numberOfSlides), (_, i) => i + 1);
 
   constructor(private router: Router) {
