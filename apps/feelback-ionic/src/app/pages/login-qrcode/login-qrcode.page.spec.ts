@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateTestingModule } from 'ngx-translate-testing';
 import { LoginQrcodePage } from './login-qrcode.page';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Apollo } from 'apollo-angular';
 
 describe('LoginQrcodePage', () => {
   let component: LoginQrcodePage;
@@ -15,7 +16,7 @@ describe('LoginQrcodePage', () => {
   const barcodeScannerSpy = undefined;
   const translateServiceSpy = undefined;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LoginQrcodePage],
       imports: [
@@ -27,6 +28,7 @@ describe('LoginQrcodePage', () => {
       providers: [
         { provide: BarcodeScanner, useValue: barcodeScannerSpy },
         { provide: TranslateService, useValue: translateServiceSpy },
+        Apollo
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();

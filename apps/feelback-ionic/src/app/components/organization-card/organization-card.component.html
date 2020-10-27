@@ -17,10 +17,14 @@
     >
       {{ organization.description | stripTags | shorten: 200:'...' }}
     </ion-text>
-    <ion-text color="primary" class="ion-margin-top">
-      <p class="ion-text-center" data-cy="organization-more-details">
-        {{ 'app.pages.organization-list.details' | translate }}
-      </p>
-    </ion-text>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-chip outline color="dark" class="ion-margin-top">
+          <ion-label color="primary" data-cy="organization-more-details">
+            {{ 'app.pages.organization-list.details' | translate }}
+          </ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
   </ion-card-content>
 </ion-card>

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
@@ -16,7 +16,7 @@ describe('SurveyViewComponent', () => {
   const printerServiceSpy = undefined;
   const translatePipeSpy = undefined;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SurveyViewComponent],
       imports: [
