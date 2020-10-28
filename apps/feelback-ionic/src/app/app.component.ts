@@ -86,12 +86,15 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      if(this.platform.is('cordova')) {
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
-      this.storageService
+        this.storageService
         .createFeelbackDirectories()
         .then(() => console.log('feelback download directory created'))
         .catch((exception) => console.log(exception));
+      }
+      
     });
   }
 
