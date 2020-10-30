@@ -128,6 +128,7 @@
     "graphql-scalars": "1.1.5",
     "graphql-tools": "4.0.7",
     "helmet": "3.23.3",
+    "iso-639-1": "2.1.4",
     "jwks-rsa": "1.8.1",
     "keycloak-admin": "1.13.0",
     "keycloak-angular": "7.3.1",

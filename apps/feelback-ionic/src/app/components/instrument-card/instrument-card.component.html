@@ -1,6 +1,6 @@
 <form #form="ngForm">
   <ion-card>
-    <div style="padding: 10px;">
+    <div style="padding: 10px">
       <ion-img [src]="instrument.image"></ion-img>
     </div>
     <ion-card-header>
@@ -24,10 +24,10 @@
           [(ngModel)]="this.selectedLanguage"
         >
           <ion-select-option
-            *ngFor="let locale of this.availableLocales"
-            value="{{ locale }}"
+            *ngFor="let isoLocale of this.isoLocaleNames"
+            value="{{ isoLocale.code }}"
           >
-            {{ locale }}
+            {{ isoLocale.nativeName }}
           </ion-select-option>
         </ion-select>
       </ion-item>
