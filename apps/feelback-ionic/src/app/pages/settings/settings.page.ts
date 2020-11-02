@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { AbstractComponent } from '../../core/components/abstract.component';
-import { ApplicationLanguageModel } from '../../models/applicationLanguage.model';
+import { ApplicationLanguageModel } from '../../models/application-language.model';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'feelback-ionic-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
+  providers: [TranslatePipe],
 })
 export class SettingsPage extends AbstractComponent implements OnInit {
   currentLanguage: string;

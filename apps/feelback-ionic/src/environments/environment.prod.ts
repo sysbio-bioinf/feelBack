@@ -8,4 +8,7 @@ export const environment = {
     idleTime: 60 * 5,
     timeout: 60 * 1,
   },
+  languages: {
+    availableLanguages: ['en', 'de'],
+  },
 };

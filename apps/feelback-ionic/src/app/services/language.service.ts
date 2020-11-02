@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import * as languagesJson from '../../assets/languages/languages.json';
-import { ApplicationLanguageModel } from '../models/applicationLanguage.model';
+import ISO6391 from 'iso-639-1';
+import { ApplicationLanguageModel } from '../models/application-language.model';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,9 @@ export class LanguageService {
   }
 
   getAvailableLanguages() {
-    this.availableLanguages = languagesJson.availableLanguages;
+    this.availableLanguages = ISO6391.getLanguages(
+      environment.languages.availableLanguages,
+    );
     return this.availableLanguages;
   }
 

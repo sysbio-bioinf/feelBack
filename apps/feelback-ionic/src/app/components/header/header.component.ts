@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonSelect } from '@ionic/angular';
-import { ApplicationLanguageModel } from '../../models/applicationLanguage.model';
+import { ApplicationLanguageModel } from '../../models/application-language.model';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
