@@ -33,7 +33,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private storageService: StorageService,
     private router: Router,
-    private alertController: AlertController,
+    public alertController: AlertController,
     private idle: Idle,
     private translate: TranslateService,
     private screenOrientation: ScreenOrientation,
@@ -86,7 +86,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      if(this.platform.is('cordova')) {
+      if(this.platform.is('capacitor')) {
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
         this.storageService
