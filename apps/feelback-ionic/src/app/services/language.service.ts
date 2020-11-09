@@ -10,8 +10,8 @@ import { environment } from './../../environments/environment';
 export class LanguageService {
   currentLanguage: string;
 
-  availableLanguages: ApplicationLanguageModel[];
-
+  appLanguages: ApplicationLanguageModel[];
+  
   constructor(private translateService: TranslateService) {}
 
   getCurrentLanguage() {
@@ -19,11 +19,31 @@ export class LanguageService {
     return this.currentLanguage;
   }
 
-  getAvailableLanguages() {
-    this.availableLanguages = ISO6391.getLanguages(
-      environment.languages.availableLanguages,
-    );
-    return this.availableLanguages;
+  getAvailableLanguages(languageCodes?: string[]) {
+    let codes: string[];
+    if (languageCodes) {
+      codes = languageCodes;
+    } else {
+      codes = environment.languages.availableLanguages;
+    }
+
+    try {
+      this.appLanguages = ISO6391.getLanguages(codes);
+    } catch (error) {
+      this.appLanguages = [];
+      // uncomment after finishing the unit tests
+      // console.log(error);
+    }
+    
+    return this.appLanguages;
+  }
+
+  getIsoLocaleNames(codes: string[]) {
+    try {
+      
+    } catch (error) {
+      
+    }
   }
 
   switchLanguage(newLanguage: string) {
