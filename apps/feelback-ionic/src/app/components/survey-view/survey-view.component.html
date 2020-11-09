@@ -13,12 +13,14 @@
     horizontal="start"
     slot="fixed"
     style="visibility: hidden;"
+    *ngIf="showPrev"
   >
     <ion-button
       shape="round"
       color="light"
       id="instrument-navigation-back"
       (click)="this.prevPageScrollTop()"
+      style="visibility: visible;"
     >
       <ion-icon slot="start" name="arrow-back"></ion-icon>
       {{ this.survey.pagePrevText }}
@@ -26,16 +28,32 @@
   </ion-fab>
 
   <ion-fab
+  vertical="bottom"
+  horizontal="center"
+  slot="fixed"
+  *ngIf="showPageCount"
+  >
+  <ion-chip outline color="dark" class="page-number-chip">
+    <ion-label
+    >{{ this.survey.currentPageNo + 1 }} /
+    {{ this.survey.pageCount }}</ion-label
+  >
+  </ion-chip>
+  </ion-fab>
+
+  <ion-fab
     vertical="bottom"
     horizontal="end"
     slot="fixed"
     style="visibility: hidden;"
+    *ngIf="showNext"
   >
     <ion-button
       shape="round"
       color="light"
       id="instrument-navigation-next"
       (click)="this.nextPageScrollTop()"
+      style="visibility: visible;"
     >
       <ion-icon slot="end" name="arrow-forward"></ion-icon>
       {{ this.survey.pageNextText }}
@@ -47,12 +65,14 @@
     horizontal="end"
     slot="fixed"
     style="visibility: hidden;"
+    *ngIf="showSubmit"
   >
     <ion-button
       shape="round"
       color="success"
       id="instrument-navigation-submit"
       (click)="this.survey.completeLastPage()"
+      style="visibility: visible;"
     >
       <ion-icon slot="end" name="save"></ion-icon>
       {{ this.survey.completeText }}

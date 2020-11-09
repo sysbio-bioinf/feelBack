@@ -32,7 +32,13 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
   survey: Survey.Survey;
   printData: string;
   surveyCompleted = false;
-  currentFontSize = 1;
+
+  showPrev = false;
+  showNext = false;
+  showCancel = true;
+  showSubmit = false;
+  showPageCount = true;
+  showScaleButtons = true;
 
   constructor(
     private alertController: AlertController,
@@ -102,43 +108,25 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
     // ------------------------------------------
     // calculate the navigation buttons
-    document.getElementById('instrument-navigation-back').style.visibility =
-      'hidden';
-    document.getElementById('instrument-navigation-cancel').style.visibility =
-      'hidden';
-    document.getElementById('instrument-navigation-next').style.visibility =
-      'hidden';
-    document.getElementById('instrument-navigation-submit').style.visibility =
-      'hidden';
     if (this.survey.pageCount === 1) {
-      document.getElementById('instrument-navigation-submit').style.visibility =
-        'visible';
+      this.showSubmit = true
     }
 
     if (this.survey.pageCount > 1) {
-      document.getElementById('instrument-navigation-next').style.visibility =
-        'visible';
+      this.showNext = true
     }
-
-    document.getElementById('instrument-navigation-cancel').style.visibility =
-      'visible';
     // ------------------------------------------
 
     this.survey.onComplete.add(async (survey: Survey.Survey) => {
       this.surveyCompleted = true;
 
-      document.getElementById('fontSizeButtons').style.visibility = 'hidden';
-      document.getElementById('instrument-pagecount').style.visibility =
-        'hidden';
+      this.showScaleButtons = false;
+      this.showPageCount = false;
+      this.showPrev = false;
+      this.showCancel = false;
+      this.showNext = false;
+      this.showSubmit = false;
 
-      document.getElementById('instrument-navigation-back').style.visibility =
-        'hidden';
-      document.getElementById('instrument-navigation-cancel').style.visibility =
-        'hidden';
-      document.getElementById('instrument-navigation-next').style.visibility =
-        'hidden';
-      document.getElementById('instrument-navigation-submit').style.visibility =
-        'hidden';
 
       const now = dayjs();
       const filename = now.format('YYYY-MM-DD HH-mm-ss');
@@ -174,32 +162,24 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
       );
     });
 
+    // ------------------------------------------------------------
+    // onCurrentPageChanged
     this.survey.onCurrentPageChanged.add(async (survey: Survey.Survey) => {
       if (survey.isFirstPage === true) {
-        document.getElementById('instrument-navigation-back').style.visibility =
-          'hidden';
+        this.showPrev = false;
       } else {
-        document.getElementById('instrument-navigation-back').style.visibility =
-          'visible';
+        this.showPrev = true;
       }
 
       if (survey.isLastPage === true) {
-        document.getElementById('instrument-navigation-next').style.visibility =
-          'hidden';
-        document.getElementById(
-          'instrument-navigation-submit',
-        ).style.visibility = 'visible';
+        this.showNext = false;
+        this.showSubmit = true;
       } else {
-        document.getElementById('instrument-navigation-next').style.visibility =
-          'visible';
-        document.getElementById(
-          'instrument-navigation-submit',
-        ).style.visibility = 'hidden';
+        this.showNext = true;
+        this.showSubmit = false;
       }
-
-      document.getElementById('instrument-navigation-cancel').style.visibility =
-        'visible';
     });
+    // -------------------------------------------------------------
 
     Survey.SurveyNG.render('surveyElement', {
       model: this.survey,
