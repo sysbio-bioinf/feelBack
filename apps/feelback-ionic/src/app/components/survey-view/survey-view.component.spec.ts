@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
-import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Apollo } from 'apollo-angular';
 import { NgPipesModule } from 'ngx-pipes';
+import { TranslateTestingModule } from 'ngx-translate-testing';
 import { PrinterService } from '../../services/printer.service';
 import { StorageService } from '../../services/storage.service';
 import { SurveyViewComponent } from './survey-view.component';
@@ -22,7 +23,7 @@ describe('SurveyViewComponent', () => {
       imports: [
         IonicModule.forRoot(),
         RouterTestingModule,
-        TranslateModule.forRoot({}),
+        TranslateTestingModule.withTranslations({'en': {}}),
         NgPipesModule,
       ],
       providers: [
@@ -42,13 +43,28 @@ describe('SurveyViewComponent', () => {
       description: '',
       name: '',
       type: '',
-      payload: {},
+      payload: {"startSurveyText": {"default": "Start", "de": "Starten"}},
       changelog: '',
       image: '',
       rules: [],
     };
-    component.selectedLanguage = '';
+    component.selectedLanguage = 'en';
 
     expect(component).toBeTruthy();
   });
+
+  it('should setup the instrument page and use the correct language', async () => {
+    await component.ngOnInit();
+    // setup instrument page
+    expect(component.surveyCompleted).toBe(false);
+    expect(component.survey).toBeDefined();
+    expect(component.survey.showTitle).toBe(false);
+    expect(component.survey.showNavigationButtons).toEqual('none');
+    expect(component.survey.showQuestionNumbers).toEqual('off');
+    expect(component.survey.showCompletedPage).toBe(false);
+    expect(component.survey.showPageNumbers).toBe(false);
+    expect(component.survey.showProgressBar).toEqual('off');
+    // survey.local == '' means that 'en' is used (see documentation )
+    expect(component.survey.locale).toEqual('');
+  })
 });
