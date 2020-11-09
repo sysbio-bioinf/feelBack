@@ -1,43 +1,4 @@
 <ion-content [scrollEvents]="true" #surveyIonContent>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="3">
-        <ion-icon
-          id="instrument-navigation-cancel"
-          name="trash"
-          size="large"
-          (click)="this.cancelSurvey()"
-          color="light"
-        ></ion-icon>
-      </ion-col>
-      <ion-col size="6" style="text-align: center;">
-        <ion-chip outline color="dark">
-          <ion-label
-            >{{ this.survey.currentPageNo + 1 }} /
-            {{ this.survey.pageCount }}</ion-label
-          >
-        </ion-chip>
-      </ion-col>
-      <ion-col size="3">
-        <div
-          id="fontSizeButtons"
-          class="ion-text-end"
-          style="visibility: visible;"
-        >
-          <ion-icon
-            size="large"
-            (click)="changeFontSize(-0.1)"
-            name="remove-circle-outline"
-          ></ion-icon>
-          <ion-icon
-            size="large"
-            (click)="changeFontSize(+0.1)"
-            name="add-circle-outline"
-          ></ion-icon>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
   <div
     id="surveyContainer"

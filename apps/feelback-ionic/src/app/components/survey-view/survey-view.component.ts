@@ -53,22 +53,6 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     );
   }
 
-  changeFontSize(delta: number) {
-    let newValue = this.currentFontSize + delta;
-    newValue = +newValue.toFixed(2);
-
-    if (newValue >= 0.5 && newValue <= 1.5) {
-      this.currentFontSize = newValue;
-
-      const surveyHtmlRoot: HTMLElement = document.getElementsByClassName(
-        'sv_main',
-      )[0] as HTMLElement;
-      if (surveyHtmlRoot != null) {
-        surveyHtmlRoot.style.fontSize = newValue + 'em';
-      }
-    }
-  }
-
   nextPageScrollTop() {
     this.survey.nextPage();
     this.ionContentRef.scrollToTop(700);
@@ -81,36 +65,6 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
   navigateHome() {
     this.router.navigate(['main', 'home'], { replaceUrl: true });
-  }
-
-  async cancelSurvey() {
-    const alert = await this.alertController.create({
-      header: this.translatePipe.transform(
-        'app.dialogs.cancelQuestionnaire.title',
-      ),
-      message: this.translatePipe.transform(
-        'app.dialogs.cancelQuestionnaire.text',
-      ),
-      cssClass: 'alertDialog',
-      buttons: [
-        {
-          text: this.translatePipe.transform('app.general.no'),
-          cssClass: 'success',
-          handler: () => {
-            // do nothing, because the user wants to work on the questionnaire
-          },
-        },
-        {
-          text: this.translatePipe.transform('app.general.yes'),
-          cssClass: 'danger',
-          handler: () => {
-            this.router.navigate(['main', 'home'], { replaceUrl: true });
-          },
-        },
-      ],
-    });
-
-    await alert.present();
   }
 
   async setupInstrumentPage() {
