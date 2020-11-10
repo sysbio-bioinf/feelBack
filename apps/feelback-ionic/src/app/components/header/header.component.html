@@ -17,31 +17,35 @@
     </ion-buttons>
 
     <ion-buttons
-    slot="start"
-    *ngIf="this.showCancelSurveyButton === true"
-    data-cy="header-cancel-survey"
-  >
-    <ion-icon
-    id="instrument-navigation-cancel"
-    name="trash"
-    size="large"
-    (click)="displayCancelDialog()"
-    color="light"
-  ></ion-icon>
-  </ion-buttons>
+      slot="start"
+      *ngIf="this.showCancelSurveyButton === true"
+      data-cy="header-cancel-survey"
+    >
+      <ion-icon
+        id="instrument-navigation-cancel"
+        name="trash"
+        size="large"
+        (click)="displayCancelDialog()"
+        color="light"
+      ></ion-icon>
+    </ion-buttons>
 
-  <ion-buttons slot="end" *ngIf="this.showFontScaleButtons" data-cy="header-font-scale">
-    <ion-icon
-    size="large"
-    (click)="changeFontSize(-0.1)"
-    name="remove-circle-outline"
-  ></ion-icon>
-  <ion-icon
-    size="large"
-    (click)="changeFontSize(+0.1)"
-    name="add-circle-outline"
-  ></ion-icon>
-  </ion-buttons>
+    <ion-buttons
+      slot="end"
+      *ngIf="this.showFontScaleButtons"
+      data-cy="header-font-scale"
+    >
+      <ion-icon
+        size="large"
+        (click)="changeFontSize(-0.1)"
+        name="remove-circle-outline"
+      ></ion-icon>
+      <ion-icon
+        size="large"
+        (click)="changeFontSize(+0.1)"
+        name="add-circle-outline"
+      ></ion-icon>
+    </ion-buttons>
 
     <ion-buttons slot="end" data-cy="header-language-button">
       <ion-button

@@ -10,22 +10,24 @@ describe('FaqDetailPage', () => {
   let component: FaqDetailPage;
   let fixture: ComponentFixture<FaqDetailPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [FaqDetailPage],
-      imports: [
-        IonicModule.forRoot(),
-        RouterTestingModule,
-        TranslateTestingModule.withTranslations('en', {}),
-      ],
-      providers: [Apollo],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FaqDetailPage],
+        imports: [
+          IonicModule.forRoot(),
+          RouterTestingModule,
+          TranslateTestingModule.withTranslations('en', {}),
+        ],
+        providers: [Apollo],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(FaqDetailPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+      fixture = TestBed.createComponent(FaqDetailPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    }),
+  );
 
   it('should create', () => {
     expect(component).toBeTruthy();

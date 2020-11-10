@@ -8,13 +8,19 @@ describe('OrganizationCardComponent', () => {
   let component: OrganizationCardComponent;
   let fixture: ComponentFixture<OrganizationCardComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [OrganizationCardComponent],
-      imports: [IonicModule.forRoot(), NgPipesModule, TranslateModule.forRoot()],
-      providers: [TranslatePipe]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [OrganizationCardComponent],
+        imports: [
+          IonicModule.forRoot(),
+          NgPipesModule,
+          TranslateModule.forRoot(),
+        ],
+        providers: [TranslatePipe],
+      }).compileComponents();
+    }),
+  );
 
   it('should create', () => {
     fixture = TestBed.createComponent(OrganizationCardComponent);

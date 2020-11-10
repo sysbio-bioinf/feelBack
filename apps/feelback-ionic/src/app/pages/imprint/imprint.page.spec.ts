@@ -10,19 +10,21 @@ describe('ImprintPage', () => {
   let component: ImprintPage;
   let fixture: ComponentFixture<ImprintPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ImprintPage],
-      imports: [
-        IonicModule.forRoot(),
-        TranslateModule.forRoot(),
-        RouterTestingModule,
-        MarkdownModule.forRoot(),
-      ],
-      providers: [TranslatePipe],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ImprintPage],
+        imports: [
+          IonicModule.forRoot(),
+          TranslateModule.forRoot(),
+          RouterTestingModule,
+          MarkdownModule.forRoot(),
+        ],
+        providers: [TranslatePipe],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
+    }),
+  );
 
   it('should create', () => {
     fixture = TestBed.createComponent(ImprintPage);

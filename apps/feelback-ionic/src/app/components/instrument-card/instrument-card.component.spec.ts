@@ -11,21 +11,23 @@ describe('InstrumentCardComponent', () => {
   let fixture: ComponentFixture<InstrumentCardComponent>;
 
   const routerMock = {
-    navigate: jest.fn()
-  }
+    navigate: jest.fn(),
+  };
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [InstrumentCardComponent],
-      imports: [
-        IonicModule.forRoot(),
-        TranslateTestingModule.withTranslations({'de': {}, 'es': {}}),
-        FormsModule,
-        NgStringPipesModule,
-      ],
-      providers: [{provide: Router, useValue: routerMock}]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [InstrumentCardComponent],
+        imports: [
+          IonicModule.forRoot(),
+          TranslateTestingModule.withTranslations({ de: {}, es: {} }),
+          FormsModule,
+          NgStringPipesModule,
+        ],
+        providers: [{ provide: Router, useValue: routerMock }],
+      }).compileComponents();
+    }),
+  );
 
   it('should create', () => {
     fixture = TestBed.createComponent(InstrumentCardComponent);
@@ -35,7 +37,7 @@ describe('InstrumentCardComponent', () => {
       description: '',
       name: '',
       type: '',
-      payload: {"startSurveyText": {"default": "Start", "de": "Starten"}},
+      payload: { startSurveyText: { default: 'Start', de: 'Starten' } },
       changelog: '',
       image: '',
       rules: [],
@@ -66,12 +68,15 @@ describe('InstrumentCardComponent', () => {
 
   it('should navigate to the correct url', () => {
     component.startInstrument();
-    expect(routerMock.navigate).toHaveBeenCalledWith(['main', 'surveys', component.instrument.id], {
-      replaceUrl: true,
-      state: {
-        locale: component.selectedLanguage,
+    expect(routerMock.navigate).toHaveBeenCalledWith(
+      ['main', 'surveys', component.instrument.id],
+      {
+        replaceUrl: true,
+        state: {
+          locale: component.selectedLanguage,
+        },
       },
-    });
-    expect(component.instrument.id).toEqual('42')
+    );
+    expect(component.instrument.id).toEqual('42');
   });
 });

@@ -12,19 +12,21 @@ describe('SurveyPage', () => {
   let component: SurveyPage;
   let fixture: ComponentFixture<SurveyPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SurveyPage],
-      imports: [
-        IonicModule.forRoot(),
-        TranslateModule.forRoot(),
-        RouterTestingModule,
-        GraphQLModule,
-      ],
-      providers: [TranslatePipe, HttpClient, HttpHandler],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SurveyPage],
+        imports: [
+          IonicModule.forRoot(),
+          TranslateModule.forRoot(),
+          RouterTestingModule,
+          GraphQLModule,
+        ],
+        providers: [TranslatePipe, HttpClient, HttpHandler],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
+    }),
+  );
 
   it('should create', () => {
     fixture = TestBed.createComponent(SurveyPage);

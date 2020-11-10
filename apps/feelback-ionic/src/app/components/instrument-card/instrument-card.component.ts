@@ -22,7 +22,7 @@ export class InstrumentCardComponent
   constructor(
     readonly translateService: TranslateService,
     readonly router: Router,
-    private languageService: LanguageService
+    private languageService: LanguageService,
   ) {
     super();
   }
@@ -30,7 +30,9 @@ export class InstrumentCardComponent
   ngOnInit() {
     const survey = new Survey.Model(this.instrument.payload);
     this.availableLocales = survey.getUsedLocales();
-    this.isoLocaleNames = this.languageService.getAvailableLanguages(this.availableLocales);
+    this.isoLocaleNames = this.languageService.getAvailableLanguages(
+      this.availableLocales,
+    );
     if (this.availableLocales.includes(this.translateService.currentLang)) {
       this.selectedLanguage = this.translateService.currentLang;
     } else {

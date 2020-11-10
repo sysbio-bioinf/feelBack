@@ -11,7 +11,7 @@ export class LanguageService {
   currentLanguage: string;
 
   appLanguages: ApplicationLanguageModel[];
-  
+
   constructor(private translateService: TranslateService) {}
 
   getCurrentLanguage() {
@@ -34,16 +34,13 @@ export class LanguageService {
       // uncomment after finishing the unit tests
       // console.log(error);
     }
-    
+
     return this.appLanguages;
   }
 
   getIsoLocaleNames(codes: string[]) {
     try {
-      
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }
 
   switchLanguage(newLanguage: string) {

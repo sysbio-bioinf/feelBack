@@ -11,22 +11,24 @@ describe('OrganizationListPage', () => {
   let component: OrganizationListPage;
   let fixture: ComponentFixture<OrganizationListPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [OrganizationListPage],
-      imports: [
-        IonicModule.forRoot(),
-        RouterTestingModule,
-        TranslateModule.forRoot(),
-      ],
-      providers: [TranslatePipe, Apollo, HttpClient],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [OrganizationListPage],
+        imports: [
+          IonicModule.forRoot(),
+          RouterTestingModule,
+          TranslateModule.forRoot(),
+        ],
+        providers: [TranslatePipe, Apollo, HttpClient],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(OrganizationListPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+      fixture = TestBed.createComponent(OrganizationListPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    }),
+  );
 
   it('should create', () => {
     expect(component).toBeTruthy();

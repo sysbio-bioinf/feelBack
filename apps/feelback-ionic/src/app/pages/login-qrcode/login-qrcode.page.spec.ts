@@ -16,23 +16,25 @@ describe('LoginQrcodePage', () => {
   const barcodeScannerSpy = undefined;
   const translateServiceSpy = undefined;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoginQrcodePage],
-      imports: [
-        IonicModule.forRoot(),
-        RouterTestingModule,
-        TranslateTestingModule.withTranslations('en', {}),
-        FormsModule,
-      ],
-      providers: [
-        { provide: BarcodeScanner, useValue: barcodeScannerSpy },
-        { provide: TranslateService, useValue: translateServiceSpy },
-        Apollo
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LoginQrcodePage],
+        imports: [
+          IonicModule.forRoot(),
+          RouterTestingModule,
+          TranslateTestingModule.withTranslations('en', {}),
+          FormsModule,
+        ],
+        providers: [
+          { provide: BarcodeScanner, useValue: barcodeScannerSpy },
+          { provide: TranslateService, useValue: translateServiceSpy },
+          Apollo,
+        ],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
+    }),
+  );
 
   it('should create', () => {
     fixture = TestBed.createComponent(LoginQrcodePage);

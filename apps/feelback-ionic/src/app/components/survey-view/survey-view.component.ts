@@ -49,7 +49,7 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     private userService: UserService,
     private screeningService: ScreeningService,
     private printerService: PrinterService,
-    private resultService: ResultService
+    private resultService: ResultService,
   ) {
     super();
   }
@@ -109,11 +109,11 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
     // ------------------------------------------
     // calculate the navigation buttons
     if (this.survey.pageCount === 1) {
-      this.showSubmit = true
+      this.showSubmit = true;
     }
 
     if (this.survey.pageCount > 1) {
-      this.showNext = true
+      this.showNext = true;
     }
     // ------------------------------------------
 
@@ -127,7 +127,6 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
       this.showNext = false;
       this.showSubmit = false;
 
-
       const now = dayjs();
       const filename = now.format('YYYY-MM-DD HH-mm-ss');
 
@@ -138,7 +137,10 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
 
       const plainData = survey.getPlainData({ includeEmpty: true });
 
-      const resultText = this.resultService.generateResultText(plainData, this.instrument.name)
+      const resultText = this.resultService.generateResultText(
+        plainData,
+        this.instrument.name,
+      );
 
       this.printData = resultText;
 

@@ -1,9 +1,8 @@
 <ion-content [scrollEvents]="true" #surveyIonContent>
-
   <div
     id="surveyContainer"
     class="survey-container contentcontainer codecontainer"
-    style="margin-bottom: 50px; margin-left: 10px; margin-right: 10px;"
+    style="margin-bottom: 50px; margin-left: 10px; margin-right: 10px"
   >
     <div id="surveyElement"></div>
   </div>
@@ -12,7 +11,7 @@
     vertical="bottom"
     horizontal="start"
     slot="fixed"
-    style="visibility: hidden;"
+    style="visibility: hidden"
     *ngIf="showPrev"
   >
     <ion-button
@@ -20,7 +19,7 @@
       color="light"
       id="instrument-navigation-back"
       (click)="this.prevPageScrollTop()"
-      style="visibility: visible;"
+      style="visibility: visible"
     >
       <ion-icon slot="start" name="arrow-back"></ion-icon>
       {{ this.survey.pagePrevText }}
@@ -28,24 +27,24 @@
   </ion-fab>
 
   <ion-fab
-  vertical="bottom"
-  horizontal="center"
-  slot="fixed"
-  *ngIf="showPageCount"
+    vertical="bottom"
+    horizontal="center"
+    slot="fixed"
+    *ngIf="showPageCount"
   >
-  <ion-chip outline color="dark" class="page-number-chip">
-    <ion-label
-    >{{ this.survey.currentPageNo + 1 }} /
-    {{ this.survey.pageCount }}</ion-label
-  >
-  </ion-chip>
+    <ion-chip outline color="dark" class="page-number-chip">
+      <ion-label
+        >{{ this.survey.currentPageNo + 1 }} /
+        {{ this.survey.pageCount }}</ion-label
+      >
+    </ion-chip>
   </ion-fab>
 
   <ion-fab
     vertical="bottom"
     horizontal="end"
     slot="fixed"
-    style="visibility: hidden;"
+    style="visibility: hidden"
     *ngIf="showNext"
   >
     <ion-button
@@ -53,7 +52,7 @@
       color="light"
       id="instrument-navigation-next"
       (click)="this.nextPageScrollTop()"
-      style="visibility: visible;"
+      style="visibility: visible"
     >
       <ion-icon slot="end" name="arrow-forward"></ion-icon>
       {{ this.survey.pageNextText }}
@@ -64,7 +63,7 @@
     vertical="bottom"
     horizontal="end"
     slot="fixed"
-    style="visibility: hidden;"
+    style="visibility: hidden"
     *ngIf="showSubmit"
   >
     <ion-button
@@ -72,7 +71,7 @@
       color="success"
       id="instrument-navigation-submit"
       (click)="this.survey.completeLastPage()"
-      style="visibility: visible;"
+      style="visibility: visible"
     >
       <ion-icon slot="end" name="save"></ion-icon>
       {{ this.survey.completeText }}

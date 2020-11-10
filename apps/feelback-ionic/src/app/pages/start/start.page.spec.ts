@@ -11,22 +11,24 @@ describe('StartPage', () => {
   let component: StartPage;
   let fixture: ComponentFixture<StartPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [StartPage],
-      imports: [
-        IonicModule.forRoot(),
-        RouterTestingModule,
-        TranslateModule.forRoot(),
-      ],
-      providers: [TranslatePipe, Apollo, HttpClient],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [StartPage],
+        imports: [
+          IonicModule.forRoot(),
+          RouterTestingModule,
+          TranslateModule.forRoot(),
+        ],
+        providers: [TranslatePipe, Apollo, HttpClient],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(StartPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+      fixture = TestBed.createComponent(StartPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    }),
+  );
 
   it('should create', () => {
     expect(component).toBeTruthy();

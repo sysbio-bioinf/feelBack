@@ -86,15 +86,16 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      if(this.platform.is('capacitor')) {
-        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      if (this.platform.is('capacitor')) {
+        this.screenOrientation.lock(
+          this.screenOrientation.ORIENTATIONS.PORTRAIT,
+        );
 
         this.storageService
-        .createFeelbackDirectories()
-        .then(() => console.log('feelback download directory created'))
-        .catch((exception) => console.log(exception));
+          .createFeelbackDirectories()
+          .then(() => console.log('feelback download directory created'))
+          .catch((exception) => console.log(exception));
       }
-      
     });
   }
 

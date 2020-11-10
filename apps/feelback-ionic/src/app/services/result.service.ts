@@ -4,9 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ResultService {
-
   constructor(private translateService: TranslateService) {}
 
   generateResultText(plainData: any[], instrumentName: string) {
@@ -16,10 +14,8 @@ export class ResultService {
 
     resultText = resultText + '<h1>' + instrumentName + '</h1>';
     resultText =
-    resultText +
-      `<p>${new Date().toLocaleString(
-        this.translateService.currentLang,
-      )}</p>`;
+      resultText +
+      `<p>${new Date().toLocaleString(this.translateService.currentLang)}</p>`;
 
     resultText = resultText + `<p>Name: _____________________________</p>`;
     resultText = resultText + `<p>Geburtsdatum: _____________________</p>`;
@@ -43,7 +39,7 @@ export class ResultService {
       id++;
       resultText =
         resultText +
-          `<tr>
+        `<tr>
           <td style="width: 10%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${id}<td>
           <td style="width: 40%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${question}<td>
           <td style="width: 50%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${value}<td>
@@ -55,5 +51,4 @@ export class ResultService {
 
     return resultText;
   }
-
 }

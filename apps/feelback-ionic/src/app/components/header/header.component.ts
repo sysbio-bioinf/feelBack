@@ -9,7 +9,7 @@ import { LanguageService } from '../../services/language.service';
   selector: 'feelback-ionic-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [TranslatePipe]
+  providers: [TranslatePipe],
 })
 export class HeaderComponent implements OnInit {
   @Input() title: string;
@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     private languageService: LanguageService,
     private alertController: AlertController,
     private translatePipe: TranslatePipe,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {

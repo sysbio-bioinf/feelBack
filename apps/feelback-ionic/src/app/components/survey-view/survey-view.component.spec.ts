@@ -17,23 +17,25 @@ describe('SurveyViewComponent', () => {
   const printerServiceSpy = undefined;
   const translatePipeSpy = undefined;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SurveyViewComponent],
-      imports: [
-        IonicModule.forRoot(),
-        RouterTestingModule,
-        TranslateTestingModule.withTranslations({'en': {}}),
-        NgPipesModule,
-      ],
-      providers: [
-        Apollo,
-        { provide: StorageService, useValue: storageServiceSpy },
-        { provide: PrinterService, useValue: printerServiceSpy },
-        { provide: TranslatePipe, useValue: translatePipeSpy },
-      ],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SurveyViewComponent],
+        imports: [
+          IonicModule.forRoot(),
+          RouterTestingModule,
+          TranslateTestingModule.withTranslations({ en: {} }),
+          NgPipesModule,
+        ],
+        providers: [
+          Apollo,
+          { provide: StorageService, useValue: storageServiceSpy },
+          { provide: PrinterService, useValue: printerServiceSpy },
+          { provide: TranslatePipe, useValue: translatePipeSpy },
+        ],
+      }).compileComponents();
+    }),
+  );
 
   it('should create', () => {
     fixture = TestBed.createComponent(SurveyViewComponent);
@@ -43,7 +45,7 @@ describe('SurveyViewComponent', () => {
       description: '',
       name: '',
       type: '',
-      payload: {"startSurveyText": {"default": "Start", "de": "Starten"}},
+      payload: { startSurveyText: { default: 'Start', de: 'Starten' } },
       changelog: '',
       image: '',
       rules: [],
@@ -66,5 +68,5 @@ describe('SurveyViewComponent', () => {
     expect(component.survey.showProgressBar).toEqual('off');
     // survey.local == '' means that 'en' is used (see documentation )
     expect(component.survey.locale).toEqual('');
-  })
+  });
 });

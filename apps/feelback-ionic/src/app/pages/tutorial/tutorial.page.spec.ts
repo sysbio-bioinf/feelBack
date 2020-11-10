@@ -10,22 +10,24 @@ describe('TutorialPage', () => {
   let component: TutorialPage;
   let fixture: ComponentFixture<TutorialPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [TutorialPage],
-      imports: [
-        IonicModule.forRoot(),
-        RouterTestingModule,
-        TranslateModule.forRoot(),
-      ],
-      providers: [TranslatePipe],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TutorialPage],
+        imports: [
+          IonicModule.forRoot(),
+          RouterTestingModule,
+          TranslateModule.forRoot(),
+        ],
+        providers: [TranslatePipe],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(TutorialPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+      fixture = TestBed.createComponent(TutorialPage);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    }),
+  );
 
   it('should create', () => {
     expect(component).toBeTruthy();
