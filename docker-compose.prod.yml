@@ -69,8 +69,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGA_USER}
       PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD}
-      VIRTUAL_HOST: data.feelback-app.com
-      VIRTUAL_PORT: 5555
+      VIRTUAL_HOST: ${URI_PGA}
+      VIRTUAL_PORT: 80
 
   feelback-db:
     restart: always
