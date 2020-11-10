@@ -46,6 +46,15 @@ services:
     environment:
       LETSENCRYPT_HOST: ${URI_ROOT},${URI_WWW}
 
+  feelback-doctor:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: feelback-doctor
+    environment:
+      LETSENCRYPT_HOST: ${URI_APP}
+
   feelback-api:
     restart: always
     build:
@@ -60,6 +69,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGA_USER}
       PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD}
+      VIRTUAL_HOST: data.feelback-app.com
+      VIRTUAL_PORT: 5555
 
   feelback-db:
     restart: always

@@ -31,6 +31,7 @@ RUN npm run gql-codegen
 
 # now we build the applications
 RUN npx ng build feelback-web --prod
+RUN npx ng build feelback-doctor --prod
 RUN npx ng build feelback-api --prod
 RUN npx ng build feelback-cli --prod
 
@@ -46,6 +47,21 @@ RUN gzip /usr/share/nginx/html/*.js
 # copy configuration for server
 RUN rm /etc/nginx/conf.d/default.conf
 COPY docker/nginx/web.prod.conf /etc/nginx/nginx.conf
+
+EXPOSE 80/tcp
+
+# -----------------------------------------------
+# DOCTOR SERVER Container
+# -----------------------------------------------
+FROM nginx:1.17.10-alpine AS feelback-doctor
+WORKDIR /usr/share/nginx/html
+COPY --from=build /app/dist/apps/feelback-doctor .
+
+RUN gzip /usr/share/nginx/html/*.js
+
+# copy configuration for server
+RUN rm /etc/nginx/conf.d/default.conf
+COPY docker/nginx/doctor.prod.conf /etc/nginx/nginx.conf
 
 EXPOSE 80/tcp
 

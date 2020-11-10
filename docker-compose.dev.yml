@@ -9,6 +9,14 @@ services:
       - ./docker/nginx/web.dev.conf:/etc/nginx/nginx.conf
     working_dir: /usr/share/nginx/html
 
+  feelback-doctor:
+    image: nginx
+    volumes:
+      - ./dist/apps/feelback-doctor:/usr/share/nginx/html
+      - ./dist/apps/feelback-doctor:/var/www/html
+      - ./docker/nginx/web.dev.conf:/etc/nginx/nginx.conf
+    working_dir: /usr/share/nginx/html
+
   feelback-api:
     image: node:lts-alpine3.11
     volumes:
