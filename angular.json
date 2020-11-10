@@ -322,7 +322,12 @@
                 "input": "apps/feelback-ionic/src/styles.scss"
               }
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "surveyjs-widgets",
+              "graphql-tag",
+              "zen-observable"
+            ]
           },
           "configurations": {
             "production": {
