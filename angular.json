@@ -636,7 +636,7 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["apps/feelback-doctor/src/styles"]
+              "includePaths": ["apps/feelback-doctor/src/styles", "libs/shared/style/src/lib"]
             },
             "scripts": [],
             "allowedCommonJsDependencies": [

@@ -7,7 +7,7 @@ import * as shape from 'd3-shape';
 export class CommonService {
   constructor() {}
 
-  public colors = { primary: '#00a3ff', accent: '#54b37b', warn: '#f44336' };
+  public colors = { primary: '#ce0857', accent: '#f7931e', warn: '#0098a2' };
   public colorScheme: {} = { domain: [this.colors.primary] };
   public curveStepAfter: any = shape.curveStepAfter;
   public curveLinear: any = shape.curveLinearClosed;
