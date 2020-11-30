@@ -1,0 +1,200 @@
+{
+  "title": "UI Test",
+  "pages": [
+    {
+      "name": "StartPage",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question1",
+          "title": {
+            "de": "frage1"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": {
+                "de": "wahl1"
+              }
+            },
+            {
+              "value": "item2",
+              "text": {
+                "de": "wahl2"
+              }
+            },
+            {
+              "value": "item3",
+              "text": {
+                "de": "wahl3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "question2",
+          "title": {
+            "de": "frage2"
+          }
+        },
+        {
+          "type": "matrix",
+          "name": "question3",
+          "title": {
+            "default": "question3",
+            "de": "frage3"
+          },
+          "columns": [
+            {
+              "value": "Column 1",
+              "text": {
+                "de": "Spalte 1"
+              }
+            },
+            {
+              "value": "Column 2",
+              "text": {
+                "de": "Spalte 2"
+              }
+            },
+            {
+              "value": "Column 3",
+              "text": {
+                "de": "Spalte 3"
+              }
+            }
+          ],
+          "rows": [
+            {
+              "value": "Row 1",
+              "text": {
+                "de": "Reihe 1"
+              }
+            },
+            {
+              "value": "Row 2",
+              "text": {
+                "de": "Reihe 2"
+              }
+            }
+          ]
+        }
+      ],
+      "title": {
+        "default": "First-Page-Title",
+        "de": "Erste-Seite-Titel"
+      },
+      "description": {
+        "default": "First-Page",
+        "de": "Erste-Seite"
+      }
+    },
+    {
+      "name": "CenterPage",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "question4",
+          "title": {
+            "de": "frage4"
+          },
+          "isRequired": true
+        }
+      ],
+      "title": {
+        "default": "Second-Page-Title",
+        "de": "Zweite-Seite-Titel"
+      },
+      "description": {
+        "default": "Second-Page",
+        "de": "Zweite-Seite"
+      }
+    },
+    {
+      "name": "EndPage",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question5",
+          "title": {
+            "de": "frage5"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": {
+                "de": "wahl1"
+              }
+            },
+            {
+              "value": "item2",
+              "text": {
+                "de": "wahl2"
+              }
+            },
+            {
+              "value": "item3",
+              "text": {
+                "de": "wahl3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "question6",
+          "title": {
+            "de": "frage6"
+          },
+          "choices": [
+            {
+              "value": "item1",
+              "text": {
+                "de": "wahl1"
+              }
+            },
+            {
+              "value": "item2",
+              "text": {
+                "de": "wahl2"
+              }
+            },
+            {
+              "value": "item3",
+              "text": {
+                "de": "wahl3"
+              }
+            }
+          ]
+        }
+      ],
+      "title": {
+        "default": "Last-Page-Title",
+        "de": "Letzte-Seite-Titel"
+      },
+      "description": {
+        "default": "Last-Page",
+        "de": "Letzte-Seite"
+      }
+    }
+  ],
+  "startSurveyText": {
+    "default": "Start",
+    "de": "Starten"
+  },
+  "pagePrevText": {
+    "default": "Back",
+    "de": "Zurück"
+  },
+  "pageNextText": {
+    "default": "Next",
+    "de": "Weiter"
+  },
+  "completeText": {
+    "default": "Save",
+    "de": "Speichern"
+  }
+}

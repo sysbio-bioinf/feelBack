@@ -17,6 +17,9 @@ export class SurveyPage extends AbstractComponent implements OnInit {
   instrument: Instrument;
   selectedLanguage: string;
 
+  showCancelSurveyButton = true;
+  showFontScaleButtons = true;
+
   constructor(
     private router: Router,
     private currentRoute: ActivatedRoute,
@@ -33,7 +36,10 @@ export class SurveyPage extends AbstractComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.showCancelSurveyButton = true;
+    this.showFontScaleButtons = true;
+  }
 
   navigateHome() {
     this.router.navigate(['main', 'home'], { replaceUrl: true });
@@ -52,5 +58,10 @@ export class SurveyPage extends AbstractComponent implements OnInit {
       message: this.translatePipe.transform('app.general.loading'),
     });
     await this.loading.present();
+  }
+
+  hideHeaderButtons(hideButtons: boolean) {
+    this.showCancelSurveyButton = !hideButtons;
+    this.showFontScaleButtons = !hideButtons;
   }
 }

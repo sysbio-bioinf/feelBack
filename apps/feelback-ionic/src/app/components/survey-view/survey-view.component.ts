@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { PrintOptions } from '@ionic-native/printer/ngx';
 import { AlertController, IonContent } from '@ionic/angular';
@@ -23,9 +31,13 @@ widgets.nouislider(Survey);
   templateUrl: './survey-view.component.html',
   styleUrls: ['./survey-view.component.scss'],
 })
-export class SurveyViewComponent extends AbstractComponent implements OnInit {
+export class SurveyViewComponent
+  extends AbstractComponent
+  implements OnInit, OnDestroy {
   @Input() instrument: Instrument;
   @Input() selectedLanguage: string;
+
+  @Output() hideButtonsEvent = new EventEmitter<boolean>();
 
   @ViewChild('surveyIonContent') ionContentRef: IonContent;
 
@@ -39,6 +51,8 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
   showSubmit = false;
   showPageCount = true;
   showScaleButtons = true;
+
+  appLanguage = '';
 
   constructor(
     private alertController: AlertController,
@@ -55,15 +69,24 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
   }
 
   async ngOnInit() {
+    // save the app language in this variable before rendering the survey
+    this.appLanguage = this.translateService.currentLang;
     await this.setupInstrumentPage();
     this.translateService.use(
       this.selectedLanguage || this.survey.getUsedLocales[0],
     );
   }
 
+  ngOnDestroy() {
+    // after the survey is destroyed (completed or cancelled),
+    // the app language is set back to the saved value
+    this.translateService.use(this.appLanguage);
+  }
+
   nextPageScrollTop() {
-    this.survey.nextPage();
-    this.ionContentRef.scrollToTop(700);
+    if (this.survey.nextPage()) {
+      this.ionContentRef.scrollToTop(700);
+    }
   }
 
   prevPageScrollTop() {
@@ -126,6 +149,13 @@ export class SurveyViewComponent extends AbstractComponent implements OnInit {
       this.showCancel = false;
       this.showNext = false;
       this.showSubmit = false;
+
+      this.hideButtonsEvent.emit(true);
+
+      // test survey
+      if (this.instrument.name === 'UI-Test-Dummy-Survey') {
+        return;
+      }
 
       const now = dayjs();
       const filename = now.format('YYYY-MM-DD HH-mm-ss');

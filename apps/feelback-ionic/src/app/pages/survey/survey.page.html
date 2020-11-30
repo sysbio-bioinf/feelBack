@@ -1,8 +1,8 @@
 <feelback-ionic-header
   *ngIf="this.instrument"
   [title]="this.instrument.name"
-  [showCancelSurveyButton]="true"
-  [showFontScaleButtons]="true"
+  [showCancelSurveyButton]="this.showCancelSurveyButton"
+  [showFontScaleButtons]="this.showFontScaleButtons"
 ></feelback-ionic-header>
 
 <ion-content>
@@ -10,5 +10,6 @@
     *ngIf="this.instrument"
     [instrument]="this.instrument"
     [selectedLanguage]="this.selectedLanguage"
+    (hideButtonsEvent)="this.hideHeaderButtons($event)"
   ></feelback-ionic-survey-view>
 </ion-content>
