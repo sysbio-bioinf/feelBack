@@ -53,7 +53,7 @@ export class EvaluationService extends CoreService {
       return evaluationResult;
     } catch (exception) {
       console.log(`Error evaluating rule "${rule}" with "${data}".`);
-      return undefined;
+      return null;
     }
   }
 }

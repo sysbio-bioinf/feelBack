@@ -202,10 +202,10 @@ describe('DiagramService', () => {
       expect(result).toHaveLength(2);
       expect(result[0].screeningId).toStrictEqual(screenings[0].id);
       expect(result[0].x).toStrictEqual(screenings[0].collectedAt);
-      expect(result[0].y).toBeUndefined();
+      expect(result[0].y).toBeNull();
       expect(result[1].screeningId).toStrictEqual(screenings[1].id);
       expect(result[1].x).toStrictEqual(screenings[1].collectedAt);
-      expect(result[1].y).toBeUndefined();
+      expect(result[1].y).toBeNull();
       const screeningWithoutNumber = new ScreeningEntity();
       screeningWithoutNumber.id = '3';
       screeningWithoutNumber.collectedAt = new Date();
@@ -221,7 +221,7 @@ describe('DiagramService', () => {
       expect(result[1].y).toStrictEqual(2);
       expect(result[2].screeningId).toStrictEqual(screenings[2].id);
       expect(result[2].x).toStrictEqual(screenings[2].collectedAt);
-      expect(result[2].y).toBeUndefined();
+      expect(result[2].y).toBeNull();
     });
   });
 
@@ -260,7 +260,7 @@ describe('DiagramService', () => {
       );
       expect(result.screeningId).toStrictEqual(screening.id);
       expect(result.x).toStrictEqual(screening.collectedAt);
-      expect(result.y).toBeUndefined();
+      expect(result.y).toBeNull();
     });
   });
 });

@@ -92,13 +92,13 @@ describe('EvaluationService', () => {
         invalidSyntax,
         screening.getScreeningData(),
       );
-      expect(result).toBeUndefined();
+      expect(result).toBeNull();
       const nonExistantParameter = 'x > 5';
       result = service.evaluateRule(
         nonExistantParameter,
         screening.getScreeningData(),
       );
-      expect(result).toBeUndefined();
+      expect(result).toBeNull();
     });
   });
 });
