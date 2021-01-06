@@ -30,7 +30,8 @@ describe('KeyCloakStrategy', () => {
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot(mockEmptyEnvironment), KeycloakStrategy],
+      imports: [ConfigModule.forRoot(mockEmptyEnvironment)],
+      providers: [KeycloakStrategy],
     }).compile();
 
     keycloakStrategy = module.get<KeycloakStrategy>(KeycloakStrategy);

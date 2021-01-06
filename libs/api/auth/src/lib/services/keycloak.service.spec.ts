@@ -125,11 +125,11 @@ describe('KeycloakService', () => {
 
   describe('requestTokenForCredentials', () => {
     it('should return token', () => {
-      expect.assertions(1);
       const credentials: CredentialsDto = {
         username: 'test name',
         password: 'passw',
       };
+      expect.assertions(1);
       return expect(
         keycloakService.requestTokenForCredentials(credentials),
       ).resolves.toStrictEqual(authToken);
