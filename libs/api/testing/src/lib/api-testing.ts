@@ -5,3 +5,5 @@ export * from './mocks/identity.entity.mock';
 export * from './mocks/doctor.entity.mock';
 export * from './mocks/instrument.entity.mock';
 export * from './mocks/instrument.object.mock';
+export * from './mocks/screening.object.mock';
+export * from './mocks/screening.entity.mock';
