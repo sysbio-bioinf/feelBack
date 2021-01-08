@@ -16,7 +16,7 @@ import { PersonObject } from './person.object';
   disableRemove: true,
   disableUpdate: false,
 })
-@Connection('persons', () => PersonObject, {
+@Connection('person', () => PersonObject, {
   nullable: true,
   disableRemove: true,
   disableUpdate: false,

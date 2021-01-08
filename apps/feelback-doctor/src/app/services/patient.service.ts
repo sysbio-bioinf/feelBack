@@ -31,7 +31,7 @@ export class PatientService {
         const organizations: Organization[] = [];
         for (const organization of data.data.myself.organizations.edges) {
           const patients: Patient[] = [];
-          for (const patient of organization.node.persons.edges) {
+          for (const patient of organization.node.people.edges) {
             patients.push({
               id: patient.node.id,
               pseudonym: patient.node.pseudonym,

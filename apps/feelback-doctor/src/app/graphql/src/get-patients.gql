@@ -7,7 +7,7 @@ query getPatients {
         node {
           id
           name
-          persons {
+          people {
             edges {
               node {
                 id

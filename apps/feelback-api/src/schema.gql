@@ -999,7 +999,7 @@ type Mutation {
   deleteOneOrganization(input: DeleteOneInput!): OrganizationDeleteResponse!
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
-  addPersonsToOrganization(input: RelationsInput!): Organization!
+  addPeopleToOrganization(input: RelationsInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
   updateOnePerson(input: UpdateOnePersonInput!): Person!
   createOnePerson(input: CreateOnePersonInputType!): Person!
@@ -1057,7 +1057,7 @@ type Organization {
 
   """The URL for the logo of this organization"""
   logo: String
-  persons(
+  people(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
@@ -1066,7 +1066,7 @@ type Organization {
 
     """Specify to sort results."""
     sorting: [PersonSort!] = []
-  ): OrganizationPersonsConnection
+  ): OrganizationPeopleConnection
   members(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -1198,7 +1198,7 @@ type OrganizationMinAggregate {
   type: String
 }
 
-type OrganizationPersonsConnection {
+type OrganizationPeopleConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
