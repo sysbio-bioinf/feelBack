@@ -16,10 +16,11 @@ import { PersonObject } from './person.object';
   disableRemove: true,
   disableUpdate: false,
 })
-@Connection('person', () => PersonObject, {
+@Connection('people', () => PersonObject, {
   nullable: true,
   disableRemove: true,
   disableUpdate: false,
+  relationName: 'persons',
 })
 export class OrganizationObject extends VersionableObject {
   @FilterableField(() => String, {
