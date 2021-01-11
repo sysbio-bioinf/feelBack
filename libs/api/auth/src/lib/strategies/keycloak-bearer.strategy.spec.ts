@@ -6,6 +6,10 @@ import { User } from '@feelback-app/api/auth';
 import { mockEmptyEnvironment } from '@feelback-app/api/testing';
 import { Test } from '@nestjs/testing';
 
+// Mock KeycloakBearerStrategy to avoid connecting to keycloak-server
+jest.mock('passport-keycloak-bearer');
+
+// Mock done-method needed for validate-method
 function mockDone(error: Error, user?: User, msg?: string): any {
   return {
     error: error,
@@ -14,17 +18,6 @@ function mockDone(error: Error, user?: User, msg?: string): any {
   };
 }
 
-/*
-TODO:
-Fix this error:
-
-KeycloakBearerStrategy - Unable to get OIDC metadata from 
-http://keycloak:8080/auth/realms/test/.well-known/openid-configuration: 
-Error: getaddrinfo ENOTFOUND keycloak
-
-This is caused by the super-constructor-call in KeycloakStrategy for PassportStrategy.
-Mocking PassportStrategy or running a keycloak-server could fix this issue.
-*/
 describe('KeyCloakStrategy', () => {
   let keycloakStrategy: KeycloakStrategy;
 
@@ -41,69 +34,71 @@ describe('KeyCloakStrategy', () => {
     expect(keycloakStrategy).toBeDefined();
   });
 
-  it('throw exception for empty JwtToken', async () => {
-    const emptyJwtToken = null;
-    const result = await keycloakStrategy.validate(emptyJwtToken, mockDone);
-    expect(result.error).toBeInstanceOf(ApiException);
-    expect(result.error.getResponse()).toBeTruthy();
-    expect(result.error.getStatus()).toBe(HttpStatus.INTERNAL_SERVER_ERROR);
-    expect(result.user).toBeUndefined();
-    expect(result.msg).toBeUndefined();
-  });
+  describe('validate', () => {
+    it('throw exception for empty JwtToken', async () => {
+      const emptyJwtToken = null;
+      const result = await keycloakStrategy.validate(emptyJwtToken, mockDone);
+      expect(result.error).toBeInstanceOf(ApiException);
+      expect(result.error.getResponse()).toBeTruthy();
+      expect(result.error.getStatus()).toBe(HttpStatus.INTERNAL_SERVER_ERROR);
+      expect(result.user).toBeUndefined();
+      expect(result.msg).toBeUndefined();
+    });
 
-  it('error message for non-sub', async () => {
-    const nonSubJwtToken = {
-      sub: '',
-    };
-    const result = await keycloakStrategy.validate(nonSubJwtToken, mockDone);
-    expect(result.error).toBeNull();
-    expect(result.user).toBeFalsy();
-    expect(result.msg).toBeDefined();
-  });
+    it('error message for non-sub', async () => {
+      const nonSubJwtToken = {
+        sub: '',
+      };
+      const result = await keycloakStrategy.validate(nonSubJwtToken, mockDone);
+      expect(result.error).toBeNull();
+      expect(result.user).toBeFalsy();
+      expect(result.msg).toBeDefined();
+    });
 
-  it('user and error message for missing role', async () => {
-    const testId = 'Test';
-    const missingRealmAccessJwtToken = {
-      sub: testId,
-      realm_access: null,
-    };
-    const expectedUser = new User(testId);
-    let result = await keycloakStrategy.validate(
-      missingRealmAccessJwtToken,
-      mockDone,
-    );
-    expect(result.error).toBeNull();
-    expect(result.user).toStrictEqual(expectedUser);
-    expect(result.msg).toBeDefined();
+    it('user and error message for missing role', async () => {
+      const testId = 'Test';
+      const missingRealmAccessJwtToken = {
+        sub: testId,
+        realm_access: null,
+      };
+      const expectedUser = new User(testId);
+      let result = await keycloakStrategy.validate(
+        missingRealmAccessJwtToken,
+        mockDone,
+      );
+      expect(result.error).toBeNull();
+      expect(result.user).toStrictEqual(expectedUser);
+      expect(result.msg).toBeDefined();
 
-    const missingRealmAccessRolesJwtToken = {
-      sub: testId,
-      realm_access: {
-        roles: null,
-      },
-    };
-    result = await keycloakStrategy.validate(
-      missingRealmAccessRolesJwtToken,
-      mockDone,
-    );
-    expect(result.error).toBeNull();
-    expect(result.user).toStrictEqual(expectedUser);
-    expect(result.msg).toBeDefined();
-  });
+      const missingRealmAccessRolesJwtToken = {
+        sub: testId,
+        realm_access: {
+          roles: null,
+        },
+      };
+      result = await keycloakStrategy.validate(
+        missingRealmAccessRolesJwtToken,
+        mockDone,
+      );
+      expect(result.error).toBeNull();
+      expect(result.user).toStrictEqual(expectedUser);
+      expect(result.msg).toBeDefined();
+    });
 
-  it('correct output for valid input', async () => {
-    const testId = 'Test';
-    const testRoles = ['TestRole'];
-    const validJwtToken = {
-      sub: testId,
-      realm_access: {
-        roles: testRoles,
-      },
-    };
-    const expectedUser = new User(testId, testRoles);
-    const result = await keycloakStrategy.validate(validJwtToken, mockDone);
-    expect(result.error).toBeNull();
-    expect(result.user).toStrictEqual(expectedUser);
-    expect(result.msg).toBeUndefined();
+    it('correct output for valid input', async () => {
+      const testId = 'Test';
+      const testRoles = ['TestRole'];
+      const validJwtToken = {
+        sub: testId,
+        realm_access: {
+          roles: testRoles,
+        },
+      };
+      const expectedUser = new User(testId, testRoles);
+      const result = await keycloakStrategy.validate(validJwtToken, mockDone);
+      expect(result.error).toBeNull();
+      expect(result.user).toStrictEqual(expectedUser);
+      expect(result.msg).toBeUndefined();
+    });
   });
 });
