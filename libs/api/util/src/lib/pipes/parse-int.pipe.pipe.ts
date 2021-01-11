@@ -10,7 +10,7 @@ import {
 export class ParseIntPipe extends NestParseIntPipe {
   async transform(value: string, metadata: ArgumentMetadata): Promise<number> {
     try {
-      return super.transform(value, metadata);
+      return await super.transform(value, metadata);
     } catch (error) {
       throw new ApiException(
         {
