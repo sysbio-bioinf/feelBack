@@ -128,16 +128,6 @@ export class KeycloakService {
       grantType: 'password',
     });
 
-    if (!adminClient) {
-      throw new ApiException(
-        {
-          title: 'Connection Error',
-          message: 'Cannot connect to KeyCloak',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-
     const keycloakId = await adminClient.users.create({
       realm: realmName,
       emailVerified: true,
@@ -152,10 +142,30 @@ export class KeycloakService {
       ],
     });
 
+    if (!keycloakId || !keycloakId.id) {
+      throw new ApiException(
+        {
+          title: 'Connection Error',
+          message: 'Cannot connect to KeyCloak',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+
     const managerRole = await adminClient.roles.findOneByName({
       name: RolesEnum.MANAGER,
       realm: realmName,
     });
+
+    if (!managerRole) {
+      throw new ApiException(
+        {
+          title: 'Connection Error',
+          message: 'Cannot connect to KeyCloak',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
 
     await adminClient.users.addRealmRoleMappings({
       id: keycloakId.id,

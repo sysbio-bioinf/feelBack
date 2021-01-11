@@ -1,26 +1,29 @@
 import { KeycloakService } from './keycloak.service';
 import { ConfigService } from '@feelback-app/api/config';
+import { RolesEnum } from '@feelback-app/api/shared';
 import { mockEmptyEnvironment } from '@feelback-app/api/testing';
+import { KeycloakServiceConnection } from '@feelback-app/util/connection';
 import { HttpService } from '@nestjs/common';
 import { CredentialsDto } from '../data/dtos/credentials.dto';
 import { AuthTokenModel } from '../data/models/auth-token.model';
 import { ApiException } from '@feelback-app/api/errors';
 import { of } from 'rxjs';
 import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
-import KeycloakAdminClient from 'keycloak-admin';
+import RoleRepresentation from 'keycloak-admin/lib/defs/roleRepresentation';
 
+const mockConfigServiceGet = jest.fn();
 // Mock ConfigService to avoid logging
 jest.mock('@feelback-app/api/config', () => {
   return {
     ConfigService: jest.fn().mockImplementation((_cfg) => {
       return {
-        get: (_path: string) => 'test',
+        get: mockConfigServiceGet,
       };
     }),
   };
 });
 
-// Function to generate AxiosResponse-Object for HttpService-Mock
+// Function to generate AxiosResponse-Object for HttpService-Mock methods
 const generateAxiosResponse = (data: any) => {
   return {
     data: data,
@@ -32,7 +35,7 @@ const generateAxiosResponse = (data: any) => {
   };
 };
 
-// Result of valid use of MockHttpService.post
+// Result of valid use of mockHttpGet, if it doesn't fail
 const tokenResponse = {
   token_type: 'token_type',
   access_token: 'access_token',
@@ -42,7 +45,7 @@ const tokenResponse = {
   scope: 'scope',
 };
 
-// Result of MockHttpService.get
+// Result of mockHttpGet, if it doesn't fail
 const keycloakUserInfo: KeycloakUserInfo = {
   sub: 'sub',
   email: 'email',
@@ -51,50 +54,37 @@ const keycloakUserInfo: KeycloakUserInfo = {
   roles: [],
 };
 
-// Mock HttpService-Methods that are needed
+// Mock HttpService and its needed methods
+const mockHttpGet = jest.fn();
+const mockHttpPost = jest.fn();
 jest.mock('@nestjs/common/http', () => {
   return {
     HttpService: jest.fn(() => {
       return {
-        post: function (_address: any, qs: string) {
-          // Check for invalid inputs to simulate failed methodcall in HttpService.
-          // If username or password are undefined in credentials, they won't be part of generated qs-string.
-          if (!qs.includes('username') || !qs.includes('password')) {
-            throw new Error();
-          }
-          return of(generateAxiosResponse(tokenResponse));
-        },
-        get: (_address: any, _headers: any) =>
-          of(generateAxiosResponse(keycloakUserInfo)),
+        post: mockHttpPost,
+        get: mockHttpGet,
       };
     }),
   };
 });
 
-// Mock KeycloakAdminClient and its methods.
-const keycloakId = 'keycloakId';
+// Mock KeycloakAdminClient and its needed methods
+const mockAdminClientAuth = jest.fn();
+const mockAdminClientUsersCreate = jest.fn();
+const mockAdminClientUsersAddRealmRoleMappings = jest.fn();
+const mockAdminClientRolesFindOneByName = jest.fn();
 jest.mock('keycloak-admin/lib', () => {
   return {
     __esModule: true,
     default: jest.fn((_cfg: any) => {
       return {
-        // Simulate failed authorization by checking for undefined username/password
-        auth: function (this: KeycloakAdminClient, credentials: any) {
-          if (
-            credentials.username === undefined ||
-            credentials.password === undefined
-          ) {
-            throw new Error();
-          } else {
-            return Promise.resolve();
-          }
-        },
+        auth: mockAdminClientAuth,
         users: {
-          create: (_payload: any) => Promise.resolve({ id: keycloakId }),
-          addRealmRoleMappings: (_payload: any) => Promise.resolve(),
+          create: mockAdminClientUsersCreate,
+          addRealmRoleMappings: mockAdminClientUsersAddRealmRoleMappings,
         },
         roles: {
-          findOneByName: (_payload: any) => Promise.resolve({}),
+          findOneByName: mockAdminClientRolesFindOneByName,
         },
       };
     }),
@@ -112,11 +102,16 @@ describe('KeycloakService', () => {
     scope: tokenResponse.scope,
   };
 
+  const configGetResult = 'Test realmName';
+  const expectedRealmNameConfigPath = 'auth.keycloak.clients.feelback.realm';
+
   beforeEach(async () => {
+    jest.clearAllMocks();
     keycloakService = new KeycloakService(
       new ConfigService(mockEmptyEnvironment),
       new HttpService(),
     );
+    mockConfigServiceGet.mockReturnValue(configGetResult);
   });
 
   it('should be defined', () => {
@@ -124,31 +119,92 @@ describe('KeycloakService', () => {
   });
 
   describe('requestTokenForCredentials', () => {
-    it('should return token', () => {
-      const credentials: CredentialsDto = {
-        username: 'test name',
-        password: 'passw',
-      };
-      expect.assertions(1);
-      return expect(
-        keycloakService.requestTokenForCredentials(credentials),
-      ).resolves.toStrictEqual(authToken);
+    const credentials: CredentialsDto = {
+      username: 'testName',
+      password: 'passw',
+    };
+    const keycloakTokenAddress = new KeycloakServiceConnection().getTokenAddress(
+      configGetResult,
+    );
+    const httpPostData = `username=${credentials.username}&password=${credentials.password}&client_id=feelback-api-client&grant_type=password&scope=openid`;
+
+    it('should return token', async () => {
+      mockHttpPost.mockReturnValueOnce(
+        of(generateAxiosResponse(tokenResponse)),
+      );
+      expect.assertions(5);
+      const result = await keycloakService.requestTokenForCredentials(
+        credentials,
+      );
+      expect(result).toStrictEqual(authToken);
+      expect(mockConfigServiceGet).toBeCalledTimes(1);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockHttpPost).toBeCalledTimes(1);
+      expect(mockHttpPost).toBeCalledWith(keycloakTokenAddress, httpPostData);
     });
 
-    it('should throw error on empty credentials', () => {
-      expect.assertions(1);
-      return expect(
-        keycloakService.requestTokenForCredentials(new CredentialsDto()),
-      ).rejects.toThrowError(ApiException);
+    it('should throw error on empty credentials', async () => {
+      mockHttpPost.mockImplementationOnce(() => {
+        throw new Error();
+      });
+      expect.assertions(5);
+      try {
+        await keycloakService.requestTokenForCredentials(credentials);
+        fail();
+      } catch (error) {
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockConfigServiceGet).toBeCalledTimes(1);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockHttpPost).toBeCalledTimes(1);
+      expect(mockHttpPost).toBeCalledWith(keycloakTokenAddress, httpPostData);
     });
   });
 
   describe('getUserInfoForToken', () => {
-    it('should return UserInfo', () => {
-      expect.assertions(1);
-      return expect(
-        keycloakService.getUserInfoForToken(authToken),
-      ).resolves.toStrictEqual(keycloakUserInfo);
+    const keycloakUserInfoAddress = new KeycloakServiceConnection().getUserInfoAddress(
+      configGetResult,
+    );
+    const authorizationHeader = {
+      headers: {
+        authorization: `Bearer ${authToken.accessToken}`,
+      },
+    };
+
+    it('should throw error if HTTP-GET fails', async () => {
+      mockHttpGet.mockImplementationOnce(() => {
+        throw new Error();
+      });
+      expect.assertions(5);
+      try {
+        await keycloakService.getUserInfoForToken(authToken);
+        fail();
+      } catch (error) {
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockConfigServiceGet).toBeCalledTimes(1);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockHttpGet).toBeCalledTimes(1);
+      expect(mockHttpGet).toBeCalledWith(
+        keycloakUserInfoAddress,
+        authorizationHeader,
+      );
+    });
+
+    it('should return UserInfo', async () => {
+      mockHttpGet.mockReturnValueOnce(
+        of(generateAxiosResponse(keycloakUserInfo)),
+      );
+      expect.assertions(5);
+      const result = await keycloakService.getUserInfoForToken(authToken);
+      expect(result).toStrictEqual(keycloakUserInfo);
+      expect(mockConfigServiceGet).toBeCalledTimes(1);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockHttpGet).toBeCalledTimes(1);
+      expect(mockHttpGet).toBeCalledWith(
+        keycloakUserInfoAddress,
+        authorizationHeader,
+      );
     });
   });
 
@@ -187,18 +243,197 @@ describe('KeycloakService', () => {
   });
 
   describe('registerDoctor', () => {
-    it('should register', async () => {
-      const credentials: CredentialsDto = {
-        username: 'test',
-        password: 'passw',
+    const keycloakId = { id: 'keycloakId' };
+
+    const expectedUsernameConfigPath = 'auth.keycloak.server.username';
+    const expectedPasswordConfigPath = 'auth.keycloak.server.password';
+
+    const expectedCredentials = {
+      username: configGetResult,
+      password: configGetResult,
+      clientId: 'admin-cli',
+      grantType: 'password',
+    };
+
+    const generateUserRepresentation = (credentials: CredentialsDto) => {
+      return {
+        realm: configGetResult,
+        emailVerified: true,
+        enabled: true,
+        email: credentials.username,
+        username: credentials.username,
+        credentials: [
+          {
+            type: 'password',
+            value: credentials.password,
+          },
+        ],
       };
+    };
+
+    const expectedRole = {
+      name: RolesEnum.MANAGER,
+      realm: configGetResult,
+    };
+
+    const generatePayload = (managerRole: RoleRepresentation) => {
+      return {
+        id: keycloakId.id,
+        roles: [
+          {
+            id: managerRole.id,
+            name: managerRole.name,
+          },
+        ],
+        realm: configGetResult,
+      };
+    };
+
+    const credentials: CredentialsDto = {
+      username: 'test',
+      password: 'passw',
+    };
+
+    it('should register', async () => {
+      mockAdminClientUsersCreate.mockResolvedValueOnce(keycloakId);
+      const managerRole: RoleRepresentation = {
+        id: 'manageRoleId',
+        name: 'manager role',
+      };
+      mockAdminClientRolesFindOneByName.mockResolvedValueOnce(managerRole);
       const result = await keycloakService.registerDoctor(credentials);
-      expect(result).toStrictEqual(keycloakId);
+      expect(result).toStrictEqual(keycloakId.id);
+      expect(mockConfigServiceGet).toBeCalledTimes(3);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedUsernameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedPasswordConfigPath);
+      expect(mockAdminClientAuth).toBeCalledTimes(1);
+      expect(mockAdminClientAuth).toBeCalledWith(expectedCredentials);
+      expect(mockAdminClientUsersCreate).toBeCalledTimes(1);
+      const expectedUserRepresentation = generateUserRepresentation(
+        credentials,
+      );
+      expect(mockAdminClientUsersCreate).toBeCalledWith(
+        expectedUserRepresentation,
+      );
+      expect(mockAdminClientRolesFindOneByName).toBeCalledTimes(1);
+      expect(mockAdminClientRolesFindOneByName).toBeCalledWith(expectedRole);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledTimes(1);
+      const expectedPayload = generatePayload(managerRole);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledWith(
+        expectedPayload,
+      );
     });
 
-    // FIXME: Failed authorization depends on auth-method of KeycloakAdminClient, which behaviour still needs to be checked.
-    it('should not register after failed authorization', async () => {
-      fail();
+    it('should register if manager role is empty', async () => {
+      mockAdminClientUsersCreate.mockResolvedValueOnce(keycloakId);
+      mockAdminClientRolesFindOneByName.mockResolvedValueOnce({});
+      const result = await keycloakService.registerDoctor(credentials);
+      expect(result).toStrictEqual(keycloakId.id);
+      expect(mockConfigServiceGet).toBeCalledTimes(3);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedUsernameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedPasswordConfigPath);
+      expect(mockAdminClientAuth).toBeCalledTimes(1);
+      expect(mockAdminClientAuth).toBeCalledWith(expectedCredentials);
+      expect(mockAdminClientUsersCreate).toBeCalledTimes(1);
+      const expectedUserRepresentation = generateUserRepresentation(
+        credentials,
+      );
+      expect(mockAdminClientUsersCreate).toBeCalledWith(
+        expectedUserRepresentation,
+      );
+      expect(mockAdminClientRolesFindOneByName).toBeCalledTimes(1);
+      expect(mockAdminClientRolesFindOneByName).toBeCalledWith(expectedRole);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledTimes(1);
+      const emptyManagerRole = {
+        id: '',
+        name: '',
+      };
+      const expectedPayload = generatePayload(emptyManagerRole);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledWith(
+        expectedPayload,
+      );
+    });
+
+    it('should not register if keycloakId is falsy', async () => {
+      mockAdminClientUsersCreate.mockResolvedValueOnce(null);
+      expect.assertions(11);
+      try {
+        await keycloakService.registerDoctor(credentials);
+        fail();
+      } catch (error) {
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockConfigServiceGet).toBeCalledTimes(3);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedUsernameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedPasswordConfigPath);
+      expect(mockAdminClientAuth).toBeCalledTimes(1);
+      expect(mockAdminClientAuth).toBeCalledWith(expectedCredentials);
+      expect(mockAdminClientUsersCreate).toBeCalledTimes(1);
+      const expectedUserRepresentation = generateUserRepresentation(
+        credentials,
+      );
+      expect(mockAdminClientUsersCreate).toBeCalledWith(
+        expectedUserRepresentation,
+      );
+      expect(mockAdminClientRolesFindOneByName).toBeCalledTimes(0);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledTimes(0);
+    });
+
+    it('should not register if keycloakId.id is undefined', async () => {
+      mockAdminClientUsersCreate.mockResolvedValueOnce({});
+      expect.assertions(11);
+      try {
+        await keycloakService.registerDoctor(credentials);
+        fail();
+      } catch (error) {
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockConfigServiceGet).toBeCalledTimes(3);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedUsernameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedPasswordConfigPath);
+      expect(mockAdminClientAuth).toBeCalledTimes(1);
+      expect(mockAdminClientAuth).toBeCalledWith(expectedCredentials);
+      expect(mockAdminClientUsersCreate).toBeCalledTimes(1);
+      const expectedUserRepresentation = generateUserRepresentation(
+        credentials,
+      );
+      expect(mockAdminClientUsersCreate).toBeCalledWith(
+        expectedUserRepresentation,
+      );
+      expect(mockAdminClientRolesFindOneByName).toBeCalledTimes(0);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledTimes(0);
+    });
+
+    it('should not register if manager role is falsy', async () => {
+      mockAdminClientUsersCreate.mockResolvedValueOnce(keycloakId);
+      mockAdminClientRolesFindOneByName.mockResolvedValue(null);
+      expect.assertions(12);
+      try {
+        await keycloakService.registerDoctor(credentials);
+        fail();
+      } catch (error) {
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockConfigServiceGet).toBeCalledTimes(3);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedUsernameConfigPath);
+      expect(mockConfigServiceGet).toBeCalledWith(expectedPasswordConfigPath);
+      expect(mockAdminClientAuth).toBeCalledTimes(1);
+      expect(mockAdminClientAuth).toBeCalledWith(expectedCredentials);
+      expect(mockAdminClientUsersCreate).toBeCalledTimes(1);
+      const expectedUserRepresentation = generateUserRepresentation(
+        credentials,
+      );
+      expect(mockAdminClientUsersCreate).toBeCalledWith(
+        expectedUserRepresentation,
+      );
+      expect(mockAdminClientRolesFindOneByName).toBeCalledTimes(1);
+      expect(mockAdminClientRolesFindOneByName).toBeCalledWith(expectedRole);
+      expect(mockAdminClientUsersAddRealmRoleMappings).toBeCalledTimes(0);
     });
   });
 });
