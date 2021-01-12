@@ -1,9 +1,7 @@
 import { ScreeningObject } from '@feelback-app/api/interfaces';
 
-export async function generateScreeningObject(
-  overwriteData: any,
-): Promise<ScreeningObject> {
-  return Promise.resolve({ ...emptyScreeningObject, ...overwriteData });
+export function generateScreeningObject(overwriteData: any): ScreeningObject {
+  return { ...emptyScreeningObject, ...overwriteData };
 }
 
 export const emptyScreeningObject: ScreeningObject = {

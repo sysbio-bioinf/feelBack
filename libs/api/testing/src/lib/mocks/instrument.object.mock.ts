@@ -1,10 +1,8 @@
 import { InstrumentStatesEnum } from '@feelback-app/api/data';
 import { InstrumentObject } from '@feelback-app/api/interfaces';
 
-export async function generateInstrumentObject(
-  overwriteData: any,
-): Promise<InstrumentObject> {
-  return Promise.resolve({ ...emptyInstrumentObject, ...overwriteData });
+export function generateInstrumentObject(overwriteData: any): InstrumentObject {
+  return { ...emptyInstrumentObject, ...overwriteData };
 }
 
 export const emptyInstrumentObject: InstrumentObject = {
