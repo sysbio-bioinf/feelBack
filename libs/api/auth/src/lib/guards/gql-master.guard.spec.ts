@@ -27,31 +27,25 @@ const mockRoleGuard = jest.fn((context: any) => context.mockRoleResult);
 
 describe('GqlMasterGuard', () => {
   let gqlMasterGuard: GqlMasterGuard;
-  let gqlUnprotectedGuard: GqlUnprotectedGuard;
-  let gqlAuthGuard: GqlAuthGuard;
-  let gqlRoleGuard: GqlRoleGuard;
 
   beforeEach(async () => {
     const emptyReflector: Reflector = new Reflector();
-    gqlUnprotectedGuard = new GqlUnprotectedGuard(emptyReflector);
-    gqlAuthGuard = new GqlAuthGuard();
-    gqlRoleGuard = new GqlRoleGuard(emptyReflector);
+    const gqlUnprotectedGuard = new GqlUnprotectedGuard(emptyReflector);
+    const gqlAuthGuard = new GqlAuthGuard();
+    const gqlRoleGuard = new GqlRoleGuard(emptyReflector);
+    gqlUnprotectedGuard.canActivate = mockUnprotectedGuard;
+    gqlAuthGuard.canActivate = mockAuthGuard;
+    gqlRoleGuard.canActivate = mockRoleGuard;
+
     gqlMasterGuard = new GqlMasterGuard(
       gqlUnprotectedGuard,
       gqlAuthGuard,
       gqlRoleGuard,
     );
-
-    gqlUnprotectedGuard.canActivate = mockUnprotectedGuard;
-    gqlAuthGuard.canActivate = mockAuthGuard;
-    gqlRoleGuard.canActivate = mockRoleGuard;
   });
 
   it('should be defined', () => {
     expect(gqlMasterGuard).toBeDefined();
-    expect(gqlUnprotectedGuard).toBeDefined();
-    expect(gqlAuthGuard).toBeDefined();
-    expect(gqlRoleGuard).toBeDefined();
   });
 
   describe('canActivate', () => {
