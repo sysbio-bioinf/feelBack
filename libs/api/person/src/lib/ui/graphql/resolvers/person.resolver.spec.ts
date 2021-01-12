@@ -8,59 +8,24 @@ import { PersonAssemblerService } from '../../../services/person-assembler.servi
 import { PersonDatabaseService } from '../../../services/person-database.service';
 import { PersonAssembler } from '../assemblers/person.assembler';
 import { PersonResolver } from './person.resolver';
-import {
-  CreateOnePersonInputType,
-  PersonObject,
-} from '@feelback-app/api/interfaces';
+import { CreateOnePersonInputType } from '@feelback-app/api/interfaces';
 import { ApiException } from '@feelback-app/api/errors';
 import {
   activePerson,
   inactivePerson,
   mockIdentityEntity,
+  mockRepository,
 } from '@feelback-app/api/testing';
-
-// Mock repository with PersonEntity
-export const mockPersonEntityRepository = {
-  findOneOrFail: jest.fn((options?: any) => {
-    // return inactive Person so 'personByPseudonym' fails
-    if (
-      !options ||
-      !options.where ||
-      options.where.pseudonym !== activePerson.pseudonym
-    ) {
-      return Promise.resolve(inactivePerson);
-    }
-    return Promise.resolve(activePerson);
-  }),
-};
-
-// Define pseudonym to indicate failure for createOne
-const failPseudonym = 'fail!';
-// Mock repository with IdentityEntity
-const mockIdentityEntityRepository = {
-  createOne: jest.fn((record: any) => {
-    // Returns null to indicate failure
-    if (!record.pseudonym || record.pseudonym === failPseudonym) {
-      return Promise.resolve(null);
-    }
-    return Promise.resolve(mockIdentityEntity);
-  }),
-};
-
-// Expected PersonDTO from activePerson
-const expectedActivePersonObject: PersonObject = {
-  pseudonym: activePerson.pseudonym,
-  acceptedTOS: activePerson.acceptedTOS,
-  version: activePerson.version,
-  id: activePerson.id,
-  createdAt: activePerson.createdAt,
-  updatedAt: activePerson.updatedAt,
-};
 
 describe('PersonResolver', () => {
   let resolver: PersonResolver;
+  let personAssemblerService: PersonAssemblerService;
+  let personDatabaseService: PersonDatabaseService;
+  let identityDatabaseService: IdentityDatabaseService;
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     const module: TestingModule = await Test.createTestingModule({
       imports: [GuardsModule],
       providers: [
@@ -73,61 +38,120 @@ describe('PersonResolver', () => {
             IdentityEntity,
             IDENTITY_DB_CONNECTION_NAME,
           ),
-          useValue: mockIdentityEntityRepository,
+          useClass: mockRepository,
         },
         PersonDatabaseService,
         {
           provide: getRepositoryToken(PersonEntity),
-          useValue: mockPersonEntityRepository,
+          useClass: mockRepository,
         },
       ],
     }).compile();
 
     resolver = module.get<PersonResolver>(PersonResolver);
+    personAssemblerService = module.get<PersonAssemblerService>(
+      PersonAssemblerService,
+    );
+    personDatabaseService = module.get<PersonDatabaseService>(
+      PersonDatabaseService,
+    );
+    identityDatabaseService = module.get<IdentityDatabaseService>(
+      IdentityDatabaseService,
+    );
   });
 
   it('should be defined', () => {
     expect(resolver).toBeDefined();
+    expect(personAssemblerService).toBeDefined();
+    expect(personDatabaseService).toBeDefined();
+    expect(identityDatabaseService).toBeDefined();
   });
 
-  // FIXME: Mocking IdentityEntityDatabase doesn't work.
   describe('createOnePerson', () => {
-    it('should throw error if createOne failed', () => {
-      expect.assertions(1);
-      const input: CreateOnePersonInputType = {
-        input: {
-          pseudonym: failPseudonym,
-        },
-      };
-      return expect(resolver.createOnePerson(input)).rejects.toThrow(
-        ApiException,
-      );
+    const input: CreateOnePersonInputType = {
+      input: {
+        ...activePerson,
+        pseudonym: activePerson.pseudonym,
+      },
+    };
+
+    it('should throw error if createOne failed', async () => {
+      // Set mocks
+      // creatOne fails by returning falsy value, e.g. null.
+      const mockIdentityCreateOne = jest.fn().mockResolvedValueOnce(null);
+      identityDatabaseService.createOne = mockIdentityCreateOne;
+      // Call method
+      try {
+        await resolver.createOnePerson(input);
+        fail();
+      } catch (error) {
+        // Excpect
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockIdentityCreateOne).toBeCalledTimes(1);
+      expect(mockIdentityCreateOne).toBeCalledWith({
+        pseudonym: input.input.pseudonym,
+      });
     });
 
     it('should return PersonObject', async () => {
-      const input: CreateOnePersonInputType = {
-        input: {
-          ...activePerson,
-          pseudonym: activePerson.pseudonym,
-        },
-      };
-      const result = await resolver.createOnePerson(input);
-      expect(result).toMatchObject<PersonObject>(expectedActivePersonObject);
+      // Set mocks
+      const mockIdentityCreateOne = jest
+        .fn()
+        .mockResolvedValueOnce(mockIdentityEntity);
+      identityDatabaseService.createOne = mockIdentityCreateOne;
+      const mockPersonCreateOne = jest.fn();
+      personAssemblerService.createOne = mockPersonCreateOne;
+      // Call method
+      await resolver.createOnePerson(input);
+      // Expect
+      expect(mockIdentityCreateOne).toBeCalledTimes(1);
+      expect(mockIdentityCreateOne).toBeCalledWith({
+        pseudonym: input.input.pseudonym,
+      });
+      expect(mockPersonCreateOne).toBeCalledTimes(1);
+      expect(mockPersonCreateOne).toBeCalledWith(input.input);
     });
   });
 
   describe('personByPseudonym', () => {
     it('should return active person', async () => {
-      const result = await resolver.personByPseudonym(activePerson.pseudonym);
-      expect(result).toMatchObject({ isActive: true });
-      expect(result).toBeInstanceOf(PersonObject);
+      // Set mocks
+      const mockPersonFindOneOrFail = jest
+        .fn()
+        .mockResolvedValueOnce(activePerson);
+      personDatabaseService.repo.findOneOrFail = mockPersonFindOneOrFail;
+      const mockConvertToDTO = jest.fn();
+      personAssemblerService.assembler.convertToDTO = mockConvertToDTO;
+      // Call method
+      await resolver.personByPseudonym(activePerson.pseudonym);
+      // Expect
+      expect(mockPersonFindOneOrFail).toBeCalledTimes(1);
+      expect(mockPersonFindOneOrFail).toBeCalledWith({
+        where: { pseudonym: activePerson.pseudonym },
+      });
+      expect(mockConvertToDTO).toBeCalledTimes(1);
+      expect(mockConvertToDTO).toBeCalledWith(activePerson);
     });
 
-    it('should fail with inactive person', () => {
-      expect.assertions(1);
-      return expect(
-        resolver.personByPseudonym(inactivePerson.pseudonym),
-      ).rejects.toThrow(ApiException);
+    it('should throw error if person is inactive', async () => {
+      // Set mocks
+      const mockPersonFindOneOrFail = jest
+        .fn()
+        .mockResolvedValueOnce(inactivePerson);
+      personDatabaseService.repo.findOneOrFail = mockPersonFindOneOrFail;
+      // Call method
+      try {
+        await resolver.personByPseudonym(inactivePerson.pseudonym);
+        fail();
+      } catch (error) {
+        // Expect
+        expect(error).toBeInstanceOf(ApiException);
+      }
+      expect(mockPersonFindOneOrFail).toBeCalledTimes(1);
+      expect(mockPersonFindOneOrFail).toBeCalledWith({
+        where: { pseudonym: inactivePerson.pseudonym },
+      });
     });
   });
 });
