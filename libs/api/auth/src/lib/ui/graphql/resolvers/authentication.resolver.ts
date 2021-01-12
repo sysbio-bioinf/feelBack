@@ -20,16 +20,6 @@ export class AuthenticationResolver {
       password: input.password,
     });
 
-    if (!token) {
-      throw new ApiException(
-        {
-          title: 'JWT Exception',
-          message: 'Could not request a Token from the KeyCloak Server',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-
     const accessToken: TokenObject = {
       accessToken: token.accessToken,
       tokenType: token.tokenType,
@@ -38,6 +28,7 @@ export class AuthenticationResolver {
       refreshTokenExpiresIn: token.refreshTokenExpiresIn,
       scope: token.scope,
     };
+
     return accessToken;
   }
 }

@@ -53,19 +53,6 @@ describe('AuthenticationResolver', () => {
   });
 
   describe('login', () => {
-    it('should throw error if requestTokenForCredentials returns falsy token', async () => {
-      mockRequestToken.mockResolvedValueOnce(null);
-      expect.assertions(3);
-      try {
-        await resolver.login(input);
-        fail();
-      } catch (error) {
-        expect(error).toBeInstanceOf(ApiException);
-      }
-      expect(mockRequestToken).toBeCalledTimes(1);
-      expect(mockRequestToken).toBeCalledWith(expectedCredentials);
-    });
-
     it('should return token object', async () => {
       mockRequestToken.mockResolvedValueOnce(authTokenModel);
       const result = await resolver.login(input);
