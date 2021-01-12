@@ -18,56 +18,40 @@ const mockActivateResult = (
   } as unknown) as ExecutionContext;
 };
 
-// Mock UnprotectedGuard to return value from Object above
-jest.mock('./gql-unprotected.guard', () => {
-  return {
-    GqlUnprotectedGuard: jest.fn((_reflector: any) => {
-      return {
-        canActivate: (context: any) => context.mockUnprotectedResult,
-      };
-    }),
-  };
-});
-
-// Mock AuthGuard to return value from Object above
-jest.mock('./gql-auth.guard', () => {
-  return {
-    GqlAuthGuard: jest.fn((_reflector: any) => {
-      return {
-        canActivate: (context: any) => context.mockAuthResult,
-      };
-    }),
-  };
-});
-
-// Mock RoleGuard to return value from Object above
-jest.mock('./gql-role.guard', () => {
-  return {
-    GqlRoleGuard: jest.fn((_reflector: any) => {
-      return {
-        canActivate: (context: any) => context.mockRoleResult,
-      };
-    }),
-  };
-});
+// Return corresponding boolean
+const mockUnprotectedGuard = jest.fn(
+  (context: any) => context.mockUnprotectedResult,
+);
+const mockAuthGuard = jest.fn((context: any) => context.mockAuthResult);
+const mockRoleGuard = jest.fn((context: any) => context.mockRoleResult);
 
 describe('GqlMasterGuard', () => {
   let gqlMasterGuard: GqlMasterGuard;
+  let gqlUnprotectedGuard: GqlUnprotectedGuard;
+  let gqlAuthGuard: GqlAuthGuard;
+  let gqlRoleGuard: GqlRoleGuard;
 
   beforeEach(async () => {
     const emptyReflector: Reflector = new Reflector();
-    const gqlUnprotectedGuard = new GqlUnprotectedGuard(emptyReflector);
-    const gqlAuthGuard = new GqlAuthGuard();
-    const gqlRoleGuard = new GqlRoleGuard(emptyReflector);
+    gqlUnprotectedGuard = new GqlUnprotectedGuard(emptyReflector);
+    gqlAuthGuard = new GqlAuthGuard();
+    gqlRoleGuard = new GqlRoleGuard(emptyReflector);
     gqlMasterGuard = new GqlMasterGuard(
       gqlUnprotectedGuard,
       gqlAuthGuard,
       gqlRoleGuard,
     );
+
+    gqlUnprotectedGuard.canActivate = mockUnprotectedGuard;
+    gqlAuthGuard.canActivate = mockAuthGuard;
+    gqlRoleGuard.canActivate = mockRoleGuard;
   });
 
   it('should be defined', () => {
     expect(gqlMasterGuard).toBeDefined();
+    expect(gqlUnprotectedGuard).toBeDefined();
+    expect(gqlAuthGuard).toBeDefined();
+    expect(gqlRoleGuard).toBeDefined();
   });
 
   describe('canActivate', () => {
