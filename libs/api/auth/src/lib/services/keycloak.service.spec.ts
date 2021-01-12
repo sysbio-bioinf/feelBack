@@ -11,63 +11,6 @@ import { of } from 'rxjs';
 import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
 import RoleRepresentation from 'keycloak-admin/lib/defs/roleRepresentation';
 
-const mockConfigServiceGet = jest.fn();
-// Mock ConfigService to avoid logging
-jest.mock('@feelback-app/api/config', () => {
-  return {
-    ConfigService: jest.fn().mockImplementation((_cfg) => {
-      return {
-        get: mockConfigServiceGet,
-      };
-    }),
-  };
-});
-
-// Function to generate AxiosResponse-Object for HttpService-Mock methods
-const generateAxiosResponse = (data: any) => {
-  return {
-    data: data,
-    status: 200,
-    statusText: 'OK',
-    headers: {},
-    config: {},
-    request: {},
-  };
-};
-
-// Result of valid use of mockHttpGet, if it doesn't fail
-const tokenResponse = {
-  token_type: 'token_type',
-  access_token: 'access_token',
-  expires_in: 100,
-  refresh_token: 'refresh_token',
-  refresh_expires_in: 50,
-  scope: 'scope',
-};
-
-// Result of mockHttpGet, if it doesn't fail
-const keycloakUserInfo: KeycloakUserInfo = {
-  sub: 'sub',
-  email: 'email',
-  email_verified: true,
-  preferred_username: 'preferred_username',
-  roles: [],
-};
-
-// Mock HttpService and its needed methods
-const mockHttpGet = jest.fn();
-const mockHttpPost = jest.fn();
-jest.mock('@nestjs/common/http', () => {
-  return {
-    HttpService: jest.fn(() => {
-      return {
-        post: mockHttpPost,
-        get: mockHttpGet,
-      };
-    }),
-  };
-});
-
 // Mock KeycloakAdminClient and its needed methods
 const mockAdminClientAuth = jest.fn();
 const mockAdminClientUsersCreate = jest.fn();
@@ -91,8 +34,45 @@ jest.mock('keycloak-admin/lib', () => {
   };
 });
 
+const configGetResult = 'Test realmName';
+const mockConfigServiceGet = jest.fn().mockReturnValue(configGetResult);
+// Mock ConfigService to avoid logging in constructor
+jest.mock('@feelback-app/api/config', () => {
+  return {
+    ConfigService: jest.fn().mockImplementation((_cfg) => {
+      return {
+        get: mockConfigServiceGet,
+      };
+    }),
+  };
+});
+
+// Mock methods for HttpService
+const mockHttpGet = jest.fn();
+const mockHttpPost = jest.fn();
+
 describe('KeycloakService', () => {
   let keycloakService: KeycloakService;
+  // Function to generate AxiosResponse-Object for HttpService-Mock methods
+  const generateAxiosResponse = (data: any) => {
+    return {
+      data: data,
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      config: {},
+      request: {},
+    };
+  };
+  // Result of valid use of mockHttpGet, if it doesn't fail
+  const tokenResponse = {
+    token_type: 'token_type',
+    access_token: 'access_token',
+    expires_in: 100,
+    refresh_token: 'refresh_token',
+    refresh_expires_in: 50,
+    scope: 'scope',
+  };
   const authToken: AuthTokenModel = {
     tokenType: tokenResponse.token_type,
     accessToken: tokenResponse.access_token,
@@ -102,16 +82,18 @@ describe('KeycloakService', () => {
     scope: tokenResponse.scope,
   };
 
-  const configGetResult = 'Test realmName';
   const expectedRealmNameConfigPath = 'auth.keycloak.clients.feelback.realm';
 
   beforeEach(async () => {
     jest.clearAllMocks();
+    const httpService = new HttpService();
+    httpService.post = mockHttpPost;
+    httpService.get = mockHttpGet;
+
     keycloakService = new KeycloakService(
       new ConfigService(mockEmptyEnvironment),
-      new HttpService(),
+      httpService,
     );
-    mockConfigServiceGet.mockReturnValue(configGetResult);
   });
 
   it('should be defined', () => {
@@ -190,6 +172,15 @@ describe('KeycloakService', () => {
         authorizationHeader,
       );
     });
+
+    // Result of mockHttpGet, if it doesn't fail
+    const keycloakUserInfo: KeycloakUserInfo = {
+      sub: 'sub',
+      email: 'email',
+      email_verified: true,
+      preferred_username: 'preferred_username',
+      roles: [],
+    };
 
     it('should return UserInfo', async () => {
       mockHttpGet.mockReturnValueOnce(
