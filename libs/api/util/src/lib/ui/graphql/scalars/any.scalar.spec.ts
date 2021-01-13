@@ -4,7 +4,6 @@ import {
   EnumValueNode,
   FloatValueNode,
   IntValueNode,
-  Kind,
   ListValueNode,
   NameNode,
   NullValueNode,
@@ -176,15 +175,16 @@ describe('AnythingScalar', () => {
       });
 
       it('should return object with multiple fields', () => {
-        const fieldValueNode: NullValueNode = {
+        const fieldValueNodeA: NullValueNode = {
           kind: 'NullValue',
         };
+        const fieldValueNodeB = getObjectValueNode([]);
         const valueNode = getObjectValueNode([
-          ['a', fieldValueNode],
-          ['b', fieldValueNode],
+          ['a', fieldValueNodeA],
+          ['b', fieldValueNodeB],
         ]);
         const result = scalar.parseLiteral(valueNode);
-        expect(result).toStrictEqual({ a: null, b: null });
+        expect(result).toStrictEqual({ a: null, b: {} });
       });
 
       it('should return object with overwritten values for identical fieldnames', () => {
