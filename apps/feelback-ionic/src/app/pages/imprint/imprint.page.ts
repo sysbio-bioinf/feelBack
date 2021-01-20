@@ -23,4 +23,9 @@ export class ImprintPage extends AbstractComponent {
   constructor(readonly translateService: TranslateService) {
     super();
   }
+
+  getMarkdownFile(file: string): string {
+    const filePath = `./assets/texts/${this.translateService.currentLang}/${file}.md`;
+    return filePath;
+  }
 }

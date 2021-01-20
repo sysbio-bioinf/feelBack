@@ -93,4 +93,13 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-content data-cy="imprint-md-content">
+      <markdown
+        [src]="this.getMarkdownFile('imprint')"
+        data-cy="imprint-md-content"
+      ></markdown>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

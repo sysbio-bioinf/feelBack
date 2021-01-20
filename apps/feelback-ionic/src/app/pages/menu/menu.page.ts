@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractComponent } from '../../core/components/abstract.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'feelback-ionic-menu',
@@ -49,12 +50,12 @@ export class MenuPage extends AbstractComponent {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     super();
   }
 
   logout() {
-    // this.userService.logout(); // TODO
+    this.userService.logout();
     this.router.navigate(['/'], { replaceUrl: true });
   }
 }

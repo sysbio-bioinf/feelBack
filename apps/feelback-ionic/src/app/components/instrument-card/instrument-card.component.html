@@ -4,10 +4,12 @@
       <ion-img [src]="instrument.image"></ion-img>
     </div>
     <ion-card-header>
-      <ion-card-subtitle color="medium">{{
+      <ion-card-subtitle color="medium" data-cy="instrument-type">{{
         instrument.type
       }}</ion-card-subtitle>
-      <ion-card-title color="primary">{{ instrument.name }}</ion-card-title>
+      <ion-card-title color="primary" [attr.data-cy]="instrument.name">{{
+        instrument.name
+      }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-text>
@@ -31,7 +33,12 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-button fill="outline" expand="block" (click)="startInstrument()">
+      <ion-button
+        fill="outline"
+        expand="block"
+        [attr.data-cy]="'start-button-' + instrument.name"
+        (click)="startInstrument()"
+      >
         {{ 'app.components.instrument-card.start' | translate }}
       </ion-button>
     </ion-card-content>

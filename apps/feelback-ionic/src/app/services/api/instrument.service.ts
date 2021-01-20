@@ -22,20 +22,24 @@ export class InstrumentService {
       console.log('errors');
     }
 
-    const instruments = getInstrumentsResponse.data.instruments.edges.map(
-      (item) => {
-        return {
-          id: item.node.id,
-          name: item.node.name,
-          description: item.node.description,
-          type: item.node.type,
-          image: item.node.image,
-          payload: item.node.payload,
-          changelog: item.node.changelog,
-        } as Instrument;
-      },
-    );
-
+    let instruments;
+    if (getInstrumentsResponse.data) {
+      instruments = getInstrumentsResponse.data.instruments.edges.map(
+        (item) => {
+          return {
+            id: item.node.id,
+            name: item.node.name,
+            description: item.node.description,
+            type: item.node.type,
+            image: item.node.image,
+            payload: item.node.payload,
+            changelog: item.node.changelog,
+          } as Instrument;
+        },
+      );
+    } else {
+      instruments = [];
+    }
     return instruments;
   }
 

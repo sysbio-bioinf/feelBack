@@ -49,6 +49,12 @@
       "instrument-card": {
         "selectLanguage": "Select Language",
         "start": "Start"
+      },
+      "htmlResult": {
+        "birthdate": "Date of birth",
+        "id": "Id",
+        "question": "Question",
+        "answer": "Answer"
       }
     },
     "pages": {
@@ -66,7 +72,12 @@
         "scanner": {
           "title": "Scan your FeelBack Card",
           "text": "Scan your FeelBack Card",
-          "button": "Scan Card"
+          "button": "Scan Card",
+          "error": "Cannot access BarcodeScanner. Is the application running on a smart mobile device?"
+        },
+        "pseudonymError": {
+          "emptyString": "The Pseudonym can not be an empty string.",
+          "noMatch": "Invalid Pseudonym. Please check your input."
         },
         "form": {
           "title": "Enter Your Pseudonym",

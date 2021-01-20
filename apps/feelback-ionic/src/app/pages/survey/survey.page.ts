@@ -46,7 +46,7 @@ export class SurveyPage extends AbstractComponent implements OnInit {
   }
 
   async ionViewWillEnter() {
-    await this.currentRoute.params.subscribe(async (params) => {
+    this.currentRoute.params.subscribe(async (params) => {
       await this.presentLoading();
       this.instrument = await this.instrumentService.getById(params.id);
       await this.loading.dismiss();
