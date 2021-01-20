@@ -56,7 +56,7 @@ export class SurveyViewComponent
 
   constructor(
     private alertController: AlertController,
-    private router: Router,
+    readonly router: Router,
     private translatePipe: TranslatePipe,
     private translateService: TranslateService,
     private storageService: StorageService,

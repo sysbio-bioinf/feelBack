@@ -1,16 +1,10 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-  waitForAsync,
-} from '@angular/core/testing';
-import { IonHeader, IonicModule, IonSelect } from '@ionic/angular';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { IonicModule } from '@ionic/angular';
 import { TranslateTestingModule } from 'ngx-translate-testing';
-import { HeaderComponent } from './header.component';
 import { ApplicationLanguageModel } from '../../models/application-language.model';
 import { LanguageService } from '../../services/language.service';
-import { RouterTestingModule } from '@angular/router/testing';
+import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

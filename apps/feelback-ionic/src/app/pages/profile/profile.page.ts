@@ -19,7 +19,7 @@ export class ProfilePage extends AbstractComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
+    public userService: UserService,
     private identityService: IdentityService,
     private toastController: ToastController,
     private translatePipe: TranslatePipe,

@@ -19,8 +19,8 @@ export class FaqListPage extends AbstractComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loadingController: LoadingController,
-    private translatePipe: TranslatePipe,
+    readonly loadingController: LoadingController,
+    readonly translatePipe: TranslatePipe,
     private faqService: FaqService,
   ) {
     super();

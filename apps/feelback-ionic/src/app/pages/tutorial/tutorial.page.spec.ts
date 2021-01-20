@@ -1,25 +1,24 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { TutorialPage } from './tutorial.page';
-import { RouterTestingModule } from '@angular/router/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('TutorialPage', () => {
   let component: TutorialPage;
   let fixture: ComponentFixture<TutorialPage>;
 
+  const routerMock = {
+    navigate: jest.fn(),
+  };
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TutorialPage],
-        imports: [
-          IonicModule.forRoot(),
-          RouterTestingModule,
-          TranslateModule.forRoot(),
-        ],
-        providers: [TranslatePipe],
+        imports: [IonicModule.forRoot(), TranslateModule.forRoot()],
+        providers: [TranslatePipe, { provide: Router, useValue: routerMock }],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
 
@@ -31,5 +30,12 @@ describe('TutorialPage', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should navigate to start', () => {
+    component.navigateToStart();
+    expect(routerMock.navigate).toHaveBeenLastCalledWith(['/start'], {
+      replaceUrl: true,
+    });
   });
 });

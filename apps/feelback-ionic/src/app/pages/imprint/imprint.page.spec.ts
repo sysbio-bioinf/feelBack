@@ -23,13 +23,24 @@ describe('ImprintPage', () => {
         providers: [TranslatePipe],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
+      fixture = TestBed.createComponent(ImprintPage);
+      component = fixture.componentInstance;
     }),
   );
 
   it('should create', () => {
-    fixture = TestBed.createComponent(ImprintPage);
-    component = fixture.componentInstance;
-
     expect(component).toBeTruthy();
+    expect(component.teamMembers).toBeDefined();
+  });
+
+  it('should create the correct filePath', () => {
+    const testCurrentLang = 'en';
+    const testFileName = 'imprint';
+    const pattern = new RegExp(
+      './assets/texts/' + testCurrentLang + '/' + testFileName + '.md',
+    );
+    component.translateService.currentLang = testCurrentLang;
+    const filePathTest = component.getMarkdownFile(testFileName);
+    expect(filePathTest).toMatch(pattern);
   });
 });

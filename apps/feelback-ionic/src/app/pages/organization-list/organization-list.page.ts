@@ -18,8 +18,8 @@ export class OrganizationListPage extends AbstractComponent {
   loaded = false;
 
   constructor(
-    private router: Router,
-    private loadingController: LoadingController,
+    readonly router: Router,
+    readonly loadingController: LoadingController,
     private organizationService: OrganizationService,
     private translatePipe: TranslatePipe,
   ) {

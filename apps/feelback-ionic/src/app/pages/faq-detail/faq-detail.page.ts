@@ -29,7 +29,7 @@ export class FaqDetailPage extends AbstractComponent implements OnInit {
   ngOnInit() {}
 
   async ionViewWillEnter() {
-    await this.currentRoute.params.subscribe(async (params) => {
+    this.currentRoute.params.subscribe(async (params) => {
       await this.presentLoading();
       this.faq = await this.faqService.getById(params.id);
       this.loading.dismiss();

@@ -12,14 +12,15 @@ import { OrganizationService } from '../../services/api/organization.service';
   styleUrls: ['./organization-detail.page.scss'],
   providers: [TranslatePipe],
 })
-export class OrganizationDetailPage extends AbstractComponent
+export class OrganizationDetailPage
+  extends AbstractComponent
   implements OnInit {
   organization: Organization;
   loading: HTMLIonLoadingElement;
 
   constructor(
     private currentRoute: ActivatedRoute,
-    private loadingController: LoadingController,
+    readonly loadingController: LoadingController,
     private translatePipe: TranslatePipe,
     private organizationService: OrganizationService,
   ) {

@@ -2,8 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
-
+import { TranslateTestingModule } from 'ngx-translate-testing';
 import { PrivacyPage } from './privacy.page';
 
 describe('PrivacyComponent', () => {
@@ -17,7 +16,7 @@ describe('PrivacyComponent', () => {
         imports: [
           IonicModule.forRoot(),
           RouterTestingModule,
-          TranslateModule.forRoot(),
+          TranslateTestingModule.withTranslations('en', {}),
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
       }).compileComponents();
@@ -30,5 +29,16 @@ describe('PrivacyComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create the correct filePath', () => {
+    const testCurrentLang = 'en';
+    const testFileName = 'privacy';
+    const pattern = new RegExp(
+      './assets/texts/' + testCurrentLang + '/' + testFileName + '.md',
+    );
+    component.translateService.currentLang = testCurrentLang;
+    const filePathTest = component.getMarkdownFile(testFileName);
+    expect(filePathTest).toMatch(pattern);
   });
 });

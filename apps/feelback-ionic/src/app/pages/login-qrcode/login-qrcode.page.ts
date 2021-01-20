@@ -21,12 +21,12 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
   pseudonym: string;
 
   constructor(
-    private router: Router,
-    private toastController: ToastController,
-    private scanner: BarcodeScanner,
-    private cardService: CardService,
+    readonly router: Router,
+    readonly toastController: ToastController,
+    readonly scanner: BarcodeScanner,
+    readonly cardService: CardService,
     private translatePipe: TranslatePipe,
-    private userService: UserService,
+    readonly userService: UserService,
     private platform: Platform,
   ) {
     super();
@@ -34,7 +34,7 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
 
   ngOnInit() {}
 
-  openScanner() {
+  async openScanner() {
     if (this.platform.is('capacitor')) {
       const barcodeScannerOptions: BarcodeScannerOptions = {
         prompt: this.translatePipe.transform('app.pages.login.scanner.text'),
@@ -57,8 +57,9 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
     } else {
       this.toastController
         .create({
-          message:
-            'Cannot access BarcodeScanner. Is the application running on a smart mobile device?!',
+          message: this.translatePipe.transform(
+            'app.pages.login.scanner.error',
+          ),
           duration: 3000,
         })
         .then((toast) => toast.present());
@@ -69,7 +70,15 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
     this.pseudonym = this.pseudonym.trim();
 
     if (!this.pseudonym || this.pseudonym.length === 0) {
-      console.log('error');
+      this.toastController
+        .create({
+          message: this.translatePipe.transform(
+            'app.pages.login.pseudonymError.emptyString',
+          ),
+          duration: 3000,
+        })
+        .then((toast) => toast.present());
+      return;
     }
 
     try {
@@ -78,7 +87,9 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
     } catch (exception) {
       this.toastController
         .create({
-          message: 'Pseudonym not found. Does it really exist?',
+          message: this.translatePipe.transform(
+            'app.pages.login.pseudonymError.noMatch',
+          ),
           duration: 3000,
         })
         .then((toast) => toast.present());
