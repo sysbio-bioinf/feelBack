@@ -22,9 +22,22 @@ import { InstrumentAssembler } from '../assemblers/instrument.assembler';
 import { InstrumentResolver } from './instrument.resolver';
 import { DeepPartial } from '@nestjs-query/core';
 
+// Mocks for InstrumentAssemblerService
+const mockInstrumentServiceCreateOne: jest.Mock<Promise<
+  InstrumentObject
+>> = jest.fn();
+const mockInstrumentServiceQueryGetById: jest.Mock<Promise<
+  InstrumentEntity
+>> = jest.fn();
+const mockInstrumentServiceUpdateOne: jest.Mock<Promise<
+  InstrumentObject
+>> = jest.fn();
+const mockInstrumentServiceGetById: jest.Mock<Promise<
+  InstrumentObject
+>> = jest.fn();
+
 describe('InstrumentResolver', () => {
   let resolver: InstrumentResolver;
-  let instrumentAssemblerService: InstrumentAssemblerService;
 
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -44,14 +57,18 @@ describe('InstrumentResolver', () => {
     }).compile();
 
     resolver = module.get<InstrumentResolver>(InstrumentResolver);
-    instrumentAssemblerService = module.get<InstrumentAssemblerService>(
+    const instrumentAssemblerService = module.get<InstrumentAssemblerService>(
       InstrumentAssemblerService,
     );
+    // Set mocks for InstrumentAssemblerService
+    instrumentAssemblerService.createOne = mockInstrumentServiceCreateOne;
+    instrumentAssemblerService.queryService.getById = mockInstrumentServiceQueryGetById;
+    instrumentAssemblerService.updateOne = mockInstrumentServiceUpdateOne;
+    instrumentAssemblerService.getById = mockInstrumentServiceGetById;
   });
 
   it('should be defined', () => {
     expect(resolver).toBeDefined();
-    expect(instrumentAssemblerService).toBeDefined();
   });
 
   describe('createOneInstrument', () => {
@@ -70,18 +87,17 @@ describe('InstrumentResolver', () => {
 
     it('should return instrument object', async () => {
       // Set mocks
-      const mockCreateOne = jest
-        .fn()
-        .mockResolvedValueOnce(emptyInstrumentObject);
-      instrumentAssemblerService.createOne = mockCreateOne;
-      // Call method
+      mockInstrumentServiceCreateOne.mockResolvedValueOnce(
+        emptyInstrumentObject,
+      );
+      // Call methnod
       const result = await resolver.createOneInstrument(
         createOneEmptyInstrument,
       );
       // Expect
       expect(result).toStrictEqual(emptyInstrumentObject);
-      expect(mockCreateOne).toBeCalledTimes(1);
-      expect(mockCreateOne).toBeCalledWith(expectedDTO);
+      expect(mockInstrumentServiceCreateOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceCreateOne).toBeCalledWith(expectedDTO);
     });
   });
 
@@ -103,8 +119,9 @@ describe('InstrumentResolver', () => {
 
     it('should throw error if state is released', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(releasedInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        releasedInstrument,
+      );
       // Call method
       try {
         await resolver.updateOneInstrument(input);
@@ -113,14 +130,15 @@ describe('InstrumentResolver', () => {
         // Expect
         expect(error).toBeInstanceOf(InvalidStateApiException);
       }
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
     });
 
     it('should throw error if state is retired', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(retiredInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        retiredInstrument,
+      );
       // Call method
       try {
         await resolver.updateOneInstrument(input);
@@ -129,26 +147,27 @@ describe('InstrumentResolver', () => {
         // Expect
         expect(error).toBeInstanceOf(InvalidStateApiException);
       }
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
     });
 
     it('should return instrument object', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(draftInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
-      const mockUpdateOne = jest
-        .fn()
-        .mockResolvedValueOnce(emptyInstrumentObject);
-      instrumentAssemblerService.updateOne = mockUpdateOne;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(draftInstrument);
+      mockInstrumentServiceUpdateOne.mockResolvedValueOnce(
+        emptyInstrumentObject,
+      );
       // Call method
       const result = await resolver.updateOneInstrument(input);
       // Expect
       expect(result).toStrictEqual(emptyInstrumentObject);
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
-      expect(mockUpdateOne).toBeCalledTimes(1);
-      expect(mockUpdateOne).toBeCalledWith(draftInstrument.id, input.update);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceUpdateOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceUpdateOne).toBeCalledWith(
+        draftInstrument.id,
+        input.update,
+      );
     });
   });
 
@@ -169,8 +188,9 @@ describe('InstrumentResolver', () => {
 
     it('should throw error if state is released', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(releasedInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        releasedInstrument,
+      );
       // Call method
       try {
         await resolver.releaseInstrument(input);
@@ -179,14 +199,15 @@ describe('InstrumentResolver', () => {
         // Expect
         expect(error).toBeInstanceOf(InvalidStateApiException);
       }
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
     });
 
     it('should throw error if state is retired', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(retiredInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        retiredInstrument,
+      );
       // Call method
       try {
         await resolver.releaseInstrument(input);
@@ -195,28 +216,29 @@ describe('InstrumentResolver', () => {
         // Expect
         expect(error).toBeInstanceOf(InvalidStateApiException);
       }
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
     });
 
     it('should return instrument object', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(draftInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
-      const mockUpdateOne = jest
-        .fn()
-        .mockResolvedValueOnce(emptyInstrumentObject);
-      instrumentAssemblerService.updateOne = mockUpdateOne;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(draftInstrument);
+      mockInstrumentServiceUpdateOne.mockResolvedValueOnce(
+        emptyInstrumentObject,
+      );
       // Call method
       const result = await resolver.releaseInstrument(input);
       // Expect
       expect(result).toStrictEqual(emptyInstrumentObject);
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
-      expect(mockUpdateOne).toBeCalledTimes(1);
-      expect(mockUpdateOne).toBeCalledWith(draftInstrument.id, {
-        state: InstrumentStatesEnum.RELEASED,
-      });
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceUpdateOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceUpdateOne).toBeCalledWith(
+        draftInstrument.id,
+        {
+          state: InstrumentStatesEnum.RELEASED,
+        },
+      );
     });
   });
 
@@ -237,8 +259,9 @@ describe('InstrumentResolver', () => {
 
     it('should throw error if state is retired', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(retiredInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        retiredInstrument,
+      );
       // Call method
       try {
         await resolver.retireInstrument(input);
@@ -247,14 +270,13 @@ describe('InstrumentResolver', () => {
         // Expect
         expect(error).toBeInstanceOf(InvalidStateApiException);
       }
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
     });
 
     it('should throw error if state is draft', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(draftInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(draftInstrument);
       // Call method
       try {
         await resolver.retireInstrument(input);
@@ -263,28 +285,31 @@ describe('InstrumentResolver', () => {
         // Expect
         expect(error).toBeInstanceOf(InvalidStateApiException);
       }
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
     });
 
     it('should return instrument object', async () => {
       // Set mocks
-      const mockGetById = jest.fn().mockResolvedValueOnce(releasedInstrument);
-      instrumentAssemblerService.queryService.getById = mockGetById;
-      const mockUpdateOne = jest
-        .fn()
-        .mockResolvedValueOnce(emptyInstrumentObject);
-      instrumentAssemblerService.updateOne = mockUpdateOne;
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        releasedInstrument,
+      );
+      mockInstrumentServiceUpdateOne.mockResolvedValueOnce(
+        emptyInstrumentObject,
+      );
       // Call method
       const result = await resolver.retireInstrument(input);
       // Expect
       expect(result).toStrictEqual(emptyInstrumentObject);
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
-      expect(mockUpdateOne).toBeCalledTimes(1);
-      expect(mockUpdateOne).toBeCalledWith(releasedInstrument.id, {
-        state: InstrumentStatesEnum.RETIRED,
-      });
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceUpdateOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceUpdateOne).toBeCalledWith(
+        releasedInstrument.id,
+        {
+          state: InstrumentStatesEnum.RETIRED,
+        },
+      );
     });
   });
 
@@ -306,19 +331,14 @@ describe('InstrumentResolver', () => {
 
     it('should return instrument object', async () => {
       // Set mocks
-      const mockGetById = jest
-        .fn()
-        .mockResolvedValueOnce(emptyInstrumentObject);
-      instrumentAssemblerService.getById = mockGetById;
-      const mockCreateOne = jest.fn();
-      instrumentAssemblerService.createOne = mockCreateOne;
+      mockInstrumentServiceGetById.mockResolvedValueOnce(emptyInstrumentObject);
       // Call method
       await resolver.copyInstrument(input);
       // Expect
-      expect(mockGetById).toBeCalledTimes(1);
-      expect(mockGetById).toBeCalledWith(input.id);
-      expect(mockCreateOne).toBeCalledTimes(1);
-      expect(mockCreateOne).toBeCalledWith(expectedDTO);
+      expect(mockInstrumentServiceGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceCreateOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceCreateOne).toBeCalledWith(expectedDTO);
     });
   });
 });
