@@ -14,33 +14,45 @@ describe('ConfigService', () => {
     configService = module.get<ConfigService>(ConfigService);
   });
 
-  describe('init', () => {
-    it('should be correctly instantiated', () => {
-      expect(configService).toBeTruthy();
+  it('should be defined', () => {
+    expect(configService).toBeDefined();
+  });
+
+  describe('get', () => {
+    it('should return value', () => {
+      const environmentName = 'envorinmentName';
+      mockEmptyEnvironment.env.name = environmentName;
+      expect(configService.get('env.name')).toStrictEqual(environmentName);
+      const serverPort = 8080;
+      mockEmptyEnvironment.server.port = serverPort;
+      expect(configService.get('server.port')).toStrictEqual(serverPort);
     });
 
-    it('should be able to read values', () => {
-      expect(configService.get('env.name')).toStrictEqual(
-        mockEmptyEnvironment.env.name,
-      );
-      expect(configService.get('server.port')).toStrictEqual(
-        mockEmptyEnvironment.server.port,
-      );
-    });
+    const emptyAttribute = '';
+    const invalidAttribute = 'definitelyNonExistantAttribute';
 
-    it('should return default value', () => {
-      const invalidAttribute = '';
+    it('should return undefined for invalid attribute', () => {
+      expect(configService.get(emptyAttribute)).toBeUndefined();
       expect(configService.get(invalidAttribute)).toBeUndefined();
+    });
+
+    it('should return default value for invalid attribute', () => {
       const defaultValue = { mock: 'default' };
+      expect(configService.get(emptyAttribute, defaultValue)).toStrictEqual(
+        defaultValue,
+      );
       expect(configService.get(invalidAttribute, defaultValue)).toStrictEqual(
         defaultValue,
       );
     });
+  });
 
-    it('should be able to call methods', () => {
-      expect(configService.isProduction()).toBe(
-        mockEmptyEnvironment.env.production,
-      );
+  describe('isProduction', () => {
+    it('should return env.production value', () => {
+      mockEmptyEnvironment.env.production = true;
+      expect(configService.isProduction()).toBe(true);
+      mockEmptyEnvironment.env.production = false;
+      expect(configService.isProduction()).toBe(false);
     });
   });
 });
