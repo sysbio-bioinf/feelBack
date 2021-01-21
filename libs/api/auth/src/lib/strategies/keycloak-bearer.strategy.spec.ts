@@ -39,10 +39,8 @@ describe('KeyCloakStrategy', () => {
       const emptyJwtToken = null;
       const result = await keycloakStrategy.validate(emptyJwtToken, mockDone);
       expect(result.error).toBeInstanceOf(ApiException);
-      expect(result.error.getResponse()).toBeTruthy();
-      expect(result.error.getStatus()).toBe(HttpStatus.INTERNAL_SERVER_ERROR);
-      expect(result.user).toBeUndefined();
-      expect(result.msg).toBeUndefined();
+      expect(result.user).toBeFalsy();
+      expect(result.msg).toBeFalsy();
     });
 
     it('error message for non-sub', async () => {
