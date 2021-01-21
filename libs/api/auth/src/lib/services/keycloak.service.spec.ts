@@ -11,11 +11,19 @@ import { of } from 'rxjs';
 import { KeycloakUserInfo } from '../data/models/keycloak-userinfo.model';
 import RoleRepresentation from 'keycloak-admin/lib/defs/roleRepresentation';
 
+type UsersCreateType = { id: string };
+
 // Mock KeycloakAdminClient and its needed methods
-const mockAdminClientAuth = jest.fn();
-const mockAdminClientUsersCreate = jest.fn();
-const mockAdminClientUsersAddRealmRoleMappings = jest.fn();
-const mockAdminClientRolesFindOneByName = jest.fn();
+const mockAdminClientAuth: jest.Mock<Promise<void>> = jest.fn();
+const mockAdminClientUsersCreate: jest.Mock<Promise<
+  UsersCreateType
+>> = jest.fn();
+const mockAdminClientUsersAddRealmRoleMappings: jest.Mock<Promise<
+  void
+>> = jest.fn();
+const mockAdminClientRolesFindOneByName: jest.Mock<Promise<
+  RoleRepresentation
+>> = jest.fn();
 jest.mock('keycloak-admin/lib', () => {
   return {
     __esModule: true,
@@ -35,7 +43,9 @@ jest.mock('keycloak-admin/lib', () => {
 });
 
 const configGetResult = 'Test realmName';
-const mockConfigServiceGet = jest.fn().mockReturnValue(configGetResult);
+const mockConfigServiceGet: jest.Mock<any> = jest
+  .fn()
+  .mockReturnValue(configGetResult);
 // Mock ConfigService to avoid logging in constructor
 jest.mock('@feelback-app/api/config', () => {
   return {
@@ -286,13 +296,16 @@ describe('KeycloakService', () => {
     };
 
     it('should register', async () => {
+      // Set mocks
       mockAdminClientUsersCreate.mockResolvedValueOnce(keycloakId);
       const managerRole: RoleRepresentation = {
         id: 'manageRoleId',
         name: 'manager role',
       };
       mockAdminClientRolesFindOneByName.mockResolvedValueOnce(managerRole);
+      // Call method
       const result = await keycloakService.registerDoctor(credentials);
+      // Expect
       expect(result).toStrictEqual(keycloakId.id);
       expect(mockConfigServiceGet).toBeCalledTimes(3);
       expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
@@ -317,9 +330,12 @@ describe('KeycloakService', () => {
     });
 
     it('should register if manager role is empty', async () => {
+      // Set mocks
       mockAdminClientUsersCreate.mockResolvedValueOnce(keycloakId);
       mockAdminClientRolesFindOneByName.mockResolvedValueOnce({});
+      // Call method
       const result = await keycloakService.registerDoctor(credentials);
+      // Expect
       expect(result).toStrictEqual(keycloakId.id);
       expect(mockConfigServiceGet).toBeCalledTimes(3);
       expect(mockConfigServiceGet).toBeCalledWith(expectedRealmNameConfigPath);
@@ -348,12 +364,16 @@ describe('KeycloakService', () => {
     });
 
     it('should not register if keycloakId is falsy', async () => {
-      mockAdminClientUsersCreate.mockResolvedValueOnce(null);
+      mockAdminClientUsersCreate.mockResolvedValueOnce(
+        (null as unknown) as UsersCreateType,
+      );
       expect.assertions(11);
+      // Call method
       try {
         await keycloakService.registerDoctor(credentials);
-        fail();
+        fail(); // Make sure error gets thrown
       } catch (error) {
+        // Expect
         expect(error).toBeInstanceOf(ApiException);
       }
       expect(mockConfigServiceGet).toBeCalledTimes(3);
@@ -374,12 +394,14 @@ describe('KeycloakService', () => {
     });
 
     it('should not register if keycloakId.id is undefined', async () => {
-      mockAdminClientUsersCreate.mockResolvedValueOnce({});
+      mockAdminClientUsersCreate.mockResolvedValueOnce({} as UsersCreateType);
       expect.assertions(11);
+      // Call method
       try {
         await keycloakService.registerDoctor(credentials);
-        fail();
+        fail(); // Make sure error gets thrown
       } catch (error) {
+        // Expect
         expect(error).toBeInstanceOf(ApiException);
       }
       expect(mockConfigServiceGet).toBeCalledTimes(3);
@@ -401,12 +423,16 @@ describe('KeycloakService', () => {
 
     it('should not register if manager role is falsy', async () => {
       mockAdminClientUsersCreate.mockResolvedValueOnce(keycloakId);
-      mockAdminClientRolesFindOneByName.mockResolvedValue(null);
+      mockAdminClientRolesFindOneByName.mockResolvedValue(
+        (null as unknown) as RoleRepresentation,
+      );
       expect.assertions(12);
+      // Call method
       try {
         await keycloakService.registerDoctor(credentials);
-        fail();
+        fail(); // Make sure error gets thrown
       } catch (error) {
+        // Expect
         expect(error).toBeInstanceOf(ApiException);
       }
       expect(mockConfigServiceGet).toBeCalledTimes(3);
