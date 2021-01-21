@@ -1,3 +1,4 @@
+import { ApiException } from '@feelback-app/api/errors';
 import { RolesEnum } from '@feelback-app/api/shared';
 import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
@@ -40,68 +41,83 @@ describe('RoleGuard', () => {
     reflector = module.get<any>(Reflector);
   });
 
-  it('should allow access if user has no roles and there are no required roles', async () => {
-    request = { user: new User('id') };
-
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
+  it('should be defined', () => {
+    expect(gqlRoleGuard).toBeDefined();
+    expect(context).toBeDefined();
+    expect(reflector).toBeDefined();
   });
 
-  it('should allow access if user has roles and there are no required roles', async () => {
-    request = { user: new User('id', [RolesEnum.MANAGER]) };
+  describe('canActivate', () => {
+    it('should allow access if user has no roles and there are no required roles', async () => {
+      request = { user: new User('id') };
 
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
-  });
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
 
-  it('should deny access if user has no roles but there are required roles', async () => {
-    request = { user: new User('id') };
-    reflector.handlerRoles = [RolesEnum.USER];
+    it('should allow access if user has roles and there are no required roles', async () => {
+      request = { user: new User('id', [RolesEnum.MANAGER]) };
 
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(false);
-  });
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
 
-  it('should deny access if user has no proper role', async () => {
-    request = { user: new User('id', [RolesEnum.USER]) };
-    reflector.handlerRoles = [RolesEnum.MANAGER, RolesEnum.ADMIN];
+    it('should deny access if user has no roles but there are required roles', async () => {
+      request = { user: new User('id') };
+      reflector.handlerRoles = [RolesEnum.USER];
 
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(false);
-  });
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(false);
+    });
 
-  it('should allow access if user has at least one proper role', async () => {
-    request = { user: new User('id', [RolesEnum.ADMIN, RolesEnum.MANAGER]) };
-    reflector.handlerRoles = [RolesEnum.MANAGER, RolesEnum.USER];
+    it('should deny access if user has no proper role', async () => {
+      request = { user: new User('id', [RolesEnum.USER]) };
+      reflector.handlerRoles = [RolesEnum.MANAGER, RolesEnum.ADMIN];
 
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
-  });
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(false);
+    });
 
-  it('should allow access if user has role defined on class level and there are no roles defined on handler level', async () => {
-    request = { user: new User('id', [RolesEnum.MANAGER]) };
-    reflector.handlerRoles = undefined;
-    reflector.classRoles = [RolesEnum.MANAGER];
+    it('should allow access if user has at least one proper role', async () => {
+      request = { user: new User('id', [RolesEnum.ADMIN, RolesEnum.MANAGER]) };
+      reflector.handlerRoles = [RolesEnum.MANAGER, RolesEnum.USER];
 
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
-  });
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
 
-  it('should deny access if user has role defined on class level but there are different roles defined on handler level', async () => {
-    request = { user: new User('id', [RolesEnum.MANAGER]) };
-    reflector.handlerRoles = [RolesEnum.USER];
-    reflector.classRoles = [RolesEnum.MANAGER];
-    const accessAllowed = gqlRoleGuard.canActivate(context);
+    it('should allow access if user has role defined on class level and there are no roles defined on handler level', async () => {
+      request = { user: new User('id', [RolesEnum.MANAGER]) };
+      reflector.handlerRoles = undefined;
+      reflector.classRoles = [RolesEnum.MANAGER];
 
-    expect(accessAllowed).toBe(false);
-  });
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
 
-  it('should allow access if user has role defined on handler level and there are different roles defined on class level', async () => {
-    request = { user: new User('id', [RolesEnum.MANAGER]) };
-    reflector.handlerRoles = [RolesEnum.MANAGER];
-    reflector.classRoles = [RolesEnum.USER];
+    it('should deny access if user has role defined on class level but there are different roles defined on handler level', async () => {
+      request = { user: new User('id', [RolesEnum.MANAGER]) };
+      reflector.handlerRoles = [RolesEnum.USER];
+      reflector.classRoles = [RolesEnum.MANAGER];
+      const accessAllowed = gqlRoleGuard.canActivate(context);
 
-    const accessAllowed = gqlRoleGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
+      expect(accessAllowed).toBe(false);
+    });
+
+    it('should allow access if user has role defined on handler level and there are different roles defined on class level', async () => {
+      request = { user: new User('id', [RolesEnum.MANAGER]) };
+      reflector.handlerRoles = [RolesEnum.MANAGER];
+      reflector.classRoles = [RolesEnum.USER];
+
+      const accessAllowed = gqlRoleGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
+
+    it("should throw error if user can't be resolved", () => {
+      request = { user: (null as unknown) as User };
+      reflector.handlerRoles = [RolesEnum.MANAGER];
+
+      expect(() => gqlRoleGuard.canActivate(context)).toThrow(ApiException);
+    });
   });
 });
