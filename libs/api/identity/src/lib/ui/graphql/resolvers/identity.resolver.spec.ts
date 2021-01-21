@@ -1,6 +1,7 @@
 import { GuardsModule } from '@feelback-app/api/auth';
 import { IdentityEntity } from '@feelback-app/api/data';
 import { IDENTITY_DB_CONNECTION_NAME } from '@feelback-app/api/database';
+import { IdentityObject } from '@feelback-app/api/interfaces';
 import { mockIdentityEntity } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -9,14 +10,13 @@ import { IdentityDatabaseService } from '../../../services/identity-database.ser
 import { IdentityAssembler } from '../assemblers/identity.assembler';
 import { IdentityResolver } from './identity.resolver';
 
-const mockFindOneOrFail = jest.fn();
+const mockFindOneOrFail: jest.Mock<Promise<IdentityEntity>> = jest.fn();
 const mockRepository = {
   findOneOrFail: mockFindOneOrFail,
 };
 
 describe('IdentityResolver', () => {
   let resolver: IdentityResolver;
-  let identityAssemblerService: IdentityAssemblerService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -37,14 +37,10 @@ describe('IdentityResolver', () => {
     }).compile();
 
     resolver = module.get<IdentityResolver>(IdentityResolver);
-    identityAssemblerService = module.get<IdentityAssemblerService>(
-      IdentityAssemblerService,
-    );
   });
 
   it('should be defined', () => {
     expect(resolver).toBeDefined();
-    expect(identityAssemblerService).toBeDefined();
   });
 
   describe('identityByPseudonym', () => {
@@ -57,16 +53,14 @@ describe('IdentityResolver', () => {
 
     it('should return identity object', async () => {
       // Set mocks
-      const mockConvertToDTO = jest.fn();
-      identityAssemblerService.assembler.convertToDTO = mockConvertToDTO;
       mockFindOneOrFail.mockResolvedValue(mockIdentityEntity);
       // Call method
-      await resolver.identityByPseudonym(pseudonym);
+      const result = await resolver.identityByPseudonym(pseudonym);
       // Expect
+      expect(result).toBeInstanceOf(IdentityObject);
+      expect(result).toMatchObject<IdentityObject>({ ...mockIdentityEntity });
       expect(mockFindOneOrFail).toBeCalledTimes(1);
       expect(mockFindOneOrFail).toBeCalledWith(expectedOptions);
-      expect(mockConvertToDTO).toBeCalledTimes(1);
-      expect(mockConvertToDTO).toBeCalledWith(mockIdentityEntity);
     });
   });
 });
