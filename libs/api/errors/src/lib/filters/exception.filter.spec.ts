@@ -36,7 +36,7 @@ const mockGraphQLHost = {
 };
 
 const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-const dateRegExp = new RegExp('\\d*');
+const dateRegExp = new RegExp('[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}.*');
 
 describe('ExceptionFilter', () => {
   let exceptionFilter: ExceptionFilter;
