@@ -1,9 +1,10 @@
 import { DoctorEntity } from '@feelback-app/api/data';
+import { mockDoctorEntity } from '@feelback-app/api/testing';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserDatabaseService } from './user-database.service';
 
-const mockFindOneOrFail = jest.fn();
+const mockFindOneOrFail: jest.Mock<Promise<DoctorEntity>> = jest.fn();
 const mockRepository = {
   findOneOrFail: mockFindOneOrFail,
 };
@@ -41,7 +42,9 @@ describe('UserDatabaseService', () => {
 
     // Since getUserByKeycloakId has no logic for catching error produced by findOneOrFail, there won't be a test case checking for this.
     it('should return doctor', async () => {
-      await service.getUserByKeycloakId(keycloakId);
+      mockFindOneOrFail.mockResolvedValueOnce(mockDoctorEntity);
+      const result = await service.getUserByKeycloakId(keycloakId);
+      expect(result).toStrictEqual(mockDoctorEntity);
       expect(mockFindOneOrFail).toBeCalledTimes(1);
       expect(mockFindOneOrFail).toBeCalledWith(expectedOptions);
     });
