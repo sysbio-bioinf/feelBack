@@ -89,9 +89,7 @@ describe('UserResolver', () => {
 
     it('should return user object', async () => {
       // Set mocks
-      const mockGetUserByKeycloakId = jest
-        .fn()
-        .mockResolvedValueOnce(userObject);
+      const mockGetUserByKeycloakId = jest.fn().mockResolvedValue(userObject);
       userAssemblerService.getUserByKeycloakId = mockGetUserByKeycloakId;
       const mockUpdateOne = jest.fn();
       userAssemblerService.updateOne = mockUpdateOne;
@@ -124,27 +122,23 @@ describe('UserResolver', () => {
       // Set mocks
       const mockRegisterDoctor = jest
         .fn()
-        .mockResolvedValueOnce(mockDoctorEntity.keycloakId);
+        .mockResolvedValue(mockDoctorEntity.keycloakId);
       keycloakService.registerDoctor = mockRegisterDoctor;
-      const mockCreateOne = jest.fn().mockResolvedValueOnce(mockDoctorEntity);
+      const mockCreateOne = jest.fn().mockResolvedValue(mockDoctorEntity);
       userAssemblerService.queryService.createOne = mockCreateOne;
-      const mockConvertToDTO = jest.fn();
-      userAssemblerService.assembler.convertAsyncToDTO = mockConvertToDTO;
       // Call method. Checking return value isn't needed.
-      await resolver.registerUser(input);
+      const result = await resolver.registerUser(input);
+      expect(result).toBeInstanceOf(UserObject);
+      expect(result).toMatchObject<UserObject>({ ...mockDoctorEntity });
       // Expect
       expect(mockRegisterDoctor).toBeCalledTimes(1);
       expect(mockRegisterDoctor).toBeCalledWith(expectedCredentials);
       expect(mockCreateOne).toBeCalledTimes(1);
       expect(mockCreateOne).toBeCalledWith(expectedPartialDoctor);
-      expect(mockConvertToDTO).toBeCalledTimes(1);
-      expect(mockConvertToDTO).toBeCalledWith(
-        Promise.resolve(mockDoctorEntity),
-      );
     });
 
     it('should throw error if registerDoctor failed', async () => {
-      const mockRegisterDoctor = jest.fn().mockImplementationOnce(() => {
+      const mockRegisterDoctor = jest.fn(() => {
         throw new Error();
       });
       keycloakService.registerDoctor = mockRegisterDoctor;
