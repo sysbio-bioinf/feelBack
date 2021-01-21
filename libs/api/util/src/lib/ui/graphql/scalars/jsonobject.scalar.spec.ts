@@ -1,83 +1,20 @@
-import {
-  BooleanValueNode,
-  EnumValueNode,
-  FloatValueNode,
-  IntValueNode,
-  ListValueNode,
-  NameNode,
-  NullValueNode,
-  ObjectFieldNode,
-  ObjectValueNode,
-  StringValueNode,
-  ValueNode,
-  VariableNode,
-} from 'graphql';
+import { FloatValueNode, IntValueNode, ListValueNode } from 'graphql';
 import { JSONObjectScalar } from './jsonobject.scalar';
-
-// Used to generate ObjectValueNodes
-const getObjectValueNode = (fields: [string, ValueNode][]): ObjectValueNode => {
-  const generatedFields = fields.map((t) => {
-    const fieldNameNode: NameNode = {
-      kind: 'Name',
-      value: t[0],
-    };
-    const objectField: ObjectFieldNode = {
-      kind: 'ObjectField',
-      name: fieldNameNode,
-      value: t[1],
-    };
-    return objectField;
-  });
-
-  const valueNode: ObjectValueNode = {
-    kind: 'ObjectValue',
-    fields: generatedFields,
-  };
-
-  return valueNode;
-};
-
-const stringValue = 'stringValueNode';
-const stringValueNode: StringValueNode = {
-  kind: 'StringValue',
-  value: stringValue,
-};
-const booleanValue = true;
-const booleanValueNode: BooleanValueNode = {
-  kind: 'BooleanValue',
-  value: booleanValue,
-};
-const intValue = 123;
-const intValueNode: IntValueNode = {
-  kind: 'IntValue',
-  value: intValue.toString(),
-};
-const floatValue = 123.75;
-const floatValueNode: FloatValueNode = {
-  kind: 'FloatValue',
-  value: floatValue.toString(),
-};
-const nullValueNode: NullValueNode = {
-  kind: 'NullValue',
-};
-const listValueNode: ListValueNode = {
-  kind: 'ListValue',
-  values: [],
-};
-const name = 'variableName';
-const variableName: NameNode = {
-  kind: 'Name',
-  value: name,
-};
-const variableValueNode: VariableNode = {
-  kind: 'Variable',
-  name: variableName,
-};
-const enumValue = 'enumValue';
-const enumValueNode: EnumValueNode = {
-  kind: 'EnumValue',
-  value: enumValue,
-};
+import {
+  booleanValue,
+  booleanValueNode,
+  enumValueNode,
+  floatValue,
+  floatValueNode,
+  getObjectValueNode,
+  intValue,
+  intValueNode,
+  listValueNode,
+  nullValueNode,
+  stringValue,
+  stringValueNode,
+  variableValueNode,
+} from '@feelback-app/api/testing';
 
 describe('JSONObjectScalar', () => {
   let scalar: JSONObjectScalar;
@@ -170,8 +107,8 @@ describe('JSONObjectScalar', () => {
       });
 
       it('should return NaN if int value is not a number', () => {
-        const valueNode: IntValueNode = {
-          kind: 'IntValue',
+        const valueNode: FloatValueNode = {
+          kind: 'FloatValue',
           value: 'invalid',
         };
         const result = scalar.parseObject(valueNode);

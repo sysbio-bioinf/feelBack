@@ -7,3 +7,4 @@ export * from './mocks/instrument.entity.mock';
 export * from './mocks/instrument.object.mock';
 export * from './mocks/screening.object.mock';
 export * from './mocks/screening.entity.mock';
+export * from './mocks/value.node.mock';
