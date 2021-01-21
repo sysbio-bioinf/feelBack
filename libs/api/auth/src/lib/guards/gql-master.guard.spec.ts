@@ -19,11 +19,15 @@ const mockActivateResult = (
 };
 
 // Return corresponding boolean
-const mockUnprotectedGuard = jest.fn(
+const mockUnprotectedGuard: jest.Mock<boolean> = jest.fn(
   (context: any) => context.mockUnprotectedResult,
 );
-const mockAuthGuard = jest.fn((context: any) => context.mockAuthResult);
-const mockRoleGuard = jest.fn((context: any) => context.mockRoleResult);
+const mockAuthGuard: jest.Mock<boolean> = jest.fn(
+  (context: any) => context.mockAuthResult,
+);
+const mockRoleGuard: jest.Mock<boolean> = jest.fn(
+  (context: any) => context.mockRoleResult,
+);
 
 describe('GqlMasterGuard', () => {
   let gqlMasterGuard: GqlMasterGuard;
