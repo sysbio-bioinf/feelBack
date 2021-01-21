@@ -7,14 +7,30 @@ import { HttpModule } from '@nestjs/common';
 import { AuthTokenModel } from '../../../data/models/auth-token.model';
 import { CredentialsDto } from '../../../data/dtos/credentials.dto';
 import { LoginInput } from '@feelback-app/api/interfaces';
-import { ApiException } from '@feelback-app/api/errors';
 
 // Mock for KeycloakService.requestTokenForCredential
-const mockRequestToken = jest.fn();
+const mockRequestToken: jest.Mock<Promise<AuthTokenModel>> = jest.fn();
 
 describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
-  let keycloakService: KeycloakService;
+
+  beforeEach(async () => {
+    jest.clearAllMocks();
+
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot(mockEmptyEnvironment), HttpModule],
+      providers: [AuthenticationResolver, KeycloakService],
+    }).compile();
+
+    resolver = module.get<AuthenticationResolver>(AuthenticationResolver);
+
+    const keycloakService = module.get<KeycloakService>(KeycloakService);
+    keycloakService.requestTokenForCredentials = mockRequestToken;
+  });
+
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
+  });
 
   const input: LoginInput = {
     email: 'test@uni-ulm.de',
@@ -32,25 +48,6 @@ describe('AuthenticationResolver', () => {
     refreshTokenExpiresIn: 300,
     scope: 'scope',
   };
-
-  beforeEach(async () => {
-    jest.clearAllMocks();
-
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot(mockEmptyEnvironment), HttpModule],
-      providers: [AuthenticationResolver, KeycloakService],
-    }).compile();
-
-    resolver = module.get<AuthenticationResolver>(AuthenticationResolver);
-    keycloakService = module.get<KeycloakService>(KeycloakService);
-
-    keycloakService.requestTokenForCredentials = mockRequestToken;
-  });
-
-  it('should be defined', () => {
-    expect(resolver).toBeDefined();
-    expect(keycloakService).toBeDefined();
-  });
 
   describe('login', () => {
     it('should return token object', async () => {
