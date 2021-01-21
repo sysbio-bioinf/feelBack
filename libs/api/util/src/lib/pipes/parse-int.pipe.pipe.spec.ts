@@ -14,8 +14,6 @@ describe('ParseIntPipe', () => {
 
   it('should be defined', () => {
     expect(intPipe).toBeDefined();
-    const obj: any = null;
-    expect(obj.id).toBeFalsy();
   });
 
   describe('transform', () => {

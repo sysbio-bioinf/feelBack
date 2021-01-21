@@ -13,14 +13,14 @@ export class DateHelper {
     return new Date(utc_date);
   }
 
-  public static formatDate(date: Date, locale: string): string{
-    switch(locale){
+  public static formatDate(date: Date, locale: string): string {
+    switch (locale) {
       case 'de':
         return dayjs(date).format('DD.MM.YYYY');
       case 'en':
         return dayjs(date).format('MM/DD/YYYY');
       default:
-        return 'locale not supported'  
+        return 'locale not supported';
     }
   }
 }
