@@ -4,14 +4,19 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { PersonDatabaseService } from './person-database.service';
 import { activePerson } from '@feelback-app/api/testing';
 
+const mockFindOneOrFail: jest.Mock<Promise<
+  PersonEntity
+>> = jest.fn().mockResolvedValue(activePerson);
 const mockRepository = {
-  findOneOrFail: jest.fn((options?: any) => Promise.resolve(activePerson)),
+  findOneOrFail: mockFindOneOrFail,
 };
 
 describe('PersonDatabaseService', () => {
   let service: PersonDatabaseService;
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PersonDatabaseService,
@@ -30,12 +35,18 @@ describe('PersonDatabaseService', () => {
   });
 
   describe('getPersonByPseudonym', () => {
+    const expectedOptions = {
+      where: {
+        pseudonym: activePerson.pseudonym,
+      },
+    };
+
     // Since getPersonByPseudonym has no logic for catching error produced by findOneOrFail, there won't be a test case checking for this.
-    it('should return by correct pseudonym', () => {
-      expect.assertions(1);
-      return expect(
-        service.getPersonByPseudonym(activePerson.pseudonym),
-      ).resolves.toStrictEqual(activePerson);
+    it('should return by correct pseudonym', async () => {
+      const result = await service.getPersonByPseudonym(activePerson.pseudonym);
+      expect(result).toStrictEqual(activePerson);
+      expect(mockFindOneOrFail).toBeCalledTimes(1);
+      expect(mockFindOneOrFail).toBeCalledWith(expectedOptions);
     });
   });
 });
