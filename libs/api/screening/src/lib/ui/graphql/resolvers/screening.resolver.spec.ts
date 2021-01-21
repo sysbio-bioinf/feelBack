@@ -2,7 +2,6 @@ import { GuardsModule } from '@feelback-app/api/auth';
 import {
   DiagramPlotClass,
   DiagramPlotDataClass,
-  EvaluationClass,
   InstrumentEntity,
   InstrumentStatesEnum,
   PersonEntity,
@@ -20,7 +19,6 @@ import {
 } from '@feelback-app/api/instrument';
 import {
   DiagramDataObject,
-  EvaluationObject,
   GetScreeningsByPersonAndInstrumentArgsType,
   InstrumentObject,
   PersonObject,
@@ -51,6 +49,9 @@ import { ScreeningAssemblerService } from '../../../services/screening-assembler
 import { ScreeningDatabaseService } from '../../../services/screening-database.service';
 import { ScreeningAssembler } from '../assemblers/screening.assembler';
 import { ScreeningResolver } from './screening.resolver';
+
+// Mock to avoid logging in "evaluateRule"
+console.log = jest.fn();
 
 // Constants used for id
 const draftState = 'draft';
