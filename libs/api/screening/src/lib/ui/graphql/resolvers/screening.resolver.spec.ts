@@ -19,6 +19,7 @@ import {
   InstrumentDatabaseService,
 } from '@feelback-app/api/instrument';
 import {
+  DiagramDataObject,
   EvaluationObject,
   GetScreeningsByPersonAndInstrumentArgsType,
   InstrumentObject,
@@ -57,21 +58,30 @@ const retiredState = 'retired';
 const releasedState = 'released';
 
 // Mocks for ScreeningAssemblerService
-const mockScreeningServiceCreateOne = jest.fn();
-const mockScreeningServiceSetRelation = jest.fn();
-const mockScreeningServiceQuery = jest.fn();
-const mockScreeningServiceAssemblerConvertAsyncToEntities = jest.fn();
-const mockScreeningServiceUpdateOne = jest.fn();
+const mockScreeningServiceCreateOne: jest.Mock<Promise<
+  ScreeningObject
+>> = jest.fn();
+const mockScreeningServiceSetRelation: jest.Mock<Promise<
+  ScreeningObject
+>> = jest.fn();
+const mockScreeningServiceQuery: jest.Mock<Promise<
+  ScreeningObject[]
+>> = jest.fn();
+const mockScreeningServiceUpdateOne: jest.Mock<Promise<
+  ScreeningObject
+>> = jest.fn();
 const mockScreeningServiceFindRelation = jest.fn();
-const mockScreeningServiceQueryGetById = jest.fn();
+const mockScreeningServiceQueryGetById: jest.Mock<Promise<
+  ScreeningEntity
+>> = jest.fn();
 // Mocks for InstrumentAssemblerService
-const mockInstrumentServiceQueryGetById = jest.fn();
+const mockInstrumentServiceQueryGetById: jest.Mock<Promise<
+  InstrumentEntity
+>> = jest.fn();
 // Mocks for PersonAssemblerService
-const mockPersonServiceFindById = jest.fn();
-// Mocks for EvaluationService
-const mockEvaluationServiceEvaluate = jest.fn();
-// Mocks for DiagramService
-const mockDiagramServiceCreatePlots = jest.fn();
+const mockPersonServiceFindById: jest.Mock<Promise<
+  PersonObject | undefined
+>> = jest.fn();
 
 describe('ScreeningResolver', () => {
   let resolver: ScreeningResolver;
@@ -118,7 +128,6 @@ describe('ScreeningResolver', () => {
     screeningAssemblerServicve.createOne = mockScreeningServiceCreateOne;
     screeningAssemblerServicve.setRelation = mockScreeningServiceSetRelation;
     screeningAssemblerServicve.query = mockScreeningServiceQuery;
-    screeningAssemblerServicve.assembler.convertAsyncToEntities = mockScreeningServiceAssemblerConvertAsyncToEntities;
     screeningAssemblerServicve.updateOne = mockScreeningServiceUpdateOne;
     screeningAssemblerServicve.findRelation = mockScreeningServiceFindRelation;
     screeningAssemblerServicve.queryService.getById = mockScreeningServiceQueryGetById;
@@ -132,12 +141,6 @@ describe('ScreeningResolver', () => {
       PersonAssemblerService,
     );
     personAssemblerService.findById = mockPersonServiceFindById;
-    // Set mocks for EvaluationService
-    const evaluationService = module.get<EvaluationService>(EvaluationService);
-    evaluationService.evaluate = mockEvaluationServiceEvaluate;
-    // Set mocks for DiagramService
-    const diagramService = module.get<DiagramService>(DiagramService);
-    diagramService.createPlots = mockDiagramServiceCreatePlots;
   });
 
   it('should be defined', () => {
@@ -164,6 +167,7 @@ describe('ScreeningResolver', () => {
   };
 
   describe('uploadScreening', () => {
+    // Generate UploadInput with relevant attributes
     const generateUploadInput = (
       instrumentId: string,
       personId?: string,
@@ -183,7 +187,6 @@ describe('ScreeningResolver', () => {
         draftInstrumentEntity,
       );
       const invalidInput = generateUploadInput(draftState);
-      expect.assertions(3);
       try {
         await resolver.uploadScreening(invalidInput);
         fail();
@@ -201,7 +204,6 @@ describe('ScreeningResolver', () => {
         retiredInstrumentEntity,
       );
       const invalidInput = generateUploadInput(retiredState);
-      expect.assertions(3);
       try {
         await resolver.uploadScreening(invalidInput);
         fail();
@@ -220,11 +222,14 @@ describe('ScreeningResolver', () => {
     it('should return screening object if personId is empty', async () => {
       const input = generateUploadInput(releasedState, '');
       const expected = generateScreeningObject(input.input);
+      // Set mocks
       mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
         releasedInstrumentEntity,
       );
       mockScreeningServiceCreateOne.mockResolvedValueOnce(expected);
+      // Call method
       const result = await resolver.uploadScreening(input);
+      // Expect
       expect(result).toStrictEqual(expected);
       expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
       expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
@@ -243,12 +248,15 @@ describe('ScreeningResolver', () => {
     it("should return screening object if person isn't found", async () => {
       const input = generateUploadInput(releasedState, 'person not found');
       const expected = generateScreeningObject(input.input);
+      // Set mocks
       mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
         releasedInstrumentEntity,
       );
       mockScreeningServiceCreateOne.mockResolvedValueOnce(expected);
       mockPersonServiceFindById.mockResolvedValueOnce(undefined);
+      // Call method
       const result = await resolver.uploadScreening(input);
+      // Expect
       expect(result).toStrictEqual(expected);
       expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
       expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
@@ -269,12 +277,15 @@ describe('ScreeningResolver', () => {
     it('should return screening object', async () => {
       const input = generateUploadInput(releasedState, 'success!');
       const expected = generateScreeningObject(input.input);
+      // Set mocks
       mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
         releasedInstrumentEntity,
       );
       mockScreeningServiceCreateOne.mockResolvedValueOnce(expected);
       mockPersonServiceFindById.mockResolvedValueOnce(personObject);
+      // Call method
       const result = await resolver.uploadScreening(input);
+      // Expect
       expect(result).toStrictEqual(expected);
       expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
       expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
@@ -300,15 +311,17 @@ describe('ScreeningResolver', () => {
 
   describe('getScreeningsForPersonAndInstrument', () => {
     it('should return connection type', async () => {
-      const screeningConnetionSpy = jest
-        .spyOn(ScreeningConnection, 'createFromPromise')
-        .mockImplementation();
+      // Mock method to check for correct inputs
+      const screeningConnetionSpy = jest.spyOn(
+        ScreeningConnection,
+        'createFromPromise',
+      );
       const input: GetScreeningsByPersonAndInstrumentArgsType = {
         instrumentId: emptyScreeningObject.id,
         personId: personObject.id,
       };
       await resolver.getScreeningsForPersonAndInstrument(input);
-      expect(screeningConnetionSpy).toBeCalledTimes(1);
+      // Excpected query generated by getScreeningsForPersonAndInstrument
       const expectedQuery: Query<ScreeningObject> = {
         filter: {
           ...input.filter,
@@ -318,6 +331,7 @@ describe('ScreeningResolver', () => {
           },
         },
       };
+      // Check correct inputs
       expect(screeningConnetionSpy).toBeCalledWith(
         expect.any(Function),
         expectedQuery,
@@ -326,6 +340,7 @@ describe('ScreeningResolver', () => {
   });
 
   describe('getScreeningsDiagramCollections', () => {
+    // Expected QA for ScreeningAssemblerService.query
     const generateExpectedQA = (
       query: GetScreeningsByPersonAndInstrumentArgsType,
     ) => {
@@ -341,24 +356,38 @@ describe('ScreeningResolver', () => {
       };
     };
 
-    const screeningObject = generateScreeningObject({});
-    const screeningEntity = generateScreeningEntity({});
+    // DiagramPlots for InstrumentEntity
+    const axis1 = 'axis1';
+    const axis2 = 'axis2';
     const diagramPlotData: DiagramPlotDataClass = {
       type: 'test',
       axis: [
-        { name: 'test1', rule: 'number + 1' },
-        { name: 'test2', rule: 'number + 2' },
+        { name: axis1, rule: 'number + 1' },
+        { name: axis2, rule: 'invalidRule' },
       ],
     };
+    const testAxis = 'testAxis';
     const diagramPlotClass: DiagramPlotClass = {
-      test: diagramPlotData,
+      testAxis: diagramPlotData,
     };
     const instrumentEntity = generateInstrumentEntity({
       diagram: {
         collection: diagramPlotClass,
       },
     });
+
+    const screeningObject = generateScreeningObject({});
     const screeningObjects = [screeningObject];
+
+    // ScreeningEntity with payload
+    const payload = {
+      number: 8,
+    };
+    const screeningEntity = generateScreeningEntity({
+      id: 'plottedScreeningEntity',
+      payload: payload,
+      getScreeningData: () => payload,
+    });
     const screeningEntities = [screeningEntity];
 
     it('should return empty list on zero screenings', async () => {
@@ -366,13 +395,89 @@ describe('ScreeningResolver', () => {
         instrumentId: retiredState,
         personId: 'missingPersonId',
       };
+      // Set mocks
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(instrumentEntity);
+      mockScreeningServiceQuery.mockResolvedValueOnce([]);
+      const result = await resolver.getScreeningsDiagramCollections(input);
+      // result has 1 entry since diagramPlotClass has 1 attribute 'testAchse'
+      expect(result).toHaveLength(1);
+      const plotted: DiagramDataObject = result[0];
+      expect(plotted.type).toStrictEqual(diagramPlotData.type);
+      expect(plotted.name).toStrictEqual(testAxis);
+      // Axis has 2 entries since diagramPlotData.axis has 2 entries
+      expect(plotted.axis).toHaveLength(2);
+      expect(plotted.axis[0].name).toStrictEqual(axis1);
+      // Data is empty since there are no screenings
+      expect(plotted.axis[0].data).toStrictEqual([]);
+      expect(plotted.axis[1].name).toStrictEqual(axis2);
+      expect(plotted.axis[1].data).toStrictEqual([]);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
+        input.instrumentId,
+      );
+      const expectedQA = generateExpectedQA(input);
+      expect(mockScreeningServiceQuery).toBeCalledTimes(1);
+      expect(mockScreeningServiceQuery).toBeCalledWith(expectedQA);
+    });
+
+    it('should return data plots', async () => {
+      const input: GetScreeningsByPersonAndInstrumentArgsType = {
+        instrumentId: releasedState,
+        personId: 'personId',
+      };
+      // Set mocks
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(instrumentEntity);
+      mockScreeningServiceQuery.mockResolvedValueOnce(screeningEntities);
+      // Call method
+      const result = await resolver.getScreeningsDiagramCollections(input);
+      // result has 1 entry since diagramPlotClass has 1 attribute 'testAxis'
+      expect(result).toHaveLength(1);
+      const plotted: DiagramDataObject = result[0];
+      expect(plotted.type).toStrictEqual(diagramPlotData.type);
+      expect(plotted.name).toStrictEqual(testAxis);
+      // Axis has 2 entries since diagramPlotData.axis has 2 entries
+      expect(plotted.axis).toHaveLength(2);
+      expect(plotted.axis[0].name).toStrictEqual(axis1);
+      // Data has entry for each screening
+      // y is result of applying rule of each axis of diagramPlotData to screeningEntity.payload
+      expect(plotted.axis[0].data).toStrictEqual([
+        {
+          screeningId: screeningEntity.id,
+          x: screeningEntity.collectedAt,
+          y: 9,
+        },
+      ]);
+      expect(plotted.axis[1].name).toStrictEqual(axis2);
+      // y is null since rule of axis2 of diagramPlotData is invalid
+      expect(plotted.axis[1].data).toStrictEqual([
+        {
+          screeningId: screeningEntity.id,
+          x: screeningEntity.collectedAt,
+          y: null,
+        },
+      ]);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
+        input.instrumentId,
+      );
+      const expectedQA = generateExpectedQA(input);
+      expect(mockScreeningServiceQuery).toBeCalledTimes(1);
+      expect(mockScreeningServiceQuery).toBeCalledWith(expectedQA);
+    });
+
+    it('should return empty list on zero diagram collections', async () => {
+      const input: GetScreeningsByPersonAndInstrumentArgsType = {
+        instrumentId: draftState,
+        personId: 'missingPersonId',
+      };
+      // Set collection to empty object
+      instrumentEntity.diagram.collection = {};
+      // Set mocks
       mockInstrumentServiceQueryGetById.mockResolvedValueOnce(instrumentEntity);
       mockScreeningServiceQuery.mockResolvedValueOnce(screeningObjects);
-      mockScreeningServiceAssemblerConvertAsyncToEntities.mockResolvedValueOnce(
-        screeningEntities,
-      );
-      mockDiagramServiceCreatePlots.mockReturnValueOnce([]);
+      // Call method
       const result = await resolver.getScreeningsDiagramCollections(input);
+      // Expect
       expect(result).toStrictEqual([]);
       expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
       expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
@@ -381,36 +486,7 @@ describe('ScreeningResolver', () => {
       const expectedQA = generateExpectedQA(input);
       expect(mockScreeningServiceQuery).toBeCalledTimes(1);
       expect(mockScreeningServiceQuery).toBeCalledWith(expectedQA);
-      expect(
-        mockScreeningServiceAssemblerConvertAsyncToEntities,
-      ).toBeCalledTimes(1);
-      expect(
-        mockScreeningServiceAssemblerConvertAsyncToEntities,
-      ).toBeCalledWith(Promise.resolve(screeningObjects));
-      expect(mockDiagramServiceCreatePlots).toBeCalledTimes(1);
-      expect(mockDiagramServiceCreatePlots).toBeCalledWith(
-        diagramPlotClass,
-        screeningEntities,
-      );
     });
-
-    //it('should return empty list on zero diagram collections', async () => {
-    //  const input: GetScreeningsByPersonAndInstrumentArgsType = {
-    //    instrumentId: draftState,
-    //    personId: missingPersonId,
-    //  };
-    //  const result = await resolver.getScreeningsDiagramCollections(input);
-    //  expect(result).toStrictEqual([]);
-    //});
-    //
-    //it('should return data plots', async () => {
-    //  const input: GetScreeningsByPersonAndInstrumentArgsType = {
-    //    instrumentId: releasedState,
-    //    personId: 'personId',
-    //  };
-    //  const result = await resolver.getScreeningsDiagramCollections(input);
-    //  expect(result).toHaveLength(1);
-    //});
   });
 
   describe('resolveScreeningIssues', () => {
@@ -457,7 +533,7 @@ describe('ScreeningResolver', () => {
         id: 'invalidScreeningId',
       });
       mockScreeningServiceFindRelation.mockResolvedValueOnce(undefined);
-      expect.assertions(3);
+      // Call method
       try {
         await resolver.resolveEvaluationResult(screening);
         fail();
@@ -477,6 +553,10 @@ describe('ScreeningResolver', () => {
     });
     const screeningEntity = generateScreeningEntity({
       id: 'screeningEntityId',
+      payload: {
+        foo: true,
+        bar: 5,
+      },
     });
     const instrumentEntity = generateInstrumentEntity({
       id: 'instrumentEntityId',
@@ -486,11 +566,15 @@ describe('ScreeningResolver', () => {
     });
 
     it('should return empty list if evaluation returns empty list', async () => {
+      // Set mocks
       mockScreeningServiceFindRelation.mockResolvedValueOnce(instrumentObject);
       mockScreeningServiceQueryGetById.mockResolvedValueOnce(screeningEntity);
       mockInstrumentServiceQueryGetById.mockResolvedValueOnce(instrumentEntity);
-      mockEvaluationServiceEvaluate.mockReturnValueOnce([]);
+      // Empty rules, so nothing can be evaluated
+      instrumentEntity.rules = [];
+      // Call method
       const result = await resolver.resolveEvaluationResult(screeningObject);
+      // Expect
       expect(result).toStrictEqual([]);
       expect(mockScreeningServiceFindRelation).toBeCalledTimes(1);
       expect(mockScreeningServiceFindRelation).toBeCalledWith(
@@ -506,50 +590,46 @@ describe('ScreeningResolver', () => {
       expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
         instrumentObject.id,
       );
-      expect(mockEvaluationServiceEvaluate).toBeCalledTimes(1);
-      expect(mockEvaluationServiceEvaluate).toBeCalledWith(
-        screeningEntity,
-        instrumentEntity,
-      );
     });
 
-    const successfullEvaluationClass: EvaluationClass = {
-      result: true,
-      name: 'success',
-      condition: 'valid',
-      then: 'true',
-      else: 'false',
+    const payload = {
+      foo: true,
+      bar: 5,
     };
-
-    const failedEvaluationClass: EvaluationClass = {
-      result: null,
-      name: 'failed',
-      condition: 'invalid',
-      then: 'fail',
-      else: 'wrong',
-    };
-
-    const successfullEvaluationObject: EvaluationObject = {
-      ...successfullEvaluationClass,
-    } as EvaluationObject;
-
-    const failedEvalutaionObject: EvaluationObject = {
-      ...failedEvaluationClass,
-    } as EvaluationObject;
+    const payloadScreeningEntity = generateScreeningEntity({
+      id: 'payloadScreening',
+      payload: payload,
+      getScreeningData: () => payload,
+    });
 
     it('should return list of evaluations', async () => {
+      instrumentEntity.rules = [
+        {
+          name: 'rule1',
+          condition: 'foo == true',
+          then: 'rule1 then',
+          else: 'rule1 else',
+        },
+        {
+          name: 'rule2',
+          condition: 'bar < 3',
+          then: 'rule2 then',
+          else: 'rule2 else',
+        },
+      ];
+      // Set mocks
       mockScreeningServiceFindRelation.mockResolvedValueOnce(instrumentObject);
-      mockScreeningServiceQueryGetById.mockResolvedValueOnce(screeningEntity);
+      mockScreeningServiceQueryGetById.mockResolvedValueOnce(
+        payloadScreeningEntity,
+      );
       mockInstrumentServiceQueryGetById.mockResolvedValueOnce(instrumentEntity);
-      mockEvaluationServiceEvaluate.mockReturnValueOnce([
-        successfullEvaluationClass,
-        failedEvaluationClass,
-      ]);
+      // Call method
       const result = await resolver.resolveEvaluationResult(screeningObject);
+      // result has 2 entries since there are 2 rules
       expect(result).toHaveLength(2);
       expect(result).toStrictEqual([
-        successfullEvaluationObject,
-        failedEvalutaionObject,
+        { ...instrumentEntity.rules[0], result: true },
+        { ...instrumentEntity.rules[1], result: false },
       ]);
       expect(mockScreeningServiceFindRelation).toBeCalledTimes(1);
       expect(mockScreeningServiceFindRelation).toBeCalledWith(
@@ -564,11 +644,6 @@ describe('ScreeningResolver', () => {
       expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
       expect(mockInstrumentServiceQueryGetById).toBeCalledWith(
         instrumentObject.id,
-      );
-      expect(mockEvaluationServiceEvaluate).toBeCalledTimes(1);
-      expect(mockEvaluationServiceEvaluate).toBeCalledWith(
-        screeningEntity,
-        instrumentEntity,
       );
     });
   });

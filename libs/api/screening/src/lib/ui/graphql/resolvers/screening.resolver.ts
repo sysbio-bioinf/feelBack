@@ -11,7 +11,6 @@ import {
   EvaluationObject,
   GetScreeningsByPersonAndInstrumentArgsType,
   InstrumentObject,
-  PersonObject,
   ResolveOneScreeningInputType,
   ScreeningConnection,
   ScreeningObject,
@@ -200,7 +199,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       instrument.id,
     );
 
-    const evaluationResults = await this.evaluationService.evaluate(
+    const evaluationResults = this.evaluationService.evaluate(
       screeningEntity,
       instrumentEntity,
     );
