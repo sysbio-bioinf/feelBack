@@ -2,9 +2,12 @@ import { InstrumentEntity, ScreeningEntity } from '@feelback-app/api/data';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EvaluationService } from './evaluation.service';
 
+// Mock to avoid logging in "evaluateRule"
+console.log = jest.fn();
+
 describe('EvaluationService', () => {
   let service: EvaluationService;
-  let screening: ScreeningEntity;
+  const screening = new ScreeningEntity();
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -12,12 +15,6 @@ describe('EvaluationService', () => {
     }).compile();
 
     service = module.get<EvaluationService>(EvaluationService);
-
-    screening = new ScreeningEntity();
-    screening.payload = {
-      foo: true,
-      bar: 5,
-    };
   });
 
   it('should be defined', () => {
@@ -25,8 +22,19 @@ describe('EvaluationService', () => {
   });
 
   describe('evaluate', () => {
+    const instrument = new InstrumentEntity();
+
+    it('should return empty list if instrument has no rules', () => {
+      instrument.rules = [];
+      screening.payload = {
+        foo: true,
+        bar: 5,
+      };
+      const result = service.evaluate(screening, instrument);
+      expect(result).toStrictEqual([]);
+    });
+
     it('should evaluate correctly', () => {
-      const instrument = new InstrumentEntity();
       instrument.rules = [
         {
           name: 'rule1',
@@ -41,7 +49,10 @@ describe('EvaluationService', () => {
           else: 'rule2 else',
         },
       ];
-
+      screening.payload = {
+        foo: true,
+        bar: 5,
+      };
       const result = service.evaluate(screening, instrument);
       expect(result).toHaveLength(2);
       expect(result[0]).toMatchObject({ result: true });
@@ -49,7 +60,6 @@ describe('EvaluationService', () => {
     });
 
     it('should not evaluate correctly', () => {
-      const instrument = new InstrumentEntity();
       instrument.rules = [
         {
           name: 'rule1',
@@ -65,6 +75,9 @@ describe('EvaluationService', () => {
         },
       ];
 
+      screening.payload = {
+        x: 'foobar',
+      };
       const result = service.evaluate(screening, instrument);
       expect(result).toHaveLength(2);
       expect(result[0]).toMatchObject({ result: null });
@@ -74,6 +87,10 @@ describe('EvaluationService', () => {
 
   describe('evaluateRule', () => {
     it('should evaluate correctly', () => {
+      screening.payload = {
+        foo: true,
+        bar: 5,
+      };
       let rule = 'foo == true';
       let result = service.evaluateRule(rule, screening.getScreeningData());
       expect(result).toBe(true);
@@ -86,8 +103,10 @@ describe('EvaluationService', () => {
     });
 
     it('should not evaluate correctly', () => {
-      console.log = jest.fn();
-      const invalidSyntax = 'foo == "true';
+      screening.payload = {
+        foo: 'str',
+      };
+      const invalidSyntax = 'foo == "str';
       let result = service.evaluateRule(
         invalidSyntax,
         screening.getScreeningData(),
