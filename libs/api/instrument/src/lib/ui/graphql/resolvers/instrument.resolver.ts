@@ -8,6 +8,7 @@ import {
   ReleaseOneInstrumentInputType,
   RetireOneInstrumentInputType,
   UpdateOneInstrumentInputType,
+  DeleteOneInstrumentInputType,
 } from '@feelback-app/api/interfaces';
 import { RolesEnum } from '@feelback-app/api/shared';
 import { DeepPartial } from '@nestjs-query/core';
@@ -60,6 +61,30 @@ export class InstrumentResolver extends CRUDResolver(InstrumentObject, {
       input.update,
     );
     return updatedInstrument;
+  }
+
+  @Mutation((returns) => Boolean, { name: 'deleteOneInstrument' })
+  @Roles(RolesEnum.ADMIN)
+  async deleteOneInstrument(
+    @Args('input') input: DeleteOneInstrumentInputType,
+  ): Promise<boolean> {
+    const instrument = await this.service.queryService.getById(input.id);
+
+    let canBeDeleted = false;
+    if (instrument.state === InstrumentStatesEnum.DRAFT) {
+      canBeDeleted = true;
+    }
+
+    if (instrument.state === InstrumentStatesEnum.RETIRED) {
+      canBeDeleted = true;
+    }
+
+    if (canBeDeleted === false) {
+      throw new InvalidStateApiException();
+    }
+    await this.service.deleteOne(input.id);
+
+    return true;
   }
 
   @Mutation((returns) => InstrumentObject, { name: 'releaseInstrument' })

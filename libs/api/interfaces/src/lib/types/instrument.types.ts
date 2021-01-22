@@ -1,6 +1,7 @@
 import { SelectOneInputType } from '@feelback-app/api/core';
 import {
   CreateOneInputType,
+  DeleteOneInputType,
   UpdateOneInputType,
 } from '@nestjs-query/query-graphql';
 import { InputType } from '@nestjs/graphql';
@@ -26,3 +27,6 @@ export class RetireOneInstrumentInputType extends SelectOneInputType {}
 
 @InputType()
 export class CopyOneInstrumentInputType extends SelectOneInputType {}
+
+@InputType()
+export class DeleteOneInstrumentInputType extends DeleteOneInputType() {}

@@ -264,6 +264,11 @@ input DeleteOneInput {
   id: ID!
 }
 
+input DeleteOneInstrumentInputType {
+  """The id of the record to delete."""
+  id: ID!
+}
+
 """Object that contain diagram axis data"""
 type DiagramAxisObject {
   """the name of the axis"""
@@ -998,6 +1003,7 @@ type Mutation {
   createOneIdentity(input: CreateOneIdentityInput!): Identity!
   createOneInstrument(input: CreateOneInstrumentInputType!): Instrument!
   updateOneInstrument(input: UpdateOneInstrumentInputType!): Instrument!
+  deleteOneInstrument(input: DeleteOneInstrumentInputType!): Boolean!
   releaseInstrument(input: ReleaseOneInstrumentInputType!): Instrument!
   retireInstrument(input: RetireOneInstrumentInputType!): Instrument!
   copyInstrument(input: CopyOneInstrumentInputType!): Instrument!
