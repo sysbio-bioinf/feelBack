@@ -13,12 +13,10 @@ import { PersonObject } from './person.object';
 })
 @Connection('members', () => DoctorObject, {
   nullable: true,
-  disableRemove: true,
   disableUpdate: false,
 })
 @Connection('people', () => PersonObject, {
   nullable: true,
-  disableRemove: true,
   disableUpdate: false,
   relationName: 'persons',
 })

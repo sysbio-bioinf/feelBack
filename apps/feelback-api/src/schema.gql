@@ -371,6 +371,7 @@ type DoctorCountAggregate {
   deletedAt: Int
   firstname: Int
   lastname: Int
+  email: Int
 }
 
 type DoctorDeleteResponse {
@@ -431,6 +432,7 @@ input DoctorFilter {
   deletedAt: DateFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
+  email: StringFieldComparison
 }
 
 type DoctorMaxAggregate {
@@ -441,6 +443,7 @@ type DoctorMaxAggregate {
   deletedAt: DateTime
   firstname: String
   lastname: String
+  email: String
 }
 
 type DoctorMinAggregate {
@@ -451,6 +454,7 @@ type DoctorMinAggregate {
   deletedAt: DateTime
   firstname: String
   lastname: String
+  email: String
 }
 
 type DoctorOrganizationsConnection {
@@ -478,6 +482,7 @@ enum DoctorSortFields {
   deletedAt
   firstname
   lastname
+  email
 }
 
 type DoctorSumAggregate {
@@ -999,6 +1004,8 @@ type Mutation {
   deleteOneOrganization(input: DeleteOneInput!): OrganizationDeleteResponse!
   updateOneOrganization(input: UpdateOneOrganizationInput!): Organization!
   createOneOrganization(input: CreateOneOrganizationInput!): Organization!
+  removePeopleFromOrganization(input: RelationsInput!): Organization!
+  removeMembersFromOrganization(input: RelationsInput!): Organization!
   addPeopleToOrganization(input: RelationsInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
   updateOnePerson(input: UpdateOnePersonInput!): Person!
@@ -2041,6 +2048,7 @@ type UserCountAggregate {
   deletedAt: Int
   firstname: Int
   lastname: Int
+  email: Int
 }
 
 type UserDeleteResponse {
@@ -2107,6 +2115,7 @@ input UserFilter {
   deletedAt: DateFieldComparison
   firstname: StringFieldComparison
   lastname: StringFieldComparison
+  email: StringFieldComparison
 }
 
 type UserMaxAggregate {
@@ -2117,6 +2126,7 @@ type UserMaxAggregate {
   deletedAt: DateTime
   firstname: String
   lastname: String
+  email: String
 }
 
 type UserMinAggregate {
@@ -2127,6 +2137,7 @@ type UserMinAggregate {
   deletedAt: DateTime
   firstname: String
   lastname: String
+  email: String
 }
 
 type UserOrganizationsConnection {
@@ -2154,6 +2165,7 @@ enum UserSortFields {
   deletedAt
   firstname
   lastname
+  email
 }
 
 type UserSumAggregate {

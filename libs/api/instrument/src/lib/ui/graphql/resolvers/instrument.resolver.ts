@@ -7,7 +7,6 @@ import {
   InstrumentObject,
   ReleaseOneInstrumentInputType,
   RetireOneInstrumentInputType,
-  ScreeningObject,
   UpdateOneInstrumentInputType,
 } from '@feelback-app/api/interfaces';
 import { RolesEnum } from '@feelback-app/api/shared';
