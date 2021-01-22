@@ -1004,8 +1004,8 @@ type Mutation {
   updateOnePerson(input: UpdateOnePersonInput!): Person!
   createOnePerson(input: CreateOnePersonInputType!): Person!
   createOneScreening(input: CreateOneScreeningInput!): Screening!
-  addPeopleToScreening(input: RelationsInput!): Screening!
-  addInstrumentsToScreening(input: RelationsInput!): Screening!
+  setPersonOnScreening(input: RelationInput!): Screening!
+  setInstrumentOnScreening(input: RelationInput!): Screening!
   uploadScreening(input: UploadScreeningInputType!): Screening!
   resolveScreeningIssues(input: ResolveOneScreeningInputType!): Screening!
   deleteOneUser(input: DeleteOneInput!): UserDeleteResponse!
@@ -1481,6 +1481,14 @@ input RegisterInput {
   password: String!
 }
 
+input RelationInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
 input RelationsInput {
   """The id of the record."""
   id: ID!
@@ -1568,26 +1576,8 @@ type Screening {
 
   """data about resolving the screening issues"""
   resolveComment: String
-  people(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: PersonFilter = {}
-
-    """Specify to sort results."""
-    sorting: [PersonSort!] = []
-  ): ScreeningPeopleConnection
-  instruments(
-    """Limit or page results."""
-    paging: CursorPaging = {first: 10}
-
-    """Specify to filter the records returned."""
-    filter: InstrumentFilter = {}
-
-    """Specify to sort results."""
-    sorting: [InstrumentSort!] = []
-  ): ScreeningInstrumentsConnection
+  person: Person
+  instrument: Instrument
 
   """UserAgent information"""
   userAgent: UserAgent
@@ -1644,17 +1634,6 @@ input ScreeningFilter {
   resolvedAt: DateFieldComparison
 }
 
-type ScreeningInstrumentsConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [InstrumentEdge!]!
-
-  """Fetch total count of records"""
-  totalCount: Int!
-}
-
 type ScreeningMaxAggregate {
   id: ID
   createdAt: DateTime
@@ -1679,17 +1658,6 @@ type ScreeningMinAggregate {
   language: String
   isResolved: Boolean
   resolvedAt: DateTime
-}
-
-type ScreeningPeopleConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [PersonEdge!]!
-
-  """Fetch total count of records"""
-  totalCount: Int!
 }
 
 input ScreeningSort {

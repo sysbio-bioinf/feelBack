@@ -1,6 +1,6 @@
 mutation attachInstrumentToScreening($screeningId: ID!, $instrumentId: ID!) {
-  addInstrumentsToScreening(
-    input: { id: $screeningId, relationIds: [$instrumentId] }
+  setInstrumentOnScreening(
+    input: { id: $screeningId, relationId: $instrumentId }
   ) {
     id
   }

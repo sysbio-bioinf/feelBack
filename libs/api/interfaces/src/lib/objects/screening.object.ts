@@ -12,15 +12,16 @@ import { PersonObject } from './person.object';
 @ObjectType('Screening', {
   description: 'A processed screening',
 })
-@Connection('instrument', () => InstrumentObject, {
+@Relation('instrument', () => InstrumentObject, {
   nullable: true,
   disableRemove: true,
   disableUpdate: false,
 })
-@Connection('person', () => PersonObject, {
+@Relation('person', () => PersonObject, {
   nullable: true,
   disableRemove: true,
   disableUpdate: false,
+  relationName: 'person',
 })
 export class ScreeningObject extends VersionableObject {
   @FilterableField(() => String, {

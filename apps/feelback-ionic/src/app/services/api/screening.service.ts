@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import {
-  AttachInstrumentToScreeningGQL,
-  AttachPersonToScreeningGQL,
-  CreateScreeningGQL,
   CreateScreeningInput,
   UploadScreeningGQL,
 } from '../../graphql/generated/feelback.graphql';
@@ -13,12 +10,7 @@ import { Person } from '../../models/person.model';
   providedIn: 'root',
 })
 export class ScreeningService {
-  constructor(
-    readonly createScreeningService: CreateScreeningGQL,
-    readonly attachInstrumentService: AttachInstrumentToScreeningGQL,
-    readonly attachPersonService: AttachPersonToScreeningGQL,
-    readonly uploadScreeningService: UploadScreeningGQL,
-  ) {}
+  constructor(private readonly uploadScreeningService: UploadScreeningGQL) {}
 
   async uploadScreening(
     screening: CreateScreeningInput,
