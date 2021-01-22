@@ -36,7 +36,7 @@ export class DoctorObject extends VersionableObject {
   })
   phone!: string | null;
 
-  @Field(() => String, {
+  @FilterableField(() => String, {
     description: 'An email address of this doctor',
     nullable: true,
   })
