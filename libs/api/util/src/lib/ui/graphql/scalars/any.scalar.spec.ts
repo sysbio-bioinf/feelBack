@@ -66,6 +66,15 @@ describe('AnythingScalar', () => {
         expect(result).toStrictEqual(intValue);
       });
 
+      it('should return int value ignoring white spaces', () => {
+        const valueNode: IntValueNode = {
+          kind: 'IntValue',
+          value: '\t 123  \n',
+        };
+        const result = scalar.parseLiteral(valueNode);
+        expect(result).toStrictEqual(123);
+      });
+
       it('should return NaN if int value is not a number', () => {
         const valueNode: IntValueNode = {
           kind: 'IntValue',
@@ -73,6 +82,16 @@ describe('AnythingScalar', () => {
         };
         const result = scalar.parseLiteral(valueNode);
         expect(result).toBeNaN();
+      });
+
+      it('should return NaN if int value is infinity', () => {
+        const number = Infinity;
+        const valueNode: IntValueNode = {
+          kind: 'IntValue',
+          value: number.toString(),
+        };
+        const result = scalar.parseLiteral(valueNode);
+        expect(result).toStrictEqual(number);
       });
     });
 
@@ -82,6 +101,15 @@ describe('AnythingScalar', () => {
         expect(result).toStrictEqual(floatValue);
       });
 
+      it('should return float value ignoring white spaces', () => {
+        const valueNode: FloatValueNode = {
+          kind: 'FloatValue',
+          value: '\t 123.5  \n',
+        };
+        const result = scalar.parseLiteral(valueNode);
+        expect(result).toStrictEqual(123.5);
+      });
+
       it('should return NaN if float value is not a number', () => {
         const valueNode: FloatValueNode = {
           kind: 'FloatValue',
@@ -89,6 +117,16 @@ describe('AnythingScalar', () => {
         };
         const result = scalar.parseLiteral(valueNode);
         expect(result).toBeNaN();
+      });
+
+      it('should return NaN if int value is infinity', () => {
+        const number = Infinity;
+        const valueNode: FloatValueNode = {
+          kind: 'FloatValue',
+          value: number.toString(),
+        };
+        const result = scalar.parseLiteral(valueNode);
+        expect(result).toStrictEqual(number);
       });
     });
 
