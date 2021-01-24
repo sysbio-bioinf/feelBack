@@ -1,4 +1,5 @@
 export * from './auth.module';
+export * from './constants/decorator.constants';
 export * from './data/classes/user.class';
 export * from './data/dtos/credentials.dto';
 export * from './data/models/auth-token.model';
