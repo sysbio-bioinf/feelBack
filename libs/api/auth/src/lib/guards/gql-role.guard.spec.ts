@@ -1,11 +1,21 @@
 import { ApiException } from '@feelback-app/api/errors';
 import { RolesEnum } from '@feelback-app/api/shared';
+import {
+  mockGqlExecutionContext,
+  mockRequest,
+} from '@feelback-app/api/testing';
 import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../data/classes/user.class';
 import { GqlRoleGuard } from './gql-role.guard';
+
+const mockGqlExecutionCreate = jest
+  .fn()
+  .mockReturnValue(mockGqlExecutionContext);
+GqlExecutionContext.create = mockGqlExecutionCreate;
 
 class ReflectorMock {
   handlerRoles: string | string[] | undefined;
@@ -23,6 +33,8 @@ describe('RoleGuard', () => {
   let request: { user: User };
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         GqlRoleGuard,
@@ -36,7 +48,6 @@ describe('RoleGuard', () => {
     }).compile();
 
     gqlRoleGuard = module.get<GqlRoleGuard>(GqlRoleGuard);
-    gqlRoleGuard.getRequest = jest.fn(() => request);
     context = module.get<ExecutionContext>(ExecutionContextHost);
     reflector = module.get<any>(Reflector);
   });
@@ -47,7 +58,21 @@ describe('RoleGuard', () => {
     expect(reflector).toBeDefined();
   });
 
+  describe('getRequest', () => {
+    it('should return request', () => {
+      const result = gqlRoleGuard.getRequest(context);
+      expect(result).toStrictEqual(mockRequest);
+      expect(mockGqlExecutionCreate).toBeCalledTimes(1);
+      expect(mockGqlExecutionCreate).toBeCalledWith(context);
+    });
+  });
+
   describe('canActivate', () => {
+    beforeEach(() => {
+      // Set mock after test for getRequest
+      gqlRoleGuard.getRequest = jest.fn(() => request);
+    });
+
     it('should allow access if user has no roles and there are no required roles', async () => {
       request = { user: new User('id') };
 

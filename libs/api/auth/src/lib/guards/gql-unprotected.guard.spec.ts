@@ -1,8 +1,18 @@
+import {
+  mockGqlExecutionContext,
+  mockRequest,
+} from '@feelback-app/api/testing';
 import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { Test, TestingModule } from '@nestjs/testing';
 import { GqlUnprotectedGuard } from './gql-unprotected.guard';
+
+const mockGqlExecutionCreate = jest
+  .fn()
+  .mockReturnValue(mockGqlExecutionContext);
+GqlExecutionContext.create = mockGqlExecutionCreate;
 
 class ReflectorMock {
   handlerUnprotected: boolean | undefined;
@@ -32,37 +42,58 @@ describe('UnprotectedGuard', () => {
     }).compile();
 
     gqlUnprotectedGuard = module.get<GqlUnprotectedGuard>(GqlUnprotectedGuard);
-    gqlUnprotectedGuard.getRequest = jest.fn(() => {});
     context = module.get<ExecutionContext>(ExecutionContextHost);
     reflector = module.get<any>(Reflector);
   });
 
-  it('should disallow access if no decorator is assigned', async () => {
-    const accessAllowed = gqlUnprotectedGuard.canActivate(context);
-    expect(accessAllowed).toBe(false);
+  it('should be defined', () => {
+    expect(gqlUnprotectedGuard).toBeDefined();
+    expect(context).toBeDefined();
+    expect(reflector).toBeDefined();
   });
 
-  it('should allow access if a decorator is assigned to this method', async () => {
-    reflector.handlerUnprotected = true;
-    reflector.classUnprotected = undefined;
-
-    const accessAllowed = gqlUnprotectedGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
+  describe('getRequest', () => {
+    it('should return request', () => {
+      const result = gqlUnprotectedGuard.getRequest(context);
+      expect(result).toStrictEqual(mockRequest);
+      expect(mockGqlExecutionCreate).toBeCalledTimes(1);
+      expect(mockGqlExecutionCreate).toBeCalledWith(context);
+    });
   });
 
-  it('should allow access if a decorator is assigned to this class', async () => {
-    reflector.handlerUnprotected = undefined;
-    reflector.classUnprotected = true;
+  describe('canActivate', () => {
+    beforeEach(() => {
+      // Set mock after getRequest gets tested
+      gqlUnprotectedGuard.getRequest = jest.fn(() => {});
+    });
 
-    const accessAllowed = gqlUnprotectedGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
-  });
+    it('should disallow access if no decorator is assigned', async () => {
+      const accessAllowed = gqlUnprotectedGuard.canActivate(context);
+      expect(accessAllowed).toBe(false);
+    });
 
-  it('should allow access if a decorator is assigned to this class and method', async () => {
-    reflector.handlerUnprotected = true;
-    reflector.classUnprotected = true;
+    it('should allow access if a decorator is assigned to this method', async () => {
+      reflector.handlerUnprotected = true;
+      reflector.classUnprotected = undefined;
 
-    const accessAllowed = gqlUnprotectedGuard.canActivate(context);
-    expect(accessAllowed).toBe(true);
+      const accessAllowed = gqlUnprotectedGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
+
+    it('should allow access if a decorator is assigned to this class', async () => {
+      reflector.handlerUnprotected = undefined;
+      reflector.classUnprotected = true;
+
+      const accessAllowed = gqlUnprotectedGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
+
+    it('should allow access if a decorator is assigned to this class and method', async () => {
+      reflector.handlerUnprotected = true;
+      reflector.classUnprotected = true;
+
+      const accessAllowed = gqlUnprotectedGuard.canActivate(context);
+      expect(accessAllowed).toBe(true);
+    });
   });
 });
