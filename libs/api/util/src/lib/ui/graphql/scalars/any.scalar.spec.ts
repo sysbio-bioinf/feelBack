@@ -91,7 +91,7 @@ describe('AnythingScalar', () => {
           value: number.toString(),
         };
         const result = scalar.parseLiteral(valueNode);
-        expect(result).toStrictEqual(number);
+        expect(result).toBeNaN();
       });
     });
 

@@ -115,7 +115,7 @@ describe('JSONObjectScalar', () => {
           value: number.toString(),
         };
         const result = scalar.parseObject(valueNode);
-        expect(result).toStrictEqual(number);
+        expect(result).toBeNaN();
       });
     });
 

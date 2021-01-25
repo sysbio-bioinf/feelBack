@@ -86,6 +86,7 @@ const mockPersonServiceFindById: jest.Mock<Promise<
 
 describe('ScreeningResolver', () => {
   let resolver: ScreeningResolver;
+  let screeningAssemblerServicve: ScreeningAssemblerService;
 
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -123,7 +124,7 @@ describe('ScreeningResolver', () => {
     resolver = module.get<ScreeningResolver>(ScreeningResolver);
 
     // Set mocks for ScreeningAssemblerService
-    const screeningAssemblerServicve = module.get<ScreeningAssemblerService>(
+    screeningAssemblerServicve = module.get<ScreeningAssemblerService>(
       ScreeningAssemblerService,
     );
     screeningAssemblerServicve.createOne = mockScreeningServiceCreateOne;
@@ -334,7 +335,7 @@ describe('ScreeningResolver', () => {
       };
       // Check correct inputs
       expect(screeningConnetionSpy).toBeCalledWith(
-        expect.any(Function),
+        screeningAssemblerServicve.query,
         expectedQuery,
       );
     });

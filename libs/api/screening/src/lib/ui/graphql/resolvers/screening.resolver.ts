@@ -108,10 +108,7 @@ export class ScreeningResolver extends CRUDResolver(ScreeningObject, {
       },
     };
 
-    return ScreeningConnection.createFromPromise(
-      (q) => this.service.query(q),
-      qa,
-    );
+    return ScreeningConnection.createFromPromise(this.service.query, qa);
   }
 
   @Query((returns) => [DiagramDataObject], {

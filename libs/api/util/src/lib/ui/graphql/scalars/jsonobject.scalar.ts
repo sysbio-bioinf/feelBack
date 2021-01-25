@@ -35,6 +35,7 @@ export class JSONObjectScalar implements CustomScalar<object, object> {
       case Kind.BOOLEAN:
         return ast.value;
       case Kind.INT:
+        return parseInt(ast.value);
       case Kind.FLOAT:
         return parseFloat(ast.value);
       case Kind.OBJECT:
