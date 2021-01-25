@@ -3,6 +3,7 @@ import { InstrumentEntity, InstrumentStatesEnum } from '@feelback-app/api/data';
 import {
   CopyOneInstrumentInputType,
   CreateOneInstrumentInputType,
+  DeleteOneInstrumentInputType,
   InstrumentObject,
   ReleaseOneInstrumentInputType,
   RetireOneInstrumentInputType,
@@ -35,6 +36,9 @@ const mockInstrumentServiceUpdateOne: jest.Mock<Promise<
 const mockInstrumentServiceGetById: jest.Mock<Promise<
   InstrumentObject
 >> = jest.fn();
+const mockInstrumentServiceDeleteOne: jest.Mock<Promise<
+  InstrumentObject
+>> = jest.fn();
 
 describe('InstrumentResolver', () => {
   let resolver: InstrumentResolver;
@@ -65,6 +69,7 @@ describe('InstrumentResolver', () => {
     instrumentAssemblerService.queryService.getById = mockInstrumentServiceQueryGetById;
     instrumentAssemblerService.updateOne = mockInstrumentServiceUpdateOne;
     instrumentAssemblerService.getById = mockInstrumentServiceGetById;
+    instrumentAssemblerService.deleteOne = mockInstrumentServiceDeleteOne;
   });
 
   it('should be defined', () => {
@@ -168,6 +173,63 @@ describe('InstrumentResolver', () => {
         draftInstrument.id,
         input.update,
       );
+    });
+  });
+
+  describe('deleteOneInstrument', () => {
+    it('should throw error if state is released', async () => {
+      const releasedInstrument = generateInstrumentEntity({
+        state: InstrumentStatesEnum.RELEASED,
+      });
+      const input: DeleteOneInstrumentInputType = {
+        id: 'releasedInput',
+      };
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        releasedInstrument,
+      );
+      try {
+        await resolver.deleteOneInstrument(input);
+        fail();
+      } catch (error) {
+        expect(error).toBeInstanceOf(InvalidStateApiException);
+      }
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceDeleteOne).toBeCalledTimes(0);
+    });
+
+    it('should return true if state is draft', async () => {
+      const draftInstrument = generateInstrumentEntity({
+        state: InstrumentStatesEnum.DRAFT,
+      });
+      const input: DeleteOneInstrumentInputType = {
+        id: 'draftInput',
+      };
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(draftInstrument);
+      const result = await resolver.deleteOneInstrument(input);
+      expect(result).toStrictEqual(true);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceDeleteOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceDeleteOne).toBeCalledWith(input.id);
+    });
+
+    it('should return true if state is retired', async () => {
+      const retiredInstrument = generateInstrumentEntity({
+        state: InstrumentStatesEnum.RETIRED,
+      });
+      const input: DeleteOneInstrumentInputType = {
+        id: 'retiredInput',
+      };
+      mockInstrumentServiceQueryGetById.mockResolvedValueOnce(
+        retiredInstrument,
+      );
+      const result = await resolver.deleteOneInstrument(input);
+      expect(result).toStrictEqual(true);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledTimes(1);
+      expect(mockInstrumentServiceQueryGetById).toBeCalledWith(input.id);
+      expect(mockInstrumentServiceDeleteOne).toBeCalledTimes(1);
+      expect(mockInstrumentServiceDeleteOne).toBeCalledWith(input.id);
     });
   });
 
