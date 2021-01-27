@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import ISO6391 from 'iso-639-1';
 import { ApplicationLanguageModel } from '../models/application-language.model';
 import { environment } from './../../environments/environment';
+import { TranslatableError } from '..//core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -30,8 +31,16 @@ export class LanguageService {
     try {
       this.appLanguages = ISO6391.getLanguages(codes);
     } catch (error) {
-      this.appLanguages = [];
+      // english fallback
+      this.appLanguages = [
+        {
+          code: 'en',
+          name: 'English',
+          nativeName: 'English',
+        },
+      ];
       console.log(error);
+      throw new TranslatableError('app.errors.services.language.available');
     }
 
     return this.appLanguages;

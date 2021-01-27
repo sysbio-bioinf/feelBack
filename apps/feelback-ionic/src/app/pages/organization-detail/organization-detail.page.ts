@@ -3,8 +3,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { Organization } from '../../models/organization.model';
 import { AbstractComponent } from '../../core/components/abstract.component';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { OrganizationService } from '../../services/api/organization.service';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Component({
   selector: 'feelback-ionic-organization-detail',
@@ -23,6 +24,7 @@ export class OrganizationDetailPage
     readonly loadingController: LoadingController,
     private translatePipe: TranslatePipe,
     private organizationService: OrganizationService,
+    private toastController: ToastController,
   ) {
     super();
   }
@@ -30,9 +32,32 @@ export class OrganizationDetailPage
   ngOnInit() {}
 
   async ionViewWillEnter() {
-    await this.currentRoute.params.subscribe(async (params) => {
+    this.currentRoute.params.subscribe(async (params) => {
       await this.presentLoading();
-      this.organization = await this.organizationService.getById(params.id);
+      try {
+        this.organization = await this.organizationService.getById(params.id);
+      } catch (error) {
+        let errorMsg: string;
+        if (error instanceof TranslatableError) {
+          errorMsg = this.translatePipe.transform(error.message);
+        } else {
+          errorMsg = error.message;
+        }
+        this.toastController
+          .create({
+            message: errorMsg,
+            buttons: [
+              {
+                side: 'end',
+                text: this.translatePipe.transform('app.general.ok'),
+              },
+            ],
+            duration: 5000,
+          })
+          .then((toast) => {
+            toast.present();
+          });
+      }
       this.loading.dismiss();
     });
   }

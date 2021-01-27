@@ -33,7 +33,15 @@ describe('IdentityService test', () => {
     getIdentityByPseudonymGQLMock.fetch.mockReturnValueOnce(
       of(new Error('error')),
     );
-    identity = await identityService.getIdentityByPseudonym('pseudoMock');
+    let error;
+    identity = null;
+    try {
+      identity = await identityService.getIdentityByPseudonym('pseudoMock');
+    } catch (e) {
+      error = e;
+    }
+    expect(error.name).toEqual('TranslatableError');
+    expect(error.message).toEqual('app.errors.services.identity.notFound');
     expect(identity).toBe(null);
   });
 });

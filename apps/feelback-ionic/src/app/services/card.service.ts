@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TranslatableError } from '../core/customErrors/translatableError';
 import { Card } from '../models/card.model';
 
 @Injectable({
@@ -13,9 +14,7 @@ export class CardService {
       return this.parseCardV1(data);
     }
 
-    throw new Error(
-      'Cannot understand the Version of this Card. Please use the regular Login via Form!',
-    );
+    throw new TranslatableError('app.errors.services.card.unsupportedVersion');
   }
 
   private parseCardV1(data: any) {

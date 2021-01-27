@@ -75,6 +75,7 @@ describe('OrganizationDetailPage', () => {
     await component.ionViewWillEnter();
     await Promise.resolve(); // wait for presentLoading() -> loading.present()
     await Promise.resolve(); // wait for organizationService.getById(params,id)
+    await Promise.resolve(); // wait for toast.present()
     expect(component.loading).toBeDefined();
     expect(component.organization).toBe(organizationMock);
     expect(component.loading.dismiss).toHaveBeenCalled();

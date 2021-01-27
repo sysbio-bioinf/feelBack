@@ -3,6 +3,7 @@ import {
   GetIdentityByPseudonymGQL,
   Identity,
 } from '../../graphql/generated/feelback.graphql';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,10 @@ export class IdentityService {
         .fetch({ pseudonym: pseudonym })
         .toPromise();
       return response.data.identityByPseudonym;
-    } catch (exception) {
+    } catch (error) {
       // pseudonym was not found
-      return null;
+      console.error(error);
+      throw new TranslatableError('app.errors.services.identity.notFound');
     }
   }
 }

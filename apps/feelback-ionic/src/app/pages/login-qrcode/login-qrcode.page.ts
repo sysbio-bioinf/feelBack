@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { UserService } from '../../services/user.service';
 import { CardService } from '../../services/card.service';
 import { Platform, ToastController } from '@ionic/angular';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Component({
   selector: 'feelback-ionic-login-qrcode',
@@ -51,8 +52,27 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
           this.pseudonym = card.pseudonym;
         })
         .catch((err) => {
-          console.log(err);
-          throw new Error(err);
+          let errorMsg: string;
+          if (err instanceof TranslatableError) {
+            errorMsg = this.translatePipe.transform(err.message);
+          } else {
+            errorMsg = err.message;
+          }
+          console.error(err);
+          this.toastController
+            .create({
+              message: err.message,
+              buttons: [
+                {
+                  side: 'end',
+                  text: this.translatePipe.transform('app.general.ok'),
+                },
+              ],
+              duration: 5000,
+            })
+            .then((toast) => {
+              toast.present();
+            });
         });
     } else {
       this.toastController
@@ -75,6 +95,12 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
           message: this.translatePipe.transform(
             'app.pages.login.pseudonymError.emptyString',
           ),
+          buttons: [
+            {
+              side: 'end',
+              text: this.translatePipe.transform('app.general.ok'),
+            },
+          ],
           duration: 3000,
         })
         .then((toast) => toast.present());
@@ -90,6 +116,12 @@ export class LoginQrcodePage extends AbstractComponent implements OnInit {
           message: this.translatePipe.transform(
             'app.pages.login.pseudonymError.noMatch',
           ),
+          buttons: [
+            {
+              side: 'end',
+              text: this.translatePipe.transform('app.general.ok'),
+            },
+          ],
           duration: 3000,
         })
         .then((toast) => toast.present());

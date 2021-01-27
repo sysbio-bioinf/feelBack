@@ -120,7 +120,7 @@ describe('ProfilePage', () => {
     await component.ionViewWillEnter();
     expect(toastControllerMock.create).toBeCalled();
     expect(toastControllerMock.create.mock.calls[1][0].message).toBe(
-      'app.errors.api.noData',
+      'app.errors.services.identity.notFound',
     );
     expect(routerMock.navigate).toHaveBeenCalledWith(['main', 'home'], {
       replaceUrl: true,

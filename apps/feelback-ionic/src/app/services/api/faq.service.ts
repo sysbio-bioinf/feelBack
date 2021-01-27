@@ -4,6 +4,7 @@ import {
   GetFaqsGQL,
 } from '../../graphql/generated/feelback.graphql';
 import { Faq } from '../../models/faq.model';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,16 @@ export class FaqService {
   constructor(private gqlFaqs: GetFaqsGQL, private getFaqById: GetFaqByIdGQL) {}
 
   async getAll(): Promise<Faq[]> {
-    const faqResponse = await this.gqlFaqs.fetch().toPromise();
+    let faqResponse;
+    try {
+      faqResponse = await this.gqlFaqs.fetch().toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.faq.all');
+    }
+
     if (faqResponse.errors) {
-      throw new Error('Es ist ein Fehler aufgetreten');
+      throw new TranslatableError('app.errors.services.faq.allResponse');
     }
 
     const faqs = faqResponse.data.faqs.edges.map((item) => {
@@ -30,14 +38,20 @@ export class FaqService {
   }
 
   async getById(id: string): Promise<Faq> {
-    const faqResponse = await this.getFaqById.fetch({ id }).toPromise();
+    let faqResponse;
+    try {
+      faqResponse = await this.getFaqById.fetch({ id }).toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.faq.id');
+    }
     if (faqResponse.errors) {
-      throw new Error('Es ist ein Fehler aufgetreten');
+      throw new TranslatableError('app.errors.services.faq.idResponse');
     }
 
     const faqData = faqResponse.data.faq;
     if (!faqData) {
-      throw new Error('Es ist ein Fehler aufgetreten');
+      throw new TranslatableError('app.errors.services.faq.none');
     }
 
     return {

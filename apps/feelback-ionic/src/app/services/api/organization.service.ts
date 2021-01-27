@@ -4,6 +4,7 @@ import {
   GetOrganizationByIdGQL,
 } from '../../graphql/generated/feelback.graphql';
 import { Organization } from '../../models/organization.model';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -15,43 +16,68 @@ export class OrganizationService {
   ) {}
 
   async getAll(): Promise<Organization[]> {
-    const organizationsResponse = await this.gqlOrganizations
-      .fetch()
-      .toPromise();
-    if (organizationsResponse.errors) {
-      throw new Error('Es ist ein Fehler aufgetreten');
+    let organizationsResponse;
+    try {
+      organizationsResponse = await this.gqlOrganizations.fetch().toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.organization.all');
     }
 
-    const organizations = organizationsResponse.data.organizations.edges.map(
-      (item) => {
-        return {
-          id: item.node.id,
-          name: item.node.name,
-          description: item.node.description,
-          type: item.node.type,
-          address: item.node.address,
-          phone: item.node.phone,
-          email: item.node.email,
-          url: item.node.url,
-          logo: item.node.logo,
-        } as Organization;
-      },
-    );
+    if (organizationsResponse.errors) {
+      throw new TranslatableError(
+        'app.errors.services.organization.allResponse',
+      );
+    }
+
+    let organizations;
+    if (organizationsResponse.data) {
+      organizations = organizationsResponse.data.organizations.edges.map(
+        (item) => {
+          return {
+            id: item.node.id,
+            name: item.node.name,
+            description: item.node.description,
+            type: item.node.type,
+            address: item.node.address,
+            phone: item.node.phone,
+            email: item.node.email,
+            url: item.node.url,
+            logo: item.node.logo,
+          } as Organization;
+        },
+      );
+    } else {
+      organizations = [];
+    }
 
     return organizations;
   }
 
   async getById(id: string): Promise<Organization> {
-    const organizationResponse = await this.gqlOrganizationById
-      .fetch({ id })
-      .toPromise();
-    if (organizationResponse.errors) {
-      throw new Error('Es ist ein Fehler aufgetreten');
+    let organizationResponse;
+    try {
+      organizationResponse = await this.gqlOrganizationById
+        .fetch({ id })
+        .toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.organization.id');
     }
 
-    const organizationData = organizationResponse.data.organization;
+    if (organizationResponse.errors) {
+      throw new TranslatableError(
+        'app.errors.services.organization.idResponse',
+      );
+    }
+
+    let organizationData;
+    if (organizationResponse.data) {
+      organizationData = organizationResponse.data.organization;
+    }
+
     if (!organizationData) {
-      throw new Error('Es ist ein Fehler aufgetreten');
+      throw new TranslatableError('app.errors.services.organization.none');
     }
 
     return {

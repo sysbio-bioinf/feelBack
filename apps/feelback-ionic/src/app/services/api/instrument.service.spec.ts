@@ -69,7 +69,14 @@ describe('InstrumentService test', () => {
 
   it('should get all instruments', async () => {
     getInstrumentsGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    let instruments = await instrumentService.getAll();
+    let instruments = [];
+    let error;
+    try {
+      instruments = await instrumentService.getAll();
+    } catch (e) {
+      error = e;
+    }
+    expect(error.name).toEqual('TranslatableError');
     expect(instruments).toEqual([]);
     getInstrumentsGQLMock.fetch.mockReturnValueOnce(of(instrumentsMockObject));
     instruments = await instrumentService.getAll();

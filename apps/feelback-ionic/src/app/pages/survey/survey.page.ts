@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { InstrumentService } from '../../services/api/instrument.service';
 import { AbstractComponent } from '../../core/components/abstract.component';
 import { Instrument } from '../../models/instrument.model';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Component({
   selector: 'feelback-ionic-survey',
@@ -26,6 +27,7 @@ export class SurveyPage extends AbstractComponent implements OnInit {
     private translatePipe: TranslatePipe,
     private loadingController: LoadingController,
     private instrumentService: InstrumentService,
+    private toastController: ToastController,
   ) {
     super();
 
@@ -48,7 +50,32 @@ export class SurveyPage extends AbstractComponent implements OnInit {
   async ionViewWillEnter() {
     this.currentRoute.params.subscribe(async (params) => {
       await this.presentLoading();
-      this.instrument = await this.instrumentService.getById(params.id);
+      try {
+        this.instrument = await this.instrumentService.getById(params.id);
+      } catch (error) {
+        let errorMsg: string;
+        if (error instanceof TranslatableError) {
+          errorMsg = this.translatePipe.transform(error.message);
+        } else {
+          errorMsg = error.message;
+        }
+        this.toastController
+          .create({
+            message: errorMsg,
+            buttons: [
+              {
+                side: 'end',
+                text: this.translatePipe.transform('app.general.ok'),
+              },
+            ],
+            duration: 5000,
+          })
+          .then((toast) => {
+            toast.present();
+          });
+        this.navigateHome();
+      }
+
       await this.loading.dismiss();
     });
   }

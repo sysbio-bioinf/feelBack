@@ -1,9 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ApplicationLanguageModel } from '../../models/application-language.model';
 import { Router } from '@angular/router';
-import { AlertController, IonSelect } from '@ionic/angular';
+import { AlertController, IonSelect, ToastController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Component({
   selector: 'feelback-ionic-header',
@@ -32,11 +33,35 @@ export class HeaderComponent implements OnInit {
     private alertController: AlertController,
     private translatePipe: TranslatePipe,
     private router: Router,
+    private toastController: ToastController,
   ) {}
 
   ngOnInit() {
     this.currentLanguage = this.languageService.getCurrentLanguage();
-    this.availableLanguages = this.languageService.getAvailableLanguages();
+    try {
+      this.availableLanguages = this.languageService.getAvailableLanguages();
+    } catch (error) {
+      let errorMsg: string;
+      if (error instanceof TranslatableError) {
+        errorMsg = this.translatePipe.transform(error.message);
+      } else {
+        errorMsg = error.message;
+      }
+      this.toastController
+        .create({
+          message: errorMsg,
+          buttons: [
+            {
+              side: 'end',
+              text: this.translatePipe.transform('app.general.ok'),
+            },
+          ],
+          duration: 5000,
+        })
+        .then((toast) => {
+          toast.present();
+        });
+    }
   }
 
   switchLanguage(event: CustomEvent) {

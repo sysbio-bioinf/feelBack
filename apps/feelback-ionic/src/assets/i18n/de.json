@@ -39,6 +39,54 @@
     "errors": {
       "api": {
         "noData": "Keine Daten gefunden"
+      },
+      "services": {
+        "faq": {
+          "all": "Fehler beim Laden der FAQs",
+          "allResponse": "Die zurückgegebenen FAQs enthalten Fehler",
+          "id": "Fehler beim Laden der FAQ",
+          "idResponse": "Die zurückgegebene FAQ enthält Fehler",
+          "none": "Es ist keine FAQ vorhanden"
+        },
+        "instrument": {
+          "all": "Fehler beim Laden der Instrumente",
+          "allResponse": "Die zurückgegebenen Instrumente enthalten Fehler",
+          "id": "Fehler beim Laden des Instruments",
+          "idResponse": "Das zurückgegebene Instrument enthält Fehler"
+        },
+        "identity": {
+          "notFound": "Pseudonym konnte nicht gefunden werden"
+        },
+        "organization": {
+          "all": "Fehler beim Laden der Einrichtungen",
+          "allResponse": "Die zurückgegebenen Organizationen enthalten Fehler",
+          "id": "Fehler beim Laden der Einrichtung",
+          "idResponse": "Die zurückgegebene Organization enthält Fehler",
+          "none": "Es ist keine Einrichtung vorhanden"
+        },
+        "screening": {
+          "upload": "Fehler beim Upload des Screenings"
+        },
+        "language": {
+          "available": "Fehler beim Laden der verfügbaren Sprachen"
+        },
+        "printer": {
+          "print": "Fehler beim Drucken der Datei"
+        },
+        "result": {
+          "create": "Fehler beim Erstellen des Ergebnisses"
+        },
+        "user": {
+          "pseudonymLogin": "Pseudonym wurde nicht gefunden"
+        },
+        "storage": {
+          "write": "Fehler beim Schreiben der Datei",
+          "device": "Gerät wurde nicht gefunden",
+          "create": "Fehler beim Erstellen des FeelBack Verzeichnisses"
+        },
+        "card": {
+          "unsupportedVersion": "Die gegebene Version der Karte wird nicht unterstützt. Bitte nutzen Sie die Eingabemaske für den Login."
+        }
       }
     },
     "components": {

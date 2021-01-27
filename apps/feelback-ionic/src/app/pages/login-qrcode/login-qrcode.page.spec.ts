@@ -90,6 +90,12 @@ describe('LoginQrcodePage', () => {
     expect(!component.pseudonym).toBe(true);
     expect(component.toastController.create).toHaveBeenCalledWith({
       message: 'app.pages.login.pseudonymError.emptyString',
+      buttons: [
+        {
+          side: 'end',
+          text: 'app.general.ok',
+        },
+      ],
       duration: 3000,
     });
     component.pseudonym = 'testing';
@@ -99,6 +105,12 @@ describe('LoginQrcodePage', () => {
     await component.login();
     expect(component.toastController.create).lastCalledWith({
       message: 'app.pages.login.pseudonymError.noMatch',
+      buttons: [
+        {
+          side: 'end',
+          text: 'app.general.ok',
+        },
+      ],
       duration: 3000,
     });
     component.pseudonym = 'fakeCorrect';

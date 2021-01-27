@@ -1,3 +1,4 @@
+import { TranslatableError } from '../core/customErrors/translatableError';
 import { CardService } from './card.service';
 
 describe('CardService test', () => {
@@ -18,7 +19,10 @@ describe('CardService test', () => {
       pseudonym: 'mock',
     });
     expect(() => cardService.readCard(jsonUnknownVersion)).toThrowError(
-      'understand the Version',
+      TranslatableError,
+    );
+    expect(() => cardService.readCard(jsonUnknownVersion)).toThrowError(
+      'app.errors.services.card.unsupportedVersion',
     );
   });
 });

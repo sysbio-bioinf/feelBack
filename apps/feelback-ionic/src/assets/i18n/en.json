@@ -39,6 +39,54 @@
     "errors": {
       "api": {
         "noData": "No Data found"
+      },
+      "services": {
+        "faq": {
+          "all": "Error getting all FAQs",
+          "allResponse": "The response of getting all FAQs does contain errors",
+          "id": "Error getting FAQ by ID",
+          "idReponse": "The response of getting a FAQ by ID does contain errors",
+          "none": "Response does not contain at least one FAQ"
+        },
+        "instrument": {
+          "all": "Error getting all Instruments",
+          "allResponse": "The response of getting all Instruments does contain errors",
+          "id": "Error getting an instrument by ID",
+          "idResponse": "The response of getting an instrument by ID does contain errors"
+        },
+        "identity": {
+          "notFound": "Pseudonym was not found"
+        },
+        "organization": {
+          "all": "Error getting all Organizations",
+          "allResponse": "The reponse of getting all Organizations does contain errors",
+          "id": "Error getting an organization by ID",
+          "idResponse": "The response of getting an Organization by ID does contain errors",
+          "none": "Response does not contain at least one organization"
+        },
+        "screening": {
+          "upload": "Could not upload screening"
+        },
+        "language": {
+          "available": "Could not get the available app languages"
+        },
+        "printer": {
+          "print": "Error printing the file"
+        },
+        "result": {
+          "create": "Error creating the result text"
+        },
+        "user": {
+          "pseudonymLogin": "Could not login with pseudonym"
+        },
+        "storage": {
+          "write": "Error writing the file",
+          "device": "Device not found",
+          "create": "Error creating the feelback directory"
+        },
+        "card": {
+          "unsupportedVersion": "Can't understand the Version of this Card. Please use the regular Login via Form!"
+        }
       }
     },
     "components": {
@@ -76,7 +124,7 @@
           "error": "Cannot access BarcodeScanner. Is the application running on a smart mobile device?"
         },
         "pseudonymError": {
-          "emptyString": "The Pseudonym can not be an empty string.",
+          "emptyString": "The Pseudonym can't be an empty string.",
           "noMatch": "Invalid Pseudonym. Please check your input."
         },
         "form": {

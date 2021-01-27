@@ -4,6 +4,7 @@ import {
   GetInstrumentsGQL,
 } from '../../graphql/generated/feelback.graphql';
 import { Instrument } from '../../models/instrument.model';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +16,18 @@ export class InstrumentService {
   ) {}
 
   async getAll() {
-    const getInstrumentsResponse = await this.getInstrumentsService
-      .fetch()
-      .toPromise();
+    let getInstrumentsResponse;
+    try {
+      getInstrumentsResponse = await this.getInstrumentsService
+        .fetch()
+        .toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.instrument.all');
+    }
+
     if (getInstrumentsResponse.errors) {
-      console.log('errors');
+      throw new TranslatableError('app.errors.services.instrument.allResponse');
     }
 
     let instruments;
@@ -44,20 +52,35 @@ export class InstrumentService {
   }
 
   async getById(id: string): Promise<Instrument> {
-    const instrumentResponse = await this.getInstrumentByIdService
-      .fetch({ id })
-      .toPromise();
+    let instrumentResponse;
+    try {
+      instrumentResponse = await this.getInstrumentByIdService
+        .fetch({ id })
+        .toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.instrument.id');
+    }
 
-    const instrumentData = instrumentResponse.data.instrument;
-    const instrument: Instrument = {
-      id: instrumentData.id,
-      name: instrumentData.name,
-      description: instrumentData.description,
-      image: instrumentData.image,
-      type: instrumentData.type,
-      payload: instrumentData.payload,
-      changelog: instrumentData.changelog,
-    };
+    if (instrumentResponse.errors) {
+      throw new TranslatableError('app.errors.services.instrument.idResponse');
+    }
+
+    let instrument: Instrument;
+    if (instrumentResponse.data) {
+      const instrumentData = instrumentResponse.data.instrument;
+      instrument = {
+        id: instrumentData.id,
+        name: instrumentData.name,
+        description: instrumentData.description,
+        image: instrumentData.image,
+        type: instrumentData.type,
+        payload: instrumentData.payload,
+        changelog: instrumentData.changelog,
+      };
+    } else {
+      instrument = null;
+    }
 
     return instrument;
   }

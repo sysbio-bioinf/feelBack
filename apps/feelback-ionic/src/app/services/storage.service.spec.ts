@@ -11,7 +11,6 @@ describe('StorageService test', () => {
 
   const fileSystemMock = {
     externalRootDirectory: '/mock/directory/',
-    checkDir: jest.fn((path: string, dir: string) => Promise.resolve(true)),
     createDir: jest.fn(() => Promise.resolve({}) as any),
     writeFile: jest.fn(
       async (path: string, filename: string, text: string, options: any) =>
@@ -38,25 +37,18 @@ describe('StorageService test', () => {
     } catch (e) {
       error = e;
     }
-    expect(error).toEqual(new Error('Device not found'));
+    expect(error.name).toEqual('TranslatableError');
+    expect(error.message).toEqual('app.errors.services.storage.device');
   });
 
   it('should create FeelBack directories', async () => {
-    await storageService.createFeelbackDirectories();
-    expect(fileSystemMock.checkDir).toHaveBeenCalledWith(
-      '/mock/directory/Download/',
-      FEELBACK_DIRECTORY,
-    );
-    expect(fileSystemMock.createDir).not.toHaveBeenCalled();
-    // "create directory"
-    fileSystemMock.checkDir.mockReturnValue(Promise.reject(new Error('error')));
     await storageService.createFeelbackDirectories();
     // wait for fileSystem.createDir()
     await Promise.resolve();
     expect(fileSystemMock.createDir).toHaveBeenCalledWith(
       '/mock/directory/Download/',
       FEELBACK_DIRECTORY,
-      true,
+      false,
     );
   });
 

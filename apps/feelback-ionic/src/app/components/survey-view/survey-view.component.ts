@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrintOptions } from '@ionic-native/printer/ngx';
-import { AlertController, IonContent } from '@ionic/angular';
+import { AlertController, IonContent, ToastController } from '@ionic/angular';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import * as dayjs from 'dayjs';
 import { AbstractComponent } from '../../core/components/abstract.component';
@@ -23,6 +23,7 @@ import { UserService } from '../../services/user.service';
 import * as Survey from 'survey-angular';
 import * as widgets from 'surveyjs-widgets';
 import { v4 as uuidv4 } from 'uuid';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 widgets.nouislider(Survey);
 
@@ -64,6 +65,7 @@ export class SurveyViewComponent
     private screeningService: ScreeningService,
     private printerService: PrinterService,
     private resultService: ResultService,
+    private toastController: ToastController,
   ) {
     super();
   }
@@ -160,21 +162,85 @@ export class SurveyViewComponent
       const now = dayjs();
       const filename = now.format('YYYY-MM-DD HH-mm-ss');
 
-      await this.storageService.writeDataToFile(
-        filename + '.json',
-        JSON.stringify(survey.data),
-      );
+      try {
+        await this.storageService.writeDataToFile(
+          filename + '.json',
+          JSON.stringify(survey.data),
+        );
+      } catch (error) {
+        this.toastController
+          .create({
+            message: this.translatePipe.transform(error.message),
+            buttons: [
+              {
+                side: 'end',
+                text: this.translatePipe.transform('app.general.ok'),
+              },
+            ],
+            duration: 5000,
+          })
+          .then((toast) => {
+            toast.present();
+          });
+      }
 
       const plainData = survey.getPlainData({ includeEmpty: true });
 
-      const resultText = this.resultService.generateResultText(
-        plainData,
-        this.instrument.name,
-      );
+      let resultText;
+      try {
+        resultText = this.resultService.generateResultText(
+          plainData,
+          this.instrument.name,
+        );
+      } catch (error) {
+        let errorMsg: string;
+        if (error instanceof TranslatableError) {
+          errorMsg = this.translatePipe.transform(error.message);
+        } else {
+          errorMsg = error.message;
+        }
+        // TODO: put these 3 toastController calls into a function
+        this.toastController
+          .create({
+            message: errorMsg,
+            buttons: [
+              {
+                side: 'end',
+                text: this.translatePipe.transform('app.general.ok'),
+              },
+            ],
+            duration: 5000,
+          })
+          .then((toast) => {
+            toast.present();
+          });
+      }
 
-      this.printData = resultText;
+      if (resultText) {
+        this.printData = resultText;
 
-      await this.storageService.writeDataToFile(filename + '.html', resultText);
+        try {
+          await this.storageService.writeDataToFile(
+            filename + '.html',
+            resultText,
+          );
+        } catch (error) {
+          this.toastController
+            .create({
+              message: this.translatePipe.transform(error.message),
+              buttons: [
+                {
+                  side: 'end',
+                  text: this.translatePipe.transform('app.general.ok'),
+                },
+              ],
+              duration: 5000,
+            })
+            .then((toast) => {
+              toast.present();
+            });
+        }
+      }
 
       // now we upload the data to our server
       const screeningInput: CreateScreeningInput = {
@@ -187,11 +253,34 @@ export class SurveyViewComponent
 
       const person = this.userService.person;
 
-      const result = await this.screeningService.uploadScreening(
-        screeningInput,
-        this.instrument,
-        person,
-      );
+      try {
+        const result = await this.screeningService.uploadScreening(
+          screeningInput,
+          this.instrument,
+          person,
+        );
+      } catch (error) {
+        let errorMsg: string;
+        if (error instanceof TranslatableError) {
+          errorMsg = this.translatePipe.transform(error.message);
+        } else {
+          errorMsg = error.message;
+        }
+        this.toastController
+          .create({
+            message: errorMsg,
+            buttons: [
+              {
+                side: 'end',
+                text: this.translatePipe.transform('app.general.ok'),
+              },
+            ],
+            duration: 5000,
+          })
+          .then((toast) => {
+            toast.present();
+          });
+      }
     });
 
     // ------------------------------------------------------------
@@ -218,11 +307,35 @@ export class SurveyViewComponent
     });
   }
 
-  printResult() {
+  async printResult() {
     const printOptions: PrintOptions = {
       duplex: false,
       orientation: 'portrait',
     };
-    this.printerService.printData(this.printData, printOptions);
+    try {
+      await this.printerService.printData(this.printData, printOptions);
+    } catch (error) {
+      let errorMsg: string;
+      if (error instanceof TranslatableError) {
+        errorMsg = this.translatePipe.transform(error.message);
+      } else {
+        errorMsg = error.message;
+      }
+      // TODO but both ToastController calls within this component into a function to reduce redundant code
+      this.toastController
+        .create({
+          message: errorMsg,
+          buttons: [
+            {
+              side: 'end',
+              text: this.translatePipe.transform('app.general.ok'),
+            },
+          ],
+          duration: 5000,
+        })
+        .then((toast) => {
+          toast.present();
+        });
+    }
   }
 }

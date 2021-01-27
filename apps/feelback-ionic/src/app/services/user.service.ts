@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GetPersonByPseudonymGQL } from '../graphql/generated/feelback.graphql';
 import { Person } from '../models/person.model';
+import { TranslatableError } from '../core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,9 @@ export class UserService {
         .fetch({ pseudonym: pseudonym })
         .toPromise();
       this.person = person.data.personByPseudonym;
-    } catch (exception) {
-      throw new Error(exception);
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.user.pseudonymLogin');
     }
 
     this.loggedIn = true;

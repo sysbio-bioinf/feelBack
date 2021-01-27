@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AbstractComponent } from '../../core/components/abstract.component';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 import { Organization } from '../../models/organization.model';
 import { OrganizationService } from '../../services/api/organization.service';
 
@@ -22,6 +23,7 @@ export class OrganizationListPage extends AbstractComponent {
     readonly loadingController: LoadingController,
     private organizationService: OrganizationService,
     private translatePipe: TranslatePipe,
+    private toastController: ToastController,
   ) {
     super();
   }
@@ -32,7 +34,30 @@ export class OrganizationListPage extends AbstractComponent {
 
   async ionViewWillEnter() {
     await this.presentLoading();
-    this.organizations = await this.organizationService.getAll();
+    try {
+      this.organizations = await this.organizationService.getAll();
+    } catch (error) {
+      let errorMsg: string;
+      if (error instanceof TranslatableError) {
+        errorMsg = this.translatePipe.transform(error.message);
+      } else {
+        errorMsg = error.message;
+      }
+      this.toastController
+        .create({
+          message: errorMsg,
+          buttons: [
+            {
+              side: 'end',
+              text: this.translatePipe.transform('app.general.ok'),
+            },
+          ],
+          duration: 5000,
+        })
+        .then((toast) => {
+          toast.present();
+        });
+    }
     this.loaded = true;
     await this.loading.dismiss();
   }

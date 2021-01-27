@@ -6,6 +6,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { IdentityService } from '../../services/api/identity.service';
 import { AbstractComponent } from '../../core/components/abstract.component';
 import { Identity } from '../../graphql/generated/feelback.graphql';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Component({
   selector: 'feelback-ionic-profile',
@@ -40,7 +41,7 @@ export class ProfilePage extends AbstractComponent implements OnInit {
 
   async ionViewWillEnter() {
     if (!this.userService.pseudonym) {
-      const t = this.toastController
+      this.toastController
         .create({
           message: this.translatePipe.transform(
             'app.pages.profile.toasts.notLoggedIn',
@@ -66,25 +67,32 @@ export class ProfilePage extends AbstractComponent implements OnInit {
         });
       this.navigateToHome();
       return;
-    }
-
-    await this.presentLoading();
-    this.identity = await this.identityService.getIdentityByPseudonym(
-      this.userService.pseudonym,
-    );
-    await this.loading.dismiss();
-
-    if (!this.identity) {
-      const t = this.toastController
-        .create({
-          message: this.translatePipe.transform('app.errors.api.noData'),
-          duration: 3000,
-        })
-        .then((toast) => {
-          toast.present();
-        });
-      this.navigateToHome();
-      return;
+    } else {
+      await this.presentLoading();
+      try {
+        this.identity = await this.identityService.getIdentityByPseudonym(
+          this.userService.pseudonym,
+        );
+        if (!this.identity) {
+          throw new TranslatableError('app.errors.services.identity.notFound');
+        }
+      } catch (error) {
+        let errorMsg: string;
+        if (error instanceof TranslatableError) {
+          errorMsg = this.translatePipe.transform(error.message);
+        } else {
+          errorMsg = error.message;
+        }
+        this.toastController
+          .create({
+            message: errorMsg,
+            duration: 5000,
+          })
+          .then((toast) => {
+            toast.present();
+          });
+      }
+      await this.loading.dismiss();
     }
   }
 

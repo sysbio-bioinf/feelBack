@@ -5,6 +5,7 @@ import {
 } from '../../graphql/generated/feelback.graphql';
 import { Instrument } from '../../models/instrument.model';
 import { Person } from '../../models/person.model';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 @Injectable({
   providedIn: 'root',
@@ -30,16 +31,22 @@ export class ScreeningService {
       personId = person.id;
     }
 
-    const screeningResponse = await this.uploadScreeningService
-      .mutate({
-        screening: dto,
-        instrumentId: instrument.id,
-        personId: personId,
-      })
-      .toPromise();
+    let screeningResponse;
+    try {
+      screeningResponse = await this.uploadScreeningService
+        .mutate({
+          screening: dto,
+          instrumentId: instrument.id,
+          personId: personId,
+        })
+        .toPromise();
+    } catch (err) {
+      console.error(err);
+      throw new TranslatableError('app.errors.services.screening.upload');
+    }
 
     if (screeningResponse.errors) {
-      throw new Error('Could not upload screening');
+      throw new TranslatableError('app.errors.services.screening.upload');
     }
 
     return true;
