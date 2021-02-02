@@ -35,20 +35,12 @@ describe('ScreeningService test', () => {
     updatedAt: '02.02.02',
   };
 
-  const createScreeningGQLMock = {};
-  const attachInstrumentToScreeningGQLMock = {};
-  const attachPersonToScreeningGQLMock = {};
   const uploadScreeningGQLMock = {
     mutate: jest.fn(({}) => of({})),
   };
 
   beforeEach(() => {
-    screeningService = new ScreeningService(
-      createScreeningGQLMock as any,
-      attachInstrumentToScreeningGQLMock as any,
-      attachPersonToScreeningGQLMock as any,
-      uploadScreeningGQLMock as any,
-    );
+    screeningService = new ScreeningService(uploadScreeningGQLMock as any);
   });
 
   it('should upload a screening', async () => {

@@ -131,6 +131,7 @@ export class AppComponent {
         },
       ],
     });
+    this.idleAlertShown = true;
     await this.alert.present();
   }
 
