@@ -65,7 +65,8 @@
           "none": "Response does not contain at least one organization"
         },
         "screening": {
-          "upload": "Could not upload screening"
+          "upload": "Error uploading the screening",
+          "response": "Screening upload-response contains errors"
         },
         "language": {
           "available": "Could not get the available app languages"

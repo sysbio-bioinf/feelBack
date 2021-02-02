@@ -59,13 +59,14 @@
         },
         "organization": {
           "all": "Fehler beim Laden der Einrichtungen",
-          "allResponse": "Die zurückgegebenen Organizationen enthalten Fehler",
+          "allResponse": "Die zurückgegebenen Einrichtungen enthalten Fehler",
           "id": "Fehler beim Laden der Einrichtung",
-          "idResponse": "Die zurückgegebene Organization enthält Fehler",
+          "idResponse": "Die zurückgegebene Einrichtung enthält Fehler",
           "none": "Es ist keine Einrichtung vorhanden"
         },
         "screening": {
-          "upload": "Fehler beim Upload des Screenings"
+          "upload": "Fehler beim Upload des Screenings",
+          "reponse": "Die Antwort des Servers enthält Fehler"
         },
         "language": {
           "available": "Fehler beim Laden der verfügbaren Sprachen"

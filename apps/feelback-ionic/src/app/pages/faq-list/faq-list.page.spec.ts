@@ -1,13 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IonicModule, LoadingController } from '@ionic/angular';
+import {
+  IonicModule,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 import { Apollo } from 'apollo-angular';
 import { TranslateTestingModule } from 'ngx-translate-testing';
 import { FaqService } from '../../services/api/faq.service';
 import { FaqListPage } from './faq-list.page';
 import { Faq } from '../../models/faq.model';
 import { Router } from '@angular/router';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 describe('FaqListPage', () => {
   let component: FaqListPage;
@@ -26,6 +31,14 @@ describe('FaqListPage', () => {
     dismiss: jest.fn(() => Promise.resolve()),
     setContent: jest.fn(() => Promise.resolve()),
     setSpinner: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastMock = {
+    present: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastControllerMock = {
+    create: jest.fn((any) => Promise.resolve(toastMock)),
   };
 
   const loadingControllerMock = {
@@ -50,6 +63,7 @@ describe('FaqListPage', () => {
           { provide: LoadingController, useValue: loadingControllerMock },
           { provide: FaqService, useValue: faqServiceMock },
           { provide: Router, useValue: routerMock },
+          { provide: ToastController, useValue: toastControllerMock },
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -79,5 +93,28 @@ describe('FaqListPage', () => {
     const tmpId = '0';
     component.showDetails(tmpId);
     expect(routerMock.navigate).toHaveBeenCalledWith(['main', 'faqs', tmpId]);
+  });
+
+  it('should navigate home', () => {
+    component.navigateToHome();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['main', 'home'], {
+      replaceUrl: true,
+    });
+  });
+
+  it('should handle errors', async () => {
+    let errMsg = 'Service Error';
+    faqServiceMock.getAll.mockImplementationOnce(() => {
+      throw new Error(errMsg);
+    });
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create).toBeCalled();
+    expect(toastControllerMock.create.mock.calls[0][0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    faqServiceMock.getAll.mockImplementationOnce(() => {
+      throw new TranslatableError(errMsg);
+    });
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create.mock.calls[1][0].message).toBe(errMsg);
   });
 });

@@ -28,7 +28,12 @@ export class StorageService {
         .then(() => {
           console.log('feelback download dir created');
         })
-        .catch(() => {
+        .catch((error) => {
+          // TODO: Verify error difference when there is a real error (e.g., permission error?)
+          // if this error can be distinguished from the "directory already exists" error, it is fine.
+          // Else, this should be implemented in a different way - maybe use checkDir again?
+          // currently, the storage.create translatable error can not be thrown.
+          console.log(error);
           console.log('feelback download dir already exists');
         });
     } catch (error) {

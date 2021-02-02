@@ -9,6 +9,7 @@ import { Apollo } from 'apollo-angular';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { CardService } from '../../services/card.service';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 describe('LoginQrcodePage', () => {
   let component: LoginQrcodePage;
@@ -134,5 +135,23 @@ describe('LoginQrcodePage', () => {
       message: 'app.pages.login.scanner.error',
       duration: 3000,
     });
+  });
+
+  it('should handle errors', async () => {
+    let errMsg = 'Service Error';
+    cardServiceMock.readCard.mockImplementationOnce(() => {
+      throw new Error(errMsg);
+    });
+    await component.openScanner();
+    await Promise.resolve();
+    expect(toastControllerMock.create).toBeCalled();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    cardServiceMock.readCard.mockImplementationOnce(() => {
+      throw new TranslatableError(errMsg);
+    });
+    await component.openScanner();
+    await Promise.resolve();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
   });
 });

@@ -2,10 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IonicModule, LoadingController } from '@ionic/angular';
+import {
+  IonicModule,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Apollo } from 'apollo-angular';
 import { TranslateTestingModule } from 'ngx-translate-testing';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 import { Instrument } from '../../models/instrument.model';
 import { InstrumentService } from '../../services/api/instrument.service';
 import { HomePage } from './home.page';
@@ -23,6 +28,14 @@ describe('HomePage', () => {
 
   const loadingControllerMock = {
     create: jest.fn((any) => loadingMock),
+  };
+
+  const toastMock = {
+    present: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastControllerMock = {
+    create: jest.fn((any) => Promise.resolve(toastMock)),
   };
 
   const instrumentsMock: Instrument[] = [
@@ -54,6 +67,7 @@ describe('HomePage', () => {
           HttpClient,
           { provide: LoadingController, useValue: loadingControllerMock },
           { provide: InstrumentService, useValue: instrumentServiceMock },
+          { provide: ToastController, useValue: toastControllerMock },
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -77,5 +91,21 @@ describe('HomePage', () => {
     expect(component.loadingController.create).toHaveBeenCalledWith({
       message: 'app.general.loading',
     });
+  });
+
+  it('should handle errors', async () => {
+    let errMsg = 'Service Error';
+    instrumentServiceMock.getAll.mockImplementationOnce(() => {
+      throw new Error(errMsg);
+    });
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create).toBeCalled();
+    expect(toastControllerMock.create.mock.calls[0][0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    instrumentServiceMock.getAll.mockImplementationOnce(() => {
+      throw new TranslatableError(errMsg);
+    });
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create.mock.calls[1][0].message).toBe(errMsg);
   });
 });

@@ -31,7 +31,7 @@ export class InstrumentService {
     }
 
     let instruments;
-    if (getInstrumentsResponse.data) {
+    try {
       instruments = getInstrumentsResponse.data.instruments.edges.map(
         (item) => {
           return {
@@ -45,9 +45,11 @@ export class InstrumentService {
           } as Instrument;
         },
       );
-    } else {
+    } catch (error) {
+      console.error('Error mapping the instruments');
       instruments = [];
     }
+
     return instruments;
   }
 
@@ -67,7 +69,7 @@ export class InstrumentService {
     }
 
     let instrument: Instrument;
-    if (instrumentResponse.data) {
+    try {
       const instrumentData = instrumentResponse.data.instrument;
       instrument = {
         id: instrumentData.id,
@@ -78,7 +80,8 @@ export class InstrumentService {
         payload: instrumentData.payload,
         changelog: instrumentData.changelog,
       };
-    } else {
+    } catch (error) {
+      console.error('Error building the instrument');
       instrument = null;
     }
 

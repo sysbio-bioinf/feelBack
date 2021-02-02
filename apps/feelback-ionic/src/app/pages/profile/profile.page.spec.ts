@@ -56,7 +56,7 @@ describe('ProfilePage', () => {
   };
 
   const identityServiceMock = {
-    getIdentityByPseudonym: jest.fn((pesudonym: string) =>
+    getIdentityByPseudonym: jest.fn((pseudonym: string) =>
       Promise.resolve(identityMock),
     ),
   };
@@ -98,7 +98,7 @@ describe('ProfilePage', () => {
     expect(component.userService.pseudonym).toBe(null);
     await component.ionViewWillEnter();
     expect(toastControllerMock.create).toBeCalled();
-    expect(toastControllerMock.create.mock.calls[0][0].message).toBe(
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(
       'app.pages.profile.toasts.notLoggedIn',
     );
     expect(routerMock.navigate).toHaveBeenCalledWith(['main', 'home'], {
@@ -112,6 +112,15 @@ describe('ProfilePage', () => {
     expect(component.identity).toBe(undefined);
     await component.ionViewWillEnter();
     expect(component.identity).toBe(identityMock);
+    // handle default error
+    const errMsg = 'Service Error';
+    identityServiceMock.getIdentityByPseudonym.mockImplementationOnce(
+      (pseudonym: '0') => {
+        throw new Error(errMsg);
+      },
+    );
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
   });
 
   it('should display a error Toast when there is no data to a user and return to main', async () => {
@@ -119,7 +128,7 @@ describe('ProfilePage', () => {
     identityServiceMock.getIdentityByPseudonym.mockReturnValueOnce(undefined);
     await component.ionViewWillEnter();
     expect(toastControllerMock.create).toBeCalled();
-    expect(toastControllerMock.create.mock.calls[1][0].message).toBe(
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(
       'app.errors.services.identity.notFound',
     );
     expect(routerMock.navigate).toHaveBeenCalledWith(['main', 'home'], {

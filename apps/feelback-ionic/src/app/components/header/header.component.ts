@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
     private toastController: ToastController,
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.currentLanguage = this.languageService.getCurrentLanguage();
     try {
       this.availableLanguages = this.languageService.getAvailableLanguages();
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
       } else {
         errorMsg = error.message;
       }
-      this.toastController
+      await this.toastController
         .create({
           message: errorMsg,
           buttons: [

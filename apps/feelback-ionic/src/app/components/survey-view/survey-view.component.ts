@@ -100,6 +100,29 @@ export class SurveyViewComponent
     this.router.navigate(['main', 'home'], { replaceUrl: true });
   }
 
+  async createErrorToast(error: any) {
+    let errorMsg: string;
+    if (error instanceof TranslatableError) {
+      errorMsg = this.translatePipe.transform(error.message);
+    } else {
+      errorMsg = error.message || 'Find me in survey-view component';
+    }
+    this.toastController
+      .create({
+        message: errorMsg,
+        buttons: [
+          {
+            side: 'end',
+            text: this.translatePipe.transform('app.general.ok'),
+          },
+        ],
+        duration: 5000,
+      })
+      .then((toast) => {
+        toast.present();
+      });
+  }
+
   async setupInstrumentPage() {
     this.surveyCompleted = false;
 
@@ -168,20 +191,7 @@ export class SurveyViewComponent
           JSON.stringify(survey.data),
         );
       } catch (error) {
-        this.toastController
-          .create({
-            message: this.translatePipe.transform(error.message),
-            buttons: [
-              {
-                side: 'end',
-                text: this.translatePipe.transform('app.general.ok'),
-              },
-            ],
-            duration: 5000,
-          })
-          .then((toast) => {
-            toast.present();
-          });
+        await this.createErrorToast(error);
       }
 
       const plainData = survey.getPlainData({ includeEmpty: true });
@@ -193,27 +203,7 @@ export class SurveyViewComponent
           this.instrument.name,
         );
       } catch (error) {
-        let errorMsg: string;
-        if (error instanceof TranslatableError) {
-          errorMsg = this.translatePipe.transform(error.message);
-        } else {
-          errorMsg = error.message;
-        }
-        // TODO: put these 3 toastController calls into a function
-        this.toastController
-          .create({
-            message: errorMsg,
-            buttons: [
-              {
-                side: 'end',
-                text: this.translatePipe.transform('app.general.ok'),
-              },
-            ],
-            duration: 5000,
-          })
-          .then((toast) => {
-            toast.present();
-          });
+        await this.createErrorToast(error);
       }
 
       if (resultText) {
@@ -225,20 +215,7 @@ export class SurveyViewComponent
             resultText,
           );
         } catch (error) {
-          this.toastController
-            .create({
-              message: this.translatePipe.transform(error.message),
-              buttons: [
-                {
-                  side: 'end',
-                  text: this.translatePipe.transform('app.general.ok'),
-                },
-              ],
-              duration: 5000,
-            })
-            .then((toast) => {
-              toast.present();
-            });
+          await this.createErrorToast(error);
         }
       }
 
@@ -260,26 +237,7 @@ export class SurveyViewComponent
           person,
         );
       } catch (error) {
-        let errorMsg: string;
-        if (error instanceof TranslatableError) {
-          errorMsg = this.translatePipe.transform(error.message);
-        } else {
-          errorMsg = error.message;
-        }
-        this.toastController
-          .create({
-            message: errorMsg,
-            buttons: [
-              {
-                side: 'end',
-                text: this.translatePipe.transform('app.general.ok'),
-              },
-            ],
-            duration: 5000,
-          })
-          .then((toast) => {
-            toast.present();
-          });
+        await this.createErrorToast(error);
       }
     });
 
@@ -315,27 +273,7 @@ export class SurveyViewComponent
     try {
       await this.printerService.printData(this.printData, printOptions);
     } catch (error) {
-      let errorMsg: string;
-      if (error instanceof TranslatableError) {
-        errorMsg = this.translatePipe.transform(error.message);
-      } else {
-        errorMsg = error.message;
-      }
-      // TODO but both ToastController calls within this component into a function to reduce redundant code
-      this.toastController
-        .create({
-          message: errorMsg,
-          buttons: [
-            {
-              side: 'end',
-              text: this.translatePipe.transform('app.general.ok'),
-            },
-          ],
-          duration: 5000,
-        })
-        .then((toast) => {
-          toast.present();
-        });
+      await this.createErrorToast(error);
     }
   }
 }

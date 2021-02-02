@@ -1,14 +1,34 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { NgStringPipesModule } from 'ngx-pipes';
 import { TranslateTestingModule } from 'ngx-translate-testing';
+import { TranslatableError } from '../../core/customErrors/translatableError';
+import { ApplicationLanguageModel } from '../../models/application-language.model';
+import { LanguageService } from '../../services/language.service';
 import { InstrumentCardComponent } from './instrument-card.component';
 
 describe('InstrumentCardComponent', () => {
   let component: InstrumentCardComponent;
   let fixture: ComponentFixture<InstrumentCardComponent>;
+
+  const toastMock = {
+    present: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastControllerMock = {
+    create: jest.fn((any) => Promise.resolve(toastMock)),
+  };
+
+  const mockAppLanguages: ApplicationLanguageModel[] = [
+    { name: 'English', nativeName: 'English', code: 'en' },
+    { name: 'German', nativeName: 'Deutsch', code: 'de' },
+  ];
+
+  const languageServiceMock = {
+    getAvailableLanguages: jest.fn(() => mockAppLanguages),
+  };
 
   const routerMock = {
     navigate: jest.fn(),
@@ -24,7 +44,11 @@ describe('InstrumentCardComponent', () => {
           FormsModule,
           NgStringPipesModule,
         ],
-        providers: [{ provide: Router, useValue: routerMock }],
+        providers: [
+          { provide: Router, useValue: routerMock },
+          { provide: LanguageService, useValue: languageServiceMock },
+          { provide: ToastController, useValue: toastControllerMock },
+        ],
       }).compileComponents();
     }),
   );
@@ -64,6 +88,21 @@ describe('InstrumentCardComponent', () => {
     component.ngOnInit();
     expect(component.translateService.currentLang).toBe('es');
     expect(component.selectedLanguage).toEqual('en');
+  });
+
+  it('should handle errors', () => {
+    let errMsg = 'Serice Error';
+    languageServiceMock.getAvailableLanguages.mockImplementationOnce(() => {
+      throw new Error(errMsg);
+    });
+    component.ngOnInit();
+    expect(toastControllerMock.create.mock.calls[0][0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    languageServiceMock.getAvailableLanguages.mockImplementationOnce(() => {
+      throw new TranslatableError(errMsg);
+    });
+    component.ngOnInit();
+    expect(toastControllerMock.create.mock.calls[1][0].message).toBe(errMsg);
   });
 
   it('should navigate to the correct url', () => {

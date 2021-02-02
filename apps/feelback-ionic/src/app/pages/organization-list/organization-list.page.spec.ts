@@ -2,9 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { IonicModule, LoadingController } from '@ionic/angular';
+import {
+  IonicModule,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { Apollo } from 'apollo-angular';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 import { Organization } from '../../models/organization.model';
 import { OrganizationService } from '../../services/api/organization.service';
 import { OrganizationListPage } from './organization-list.page';
@@ -26,6 +31,14 @@ describe('OrganizationListPage', () => {
 
   const loadingControllerMock = {
     create: jest.fn((any) => loadingMock),
+  };
+
+  const toastMock = {
+    present: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastControllerMock = {
+    create: jest.fn((any) => Promise.resolve(toastMock)),
   };
 
   const organizationsMock: Organization[] = [
@@ -58,6 +71,7 @@ describe('OrganizationListPage', () => {
           { provide: Router, useValue: routerMock },
           { provide: LoadingController, useValue: loadingControllerMock },
           { provide: OrganizationService, useValue: organizationServiceMock },
+          { provide: ToastController, useValue: toastControllerMock },
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -99,5 +113,21 @@ describe('OrganizationListPage', () => {
       'organizations',
       orgId,
     ]);
+  });
+
+  it('should handle errors', async () => {
+    let errMsg = 'Service Error';
+    organizationServiceMock.getAll.mockImplementationOnce(() => {
+      throw new Error(errMsg);
+    });
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create).toBeCalled();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    organizationServiceMock.getAll.mockImplementationOnce(() => {
+      throw new TranslatableError(errMsg);
+    });
+    await component.ionViewWillEnter();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
   });
 });

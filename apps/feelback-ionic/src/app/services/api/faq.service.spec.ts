@@ -59,26 +59,38 @@ describe('FaqService test', () => {
   });
 
   it('should get all FAQs', async () => {
-    getFaqsGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    expect(faqService.getAll()).rejects.toThrow(
-      'Es ist ein Fehler aufgetreten',
-    );
     getFaqsGQLMock.fetch.mockReturnValueOnce(of(faqsMockObject));
     const faqs = await faqService.getAll();
     expect(faqs).toEqual(faqResponse);
+    // error handling
+    getFaqsGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
+    expect(faqService.getAll()).rejects.toThrow(
+      'app.errors.services.faq.allResponse',
+    );
+    getFaqsGQLMock.fetch.mockImplementationOnce(() => {
+      throw new Error('getAllFaq mock error');
+    });
+    expect(faqService.getAll()).rejects.toThrow('app.errors.services.faq.all');
   });
 
   it('should get a FAQ by ID', async () => {
-    getFaqByIdGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    expect(faqService.getById('0xdummy')).rejects.toThrow(
-      'Es ist ein Fehler aufgetreten',
-    );
     getFaqByIdGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
     expect(faqService.getById('0xdummy')).rejects.toThrow(
-      'Es ist ein Fehler aufgetreten',
+      'app.errors.services.faq.none',
     );
     getFaqByIdGQLMock.fetch.mockReturnValueOnce(of(singlefaqMockObject));
     const faq = await faqService.getById('0xdummy');
     expect(faq).toEqual(singlefaqResponse);
+    // error handling
+    getFaqByIdGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
+    expect(faqService.getById('0xdummy')).rejects.toThrow(
+      'app.errors.services.faq.idResponse',
+    );
+    getFaqByIdGQLMock.fetch.mockImplementationOnce((id: string) => {
+      throw new Error('getFaqById mock error');
+    });
+    expect(faqService.getById('0xdummy')).rejects.toThrow(
+      'app.errors.services.faq.id',
+    );
   });
 });

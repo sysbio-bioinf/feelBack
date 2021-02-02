@@ -1,4 +1,5 @@
 import { of } from 'rxjs';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 import { InstrumentService } from './instrument.service';
 
 describe('InstrumentService test', () => {
@@ -68,8 +69,12 @@ describe('InstrumentService test', () => {
   });
 
   it('should get all instruments', async () => {
+    getInstrumentsGQLMock.fetch.mockReturnValueOnce(of(instrumentsMockObject));
+    let instruments = await instrumentService.getAll();
+    expect(instruments).toEqual(instrumentResponse);
+    // error handling
     getInstrumentsGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    let instruments = [];
+    instruments = [];
     let error;
     try {
       instruments = await instrumentService.getAll();
@@ -77,25 +82,62 @@ describe('InstrumentService test', () => {
       error = e;
     }
     expect(error.name).toEqual('TranslatableError');
+    expect(error.message).toEqual('app.errors.services.instrument.allResponse');
     expect(instruments).toEqual([]);
-    getInstrumentsGQLMock.fetch.mockReturnValueOnce(of(instrumentsMockObject));
-    instruments = await instrumentService.getAll();
-    expect(instruments).toEqual(instrumentResponse);
+    instruments = null;
+    error = null;
+    getInstrumentsGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
+    try {
+      instruments = await instrumentService.getAll();
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBe(null);
+    expect(instruments).toEqual([]);
+    getInstrumentsGQLMock.fetch.mockImplementationOnce(() => {
+      throw new Error('getAllInstruments mock error');
+    });
+    expect(instrumentService.getAll()).rejects.toThrow(
+      'app.errors.services.instrument.all',
+    );
   });
 
   it('should get an instrument by ID', async () => {
-    // getInstrumentByIdGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    // expect(instrumentService.getById('0xdummy')).rejects.toThrow(
-    //   'Es ist ein Fehler aufgetreten',
-    // );
-    // getInstrumentByIdGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
-    // expect(instrumentService.getById('0xdummy')).rejects.toThrow(
-    //   'Es ist ein Fehler aufgetreten',
-    // );
+    let instrument;
+    let error;
     getInstrumentByIdGQLMock.fetch.mockReturnValueOnce(
       of(singleInstrumentMockObject),
     );
-    const faq = await instrumentService.getById('0xdummy');
-    expect(faq).toEqual(singleInstrumentResponse);
+    try {
+      instrument = await instrumentService.getById('0xdummy');
+    } catch (e) {
+      error = e;
+    }
+    expect(instrument).toEqual(singleInstrumentResponse);
+    expect(error).toBeUndefined();
+    // error handling
+    getInstrumentByIdGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
+    try {
+      instrument = await instrumentService.getById('0xdummy');
+    } catch (e) {
+      error = e;
+    }
+    expect(error instanceof TranslatableError).toEqual(true);
+    expect(error.message).toEqual('app.errors.services.instrument.idResponse');
+    getInstrumentByIdGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
+    error = undefined;
+    try {
+      instrument = await instrumentService.getById('0xdummy');
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toBeUndefined();
+    expect(instrument).toEqual(null);
+    getInstrumentByIdGQLMock.fetch.mockImplementationOnce((id: string) => {
+      throw new Error('getInstrumentById mock error');
+    });
+    expect(instrumentService.getById('0xdummy')).rejects.toThrow(
+      'app.errors.services.instrument.id',
+    );
   });
 });

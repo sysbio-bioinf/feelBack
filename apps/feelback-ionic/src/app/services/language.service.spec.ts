@@ -1,3 +1,4 @@
+import { TranslatableError } from '../core/customErrors/translatableError';
 import { ApplicationLanguageModel } from '../models/application-language.model';
 import { LanguageService } from './language.service';
 
@@ -38,9 +39,26 @@ describe('LanguageService test', () => {
   // TODO: Find out how to test the ISO6391.getLanguages part -> getAvailableLanguages
   // "Cannot read property 'getLanguages' of undefined"
 
-  // it('should get all available languages', () => {
-  //   languageService.getAvailableLanguages();
-  // });
+  it('should get all available languages', () => {
+    try {
+      languageService.getAvailableLanguages();
+    } catch (error) {
+      expect(error instanceof TranslatableError).toBe(true);
+      expect(error.message).toEqual('app.errors.services.language.available');
+      expect(languageService.appLanguages).toEqual([
+        {
+          code: 'en',
+          name: 'English',
+          nativeName: 'English',
+        },
+      ]);
+    }
+    try {
+      languageService.getAvailableLanguages(['en', 'de']);
+    } catch (error) {
+      expect(error instanceof TranslatableError).toBe(true);
+    }
+  });
 
   it('should switch languages', () => {
     expect(languageService.currentLanguage).toBe(undefined);

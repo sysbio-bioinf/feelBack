@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, EventEmitter } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -27,8 +27,6 @@ describe('AppComponent', () => {
   let idleSpy;
   let screenOrientationSpy;
 
-  let idleHelper = 0;
-
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
@@ -53,10 +51,14 @@ describe('AppComponent', () => {
     setIdle: jest.fn(),
     setTimeout: jest.fn(),
     setInterrupts: jest.fn(),
-    onIdleEnd: { subscribe: jest.fn(() => of('idleEnd')) },
-    onTimeout: { subscribe: jest.fn(() => of('timeout')) },
-    onIdleStart: { subscribe: jest.fn() },
-    onTimeoutWarning: { subscribe: jest.fn(() => 0) },
+    onIdleEnd: new EventEmitter<number>(),
+    onTimeout: new EventEmitter<number>(),
+    onIdleStart: new EventEmitter<any>(),
+    onTimeoutWarning: new EventEmitter<number>(),
+    // onIdleEnd: { subscribe: jest.fn(() => of('idleEnd')) },
+    // onTimeout: { subscribe: jest.fn(() => of('timeout')) },
+    // onIdleStart: { subscribe: jest.fn() },
+    // onTimeoutWarning: { subscribe: jest.fn(() => 0) },
     watch: jest.fn(),
     getTimeout: jest.fn(() => 60),
   };
@@ -153,9 +155,16 @@ describe('AppComponent', () => {
   });
 
   it('should handle timeouts', async () => {
-    fixture.detectChanges();
-    idleHelper = 0;
-    component.initializeApp();
+    // onTimeout
+    await component.presentIdleAlert();
+    expect(component.alert).toBeDefined();
+    expect(component.idleAlertShown).toBe(true);
+    idleSpy.onTimeout.emit('timeout');
+    expect(component.idleAlertShown).toBe(false);
+    // results from reset():
+    expect(idleSpy.watch).toBeCalled();
+    expect(component.idleState).toEqual('Started.');
+    expect(component.timedOut).toBe(false);
   });
 
   it('should logout a user', () => {
@@ -174,5 +183,24 @@ describe('AppComponent', () => {
     expect(mockAlertController.getLast().header).toBe('app.idle.header');
     expect(mockAlertController.getLast().subHeader).toBe('app.idle.subheader');
   }));
-  // TODO: add more tests!
+
+  it('should change idleStates', () => {
+    // onIdleStart
+    idleSpy.onIdleStart.emit('startIdleEvent');
+    expect(component.idleState).toEqual("You've gone idle!");
+    // onIdleEnd
+    idleSpy.onIdleEnd.emit('endIdleEvent');
+    expect(component.idleState).toEqual('No longer idle.');
+  });
+
+  it('should create idle Timeout warning', () => {
+    component.idleAlertShown = false;
+    const mockTimeout = 44;
+    idleSpy.onTimeoutWarning.emit(mockTimeout);
+    expect(component.idleAlertShown).toBe(true);
+    expect(component.idleState).toEqual(
+      'You will time out in ' + mockTimeout + ' seconds!',
+    );
+    expect(component.timeBeforeTimeout).toBe(mockTimeout);
+  });
 });

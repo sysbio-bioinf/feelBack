@@ -1,3 +1,4 @@
+import { TranslatableError } from '../core/customErrors/translatableError';
 import { ResultService } from './result.service';
 
 describe('ResulstService test', () => {
@@ -42,8 +43,11 @@ describe('ResulstService test', () => {
     }),
   };
 
-  it('should generate html result text', () => {
+  beforeEach(() => {
     resultService = new ResultService(translateServiceMockEN as any);
+  });
+
+  it('should generate html result text', () => {
     const plaintext = [
       { name: 'a', title: 'a.title', displayValue: 'a.displayValue' },
       { name: 'b', title: 'b.title', displayValue: '' },
@@ -59,7 +63,6 @@ describe('ResulstService test', () => {
       plaintext,
       'mockInstrument',
     );
-    console.log(htmlResult);
 
     expect(htmlResult).not.toMatch(/[Ss]kip/);
     expect(htmlResult).toMatch(/a.title/);
@@ -80,5 +83,17 @@ describe('ResulstService test', () => {
     // console.log(htmlResult);
 
     //TODO weitere contains-tests
+  });
+
+  it('should handle errors', () => {
+    const plaintext = [
+      { nameTypo: 'a', title: 'a.title', displayValue: 'a.displayValue' },
+    ];
+    try {
+      resultService.generateResultText(plaintext, 'mockInstrument');
+    } catch (error) {
+      expect(error instanceof TranslatableError).toBe(true);
+      expect(error.message).toEqual('app.errors.services.result.create');
+    }
   });
 });

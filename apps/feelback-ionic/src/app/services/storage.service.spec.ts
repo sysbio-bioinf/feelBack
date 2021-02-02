@@ -1,3 +1,4 @@
+import { TranslatableError } from '../core/customErrors/translatableError';
 import { StorageService } from './storage.service';
 
 describe('StorageService test', () => {
@@ -50,10 +51,17 @@ describe('StorageService test', () => {
       FEELBACK_DIRECTORY,
       false,
     );
+    // handle errors
+    // this "error case" is not really an errors and just logs to console
+    fileSystemMock.createDir.mockReturnValueOnce(
+      Promise.reject('createDir error'),
+    );
+    expect(storageService.createFeelbackDirectories()).resolves.not.toThrow();
+    // TODO: Add test for translatable error as soon as it is verified.
   });
 
   it('should write data to file', async () => {
-    expect(() =>
+    expect(async () =>
       storageService.writeDataToFile('fileName', 'fileContent'),
     ).not.toThrow();
     expect(fileSystemMock.writeFile).toHaveBeenCalledWith(
@@ -64,5 +72,14 @@ describe('StorageService test', () => {
         replace: true,
       },
     );
+    fileSystemMock.writeFile.mockRejectedValueOnce(
+      new Error('writeFile mock error'),
+    );
+    try {
+      await storageService.writeDataToFile('fileName', 'fileContent');
+    } catch (error) {
+      expect(error instanceof TranslatableError).toBe(true);
+      expect(error.message).toEqual('app.errors.services.storage.write');
+    }
   });
 });

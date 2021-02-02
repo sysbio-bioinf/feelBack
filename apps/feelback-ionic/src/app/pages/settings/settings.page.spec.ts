@@ -1,8 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 import { ApplicationLanguageModel } from '../../models/application-language.model';
 import { LanguageService } from '../../services/language.service';
 import { SettingsPage } from './settings.page';
@@ -31,6 +32,14 @@ describe('SettingsPage', () => {
     }),
   };
 
+  const toastMock = {
+    present: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastControllerMock = {
+    create: jest.fn((any) => Promise.resolve(toastMock)),
+  };
+
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -43,6 +52,7 @@ describe('SettingsPage', () => {
         providers: [
           TranslatePipe,
           { provide: LanguageService, useValue: languageServiceMock },
+          { provide: ToastController, useValue: toastControllerMock },
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -67,5 +77,21 @@ describe('SettingsPage', () => {
     expect(languageServiceMock.switchLanguage).toBeCalledWith(
       mockEvent.detail.value,
     );
+  });
+
+  it('should handle errors', () => {
+    let errMsg = 'Service Error';
+    languageServiceMock.getAvailableLanguages.mockImplementationOnce(() => {
+      throw new Error(errMsg);
+    });
+    component.ngOnInit();
+    expect(toastControllerMock.create).toBeCalled();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    languageServiceMock.getAvailableLanguages.mockImplementationOnce(() => {
+      throw new TranslatableError(errMsg);
+    });
+    component.ngOnInit();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
   });
 });

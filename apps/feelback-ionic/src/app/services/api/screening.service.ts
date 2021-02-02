@@ -46,7 +46,7 @@ export class ScreeningService {
     }
 
     if (screeningResponse.errors) {
-      throw new TranslatableError('app.errors.services.screening.upload');
+      throw new TranslatableError('app.errors.services.screening.response');
     }
 
     return true;

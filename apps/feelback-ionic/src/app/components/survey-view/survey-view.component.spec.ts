@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Apollo } from 'apollo-angular';
 import { NgPipesModule } from 'ngx-pipes';
@@ -9,10 +9,19 @@ import { PrinterService } from '../../services/printer.service';
 import { StorageService } from '../../services/storage.service';
 import { SurveyViewComponent } from './survey-view.component';
 import { PrintOptions } from '@ionic-native/printer/ngx';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 
 describe('SurveyViewComponent', () => {
   let component: SurveyViewComponent;
   let fixture: ComponentFixture<SurveyViewComponent>;
+
+  const toastMock = {
+    present: jest.fn(() => Promise.resolve()),
+  };
+
+  const toastControllerMock = {
+    create: jest.fn((any) => Promise.resolve(toastMock)),
+  };
 
   const storageServiceSpy = undefined;
   const printerServiceSpy = {
@@ -20,7 +29,9 @@ describe('SurveyViewComponent', () => {
       Promise.resolve(),
     ),
   };
-  const translatePipeSpy = undefined;
+  const translatePipeSpy = {
+    transform: jest.fn((key: string) => key),
+  };
 
   const routerMock = {
     navigate: jest.fn(),
@@ -41,6 +52,7 @@ describe('SurveyViewComponent', () => {
           { provide: PrinterService, useValue: printerServiceSpy },
           { provide: Router, useValue: routerMock },
           { provide: TranslatePipe, useValue: translatePipeSpy },
+          { provide: ToastController, useValue: toastControllerMock },
         ],
       }).compileComponents();
       fixture = TestBed.createComponent(SurveyViewComponent);
@@ -112,5 +124,29 @@ describe('SurveyViewComponent', () => {
       dummyPrintData,
       printOptionsForComparison,
     );
+  });
+
+  it('should create toasts for errors', async () => {
+    let errMsg = 'Service Error';
+    let err = new Error(errMsg);
+    await component.createErrorToast(err);
+    expect(toastControllerMock.create).toBeCalled();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
+    errMsg = 'app.error.msg';
+    err = new TranslatableError(errMsg);
+    await component.createErrorToast(err);
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
+    await component.createErrorToast('noError');
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(
+      'Find me in survey-view component',
+    );
+    errMsg = 'PrintError';
+    printerServiceSpy.printData.mockImplementationOnce(
+      (printData: 'data', printOptions: {}) => {
+        throw new Error(errMsg);
+      },
+    );
+    await component.printResult();
+    expect(toastControllerMock.create.mock.calls.pop()[0].message).toBe(errMsg);
   });
 });

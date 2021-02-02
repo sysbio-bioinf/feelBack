@@ -1,4 +1,5 @@
 import { of } from 'rxjs';
+import { TranslatableError } from '../../core/customErrors/translatableError';
 import { OrganizationService } from './organization.service';
 
 describe('OrganizationService test', () => {
@@ -74,30 +75,81 @@ describe('OrganizationService test', () => {
   });
 
   it('should get all organizations', async () => {
-    getOrganizationsGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    expect(organizationService.getAll()).rejects.toThrow(
-      'Es ist ein Fehler aufgetreten',
-    );
     getOrganizationsGQLMock.fetch.mockReturnValueOnce(
       of(organizationsMockObject),
     );
-    const faqs = await organizationService.getAll();
-    expect(faqs).toEqual(organizationsResponse);
+    let organizations = await organizationService.getAll();
+    expect(organizations).toEqual(organizationsResponse);
+    // error handling
+    organizations = [];
+    let error;
+    getOrganizationsGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
+    try {
+      organizations = await organizationService.getAll();
+    } catch (e) {
+      error = e;
+    }
+    expect(error.name).toEqual('TranslatableError');
+    expect(error.message).toEqual(
+      'app.errors.services.organization.allResponse',
+    );
+    expect(organizations).toEqual([]);
+    getOrganizationsGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
+    organizations = null;
+    error = null;
+    try {
+      organizations = await organizationService.getAll();
+    } catch (e) {
+      error = e;
+    }
+    expect(error).toEqual(null);
+    expect(organizations).toEqual([]);
+    getOrganizationsGQLMock.fetch.mockImplementationOnce(() => {
+      throw new Error('gettAllOrganizations mock error');
+    });
+    expect(organizationService.getAll()).rejects.toThrow(
+      'app.errors.services.organization.all',
+    );
   });
 
   it('should get an organization by ID', async () => {
-    getOrganizationByIdGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
-    expect(organizationService.getById('0xdummy')).rejects.toThrow(
-      'Es ist ein Fehler aufgetreten',
-    );
-    getOrganizationByIdGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
-    expect(organizationService.getById('0xdummy')).rejects.toThrow(
-      'Es ist ein Fehler aufgetreten',
-    );
+    let organization;
+    let error;
     getOrganizationByIdGQLMock.fetch.mockReturnValueOnce(
       of(singleOrganizationMockObject),
     );
-    const faq = await organizationService.getById('0xdummy');
-    expect(faq).toEqual(singleOrganizationResponse);
+    try {
+      organization = await organizationService.getById('0xdummy');
+    } catch (e) {
+      error = e;
+    }
+    expect(organization).toEqual(singleOrganizationResponse);
+    expect(error).toBeUndefined();
+    // error handling
+    getOrganizationByIdGQLMock.fetch.mockReturnValueOnce(of({ errors: 'yes' }));
+    try {
+      organization = await organizationService.getById('0xdummy');
+    } catch (e) {
+      error = e;
+    }
+    expect(error instanceof TranslatableError).toEqual(true);
+    expect(error.message).toEqual(
+      'app.errors.services.organization.idResponse',
+    );
+    getOrganizationByIdGQLMock.fetch.mockReturnValueOnce(of({ data: {} }));
+    error = undefined;
+    try {
+      organization = await organizationService.getById('0xdummy');
+    } catch (e) {
+      error = e;
+    }
+    expect(error instanceof TranslatableError).toEqual(true);
+    expect(error.message).toEqual('app.errors.services.organization.none');
+    getOrganizationByIdGQLMock.fetch.mockImplementationOnce((id: string) => {
+      throw new Error('getOrganizationById mock error');
+    });
+    expect(organizationService.getById('0xdumym')).rejects.toThrow(
+      'app.errors.services.organization.id',
+    );
   });
 });

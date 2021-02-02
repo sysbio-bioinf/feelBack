@@ -31,7 +31,7 @@ export class OrganizationService {
     }
 
     let organizations;
-    if (organizationsResponse.data) {
+    try {
       organizations = organizationsResponse.data.organizations.edges.map(
         (item) => {
           return {
@@ -47,7 +47,8 @@ export class OrganizationService {
           } as Organization;
         },
       );
-    } else {
+    } catch (error) {
+      console.error('Error mapping the organization');
       organizations = [];
     }
 
@@ -71,25 +72,29 @@ export class OrganizationService {
       );
     }
 
-    let organizationData;
-    if (organizationResponse.data) {
-      organizationData = organizationResponse.data.organization;
+    let organization: Organization;
+    try {
+      const organizationData = organizationResponse.data.organization;
+      organization = {
+        id: organizationData.id,
+        name: organizationData.name,
+        description: organizationData.description,
+        type: organizationData.type,
+        address: organizationData.address,
+        phone: organizationData.phone,
+        email: organizationData.email,
+        url: organizationData.url,
+        logo: organizationData.logo,
+      };
+    } catch (error) {
+      console.error('Error building the organization');
+      organization = null;
     }
 
-    if (!organizationData) {
+    if (!organization) {
       throw new TranslatableError('app.errors.services.organization.none');
     }
 
-    return {
-      id: organizationData.id,
-      name: organizationData.name,
-      description: organizationData.description,
-      type: organizationData.type,
-      address: organizationData.address,
-      phone: organizationData.phone,
-      email: organizationData.email,
-      url: organizationData.url,
-      logo: organizationData.logo,
-    };
+    return organization;
   }
 }

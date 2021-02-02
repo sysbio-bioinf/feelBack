@@ -29,7 +29,7 @@ describe('UserService test', () => {
       throwError(new Error('dummyError')),
     );
     expect(userService.loginWithPseudonym(mockPseudonym)).rejects.toThrowError(
-      'dummyError',
+      'app.errors.services.user.pseudonymLogin',
     );
   });
 

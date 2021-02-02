@@ -64,6 +64,8 @@ describe('ScreeningService test', () => {
       instrumentMock,
       personMock,
     );
+    expect(uploadResult).toBe(true);
+    // error handling
     uploadScreeningGQLMock.mutate.mockReturnValueOnce(
       of({
         errors: 'yes',
@@ -71,6 +73,12 @@ describe('ScreeningService test', () => {
     );
     expect(
       screeningService.uploadScreening(screeningInputMock, instrumentMock),
-    ).rejects.toThrow('Could not upload screening');
+    ).rejects.toThrow('app.errors.services.screening.response');
+    uploadScreeningGQLMock.mutate.mockImplementationOnce(({}) => {
+      throw new Error('Upload Screening errors');
+    });
+    expect(
+      screeningService.uploadScreening(screeningInputMock, instrumentMock),
+    ).rejects.toThrow('app.errors.services.screening.upload');
   });
 });
