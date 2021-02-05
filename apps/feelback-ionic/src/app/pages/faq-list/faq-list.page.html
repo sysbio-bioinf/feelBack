@@ -22,9 +22,7 @@
         button
         (click)="showDetails(faq.id)"
       >
-        <ion-label>
-          {{faq.question}}
-        </ion-label>
+        <div [innerHTML]="faq.question | stripTags"></div>
       </ion-item>
     </ion-list>
   </ng-template>

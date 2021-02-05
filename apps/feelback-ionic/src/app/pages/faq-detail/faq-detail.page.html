@@ -9,7 +9,9 @@
       <ion-card-subtitle
         >{{'app.pages.faq-detail.type' | translate}}</ion-card-subtitle
       >
-      <ion-card-title>{{ this.faq.question }} </ion-card-title>
+      <ion-card-title
+        ><div [innerHTML]="this.faq.question"></div
+      ></ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-label [innerHtml]="this.faq.answer"></ion-label>

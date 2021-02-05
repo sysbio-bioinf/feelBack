@@ -11,12 +11,13 @@
     </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-text
+    <div
       *ngIf="organization.description"
       data-cy="organization-description"
-    >
-      {{ organization.description | stripTags | shorten: 200:'...' }}
-    </ion-text>
+      [innerHTML]="
+        organization.description | stripTags | shorten: 200:' ...':false
+      "
+    ></div>
     <ion-row>
       <ion-col class="ion-text-center">
         <ion-chip outline color="dark" class="ion-margin-top">
