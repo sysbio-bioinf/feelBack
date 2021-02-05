@@ -14,15 +14,15 @@
     "gen-resources": "ionic cordova resources android && node scripts/resource-generator.js"
   },
   "dependencies": {
-    "@capacitor/android": "2.4.2",
-    "@capacitor/core": "2.4.2",
-    "@capacitor/ios": "2.4.2",
+    "@capacitor/android": "2.4.6",
+    "@capacitor/core": "2.4.6",
+    "@capacitor/ios": "2.4.6",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-printer": "ImTung/cordova-plugin-printer",
     "cordova-plugin-screen-orientation": "3.0.2",
     "phonegap-plugin-barcodescanner": "8.1.0"
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.2"
+    "@capacitor/cli": "2.4.6"
   }
 }
