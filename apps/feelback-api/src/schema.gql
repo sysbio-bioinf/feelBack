@@ -1015,6 +1015,8 @@ type Mutation {
   addPeopleToOrganization(input: RelationsInput!): Organization!
   addMembersToOrganization(input: RelationsInput!): Organization!
   updateOnePerson(input: UpdateOnePersonInput!): Person!
+  removeOrganizationsFromPerson(input: RelationsInput!): Person!
+  addOrganizationsToPerson(input: RelationsInput!): Person!
   createOnePerson(input: CreateOnePersonInputType!): Person!
   createOneScreening(input: CreateOneScreeningInput!): Screening!
   setPersonOnScreening(input: RelationInput!): Screening!

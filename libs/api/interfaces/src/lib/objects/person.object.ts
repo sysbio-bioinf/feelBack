@@ -1,9 +1,14 @@
-import { ObjectType, Field } from '@nestjs/graphql';
 import { VersionableObject } from '@feelback-app/api/core';
-import { FilterableField } from '@nestjs-query/query-graphql';
+import { Connection, FilterableField } from '@nestjs-query/query-graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { OrganizationObject } from './organization.object';
 
 @ObjectType('Person', {
   description: 'A person',
+})
+@Connection('organizations', () => OrganizationObject, {
+  relationName: 'organizations',
+  disableRead: true,
 })
 export class PersonObject extends VersionableObject {
   @FilterableField(() => String, {

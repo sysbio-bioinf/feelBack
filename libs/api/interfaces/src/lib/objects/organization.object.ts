@@ -1,10 +1,9 @@
 import { VersionableObject } from '@feelback-app/api/core';
-import { ObjectType, Field } from '@nestjs/graphql';
 import {
   Connection,
-  FilterableField,
-  Relation,
+  FilterableField
 } from '@nestjs-query/query-graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { DoctorObject } from './doctor.object';
 import { PersonObject } from './person.object';
 
