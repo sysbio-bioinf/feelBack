@@ -55,4 +55,6 @@ export class GetScreeningsByPersonAndInstrumentArgsType extends QueryArgsType(
   personId!: string;
 }
 
-export const ScreeningConnection = ConnectionType(ScreeningObject);
+export const ScreeningConnection = ConnectionType(ScreeningObject, {
+  enableTotalCount: true,
+});

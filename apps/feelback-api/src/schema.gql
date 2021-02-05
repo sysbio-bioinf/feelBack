@@ -1609,6 +1609,9 @@ type ScreeningConnection {
 
   """Array of edges."""
   edges: [ScreeningEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
 }
 
 type ScreeningCountAggregate {
