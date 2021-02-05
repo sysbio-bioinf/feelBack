@@ -561,6 +561,8 @@ type FaqCountAggregate {
   updatedAt: Int
   version: Int
   deletedAt: Int
+  question: Int
+  answer: Int
   isActive: Int
 }
 
@@ -608,6 +610,8 @@ input FaqFilter {
   updatedAt: DateFieldComparison
   version: IntFieldComparison
   deletedAt: DateFieldComparison
+  question: StringFieldComparison
+  answer: StringFieldComparison
   isActive: BooleanFieldComparison
 }
 
@@ -617,6 +621,8 @@ type FaqMaxAggregate {
   updatedAt: DateTime
   version: Int
   deletedAt: DateTime
+  question: String
+  answer: String
 }
 
 type FaqMinAggregate {
@@ -625,6 +631,8 @@ type FaqMinAggregate {
   updatedAt: DateTime
   version: Int
   deletedAt: DateTime
+  question: String
+  answer: String
 }
 
 input FaqSort {
@@ -639,6 +647,8 @@ enum FaqSortFields {
   updatedAt
   version
   deletedAt
+  question
+  answer
   isActive
 }
 

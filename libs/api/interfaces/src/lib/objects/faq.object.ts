@@ -1,18 +1,18 @@
-import { ObjectType, Field } from '@nestjs/graphql';
 import { VersionableObject } from '@feelback-app/api/core';
 import { FilterableField } from '@nestjs-query/query-graphql';
+import { ObjectType } from '@nestjs/graphql';
 
 @ObjectType('Faq', {
   description: 'A FAQ entry',
 })
 export class FaqObject extends VersionableObject {
-  @Field(() => String, {
+  @FilterableField(() => String, {
     description: 'the question of this FAQ entry',
     nullable: false,
   })
   question!: string;
 
-  @Field(() => String, {
+  @FilterableField(() => String, {
     description: 'the answer to this question',
     nullable: false,
   })
