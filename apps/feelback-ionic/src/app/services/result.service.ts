@@ -57,9 +57,9 @@ export class ResultService {
 
         id++;
         resultText += `<tr>
-            <td style="width: 10%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${id}<td>
-            <td style="width: 40%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${question}<td>
-            <td style="width: 50%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${value}<td>
+            <td style="width: 10%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${id}</td>
+            <td style="width: 40%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${question}</td>
+            <td style="width: 50%; vertical-align: top; border-bottom: 1px solid #7e8c8d;">${value}</td>
           </tr>`;
       }
 
